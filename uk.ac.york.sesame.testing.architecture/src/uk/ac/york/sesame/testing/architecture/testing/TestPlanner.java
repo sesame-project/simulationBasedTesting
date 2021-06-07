@@ -1,16 +1,16 @@
 package uk.ac.york.sesame.testing.architecture.testing;
 
-import uk.ac.york.sesame.testing.architecture.models.TestModel;
+import uk.ac.york.sesame.testing.architecture.models.TestingModel;
 
 public abstract class TestPlanner {
-	TestModel testModel;
+	TestingModel testingModel;
 
-	public TestModel getTestModel() {
-		return testModel;
+	public TestingModel getTestModel() {
+		return testingModel;
 	}
 
-	public void setTestModel(TestModel testModel) {
-		this.testModel = testModel;
+	public void setTestModel(TestingModel testingModel) {
+		this.testingModel = testingModel;
 	}
 
 }
