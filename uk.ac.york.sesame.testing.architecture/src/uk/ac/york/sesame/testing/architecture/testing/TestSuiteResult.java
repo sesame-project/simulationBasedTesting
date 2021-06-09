@@ -2,7 +2,7 @@ package uk.ac.york.sesame.testing.architecture.testing;
 
 import java.util.List;
 
-public abstract class TestSuiteResult {
+public abstract class TestSuiteResult extends Result {
 
 	List<CoverageMetric> coverageMetrics;
 

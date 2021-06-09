@@ -8,8 +8,8 @@ public abstract class Model {
 	String type;
 	Path path;
 	List<Object> contents;
-	IPropertyGetter getter;
-	IPropertySetter setter;
+	IPropertyGetter propertyGetter;
+	IPropertySetter propertySetter;
 
 	public String getType() {
 		return type;
@@ -35,20 +35,20 @@ public abstract class Model {
 		this.contents = contents;
 	}
 
-	public IPropertyGetter getGetter() {
-		return getter;
+	public IPropertyGetter getPropertyGetter() {
+		return propertyGetter;
 	}
 
-	public void setGetter(IPropertyGetter getter) {
-		this.getter = getter;
+	public void setPropertyGetter(IPropertyGetter getter) {
+		this.propertyGetter = getter;
 	}
 
-	public IPropertySetter getSetter() {
-		return setter;
+	public IPropertySetter getPropertySetter() {
+		return propertySetter;
 	}
 
-	public void setSetter(IPropertySetter setter) {
-		this.setter = setter;
+	public void setPropertySetter(IPropertySetter setter) {
+		this.propertySetter = setter;
 	}
 
 }
