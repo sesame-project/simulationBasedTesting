@@ -23,6 +23,7 @@ import edu.wpi.rail.jrosbridge.callback.TopicCallback;
 import edu.wpi.rail.jrosbridge.messages.Message;
 import edu.wpi.rail.jrosbridge.primitives.Time;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
+import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.simulator.ICommandInvoker;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertyGetter;
@@ -32,6 +33,8 @@ import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
 public class ROSSimulator implements ISimulator {
 
 	static Ros ros;
+	static DataStreamManager dsm = DataStreamManager.getInstance();
+	// FIXME: Maybe this needs to be part of the architecture
 	HashMap<String,Topic> createdTopics = new HashMap<String,Topic>();
 	
 	@Override
@@ -91,9 +94,11 @@ public class ROSSimulator implements ISimulator {
 
 	@Override
 	public Object consumeFromTopic(String topicName, String topicType) {
+		//FIXME: this might need to be included in the archtecture
 		String kafkaTopic = topicName.replace("/", ".").replace("[", "");
 		System.out.println(kafkaTopic);
-	    Producer<Long, EventMessage> kafkaProducer = createProducer();
+		
+	    KafkaProducer<Long, EventMessage> kafkaProducer = DataStreamManager.getInstance().getKafkaProducer();
 
 		Topic topic;
 		if (createdTopics.containsKey(topicName)) {
@@ -122,25 +127,14 @@ public class ROSSimulator implements ISimulator {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-//				System.out.println("From ROS: " + message.toString());
 			}
 		});
 		return null;
 	}
 	
-	private static Producer<Long, EventMessage> createProducer() {
-        Properties props = new Properties();
-	    String BOOTSTRAP_SERVERS = "localhost:9092";
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                                            BOOTSTRAP_SERVERS);
-        props.put(ProducerConfig.CLIENT_ID_CONFIG, "KafkaExampleProducer");
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-                                        LongSerializer.class.getName());
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-                                    EventMessage.class.getName());
-        return new KafkaProducer<>(props);
-    }
-
+	/*
+	 * This is for ROS Topics
+	 */
 	@Override
 	public void publishToTopic(String topicName, String topicType, String message) {
 		Topic topic;
