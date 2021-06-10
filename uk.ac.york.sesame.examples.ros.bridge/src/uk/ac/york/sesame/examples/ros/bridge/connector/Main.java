@@ -15,20 +15,20 @@ public class Main {
 		Ros ros = new Ros("0.0.0.0", 9090, WebSocketType.ws);
 		ros.connect();
 		Topic echoBack = new Topic(ros, "/turtle1/cmd_vel", "geometry_msgs/Twist");
-//		echoBack.subscribe(new TopicCallback() {
-//			@Override
-//			public void handleMessage(Message message) {
-//				System.out.println("From ROS: " + message.toString());
-//			}
-//		});
-//		while(true) {
-//			
-//		}
+		echoBack.subscribe(new TopicCallback() {
+			@Override
+			public void handleMessage(Message message) {
+				System.out.println("From ROS: " + message.toString());
+			}
+		});
+		while(true) {
+			
+		}
 		
-		Message toSend = new Message("{\"linear\":{\"x\":2.0,\"y\":0.0,\"z\":0.0},\"angular\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}");
-		echoBack.publish(toSend);
-		
-		ros.disconnect();
+//		Message toSend = new Message("{\"linear\":{\"x\":2.0,\"y\":0.0,\"z\":0.0},\"angular\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}");
+//		echoBack.publish(toSend);
+//		
+//		ros.disconnect();
 
 //		Ros ros = new Ros("localhost");
 //		ros.connect();
