@@ -2,7 +2,6 @@ package uk.ac.york.sesame.testing.architecture.simulator;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Properties;
 
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 

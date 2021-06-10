@@ -1,11 +1,8 @@
 package uk.ac.york.sesame.testing.architecture.data;
 
-import java.util.HashMap;
 import java.util.Properties;
 
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongSerializer;
 

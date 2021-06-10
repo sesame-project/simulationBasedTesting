@@ -1,7 +1,6 @@
 package uk.ac.york.sesame.testing.architecture.config;
 
 import java.util.HashMap;
-import java.util.Properties;
 
 public class ConnectionProperties {
 	

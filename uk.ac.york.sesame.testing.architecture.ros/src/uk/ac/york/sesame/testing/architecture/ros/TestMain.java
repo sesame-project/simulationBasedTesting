@@ -2,9 +2,6 @@ package uk.ac.york.sesame.testing.architecture.ros;
 
 import java.util.HashMap;
 
-import org.glassfish.tyrus.websockets.WebSocket;
-
-import edu.wpi.rail.jrosbridge.JRosbridge.WebSocketType;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 
 public class TestMain {
