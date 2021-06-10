@@ -10,8 +10,8 @@ public class TestMain {
 		ROSSimulator rosSim = new ROSSimulator();
 		ConnectionProperties cp = new ConnectionProperties();
 		HashMap<String, Object> propsMap = new HashMap<String, Object>();
-		propsMap.put(cp.HOSTNAME, "0.0.0.0");
-		propsMap.put(cp.PORT, 9090);
+		propsMap.put(ConnectionProperties.HOSTNAME, "0.0.0.0");
+		propsMap.put(ConnectionProperties.PORT, 9090);
 		cp.setProperties(propsMap);
 		rosSim.connect(cp);
 		rosSim.consumeFromTopic("/turtle1/cmd_vel", "geometry_msgs/Twist");
