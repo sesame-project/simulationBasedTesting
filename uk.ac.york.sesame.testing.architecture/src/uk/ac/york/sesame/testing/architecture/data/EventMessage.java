@@ -1,11 +1,14 @@
 package uk.ac.york.sesame.testing.architecture.data;
 
+import java.util.Map;
+
+import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class EventMessage implements IData, Serializer {
+public class EventMessage implements IData, Serializer, Deserializer {
 	
 	private static ObjectMapper objectMapper = new ObjectMapper();
 	
@@ -64,5 +67,30 @@ public class EventMessage implements IData, Serializer {
 		}
 
 		return serializedDataArray;
+	}
+
+	@Override
+	public Object deserialize(String arg0, byte[] data) {
+		EventMessage em = null;
+		try {
+			if (data != null) {
+				em = (EventMessage) objectMapper.readValue(data, EventMessage.class);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return em;
+	}
+
+	@Override
+	public void configure(Map configs, boolean isKey) {
+		// TODO Auto-generated method stub
+		Serializer.super.configure(configs, isKey);
+	}
+
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		Serializer.super.close();
 	}
 }

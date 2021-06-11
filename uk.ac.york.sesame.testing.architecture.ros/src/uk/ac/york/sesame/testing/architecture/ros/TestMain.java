@@ -3,6 +3,7 @@ package uk.ac.york.sesame.testing.architecture.ros;
 import java.util.HashMap;
 
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
+import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
 
 public class TestMain {
 
@@ -15,6 +16,7 @@ public class TestMain {
 		cp.setProperties(propsMap);
 		rosSim.connect(cp);
 		rosSim.consumeFromTopic("/turtle1/cmd_vel", "geometry_msgs/Twist");
+		DataStreamManager.getInstance().consume("/turtle1/cmd_vel");
 		while(true) {}
 	}
 

@@ -87,39 +87,19 @@ public class ROSSimulator implements ISimulator {
 
 	@Override
 	public Object consumeFromTopic(String topicName, String topicType) {
-		//FIXME: this might need to be included in the archtecture
-		String kafkaTopic = topicName.replace("/", ".").replace("[", "");
-		System.out.println(kafkaTopic);
 		
-	    KafkaProducer<Long, EventMessage> kafkaProducer = DataStreamManager.getInstance().getKafkaProducer();
-
 		Topic topic;
 		if (createdTopics.containsKey(topicName)) {
 			topic = createdTopics.get(topicName);
 		} else {
 			topic = (Topic) createTopic(topicName, topicType);
 		}
-		System.out.println(topic.getRos().getHostname());
 		topic.subscribe(new TopicCallback() {
 			@Override
 			public void handleMessage(Message message) {
 				EventMessage em = new EventMessage();
-				em.setId(UUID.randomUUID().toString());
-				Instant instant = Instant.now();
-				long timeStampMillis = instant.toEpochMilli();
-				em.setTimestamp(timeStampMillis);
-				em.setTopic(kafkaTopic);
 				em.setValue(message.toString());
-			    ProducerRecord<Long, EventMessage> record = new ProducerRecord<Long, EventMessage>(kafkaTopic, 1L, em);
-		        try {
-					RecordMetadata metadata = kafkaProducer.send(record).get();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				dsm.publish(topicName, em);
 			}
 		});
 		return null;
