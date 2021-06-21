@@ -6,11 +6,11 @@ public abstract class TestSuiteResult extends Result {
 
 	List<CoverageMetric> coverageMetrics;
 
-	public abstract List<ITestScenario> getFailingTests();
+	public abstract List<TestScenario> getFailingTests();
 
-	public abstract ITestSuite getTestSuite();
+	public abstract TestSuite getTestSuite();
 
-	public abstract List<ITestScenario> getPassedTests();
+	public abstract List<TestScenario> getPassedTests();
 
 	public void addCoverageMetric(CoverageMetric metric) {
 		this.coverageMetrics.add(metric);

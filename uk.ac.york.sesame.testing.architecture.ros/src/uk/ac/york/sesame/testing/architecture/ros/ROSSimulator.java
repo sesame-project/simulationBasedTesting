@@ -22,6 +22,8 @@ import uk.ac.york.sesame.testing.architecture.simulator.ICommandInvoker;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertyGetter;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertySetter;
 import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
+import org.json.simple.JSONValue;
+
 
 public class ROSSimulator implements ISimulator {
 
@@ -84,9 +86,11 @@ public class ROSSimulator implements ISimulator {
 	public HashMap<String,?> getCreatedTopicsByTopicName() {
 		return createdTopics;
 	}
-
+	/*
+	 * This is for ROS Topics
+	 */
 	@Override
-	public Object consumeFromTopic(String topicName, String topicType) {
+	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka) {
 		
 		Topic topic;
 		if (createdTopics.containsKey(topicName)) {
@@ -99,10 +103,13 @@ public class ROSSimulator implements ISimulator {
 			public void handleMessage(Message message) {
 				EventMessage em = new EventMessage();
 				em.setValue(message.toString());
-				dsm.publish(topicName, em);
+				System.out.println("Message: " + em);
+				if(publishToKafka) {
+					dsm.publish(topicName, em);
+				}
 			}
 		});
-		return null;
+		while(true) {}
 	}
 	
 	/*
@@ -111,11 +118,16 @@ public class ROSSimulator implements ISimulator {
 	@Override
 	public void publishToTopic(String topicName, String topicType, String message) {
 		Topic topic;
+		// TODO: Messages should be published when they arrive to Kafka
+		//dsm.consume(topicName);
+		System.out.println(topicName);
 		if (createdTopics.containsKey(topicName)) {
 			topic = createdTopics.get(topicName);
-		} else {
+		} else { 
+			System.out.println("Hi");
 			topic = (Topic) createTopic(topicName, topicType);
 		}
+		System.out.println("Message String: " + JSONValue.escape(message));
 		Message toSend = new Message(message);
 		topic.publish(toSend);
 		

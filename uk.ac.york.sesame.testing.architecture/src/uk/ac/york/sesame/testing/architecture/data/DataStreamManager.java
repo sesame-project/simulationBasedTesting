@@ -1,7 +1,9 @@
 package uk.ac.york.sesame.testing.architecture.data;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -22,18 +24,19 @@ public class DataStreamManager {
 	private static final DataStreamManager INSTANCE = new DataStreamManager();
 	private static KafkaProducer<Long, EventMessage> kafkaProducer;
 	private static KafkaConsumer<Long, EventMessage> kafkaConsumer;
+	private static HashMap<String, KafkaConsumer<Long, EventMessage>> consumers;
 
 	public static KafkaProducer<Long, EventMessage> getKafkaProducer() {
 		return kafkaProducer;
 	}
-	
+
 	public static KafkaConsumer<Long, EventMessage> getKafkaConsumer() {
 		return kafkaConsumer;
 	}
 
 	private DataStreamManager() {
 		this.kafkaProducer = createProducer();
-		this.kafkaConsumer = createConsumer();
+		consumers = new HashMap<String, KafkaConsumer<Long, EventMessage>>();
 	}
 
 	public static DataStreamManager getInstance() {
@@ -50,8 +53,8 @@ public class DataStreamManager {
 		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, EventMessage.class.getName());
 		return new KafkaProducer<>(props);
 	}
-	
-	private KafkaConsumer<Long, EventMessage> createConsumer() {
+
+	private KafkaConsumer<Long, EventMessage> createConsumer(String kafkaTopic) {
 		Properties props = new Properties();
 		// FIXME: This is hardcoded, needs to be dynamic
 		String BOOTSTRAP_SERVERS = "localhost:9092";
@@ -59,7 +62,9 @@ public class DataStreamManager {
 		props.put(ConsumerConfig.GROUP_ID_CONFIG, "KafkaConsumer");
 		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
 		props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, EventMessage.class.getName());
-		return new KafkaConsumer<>(props);
+		KafkaConsumer<Long, EventMessage> consumer = new KafkaConsumer<>(props);
+		consumer.subscribe(Collections.singletonList(kafkaTopic));
+		return consumer;
 	}
 
 	public void publish(String topicName, EventMessage eventMessage) {
@@ -74,6 +79,7 @@ public class DataStreamManager {
 				eventMessage);
 		try {
 			RecordMetadata metadata = DataStreamManager.getInstance().getKafkaProducer().send(record).get();
+			System.out.println(metadata.toString());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
@@ -81,21 +87,17 @@ public class DataStreamManager {
 		}
 	}
 
-	public void consume(String topicName) {
+	public ConsumerRecords<Long, EventMessage> consume(String topicName) {
 		String kafkaTopic = topicName.replace("/", ".").replace("[", "");
-		
-		final int giveUp = 100;   int noRecordsCount = 0;
-		KafkaConsumer<Long, EventMessage> consumer = DataStreamManager.getInstance().getKafkaConsumer();
-        consumer.subscribe(Collections.singletonList(kafkaTopic));
-		while (true) {
-            final ConsumerRecords<Long, EventMessage> consumerRecords = consumer.poll(1000);
-            consumerRecords.forEach(record -> {
-                System.out.printf("Consumer Record:(%d, %s, %d, %d)\n",
-                        record.key(), record.value(),
-                        record.partition(), record.offset());
-            });
-
-            consumer.commitAsync();
-        }
+		KafkaConsumer<Long, EventMessage> consumer;
+		if (consumers.containsKey(kafkaTopic)) {
+			consumer = consumers.get(kafkaTopic); 
+		} else {
+			consumer = DataStreamManager.getInstance().createConsumer(kafkaTopic);
+			consumers.put(kafkaTopic, consumer);
+		}
+		consumer.subscribe(Collections.singletonList(kafkaTopic));
+		final ConsumerRecords<Long, EventMessage> consumerRecords = consumer.poll(Duration.ofMillis(1000));
+		return consumerRecords;
 	}
 }

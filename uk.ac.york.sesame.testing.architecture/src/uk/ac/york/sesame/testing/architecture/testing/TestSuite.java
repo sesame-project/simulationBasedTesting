@@ -2,8 +2,8 @@ package uk.ac.york.sesame.testing.architecture.testing;
 
 import java.util.List;
 
-public interface ITestSuite {
+public interface TestSuite {
 	
-	public List<ITestScenario> getTests();
+	public List<TestScenario> getTests();
 
 }

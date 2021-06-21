@@ -7,6 +7,6 @@ import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
 
 public interface ISuiteExecutor {
 	
-	public TestSuiteResult execute(ITestSuite testSuite, ISimulator simulator, ILogger logger, MRSModel mrsDescription, QAModel qaModel);
+	public TestSuiteResult execute(TestSuite testSuite, ISimulator simulator, ILogger logger, MRSModel mrsDescription, QAModel qaModel);
 
 }

@@ -6,6 +6,6 @@ import uk.ac.york.sesame.testing.architecture.models.QAModel;
 import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
 
 public interface IScenarioExecutor {
-	public TestResult execute(ITestScenario testScenario, ISimulator simulator, ILogger logger, MRSModel mrsDescription, QAModel qaModel);
+	public TestResult execute(TestScenario testScenario, ISimulator simulator, ILogger logger, MRSModel mrsDescription, QAModel qaModel);
 
 }
