@@ -1,5 +1,8 @@
 package uk.ac.york.sesame.testing.architecture.data;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Collections;
@@ -25,7 +28,8 @@ public class DataStreamManager {
 	private static KafkaProducer<Long, EventMessage> kafkaProducer;
 	private static KafkaConsumer<Long, EventMessage> kafkaConsumer;
 	private static HashMap<String, KafkaConsumer<Long, EventMessage>> consumers;
-
+	Properties props = new Properties();
+	
 	public static KafkaProducer<Long, EventMessage> getKafkaProducer() {
 		return kafkaProducer;
 	}
@@ -35,6 +39,15 @@ public class DataStreamManager {
 	}
 
 	private DataStreamManager() {
+		String propFileName = "config.properties";
+		InputStream propsInputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+		if (propsInputStream != null) {
+			try {
+				props.load(propsInputStream);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		this.kafkaProducer = createProducer();
 		consumers = new HashMap<String, KafkaConsumer<Long, EventMessage>>();
 	}
@@ -44,25 +57,21 @@ public class DataStreamManager {
 	}
 
 	private KafkaProducer<Long, EventMessage> createProducer() {
-		Properties props = new Properties();
-		// FIXME: This is hardcoded, needs to be dynamic
-		String BOOTSTRAP_SERVERS = "localhost:9092";
-		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
-		props.put(ProducerConfig.CLIENT_ID_CONFIG, "KafkaProducer");
-		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
-		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, EventMessage.class.getName());
-		return new KafkaProducer<>(props);
+		Properties kafkaProps = new Properties();
+		kafkaProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, props.getProperty("kafka.producer.bootstrap.servers"));
+		kafkaProps.put(ProducerConfig.CLIENT_ID_CONFIG, "KafkaProducer");
+		kafkaProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
+		kafkaProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, EventMessage.class.getName());
+		return new KafkaProducer<>(kafkaProps);
 	}
 
 	private KafkaConsumer<Long, EventMessage> createConsumer(String kafkaTopic) {
-		Properties props = new Properties();
-		// FIXME: This is hardcoded, needs to be dynamic
-		String BOOTSTRAP_SERVERS = "localhost:9092";
-		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
-		props.put(ConsumerConfig.GROUP_ID_CONFIG, "KafkaConsumer");
-		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
-		props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, EventMessage.class.getName());
-		KafkaConsumer<Long, EventMessage> consumer = new KafkaConsumer<>(props);
+		Properties kafkaProps = new Properties();
+		kafkaProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, props.getProperty("kafka.consumer.bootstrap.servers"));
+		kafkaProps.put(ConsumerConfig.GROUP_ID_CONFIG, "KafkaConsumer");
+		kafkaProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
+		kafkaProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, EventMessage.class.getName());
+		KafkaConsumer<Long, EventMessage> consumer = new KafkaConsumer<>(kafkaProps);
 		consumer.subscribe(Collections.singletonList(kafkaTopic));
 		return consumer;
 	}
