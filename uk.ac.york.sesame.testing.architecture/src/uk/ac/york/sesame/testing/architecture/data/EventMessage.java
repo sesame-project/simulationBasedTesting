@@ -16,6 +16,7 @@ public class EventMessage implements IData, Serializer, Deserializer {
 	Object value;
 	long timestamp;
 	String topic;
+	String type;
 		
 	public String getTopic() {
 		return topic;
@@ -47,6 +48,14 @@ public class EventMessage implements IData, Serializer, Deserializer {
 
 	public void setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	@Override
