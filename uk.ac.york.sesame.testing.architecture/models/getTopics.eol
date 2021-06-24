@@ -1,0 +1,6 @@
+var topics = M!Topic.all();
+var topicNames = new List<String>;
+for (topic in topics) {
+	topicNames.add(topic.name);
+}
+return topicNames;

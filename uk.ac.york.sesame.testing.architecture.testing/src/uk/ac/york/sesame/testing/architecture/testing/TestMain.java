@@ -50,7 +50,7 @@ public class TestMain {
 							.consume("/turtle1/cmd_vel1");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						System.out.println("Topic: " + record.value().getTopic().toString());
-						rosSim.publishToTopic(record.value().getTopic().toString().replace(".", "/"), "geometry_msgs/Twist", record.value().getValue().toString());
+						rosSim.publishToTopic(record.value().getTopic().toString().replace(".", "/"), record.value().getType(), record.value().getValue().toString());
 					}
 				}
 			}

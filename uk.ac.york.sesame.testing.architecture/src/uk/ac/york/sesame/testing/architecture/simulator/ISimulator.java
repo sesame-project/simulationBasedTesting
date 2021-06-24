@@ -1,9 +1,11 @@
 package uk.ac.york.sesame.testing.architecture.simulator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
+import uk.ac.york.sesame.testing.architecture.data.Topic;
 
 public interface ISimulator {
 	public List<String> getTopics();
@@ -17,4 +19,5 @@ public interface ISimulator {
 	public IPropertySetter getPropertySetter();
 	public ICommandInvoker getICommandInvoker();
 	public void run();
+	public void redirectTopics(ArrayList<Topic> topics);
 }

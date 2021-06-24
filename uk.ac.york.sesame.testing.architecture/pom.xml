@@ -5,7 +5,37 @@
 	<groupId>uk.ac.york.sesame.testing.architecture</groupId>
 	<artifactId>uk.ac.york.sesame.testing.architecture</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<repositories>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<properties>
+		<epsilon.version>2.4.0-SNAPSHOT</epsilon.version>
+		<epsilon.scope>compile</epsilon.scope>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.epsilon</groupId>
+			<artifactId>org.eclipse.epsilon.emc.emf</artifactId>
+			<version>${epsilon.version}</version>
+			<scope>${epsilon.scope}</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.epsilon</groupId>
+			<artifactId>org.eclipse.epsilon.eol.engine</artifactId>
+			<version>${epsilon.version}</version>
+			<scope>${epsilon.scope}</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka-clients</artifactId>
@@ -16,7 +46,6 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.12.3</version>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -31,9 +60,9 @@
 			</plugin>
 		</plugins>
 		<resources>
-     <resource>
-       <directory>resources</directory>
-     </resource>
-   </resources>
+			<resource>
+				<directory>resources</directory>
+			</resource>
+		</resources>
 	</build>
 </project>

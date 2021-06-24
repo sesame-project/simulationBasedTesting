@@ -1,6 +1,7 @@
 package uk.ac.york.sesame.testing.architecture.ros;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -118,8 +119,6 @@ public class ROSSimulator implements ISimulator {
 	@Override
 	public void publishToTopic(String topicName, String topicType, String message) {
 		Topic topic;
-		// TODO: Messages should be published when they arrive to Kafka
-		//dsm.consume(topicName);
 		System.out.println(topicName);
 		if (createdTopics.containsKey(topicName)) {
 			topic = createdTopics.get(topicName);
@@ -127,7 +126,6 @@ public class ROSSimulator implements ISimulator {
 			System.out.println("Hi");
 			topic = (Topic) createTopic(topicName, topicType);
 		}
-		System.out.println("Message String: " + JSONValue.escape(message));
 		Message toSend = new Message(message);
 		topic.publish(toSend);
 		
@@ -136,6 +134,12 @@ public class ROSSimulator implements ISimulator {
 	@Override
 	public void disconnect() {
 		ros.disconnect();
+		
+	}
+
+	@Override
+	public void redirectTopics(ArrayList<uk.ac.york.sesame.testing.architecture.data.Topic> topics) {
+		// TODO Auto-generated method stub
 		
 	}
 

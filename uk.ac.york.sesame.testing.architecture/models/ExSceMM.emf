@@ -1,0 +1,13 @@
+@namespace(
+	uri="ExSceMM",
+	prefix="ExSceMM")
+package top;
+
+class MRS {
+	val Topic[*] topics;
+}
+
+class Topic {
+	attr String name;
+}
+

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ExSceMM:MRS xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ExSceMM="ExSceMM" xmi:id="_VgFtANTnEeuVsJ3fBBuxxQ">
+  <topics xmi:id="_V-BmMNTnEeuVsJ3fBBuxxQ" name="Topic1"/>
+  <topics xmi:id="_XRBfINTnEeuVsJ3fBBuxxQ" name="Topic2"/>
+</ExSceMM:MRS>
