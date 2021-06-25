@@ -10,7 +10,5 @@
   </node>
     
   <node name="turtlesim_teleop" pkg="turtlesim" type="turtle_teleop_key"/>
-    
-  <remap/>
   
 </launch>

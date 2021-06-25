@@ -1,10 +1,12 @@
 package uk.ac.york.sesame.testing.architecture.ros;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
+import uk.ac.york.sesame.testing.architecture.data.Topic;
 import uk.ac.york.sesame.testing.architecture.models.ExSceModel;
 
 public class SimMain {
@@ -23,8 +25,13 @@ public class SimMain {
 //		while(true) {}
 		
 		ExSceModel model = new ExSceModel();
+		ROSSimulator sim = new ROSSimulator();
 		try {
 			System.out.println("Topics: " + model.getTopics());
+			Topic topic = new Topic("Test");
+			ArrayList<Topic> topicsList = new ArrayList<Topic>();
+			topicsList.add(topic);
+			sim.redirectTopics(topicsList);
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

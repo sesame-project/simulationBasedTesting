@@ -14,7 +14,9 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.eclipse.epsilon.common.util.StringProperties;
 import org.eclipse.epsilon.emc.emf.EmfModel;
+import org.eclipse.epsilon.emc.plainxml.PlainXmlModel;
 import org.eclipse.epsilon.eol.launch.EolRunConfiguration;
+import org.eclipse.epsilon.eol.models.IModel;
 
 import edu.wpi.rail.jrosbridge.JRosbridge.WebSocketType;
 import edu.wpi.rail.jrosbridge.Ros;
@@ -145,25 +147,29 @@ public class ROSSimulator implements ISimulator {
 
 	@Override
 	public void redirectTopics(ArrayList<uk.ac.york.sesame.testing.architecture.data.Topic> topics) {
-		ArrayList<String> launchFiles = new ArrayList<Topic>();
-		Path root = Paths.get(ExSceModel.class.getResource("").toURI());
-		Path modelsRoot = null; //root.getParent().resolve("models")
-		System.out.println(root);
-		StringProperties modelProperties = new StringProperties();
-		modelProperties.setProperty(EmfModel.PROPERTY_NAME, "M");
-		modelProperties.setProperty(EmfModel.PROPERTY_FILE_BASED_METAMODEL_URI,"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/ExSceMM.ecore");
-		modelProperties.setProperty(EmfModel.PROPERTY_MODEL_URI,"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/ExSceExampleModel.model");
-
-		EolRunConfiguration runConfig = EolRunConfiguration.Builder().withScript("/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/files/getTopics.eol")
-				.withModel(new EmfModel(), modelProperties).withParameter("Thread", Thread.class).build();
-
-		runConfig.run();
-		for (Object topic : (Iterable) runConfig.getResult()) {
-			Topic newTopic = new Topic(topic.toString());
-			topics.add(newTopic);
-		}
-		return topics;
+		HashMap<IModel, StringProperties> models = new HashMap<IModel, StringProperties>();
+		StringProperties mrsModelProperties = new StringProperties();
+		mrsModelProperties.setProperty(EmfModel.PROPERTY_NAME, "MRS");
+		mrsModelProperties.setProperty(EmfModel.PROPERTY_FILE_BASED_METAMODEL_URI,"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/ExSceMM.ecore");
+		mrsModelProperties.setProperty(EmfModel.PROPERTY_MODEL_URI,"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/exampleExSce.model");
+		models.put(new EmfModel(), mrsModelProperties);
+		StringProperties launchModelProperties = new StringProperties();
+		launchModelProperties.setProperty(PlainXmlModel.PROPERTY_NAME, "LAUNCH");
+		launchModelProperties.setProperty(PlainXmlModel.PROPERTY_URI,"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/files/turtle_example.launch");
+		launchModelProperties.setProperty(PlainXmlModel.PROPERTY_STOREONDISPOSAL, "true");
+		models.put(new PlainXmlModel(), launchModelProperties);
 		
+		EolRunConfiguration runConfig = EolRunConfiguration.Builder().withScript("/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/files/updateXMLLaunchfiles.eol")
+				.withModels(models).withParameter("Thread", Thread.class).build();
+
+		runConfig.parameters.put("topics", topics);
+		runConfig.run();
+		try {
+			runConfig.dispose();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
