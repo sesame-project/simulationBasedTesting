@@ -4,7 +4,15 @@
 package top;
 
 class MRS {
-	val Topic[*] topics;
+    val Topic[*] topics;
+	attr String launchFileLocation;
+	val Node[*] nodes;
+}
+
+class Node {
+	attr String name;
+	ref Topic[*] subscriber;
+	ref Topic[*] publisher;
 }
 
 class Topic {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launch>
+    
+  <node name="turtle1" pkg="turtlesim" type="turtlesim_node">
+    <remap from="cmd_vel" to="cmd_velOUT"/>
+  </node>
+    
+  <node name="turtle2" pkg="turtlesim" type="turtlesim_node">
+    <remap from="cmd_vel" to="cmd_velOUT"/>
+  </node>
+    
+  <node name="turtlesim_teleop" pkg="turtlesim" type="turtle_teleop_key"/>
+    
+  <remap/>
+  
+</launch>

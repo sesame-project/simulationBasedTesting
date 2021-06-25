@@ -1,0 +1,14 @@
+var allNodesThatSubscribe = MRS!Node.all().select(n|not n.subscriber.isEmpty());
+var allXMLNodes = LAUNCH!t_node.all();
+allXMLNodes.println();
+for (aNode in allNodesThatSubscribe) {
+	aNode.name.println("Name: ");
+	var equivalentXMLNode = allXMLNodes.selectOne(n|n.a_name == aNode.name);
+	for (topic in aNode.subscriber) {
+		var remap = new LAUNCH!t_remap;
+		remap.a_from = topic.name;
+		remap.a_to = topic.name+"OUT";
+		equivalentXMLNode.appendChild(remap);
+	}
+	
+}

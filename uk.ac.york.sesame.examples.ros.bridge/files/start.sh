@@ -1,7 +1,8 @@
 gnome-terminal --tab -- roscore
 wait 1
 echo "Done roscore"
-gnome-terminal --tab -- rosrun turtlesim turtlesim_node /turtle1/cmd_vel:=/turtle1/cmd_vel1
+gnome-terminal --tab -- rosrun turtlesim turtlesim_node
+#gnome-terminal --tab -- rosrun turtlesim turtlesim_node /turtle1/cmd_vel:=/turtle1/cmd_vel1
 wait 1
 echo "Done turtlesim"
 gnome-terminal --tab -- rosrun turtlesim turtle_teleop_key
