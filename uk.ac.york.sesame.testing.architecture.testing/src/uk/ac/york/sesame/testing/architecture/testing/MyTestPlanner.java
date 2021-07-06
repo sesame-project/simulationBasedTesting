@@ -3,7 +3,7 @@ package uk.ac.york.sesame.testing.architecture.testing;
 public class MyTestPlanner extends OfflineTestPlanner {
 
 	@Override
-	public TestSuite createTestSuite() {
+	public TestSuiteRunner createTestSuite() {
 		// TODO Auto-generated method stub
 		return null;
 	}

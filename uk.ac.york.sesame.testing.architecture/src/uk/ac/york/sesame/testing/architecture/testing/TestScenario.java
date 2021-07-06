@@ -1,10 +1,19 @@
 package uk.ac.york.sesame.testing.architecture.testing;
 
-public class TestScenario {
+public abstract class TestScenario {
 	
 	String name;
 	String body;
 	String id;
+	TestResult result;
+
+	public TestResult getResult() {
+		return result;
+	}
+
+	public void setResult(TestResult result) {
+		this.result = result;
+	}
 
 	public String getBody() {
 		return body;
@@ -29,5 +38,7 @@ public class TestScenario {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public abstract TestResult run();
 
 }
