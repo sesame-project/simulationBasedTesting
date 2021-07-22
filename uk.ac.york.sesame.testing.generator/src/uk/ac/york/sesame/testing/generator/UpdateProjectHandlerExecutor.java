@@ -15,6 +15,7 @@ import java.util.UUID;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -76,12 +77,30 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 			
 			// Set the target file, ie. where the results will be generated to.
 //			File target = new File(theFile.getRawLocation().removeFileExtension().toOSString() + "GeneratedFile.txt");
-			File target = new File("/home/thanos/Documents/Workspaces/runtime-New_configuration/test/src/analytics/GeneratedFile.txt");
+			File target = new File("/home/thanos/Documents/Workspaces/runtime-New_configuration/test/src/uk/ac/york/sesame/testing/architecture/testingTestSuiteRunner.java");
 
 			target.createNewFile();
 			template.generate(target.toURI().toString());
 			
 			// !!! END OF EGL EXECUTION FROM JAVA !!!
+			
+			File pomfile = new File(theIProjectPath + "/pom.xml");
+			if (!pomfile.exists()) {
+				pomfile.createNewFile();
+				// System.out.println(pomfile.getAbsolutePath());
+				FileWriter fw2 = new FileWriter(pomfile);
+				fw2.write(DefaultPOM.contents());
+				fw2.close();
+
+				try {
+					UtilityMethods.refresh(theIProject);
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println("project pom updated, please run an update in maven if needed.");
+			}
+			
 		} catch (EolModelLoadingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
