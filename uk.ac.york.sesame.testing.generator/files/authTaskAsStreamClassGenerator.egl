@@ -1,0 +1,26 @@
+package [%=packageName%];
+
+import org.apache.flink.streaming.api.datastream.DataStream;
+
+import ac.york.typhon.analytics.authorizer.GenericAuthorisationTaskAsStream;
+import ac.york.typhon.analytics.commons.datatypes.events.Event;
+import ac.york.typhon.analytics.commons.datatypes.events.PreEvent;
+
+public class [%=authTask.name%] extends GenericAuthorisationTaskAsStream {
+
+	@Override
+	public boolean checkCondition(Event event) {
+		[%=out.startPreserve("//", "", authTask.name + "CheckConditionId", true)%]
+		
+		[%=out.stopPreserve()%]
+	}
+
+	@Override
+	public DataStream<Event> shouldIRejectAsStream(DataStream<Event> events) {
+		[%=out.startPreserve("//", "", authTask.name + "ShouldIRejectId", true)%]
+		DataStream<Event> checkedEvents = events;
+		
+		[%=out.stopPreserve()%]
+		return checkedEvents;
+	}
+}
