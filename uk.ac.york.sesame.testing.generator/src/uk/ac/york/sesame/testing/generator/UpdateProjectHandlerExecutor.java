@@ -35,6 +35,8 @@ import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.eclipse.epsilon.eol.models.IRelativePathResolver;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -55,6 +57,16 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 	public void run(IProgressMonitor pm) throws InvocationTargetException, InterruptedException {
 
 		try {
+			
+			SesameWizard w = new SesameWizard(this, "");
+			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
+				public void run() {
+					Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+					WizardDialog dialog = new WizardDialog(shell, w);
+					dialog.open();
+				}
+			});
+			
 			registerMMs();
 			
 			//emf source (your mission model)
