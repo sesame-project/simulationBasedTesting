@@ -1,0 +1,13 @@
+@namespace(
+	uri="TestingMM",
+	prefix="TestingMM")
+package Testing;
+
+class TestCampaign {
+	attr String name;
+	val Test[*] tests;
+}
+
+class Test {
+	attr String name;
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestCampaign xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TestingMM="TestingMM" xmi:id="_ipghoOuhEeur5Z2YsOLfWA">
+  <tests xmi:id="_jetEQOuhEeur5Z2YsOLfWA" name="Test1"/>
+</TestingMM:TestCampaign>

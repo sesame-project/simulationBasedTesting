@@ -5,30 +5,30 @@ import org.eclipse.jface.wizard.Wizard;
 public class SesameWizard extends Wizard {
 
 	protected SesameWizardPage page;
-	private UpdateProjectHandlerExecutor host;
+	private UpdateProjectHandlerExecutor wizardExecutor;
 	private String defaulturl;
 
-	public SesameWizard(UpdateProjectHandlerExecutor updateProjectHandlerExecutor, String defaulturl) {
+	public SesameWizard(UpdateProjectHandlerExecutor updateProjectHandlerExecutor) {
 		super();
-		this.host = updateProjectHandlerExecutor;
-		this.defaulturl = defaulturl;
+		this.wizardExecutor = updateProjectHandlerExecutor;
 		setNeedsProgressMonitor(true);
 	}
 
 	@Override
 	public String getWindowTitle() {
-		return "Update Typhon Polystore URL";
+		return "Provide Test and MRS Models";
 	}
 
 	@Override
 	public void addPages() {
-		page = new SesameWizardPage(defaulturl);
+		page = new SesameWizardPage();
 		addPage(page);
 	}
 
 	@Override
 	public boolean performFinish() {
-		host.setUrl(page.getURL());
+		wizardExecutor.setMrsModelPath(page.getMRSModelLocation());
+		wizardExecutor.setTestingModelPath(page.getTestModelLocation());
 		return true;
 	}
 }

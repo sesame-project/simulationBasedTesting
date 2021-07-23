@@ -29,15 +29,13 @@ import org.eclipse.ui.internal.ide.dialogs.FileFolderSelectionDialog;
 
 public class SesameWizardPage extends WizardPage {
 
-	private String defaulturl;
 	private Text testingModelLocation, mrsModelLocation;
 	private Composite container;
 
-	public SesameWizardPage(String defaulturl) {
+	public SesameWizardPage() {
 		super("Provide model locations");
 		setTitle("Provide model locations");
 		setControl(testingModelLocation);
-		this.defaulturl = defaulturl;
 	}
 
 	@Override
@@ -50,7 +48,6 @@ public class SesameWizardPage extends WizardPage {
 		label1.setText("Testing Model:");
 
 		testingModelLocation = new Text(container, SWT.BORDER | SWT.SINGLE);
-		testingModelLocation.setText(defaulturl);
 		testingModelLocation.addKeyListener(new KeyListener() {
 
 			@Override
@@ -79,7 +76,6 @@ public class SesameWizardPage extends WizardPage {
 		Label label2 = new Label(container, SWT.NONE);
 		label2.setText("MRS Model:");
 		mrsModelLocation = new Text(container, SWT.BORDER | SWT.SINGLE);
-		mrsModelLocation.setText(defaulturl);
 		mrsModelLocation.addKeyListener(new KeyListener() {
 
 			@Override
@@ -113,8 +109,12 @@ public class SesameWizardPage extends WizardPage {
 		setPageComplete(testingModelLocation.getText().length() > 0 && mrsModelLocation.getText().length() > 0);
 	}
 
-	public String getURL() {
+	public String getTestModelLocation() {
 		return testingModelLocation.getText();
+	}
+	
+	public String getMRSModelLocation() {
+		return mrsModelLocation.getText();
 	}
 
 	protected void handleBrowse(Text textfield) {
@@ -124,7 +124,7 @@ public class SesameWizardPage extends WizardPage {
 		ResourceListSelectionDialog dialog = new ResourceListSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), IResource.FILE);
 		if (dialog.open() == Window.OK) {
 			Object[] result = dialog.getResult();
-				textfield.setText(((File) result[0]).getFullPath().toOSString());
+				textfield.setText(((File) result[0]).getLocation().makeAbsolute().toOSString());
 				setPageComplete(testingModelLocation.getText().length() > 0 && mrsModelLocation.getText().length() > 0);
 		}
 	}

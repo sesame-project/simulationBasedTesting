@@ -45,7 +45,10 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 	private ExecutionEvent event;
 	private String theIProjectPath;
 	private IProject theIProject;
-	private String url;
+	private String testingModelPath;
+	private String mrsModelPath;
+
+	
 
 	public UpdateProjectHandlerExecutor(IProject theIProject, String theIProjectPath, ExecutionEvent event) {
 		this.event = event;
@@ -58,7 +61,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 
 		try {
 			
-			SesameWizard w = new SesameWizard(this, "");
+			SesameWizard w = new SesameWizard(this);
 			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 				public void run() {
 					Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
@@ -69,17 +72,20 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 			
 			registerMMs();
 			
+			System.out.println("----- MRS: " + this.mrsModelPath + ", TEST: " + testingModelPath + "-----");
+			
 			//emf source (your mission model)
 //			EmfModel sourceModelForEGL = createAndLoadAnEmfModel(
 //					"http://www.github.com/jrharbin-york/atlas-middleware/dsl/mission,http://www.github.com/jrharbin-york/atlas-middleware/dsl/region,http://www.github.com/jrharbin-york/atlas-middleware/dsl/message,http://www.github.com/jrharbin-york/atlas-middleware/dsl/fuzzing,http://www.github.com/jrharbin-york/atlas-middleware/dsl/faults,http://www.github.com/jrharbin-york/atlas-middleware/dsl/components",
 //					theFile.getRawLocation().toOSString(), "Source", "true", "true");
-			EmfModel sourceModelForEGL = createAndLoadAnEmfModel(
-					"ExSceMM",
-					"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/exampleExSce.model", "Source", "true", "true");
+			EmfModel mrsModel = createAndLoadAnEmfModel("ExSceMM",this.mrsModelPath, "MRS", "true", "true");
+			EmfModel testingModel = createAndLoadAnEmfModel("TestingMM",this.testingModelPath, "Testing", "true", "true");
+
 			//egl factory and module
 			EglFileGeneratingTemplateFactory factory = new EglFileGeneratingTemplateFactory();
 			EglTemplateFactoryModuleAdapter eglModule = new EglTemplateFactoryModuleAdapter(factory);
-			eglModule.getContext().getModelRepository().addModel(sourceModelForEGL);
+			eglModule.getContext().getModelRepository().addModel(mrsModel);
+			eglModule.getContext().getModelRepository().addModel(testingModel);
 
 			// Point to where the EGL file is located
 			java.net.URI EglFile = Activator.getDefault().getBundle().getResource("files/testSuiteRunnerGenerator.egl").toURI();
@@ -89,7 +95,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 			
 			// Set the target file, ie. where the results will be generated to.
 //			File target = new File(theFile.getRawLocation().removeFileExtension().toOSString() + "GeneratedFile.txt");
-			File target = new File("/home/thanos/Documents/Workspaces/runtime-New_configuration/test/src/uk/ac/york/sesame/testing/architecture/testingTestSuiteRunner.java");
+			File target = new File("/home/thanos/Documents/Workspaces/runtime-New_configuration/test/src/testingTestSuiteRunner.java");
 
 			target.createNewFile();
 			template.generate(target.toURI().toString());
@@ -129,10 +135,6 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 		}
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	
 	protected static ArrayList<String> registerMMs() throws IOException {
 
 		ArrayList<String> mmURIs = new ArrayList<String>();
@@ -144,6 +146,12 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 		EPackage.Registry.INSTANCE.put(pkgMRS.getNsURI(), pkgMRS);
 		mmURIs.add(pkgMRS.getNsURI());
 
+		Resource testingMM = xmiFactory.createResource(URI.createFileURI("/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/TestingMM.ecore"));
+		testingMM.load(null);
+		EPackage pkgTesting = (EPackage) testingMM.getContents().get(0);
+		EPackage.Registry.INSTANCE.put(pkgTesting.getNsURI(), pkgTesting);
+		mmURIs.add(pkgTesting.getNsURI());
+		
 		return mmURIs;
 	}
 	
@@ -162,9 +170,20 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 		theModel.load(properties, (IRelativePathResolver) null);
 		return theModel;
 	}
-
-	public String getUrl() {
-		return url;
+	
+	public String getTestingModelPath() {
+		return testingModelPath;
 	}
 
+	public void setTestingModelPath(String testingModelPath) {
+		this.testingModelPath = testingModelPath;
+	}
+
+	public String getMrsModelPath() {
+		return mrsModelPath;
+	}
+
+	public void setMrsModelPath(String mrsModelPath) {
+		this.mrsModelPath = mrsModelPath;
+	}
 }
