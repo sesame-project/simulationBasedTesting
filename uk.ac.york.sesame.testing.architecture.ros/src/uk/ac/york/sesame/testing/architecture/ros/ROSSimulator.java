@@ -1,17 +1,13 @@
 package uk.ac.york.sesame.testing.architecture.ros;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.Instant;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
 import org.eclipse.epsilon.common.util.StringProperties;
 import org.eclipse.epsilon.emc.emf.EmfModel;
 import org.eclipse.epsilon.emc.plainxml.PlainXmlModel;
@@ -26,12 +22,10 @@ import edu.wpi.rail.jrosbridge.messages.Message;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
-import uk.ac.york.sesame.testing.architecture.models.ExSceModel;
 import uk.ac.york.sesame.testing.architecture.simulator.ICommandInvoker;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertyGetter;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertySetter;
 import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
-import org.json.simple.JSONValue;
 
 
 public class ROSSimulator implements ISimulator {
@@ -59,8 +53,6 @@ public class ROSSimulator implements ISimulator {
 	public Object connect(ConnectionProperties params) {
 		String host = params.getProperties().get(params.HOSTNAME).toString();
 		int port = Integer.parseInt(params.getProperties().get(params.PORT).toString());
-		System.out.println("Host: " + host);
-		System.out.println("Port: " + port);
 		Ros rosConnection = new Ros(host, port, WebSocketType.ws);
 		rosConnection.connect();
 		this.ros = rosConnection;
@@ -86,9 +78,17 @@ public class ROSSimulator implements ISimulator {
 	}
 
 	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-
+	public void run(HashMap<String, String> params) {
+		boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
+		String launchFilePath = params.get("launchPath");
+		ProcessBuilder pb = new ProcessBuilder("/bin/bash", "-c", launchFilePath);
+		pb.directory(new File("/home/thanos/Desktop"));
+		try {
+			Process proc = pb.start();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override

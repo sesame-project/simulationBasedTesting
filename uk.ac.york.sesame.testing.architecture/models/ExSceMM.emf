@@ -7,6 +7,7 @@ class MRS {
     val Topic[*] topics;
 	attr String launchFileLocation;
 	val Node[*] nodes;
+	val Simulator[1] simulator;
 }
 
 class Node {
@@ -17,5 +18,13 @@ class Node {
 
 class Topic {
 	attr String name;
+}
+
+abstract class Simulator {
+}
+
+class ROSSimulator extends Simulator {
+	attr String hostname;
+	attr String port;
 }
 

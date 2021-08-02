@@ -95,7 +95,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 			
 			// Set the target file, ie. where the results will be generated to.
 //			File target = new File(theFile.getRawLocation().removeFileExtension().toOSString() + "GeneratedFile.txt");
-			File target = new File("/home/thanos/Documents/Workspaces/runtime-New_configuration/test/src/testingTestSuiteRunner.java");
+			File target = new File("/home/thanos/Documents/Workspaces/runtime-New_configuration/test/src/TestingTestSuiteRunner.java");
 
 			target.createNewFile();
 			template.generate(target.toURI().toString());

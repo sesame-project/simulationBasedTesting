@@ -7,6 +7,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="launchFileLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
         eType="#//Node" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simulator" lowerBound="1"
+        eType="#//Simulator" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Node">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -17,5 +19,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Topic">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Simulator" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ROSSimulator" eSuperTypes="#//Simulator">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

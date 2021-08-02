@@ -27,6 +27,15 @@ public class TestMain {
 				rosSim.consumeFromTopic("/turtle1/cmd_vel", "geometry_msgs/Twist", true);
 			}
 		};
+		
+		Thread simulator_runner_thread = new Thread() {
+			public void run() {
+				HashMap<String, String> params = new HashMap<String,String>();
+				params.put("launchPath", "");
+				System.out.println("Simulator Starts");
+				rosSim.run(params);
+			}
+		};
 
 		Thread consumer_thread = new Thread() {
 			public void run() {

@@ -18,6 +18,6 @@ public interface ISimulator {
 	public IPropertyGetter getPropertyGetter();
 	public IPropertySetter getPropertySetter();
 	public ICommandInvoker getICommandInvoker();
-	public void run();
+	public void run(HashMap<String, String> params);
 	public void redirectTopics(ArrayList<Topic> topics);
 }
