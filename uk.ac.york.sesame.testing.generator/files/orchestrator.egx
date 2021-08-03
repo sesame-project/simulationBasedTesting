@@ -1,0 +1,4 @@
+rule test2test {
+  template : "testSuiteRunnerGenerator.egl"
+  target : "src/TestingTestSuiteRunner.java"
+}

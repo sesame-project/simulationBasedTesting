@@ -3,15 +3,13 @@ package uk.ac.york.sesame.testing.generator;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.UUID;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.resources.IProject;
@@ -20,25 +18,27 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.epsilon.common.dt.util.LogUtil;
 import org.eclipse.epsilon.common.util.StringProperties;
 import org.eclipse.epsilon.egl.EglFileGeneratingTemplate;
 import org.eclipse.epsilon.egl.EglFileGeneratingTemplateFactory;
 import org.eclipse.epsilon.egl.EglTemplateFactoryModuleAdapter;
+import org.eclipse.epsilon.egl.EgxModule;
 import org.eclipse.epsilon.emc.emf.EmfModel;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
-import org.eclipse.epsilon.eol.exceptions.models.EolModelElementTypeNotFoundException;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
+import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.models.IRelativePathResolver;
-import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.epsilon.eol.types.EolAnyType;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 
@@ -47,8 +47,6 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 	private IProject theIProject;
 	private String testingModelPath;
 	private String mrsModelPath;
-
-	
 
 	public UpdateProjectHandlerExecutor(IProject theIProject, String theIProjectPath, ExecutionEvent event) {
 		this.event = event;
@@ -60,7 +58,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 	public void run(IProgressMonitor pm) throws InvocationTargetException, InterruptedException {
 
 		try {
-			
+
 			SesameWizard w = new SesameWizard(this);
 			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 				public void run() {
@@ -69,39 +67,41 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 					dialog.open();
 				}
 			});
-			
+
 			registerMMs();
-			
-			System.out.println("----- MRS: " + this.mrsModelPath + ", TEST: " + testingModelPath + "-----");
-			
-			//emf source (your mission model)
+
+			// emf source (your mission model)
 //			EmfModel sourceModelForEGL = createAndLoadAnEmfModel(
 //					"http://www.github.com/jrharbin-york/atlas-middleware/dsl/mission,http://www.github.com/jrharbin-york/atlas-middleware/dsl/region,http://www.github.com/jrharbin-york/atlas-middleware/dsl/message,http://www.github.com/jrharbin-york/atlas-middleware/dsl/fuzzing,http://www.github.com/jrharbin-york/atlas-middleware/dsl/faults,http://www.github.com/jrharbin-york/atlas-middleware/dsl/components",
 //					theFile.getRawLocation().toOSString(), "Source", "true", "true");
-			EmfModel mrsModel = createAndLoadAnEmfModel("ExSceMM",this.mrsModelPath, "MRS", "true", "true");
-			EmfModel testingModel = createAndLoadAnEmfModel("TestingMM",this.testingModelPath, "Testing", "true", "true");
+			EmfModel mrsModel = createAndLoadAnEmfModel("ExSceMM", this.mrsModelPath, "MRS", "true", "true");
+			EmfModel testingModel = createAndLoadAnEmfModel("TestingMM", this.testingModelPath, "Testing", "true",
+					"true");
 
-			//egl factory and module
+			// EGX
+			// Create the standalone EgxModule
 			EglFileGeneratingTemplateFactory factory = new EglFileGeneratingTemplateFactory();
-			EglTemplateFactoryModuleAdapter eglModule = new EglTemplateFactoryModuleAdapter(factory);
-			eglModule.getContext().getModelRepository().addModel(mrsModel);
-			eglModule.getContext().getModelRepository().addModel(testingModel);
+			EgxModule egxModule = new EgxModule(factory);
 
-			// Point to where the EGL file is located
-			java.net.URI EglFile = Activator.getDefault().getBundle().getResource("files/testSuiteRunnerGenerator.egl").toURI();
+			egxModule.getContext().getFrameStack().put(new Variable("path", theIProjectPath, new EolAnyType()));
 
-			EglFileGeneratingTemplate template = (EglFileGeneratingTemplate) factory.load(EglFile);
-			template.process();
-			
-			// Set the target file, ie. where the results will be generated to.
-//			File target = new File(theFile.getRawLocation().removeFileExtension().toOSString() + "GeneratedFile.txt");
-			File target = new File("/home/thanos/Documents/Workspaces/runtime-New_configuration/test/src/TestingTestSuiteRunner.java");
+			System.out.println("theIProjectPath: " + theIProjectPath);
+			java.net.URI EgxFile = Activator.getDefault().getBundle().getResource("files/orchestrator.egx")
+					.toURI();
+			try {
+				egxModule.parse(EgxFile);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
-			target.createNewFile();
-			template.generate(target.toURI().toString());
-			
-			// !!! END OF EGL EXECUTION FROM JAVA !!!
-			
+			factory.setOutputRoot(new File(theIProjectPath).toURI().toString());
+			egxModule.getContext().getModelRepository().addModel(mrsModel);
+			egxModule.getContext().getModelRepository().addModel(testingModel);
+			egxModule.execute();
+
+			// EGX END
+
 			File pomfile = new File(theIProjectPath + "/pom.xml");
 			if (!pomfile.exists()) {
 				pomfile.createNewFile();
@@ -118,7 +118,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 				}
 				System.out.println("project pom updated, please run an update in maven if needed.");
 			}
-			
+
 		} catch (EolModelLoadingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -140,21 +140,23 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 		ArrayList<String> mmURIs = new ArrayList<String>();
 		Resource.Factory xmiFactory = new XMIResourceFactoryImpl();
 
-		Resource mrsMM = xmiFactory.createResource(URI.createFileURI("/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/ExSceMM.ecore"));
+		Resource mrsMM = xmiFactory.createResource(URI.createFileURI(
+				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/ExSceMM.ecore"));
 		mrsMM.load(null);
 		EPackage pkgMRS = (EPackage) mrsMM.getContents().get(0);
 		EPackage.Registry.INSTANCE.put(pkgMRS.getNsURI(), pkgMRS);
 		mmURIs.add(pkgMRS.getNsURI());
 
-		Resource testingMM = xmiFactory.createResource(URI.createFileURI("/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/TestingMM.ecore"));
+		Resource testingMM = xmiFactory.createResource(URI.createFileURI(
+				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/TestingMM.ecore"));
 		testingMM.load(null);
 		EPackage pkgTesting = (EPackage) testingMM.getContents().get(0);
 		EPackage.Registry.INSTANCE.put(pkgTesting.getNsURI(), pkgTesting);
 		mmURIs.add(pkgTesting.getNsURI());
-		
+
 		return mmURIs;
 	}
-	
+
 	private EmfModel createAndLoadAnEmfModel(String metamodelURI, String modelFile, String modelName, String readOnLoad,
 			String storeOnDisposal) throws EolModelLoadingException {
 		EmfModel theModel = new EmfModel();
@@ -170,7 +172,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 		theModel.load(properties, (IRelativePathResolver) null);
 		return theModel;
 	}
-	
+
 	public String getTestingModelPath() {
 		return testingModelPath;
 	}
