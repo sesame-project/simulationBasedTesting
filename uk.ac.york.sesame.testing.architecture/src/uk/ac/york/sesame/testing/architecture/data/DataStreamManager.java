@@ -29,7 +29,7 @@ public class DataStreamManager {
 	private static KafkaConsumer<Long, EventMessage> kafkaConsumer;
 	private static HashMap<String, KafkaConsumer<Long, EventMessage>> consumers;
 	Properties props = new Properties();
-	
+
 	public static KafkaProducer<Long, EventMessage> getKafkaProducer() {
 		return kafkaProducer;
 	}
@@ -97,10 +97,13 @@ public class DataStreamManager {
 	}
 
 	public ConsumerRecords<Long, EventMessage> consume(String topicName) {
-		String kafkaTopic = topicName.replace("/", ".").replace("[", "");
+		String kafkaTopic = topicName;
+		if (topicName.contains("/")) {
+			kafkaTopic = topicName.replace("/", ".").replace("[", "");
+		}
 		KafkaConsumer<Long, EventMessage> consumer;
 		if (consumers.containsKey(kafkaTopic)) {
-			consumer = consumers.get(kafkaTopic); 
+			consumer = consumers.get(kafkaTopic);
 		} else {
 			consumer = DataStreamManager.getInstance().createConsumer(kafkaTopic);
 			consumers.put(kafkaTopic, consumer);

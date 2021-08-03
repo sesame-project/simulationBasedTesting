@@ -2,10 +2,18 @@
 	var mrs = MRS!MRS.all().first();
 	var launchFileLocation = mrs.launchFileLocation;
 	var simulator = mrs.simulator;
+	var topicsNodesPublish = MRS!Node.all().publisher.flatten();
+	topicsNodesPublish.println();
 %]
 import java.util.HashMap;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+
 import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
+import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
+import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
 public class TestingTestSuiteRunner {
 
@@ -31,6 +39,37 @@ public class TestingTestSuiteRunner {
 		};
 		
 		simulator_runner_thread.start();
+		
+		
+		[%
+		for (aTopic in topicsNodesPublish) { %]
+		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
+			public void run() {
+				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
+				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type%]", true, "IN");
+			}
+		};
+		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
+		
+		[%
+		}
+		%]
+		Thread from_out_to_sim = new Thread() {
+			public void run() {
+				System.out.println("From out to sim starts");
+				while (true) {
+//					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance()
+//							.consume("/turtle1/cmd_vel1");
+					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance()
+							.consume("OUT");
+					for (ConsumerRecord<Long, EventMessage> record : cr) {
+						System.out.println("Topic: " + record.value().getTopic().toString());
+						rosSim.publishToTopic(record.value().getTopic().toString().replace(".", "/"), record.value().getType(), record.value().getValue().toString());
+					}
+				}
+			}
+		};
+		from_out_to_sim.start();
 		
 		[%
 		}

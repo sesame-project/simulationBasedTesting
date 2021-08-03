@@ -99,8 +99,9 @@ public class ROSSimulator implements ISimulator {
 	 * This is for ROS Topics
 	 */
 	@Override
-	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka) {
-		
+	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
+		System.out.println(topicName);
+
 		Topic topic;
 		if (createdTopics.containsKey(topicName)) {
 			topic = createdTopics.get(topicName);
@@ -110,11 +111,13 @@ public class ROSSimulator implements ISimulator {
 		topic.subscribe(new TopicCallback() {
 			@Override
 			public void handleMessage(Message message) {
+				System.out.println("message: " + message);
 				EventMessage em = new EventMessage();
 				em.setValue(message.toString());
 				em.setType(topicType);
 				if(publishToKafka) {
-					dsm.publish(topicName, em);
+					System.out.println(em);
+					dsm.publish(kafkaTopic, em);
 				}
 			}
 		});

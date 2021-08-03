@@ -24,7 +24,7 @@ public class TestMain {
 		Thread subscriber_thread = new Thread() {
 			public void run() {
 				System.out.println("Subscriber Starts");
-				rosSim.consumeFromTopic("/turtle1/cmd_vel", "geometry_msgs/Twist", true);
+				rosSim.consumeFromTopic("/turtle1/cmd_vel", "geometry_msgs/Twist", true, "IN");
 			}
 		};
 		

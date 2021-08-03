@@ -18,6 +18,7 @@ class Node {
 
 class Topic {
 	attr String name;
+	attr String type;
 }
 
 abstract class Simulator {
