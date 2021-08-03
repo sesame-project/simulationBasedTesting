@@ -1,4 +1,5 @@
-rule test2test {
-  template : "testSuiteRunnerGenerator.egl"
-  target : "src/TestingTestSuiteRunner.java"
+rule ros2Main transform mrs: MRS!MRS{
+	guard : mrs.simulator.isTypeOf(MRS!ROSSimulator)
+	template : "ros/rosMain.egl"
+	target : "src/TestingTestSuiteRunner.java"
 }

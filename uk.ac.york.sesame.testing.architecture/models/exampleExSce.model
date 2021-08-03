@@ -4,5 +4,5 @@
   <nodes xmi:id="_S2XJENWUEeuVsJ3fBBuxxQ" name="turtle1" subscriber="_VJ1AgNWUEeuVsJ3fBBuxxQ"/>
   <nodes xmi:id="_UAvRgNWUEeuVsJ3fBBuxxQ" name="teleop" publisher="_VJ1AgNWUEeuVsJ3fBBuxxQ"/>
   <nodes xmi:id="_VxM60NWaEeuVsJ3fBBuxxQ" name="turtle2" subscriber="_VJ1AgNWUEeuVsJ3fBBuxxQ"/>
-  <simulator xsi:type="ExSceMM:ROSSimulator" xmi:id="_Skq1gPN3Eeur5Z2YsOLfWA" hostname="localhost" port="9090"/>
+  <simulator xsi:type="ExSceMM:ROSSimulator" xmi:id="_ojRBcPRAEeur5Z2YsOLfWA" hostname="localhost" port="9090"/>
 </ExSceMM:MRS>
