@@ -77,6 +77,11 @@ public class EventMessage implements IData, Serializer, Deserializer {
 
 		return serializedDataArray;
 	}
+	
+	@Override
+	public String toString() {
+		return "EventMessage (id: " + this.id + ", value: " + this.value + ", topic: " + this.topic + ", timestamp" + this.timestamp + ", type: " + this.type +")";
+	}
 
 	@Override
 	public Object deserialize(String arg0, byte[] data) {

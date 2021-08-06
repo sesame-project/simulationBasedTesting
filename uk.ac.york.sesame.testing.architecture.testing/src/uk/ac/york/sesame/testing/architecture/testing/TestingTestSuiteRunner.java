@@ -1,7 +1,14 @@
 package uk.ac.york.sesame.testing.architecture.testing;
 
 import java.util.HashMap;
+import java.util.Properties;
 
+import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
+import org.apache.flink.api.common.typeinfo.Types;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
@@ -9,11 +16,28 @@ import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
+import uk.ac.york.sesame.testing.architecture.data.EventMessageSchema;
 
 public class TestingTestSuiteRunner {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 	
+		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+		Properties properties = new Properties();
+		properties.setProperty("bootstrap.servers", "localhost:9092");
+		properties.setProperty("group.id", "test");
+		DataStream<EventMessage> stream = env
+			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
+		
+		stream.map(new MapFunction<EventMessage, String>() {
+
+			@Override
+			public String map(EventMessage value) throws Exception {
+				System.out.println(value);
+				return "";
+			}
+		});
+		
 		ROSSimulator rosSim = new ROSSimulator();
 		ConnectionProperties cp = new ConnectionProperties();
 		HashMap<String, Object> propsMap = new HashMap<String, Object>();
@@ -34,18 +58,18 @@ public class TestingTestSuiteRunner {
 		simulator_runner_thread.start();
 		
 		
-		Thread subscriber_thread__turtle1_pose = new Thread() {
-			public void run() {
-				System.out.println("Subscriber _turtle1_pose Starts");
-				rosSim.consumeFromTopic("_turtle1_pose", "turtlesim/Pose", true, "IN");
-			}
-		};
-		subscriber_thread__turtle1_pose.start();
+//		Thread subscriber_thread__turtle1_pose = new Thread() {
+//			public void run() {
+//				System.out.println("Subscriber _turtle1_pose Starts");
+//				rosSim.consumeFromTopic("/turtle1/pose", "turtlesim/Pose", true, "IN");
+//			}
+//		};
+//		subscriber_thread__turtle1_pose.start();
 		
 		Thread subscriber_thread__turtle1_cmd_vel = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _turtle1_cmd_vel Starts");
-				rosSim.consumeFromTopic("_turtle1_cmd_vel", "geometry_msgs/Twist", true, "IN");
+				rosSim.consumeFromTopic("/turtle1/cmd_vel", "geometry_msgs/Twist", true, "IN");
 			}
 		};
 		subscriber_thread__turtle1_cmd_vel.start();
@@ -66,7 +90,8 @@ public class TestingTestSuiteRunner {
 			}
 		};
 		from_out_to_sim.start();
-		
+		env.execute();
+
 		
 	}
 
