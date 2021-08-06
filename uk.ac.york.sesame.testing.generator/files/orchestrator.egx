@@ -3,3 +3,8 @@ rule ros2Main transform mrs: MRS!MRS{
 	template : "ros/rosMain.egl"
 	target : "src/TestingTestSuiteRunner.java"
 }
+
+rule packetLoss2FlatMap transform attack: Testing!PacketLossNetworkAttack {
+	template : "attacks/packetLoss.egl"
+	target : "src/"+ attack.name + "FlatMap.java"
+}

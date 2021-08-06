@@ -74,7 +74,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 //			EmfModel sourceModelForEGL = createAndLoadAnEmfModel(
 //					"http://www.github.com/jrharbin-york/atlas-middleware/dsl/mission,http://www.github.com/jrharbin-york/atlas-middleware/dsl/region,http://www.github.com/jrharbin-york/atlas-middleware/dsl/message,http://www.github.com/jrharbin-york/atlas-middleware/dsl/fuzzing,http://www.github.com/jrharbin-york/atlas-middleware/dsl/faults,http://www.github.com/jrharbin-york/atlas-middleware/dsl/components",
 //					theFile.getRawLocation().toOSString(), "Source", "true", "true");
-			EmfModel mrsModel = createAndLoadAnEmfModel("ExSceMM", this.mrsModelPath, "MRS", "true", "true");
+			EmfModel mrsModel = createAndLoadAnEmfModel("http://ExSceMM", this.mrsModelPath, "MRS", "true", "true");
 			EmfModel testingModel = createAndLoadAnEmfModel("TestingMM", this.testingModelPath, "Testing", "true",
 					"true");
 

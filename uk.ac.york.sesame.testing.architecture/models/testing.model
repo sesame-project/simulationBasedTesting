@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
-<TestingMM:TestCampaign xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TestingMM="TestingMM" xmi:id="_ipghoOuhEeur5Z2YsOLfWA">
-  <tests xmi:id="_jetEQOuhEeur5Z2YsOLfWA" name="Test1"/>
+<TestingMM:TestCampaign xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmi:id="_ipghoOuhEeur5Z2YsOLfWA">
+  <tests xmi:id="_jetEQOuhEeur5Z2YsOLfWA" name="Test1">
+    <attacks xsi:type="TestingMM:PacketLossNetworkAttack" xmi:id="_z3N1MPahEeur5Z2YsOLfWA" name="TestAttack" topicToAttackString="/turtle1/cmd_vel" frequency="0.5"/>
+  </tests>
 </TestingMM:TestCampaign>

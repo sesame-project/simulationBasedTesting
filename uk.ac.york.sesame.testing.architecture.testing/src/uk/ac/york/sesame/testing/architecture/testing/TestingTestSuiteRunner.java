@@ -3,6 +3,7 @@ package uk.ac.york.sesame.testing.architecture.testing;
 import java.util.HashMap;
 import java.util.Properties;
 
+import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.common.typeinfo.Types;
@@ -10,6 +11,7 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
+import org.apache.flink.util.Collector;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
@@ -31,14 +33,7 @@ public class TestingTestSuiteRunner {
 				.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties))
 				.returns(EventMessage.class);
 
-		stream.map(new MapFunction<EventMessage, String>() {
-
-			@Override
-			public String map(EventMessage value) throws Exception {
-				System.out.println(value);
-				return "";
-			}
-		});
+		stream.flatMap(new PacketLossFlatMap("turtle1/cmd_vel","10","20",0.5));
 
 		ROSSimulator rosSim = new ROSSimulator();
 		ConnectionProperties cp = new ConnectionProperties();
@@ -93,6 +88,7 @@ public class TestingTestSuiteRunner {
 		};
 		from_out_to_sim.start();
 
+		//FIXME: EventMessage topic attribute is IN not their original topic
 		// Kafka Sink to OUT
 		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
 				new EventMessageSchema(),

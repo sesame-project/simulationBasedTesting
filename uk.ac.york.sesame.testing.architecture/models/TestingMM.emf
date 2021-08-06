@@ -1,7 +1,7 @@
-@namespace(
-	uri="TestingMM",
-	prefix="TestingMM")
-package Testing;
+
+@namespace(uri="TestingMM",prefix="TestingMM")
+package TestingPackage;
+import "http://ExSceMM";
 
 class TestCampaign {
 	attr String name;
@@ -10,4 +10,90 @@ class TestCampaign {
 
 class Test {
 	attr String name;
+	val Attack[*] attacks;
+}
+
+class Attack {
+	attr String name;
+	attr String topicToAttackString;
+	ref MRSPackage.Topic[0..1] topicToAttack;
+	ref MRSPackage.Node[0..1] nodeToAttack;
+}
+
+class ResourceAttack extends Attack {
+
+	
+}
+
+class StateAttack extends Attack {
+
+	
+}
+
+class NetworkAttack extends Attack {
+
+	
+}
+
+class LoadResourceAttack extends ResourceAttack {
+	ref LoadType[1] loadType;
+}
+
+class LoadType {
+	attr int min;
+	attr int max;
+}
+
+class CPULoadType extends LoadType {
+
+	
+}
+
+class MemoryLoadType extends LoadType {
+
+	
+}
+
+class IOLoadType extends LoadType {
+
+	
+}
+
+class DiskLoadType extends LoadType {
+
+	
+}
+
+class ShutdownStateAttack extends StateAttack {
+
+	
+}
+
+class TimeTravelStateAttack extends StateAttack {
+
+	
+}
+
+class ProcessKillerStateAttack extends StateAttack {
+
+	
+}
+
+class BlackholeNetworkAttack extends NetworkAttack {
+
+	
+}
+
+class LatencyNetworkAttack extends NetworkAttack {
+
+	
+}
+
+class PacketLossNetworkAttack extends NetworkAttack {
+	attr double frequency;
+}
+
+class MultipleMessagesNetworkAttack extends NetworkAttack {
+
+	
 }

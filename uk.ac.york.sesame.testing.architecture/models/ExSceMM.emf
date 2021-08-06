@@ -1,7 +1,7 @@
 @namespace(
-	uri="ExSceMM",
+	uri="http://ExSceMM",
 	prefix="ExSceMM")
-package top;
+package MRSPackage;
 
 class MRS {
     val Topic[*] topics;
