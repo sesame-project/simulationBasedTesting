@@ -12,6 +12,7 @@ import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
@@ -53,6 +54,13 @@ public class TestingTestSuiteRunner {
 		};
 		
 		simulator_runner_thread.start();
+		
+		// Kafka Sink to OUT
+		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
+				new EventMessageSchema(),
+				properties);
+
+		stream.addSink(myProducer);
 		
 		env.execute();
 		[%
