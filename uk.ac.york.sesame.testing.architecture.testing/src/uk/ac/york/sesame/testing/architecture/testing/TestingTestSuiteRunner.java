@@ -33,7 +33,7 @@ public class TestingTestSuiteRunner {
 				.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties))
 				.returns(EventMessage.class);
 
-		stream.flatMap(new PacketLossFlatMap("turtle1/cmd_vel","10","20",0.5));
+//		stream.flatMap(new PacketLossFlatMap("turtle1/cmd_vel","10","20",0.5));
 
 		ROSSimulator rosSim = new ROSSimulator();
 		ConnectionProperties cp = new ConnectionProperties();
@@ -53,7 +53,7 @@ public class TestingTestSuiteRunner {
 			}
 		};
 
-		simulator_runner_thread.start();
+//		simulator_runner_thread.start();
 
 //		Thread subscriber_thread__turtle1_pose = new Thread() {
 //			public void run() {
@@ -86,7 +86,7 @@ public class TestingTestSuiteRunner {
 				}
 			}
 		};
-		from_out_to_sim.start();
+//		from_out_to_sim.start();
 
 		//FIXME: EventMessage topic attribute is IN not their original topic
 		// Kafka Sink to OUT

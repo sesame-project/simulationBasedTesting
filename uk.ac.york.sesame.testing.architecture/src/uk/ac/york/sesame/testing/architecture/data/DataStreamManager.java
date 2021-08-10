@@ -83,7 +83,7 @@ public class DataStreamManager {
 		Instant instant = Instant.now();
 		long timeStampMillis = instant.toEpochMilli();
 		eventMessage.setTimestamp(timeStampMillis);
-		eventMessage.setTopic(kafkaTopic);
+//		eventMessage.setTopic(kafkaTopic);
 		ProducerRecord<Long, EventMessage> record = new ProducerRecord<Long, EventMessage>(kafkaTopic, 1L,
 				eventMessage);
 		try {

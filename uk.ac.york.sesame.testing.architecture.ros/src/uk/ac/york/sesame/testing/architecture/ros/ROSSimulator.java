@@ -115,6 +115,7 @@ public class ROSSimulator implements ISimulator {
 				EventMessage em = new EventMessage();
 				em.setValue(message.toString());
 				em.setType(topicType);
+				em.setTopic(topicName);
 				if(publishToKafka) {
 					System.out.println(em);
 					dsm.publish(kafkaTopic, em);
