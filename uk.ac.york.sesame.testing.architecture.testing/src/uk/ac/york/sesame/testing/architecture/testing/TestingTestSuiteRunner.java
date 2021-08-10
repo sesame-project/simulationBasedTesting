@@ -33,8 +33,12 @@ public class TestingTestSuiteRunner {
 				.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties))
 				.returns(EventMessage.class);
 
-//		stream.flatMap(new PacketLossFlatMap("turtle1/cmd_vel","10","20",0.5));
+		// Kafka Sink to OUT
+		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
+				new EventMessageSchema(), properties);
 
+		stream.flatMap(new PacketLossFlatMap("turtle1/cmd_vel", "10", "20", 0.5)).addSink(myProducer);
+//		stream.addSink(myProducer);
 		ROSSimulator rosSim = new ROSSimulator();
 		ConnectionProperties cp = new ConnectionProperties();
 		HashMap<String, Object> propsMap = new HashMap<String, Object>();
@@ -80,21 +84,13 @@ public class TestingTestSuiteRunner {
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						System.out.println("Topic: " + record.value().getTopic().toString());
-						rosSim.publishToTopic(record.value().getTopic().toString().replace(".", "/"),
+						rosSim.publishToTopic(record.value().getTopic().toString().replace(".", "/") + "OUT",
 								record.value().getType(), record.value().getValue().toString());
 					}
 				}
 			}
 		};
-//		from_out_to_sim.start();
-
-		//FIXME: EventMessage topic attribute is IN not their original topic
-		// Kafka Sink to OUT
-		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
-				new EventMessageSchema(),
-				properties);
-
-		stream.addSink(myProducer);
+		from_out_to_sim.start();
 
 		env.execute();
 

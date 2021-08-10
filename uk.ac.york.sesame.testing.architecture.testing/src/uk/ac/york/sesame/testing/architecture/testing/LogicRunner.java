@@ -21,7 +21,7 @@ public class LogicRunner {
 			Topic cmd_vel = new Topic(ros, "/turtle1/cmd_vel", "geometry_msgs/Twist");
 			cmd_vel.publish(toSend);
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

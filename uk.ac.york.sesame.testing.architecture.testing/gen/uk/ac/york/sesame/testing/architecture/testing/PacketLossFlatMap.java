@@ -53,7 +53,12 @@ public class PacketLossFlatMap implements FlatMapFunction<EventMessage,EventMess
 	
 	@Override
 	public void flatMap(EventMessage value, Collector<EventMessage> out) throws Exception {
-		// TODO Auto-generated method stub
+		if(Math.random() > frequency) {
+			out.collect(value);
+			System.out.println("Passed");
+		} else {
+			System.out.println("Blocked");
+		}
 		
 	}
 	

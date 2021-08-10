@@ -8,6 +8,7 @@
 import java.util.HashMap;
 import java.util.Properties;
 
+import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.common.typeinfo.Types;
@@ -15,6 +16,7 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
+import org.apache.flink.util.Collector;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
@@ -34,7 +36,12 @@ public class TestingTestSuiteRunner {
 		properties.setProperty("group.id", "test");
 		DataStream<EventMessage> stream = env
 			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
-		
+		// Kafka Sink to OUT
+		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
+				new EventMessageSchema(), properties);
+
+		stream.flatMap(new PacketLossFlatMap("turtle1/cmd_vel", "10", "20", 0.5)).addSink(myProducer);
+//		stream.addSink(myProducer);
 	
 		[%
 		if (simulator.isTypeOf(ROSSimulator)) { %]
@@ -51,6 +58,7 @@ public class TestingTestSuiteRunner {
 				params.put("launchPath", "[%=launchFileLocation%]");
 				System.out.println("Simulator Starts");
 				rosSim.run(params);
+				//FIXME: At the moment this needs to be outside the thread to work.
 				rosSim.connect(cp);
 			}
 		};
@@ -81,19 +89,12 @@ public class TestingTestSuiteRunner {
 							.consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						System.out.println("Topic: " + record.value().getTopic().toString());
-						rosSim.publishToTopic(record.value().getTopic().toString().replace(".", "/"), record.value().getType(), record.value().getValue().toString());
+						rosSim.publishToTopic(record.value().getTopic().toString().replace(".", "/") + "OUT", record.value().getType(), record.value().getValue().toString());
 					}
 				}
 			}
 		};
 		from_out_to_sim.start();
-		
-		// Kafka Sink to OUT
-		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
-				new EventMessageSchema(),
-				properties);
-
-		stream.addSink(myProducer);
 		
 		env.execute();
 		[%
