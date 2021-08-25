@@ -35,8 +35,14 @@ public class TestingTestSuiteRunner {
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
+		
 		DataStream<EventMessage> stream = env
 			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
+		
+		DataStream<EventMessage> streamOut = env
+				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
+				.returns(EventMessage.class);
+		
 		// Kafka Sink to OUT
 		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
 				new EventMessageSchema(), properties);
@@ -96,6 +102,23 @@ public class TestingTestSuiteRunner {
 			}
 		};
 		from_out_to_sim.start();
+		
+		// Metrics (not as stream) here
+		[%
+		for (aMetric in Testing!Metric.all().select(m|m.asStream == false)) { %]
+		streamOut.flatMap(new [%=aMetric.name%]());
+		[%
+		}
+		%]
+		
+		// Metrics (as stream) here
+		[%
+		for (aMetric in Testing!Metric.all().select(m|m.asStream == true)) { %]
+		[%=aMetric.name%] [%=aMetric.name%] = new [%=aMetric.name%]();
+		[%=aMetric.name%].calculateResult(streamOut);
+		[%
+		}
+		%]
 		
 		try {
 			env.execute();

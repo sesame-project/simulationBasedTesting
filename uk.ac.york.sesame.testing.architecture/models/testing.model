@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
-<TestingMM:TestCampaign xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TestingMM="TestingMM" xmi:id="_ipghoOuhEeur5Z2YsOLfWA">
-  <tests xmi:id="_jetEQOuhEeur5Z2YsOLfWA" name="Test1"/>
+<TestingMM:TestCampaign xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmi:id="_ipghoOuhEeur5Z2YsOLfWA">
+  <tests xmi:id="_jetEQOuhEeur5Z2YsOLfWA" name="Test1">
+    <attacks xsi:type="TestingMM:PacketLossNetworkAttack" xmi:id="_UBK1kAWHEeyTe-j-TdRj7w" name="packetLossVel" topicToAttackString="cmd_vel" frequency="0.5"/>
+  </tests>
+  <metrics xmi:id="_lcGbYAWHEeyTe-j-TdRj7w" name="TestMetric1"/>
+  <metrics xmi:id="_n93NgAWHEeyTe-j-TdRj7w" name="TestMetricAsStream1" asStream="true"/>
 </TestingMM:TestCampaign>

@@ -4,6 +4,18 @@ rule ros2Main transform mrs: MRS!MRS{
 	target : "src/TestingTestSuiteRunner.java"
 }
 
+rule metricNotStream2Class transform metric: Testing!Metric {
+	guard : not metric.asStream
+	template : "metrics/notStream.egl"
+	target : "src/"+ metric.name + ".java"
+}
+
+rule metricAsStream2Class transform metric: Testing!Metric {
+	guard : metric.asStream
+	template : "metrics/asStream.egl"
+	target : "src/"+ metric.name + ".java"
+}
+
 rule packetLoss2FlatMap transform attack: Testing!PacketLossNetworkAttack {
 	template : "attacks/packetLoss.egl"
 	target : "src/"+ attack.name + "FlatMap.java"

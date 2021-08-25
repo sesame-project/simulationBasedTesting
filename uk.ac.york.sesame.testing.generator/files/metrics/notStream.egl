@@ -1,0 +1,14 @@
+import org.apache.flink.util.Collector;
+
+import uk.ac.york.sesame.testing.architecture.data.EventMessage;
+import uk.ac.york.sesame.testing.architecture.testing.TestOracle;
+
+public class [%=metric.name%] extends TestOracle {
+
+	@Override
+	public void flatMap(EventMessage value, Collector<EventMessage> out) throws Exception {
+		// TODO: Add custom code here
+
+	}
+
+}

@@ -6,11 +6,17 @@ import "http://ExSceMM";
 class TestCampaign {
 	attr String name;
 	val Test[*] tests;
+	val Metric[*] metrics;
 }
 
 class Test {
 	attr String name;
 	val Attack[*] attacks;
+}
+
+class Metric {
+	attr String name;
+	attr Boolean asStream = false;
 }
 
 class Attack {
