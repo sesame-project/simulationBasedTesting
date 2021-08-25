@@ -100,7 +100,7 @@ public class ROSSimulator implements ISimulator {
 	 */
 	@Override
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
-		System.out.println(topicName);
+		System.out.println("TopicName: " + topicName);
 
 		Topic topic;
 		if (createdTopics.containsKey(topicName)) {

@@ -32,13 +32,19 @@ public class TestingTestSuiteRunner {
 		DataStream<EventMessage> stream = env
 				.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties))
 				.returns(EventMessage.class);
+		
+		DataStream<EventMessage> streamOut = env
+				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
+				.returns(EventMessage.class);
 
 		// Kafka Sink to OUT
 		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
 				new EventMessageSchema(), properties);
 
-		stream.flatMap(new PacketLossFlatMap("turtle1/cmd_vel", "10", "20", 0.5)).addSink(myProducer);
-//		stream.addSink(myProducer);
+		stream
+			.flatMap(new PacketLossFlatMap("turtle1/cmd_vel", "10", "20", 0.5))
+			.addSink(myProducer);
+		
 		ROSSimulator rosSim = new ROSSimulator();
 		ConnectionProperties cp = new ConnectionProperties();
 		HashMap<String, Object> propsMap = new HashMap<String, Object>();
@@ -91,7 +97,14 @@ public class TestingTestSuiteRunner {
 			}
 		};
 		from_out_to_sim.start();
-
+		
+		
+		// Test Oracle 1
+		streamOut.flatMap(new TestOracle1());
+		
+		// Test Oreacle as Stream
+		TestOracleAsStream1 asStream = new TestOracleAsStream1();
+		asStream.calculateResult(streamOut);
 		env.execute();
 
 	}

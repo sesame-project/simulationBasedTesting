@@ -20,6 +20,7 @@ import org.apache.flink.util.Collector;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
+import uk.ac.york.sesame.testing.architecture.attacks.*;
 import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
@@ -96,7 +97,12 @@ public class TestingTestSuiteRunner {
 		};
 		from_out_to_sim.start();
 		
-		env.execute();
+		try {
+			env.execute();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		[%
 		}
 		%]
