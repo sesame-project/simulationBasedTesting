@@ -1,4 +1,3 @@
-
 @namespace(uri="TestingMM",prefix="TestingMM")
 package TestingPackage;
 import "http://ExSceMM";
@@ -6,25 +5,95 @@ import "http://ExSceMM";
 class TestCampaign {
 	attr String name;
 	val Test[*] tests;
-	val Metric[*] metrics;
+	val Metrics.Metric[*] metrics;
+	ref TestGenerationApproach[1] testGenerationApproach;
 }
 
+abstract class TestGenerationApproach {
+	attr String name;
+}
+
+class RandomTestGeneration extends TestGenerationApproach {
+	
+}
 class Test {
 	attr String name;
-	val Attack[*] attacks;
+	val Attacks.Attack[*] attacks;
+	ref Metrics.Metric[*] metrics;
 }
 
-class Metric {
-	attr String name;
-	attr Boolean asStream = false;
-}
+package Attacks {
 
 class Attack {
 	attr String name;
-	attr String topicToAttackString;
+	attr int order;
+	attr int priority;
+	// attr String topicToAttackString;
+	val AttackTime[*] attackTimes;
 	ref MRSPackage.Topic[0..1] topicToAttack;
+	attr boolean messagesFromAllComponenents = true;
+	ref MRSPackage.Node[*] fromNodes;
+	attr boolean messagesToAllComponenents = true;
+	ref MRSPackage.Node[*] toNodes;
 	ref MRSPackage.Node[0..1] nodeToAttack;
+	attr boolean allPublishingTopics = true;
+	ref MRSPackage.Topic[*] publishingTopics;
+	attr boolean allSubscribingTopics = true;
+	ref MRSPackage.Topic[*] subscribingTopics;
 }
+
+class AttackTime {
+	attr String startTime;
+	attr String endTime;
+}
+
+class FuzzTestingAttack extends Attack {
+	
+}
+
+class ComponentAttack extends FuzzTestingAttack {
+}
+
+class ComponentPropertyAttack extends FuzzTestingAttack {
+	ref MRSPackage.ComponentProperty[0..1] propertyToAttack;
+}
+
+class RandomValueAttack extends ComponentPropertyAttack {
+	attr int seed;
+}
+
+class RandomValueFromSetAttack extends RandomValueAttack {
+	ref ValueSet[1] valueSet;
+}
+
+// Value Sets
+class ValueSet {
+	
+}
+
+class ValueRange extends ValueSet {
+	
+}
+
+class IntRange extends ValueRange {
+	attr int lowerBound;
+	attr int upperBound;
+}
+
+class DoubleRange extends ValueRange {
+	attr double lowerBound;
+	attr double upperBound;
+}
+
+class StringRange extends ValueRange {
+	attr String lowerBound;
+	attr String upperBound;
+}
+
+class ExternalResourceSet extends ValueSet {
+	attr String location;
+}
+// End of Value Sets
 
 class ResourceAttack extends Attack {
 
@@ -51,48 +120,39 @@ class LoadType {
 }
 
 class CPULoadType extends LoadType {
-
 	
 }
 
 class MemoryLoadType extends LoadType {
 
-	
 }
 
 class IOLoadType extends LoadType {
 
-	
 }
 
 class DiskLoadType extends LoadType {
 
-	
 }
 
 class ShutdownStateAttack extends StateAttack {
-
 	
 }
 
 class TimeTravelStateAttack extends StateAttack {
-
-	
+	attr int timeTravelValue;
 }
 
 class ProcessKillerStateAttack extends StateAttack {
-
-	
+	attr int processId;
 }
 
 class BlackholeNetworkAttack extends NetworkAttack {
-
 	
 }
 
 class LatencyNetworkAttack extends NetworkAttack {
-
-	
+	attr double latency;
 }
 
 class PacketLossNetworkAttack extends NetworkAttack {
@@ -100,6 +160,28 @@ class PacketLossNetworkAttack extends NetworkAttack {
 }
 
 class MultipleMessagesNetworkAttack extends NetworkAttack {
+	attr int howManyClones;
+}
 
+}
+
+package Metrics {
 	
+class Metric {
+	attr String name;
+	attr Boolean asStream = false;
+	attr Boolean passed;
+}
+
+abstract class PropertyMetric extends Metric {
+	ref MRSPackage.ComponentProperty[1] property;
+}
+
+class ConditionalPropertyMetric extends PropertyMetric {
+	attr String condition;
+}
+
+class ComplexMetric extends Metric {
+	attr String implementationClass;
+}
 }

@@ -12,6 +12,7 @@ class MRS {
 
 class Node {
 	attr String name;
+	
 	ref Topic[*] subscriber;
 	ref Topic[*] publisher;
 }
@@ -19,6 +20,10 @@ class Node {
 class Topic {
 	attr String name;
 	attr String type;
+}
+
+class ComponentProperty {
+	attr String name;
 }
 
 abstract class Simulator {
