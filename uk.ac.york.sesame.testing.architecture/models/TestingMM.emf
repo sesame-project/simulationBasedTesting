@@ -6,11 +6,12 @@ class TestCampaign {
 	attr String name;
 	val Test[*] tests;
 	val Metrics.Metric[*] metrics;
-	ref TestGenerationApproach[1] testGenerationApproach;
+	val Attacks.Attack[*] possibleAttacks;
 }
 
 abstract class TestGenerationApproach {
 	attr String name;
+	ref TestCampaign[1] reTrigger;
 }
 
 class RandomTestGeneration extends TestGenerationApproach {
@@ -18,7 +19,7 @@ class RandomTestGeneration extends TestGenerationApproach {
 }
 class Test {
 	attr String name;
-	val Attacks.Attack[*] attacks;
+	ref Attacks.Attack[*] attacks;
 	ref Metrics.Metric[*] metrics;
 }
 
@@ -26,7 +27,6 @@ package Attacks {
 
 class Attack {
 	attr String name;
-	attr int order;
 	attr int priority;
 	// attr String topicToAttackString;
 	val AttackTime[*] attackTimes;
@@ -40,6 +40,9 @@ class Attack {
 	ref MRSPackage.Topic[*] publishingTopics;
 	attr boolean allSubscribingTopics = true;
 	ref MRSPackage.Topic[*] subscribingTopics;
+	ref Attack[1] next;
+	// 	the above repalces this: attr int order;
+	
 }
 
 class AttackTime {
@@ -171,6 +174,8 @@ class Metric {
 	attr String name;
 	attr Boolean asStream = false;
 	attr Boolean passed;
+	ref TestGenerationApproach[1] feedback;
+	ref MRSPackage.Topic[*] relatedTopics;
 }
 
 abstract class PropertyMetric extends Metric {
