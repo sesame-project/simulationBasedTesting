@@ -1,0 +1,25 @@
+$instances 2
+@list campaigns
+operation TestCampaign create() {
+    self.name = "campaign";
+}
+
+$instances Sequence {3, 5}
+@list tests
+operation Test create() {
+    self.name = nextString("LETTER_LOWER", 15);
+    nextFromList("campaigns").tests.add(self);
+}
+
+$instances Sequence {3, 15}
+@list possibleTimeTravelStateAttacks
+operation TimeTravelStateAttack create() {
+	self.timeTravelValue = nextInt(100);
+    nextFromList("campaigns").possibleAttacks.add(self);
+}
+
+$instances Sequence {3, 15}
+@list possibleBlackholeNetworkAttacks
+operation BlackholeNetworkAttack create() {
+    nextFromList("campaigns").possibleAttacks.add(self);
+}
