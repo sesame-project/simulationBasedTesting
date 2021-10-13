@@ -44,18 +44,11 @@ $instances Sequence {0, 2}
 operation RandomValueFromSetAttack create() {
 	self.name = nextString("LETTER_LOWER", 5);
 	
+	self.topicToAttack = nextFromCollection(topics);
 	
-	var topic = new testModel!Topic;
-	topic = nextFromCollection(topics);
-	var randomTopic = nextFromCollection(topics);
-	topic.name =  randomTopic.name;
-	topic.type = randomTopic.type;
-	
-	//self.topicToAttack = topic;
-	randomTopic.type.parameters.println("Params: ");
 	//for (param in randomTopic.type.parameters) {
 		//param.println("param: ");
-		addRandomRangeRecursively(randomTopic.type.parameters, topic.type.name, self);
+		addRandomRangeRecursively(self.topicToAttack.type.parameters, self.topicToAttack.type.name, self);
 	//}
     nextFromList("campaigns").possibleAttacks.add(self);
 }
