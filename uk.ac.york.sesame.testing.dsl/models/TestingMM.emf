@@ -37,9 +37,9 @@ class Attack {
 	attr boolean messagesToAllComponenents = true;
 	ref MRSPackage.Node[*] toNodes;
 	ref MRSPackage.Node[0..1] nodeToAttack;
-	attr boolean allPublishingTopics = true;
+	attr boolean allPublishingTopics = false;
 	ref MRSPackage.Topic[*] publishingTopics;
-	attr boolean allSubscribingTopics = true;
+	attr boolean allSubscribingTopics = false;
 	ref MRSPackage.Topic[*] subscribingTopics;
 	ref Attack[1] next;
 	// 	the above repalces this: attr int order;
@@ -86,6 +86,10 @@ class ComponentSubPropertyAttack extends FuzzTestingAttack {
 	// This might need to be MRSPackage.Type
 	ref MRSPackage.ComponentProperty[0..1] propertyToAttack;
 	ref MRSPackage.Type[0..1] subProperty;
+}
+
+class TopicAttack extends FuzzTestingAttack {
+	ref MRSPackage.Parameter[*] subParameters;
 }
 
 class RandomValueAttack extends ComponentPropertyAttack {

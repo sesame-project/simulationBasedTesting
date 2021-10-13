@@ -20,18 +20,24 @@ class Node {
 
 class Topic {
 	attr String name;
-	attr String type;
+	ref Type[1] type;
 }
 
 class Type {
-	attr String propertyType;
-	ref Type[*] subTypes;
+	attr String name;
+	val Parameter[*] parameters;
+	//ref Type[*] subTypes;
+}
+
+class Parameter {
+	attr String name;
+	val Parameter[*] subparameter;
+	ref Type[1] type;
 }
 
 class ComponentProperty {
 	attr String name;
 	ref Type[1] type;
-	ref ComponentProperty[*] subparameter;
 }
 
 abstract class Simulator {

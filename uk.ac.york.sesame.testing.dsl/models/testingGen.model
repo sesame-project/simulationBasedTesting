@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.Attacks="Attacks">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ExSceMM="http://ExSceMM" xmlns:TestingMM="TestingMM" xmlns:TestingMM.Attacks="Attacks">
   <TestingMM:TestCampaign name="campaign">
-    <tests name="seosupcjqmkxjef"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:TimeTravelStateAttack" timeTravelValue="44"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:TimeTravelStateAttack" timeTravelValue="58"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:TimeTravelStateAttack" timeTravelValue="82"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:TimeTravelStateAttack" timeTravelValue="59"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:TimeTravelStateAttack" timeTravelValue="53"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:TimeTravelStateAttack" timeTravelValue="50"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:TimeTravelStateAttack" timeTravelValue="18"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack"/>
+    <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" name="sydpx" topicToAttack="/5">
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="geometry_msgs/Twist.linear.X" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="geometry_msgs/Twist.angular.X" upperBound="3.0"/>
+    </possibleAttacks>
+    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack" name="vmyou" topicToAttack="/6"/>
   </TestingMM:TestCampaign>
-  <TestingMM:TestCampaign name="campaign">
-    <tests name="feekrptoaoebhes"/>
-    <tests name="acnfsggfrpzwpuz"/>
-    <tests name="fpjshdwobteqjtz"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:TimeTravelStateAttack" timeTravelValue="19"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:TimeTravelStateAttack" timeTravelValue="98"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack"/>
-    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack"/>
-  </TestingMM:TestCampaign>
+  <TestingMM:Test name="wsvmz" attacks="/0/@possibleAttacks.1"/>
+  <TestingMM:Test name="btqvf" attacks="/0/@possibleAttacks.0 /0/@possibleAttacks.1"/>
+  <TestingMM:Test name="vakzv" attacks="/0/@possibleAttacks.0"/>
+  <TestingMM:Test name="ouypx" attacks="/0/@possibleAttacks.0"/>
+  <ExSceMM:Topic name="turtle1/cmd_vel">
+    <type href="turtleMRS.model#_ksEosCv_EeykGsd0UrLwGA"/>
+  </ExSceMM:Topic>
+  <ExSceMM:Topic name="turtle1/cmd_vel">
+    <type href="turtleMRS.model#_ksEosCv_EeykGsd0UrLwGA"/>
+  </ExSceMM:Topic>
 </xmi:XMI>

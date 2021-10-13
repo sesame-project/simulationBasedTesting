@@ -43,12 +43,12 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="nodeToAttack" eType="ecore:EClass http://ExSceMM#//Node"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="allPublishingTopics"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="true"/>
+          defaultValueLiteral="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="publishingTopics" upperBound="-1"
           eType="ecore:EClass http://ExSceMM#//Topic"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="allSubscribingTopics"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="true"/>
+          defaultValueLiteral="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subscribingTopics" upperBound="-1"
           eType="ecore:EClass http://ExSceMM#//Topic"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1"
@@ -75,6 +75,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="ComponentSubPropertyAttack" eSuperTypes="#//Attacks/FuzzTestingAttack">
       <eStructuralFeatures xsi:type="ecore:EReference" name="propertyToAttack" eType="ecore:EClass http://ExSceMM#//ComponentProperty"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subProperty" eType="ecore:EClass http://ExSceMM#//Type"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TopicAttack" eSuperTypes="#//Attacks/FuzzTestingAttack">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subParameters" upperBound="-1"
+          eType="ecore:EClass http://ExSceMM#//Parameter"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RandomValueAttack" eSuperTypes="#//Attacks/ComponentPropertyAttack">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="seed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
