@@ -31,7 +31,7 @@ class Type {
 
 class Parameter {
 	attr String name;
-	val Parameter[*] subparameter;
+	val Parameter[*] subparameters;
 	ref Type[1] type;
 }
 

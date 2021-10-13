@@ -5,14 +5,14 @@
   <nodes xmi:id="_gZyUICv_EeykGsd0UrLwGA" name="Turtle1" subscriber="_ayhwsCv_EeykGsd0UrLwGA"/>
   <propertyType xmi:id="_ksEosCv_EeykGsd0UrLwGA" name="geometry_msgs/Twist">
     <parameters xmi:id="_l2jiACwDEeykGsd0UrLwGA" name="linear" type="_QNs_sCwCEeykGsd0UrLwGA">
-      <subparameter xmi:id="_VBnvwCwEEeykGsd0UrLwGA" name="X" type="_XPV2cCwCEeykGsd0UrLwGA"/>
-      <subparameter xmi:id="_YR7C4CwEEeykGsd0UrLwGA" name="Y" type="_XPV2cCwCEeykGsd0UrLwGA"/>
-      <subparameter xmi:id="_aLGLACwEEeykGsd0UrLwGA" name="Z" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+      <subparameters xmi:id="_VBnvwCwEEeykGsd0UrLwGA" name="X" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+      <subparameters xmi:id="_YR7C4CwEEeykGsd0UrLwGA" name="Y" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+      <subparameters xmi:id="_aLGLACwEEeykGsd0UrLwGA" name="Z" type="_XPV2cCwCEeykGsd0UrLwGA"/>
     </parameters>
     <parameters xmi:id="_ucOYgCwdEeykGsd0UrLwGA" name="angular" type="_QNs_sCwCEeykGsd0UrLwGA">
-      <subparameter xmi:id="_xgR_YCwdEeykGsd0UrLwGA" name="X" type="_XPV2cCwCEeykGsd0UrLwGA"/>
-      <subparameter xmi:id="_xgR_YSwdEeykGsd0UrLwGA" name="Y" type="_XPV2cCwCEeykGsd0UrLwGA"/>
-      <subparameter xmi:id="_xgR_YiwdEeykGsd0UrLwGA" name="Z" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+      <subparameters xmi:id="_xgR_YCwdEeykGsd0UrLwGA" name="X" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+      <subparameters xmi:id="_xgR_YSwdEeykGsd0UrLwGA" name="Y" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+      <subparameters xmi:id="_xgR_YiwdEeykGsd0UrLwGA" name="Z" type="_XPV2cCwCEeykGsd0UrLwGA"/>
     </parameters>
   </propertyType>
   <propertyType xmi:id="_67hGYCv_EeykGsd0UrLwGA" name="turtlesim/Pose">
