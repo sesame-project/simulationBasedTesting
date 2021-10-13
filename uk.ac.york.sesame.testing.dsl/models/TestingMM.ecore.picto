@@ -1,5 +1,5 @@
 <?nsuri picto?>
-<picto format="egx" transformation="platform:/resource/uk.ac.york.sesame.testing.architecture/ecore2vis/ecore.egx">
+<picto format="egx" transformation="platform:/resource/uk.ac.york.sesame.testing.dsl/ecore2vis/ecore.egx">
 
 	<!-- A custom view produced by invoking an EGX rule -->
 	<view path="Model, Custom, Core" icon="diagram-ff00ff" type="ClassDiagram" layers="documentation, features, inlineReferences">

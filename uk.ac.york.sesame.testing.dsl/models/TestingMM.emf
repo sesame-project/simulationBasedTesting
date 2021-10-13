@@ -7,6 +7,7 @@ class TestCampaign {
 	val Test[*] tests;
 	val Metrics.Metric[*] metrics;
 	val Attacks.Attack[*] possibleAttacks;
+	//val Attacks.ValueSet[*] valueSets;
 }
 
 abstract class TestGenerationApproach {
@@ -45,6 +46,25 @@ class Attack {
 	
 }
 
+class OfflineAttack extends Attack {
+	attr OfflineAttackTime attackTime;
+}
+
+enum OfflineAttackTime {
+	PRE;
+	POST;
+}
+
+// I envision this as an instance where just the infrastructure (Flink flatmap) will be created and 
+// added to the orchestrator and users will need to write their own code. Extensibility point...
+class CustomAttack extends Attack {
+	
+}
+
+class CustomOfflineAttack extends OfflineAttack {
+	
+}
+
 class AttackTime {
 	attr String startTime;
 	attr String endTime;
@@ -58,7 +78,14 @@ class ComponentAttack extends FuzzTestingAttack {
 }
 
 class ComponentPropertyAttack extends FuzzTestingAttack {
+	// This might need to be MRSPackage.Type
 	ref MRSPackage.ComponentProperty[0..1] propertyToAttack;
+}
+
+class ComponentSubPropertyAttack extends FuzzTestingAttack {
+	// This might need to be MRSPackage.Type
+	ref MRSPackage.ComponentProperty[0..1] propertyToAttack;
+	ref MRSPackage.Type[0..1] subProperty;
 }
 
 class RandomValueAttack extends ComponentPropertyAttack {
@@ -66,7 +93,7 @@ class RandomValueAttack extends ComponentPropertyAttack {
 }
 
 class RandomValueFromSetAttack extends RandomValueAttack {
-	ref ValueSet[1] valueSet;
+	val ValueSet[*] valueSet;
 }
 
 // Value Sets
@@ -75,6 +102,8 @@ class ValueSet {
 }
 
 class ValueRange extends ValueSet {
+	// This might be a ref to the MRSPackage.ComponentProperty
+	attr String propertyName;
 	
 }
 
@@ -176,6 +205,7 @@ class Metric {
 	attr Boolean passed;
 	ref TestGenerationApproach[1] feedback;
 	ref MRSPackage.Topic[*] relatedTopics;
+	ref Results.Result[*] results;
 }
 
 abstract class PropertyMetric extends Metric {
@@ -190,3 +220,11 @@ class ComplexMetric extends Metric {
 	attr String implementationClass;
 }
 }
+
+package Results {
+	
+class Result {
+	attr String name;
+}
+}
+

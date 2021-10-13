@@ -54,6 +54,15 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1"
           eType="#//Attacks/Attack"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OfflineAttack" eSuperTypes="#//Attacks/Attack">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="attackTime" eType="#//Attacks/OfflineAttackTime"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="OfflineAttackTime">
+      <eLiterals name="PRE"/>
+      <eLiterals name="POST" value="1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CustomAttack" eSuperTypes="#//Attacks/Attack"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CustomOfflineAttack" eSuperTypes="#//Attacks/OfflineAttack"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttackTime">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="endTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -63,15 +72,21 @@
     <eClassifiers xsi:type="ecore:EClass" name="ComponentPropertyAttack" eSuperTypes="#//Attacks/FuzzTestingAttack">
       <eStructuralFeatures xsi:type="ecore:EReference" name="propertyToAttack" eType="ecore:EClass http://ExSceMM#//ComponentProperty"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ComponentSubPropertyAttack" eSuperTypes="#//Attacks/FuzzTestingAttack">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="propertyToAttack" eType="ecore:EClass http://ExSceMM#//ComponentProperty"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subProperty" eType="ecore:EClass http://ExSceMM#//Type"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RandomValueAttack" eSuperTypes="#//Attacks/ComponentPropertyAttack">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="seed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RandomValueFromSetAttack" eSuperTypes="#//Attacks/RandomValueAttack">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="valueSet" lowerBound="1"
-          eType="#//Attacks/ValueSet"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueSet" upperBound="-1"
+          eType="#//Attacks/ValueSet" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ValueSet"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ValueRange" eSuperTypes="#//Attacks/ValueSet"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueRange" eSuperTypes="#//Attacks/ValueSet">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IntRange" eSuperTypes="#//Attacks/ValueRange">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -130,6 +145,8 @@
           eType="#//TestGenerationApproach"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="relatedTopics" upperBound="-1"
           eType="ecore:EClass http://ExSceMM#//Topic"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="results" upperBound="-1"
+          eType="#//Results/Result"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PropertyMetric" abstract="true" eSuperTypes="#//Metrics/Metric">
       <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
@@ -141,6 +158,11 @@
     <eClassifiers xsi:type="ecore:EClass" name="ComplexMetric" eSuperTypes="#//Metrics/Metric">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationClass"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="Results" nsURI="Results" nsPrefix="">
+    <eClassifiers xsi:type="ecore:EClass" name="Result">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

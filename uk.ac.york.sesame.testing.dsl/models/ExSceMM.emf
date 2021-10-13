@@ -8,13 +8,14 @@ class MRS {
 	attr String launchFileLocation;
 	val Node[*] nodes;
 	val Simulator[1] simulator;
+	val Type[*] propertyType;
 }
 
 class Node {
 	attr String name;
-	
 	ref Topic[*] subscriber;
 	ref Topic[*] publisher;
+	ref ComponentProperty[*] properties;
 }
 
 class Topic {
@@ -22,8 +23,15 @@ class Topic {
 	attr String type;
 }
 
+class Type {
+	attr String propertyType;
+	ref Type[*] subTypes;
+}
+
 class ComponentProperty {
 	attr String name;
+	ref Type[1] type;
+	ref ComponentProperty[*] subparameter;
 }
 
 abstract class Simulator {

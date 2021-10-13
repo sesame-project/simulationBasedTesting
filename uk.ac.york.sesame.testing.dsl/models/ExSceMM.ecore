@@ -9,6 +9,8 @@
         eType="#//Node" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="simulator" lowerBound="1"
         eType="#//Simulator" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyType" upperBound="-1"
+        eType="#//Type" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Node">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -16,13 +18,23 @@
         eType="#//Topic"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="publisher" upperBound="-1"
         eType="#//Topic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//ComponentProperty"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Topic">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subTypes" upperBound="-1"
+        eType="#//Type"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentProperty">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subparameter" upperBound="-1"
+        eType="#//ComponentProperty"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Simulator" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ROSSimulator" eSuperTypes="#//Simulator">

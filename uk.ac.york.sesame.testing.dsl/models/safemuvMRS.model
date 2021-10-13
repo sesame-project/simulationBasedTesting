@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ExSceMM:MRS xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ExSceMM="http://ExSceMM" xmi:id="_iU56MCTyEey9n4vEHoG8GA">
+  <topics xmi:id="_jLb5kCTyEey9n4vEHoG8GA" name="/ual/set_velocity" type="geometry_msgs/TwistStamped"/>
+  <topics xmi:id="_FC-bwCTzEey9n4vEHoG8GA" name="/desired_trajectory_path" type="nav_msgs/Path"/>
+  <topics xmi:id="_jwVg8CTzEey9n4vEHoG8GA" name="/desired_path" type="nav_msgs/Path"/>
+  <topics xmi:id="_tf59kCTzEey9n4vEHoG8GA" name="/ual/pose" type="geometry_msgs/PoseStamped"/>
+  <propertyType xmi:id="_AKFWwCpwEeykGsd0UrLwGA" propertyType="geometry_msgs/TwistStamped" subTypes="_I0BLkCpxEeykGsd0UrLwGA"/>
+  <propertyType xmi:id="_I0BLkCpxEeykGsd0UrLwGA" propertyType="twist.linear"/>
+</ExSceMM:MRS>

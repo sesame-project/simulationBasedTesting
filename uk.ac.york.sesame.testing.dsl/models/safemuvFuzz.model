@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestCampaign xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.Attacks="Attacks" xmi:id="_J5aJwCT0Eey9n4vEHoG8GA">
+  <tests xmi:id="_ZKIsYCT1Eey9n4vEHoG8GA" attacks="_4CVlECT0Eey9n4vEHoG8GA"/>
+  <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_4CVlECT0Eey9n4vEHoG8GA" name="IntegerVariableChange" allPublishingTopics="false" allSubscribingTopics="false">
+    <topicToAttack href="safemuvMRS.model#_FC-bwCTzEey9n4vEHoG8GA"/>
+  </possibleAttacks>
+  <possibleAttacks xsi:type="TestingMM.Attacks:ComponentSubPropertyAttack" xmi:id="_5SCrcCpwEeykGsd0UrLwGA" name="trajectory_tracking_controller_fuzzy">
+    <topicToAttack href="safemuvMRS.model#_jLb5kCTyEey9n4vEHoG8GA"/>
+    <subProperty href="safemuvMRS.model#_I0BLkCpxEeykGsd0UrLwGA"/>
+  </possibleAttacks>
+  <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_ED3Z0CpyEeykGsd0UrLwGA" name="trajectory_planning">
+    <topicToAttack href="safemuvMRS.model#_jwVg8CTzEey9n4vEHoG8GA"/>
+    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_oybzgCpyEeykGsd0UrLwGA" propertyName="X" upperBound="3.0"/>
+    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_s7Ec0CpyEeykGsd0UrLwGA" propertyName="Y" upperBound="3.0"/>
+    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_tXX-UCpyEeykGsd0UrLwGA" propertyName="Z" upperBound="3.0"/>
+  </possibleAttacks>
+</TestingMM:TestCampaign>
