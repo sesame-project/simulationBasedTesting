@@ -15,6 +15,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -88,6 +89,8 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 			System.out.println("theIProjectPath: " + theIProjectPath);
 			java.net.URI EgxFile = Activator.getDefault().getBundle().getResource("files/orchestrator.egx")
 					.toURI();
+			
+			System.out.println(EgxFile);
 			try {
 				egxModule.parse(EgxFile);
 			} catch (Exception e1) {
@@ -139,20 +142,32 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 
 		ArrayList<String> mmURIs = new ArrayList<String>();
 		Resource.Factory xmiFactory = new XMIResourceFactoryImpl();
-
 		Resource mrsMM = xmiFactory.createResource(URI.createFileURI(
-				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/ExSceMM.ecore"));
+				"/Users/thanoszolotas/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/ExSceMM.ecore"));
+//		Resource mrsMM = xmiFactory.createResource(URI.createFileURI(
+//				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/ExSceMM.ecore"));
 		mrsMM.load(null);
 		EPackage pkgMRS = (EPackage) mrsMM.getContents().get(0);
 		EPackage.Registry.INSTANCE.put(pkgMRS.getNsURI(), pkgMRS);
 		mmURIs.add(pkgMRS.getNsURI());
-
 		Resource testingMM = xmiFactory.createResource(URI.createFileURI(
-				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/TestingMM.ecore"));
+				"/Users/thanoszolotas/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/TestingMM.ecore"));
+
+//		Resource testingMM = xmiFactory.createResource(URI.createFileURI(
+//				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/TestingMM.ecore"));
 		testingMM.load(null);
-		EPackage pkgTesting = (EPackage) testingMM.getContents().get(0);
-		EPackage.Registry.INSTANCE.put(pkgTesting.getNsURI(), pkgTesting);
-		mmURIs.add(pkgTesting.getNsURI());
+		
+		TreeIterator<EObject> allContents = testingMM.getAllContents();
+		while(allContents.hasNext()) {
+			EObject element = allContents.next();
+			System.out.println("The Element: " + element);
+
+			if (element.eClass().getName().equals("EPackage")) {
+				EPackage.Registry.INSTANCE.put(((EPackage) element).getNsURI(), element);
+				mmURIs.add(((EPackage) element).getNsURI());
+			}
+		}	
+	
 
 		return mmURIs;
 	}

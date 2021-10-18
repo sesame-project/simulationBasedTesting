@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.Attacks="Attacks">
   <TestingMM:TestCampaign name="campaign">
-    <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" name="wwlpq">
+    <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" name="olies">
       <topicToAttack href="turtleMRS.model#_ayhwsCv_EeykGsd0UrLwGA"/>
       <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="geometry_msgs/Twist.linear.X" upperBound="3.0"/>
       <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="geometry_msgs/Twist.linear.Y" upperBound="3.0"/>
@@ -10,17 +10,9 @@
       <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="geometry_msgs/Twist.angular.Y" upperBound="3.0"/>
       <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="geometry_msgs/Twist.angular.Z" upperBound="3.0"/>
     </possibleAttacks>
-    <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" name="wkgqd">
-      <topicToAttack href="turtleMRS.model#_-onDMCv_EeykGsd0UrLwGA"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.X" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.Y" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.theta" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.linear_velocity" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.angular_velocity" upperBound="3.0"/>
-    </possibleAttacks>
-    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack" name="kkufh"/>
+    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack" name="aernk"/>
   </TestingMM:TestCampaign>
-  <TestingMM:Test name="cxqfb" attacks="/0/@possibleAttacks.2"/>
-  <TestingMM:Test name="lrwcg" attacks="/0/@possibleAttacks.0 /0/@possibleAttacks.1"/>
-  <TestingMM:Test name="drxor" attacks="/0/@possibleAttacks.1 /0/@possibleAttacks.2"/>
+  <TestingMM:Test name="kvsay" attacks="/0/@possibleAttacks.0"/>
+  <TestingMM:Test name="asprb" attacks="/0/@possibleAttacks.1"/>
+  <TestingMM:Test name="aghjh" attacks="/0/@possibleAttacks.0 /0/@possibleAttacks.1"/>
 </xmi:XMI>

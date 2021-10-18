@@ -20,3 +20,14 @@ rule packetLoss2FlatMap transform attack: Testing!PacketLossNetworkAttack {
 	template : "attacks/packetLoss.egl"
 	target : "src/"+ attack.name + "FlatMap.java"
 }
+
+rule fuzzRange2FlatMap transform attack: Testing!RandomValueFromSetAttack {
+	template : "attacks/fuzzRange.egl"
+	target : "src/"+ attack.name + "FlatMap.java"
+}
+
+rule rangeClass transform testCampaign: Testing!TestCampaign {
+	guard : Testing!DoubleRange.all().notEmpty()
+	template : "datatypes/DoubleRange.egl"
+	target : "src/datatypes/DoubleRange.java"
+}
