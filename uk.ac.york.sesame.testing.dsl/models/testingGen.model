@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.Attacks="Attacks">
-  <TestingMM:TestCampaign name="campaign">
-    <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" name="olies">
-      <topicToAttack href="turtleMRS.model#_ayhwsCv_EeykGsd0UrLwGA"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="geometry_msgs/Twist.linear.X" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="geometry_msgs/Twist.linear.Y" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="geometry_msgs/Twist.linear.Z" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="geometry_msgs/Twist.angular.X" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="geometry_msgs/Twist.angular.Y" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="geometry_msgs/Twist.angular.Z" upperBound="3.0"/>
-    </possibleAttacks>
-    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack" name="aernk"/>
-  </TestingMM:TestCampaign>
-  <TestingMM:Test name="kvsay" attacks="/0/@possibleAttacks.0"/>
-  <TestingMM:Test name="asprb" attacks="/0/@possibleAttacks.1"/>
-  <TestingMM:Test name="aghjh" attacks="/0/@possibleAttacks.0 /0/@possibleAttacks.1"/>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TestingMM="TestingMM" xmlns:TestingMM.Attacks="Attacks">
+  <TestingMM:TestCampaign name="campaign"/>
+  <TestingMM:Test name="ynktt"/>
+  <TestingMM:Test name="ftywm"/>
+  <TestingMM:Test name="embeb"/>
+  <TestingMM:Test name="qdfte"/>
+  <TestingMM.Attacks:RandomValueFromSetAttack name="ikwis"/>
 </xmi:XMI>
