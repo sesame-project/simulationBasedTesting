@@ -39,7 +39,7 @@ operation Test create() {
 }
 
 
-$instances Sequence {0, 2}
+$instances Sequence {3, 5}
 @list possibleFuzzAttacks
 operation RandomValueFromSetAttack create() {
 	self.name = nextString("LETTER_LOWER", 5);

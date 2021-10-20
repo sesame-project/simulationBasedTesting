@@ -52,7 +52,14 @@ public class [%=attack.name%]FlatMap implements FlatMapFunction<EventMessage,Eve
 	
 	@Override
 	public void flatMap(EventMessage value, Collector<EventMessage> out) throws Exception {
-		// TODO Auto-generated method stub
+		Object obj = JSONValue.parse(value.getValue.toString());
+      	JSONArray array = (JSONArray)obj;
+		[%
+		for(aParameter in attack.valueSet) { %]
+			[%=aParameter.propertyName%]", new DoubleRange([%=aParameter.lowerBound%], [%=aParameter.upperBound%]));
+		[%
+		}
+		%]
 		
 	}
 	
