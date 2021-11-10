@@ -51,13 +51,21 @@ public class [%=attack.name%]FlatMap implements FlatMapFunction<EventMessage,Eve
 	}
 	
 	@Override
-	public void flatMap(EventMessage value, Collector<EventMessage> out) throws Exception {
-		Object obj = JSONValue.parse(value.getValue.toString());
-      	JSONArray array = (JSONArray)obj;
-		[%
-		for(aParameter in attack.valueSet) { %]
-			[%=aParameter.propertyName%]", new DoubleRange([%=aParameter.lowerBound%], [%=aParameter.upperBound%]));
-		[%
+	public void flatMap(EventMessage value, Collector<EventMessage> out) throws Exception { [%
+		var parsingMethod = attack.topicToAttack.type.parsingMethod.name;
+		if (parsingMethod.equalsIgnoreCase("JSON")) {
+			%]
+			
+			Object obj = JSONValue.parse(value.getValue.toString());
+	      	JSONArray array = (JSONArray)obj;
+			[%
+			for(aParameter in attack.valueSet) { %]
+				[%=aParameter.propertyName%]", new DoubleRange([%=aParameter.lowerBound%], [%=aParameter.upperBound%]));
+			[%
+			
+			}
+		} else if (parsingMethod.equalsIgnoreCase("CSV")) {
+		
 		}
 		%]
 		

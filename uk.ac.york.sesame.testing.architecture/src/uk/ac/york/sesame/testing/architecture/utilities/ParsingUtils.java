@@ -1,11 +1,9 @@
-package uk.ac.york.sesame.testing.architecture.ros;
+package uk.ac.york.sesame.testing.architecture.utilities;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import uk.ac.york.sesame.testing.architecture.data.IUtilities;
-
-public class Utilities implements IUtilities {
+public class ParsingUtils {
 
 	public String updateValue(String message, String parameterName, String newValue) {
 		JSONObject obj = (JSONObject) JSONValue.parse(message);
