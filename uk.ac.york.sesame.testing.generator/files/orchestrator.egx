@@ -18,7 +18,13 @@ rule metricAsStream2Class transform metric: Testing!Metric {
 
 rule packetLoss2FlatMap transform attack: Testing!PacketLossNetworkAttack {
 	template : "attacks/packetLoss.egl"
-	target : "src/"+ attack.name + "FlatMap.java"
+	//target : "src/"+ attack.name.firstToUpperCase() + "FlatMap.java"
+	target : "src/PacketLossFlatMap.java"	
+}
+
+rule blackHole2FlatMap transform attack: Testing!BlackholeNetworkAttack {
+	template : "attacks/blackHole.egl"
+	target : "src/BlackHoleFlatMap.java"	
 }
 
 rule fuzzRange2FlatMap transform attack: Testing!RandomValueFromSetAttack {

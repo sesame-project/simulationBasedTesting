@@ -47,6 +47,7 @@ public class TestingTestSuiteRunner {
 		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
 				new EventMessageSchema(), properties);
 
+		//TODO: Here to automatically generate the chain of flatmaps for each test in the testing campaign
 		stream.flatMap(new PacketLossFlatMap("turtle1/cmd_vel", "10", "20", 0.5)).addSink(myProducer);
 //		stream.addSink(myProducer);
 	

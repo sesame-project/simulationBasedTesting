@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ExSceMM:MRS xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ExSceMM="http://ExSceMM" xmi:id="_Z4M2cCv_EeykGsd0UrLwGA">
+<ExSceMM:MRS xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ExSceMM="http://ExSceMM" xmi:id="_Z4M2cCv_EeykGsd0UrLwGA">
   <topics xmi:id="_ayhwsCv_EeykGsd0UrLwGA" name="turtle1/cmd_vel" type="_ksEosCv_EeykGsd0UrLwGA"/>
   <topics xmi:id="_-onDMCv_EeykGsd0UrLwGA" name="turtle1/pose" type="_67hGYCv_EeykGsd0UrLwGA"/>
   <nodes xmi:id="_gZyUICv_EeykGsd0UrLwGA" name="Turtle1" subscriber="_ayhwsCv_EeykGsd0UrLwGA"/>
+  <simulator xsi:type="ExSceMM:ROSSimulator" xmi:id="_mtRLoEXuEeybjfS_xnSIvQ" hostname="0.0.0.0" port="8080"/>
   <propertyType xmi:id="_ksEosCv_EeykGsd0UrLwGA" name="geometry_msgs/Twist">
     <parameters xmi:id="_l2jiACwDEeykGsd0UrLwGA" name="linear" type="_QNs_sCwCEeykGsd0UrLwGA">
       <subparameters xmi:id="_VBnvwCwEEeykGsd0UrLwGA" name="X" type="_XPV2cCwCEeykGsd0UrLwGA"/>

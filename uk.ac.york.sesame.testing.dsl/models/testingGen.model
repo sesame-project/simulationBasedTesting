@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.Attacks="Attacks">
-  <TestingMM:TestCampaign name="campaign">
-    <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" name="svdgu">
+  <TestingMM:TestCampaign xmi:id="_l6YoEEXsEeybjfS_xnSIvQ" name="campaign">
+    <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_l6YoEUXsEeybjfS_xnSIvQ" name="svdgu">
       <topicToAttack href="turtleMRS.model#_-onDMCv_EeykGsd0UrLwGA"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.X" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.Y" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.theta" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.linear_velocity" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.angular_velocity" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6Z2MEXsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.X" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6Z2MUXsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.Y" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6Z2MkXsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.theta" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6Z2M0XsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.linear_velocity" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6adQEXsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.angular_velocity" upperBound="3.0"/>
     </possibleAttacks>
-    <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" name="tpowp">
+    <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_l6adQUXsEeybjfS_xnSIvQ" name="tpowp">
       <topicToAttack href="turtleMRS.model#_-onDMCv_EeykGsd0UrLwGA"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.X" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.Y" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.theta" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.linear_velocity" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.angular_velocity" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6adQkXsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.X" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6bEUEXsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.Y" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6bEUUXsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.theta" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6bEUkXsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.linear_velocity" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6bEU0XsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.angular_velocity" upperBound="3.0"/>
     </possibleAttacks>
-    <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" name="wyjza">
+    <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_l6bEVEXsEeybjfS_xnSIvQ" name="wyjza">
       <topicToAttack href="turtleMRS.model#_-onDMCv_EeykGsd0UrLwGA"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.X" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.Y" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.theta" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.linear_velocity" upperBound="3.0"/>
-      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" propertyName="turtlesim/Pose.angular_velocity" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6brYEXsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.X" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6cScEXsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.Y" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6cScUXsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.theta" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6cSckXsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.linear_velocity" upperBound="3.0"/>
+      <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6cSc0XsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.angular_velocity" upperBound="3.0"/>
     </possibleAttacks>
-    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack" name="nbtwi"/>
+    <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack" xmi:id="_l6c5gEXsEeybjfS_xnSIvQ" name="nbtwi">
+      <topicToAttack href="turtleMRS.model#_ayhwsCv_EeykGsd0UrLwGA"/>
+    </possibleAttacks>
+    <possibleAttacks xsi:type="TestingMM.Attacks:PacketLossNetworkAttack" xmi:id="_n0pVUEXsEeybjfS_xnSIvQ" name="VelPacketLoss" frequency="0.3">
+      <topicToAttack href="turtleMRS.model#_ayhwsCv_EeykGsd0UrLwGA"/>
+    </possibleAttacks>
   </TestingMM:TestCampaign>
-  <TestingMM:Test name="kwcoh" attacks="/0/@possibleAttacks.1"/>
-  <TestingMM:Test name="nhwie" attacks="/0/@possibleAttacks.0 /0/@possibleAttacks.2"/>
-  <TestingMM:Test name="qbpqs" attacks="/0/@possibleAttacks.0 /0/@possibleAttacks.2"/>
+  <TestingMM:Test xmi:id="_l6dgkEXsEeybjfS_xnSIvQ" name="kwcoh" attacks="_l6adQUXsEeybjfS_xnSIvQ _n0pVUEXsEeybjfS_xnSIvQ"/>
+  <TestingMM:Test xmi:id="_l6eusEXsEeybjfS_xnSIvQ" name="nhwie" attacks="_l6YoEUXsEeybjfS_xnSIvQ _l6bEVEXsEeybjfS_xnSIvQ"/>
+  <TestingMM:Test xmi:id="_l6fVwEXsEeybjfS_xnSIvQ" name="qbpqs" attacks="_l6YoEUXsEeybjfS_xnSIvQ _l6bEVEXsEeybjfS_xnSIvQ"/>
 </xmi:XMI>

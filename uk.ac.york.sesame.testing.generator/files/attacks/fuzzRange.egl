@@ -4,6 +4,8 @@ import datatypes.DoubleRange;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.util.Collector;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONValue;
 
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
