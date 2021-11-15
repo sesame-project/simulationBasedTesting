@@ -28,26 +28,39 @@ public class TestingTestSuiteRunner {
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
+		
 		DataStream<EventMessage> stream = env
 			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
+		
+		DataStream<EventMessage> streamOut = env
+				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
+				.returns(EventMessage.class);
+		
 		// Kafka Sink to OUT
 		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
 				new EventMessageSchema(), properties);
 
 		stream.flatMap(new PacketLossFlatMap("turtle1/cmd_vel", "10", "20", 0.5)).addSink(myProducer);
+		//TODO: Here to automatically generate the chain of flatmaps for each test in the testing campaign as the example in the above line
+		//I do here for the first test case. In the future for each test case we need to have a separate runner.
+		stream.
+				
+				flatMap(new PacketLossFlatMap("turtle1/cmd_vel", "0", "10", 0.3)).
+		addSink(myProducer);
+		
 //		stream.addSink(myProducer);
 	
 		ROSSimulator rosSim = new ROSSimulator();
 		ConnectionProperties cp = new ConnectionProperties();
 		HashMap<String, Object> propsMap = new HashMap<String, Object>();
-		propsMap.put(ConnectionProperties.HOSTNAME, "localhost");
-		propsMap.put(ConnectionProperties.PORT, 9090);
+		propsMap.put(ConnectionProperties.HOSTNAME, "0.0.0.0");
+		propsMap.put(ConnectionProperties.PORT, 8080);
 		cp.setProperties(propsMap);
 		
 		Thread simulator_runner_thread = new Thread() {
 			public void run() {
 				HashMap<String, String> params = new HashMap<String,String>();
-				params.put("launchPath", "/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.examples.ros.bridge/files/start.sh");
+				params.put("launchPath", "");
 				System.out.println("Simulator Starts");
 				rosSim.run(params);
 				//FIXME: At the moment this needs to be outside the thread to work.
@@ -57,22 +70,6 @@ public class TestingTestSuiteRunner {
 		
 		simulator_runner_thread.start();
 		
-		
-		Thread subscriber_thread__turtle1_pose = new Thread() {
-			public void run() {
-				System.out.println("Subscriber _turtle1_pose Starts");
-				rosSim.consumeFromTopic("/turtle1/pose", "turtlesim/Pose", true, "IN");
-			}
-		};
-		subscriber_thread__turtle1_pose.start();
-		
-		Thread subscriber_thread__turtle1_cmd_vel = new Thread() {
-			public void run() {
-				System.out.println("Subscriber _turtle1_cmd_vel Starts");
-				rosSim.consumeFromTopic("/turtle1/cmd_vel", "geometry_msgs/Twist", true, "IN");
-			}
-		};
-		subscriber_thread__turtle1_cmd_vel.start();
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
@@ -92,11 +89,8 @@ public class TestingTestSuiteRunner {
 		from_out_to_sim.start();
 		
 		// Metrics (not as stream) here
-		streamOut.flatMap(new TestMetric1());
 		
 		// Metrics (as stream) here
-		TestMetric1 TestMetric1 = new TestMetric1();
-		TestMetric1.calculateResult(streamOut);
 		
 		try {
 			env.execute();
