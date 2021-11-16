@@ -4,7 +4,6 @@
 	var simulator = mrs.simulator;
 	var topicsNodesPublish = MRS!Node.all().publisher.flatten();
 	topicsNodesPublish.println();
-	var tests = Testing!Test.all();
 	"hi".println();
 %]
 import java.util.HashMap;
@@ -54,14 +53,12 @@ public class TestingTestSuiteRunner {
 		//I do here for the first test case. In the future for each test case we need to have a separate runner.
 		stream.
 		[%
-		//for (test in tests) { 
-			for (attack in tests.first().attacks) {
+			for (attack in test.attacks) {
 				var flatMapString = produceFlatMapSignature(attack);
 				%]
 				[%=flatMapString%]
 				[%
 			}
-		//}
 		%]
 		addSink(myProducer);
 		
@@ -158,6 +155,8 @@ operation produceFlatMapSignature(attack) {
 	var flatmap = "";
 	if (attack.isTypeOf(Testing!PacketLossNetworkAttack)) {
 		flatmap = "flatMap(new PacketLossFlatMap(\"" + attack.topicToAttack.name + "\", \"" + attack.attackTimes.first().startTime + "\", \"" + attack.attackTimes.first().endTime + "\", " + attack.frequency + ")).";
+	} else if (attack.isTypeOf(Testing!BlackholeNetworkAttack)) {
+		flatmap = "flatMap(new BlackHoleFlatMap(\"" + attack.topicToAttack.name + "\", \"" + attack.attackTimes.first().startTime + "\", \"" + attack.attackTimes.first().endTime + "\")).";
 	}
 	return flatmap;
 }

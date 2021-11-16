@@ -26,6 +26,7 @@
       <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_l6cSc0XsEeybjfS_xnSIvQ" propertyName="turtlesim/Pose.angular_velocity" upperBound="3.0"/>
     </possibleAttacks>
     <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack" xmi:id="_l6c5gEXsEeybjfS_xnSIvQ" name="nbtwi">
+      <attackTimes xmi:id="_MKPMQEbHEeyShcYTNWauzw" startTime="15" endTime="5"/>
       <topicToAttack href="turtleMRS.model#_ayhwsCv_EeykGsd0UrLwGA"/>
     </possibleAttacks>
     <possibleAttacks xsi:type="TestingMM.Attacks:PacketLossNetworkAttack" xmi:id="_n0pVUEXsEeybjfS_xnSIvQ" name="VelPacketLoss" frequency="0.3">
@@ -34,6 +35,6 @@
     </possibleAttacks>
   </TestingMM:TestCampaign>
   <TestingMM:Test xmi:id="_l6dgkEXsEeybjfS_xnSIvQ" name="kwcoh" attacks="_l6adQUXsEeybjfS_xnSIvQ _n0pVUEXsEeybjfS_xnSIvQ"/>
-  <TestingMM:Test xmi:id="_l6eusEXsEeybjfS_xnSIvQ" name="nhwie" attacks="_l6YoEUXsEeybjfS_xnSIvQ _l6bEVEXsEeybjfS_xnSIvQ"/>
+  <TestingMM:Test xmi:id="_l6eusEXsEeybjfS_xnSIvQ" name="nhwie" attacks="_l6YoEUXsEeybjfS_xnSIvQ _l6bEVEXsEeybjfS_xnSIvQ _l6c5gEXsEeybjfS_xnSIvQ"/>
   <TestingMM:Test xmi:id="_l6fVwEXsEeybjfS_xnSIvQ" name="qbpqs" attacks="_l6YoEUXsEeybjfS_xnSIvQ _l6bEVEXsEeybjfS_xnSIvQ"/>
 </xmi:XMI>
