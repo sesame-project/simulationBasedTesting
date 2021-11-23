@@ -1,8 +1,20 @@
-roscore
-rosrun turtlesim turtlesim_node
-rosrun turtlesim turtle_teleop_key
-roslaunch rosbridge_server rosbridge_websocket.launch
-cd Downloads/kafka_2.13-2.8.0/
+- Start zookeeper (navigate to the directory where you have kafka downloaded)
 bin/zookeeper-server-start.sh config/zookeeper.properties
+- Start kafka server (navigate to the directory where you have kafka downloaded)
 bin/kafka-server-start.sh config/server.properties
+- Start Ros Core
+roscore
+- Set use_clock_time parameter to true
+rosparam set /use_sim_time true
+- Start an empty world in gazebo to publish time in /clock topic
+roslaunch gazebo_ros empty_world.launch
+- Run the turtlesim node
+rosrun turtlesim turtlesim_node
+- Run the turtlesim teleop node
+rosrun turtlesim turtle_teleop_key
+- run rosbridge node
+roslaunch rosbridge_server rosbridge_websocket.launch
+
+Other commands
+cd Downloads/kafka_2.13-2.8.0/
 bin/kafka-console-consumer.sh --topic .turtle1.cmd_vel --from-beginning --bootstrap-server localhost:9092

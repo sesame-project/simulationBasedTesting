@@ -13,6 +13,9 @@ import org.eclipse.epsilon.emc.emf.EmfModel;
 import org.eclipse.epsilon.emc.plainxml.PlainXmlModel;
 import org.eclipse.epsilon.eol.launch.EolRunConfiguration;
 import org.eclipse.epsilon.eol.models.IModel;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import edu.wpi.rail.jrosbridge.JRosbridge.WebSocketType;
 import edu.wpi.rail.jrosbridge.Ros;
@@ -26,6 +29,7 @@ import uk.ac.york.sesame.testing.architecture.simulator.ICommandInvoker;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertyGetter;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertySetter;
 import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
+import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 
 
 public class ROSSimulator implements ISimulator {
@@ -176,4 +180,20 @@ public class ROSSimulator implements ISimulator {
 		}
 	}
 
-}
+	@Override
+	public void updateTime(SimCore simCore) {
+		Topic topic = (Topic) createTopic("/clock", "rosgraph_msgs/Clock");
+		System.out.println("Hi");
+		topic.subscribe(new TopicCallback() {
+			@Override
+			public void handleMessage(Message message) {
+				String seconds = message.toString().split("secs\":")[1].split(",")[0];
+//		        System.out.println(seconds);
+//				System.out.println("message: " + message);
+				simCore.setTime(seconds);
+			}
+		});
+		while(true) {}
+	}
+
+}    

@@ -14,16 +14,22 @@ public class Main {
 	public static void main(String[] args) {
 		Ros ros = new Ros("0.0.0.0", 9090, WebSocketType.ws);
 		ros.connect();
-		Topic echoBack = new Topic(ros, "/turtle1/cmd_vel", "geometry_msgs/Twist");
-		echoBack.subscribe(new TopicCallback() {
-			@Override
-			public void handleMessage(Message message) {
-				System.out.println("From ROS: " + message.toString());
-			}
-		});
-		while(true) {
-			
-		}
+//		Topic echoBack = new Topic(ros, "/turtle1/cmd_vel", "geometry_msgs/Twist");
+//		echoBack.subscribe(new TopicCallback() {
+//			@Override
+//			public void handleMessage(Message message) {
+//				System.out.println("From ROS: " + message);
+//			}
+//		});
+//		while(true) {
+//			
+//		}
+		
+		Service time = new Service(ros, "/rosapi/get_time", "");
+
+		ServiceRequest request = new ServiceRequest("{}");
+		ServiceResponse response = time.callServiceAndWait(request);
+		System.out.println(response.toString());
 		
 //		Message toSend = new Message("{\"linear\":{\"x\":2.0,\"y\":0.0,\"z\":0.0},\"angular\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}");
 //		echoBack.publish(toSend);

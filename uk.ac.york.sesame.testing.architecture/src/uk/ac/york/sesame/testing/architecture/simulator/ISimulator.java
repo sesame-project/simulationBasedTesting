@@ -20,4 +20,5 @@ public interface ISimulator {
 	public ICommandInvoker getICommandInvoker();
 	public void run(HashMap<String, String> params);
 	public void redirectTopics(ArrayList<Topic> topics);
+	public void updateTime(SimCore simCore);
 }
