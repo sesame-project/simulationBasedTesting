@@ -181,16 +181,13 @@ public class ROSSimulator implements ISimulator {
 	}
 
 	@Override
-	public void updateTime(SimCore simCore) {
+	public void updateTime() {
 		Topic topic = (Topic) createTopic("/clock", "rosgraph_msgs/Clock");
-		System.out.println("Hi");
 		topic.subscribe(new TopicCallback() {
 			@Override
 			public void handleMessage(Message message) {
 				String seconds = message.toString().split("secs\":")[1].split(",")[0];
-//		        System.out.println(seconds);
-//				System.out.println("message: " + message);
-				simCore.setTime(seconds);
+				SimCore.getInstance().setTime(seconds);
 			}
 		});
 		while(true) {}

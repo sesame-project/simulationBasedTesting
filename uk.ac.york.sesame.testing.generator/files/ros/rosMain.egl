@@ -28,7 +28,7 @@ import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.data.EventMessageSchema;
 
-public class TestingTestSuiteRunner {
+public class [%=test.name.firstToUpperCase()%]TestingTestSuiteRunner {
 
 	public static void main(String[] args) {
 		
@@ -48,9 +48,6 @@ public class TestingTestSuiteRunner {
 		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
 				new EventMessageSchema(), properties);
 
-		stream.flatMap(new PacketLossFlatMap("turtle1/cmd_vel", "10", "20", 0.5)).addSink(myProducer);
-		//TODO: Here to automatically generate the chain of flatmaps for each test in the testing campaign as the example in the above line
-		//I do here for the first test case. In the future for each test case we need to have a separate runner.
 		stream.
 		[%
 			for (attack in test.attacks) {

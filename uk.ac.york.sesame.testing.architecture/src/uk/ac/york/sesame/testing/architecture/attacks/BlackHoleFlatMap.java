@@ -6,20 +6,11 @@ import org.apache.flink.util.Collector;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 
-public class PacketLossFlatMap implements FlatMapFunction<EventMessage, EventMessage> {
+public class BlackHoleFlatMap implements FlatMapFunction<EventMessage, EventMessage> {
 
 	String topic;
 	int start;
 	int end;
-	double frequency;
-
-	public double getFrequency() {
-		return frequency;
-	}
-
-	public void setFrequency(double frequency) {
-		this.frequency = frequency;
-	}
 
 	public String getTopic() {
 		return topic;
@@ -45,29 +36,22 @@ public class PacketLossFlatMap implements FlatMapFunction<EventMessage, EventMes
 		this.end = end;
 	}
 
-	public PacketLossFlatMap(String topic, String start, String end, double frequency) {
+	public BlackHoleFlatMap(String topic, String start, String end) {
 		this.topic = topic;
 		this.start = Integer.parseInt(start);
 		this.end = Integer.parseInt(end);
-		this.frequency = frequency;
 	}
 
 	@Override
 	public void flatMap(EventMessage value, Collector<EventMessage> out) throws Exception {
-
-		if (!value.getTopic().equalsIgnoreCase(topic)) {
-			out.collect(value);
-		} else {
-			if (Integer.parseInt(SimCore.getInstance().getTime()) >= start
-					&& Integer.parseInt(SimCore.getInstance().getTime()) <= end) {
-				if (Math.random() > frequency) {
-					out.collect(value);
-					System.out.println("Passed");
-				} else {
-					System.out.println("Blocked");
-				}
+		if (value.getTopic().equalsIgnoreCase(topic)) {
+			if (Integer.parseInt(SimCore.getInstance().getTime()) >= start && Integer.parseInt(SimCore.getInstance().getTime()) <= end) {
+				System.out.println("Message: " + value + " discarded.");
 			}
+		} else {
+			out.collect(value);
 		}
+
 	}
 
 }

@@ -14,7 +14,6 @@ public class SimMain {
 
 	public static void main(String[] args) {
 		ROSSimulator rosSim = new ROSSimulator();
-		SimCore simCore = new SimCore();
 		ConnectionProperties cp = new ConnectionProperties();
 		HashMap<String, Object> propsMap = new HashMap<String, Object>();
 		propsMap.put(ConnectionProperties.HOSTNAME, "0.0.0.0");
@@ -25,15 +24,15 @@ public class SimMain {
 //		rosSim.consumeFromTopic("/turtle1/cmd_vel1", "geometry_msgs/Twist", true);
 //		//DataStreamManager.getInstance().consume("/turtle1/cmd_vel");
 //		while(true) {}
-		
+
 		ExSceModel model = new ExSceModel();
 //		ROSSimulator sim = new ROSSimulator();
-		//			System.out.println("Topics: " + model.getTopics());
+		// System.out.println("Topics: " + model.getTopics());
 //			Topic topic = new Topic("Test");
 //			ArrayList<Topic> topicsList = new ArrayList<Topic>();
 //			topicsList.add(topic);
 //			sim.redirectTopics(topicsList);
-			rosSim.updateTime(simCore);
+			rosSim.updateTime();
 	}
 
 }
