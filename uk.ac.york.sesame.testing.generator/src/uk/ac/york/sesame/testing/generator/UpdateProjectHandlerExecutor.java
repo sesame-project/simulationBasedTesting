@@ -142,19 +142,19 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 
 		ArrayList<String> mmURIs = new ArrayList<String>();
 		Resource.Factory xmiFactory = new XMIResourceFactoryImpl();
-		Resource mrsMM = xmiFactory.createResource(URI.createFileURI(
-				"/Users/thanoszolotas/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/ExSceMM.ecore"));
 //		Resource mrsMM = xmiFactory.createResource(URI.createFileURI(
-//				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/ExSceMM.ecore"));
+//				"/Users/thanoszolotas/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/ExSceMM.ecore"));
+		Resource mrsMM = xmiFactory.createResource(URI.createFileURI(
+				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/ExSceMM.ecore"));
 		mrsMM.load(null);
 		EPackage pkgMRS = (EPackage) mrsMM.getContents().get(0);
 		EPackage.Registry.INSTANCE.put(pkgMRS.getNsURI(), pkgMRS);
 		mmURIs.add(pkgMRS.getNsURI());
-		Resource testingMM = xmiFactory.createResource(URI.createFileURI(
-				"/Users/thanoszolotas/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/TestingMM.ecore"));
-
 //		Resource testingMM = xmiFactory.createResource(URI.createFileURI(
-//				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/TestingMM.ecore"));
+//				"/Users/thanoszolotas/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/TestingMM.ecore"));
+
+		Resource testingMM = xmiFactory.createResource(URI.createFileURI(
+				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/TestingMM.ecore"));
 		testingMM.load(null);
 		
 		TreeIterator<EObject> allContents = testingMM.getAllContents();

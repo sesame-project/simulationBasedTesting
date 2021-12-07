@@ -188,6 +188,7 @@ public class ROSSimulator implements ISimulator {
 			public void handleMessage(Message message) {
 				String seconds = message.toString().split("secs\":")[1].split(",")[0];
 				SimCore.getInstance().setTime(seconds);
+				System.out.println("Seconds: " + seconds);
 			}
 		});
 		while(true) {}

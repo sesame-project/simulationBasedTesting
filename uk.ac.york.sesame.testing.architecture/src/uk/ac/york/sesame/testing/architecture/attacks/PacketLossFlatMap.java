@@ -55,9 +55,14 @@ public class PacketLossFlatMap implements FlatMapFunction<EventMessage, EventMes
 	@Override
 	public void flatMap(EventMessage value, Collector<EventMessage> out) throws Exception {
 
-		if (!value.getTopic().equalsIgnoreCase(topic)) {
+		// FIXME: The topic is set without a starting / while the messages contain it. We need to update topic to held the / at the beginning
+
+		System.out.println("PacketLossFlatMap");
+		if (!value.getTopic().equalsIgnoreCase("/" + topic)) {
+			System.out.println("PacketLossFlatMap Passed");
 			out.collect(value);
 		} else {
+			System.out.println("Time: " +  SimCore.getInstance().getTime());
 			if (Integer.parseInt(SimCore.getInstance().getTime()) >= start
 					&& Integer.parseInt(SimCore.getInstance().getTime()) <= end) {
 				if (Math.random() > frequency) {
@@ -66,6 +71,8 @@ public class PacketLossFlatMap implements FlatMapFunction<EventMessage, EventMes
 				} else {
 					System.out.println("Blocked");
 				}
+			} else {
+				out.collect(value);
 			}
 		}
 	}

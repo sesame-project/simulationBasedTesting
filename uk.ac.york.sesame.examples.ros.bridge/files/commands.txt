@@ -18,3 +18,4 @@ roslaunch rosbridge_server rosbridge_websocket.launch
 Other commands
 cd Downloads/kafka_2.13-2.8.0/
 bin/kafka-console-consumer.sh --topic .turtle1.cmd_vel --from-beginning --bootstrap-server localhost:9092
+bin/kafka-console-consumer.sh --topic IN --from-beginning --bootstrap-server localhost:9092

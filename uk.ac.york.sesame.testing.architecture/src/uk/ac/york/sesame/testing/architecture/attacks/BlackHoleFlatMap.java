@@ -44,11 +44,18 @@ public class BlackHoleFlatMap implements FlatMapFunction<EventMessage, EventMess
 
 	@Override
 	public void flatMap(EventMessage value, Collector<EventMessage> out) throws Exception {
-		if (value.getTopic().equalsIgnoreCase(topic)) {
+		// FIXME: The topic is set without a starting / while the messages contain it. We need to update topic to held the / at the beginning
+		System.out.println("BlackHoleFlatMap");
+
+		if (value.getTopic().equalsIgnoreCase("/" + topic)) {
 			if (Integer.parseInt(SimCore.getInstance().getTime()) >= start && Integer.parseInt(SimCore.getInstance().getTime()) <= end) {
-				System.out.println("Message: " + value + " discarded.");
+				System.out.println("Message within time bounds and discarded.");
+			} else {
+				System.out.println("Message outside time bounds and accepted.");
+				out.collect(value);
 			}
 		} else {
+			System.out.println("Message accepted: " + value);
 			out.collect(value);
 		}
 

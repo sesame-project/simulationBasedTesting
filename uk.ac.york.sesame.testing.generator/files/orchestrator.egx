@@ -41,6 +41,6 @@ rule fuzzRange2FlatMap transform attack: Testing!RandomValueFromSetAttack {
 
 rule rangeClass transform testCampaign: Testing!TestCampaign {
 	guard : Testing!DoubleRange.all().notEmpty()
-	template : "datatypes/DoubleRange.egl"
+	template : "datatypes/doubleRange.egl"
 	target : "src/datatypes/DoubleRange.java"
 }
