@@ -85,14 +85,14 @@ public class ROSSimulator implements ISimulator {
 	public void run(HashMap<String, String> params) {
 		boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 		String launchFilePath = params.get("launchPath");
-		ProcessBuilder pb = new ProcessBuilder("/bin/bash", "-c", launchFilePath);
-		pb.directory(new File("/home/thanos/Desktop"));
-		try {
-			Process proc = pb.start();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		ProcessBuilder pb = new ProcessBuilder("/bin/bash", "-c", launchFilePath);
+//		pb.directory(new File("/home/ubuntu/Desktop"));
+//		try {
+//			Process proc = pb.start();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	@Override

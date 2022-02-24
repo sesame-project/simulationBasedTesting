@@ -3,7 +3,7 @@ package uk.ac.york.sesame.testing.architecture.simulator;
 public final class SimCore {
 	
     private static SimCore INSTANCE;
-	String time;
+	String time = "0.0";
 	
     private SimCore() {}
     

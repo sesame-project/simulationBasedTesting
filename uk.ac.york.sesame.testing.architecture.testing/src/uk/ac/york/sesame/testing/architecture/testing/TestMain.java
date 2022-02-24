@@ -43,9 +43,10 @@ public class TestMain {
 				while (true) {
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance()
 							.consume("/turtle1/cmd_vel");
+					System.out.println(cr.count());
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						DataStreamManager.getInstance().publish(record.value().getTopic()+"1", record.value());
-//						rosSim.publishToTopic("/turtle1/cmd_vel1", "geometry_msgs/Twist", record.value().getValue().toString());
+						rosSim.publishToTopic("/turtle1/cmd_vel1", "geometry_msgs/Twist", record.value().getValue().toString());
 					}
 				}
 			}

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <TestingMM:TestCampaign xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.Attacks="Attacks" xmi:id="_Fr2eECHcEeyuxor-bjKWnw">
   <possibleAttacks xsi:type="TestingMM.Attacks:BlackholeNetworkAttack" xmi:id="_MaGewCHcEeyuxor-bjKWnw">
+    <attackTimes xmi:id="_uxJxIJMfEeye1IaXaLMFCg" startTime="0.0" endTime="100.0"/>
     <topicToAttack href="exampleExSce.model#_VJ1AgNWUEeuVsJ3fBBuxxQ"/>
   </possibleAttacks>
 </TestingMM:TestCampaign>

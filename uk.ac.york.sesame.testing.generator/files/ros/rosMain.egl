@@ -70,26 +70,19 @@ public class [%=test.name.firstToUpperCase()%]TestingTestSuiteRunner {
 		propsMap.put(ConnectionProperties.PORT, [%=simulator.port%]);
 		cp.setProperties(propsMap);
 		
-		Thread simulator_runner_thread = new Thread() {
-			public void run() {
-				HashMap<String, String> params = new HashMap<String,String>();
-				params.put("launchPath", "[%=launchFileLocation%]");
-				System.out.println("Simulator Starts");
-				rosSim.run(params);
-				//FIXME: At the moment this needs to be outside the thread to work.
-				rosSim.connect(cp);
-			}
-		};
-		
-		simulator_runner_thread.start();
-		
+		// JRH: moved the simulation launcher outside of the thread to the main code
+		HashMap<String, String> params = new HashMap<String,String>();
+		params.put("launchPath", "[%=launchFileLocation%]");
+		System.out.println("Simulator Starts");
+		rosSim.run(params);
+		rosSim.connect(cp);
 		
 		[%
 		for (aTopic in topicsNodesPublish) { %]
 		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
 			public void run() {
 				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
-				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type%]", true, "IN");
+				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
 			}
 		};
 		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();

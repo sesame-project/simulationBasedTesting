@@ -58,11 +58,12 @@ public class [%=attack.name%]FlatMap implements FlatMapFunction<EventMessage,Eve
 		if (parsingMethod.equalsIgnoreCase("JSON")) {
 			%]
 			
-			Object obj = JSONValue.parse(value.getValue.toString());
+			Object obj = JSONValue.parse(value.getValue().toString());
 	      	JSONArray array = (JSONArray)obj;
+	      	// FIXME: fix this in the generator - currently it is producing invalid code
 			[%
 			for(aParameter in attack.valueSet) { %]
-				[%=aParameter.propertyName%]", new DoubleRange([%=aParameter.lowerBound%], [%=aParameter.upperBound%]));
+			//	[%=aParameter.propertyName%]", new DoubleRange([%=aParameter.lowerBound%], [%=aParameter.upperBound%]));
 			[%
 			
 			}

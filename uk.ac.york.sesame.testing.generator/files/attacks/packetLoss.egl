@@ -53,14 +53,17 @@ public class PacketLossFlatMap implements FlatMapFunction<EventMessage,EventMess
 	@Override
 	public void flatMap(EventMessage value, Collector<EventMessage> out) throws Exception {
 		Random rand = new Random();
+		System.out.println("frequency = " + frequency);
 		if (value.getTopic().equalsIgnoreCase(topic)) {
 			if (frequency <= rand.nextDouble()) {
-				System.out.println("Message: " + value + " discarded.");
+				System.out.println("DISCARDING: Message: " + value + " discarded.");
+			} else {
+				System.out.println("ALLOWING: Message " + value);
+				out.collect(value);
 			}
 		} else {
+			System.out.println("ALLOWING: Message " + value);
 			out.collect(value);
-		}
-		
+		}	
 	}
-	
 }
