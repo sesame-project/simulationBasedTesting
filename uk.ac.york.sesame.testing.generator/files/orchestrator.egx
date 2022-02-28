@@ -11,12 +11,16 @@ rule test2Class transform test: Testing!Test {
 	target : "src/" + test.name.firstToUpperCase() + "TestingTestSuiteRunner.java"
 }
 
-rule metricNotStream2Class transform metric: Testing!Metric {
+/* This has to be a greedy test to catch all subtypes. It may be 
+best to replace it with individual subtype rules */
+@greedy
+rule metricNotStream2Class transform metric: Testing!Metric  {
 	guard : not metric.asStream
 	template : "metrics/notStream.egl"
 	target : "src/"+ metric.name + ".java"
 }
 
+@greedy
 rule metricAsStream2Class transform metric: Testing!Metric {
 	guard : metric.asStream
 	template : "metrics/asStream.egl"

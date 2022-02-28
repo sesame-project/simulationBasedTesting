@@ -20,5 +20,4 @@ public class [%=metric.name%] extends TestOracleAsStream {
 			}
 		});
 	}
-
 }

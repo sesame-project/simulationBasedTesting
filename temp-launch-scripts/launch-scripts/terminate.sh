@@ -1,6 +1,8 @@
 #!/bin/sh
 
 killall -9 roscore
+killall -9 rosrun
+killall -9 turtlesim_node
 killall -9 roslaunch
 killall -9 python
 killall -9 python2

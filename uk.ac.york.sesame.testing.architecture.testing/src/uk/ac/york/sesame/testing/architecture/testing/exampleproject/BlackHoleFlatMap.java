@@ -1,4 +1,7 @@
+package uk.ac.york.sesame.testing.architecture.testing.exampleproject;
+
 import org.apache.flink.util.Collector;
+
 import uk.ac.york.sesame.testing.architecture.attacks.Attack;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
@@ -17,5 +20,7 @@ public class BlackHoleFlatMap extends Attack {
 		} else {
 			out.collect(value);
 		}
-	}	
+		
+	}
+	
 }

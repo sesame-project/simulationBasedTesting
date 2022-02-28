@@ -1,3 +1,5 @@
+package uk.ac.york.sesame.testing.architecture.testing.exampleproject;
+
 import org.apache.flink.util.Collector;
 import java.util.Random;
 
