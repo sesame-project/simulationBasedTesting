@@ -123,36 +123,34 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 			}
 
 		} catch (EolModelLoadingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (EolRuntimeException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (UnknownPath e2) {
+			e2.printStackTrace();
 		} finally {
 		}
 	}
 
-	protected static ArrayList<String> registerMMs() throws IOException {
+	protected static ArrayList<String> registerMMs() throws IOException, UnknownPath {
 
 		System.out.println("CURRENT USER.DIR = " + System.getProperty("user.dir"));
 		ArrayList<String> mmURIs = new ArrayList<String>();
 		Resource.Factory xmiFactory = new XMIResourceFactoryImpl();
-		//Resource mrsMM = xmiFactory.createResource(URI.createFileURI(
-		//		"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/ExSceMM.ecore"));
-		Resource mrsMM = xmiFactory.createResource(URI.createFileURI("ExSceMM.ecore"));
+
+		String modelPath = PathDefinitions.getPath(PathDefinitions.PathSpec.MODEL_PATH);
+		
+		Resource mrsMM = xmiFactory.createResource(URI.createFileURI(modelPath + "ExSceMM.ecore"));
 		mrsMM.load(null);
 		EPackage pkgMRS = (EPackage) mrsMM.getContents().get(0);
 		EPackage.Registry.INSTANCE.put(pkgMRS.getNsURI(), pkgMRS);
 		mmURIs.add(pkgMRS.getNsURI());
-		//Resource testingMM = xmiFactory.createResource(URI.createFileURI(
-		//		"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.dsl/models/TestingMM.ecore"));
-		Resource testingMM = xmiFactory.createResource(URI.createFileURI("TestingMM.ecore"));
+
+		Resource testingMM = xmiFactory.createResource(URI.createFileURI(modelPath + "TestingMM.ecore"));
 		testingMM.load(null);
 		
 		TreeIterator<EObject> allContents = testingMM.getAllContents();
@@ -166,7 +164,6 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 			}
 		}	
 	
-
 		return mmURIs;
 	}
 

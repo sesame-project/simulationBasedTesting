@@ -22,5 +22,4 @@ public class BlackHoleFlatMap extends Attack {
 		}
 		
 	}
-	
 }

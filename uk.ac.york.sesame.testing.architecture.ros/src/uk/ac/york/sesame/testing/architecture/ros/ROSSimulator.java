@@ -30,6 +30,7 @@ import uk.ac.york.sesame.testing.architecture.simulator.IPropertyGetter;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertySetter;
 import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
+import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
 
 
 public class ROSSimulator implements ISimulator {
@@ -85,7 +86,11 @@ public class ROSSimulator implements ISimulator {
 	public void run(HashMap<String, String> params) {
 		boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 		String launchFilePath = params.get("launchPath");
-//		ProcessBuilder pb = new ProcessBuilder("/bin/bash", "-c", launchFilePath);
+		String args = "";
+		ExptHelper.runScriptNew(System.getProperty("user.dir"), launchFilePath, args);
+		// TODO: insert code from SAFEMUV here
+
+		// ProcessBuilder pb = new ProcessBuilder("/bin/bash", "-c", launchFilePath);
 //		pb.directory(new File("/home/ubuntu/Desktop"));
 //		try {
 //			Process proc = pb.start();
