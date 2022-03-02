@@ -45,6 +45,7 @@ public abstract class Attack implements FlatMapFunction<EventMessage, EventMessa
 	
 	public boolean isReadyNow() {
 		double time = Double.parseDouble(SimCore.getInstance().getTime());
+		System.out.println("time=" + time + ",start=" + start + ",end=" + end);
 		return (time >= start) && (time <= end);
 	}
 

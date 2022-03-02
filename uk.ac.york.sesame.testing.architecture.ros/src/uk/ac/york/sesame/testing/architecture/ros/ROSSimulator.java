@@ -84,20 +84,12 @@ public class ROSSimulator implements ISimulator {
 
 	@Override
 	public void run(HashMap<String, String> params) {
-		boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
+		//boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 		String launchFilePath = params.get("launchPath");
+		String workingDir = "/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts";
+		System.out.println("workingDir = " + workingDir + ",launchFilePath = " + launchFilePath);
 		String args = "";
-		ExptHelper.runScriptNew(System.getProperty("user.dir"), launchFilePath, args);
-		// TODO: insert code from SAFEMUV here
-
-		// ProcessBuilder pb = new ProcessBuilder("/bin/bash", "-c", launchFilePath);
-//		pb.directory(new File("/home/ubuntu/Desktop"));
-//		try {
-//			Process proc = pb.start();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		ExptHelper.runScriptNewWithBash(workingDir, launchFilePath);
 	}
 
 	@Override
@@ -193,7 +185,7 @@ public class ROSSimulator implements ISimulator {
 			public void handleMessage(Message message) {
 				String seconds = message.toString().split("secs\":")[1].split(",")[0];
 				SimCore.getInstance().setTime(seconds);
-				System.out.println("Seconds: " + seconds);
+				//System.out.println("Seconds: " + seconds);
 			}
 		});
 		while(true) {}

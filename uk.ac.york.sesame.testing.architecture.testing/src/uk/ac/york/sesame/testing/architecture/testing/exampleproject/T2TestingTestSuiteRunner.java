@@ -44,7 +44,7 @@ public class T2TestingTestSuiteRunner {
 		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
 				new EventMessageSchema(), properties);
 
-		stream.flatMap(new PacketLossFlatMap("/turtle1/cmd_vel", "0.0", "1000.0", 0.6)).addSink(myProducer);
+		stream.flatMap(new PacketLossFlatMap("/turtle1/cmd_vel", "0.0", "25.0", 0.6)).addSink(myProducer);
 		
 //		stream.addSink(myProducer);
 	
@@ -57,7 +57,7 @@ public class T2TestingTestSuiteRunner {
 		
 		// JRH: moved the simulation launcher outside of the thread to the main code
 		HashMap<String, String> params = new HashMap<String,String>();
-		params.put("launchPath", "");
+		params.put("launchPath", "/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_turtlesim.sh");
 		System.out.println("Simulator Starts");
 		rosSim.run(params);
 		rosSim.connect(cp);
@@ -69,6 +69,14 @@ public class T2TestingTestSuiteRunner {
 			}
 		};
 		subscriber_thread__turtle1_cmd_vel.start();
+		
+		Thread time_subscriber = new Thread() {
+			public void run() {
+				System.out.println("updateTime starting");
+				rosSim.updateTime();
+			}
+		};
+		time_subscriber.start();
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {

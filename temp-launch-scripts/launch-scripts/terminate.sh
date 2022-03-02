@@ -21,3 +21,4 @@ killall -9 RelocatePlane_node
 killall -9 RelocateWing_node
 killall -9 static_transform_publisher
 killall -9 mavros_node
+killall -9 turtle_teleop_key

@@ -77,6 +77,14 @@ public class ExptHelper {
 		return proc;
 	}
 	
+	public static Process startCmdByFullPath(String fullPathCmd, String dir) throws IOException {
+		System.out.println("Starting command " + fullPathCmd);
+		ProcessBuilder pb = new ProcessBuilder("/bin/bash", "-i -c", fullPathCmd);
+		pb.directory(new File(dir));
+		Process proc = pb.start();
+		return proc;
+	}
+	
 	public static void runCommandQuitTimeout(String dir, String command, String arg, long timeoutMillis) {
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		File dirFile = new File(dir);
@@ -96,6 +104,37 @@ public class ExptHelper {
 		ProcResult res = pb.run();
 		} catch (org.buildobjects.process.TimeoutException e) {
 			System.out.println("Ignoring timeout exception when launching");
+		}
+	}
+	
+	
+	public static void runScriptNew(String dir, String command) {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		File dirFile = new File(dir);
+		System.out.println("dir = " + dir);
+		System.out.println("command = " + command);
+		
+		ProcBuilder pb = new ProcBuilder(command).withOutputStream(output).withWorkingDirectory(dirFile).withNoTimeout();
+		try {
+		ProcResult res = pb.run();
+		} catch (org.buildobjects.process.TimeoutException e) {
+			System.out.println("Ignoring timeout exception when launching");
+		}
+	}
+	
+	public static void runScriptNewWithBash(String dir, String command) {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		File dirFile = new File(dir);
+		long timeOutMs = 15000;
+		System.out.println("dir = " + dir);
+		System.out.println("command = " + command);
+		
+		ProcBuilder pb = new ProcBuilder("xterm").withArgs("-hold", "-e", "/bin/bash", "-l", "-c", command).withWorkingDirectory(dirFile).withTimeoutMillis(timeOutMs).withOutputStream(output);
+		try {
+			ProcResult res = pb.run();
+			System.out.println(output.toString());
+		} catch (org.buildobjects.process.TimeoutException e) {
+			System.out.println("Timeout of started process");
 		}
 	}
 	

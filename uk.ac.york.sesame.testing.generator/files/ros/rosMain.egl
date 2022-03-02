@@ -90,6 +90,15 @@ public class [%=test.name.firstToUpperCase()%]TestingTestSuiteRunner {
 		[%
 		}
 		%]
+		
+		Thread time_subscriber = new Thread() {
+			public void run() {
+				System.out.println("updateTime starting");
+				rosSim.updateTime();
+			}
+		};
+		time_subscriber.start();
+		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
 				System.out.println("From out to sim starts");
