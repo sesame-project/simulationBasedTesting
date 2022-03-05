@@ -8,6 +8,7 @@ import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.streaming.api.datastream.ConnectedStreams;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -23,6 +24,7 @@ import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.data.EventMessageSchema;
+import uk.ac.york.sesame.testing.architecture.data.Point;
 
 public class T2TestingTestSuiteRunner {
 
@@ -70,6 +72,14 @@ public class T2TestingTestSuiteRunner {
 		};
 		subscriber_thread__turtle1_cmd_vel.start();
 		
+		Thread subscriber_thread__turtle1_pose = new Thread() {
+			public void run() {
+				System.out.println("Subscriber pose Starts");
+				rosSim.consumeFromTopic("/turtle1/pose", "turtlesim/Pose", true, "IN");
+			}
+		};
+		subscriber_thread__turtle1_pose.start();
+		
 		Thread time_subscriber = new Thread() {
 			public void run() {
 				System.out.println("updateTime starting");
@@ -87,7 +97,7 @@ public class T2TestingTestSuiteRunner {
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance()
 							.consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
-						System.out.println("Topic: " + record.value().getTopic().toString());
+						//System.out.println("Topic: " + record.value().getTopic().toString());
 						rosSim.publishToTopic(record.value().getTopic().toString().replace(".", "/") + "OUT", record.value().getType(), record.value().getValue().toString());
 					}
 				}
@@ -97,11 +107,22 @@ public class T2TestingTestSuiteRunner {
 		
 		// Keyed stream processing for a test of a metric
 		KeyedStream<EventMessage, String> topicKeyedIn = stream.keyBy(value -> value.getTopic());
+		KeyedStream<EventMessage, String> topicKeyedOut = streamOut.keyBy(value -> value.getTopic());
 				
 		//DataStream<Long> metricResult = topicKeyedIn.process(new TestProcessFunc());
 		DataStream<Long> msgCount = topicKeyedIn.process(new TestMessageCounter());
 		msgCount.print();
 				
+		Point targetPoint = new Point(3.0, 4.0);
+		MessageDistanceTracker mt = new MessageDistanceTracker(1.0, targetPoint.getX(), targetPoint.getY());
+		
+		DataStream<Double> timeOfOutput = topicKeyedIn.process(mt);
+		timeOfOutput.map(t -> "MessageDistanceTracker: timeOfOutput=" + t).print();
+
+		ConnectedStreams<EventMessage, EventMessage> combinedInOut = topicKeyedIn.connect(topicKeyedOut);
+		DataStream<Double> messageTransmitRatio = combinedInOut.process(new TrackPacketLossRate("/turtle1/cmd_vel"));
+		messageTransmitRatio.map(r -> "MessageTransmitRatio: ratio=" + r).print();
+		
 		// Metrics (not as stream) here
 		//streamOut.flatMap(new M1());
 		//streamOut.flatMap(new M2());

@@ -32,9 +32,10 @@ import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
 
-
 public class ROSSimulator implements ISimulator {
 
+	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = false;
+	
 	static Ros ros;
 	static DataStreamManager dsm = DataStreamManager.getInstance();
 	// FIXME: Maybe this needs to be part of the architecture
@@ -100,7 +101,7 @@ public class ROSSimulator implements ISimulator {
 	 * This is for ROS Topics
 	 */
 	@Override
-	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
+	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean debugThisMessage) {
 		System.out.println("TopicName: " + topicName);
 
 		Topic topic;
@@ -112,18 +113,27 @@ public class ROSSimulator implements ISimulator {
 		topic.subscribe(new TopicCallback() {
 			@Override
 			public void handleMessage(Message message) {
-				System.out.println("message: " + message);
+				if (DEBUG_DISPLAY_INBOUND_MESSAGES || debugThisMessage) {
+					System.out.println("message: " + message);
+				}
 				EventMessage em = new EventMessage();
 				em.setValue(message.toString());
 				em.setType(topicType);
 				em.setTopic(topicName);
 				if(publishToKafka) {
-					System.out.println(em);
+					if (DEBUG_DISPLAY_INBOUND_MESSAGES || debugThisMessage) {
+						System.out.println(em);
+					}
+
 					dsm.publish(kafkaTopic, em);
 				}
 			}
 		});
 		while(true) {}
+	}
+	
+	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
+		consumeFromTopic(topicName, topicType, publishToKafka, kafkaTopic, false);
 	}
 	
 	/*
@@ -190,5 +200,7 @@ public class ROSSimulator implements ISimulator {
 		});
 		while(true) {}
 	}
+
+
 
 }    

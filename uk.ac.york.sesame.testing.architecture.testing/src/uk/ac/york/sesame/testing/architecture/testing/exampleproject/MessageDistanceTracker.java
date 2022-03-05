@@ -21,8 +21,6 @@ public class MessageDistanceTracker extends KeyedProcessFunction<String, EventMe
     private double targetPointX;
     private double targetPointY;
     
-   
-
     public void open(Configuration parameters) throws Exception {
         firstApproachState = getRuntimeContext().getState(new ValueStateDescriptor<>("MessageDistanceTracker_State", Double.class));
     }
