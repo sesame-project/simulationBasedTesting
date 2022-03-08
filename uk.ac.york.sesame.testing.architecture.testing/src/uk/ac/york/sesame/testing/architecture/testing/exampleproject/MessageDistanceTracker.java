@@ -38,6 +38,7 @@ public class MessageDistanceTracker extends KeyedProcessFunction<String, EventMe
       	JSONObject jo = (JSONObject)obj;
       	double x = (Double)jo.get("x");
       	double y = (Double)jo.get("y");
+      	
     	Point _tempPoint = new Point(x,y,0.0);
     	return _tempPoint;
     }

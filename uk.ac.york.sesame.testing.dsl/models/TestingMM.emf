@@ -21,7 +21,7 @@ class RandomTestGeneration extends TestGenerationApproach {
 class Test {
 	attr String name;
 	ref Attacks.Attack[*] attacks;
-	ref Metrics.Metric[*] metrics;
+	val Metrics.MetricInstance[*] metrics;
 }
 
 package Attacks {
@@ -209,7 +209,12 @@ class Metric {
 	attr Boolean passed;
 	ref TestGenerationApproach[1] feedback;
 	ref MRSPackage.Topic[*] relatedTopics;
-	ref Results.Result[*] results;
+//	ref Results.Result[*] results;
+}
+
+class MetricInstance {
+	ref Metrics.Metric[1] metric;
+	val Results.Result[1] result;
 }
 
 abstract class PropertyMetric extends Metric {
@@ -229,6 +234,7 @@ package Results {
 	
 class Result {
 	attr String name;
+	attr double value;
 }
 }
 

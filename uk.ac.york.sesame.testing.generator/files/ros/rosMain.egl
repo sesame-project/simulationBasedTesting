@@ -142,13 +142,10 @@ public class [%=test.name.firstToUpperCase()%]TestingTestSuiteRunner {
 		[%
 		}
 		%]
-		
 	}
-
 }
 
 [%
-
 // TODO: This operation currently works for PacketLossNetworkAttack. The if statement should be extended to construct the rest of the attacks.
 operation produceFlatMapSignature(attack) {
 	var flatmap = "";
@@ -156,6 +153,9 @@ operation produceFlatMapSignature(attack) {
 		flatmap = "flatMap(new PacketLossFlatMap(\"" + attack.topicToAttack.name + "\", \"" + attack.attackTimes.first().startTime + "\", \"" + attack.attackTimes.first().endTime + "\", " + attack.frequency + ")).";
 	} else if (attack.isTypeOf(Testing!BlackholeNetworkAttack)) {
 		flatmap = "flatMap(new BlackHoleFlatMap(\"" + attack.topicToAttack.name + "\", \"" + attack.attackTimes.first().startTime + "\", \"" + attack.attackTimes.first().endTime + "\")).";
+	} else if (attack.isTypeOf(Testing!RandomValueFromSetAttack)) {
+		// TODO: set up proper random seed here
+		flatmap = "flatMap(new " + attack.name + "FlatMap(\"" + attack.topicToAttack.name + "\", \"" + attack.attackTimes.first().startTime + "\", \"" + attack.attackTimes.first().endTime + "\", 3434232L)).";
 	}
 	return flatmap;
 }
