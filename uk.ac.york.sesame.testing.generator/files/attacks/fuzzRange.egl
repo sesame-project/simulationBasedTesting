@@ -6,25 +6,18 @@ import datatypes.DoubleRange;
 import org.apache.flink.util.Collector;
 import org.json.simple.*;
 
+import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 import uk.ac.york.sesame.testing.architecture.attacks.Attack;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
 public class [%=attack.name%]FlatMap extends Attack {
 
 	private static final long serialVersionUID = 1L;
-
-	Map<String, DoubleRange> possibleValues = new HashMap<String,DoubleRange>();
 	Random rng;
 
 	public [%=attack.name%]FlatMap(String topic, String start, String end, long seed) {
 		super(topic,start,end);
 		this.rng = new Random(seed);
-		[%
-		for(aParameter in attack.valueSet) { %]
-			this.possibleValues.put("[%=aParameter.propertyName%]", new DoubleRange([%=aParameter.lowerBound%], [%=aParameter.upperBound%]));
-		[%
-		}
-		%]
 	}
 	
 	@Override
@@ -32,15 +25,21 @@ public class [%=attack.name%]FlatMap extends Attack {
 		var parsingMethod = attack.topicToAttack.type.parsingMethod.name;
 		if (parsingMethod.equalsIgnoreCase("JSON")) {
 			%]
-			
-			Object obj = JSONValue.parse(value.getValue().toString());
-	      	JSONObject jo = (JSONObject)obj;
-	      	for (Map.Entry<String,DoubleRange> e : possibleValues.entrySet()) {
-	      		String k = e.getKey();
-	      		DoubleRange dr = e.getValue();
-	      		jo.put(k, dr.generateInRange(rng));
-	      	}
-	      	[%     	
+			if (value.getTopic().equals(topic) && isReadyNow()) {
+				Object obj = JSONValue.parse(value.getValue().toString());
+	      		JSONObject jo = (JSONObject)obj;
+	      	[* Need to dispatch upon the fuzz range type here *]
+	      	[% for (aParameter in attack.valueSet) { %]
+	      		jo = ParsingUtils.updateJSONObject(jo, "[%= aParameter.propertyName %]", new DoubleRange([%= aParameter.lowerBound %], [%=aParameter.upperBound %]).generateInRange(rng));
+	      	[% } %]
+	      		EventMessage valueOut = new EventMessage(value);
+	      		valueOut.setValue(jo.toString());
+				out.collect(valueOut);
+			} else {
+				out.collect(value);
+			}
+				
+	      	[%
 		} else if (parsingMethod.equalsIgnoreCase("CSV")) {
 			%]
 			raise Unimplemented("Parsing method CSV is not yet implemented");

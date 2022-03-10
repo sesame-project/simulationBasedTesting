@@ -17,6 +17,18 @@ public class EventMessage implements IData, Serializer, Deserializer {
 	long timestamp;
 	String topic;
 	String type;
+	
+	public EventMessage() {
+		
+	}
+	
+	public EventMessage(EventMessage other) {
+		this.id = other.id;
+		this.value = other.value;
+		this.timestamp = other.timestamp;
+		this.topic = other.topic;
+		this.type = other.type;
+	}
 		
 	public String getTopic() {
 		return topic;
