@@ -1,6 +1,5 @@
 package uk.ac.york.sesame.testing.architecture.testing.exampleproject;
-import java.util.Map;
-import java.util.HashMap;
+
 import java.util.Random;
 
 import org.apache.flink.util.Collector;

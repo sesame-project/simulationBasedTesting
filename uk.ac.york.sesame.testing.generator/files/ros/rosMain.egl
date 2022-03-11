@@ -4,17 +4,21 @@
 	var simulator = mrs.simulator;
 	var topicsNodesPublish = MRS!Node.all().publisher.flatten();
 	topicsNodesPublish.println();
-	"hi".println();
 %]
 import java.util.HashMap;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.api.common.serialization.SimpleStringEncoder;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.common.typeinfo.Types;
-import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.connector.file.sink.FileSink;
+import org.apache.flink.core.fs.Path;
+import org.apache.flink.streaming.api.datastream.*;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.sink.filesystem.rollingpolicies.DefaultRollingPolicy;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
 import org.apache.flink.util.Collector;
@@ -112,25 +116,43 @@ public class [%=test.name.firstToUpperCase()%]TestingTestSuiteRunner {
 		};
 		from_out_to_sim.start();
 		
-		[*
-		// Metrics (not as stream) here
-		[%
-		for (aMetric in Testing!Metric.all().select(m|m.asStream == false)) { %]
-			streamOut.flatMap(new [%=aMetric.name%]());
-		[%
-		}
-		%]
+		// Generate keyed streams
+		KeyedStream<EventMessage, String> topicKeyedIn = stream.keyBy(value -> value.getTopic());
+		KeyedStream<EventMessage, String> topicKeyedOut = streamOut.keyBy(value -> value.getTopic());
 		
-		// Metrics (as stream) here
-		[%
-		for (aMetric in Testing!Metric.all().select(m|m.asStream == true)) { %]
-			[%=aMetric.name%] [%=aMetric.name%] = new [%=aMetric.name%]();
-			[%=aMetric.name%].calculateResult(streamOut);
-		[%
-		}
-		%]
-		*]
-		
+		// Stream metrics here
+		[% for (sMetric in Testing!StreamMetric.all()) { %]
+			[% if (sMetric.streams.size() == 2) {
+				var stream1 = sMetric.streams.get(0);
+				var stream2 = sMetric.streams.get(1); %]
+				ConnectedStreams<EventMessage, EventMessage> [%= sMetric.name %]combinedStream = [%= streamJavaName(stream1) %].connect([%= streamJavaName(stream2) %]);
+				DataStream<Double> [%= sMetric.name %]resStream = [%= sMetric.name %]combinedStream.process(new [%= sMetric.name %]Metric());
+			[% } %]
+			
+			[% if (sMetric.streams.size() == 1) { 
+				var stream = sMetric.streams.get(0); %]
+				DataStream<Double> [%= sMetric.name %]resStream = [%= streamJavaName(stream) %].process(new [%= sMetric.name %]Metric());
+			[% } %]
+			
+			[* If the stream has a FileStreamResult, log it to a file *]
+			[% if (sMetric.res.isTypeOf(Testing!FileStreamResult)) { 
+				var filename = sMetric.res.filename;
+				%] 
+
+				final FileSink<String> [%= sMetric.name %]streamFileSink = FileSink
+				    .forRowFormat(new Path("[%= filename %]"), new SimpleStringEncoder<String>("UTF-8"))
+			    	.withRollingPolicy(
+				        DefaultRollingPolicy.builder()
+			            	.withRolloverInterval(TimeUnit.MINUTES.toMillis(150))
+			            	.withInactivityInterval(TimeUnit.MINUTES.toMillis(50))
+			            	.withMaxPartSize(1024 * 1024 * 1024)
+				            .build())
+					.build();
+				[%= sMetric.name %]resStream.map(e -> e.toString()).sinkTo([%= sMetric.name %]streamFileSink);	
+			[% } %]
+			
+		[% } %]
+			
 		try {
 			env.execute();
 		} catch (Exception e) {
@@ -144,7 +166,18 @@ public class [%=test.name.firstToUpperCase()%]TestingTestSuiteRunner {
 }
 
 [%
-// TODO: This operation currently works for PacketLossNetworkAttack. The if statement should be extended to construct the rest of the attacks.
+
+operation streamJavaName(stream) {
+	if (stream.isTypeOf(Testing!InputStream)) {
+		return "topicKeyedIn";
+	}
+	
+	if (stream.isTypeOf(Testing!OutputStream)) {
+		return "topicKeyedOut";
+	}
+}
+
+// TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap and RandomValueFromSetAttack are supported
 operation produceFlatMapSignature(attack) {
 	var flatmap = "";
 	if (attack.isTypeOf(Testing!PacketLossNetworkAttack)) {
