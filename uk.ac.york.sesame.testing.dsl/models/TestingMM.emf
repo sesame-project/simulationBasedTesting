@@ -7,7 +7,6 @@ class TestCampaign {
 	val Test[*] tests;
 	val Metrics.Metric[*] metrics;
 	val Attacks.Attack[*] possibleAttacks;
-	//val Attacks.ValueSet[*] valueSets;
 }
 
 abstract class TestGenerationApproach {
@@ -29,7 +28,6 @@ package Attacks {
 class Attack {
 	attr String name;
 	attr int priority;
-	// attr String topicToAttackString;
 	val AttackTime[*] attackTimes;
 	ref MRSPackage.Topic[0..1] topicToAttack;
 	attr boolean messagesFromAllComponenents = true;
@@ -203,13 +201,25 @@ class MultipleMessagesNetworkAttack extends NetworkAttack {
 
 package Metrics {
 	
-class Metric {
+abstract class SimStream {
+	
+}
+
+class InputStream extends SimStream {
+	
+}
+
+class OutputStream extends SimStream {
+	
+}
+	
+abstract class Metric {
 	attr String name;
-	attr Boolean asStream = false;
-	attr Boolean passed;
-	ref TestGenerationApproach[1] feedback;
-	ref MRSPackage.Topic[*] relatedTopics;
-//	ref Results.Result[*] results;
+	ref MRSPackage.Topic[*] relatedTopics;	
+}
+
+class TopicMetric extends Metric {
+	ref MRSPackage.Topic[1] chosenTopics;
 }
 
 class MetricInstance {
@@ -225,9 +235,19 @@ class ConditionalPropertyMetric extends PropertyMetric {
 	attr String condition;
 }
 
-class ComplexMetric extends Metric {
-	attr String implementationClass;
+class StreamMetric extends Metric {
+	val SimStream[*] streams;
+	val StreamResult res; 
 }
+
+abstract class StreamResult {
+	
+}
+
+class FileStreamResult extends StreamResult {
+	attr String filename; 
+}
+
 }
 
 package Results {

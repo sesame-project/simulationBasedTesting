@@ -112,6 +112,7 @@ public class [%=test.name.firstToUpperCase()%]TestingTestSuiteRunner {
 		};
 		from_out_to_sim.start();
 		
+		[*
 		// Metrics (not as stream) here
 		[%
 		for (aMetric in Testing!Metric.all().select(m|m.asStream == false)) { %]
@@ -128,6 +129,7 @@ public class [%=test.name.firstToUpperCase()%]TestingTestSuiteRunner {
 		[%
 		}
 		%]
+		*]
 		
 		try {
 			env.execute();

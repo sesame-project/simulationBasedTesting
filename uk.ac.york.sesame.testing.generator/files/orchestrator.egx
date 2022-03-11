@@ -11,21 +11,19 @@ rule test2Class transform test: Testing!Test {
 	target : "src/" + test.name.firstToUpperCase() + "TestingTestSuiteRunner.java"
 }
 
-/* This has to be a greedy test to catch all subtypes. It may be 
-best to replace it with individual subtype rules */
-@greedy
-rule metricNotStream2Class transform metric: Testing!Metric  {
-	guard : not metric.asStream
-	template : "metrics/notStream.egl"
-	target : "src/"+ metric.name + ".java"
+rule metricAsMultiStream transform metric: Testing!StreamMetric {
+	guard : metric.streams.size() == 2
+	template : "metrics/multiStream.egl"
+	target : "src/"+ metric.name + "Metric.java"
 }
 
-@greedy
-rule metricAsStream2Class transform metric: Testing!Metric {
-	guard : metric.asStream
-	template : "metrics/asStream.egl"
-	target : "src/"+ metric.name + ".java"
+rule metricAsSingleStream transform metric: Testing!StreamMetric {
+	guard : metric.streams.size() == 1
+	template : "metrics/singleStream.egl"
+	target : "src/"+ metric.name + "Metric.java"
 }
+
+/* Other metrics here */
 
 rule packetLoss2FlatMap transform attack: Testing!PacketLossNetworkAttack {
 	template : "attacks/packetLoss.egl"

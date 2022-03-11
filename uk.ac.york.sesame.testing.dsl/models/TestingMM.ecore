@@ -21,7 +21,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="attacks" upperBound="-1"
         eType="#//Attacks/Attack"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metrics" upperBound="-1"
-        eType="#//Metrics/Metric"/>
+        eType="#//Metrics/MetricInstance" containment="true"/>
   </eClassifiers>
   <eSubpackages name="Attacks" nsURI="Attacks" nsPrefix="">
     <eClassifiers xsi:type="ecore:EClass" name="Attack">
@@ -140,17 +140,23 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Metrics" nsURI="Metrics" nsPrefix="">
-    <eClassifiers xsi:type="ecore:EClass" name="Metric">
+    <eClassifiers xsi:type="ecore:EClass" name="SimStream" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InputStream" eSuperTypes="#//Metrics/SimStream"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OutputStream" eSuperTypes="#//Metrics/SimStream"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Metric" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="asStream" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
-          defaultValueLiteral="false"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="passed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="feedback" lowerBound="1"
-          eType="#//TestGenerationApproach"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="relatedTopics" upperBound="-1"
           eType="ecore:EClass http://ExSceMM#//Topic"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="results" upperBound="-1"
-          eType="#//Results/Result"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TopicMetric" eSuperTypes="#//Metrics/Metric">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="chosenTopics" lowerBound="1"
+          eType="ecore:EClass http://ExSceMM#//Topic"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MetricInstance">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="metric" lowerBound="1"
+          eType="#//Metrics/Metric"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="result" lowerBound="1"
+          eType="#//Results/Result" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PropertyMetric" abstract="true" eSuperTypes="#//Metrics/Metric">
       <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
@@ -159,14 +165,21 @@
     <eClassifiers xsi:type="ecore:EClass" name="ConditionalPropertyMetric" eSuperTypes="#//Metrics/PropertyMetric">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ComplexMetric" eSuperTypes="#//Metrics/Metric">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationClass"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eClassifiers xsi:type="ecore:EClass" name="StreamMetric" eSuperTypes="#//Metrics/Metric">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="streams" upperBound="-1"
+          eType="#//Metrics/SimStream" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="res" eType="#//Metrics/StreamResult"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StreamResult" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FileStreamResult" eSuperTypes="#//Metrics/StreamResult">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="filename" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Results" nsURI="Results" nsPrefix="">
     <eClassifiers xsi:type="ecore:EClass" name="Result">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>
