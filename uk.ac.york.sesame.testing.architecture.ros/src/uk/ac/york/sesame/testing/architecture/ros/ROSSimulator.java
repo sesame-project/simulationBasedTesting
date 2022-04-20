@@ -97,6 +97,18 @@ public class ROSSimulator implements ISimulator {
 	public HashMap<String,?> getCreatedTopicsByTopicName() {
 		return createdTopics;
 	}
+	
+	/** If the topic name ends in IN, then remove the IN. 
+	 * Otherwise, append OUT to the topic name **/
+	public String translateTopicNameForOutput(String origTopicName) {
+		String subsTopicName = origTopicName.replace(".", "/");
+		if (subsTopicName.endsWith("IN")) {
+			return (subsTopicName.substring(0, subsTopicName.length() - 2));
+		} else {
+			return subsTopicName + "OUT";
+		}
+	}
+	
 	/*
 	 * This is for ROS Topics
 	 */
@@ -108,7 +120,7 @@ public class ROSSimulator implements ISimulator {
 		if (createdTopics.containsKey(topicName)) {
 			topic = createdTopics.get(topicName);
 		} else {
-			topic = (Topic) createTopic(topicName, topicType);
+			topic = (Topic)createTopic(topicName, topicType);
 		}
 		topic.subscribe(new TopicCallback() {
 			@Override

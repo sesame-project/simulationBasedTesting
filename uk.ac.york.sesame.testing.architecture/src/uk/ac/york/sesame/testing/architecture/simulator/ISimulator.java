@@ -9,6 +9,9 @@ import uk.ac.york.sesame.testing.architecture.data.Topic;
 
 public interface ISimulator {
 	public List<String> getTopics();
+	
+	public String translateTopicNameForOutput(String origTopicName);
+	
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic);
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean debugThisMessage);
 	

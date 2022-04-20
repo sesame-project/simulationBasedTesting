@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ExSceMM:MRS xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ExSceMM="http://ExSceMM" xmi:id="_Z4M2cCv_EeykGsd0UrLwGA" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_healthcare.sh">
+  <topics xmi:id="_ayhwsCv_EeykGsd0UrLwGA" name="/tb3_0/cmd_velIN" type="_ksEosCv_EeykGsd0UrLwGA"/>
+  <topics xmi:id="_-onDMCv_EeykGsd0UrLwGA" name="/tb3_0/amcl_pose" type="_67hGYCv_EeykGsd0UrLwGA"/>
+  <topics xmi:id="_QIchgKN9Eeyj3_3IBLBi4g" name="/tb3_1/cmd_velIN" type="_ksEosCv_EeykGsd0UrLwGA"/>
+  <topics xmi:id="_RJS6gKN9Eeyj3_3IBLBi4g" name="/tb3_1/amcl_pose" type="_67hGYCv_EeykGsd0UrLwGA"/>
+  <topics xmi:id="_SSKAAKN9Eeyj3_3IBLBi4g" name="/tb3_2/cmd_velIN" type="_ksEosCv_EeykGsd0UrLwGA"/>
+  <topics xmi:id="_TQ3rAKN9Eeyj3_3IBLBi4g" name="/tb3_2/amcl_pose" type="_67hGYCv_EeykGsd0UrLwGA"/>
+  <nodes xmi:id="_gZyUICv_EeykGsd0UrLwGA" name="tb3_0" subscriber="_ayhwsCv_EeykGsd0UrLwGA" publisher="_-onDMCv_EeykGsd0UrLwGA"/>
+  <nodes xmi:id="_HP07AKN9Eeyj3_3IBLBi4g" name="tb3_1" subscriber="_QIchgKN9Eeyj3_3IBLBi4g" publisher="_RJS6gKN9Eeyj3_3IBLBi4g"/>
+  <nodes xmi:id="_IQ-2AKN9Eeyj3_3IBLBi4g" name="tb3_2" subscriber="_SSKAAKN9Eeyj3_3IBLBi4g" publisher="_TQ3rAKN9Eeyj3_3IBLBi4g"/>
+  <nodes xmi:id="_yYvggKQCEeyFLrrwQi-y6A" name="collective_intelligence" publisher="_ayhwsCv_EeykGsd0UrLwGA _QIchgKN9Eeyj3_3IBLBi4g _SSKAAKN9Eeyj3_3IBLBi4g"/>
+  <simulator xsi:type="ExSceMM:ROSSimulator" xmi:id="_mtRLoEXuEeybjfS_xnSIvQ" hostname="0.0.0.0" port="9090"/>
+  <propertyType xmi:id="_ksEosCv_EeykGsd0UrLwGA" name="geometry_msgs/Twist">
+    <parameters xmi:id="_l2jiACwDEeykGsd0UrLwGA" name="linear" type="_QNs_sCwCEeykGsd0UrLwGA">
+      <subparameters xmi:id="_VBnvwCwEEeykGsd0UrLwGA" name="X" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+      <subparameters xmi:id="_YR7C4CwEEeykGsd0UrLwGA" name="Y" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+      <subparameters xmi:id="_aLGLACwEEeykGsd0UrLwGA" name="Z" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+    </parameters>
+    <parameters xmi:id="_ucOYgCwdEeykGsd0UrLwGA" name="angular" type="_QNs_sCwCEeykGsd0UrLwGA">
+      <subparameters xmi:id="_xgR_YCwdEeykGsd0UrLwGA" name="X" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+      <subparameters xmi:id="_xgR_YSwdEeykGsd0UrLwGA" name="Y" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+      <subparameters xmi:id="_xgR_YiwdEeykGsd0UrLwGA" name="Z" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+    </parameters>
+  </propertyType>
+  <propertyType xmi:id="_67hGYCv_EeykGsd0UrLwGA" name="geometry_msgs/PoseWithCovarianceStamped">
+    <parameters xmi:id="_cS5LgKOFEeyj3_3IBLBi4g" name="pose" type="_kMwDsKOFEeyj3_3IBLBi4g">
+      <subparameters xmi:id="_nUw9gKOFEeyj3_3IBLBi4g" name="position" type="_rGydoKOFEeyj3_3IBLBi4g"/>
+    </parameters>
+  </propertyType>
+  <propertyType xmi:id="_kMwDsKOFEeyj3_3IBLBi4g" name="geometry_msgs/Pose"/>
+  <propertyType xmi:id="_rGydoKOFEeyj3_3IBLBi4g" name="geometry_msgs/Point">
+    <parameters xmi:id="_tGPz8KOFEeyj3_3IBLBi4g" name="X" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+    <parameters xmi:id="_tdKfIKOFEeyj3_3IBLBi4g" name="Y" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+    <parameters xmi:id="_t2x5AKOFEeyj3_3IBLBi4g" name="Z" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+  </propertyType>
+  <propertyType xmi:id="_QNs_sCwCEeykGsd0UrLwGA" name="Vector3"/>
+  <propertyType xmi:id="_XPV2cCwCEeykGsd0UrLwGA" name="float64"/>
+  <propertyType xmi:id="_0fIyoCwcEeykGsd0UrLwGA" name="float32"/>
+</ExSceMM:MRS>

@@ -27,4 +27,7 @@ killall -9 robot_state_publisher
 killall -9 move_base
 killall -9 amcl
 killall -9 map_server
-killsll -9 map_navigation_corridor_white.py
+killall -9 map_navigation_corridor_white.py
+killall -9 map_navigation_corridor_white*.py
+killall -9 map_navigation_corridor_white_autostart.py
+
