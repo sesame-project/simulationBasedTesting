@@ -64,8 +64,8 @@ abstract class EvolutionaryAlgorithm extends TestGenerationApproach {
 }
 
 class NSGAEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
-	int populationSize;
-	int iterations;
+	attr int populationSize;
+	attr int iterations;
 }
 
 class GrammarSpecification {
