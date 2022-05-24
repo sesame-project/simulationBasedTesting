@@ -2,26 +2,77 @@
 package TestingPackage;
 import "http://ExSceMM";
 
-class TestCampaign {
+// TestSpace needed - which specifies the space and the grammar
+// TestingCampaign - which specifies the evolutionary process, and any constraints upon the grammar for this run
+// TestingInstance - analagous to a fuzzing record from SAFEMUV (multiple 
+// Test - but in this contains a number of attacks
+
+abstract class TestElement {
+	
+}
+
+// The root element - specifies that the model contains
+// either one of a TestingSpace, TestCampaign or Test
+class TestingInformation {
+	val TestElement[1] testElement;	
+}
+
+class TestingSpace extends TestElement {
 	attr String name;
 	val Test[*] tests;
 	val Metrics.Metric[*] metrics;
 	val Attacks.Attack[*] possibleAttacks;
+	val GrammarSpecification[0..1] grammarSpecfication;
+	// The grammar specification
+}
+
+class TestCampaign extends TestElement {
+	attr String name;
+	val Test[*] tests;
+	val Metrics.Metric[*] metrics;
+	val Attacks.Attack[*] possibleAttacks;
+	val GrammarConstraint[*] constraints;
+	val TestGenerationApproach[1] approach;
+	// General parameters for the evolution
+	// probabilities of attack inclusion
+}
+
+// Test here contains a number of attacks?
+// TestInstance is therefore redundant
+
+// This is analagous to a fuzzing record
+class Test extends TestElement {
+	attr String name;
+	ref Attacks.Attack[*] attacks;
+	val Metrics.MetricInstance[*] metrics;
+}
+
+class GrammarConstraint {
+	
 }
 
 abstract class TestGenerationApproach {
-	attr String name;
-	ref TestCampaign[1] reTrigger;
+
 }
 
 class RandomTestGeneration extends TestGenerationApproach {
 	
 }
-class Test {
-	attr String name;
-	ref Attacks.Attack[*] attacks;
-	val Metrics.MetricInstance[*] metrics;
+
+abstract class EvolutionaryAlgorithm extends TestGenerationApproach {
+
 }
+
+class NSGAEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
+	int populationSize;
+	int iterations;
+}
+
+class GrammarSpecification {
+	
+}
+
+
 
 package Attacks {
 
