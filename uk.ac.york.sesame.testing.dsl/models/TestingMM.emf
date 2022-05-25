@@ -2,6 +2,9 @@
 package TestingPackage;
 import "http://ExSceMM";
 
+// To register updated models in the child eclipse, need to click the
+// "Generate SESAME code" button
+
 // TestingSpace - which specifies the boundaries of the testing space
 // (the possible attacks), a grammar used for conditions,
 // and the metrics to be used. 
@@ -111,8 +114,8 @@ abstract class AttackActivation {
 }
 
 class AttackFixedTime extends AttackActivation {
-	attr String startTime;
-	attr String endTime;
+	attr double startTime;
+	attr double endTime;
 }
 
 class ConditionBased extends AttackActivation {
