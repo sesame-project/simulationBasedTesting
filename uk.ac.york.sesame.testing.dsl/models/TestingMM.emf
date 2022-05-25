@@ -14,12 +14,12 @@ class TestingSpace {
 }
 
 // TestingCampaign - specifies an experiment 
-// (evolutionary process, and any constraints upon the grammar for this run)
+// (evolutionary process, and any constraints upon the grammar/attacks for this run)
 class TestCampaign {
 	attr String name;
 	val Test[*] tests;
 	val Metrics.Metric[*] metrics;
-	val Attacks.Attack[*] possibleAttacks;
+	val Attacks.Attack[*] constrainedAttacks;
 	val GrammarConstraint[*] constraints;
 	val TestGenerationApproach[1] approach;
 	// General parameters for the evolution
@@ -65,6 +65,7 @@ class GrammarSpecification {
 
 package Attacks {
 
+// TODO: why is this not abstract?
 class Attack {
 	attr String name;
 	attr int priority;
