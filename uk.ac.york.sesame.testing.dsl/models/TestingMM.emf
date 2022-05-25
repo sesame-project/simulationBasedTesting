@@ -2,31 +2,20 @@
 package TestingPackage;
 import "http://ExSceMM";
 
-// TestSpace needed - which specifies the space and the grammar
-// TestingCampaign - which specifies the evolutionary process, and any constraints upon the grammar for this run
-// TestingInstance - analagous to a fuzzing record from SAFEMUV (multiple 
-// Test - but in this contains a number of attacks
-
-abstract class TestElement {
-	
-}
-
-// The root element - specifies that the model contains
-// either one of a TestingSpace, TestCampaign or Test
-class TestingInformation {
-	val TestElement[1] testElement;	
-}
-
-class TestingSpace extends TestElement {
+// TestingSpace - which specifies the boundaries of the testing space
+// (the possible attacks), a grammar used for conditions,
+// and the metrics to be used. 
+class TestingSpace {
 	attr String name;
-	val Test[*] tests;
 	val Metrics.Metric[*] metrics;
 	val Attacks.Attack[*] possibleAttacks;
 	val GrammarSpecification[0..1] grammarSpecfication;
-	// The grammar specification
+	val TestCampaign[*] campaigns;
 }
 
-class TestCampaign extends TestElement {
+// TestingCampaign - specifies an experiment 
+// (evolutionary process, and any constraints upon the grammar for this run)
+class TestCampaign {
 	attr String name;
 	val Test[*] tests;
 	val Metrics.Metric[*] metrics;
@@ -40,8 +29,8 @@ class TestCampaign extends TestElement {
 // Test here contains a number of attacks?
 // TestInstance is therefore redundant
 
-// This is analagous to a fuzzing record
-class Test extends TestElement {
+// This is analagous to a fuzzing record in SAFEMUV - multiple attacks
+class Test {
 	attr String name;
 	ref Attacks.Attack[*] attacks;
 	val Metrics.MetricInstance[*] metrics;
@@ -79,7 +68,9 @@ package Attacks {
 class Attack {
 	attr String name;
 	attr int priority;
-	val AttackTime[*] attackTimes;
+
+	// TODO: should Attack have a single or multiple activations	
+	val AttackActivation[*] attackActivation;
 	ref MRSPackage.Topic[0..1] topicToAttack;
 	attr boolean messagesFromAllComponenents = true;
 	ref MRSPackage.Node[*] fromNodes;
@@ -114,9 +105,17 @@ class CustomOfflineAttack extends OfflineAttack {
 	
 }
 
-class AttackTime {
+abstract class AttackActivation {
+	
+}
+
+class AttackFixedTime extends AttackActivation {
 	attr String startTime;
 	attr String endTime;
+}
+
+class ConditionBased extends AttackActivation {
+	
 }
 
 class FuzzTestingAttack extends Attack {
