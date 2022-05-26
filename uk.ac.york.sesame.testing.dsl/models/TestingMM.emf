@@ -17,16 +17,14 @@ class TestingSpace {
 }
 
 // TestingCampaign - specifies an experiment 
-// (evolutionary process, and any constraints upon the grammar/attacks for this run)
+// (evolutionary process, selected metrics/attacks, and any constraints upon the grammar for this run)
 class TestCampaign {
 	attr String name;
-	val Test[*] tests;
-	val Metrics.Metric[*] metrics;
-	val Attacks.Attack[*] constrainedAttacks;
+	ref Metrics.Metric[*] metrics;
+	ref Attacks.Attack[*] includedAttacks;
 	val GrammarConstraint[*] constraints;
 	val TestGenerationApproach[1] approach;
-	// General parameters for the evolution
-	// probabilities of attack inclusion
+	val Test[*] performedTests;
 }
 
 // Test here contains a number of attacks?
