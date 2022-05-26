@@ -1,6 +1,7 @@
-@namespace(uri="TestingMM",prefix="TestingMM")
+@namespace(uri="http://www.github.com/sesame-project/WP6/dsl/TestingMM", prefix="TestingMM")
+
 package TestingPackage;
-import "http://ExSceMM";
+import "http://www.github.com/sesame-project/WP6/dsl/ExSceMM";
 
 // To register updated models in the child eclipse, need to click the
 // "Generate SESAME code" button
@@ -30,7 +31,7 @@ class TestCampaign {
 // Test here contains a number of attacks?
 // TestInstance is therefore redundant
 
-// This is analagous to a fuzzing record in SAFEMUV - multiple attacks
+// This is analagous to a fuzzing CSV file in SAFEMUV - multiple attacks
 class Test {
 	attr String name;
 	ref Attacks.Attack[*] attacks;

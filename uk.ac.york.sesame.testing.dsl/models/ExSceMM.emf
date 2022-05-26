@@ -1,6 +1,5 @@
-@namespace(
-	uri="http://ExSceMM",
-	prefix="ExSceMM")
+@namespace(uri="http://www.github.com/sesame-project/WP6/dsl/ExSceMM", prefix="ExSceMM")
+
 package MRSPackage;
 
 class MRS {
