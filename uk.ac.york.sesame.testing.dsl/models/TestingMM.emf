@@ -223,7 +223,7 @@ class ShutdownStateAttack extends StateAttack {
 }
 
 class TimeTravelStateAttack extends StateAttack {
-	attr int timeTravelValue;
+	val DoubleRange[1] timeTravelValue;
 }
 
 class ProcessKillerStateAttack extends StateAttack {
@@ -235,15 +235,15 @@ class BlackholeNetworkAttack extends NetworkAttack {
 }
 
 class LatencyNetworkAttack extends NetworkAttack {
-	attr double latency;
+	val DoubleRange[1] latency;
 }
 
 class PacketLossNetworkAttack extends NetworkAttack {
-	attr double frequency;
+	val DoubleRange[1] frequency;
 }
 
 class MultipleMessagesNetworkAttack extends NetworkAttack {
-	attr int howManyClones;
+	val IntRange[1] howManyClones;
 }
 
 }

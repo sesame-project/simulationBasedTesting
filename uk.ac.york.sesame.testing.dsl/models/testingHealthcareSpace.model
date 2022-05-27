@@ -21,8 +21,10 @@
     <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_Df9rAN05EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
     <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_DunLAN05EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
   </possibleAttacks>
-  <possibleAttacks xsi:type="TestingMM.Attacks:PacketLossNetworkAttack" xmi:id="__X7doN1DEeyWQcgNPk0koQ" frequency="0.8">
+  <possibleAttacks xsi:type="TestingMM.Attacks:PacketLossNetworkAttack" xmi:id="__X7doN1DEeyWQcgNPk0koQ">
+    <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_WLT_8N1yEeyMroJPpUfYlA"/>
     <topicToAttack href="healthcareMRS.model#_E2QZcN1CEeyWQcgNPk0koQ"/>
+    <frequency xmi:id="_W2vikN1yEeyMroJPpUfYlA" upperBound="1.0"/>
   </possibleAttacks>
   <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_Vo1xYN04EeyAL51MCA53dw _TiizQN04EeyAL51MCA53dw _g8Hi0N1AEeyWQcgNPk0koQ" includedAttacks="_lc6UoN0YEeyv8LH3vdSfnw _mIrOcN0YEeyv8LH3vdSfnw _mf6CsN0YEeyv8LH3vdSfnw">
     <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="200"/>
