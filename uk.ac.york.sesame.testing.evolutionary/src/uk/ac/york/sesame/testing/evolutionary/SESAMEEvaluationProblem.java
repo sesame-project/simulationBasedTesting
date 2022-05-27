@@ -15,6 +15,8 @@ import java.util.Properties;
 import java.util.Random;
 import org.uma.jmetal.problem.Problem;
 
+import uk.ac.york.sesame.testing.evolutionary.utilities.CompileLoader;
+import uk.ac.york.sesame.testing.evolutionary.utilities.RunExperiment;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 
 public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
@@ -123,23 +125,29 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	
 	public void performSAFEMUVExperiment(SESAMETestSolution solution) {
 		try {
-			
 			String modelFileName = solution.getTestModelFileName();
+			String mainClassName = solution.getMainClassName();
 			String __mrsModelFile = "testingMRS.model";
 			
-			solution.ensureModelGenerated();
-			// This needs to transform the individual test model into code with invoking EGL
-			SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(modelFileName, __mrsModelFile);
+			// This ensures that the test has the model installed in the 
+			solution.ensureModelUpdated(spaceModelFileName);
+			
+			// This needs to transform the testing space model into code - by invoking EGL
+			SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile);
 			eglEx.run();
 			// TODO: now need to compile/execute the resulting main() method
-									
+			CompileLoader.compileLoader(mainClassName);
+			// Invokes the main method for this code
+			RunExperiment.runExpt(mainClassName);			
+			// The generated code will insert the metrics into that particular Test, within the model
+												
 			System.out.println("modelFileName = " + modelFileName);
-			// the metric values need to be extracted from the model file
+			// The metric values now need to be extracted from the model file
 			Map<SESAMEMetric, Double> res = metricHandler.extractAll(modelFileName);
 						
-			tempLog.write(modelFileName + ",");
-
+			// --------------------------------------------------------------------------------------------			
 			// This is for handling the metrics and setting them for JMetal internal operations
+			tempLog.write(modelFileName + ",");
 			for (Map.Entry<SESAMEMetric,Double> e : res.entrySet()) {
 				Optional<Integer> jmetalNum_o = metricHandler.getMetricNumberInList(e.getKey());
 				SESAMEMetric m = e.getKey();

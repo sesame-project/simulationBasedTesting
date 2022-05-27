@@ -132,10 +132,10 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			SolutionListEvaluator<SESAMETestSolution> evaluator;
 			Comparator<SESAMETestSolution> dominanceComparator;
 
-			// This should be generated with calls to custom operators for people to implement classes
+			// TODO: This should be generated with calls to custom operators for people to implement classes?
 			crossover = new SESAMECrossoverMergeAttacks();
 			mutation = new SESAMESimpleMutation();
-
+ 
 			selection = new TournamentSelection<SESAMETestSolution>(5);
 			dominanceComparator = new DominanceComparator<>();
 			evaluator = new SequentialSolutionListEvaluator<SESAMETestSolution>();

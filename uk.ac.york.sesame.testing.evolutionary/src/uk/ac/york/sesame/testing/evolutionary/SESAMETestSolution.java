@@ -1,7 +1,5 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,9 +7,13 @@ import java.util.Map;
 
 import org.uma.jmetal.solution.*;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl;
+
 public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	private static final long serialVersionUID = 1L;
 
+	private TestImpl t;
+	
 	private boolean actuallyRun;
 	private String exptTag;
 	private double exptRunTime;
@@ -26,7 +28,11 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	private String csvFileName;
 
 	public SESAMETestSolution() {
-
+		
+	}
+	
+	public TestImpl getInternalType() {
+		return t;
 	}
 
 	public SESAMETestSolution(List<SESAMETestAttack> recs) {
@@ -283,7 +289,11 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 		return m.getClass().getSimpleName();
 	}
 
-	public void ensureModelGenerated() {
-		
+	public String getMainClassName() {
+		return "mainClass.java";
+	}
+
+	public void ensureModelUpdated(String spaceModelFileName) {
+		// TODO Auto-generated method stub
 	}
 }

@@ -1,7 +1,7 @@
-@namespace(uri="http://www.github.com/sesame-project/WP6/dsl/TestingMM", prefix="TestingMM")
+@namespace(uri="TestingMM", prefix="TestingMM")
 
 package TestingPackage;
-import "http://www.github.com/sesame-project/WP6/dsl/ExSceMM";
+import "http://ExSceMM";
 
 // To register updated models in the child eclipse, need to click the
 // "Generate SESAME code" button
@@ -27,9 +27,6 @@ class TestCampaign {
 	val TestGenerationApproach[1] approach;
 	val Test[*] performedTests;
 }
-
-// Test here contains a number of attacks?
-// TestInstance is therefore redundant
 
 // This is analagous to a fuzzing CSV file in SAFEMUV - multiple attacks
 class Test {
@@ -86,7 +83,6 @@ class Attack {
 	ref MRSPackage.Topic[*] subscribingTopics;
 	ref Attack[1] next;
 	// 	the above repalces this: attr int order;
-	
 }
 
 class OfflineAttack extends Attack {

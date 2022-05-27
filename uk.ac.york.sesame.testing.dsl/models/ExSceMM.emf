@@ -1,4 +1,4 @@
-@namespace(uri="http://www.github.com/sesame-project/WP6/dsl/ExSceMM", prefix="ExSceMM")
+@namespace(uri="http://ExSceMM", prefix="MRSPackage")
 
 package MRSPackage;
 
@@ -58,4 +58,3 @@ class MOOSSimulator extends Simulator {
 	attr String hostname;
 	attr String port;
 }
-

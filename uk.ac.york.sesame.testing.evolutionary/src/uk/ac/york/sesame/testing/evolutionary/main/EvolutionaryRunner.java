@@ -3,12 +3,12 @@ package uk.ac.york.sesame.testing.evolutionary.main;
 import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
 
 public class EvolutionaryRunner {
-//	JMetal manages a population of Test models - containing a single test
-//	These models are referenced by TestModelSolution - which references a particular model
-//
-//	Some metrics can be computed from the Test model itself - not just from the computation
-//
-//	How to write back the metric values into the models at the end of the evaluation?
+	//	JMetal manages a population of Test models - containing a single test
+	//	These models are referenced by TestModelSolution - which references a particular model
+	//
+	//	Some metrics can be computed from the Test model itself - not just from the computation
+	//
+	//	How to write back the metric values into the models at the end of the evaluation?
 	
 	
 	public static void main(String [] args) {
