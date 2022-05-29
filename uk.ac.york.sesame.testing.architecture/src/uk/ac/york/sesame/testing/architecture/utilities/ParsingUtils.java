@@ -35,4 +35,19 @@ public class ParsingUtils {
 		}
 		return obj;
 	}
+	
+	public static JSONObject convertJSONObjectPart(JSONObject obj, String parameterName, ObjectConvertOperation conversionOp) {
+		String[] split = parameterName.split("\\.");
+		JSONObject obj2 = null;
+		for (int i = 1; i < split.length; i++) {
+			if (i != split.length - 1) {
+				obj2 = (JSONObject) obj.get(split[i].toLowerCase());
+			} else {
+				Object current = obj2.get(split[i].toLowerCase());
+				obj2.put(split[i].toLowerCase(), conversionOp.op(current));
+				return obj;
+			}
+		}
+		return obj;
+	}
 }

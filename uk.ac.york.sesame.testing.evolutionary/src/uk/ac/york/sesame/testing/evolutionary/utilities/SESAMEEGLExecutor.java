@@ -30,7 +30,7 @@ public class SESAMEEGLExecutor {
 		
 	private String codeOutputPath = "/tmp/codegenerationPath/";
 	
-	public SESAMEEGLExecutor(String testingModelPath, String mrsModelPath) {
+	public SESAMEEGLExecutor(String testingModelPath, String mrsModelPath, String campaignName) {
 		this.testingModelPath = testingModelPath;
 		this.mrsModelPath = mrsModelPath;
 	}
@@ -95,6 +95,7 @@ public class SESAMEEGLExecutor {
 			EgxModule egxModule = new EgxModule(factory);
 
 			egxModule.getContext().getFrameStack().put(new Variable("path", codeOutputPath, new EolAnyType()));
+			// TODO: orchestrator needs to only generate test code for this experiment
 			java.net.URI EgxFile = new File("files/orchestrator.egx").toURI();
 			
 			System.out.println(EgxFile);
@@ -112,24 +113,7 @@ public class SESAMEEGLExecutor {
 
 			// EGX END
 
-			// JRH: shouldn't need to create a new generator if we have produced the code locally within this project
-			
-//			File pomfile = new File(theIProjectPath + "/pom.xml");
-//			if (!pomfile.exists()) {
-//				pomfile.createNewFile();
-//				// System.out.println(pomfile.getAbsolutePath());
-//				FileWriter fw2 = new FileWriter(pomfile);
-//				fw2.write(DefaultPOM.contents());
-//				fw2.close();
-//
-//				try {
-//					//UtilityMethods.refresh(theIProject);
-//				} catch (CoreException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				System.out.println("project pom updated, please run an update in maven if needed.");
-//			}
+			// JRH: shouldn't need to create new pom.xml if we have produced the code locally within this project
 
 		} catch (EolModelLoadingException e) {
 			e.printStackTrace();

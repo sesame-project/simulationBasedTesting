@@ -95,13 +95,31 @@ public interface AttacksPackage extends EPackage {
 	int ATTACK__ATTACK_ACTIVATION = 2;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK__TOPIC_TO_ATTACK = 3;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = 3;
+	int ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = 4;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK__FROM_NODES = 5;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -110,7 +128,25 @@ public interface AttacksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK__MESSAGES_TO_ALL_COMPONENENTS = 4;
+	int ATTACK__MESSAGES_TO_ALL_COMPONENENTS = 6;
+
+	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK__TO_NODES = 7;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK__NODE_TO_ATTACK = 8;
 
 	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
@@ -119,7 +155,16 @@ public interface AttacksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK__ALL_PUBLISHING_TOPICS = 5;
+	int ATTACK__ALL_PUBLISHING_TOPICS = 9;
+
+	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK__PUBLISHING_TOPICS = 10;
 
 	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
@@ -128,7 +173,25 @@ public interface AttacksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK__ALL_SUBSCRIBING_TOPICS = 6;
+	int ATTACK__ALL_SUBSCRIBING_TOPICS = 11;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK__SUBSCRIBING_TOPICS = 12;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK__NEXT = 13;
 
 	/**
 	 * The number of structural features of the '<em>Attack</em>' class.
@@ -137,7 +200,7 @@ public interface AttacksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK_FEATURE_COUNT = 7;
+	int ATTACK_FEATURE_COUNT = 14;
 
 	/**
 	 * The number of operations of the '<em>Attack</em>' class.
@@ -186,6 +249,15 @@ public interface AttacksPackage extends EPackage {
 	int OFFLINE_ATTACK__ATTACK_ACTIVATION = ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_ATTACK__TOPIC_TO_ATTACK = ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -193,6 +265,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int OFFLINE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_ATTACK__FROM_NODES = ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -204,6 +285,24 @@ public interface AttacksPackage extends EPackage {
 	int OFFLINE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_ATTACK__TO_NODES = ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_ATTACK__NODE_TO_ATTACK = ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -213,6 +312,15 @@ public interface AttacksPackage extends EPackage {
 	int OFFLINE_ATTACK__ALL_PUBLISHING_TOPICS = ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_ATTACK__PUBLISHING_TOPICS = ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -220,6 +328,24 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int OFFLINE_ATTACK__ALL_SUBSCRIBING_TOPICS = ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_ATTACK__SUBSCRIBING_TOPICS = ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_ATTACK__NEXT = ATTACK__NEXT;
 
 	/**
 	 * The feature id for the '<em><b>Attack Time</b></em>' attribute.
@@ -286,6 +412,15 @@ public interface AttacksPackage extends EPackage {
 	int CUSTOM_ATTACK__ATTACK_ACTIVATION = ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_ATTACK__TOPIC_TO_ATTACK = ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -293,6 +428,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_ATTACK__FROM_NODES = ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -304,6 +448,24 @@ public interface AttacksPackage extends EPackage {
 	int CUSTOM_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_ATTACK__TO_NODES = ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_ATTACK__NODE_TO_ATTACK = ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -313,6 +475,15 @@ public interface AttacksPackage extends EPackage {
 	int CUSTOM_ATTACK__ALL_PUBLISHING_TOPICS = ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_ATTACK__PUBLISHING_TOPICS = ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -320,6 +491,24 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_ATTACK__ALL_SUBSCRIBING_TOPICS = ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_ATTACK__SUBSCRIBING_TOPICS = ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_ATTACK__NEXT = ATTACK__NEXT;
 
 	/**
 	 * The number of structural features of the '<em>Custom Attack</em>' class.
@@ -377,6 +566,15 @@ public interface AttacksPackage extends EPackage {
 	int CUSTOM_OFFLINE_ATTACK__ATTACK_ACTIVATION = OFFLINE_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_ATTACK__TOPIC_TO_ATTACK = OFFLINE_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -384,6 +582,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_OFFLINE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = OFFLINE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_ATTACK__FROM_NODES = OFFLINE_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -395,6 +602,24 @@ public interface AttacksPackage extends EPackage {
 	int CUSTOM_OFFLINE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = OFFLINE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_ATTACK__TO_NODES = OFFLINE_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_ATTACK__NODE_TO_ATTACK = OFFLINE_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -404,6 +629,15 @@ public interface AttacksPackage extends EPackage {
 	int CUSTOM_OFFLINE_ATTACK__ALL_PUBLISHING_TOPICS = OFFLINE_ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_ATTACK__PUBLISHING_TOPICS = OFFLINE_ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -411,6 +645,24 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_OFFLINE_ATTACK__ALL_SUBSCRIBING_TOPICS = OFFLINE_ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_ATTACK__SUBSCRIBING_TOPICS = OFFLINE_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_ATTACK__NEXT = OFFLINE_ATTACK__NEXT;
 
 	/**
 	 * The feature id for the '<em><b>Attack Time</b></em>' attribute.
@@ -579,6 +831,15 @@ public interface AttacksPackage extends EPackage {
 	int FUZZ_TESTING_ATTACK__ATTACK_ACTIVATION = ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_ATTACK__TOPIC_TO_ATTACK = ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -586,6 +847,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUZZ_TESTING_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_ATTACK__FROM_NODES = ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -597,6 +867,24 @@ public interface AttacksPackage extends EPackage {
 	int FUZZ_TESTING_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_ATTACK__TO_NODES = ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_ATTACK__NODE_TO_ATTACK = ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -606,6 +894,15 @@ public interface AttacksPackage extends EPackage {
 	int FUZZ_TESTING_ATTACK__ALL_PUBLISHING_TOPICS = ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_ATTACK__PUBLISHING_TOPICS = ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -613,6 +910,24 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUZZ_TESTING_ATTACK__ALL_SUBSCRIBING_TOPICS = ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_ATTACK__SUBSCRIBING_TOPICS = ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_ATTACK__NEXT = ATTACK__NEXT;
 
 	/**
 	 * The number of structural features of the '<em>Fuzz Testing Attack</em>' class.
@@ -670,6 +985,15 @@ public interface AttacksPackage extends EPackage {
 	int COMPONENT_ATTACK__ATTACK_ACTIVATION = FUZZ_TESTING_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_ATTACK__TOPIC_TO_ATTACK = FUZZ_TESTING_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -677,6 +1001,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = FUZZ_TESTING_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_ATTACK__FROM_NODES = FUZZ_TESTING_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -688,6 +1021,24 @@ public interface AttacksPackage extends EPackage {
 	int COMPONENT_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = FUZZ_TESTING_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_ATTACK__TO_NODES = FUZZ_TESTING_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_ATTACK__NODE_TO_ATTACK = FUZZ_TESTING_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -697,6 +1048,15 @@ public interface AttacksPackage extends EPackage {
 	int COMPONENT_ATTACK__ALL_PUBLISHING_TOPICS = FUZZ_TESTING_ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_ATTACK__PUBLISHING_TOPICS = FUZZ_TESTING_ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -704,6 +1064,24 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_ATTACK__ALL_SUBSCRIBING_TOPICS = FUZZ_TESTING_ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_ATTACK__SUBSCRIBING_TOPICS = FUZZ_TESTING_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_ATTACK__NEXT = FUZZ_TESTING_ATTACK__NEXT;
 
 	/**
 	 * The number of structural features of the '<em>Component Attack</em>' class.
@@ -761,6 +1139,15 @@ public interface AttacksPackage extends EPackage {
 	int COMPONENT_PROPERTY_ATTACK__ATTACK_ACTIVATION = FUZZ_TESTING_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_ATTACK__TOPIC_TO_ATTACK = FUZZ_TESTING_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -768,6 +1155,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_PROPERTY_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = FUZZ_TESTING_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_ATTACK__FROM_NODES = FUZZ_TESTING_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -779,6 +1175,24 @@ public interface AttacksPackage extends EPackage {
 	int COMPONENT_PROPERTY_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = FUZZ_TESTING_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_ATTACK__TO_NODES = FUZZ_TESTING_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_ATTACK__NODE_TO_ATTACK = FUZZ_TESTING_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -786,6 +1200,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_PROPERTY_ATTACK__ALL_PUBLISHING_TOPICS = FUZZ_TESTING_ATTACK__ALL_PUBLISHING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_ATTACK__PUBLISHING_TOPICS = FUZZ_TESTING_ATTACK__PUBLISHING_TOPICS;
 
 	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
@@ -797,13 +1220,40 @@ public interface AttacksPackage extends EPackage {
 	int COMPONENT_PROPERTY_ATTACK__ALL_SUBSCRIBING_TOPICS = FUZZ_TESTING_ATTACK__ALL_SUBSCRIBING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_ATTACK__SUBSCRIBING_TOPICS = FUZZ_TESTING_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_ATTACK__NEXT = FUZZ_TESTING_ATTACK__NEXT;
+
+	/**
+	 * The feature id for the '<em><b>Property To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_ATTACK__PROPERTY_TO_ATTACK = FUZZ_TESTING_ATTACK_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Component Property Attack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_PROPERTY_ATTACK_FEATURE_COUNT = FUZZ_TESTING_ATTACK_FEATURE_COUNT + 0;
+	int COMPONENT_PROPERTY_ATTACK_FEATURE_COUNT = FUZZ_TESTING_ATTACK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Component Property Attack</em>' class.
@@ -852,6 +1302,15 @@ public interface AttacksPackage extends EPackage {
 	int COMPONENT_SUB_PROPERTY_ATTACK__ATTACK_ACTIVATION = FUZZ_TESTING_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_ATTACK__TOPIC_TO_ATTACK = FUZZ_TESTING_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -859,6 +1318,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_SUB_PROPERTY_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = FUZZ_TESTING_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_ATTACK__FROM_NODES = FUZZ_TESTING_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -870,6 +1338,24 @@ public interface AttacksPackage extends EPackage {
 	int COMPONENT_SUB_PROPERTY_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = FUZZ_TESTING_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_ATTACK__TO_NODES = FUZZ_TESTING_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_ATTACK__NODE_TO_ATTACK = FUZZ_TESTING_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -877,6 +1363,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_SUB_PROPERTY_ATTACK__ALL_PUBLISHING_TOPICS = FUZZ_TESTING_ATTACK__ALL_PUBLISHING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_ATTACK__PUBLISHING_TOPICS = FUZZ_TESTING_ATTACK__PUBLISHING_TOPICS;
 
 	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
@@ -888,13 +1383,49 @@ public interface AttacksPackage extends EPackage {
 	int COMPONENT_SUB_PROPERTY_ATTACK__ALL_SUBSCRIBING_TOPICS = FUZZ_TESTING_ATTACK__ALL_SUBSCRIBING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_ATTACK__SUBSCRIBING_TOPICS = FUZZ_TESTING_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_ATTACK__NEXT = FUZZ_TESTING_ATTACK__NEXT;
+
+	/**
+	 * The feature id for the '<em><b>Property To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_ATTACK__PROPERTY_TO_ATTACK = FUZZ_TESTING_ATTACK_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Sub Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_ATTACK__SUB_PROPERTY = FUZZ_TESTING_ATTACK_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Component Sub Property Attack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SUB_PROPERTY_ATTACK_FEATURE_COUNT = FUZZ_TESTING_ATTACK_FEATURE_COUNT + 0;
+	int COMPONENT_SUB_PROPERTY_ATTACK_FEATURE_COUNT = FUZZ_TESTING_ATTACK_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Component Sub Property Attack</em>' class.
@@ -943,6 +1474,15 @@ public interface AttacksPackage extends EPackage {
 	int TOPIC_ATTACK__ATTACK_ACTIVATION = FUZZ_TESTING_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_ATTACK__TOPIC_TO_ATTACK = FUZZ_TESTING_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -950,6 +1490,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOPIC_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = FUZZ_TESTING_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_ATTACK__FROM_NODES = FUZZ_TESTING_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -961,6 +1510,24 @@ public interface AttacksPackage extends EPackage {
 	int TOPIC_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = FUZZ_TESTING_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_ATTACK__TO_NODES = FUZZ_TESTING_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_ATTACK__NODE_TO_ATTACK = FUZZ_TESTING_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -968,6 +1535,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOPIC_ATTACK__ALL_PUBLISHING_TOPICS = FUZZ_TESTING_ATTACK__ALL_PUBLISHING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_ATTACK__PUBLISHING_TOPICS = FUZZ_TESTING_ATTACK__PUBLISHING_TOPICS;
 
 	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
@@ -979,13 +1555,40 @@ public interface AttacksPackage extends EPackage {
 	int TOPIC_ATTACK__ALL_SUBSCRIBING_TOPICS = FUZZ_TESTING_ATTACK__ALL_SUBSCRIBING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_ATTACK__SUBSCRIBING_TOPICS = FUZZ_TESTING_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_ATTACK__NEXT = FUZZ_TESTING_ATTACK__NEXT;
+
+	/**
+	 * The feature id for the '<em><b>Sub Parameters</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_ATTACK__SUB_PARAMETERS = FUZZ_TESTING_ATTACK_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Topic Attack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC_ATTACK_FEATURE_COUNT = FUZZ_TESTING_ATTACK_FEATURE_COUNT + 0;
+	int TOPIC_ATTACK_FEATURE_COUNT = FUZZ_TESTING_ATTACK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Topic Attack</em>' class.
@@ -1034,6 +1637,15 @@ public interface AttacksPackage extends EPackage {
 	int RANDOM_VALUE_ATTACK__ATTACK_ACTIVATION = COMPONENT_PROPERTY_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_ATTACK__TOPIC_TO_ATTACK = COMPONENT_PROPERTY_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1041,6 +1653,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_VALUE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = COMPONENT_PROPERTY_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_ATTACK__FROM_NODES = COMPONENT_PROPERTY_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -1052,6 +1673,24 @@ public interface AttacksPackage extends EPackage {
 	int RANDOM_VALUE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = COMPONENT_PROPERTY_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_ATTACK__TO_NODES = COMPONENT_PROPERTY_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_ATTACK__NODE_TO_ATTACK = COMPONENT_PROPERTY_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1061,6 +1700,15 @@ public interface AttacksPackage extends EPackage {
 	int RANDOM_VALUE_ATTACK__ALL_PUBLISHING_TOPICS = COMPONENT_PROPERTY_ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_ATTACK__PUBLISHING_TOPICS = COMPONENT_PROPERTY_ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1068,6 +1716,33 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_VALUE_ATTACK__ALL_SUBSCRIBING_TOPICS = COMPONENT_PROPERTY_ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_ATTACK__SUBSCRIBING_TOPICS = COMPONENT_PROPERTY_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_ATTACK__NEXT = COMPONENT_PROPERTY_ATTACK__NEXT;
+
+	/**
+	 * The feature id for the '<em><b>Property To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_ATTACK__PROPERTY_TO_ATTACK = COMPONENT_PROPERTY_ATTACK__PROPERTY_TO_ATTACK;
 
 	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
@@ -1134,6 +1809,15 @@ public interface AttacksPackage extends EPackage {
 	int RANDOM_VALUE_FROM_SET_ATTACK__ATTACK_ACTIVATION = RANDOM_VALUE_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_ATTACK__TOPIC_TO_ATTACK = RANDOM_VALUE_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1141,6 +1825,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_VALUE_FROM_SET_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = RANDOM_VALUE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_ATTACK__FROM_NODES = RANDOM_VALUE_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -1152,6 +1845,24 @@ public interface AttacksPackage extends EPackage {
 	int RANDOM_VALUE_FROM_SET_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = RANDOM_VALUE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_ATTACK__TO_NODES = RANDOM_VALUE_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_ATTACK__NODE_TO_ATTACK = RANDOM_VALUE_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1161,6 +1872,15 @@ public interface AttacksPackage extends EPackage {
 	int RANDOM_VALUE_FROM_SET_ATTACK__ALL_PUBLISHING_TOPICS = RANDOM_VALUE_ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_ATTACK__PUBLISHING_TOPICS = RANDOM_VALUE_ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1168,6 +1888,33 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_VALUE_FROM_SET_ATTACK__ALL_SUBSCRIBING_TOPICS = RANDOM_VALUE_ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_ATTACK__SUBSCRIBING_TOPICS = RANDOM_VALUE_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_ATTACK__NEXT = RANDOM_VALUE_ATTACK__NEXT;
+
+	/**
+	 * The feature id for the '<em><b>Property To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_ATTACK__PROPERTY_TO_ATTACK = RANDOM_VALUE_ATTACK__PROPERTY_TO_ATTACK;
 
 	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
@@ -1510,6 +2257,15 @@ public interface AttacksPackage extends EPackage {
 	int RESOURCE_ATTACK__ATTACK_ACTIVATION = ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_ATTACK__TOPIC_TO_ATTACK = ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1517,6 +2273,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESOURCE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_ATTACK__FROM_NODES = ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -1528,6 +2293,24 @@ public interface AttacksPackage extends EPackage {
 	int RESOURCE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_ATTACK__TO_NODES = ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_ATTACK__NODE_TO_ATTACK = ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1537,6 +2320,15 @@ public interface AttacksPackage extends EPackage {
 	int RESOURCE_ATTACK__ALL_PUBLISHING_TOPICS = ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_ATTACK__PUBLISHING_TOPICS = ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1544,6 +2336,24 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESOURCE_ATTACK__ALL_SUBSCRIBING_TOPICS = ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_ATTACK__SUBSCRIBING_TOPICS = ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_ATTACK__NEXT = ATTACK__NEXT;
 
 	/**
 	 * The number of structural features of the '<em>Resource Attack</em>' class.
@@ -1601,6 +2411,15 @@ public interface AttacksPackage extends EPackage {
 	int STATE_ATTACK__ATTACK_ACTIVATION = ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ATTACK__TOPIC_TO_ATTACK = ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1608,6 +2427,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ATTACK__FROM_NODES = ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -1619,6 +2447,24 @@ public interface AttacksPackage extends EPackage {
 	int STATE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ATTACK__TO_NODES = ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ATTACK__NODE_TO_ATTACK = ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1628,6 +2474,15 @@ public interface AttacksPackage extends EPackage {
 	int STATE_ATTACK__ALL_PUBLISHING_TOPICS = ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ATTACK__PUBLISHING_TOPICS = ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1635,6 +2490,24 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_ATTACK__ALL_SUBSCRIBING_TOPICS = ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ATTACK__SUBSCRIBING_TOPICS = ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_ATTACK__NEXT = ATTACK__NEXT;
 
 	/**
 	 * The number of structural features of the '<em>State Attack</em>' class.
@@ -1692,6 +2565,15 @@ public interface AttacksPackage extends EPackage {
 	int NETWORK_ATTACK__ATTACK_ACTIVATION = ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_ATTACK__TOPIC_TO_ATTACK = ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1699,6 +2581,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int NETWORK_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_ATTACK__FROM_NODES = ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -1710,6 +2601,24 @@ public interface AttacksPackage extends EPackage {
 	int NETWORK_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_ATTACK__TO_NODES = ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_ATTACK__NODE_TO_ATTACK = ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1719,6 +2628,15 @@ public interface AttacksPackage extends EPackage {
 	int NETWORK_ATTACK__ALL_PUBLISHING_TOPICS = ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_ATTACK__PUBLISHING_TOPICS = ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1726,6 +2644,24 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int NETWORK_ATTACK__ALL_SUBSCRIBING_TOPICS = ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_ATTACK__SUBSCRIBING_TOPICS = ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_ATTACK__NEXT = ATTACK__NEXT;
 
 	/**
 	 * The number of structural features of the '<em>Network Attack</em>' class.
@@ -1783,6 +2719,15 @@ public interface AttacksPackage extends EPackage {
 	int LOAD_RESOURCE_ATTACK__ATTACK_ACTIVATION = RESOURCE_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOAD_RESOURCE_ATTACK__TOPIC_TO_ATTACK = RESOURCE_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1790,6 +2735,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int LOAD_RESOURCE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = RESOURCE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOAD_RESOURCE_ATTACK__FROM_NODES = RESOURCE_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -1801,6 +2755,24 @@ public interface AttacksPackage extends EPackage {
 	int LOAD_RESOURCE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = RESOURCE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOAD_RESOURCE_ATTACK__TO_NODES = RESOURCE_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOAD_RESOURCE_ATTACK__NODE_TO_ATTACK = RESOURCE_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1810,6 +2782,15 @@ public interface AttacksPackage extends EPackage {
 	int LOAD_RESOURCE_ATTACK__ALL_PUBLISHING_TOPICS = RESOURCE_ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOAD_RESOURCE_ATTACK__PUBLISHING_TOPICS = RESOURCE_ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1817,6 +2798,24 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int LOAD_RESOURCE_ATTACK__ALL_SUBSCRIBING_TOPICS = RESOURCE_ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOAD_RESOURCE_ATTACK__SUBSCRIBING_TOPICS = RESOURCE_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOAD_RESOURCE_ATTACK__NEXT = RESOURCE_ATTACK__NEXT;
 
 	/**
 	 * The feature id for the '<em><b>Load Type</b></em>' reference.
@@ -2113,6 +3112,15 @@ public interface AttacksPackage extends EPackage {
 	int SHUTDOWN_STATE_ATTACK__ATTACK_ACTIVATION = STATE_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHUTDOWN_STATE_ATTACK__TOPIC_TO_ATTACK = STATE_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2120,6 +3128,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int SHUTDOWN_STATE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = STATE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHUTDOWN_STATE_ATTACK__FROM_NODES = STATE_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -2131,6 +3148,24 @@ public interface AttacksPackage extends EPackage {
 	int SHUTDOWN_STATE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = STATE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHUTDOWN_STATE_ATTACK__TO_NODES = STATE_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHUTDOWN_STATE_ATTACK__NODE_TO_ATTACK = STATE_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2140,6 +3175,15 @@ public interface AttacksPackage extends EPackage {
 	int SHUTDOWN_STATE_ATTACK__ALL_PUBLISHING_TOPICS = STATE_ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHUTDOWN_STATE_ATTACK__PUBLISHING_TOPICS = STATE_ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2147,6 +3191,24 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int SHUTDOWN_STATE_ATTACK__ALL_SUBSCRIBING_TOPICS = STATE_ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHUTDOWN_STATE_ATTACK__SUBSCRIBING_TOPICS = STATE_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHUTDOWN_STATE_ATTACK__NEXT = STATE_ATTACK__NEXT;
 
 	/**
 	 * The number of structural features of the '<em>Shutdown State Attack</em>' class.
@@ -2204,6 +3266,15 @@ public interface AttacksPackage extends EPackage {
 	int TIME_TRAVEL_STATE_ATTACK__ATTACK_ACTIVATION = STATE_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_TRAVEL_STATE_ATTACK__TOPIC_TO_ATTACK = STATE_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2211,6 +3282,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int TIME_TRAVEL_STATE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = STATE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_TRAVEL_STATE_ATTACK__FROM_NODES = STATE_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -2222,6 +3302,24 @@ public interface AttacksPackage extends EPackage {
 	int TIME_TRAVEL_STATE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = STATE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_TRAVEL_STATE_ATTACK__TO_NODES = STATE_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_TRAVEL_STATE_ATTACK__NODE_TO_ATTACK = STATE_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2229,6 +3327,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int TIME_TRAVEL_STATE_ATTACK__ALL_PUBLISHING_TOPICS = STATE_ATTACK__ALL_PUBLISHING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_TRAVEL_STATE_ATTACK__PUBLISHING_TOPICS = STATE_ATTACK__PUBLISHING_TOPICS;
 
 	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
@@ -2240,7 +3347,25 @@ public interface AttacksPackage extends EPackage {
 	int TIME_TRAVEL_STATE_ATTACK__ALL_SUBSCRIBING_TOPICS = STATE_ATTACK__ALL_SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Time Travel Value</b></em>' attribute.
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_TRAVEL_STATE_ATTACK__SUBSCRIBING_TOPICS = STATE_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_TRAVEL_STATE_ATTACK__NEXT = STATE_ATTACK__NEXT;
+
+	/**
+	 * The feature id for the '<em><b>Time Travel Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2304,6 +3429,15 @@ public interface AttacksPackage extends EPackage {
 	int PROCESS_KILLER_STATE_ATTACK__ATTACK_ACTIVATION = STATE_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_KILLER_STATE_ATTACK__TOPIC_TO_ATTACK = STATE_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2311,6 +3445,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROCESS_KILLER_STATE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = STATE_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_KILLER_STATE_ATTACK__FROM_NODES = STATE_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -2322,6 +3465,24 @@ public interface AttacksPackage extends EPackage {
 	int PROCESS_KILLER_STATE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = STATE_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_KILLER_STATE_ATTACK__TO_NODES = STATE_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_KILLER_STATE_ATTACK__NODE_TO_ATTACK = STATE_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2331,6 +3492,15 @@ public interface AttacksPackage extends EPackage {
 	int PROCESS_KILLER_STATE_ATTACK__ALL_PUBLISHING_TOPICS = STATE_ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_KILLER_STATE_ATTACK__PUBLISHING_TOPICS = STATE_ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2338,6 +3508,24 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROCESS_KILLER_STATE_ATTACK__ALL_SUBSCRIBING_TOPICS = STATE_ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_KILLER_STATE_ATTACK__SUBSCRIBING_TOPICS = STATE_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_KILLER_STATE_ATTACK__NEXT = STATE_ATTACK__NEXT;
 
 	/**
 	 * The feature id for the '<em><b>Process Id</b></em>' attribute.
@@ -2404,6 +3592,15 @@ public interface AttacksPackage extends EPackage {
 	int BLACKHOLE_NETWORK_ATTACK__ATTACK_ACTIVATION = NETWORK_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_ATTACK__TOPIC_TO_ATTACK = NETWORK_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2411,6 +3608,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int BLACKHOLE_NETWORK_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = NETWORK_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_ATTACK__FROM_NODES = NETWORK_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -2422,6 +3628,24 @@ public interface AttacksPackage extends EPackage {
 	int BLACKHOLE_NETWORK_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = NETWORK_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_ATTACK__TO_NODES = NETWORK_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_ATTACK__NODE_TO_ATTACK = NETWORK_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2431,6 +3655,15 @@ public interface AttacksPackage extends EPackage {
 	int BLACKHOLE_NETWORK_ATTACK__ALL_PUBLISHING_TOPICS = NETWORK_ATTACK__ALL_PUBLISHING_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_ATTACK__PUBLISHING_TOPICS = NETWORK_ATTACK__PUBLISHING_TOPICS;
+
+	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2438,6 +3671,24 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int BLACKHOLE_NETWORK_ATTACK__ALL_SUBSCRIBING_TOPICS = NETWORK_ATTACK__ALL_SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_ATTACK__SUBSCRIBING_TOPICS = NETWORK_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_ATTACK__NEXT = NETWORK_ATTACK__NEXT;
 
 	/**
 	 * The number of structural features of the '<em>Blackhole Network Attack</em>' class.
@@ -2495,6 +3746,15 @@ public interface AttacksPackage extends EPackage {
 	int LATENCY_NETWORK_ATTACK__ATTACK_ACTIVATION = NETWORK_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_ATTACK__TOPIC_TO_ATTACK = NETWORK_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2502,6 +3762,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int LATENCY_NETWORK_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = NETWORK_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_ATTACK__FROM_NODES = NETWORK_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -2513,6 +3782,24 @@ public interface AttacksPackage extends EPackage {
 	int LATENCY_NETWORK_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = NETWORK_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_ATTACK__TO_NODES = NETWORK_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_ATTACK__NODE_TO_ATTACK = NETWORK_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2520,6 +3807,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int LATENCY_NETWORK_ATTACK__ALL_PUBLISHING_TOPICS = NETWORK_ATTACK__ALL_PUBLISHING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_ATTACK__PUBLISHING_TOPICS = NETWORK_ATTACK__PUBLISHING_TOPICS;
 
 	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
@@ -2531,7 +3827,25 @@ public interface AttacksPackage extends EPackage {
 	int LATENCY_NETWORK_ATTACK__ALL_SUBSCRIBING_TOPICS = NETWORK_ATTACK__ALL_SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Latency</b></em>' attribute.
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_ATTACK__SUBSCRIBING_TOPICS = NETWORK_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_ATTACK__NEXT = NETWORK_ATTACK__NEXT;
+
+	/**
+	 * The feature id for the '<em><b>Latency</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2595,6 +3909,15 @@ public interface AttacksPackage extends EPackage {
 	int PACKET_LOSS_NETWORK_ATTACK__ATTACK_ACTIVATION = NETWORK_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_ATTACK__TOPIC_TO_ATTACK = NETWORK_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2602,6 +3925,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int PACKET_LOSS_NETWORK_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = NETWORK_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_ATTACK__FROM_NODES = NETWORK_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -2613,6 +3945,24 @@ public interface AttacksPackage extends EPackage {
 	int PACKET_LOSS_NETWORK_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = NETWORK_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_ATTACK__TO_NODES = NETWORK_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_ATTACK__NODE_TO_ATTACK = NETWORK_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2620,6 +3970,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int PACKET_LOSS_NETWORK_ATTACK__ALL_PUBLISHING_TOPICS = NETWORK_ATTACK__ALL_PUBLISHING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_ATTACK__PUBLISHING_TOPICS = NETWORK_ATTACK__PUBLISHING_TOPICS;
 
 	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
@@ -2631,7 +3990,25 @@ public interface AttacksPackage extends EPackage {
 	int PACKET_LOSS_NETWORK_ATTACK__ALL_SUBSCRIBING_TOPICS = NETWORK_ATTACK__ALL_SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Frequency</b></em>' attribute.
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_ATTACK__SUBSCRIBING_TOPICS = NETWORK_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_ATTACK__NEXT = NETWORK_ATTACK__NEXT;
+
+	/**
+	 * The feature id for the '<em><b>Frequency</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2695,6 +4072,15 @@ public interface AttacksPackage extends EPackage {
 	int MULTIPLE_MESSAGES_NETWORK_ATTACK__ATTACK_ACTIVATION = NETWORK_ATTACK__ATTACK_ACTIVATION;
 
 	/**
+	 * The feature id for the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_MESSAGES_NETWORK_ATTACK__TOPIC_TO_ATTACK = NETWORK_ATTACK__TOPIC_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2702,6 +4088,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLE_MESSAGES_NETWORK_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = NETWORK_ATTACK__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_MESSAGES_NETWORK_ATTACK__FROM_NODES = NETWORK_ATTACK__FROM_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -2713,6 +4108,24 @@ public interface AttacksPackage extends EPackage {
 	int MULTIPLE_MESSAGES_NETWORK_ATTACK__MESSAGES_TO_ALL_COMPONENENTS = NETWORK_ATTACK__MESSAGES_TO_ALL_COMPONENENTS;
 
 	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_MESSAGES_NETWORK_ATTACK__TO_NODES = NETWORK_ATTACK__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_MESSAGES_NETWORK_ATTACK__NODE_TO_ATTACK = NETWORK_ATTACK__NODE_TO_ATTACK;
+
+	/**
 	 * The feature id for the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2720,6 +4133,15 @@ public interface AttacksPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLE_MESSAGES_NETWORK_ATTACK__ALL_PUBLISHING_TOPICS = NETWORK_ATTACK__ALL_PUBLISHING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Publishing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_MESSAGES_NETWORK_ATTACK__PUBLISHING_TOPICS = NETWORK_ATTACK__PUBLISHING_TOPICS;
 
 	/**
 	 * The feature id for the '<em><b>All Subscribing Topics</b></em>' attribute.
@@ -2731,7 +4153,25 @@ public interface AttacksPackage extends EPackage {
 	int MULTIPLE_MESSAGES_NETWORK_ATTACK__ALL_SUBSCRIBING_TOPICS = NETWORK_ATTACK__ALL_SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>How Many Clones</b></em>' attribute.
+	 * The feature id for the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_MESSAGES_NETWORK_ATTACK__SUBSCRIBING_TOPICS = NETWORK_ATTACK__SUBSCRIBING_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_MESSAGES_NETWORK_ATTACK__NEXT = NETWORK_ATTACK__NEXT;
+
+	/**
+	 * The feature id for the '<em><b>How Many Clones</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2812,6 +4252,17 @@ public interface AttacksPackage extends EPackage {
 	EReference getAttack_AttackActivation();
 
 	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getTopicToAttack <em>Topic To Attack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Topic To Attack</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getTopicToAttack()
+	 * @see #getAttack()
+	 * @generated
+	 */
+	EReference getAttack_TopicToAttack();
+
+	/**
 	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#isMessagesFromAllComponenents <em>Messages From All Componenents</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2821,6 +4272,17 @@ public interface AttacksPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAttack_MessagesFromAllComponenents();
+
+	/**
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getFromNodes <em>From Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>From Nodes</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getFromNodes()
+	 * @see #getAttack()
+	 * @generated
+	 */
+	EReference getAttack_FromNodes();
 
 	/**
 	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#isMessagesToAllComponenents <em>Messages To All Componenents</em>}'.
@@ -2834,6 +4296,28 @@ public interface AttacksPackage extends EPackage {
 	EAttribute getAttack_MessagesToAllComponenents();
 
 	/**
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getToNodes <em>To Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>To Nodes</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getToNodes()
+	 * @see #getAttack()
+	 * @generated
+	 */
+	EReference getAttack_ToNodes();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getNodeToAttack <em>Node To Attack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Node To Attack</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getNodeToAttack()
+	 * @see #getAttack()
+	 * @generated
+	 */
+	EReference getAttack_NodeToAttack();
+
+	/**
 	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#isAllPublishingTopics <em>All Publishing Topics</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2845,6 +4329,17 @@ public interface AttacksPackage extends EPackage {
 	EAttribute getAttack_AllPublishingTopics();
 
 	/**
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getPublishingTopics <em>Publishing Topics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Publishing Topics</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getPublishingTopics()
+	 * @see #getAttack()
+	 * @generated
+	 */
+	EReference getAttack_PublishingTopics();
+
+	/**
 	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#isAllSubscribingTopics <em>All Subscribing Topics</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2854,6 +4349,28 @@ public interface AttacksPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAttack_AllSubscribingTopics();
+
+	/**
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getSubscribingTopics <em>Subscribing Topics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Subscribing Topics</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getSubscribingTopics()
+	 * @see #getAttack()
+	 * @generated
+	 */
+	EReference getAttack_SubscribingTopics();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getNext <em>Next</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Next</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getNext()
+	 * @see #getAttack()
+	 * @generated
+	 */
+	EReference getAttack_Next();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.OfflineAttack <em>Offline Attack</em>}'.
@@ -2979,6 +4496,17 @@ public interface AttacksPackage extends EPackage {
 	EClass getComponentPropertyAttack();
 
 	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ComponentPropertyAttack#getPropertyToAttack <em>Property To Attack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Property To Attack</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ComponentPropertyAttack#getPropertyToAttack()
+	 * @see #getComponentPropertyAttack()
+	 * @generated
+	 */
+	EReference getComponentPropertyAttack_PropertyToAttack();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ComponentSubPropertyAttack <em>Component Sub Property Attack</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2989,6 +4517,28 @@ public interface AttacksPackage extends EPackage {
 	EClass getComponentSubPropertyAttack();
 
 	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ComponentSubPropertyAttack#getPropertyToAttack <em>Property To Attack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Property To Attack</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ComponentSubPropertyAttack#getPropertyToAttack()
+	 * @see #getComponentSubPropertyAttack()
+	 * @generated
+	 */
+	EReference getComponentSubPropertyAttack_PropertyToAttack();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ComponentSubPropertyAttack#getSubProperty <em>Sub Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Sub Property</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ComponentSubPropertyAttack#getSubProperty()
+	 * @see #getComponentSubPropertyAttack()
+	 * @generated
+	 */
+	EReference getComponentSubPropertyAttack_SubProperty();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TopicAttack <em>Topic Attack</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2997,6 +4547,17 @@ public interface AttacksPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTopicAttack();
+
+	/**
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TopicAttack#getSubParameters <em>Sub Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Sub Parameters</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TopicAttack#getSubParameters()
+	 * @see #getTopicAttack()
+	 * @generated
+	 */
+	EReference getTopicAttack_SubParameters();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.RandomValueAttack <em>Random Value Attack</em>}'.
@@ -3332,15 +4893,15 @@ public interface AttacksPackage extends EPackage {
 	EClass getTimeTravelStateAttack();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TimeTravelStateAttack#getTimeTravelValue <em>Time Travel Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TimeTravelStateAttack#getTimeTravelValue <em>Time Travel Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Time Travel Value</em>'.
+	 * @return the meta object for the containment reference '<em>Time Travel Value</em>'.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TimeTravelStateAttack#getTimeTravelValue()
 	 * @see #getTimeTravelStateAttack()
 	 * @generated
 	 */
-	EAttribute getTimeTravelStateAttack_TimeTravelValue();
+	EReference getTimeTravelStateAttack_TimeTravelValue();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ProcessKillerStateAttack <em>Process Killer State Attack</em>}'.
@@ -3384,15 +4945,15 @@ public interface AttacksPackage extends EPackage {
 	EClass getLatencyNetworkAttack();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.LatencyNetworkAttack#getLatency <em>Latency</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.LatencyNetworkAttack#getLatency <em>Latency</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Latency</em>'.
+	 * @return the meta object for the containment reference '<em>Latency</em>'.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.LatencyNetworkAttack#getLatency()
 	 * @see #getLatencyNetworkAttack()
 	 * @generated
 	 */
-	EAttribute getLatencyNetworkAttack_Latency();
+	EReference getLatencyNetworkAttack_Latency();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.PacketLossNetworkAttack <em>Packet Loss Network Attack</em>}'.
@@ -3405,15 +4966,15 @@ public interface AttacksPackage extends EPackage {
 	EClass getPacketLossNetworkAttack();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.PacketLossNetworkAttack#getFrequency <em>Frequency</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.PacketLossNetworkAttack#getFrequency <em>Frequency</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Frequency</em>'.
+	 * @return the meta object for the containment reference '<em>Frequency</em>'.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.PacketLossNetworkAttack#getFrequency()
 	 * @see #getPacketLossNetworkAttack()
 	 * @generated
 	 */
-	EAttribute getPacketLossNetworkAttack_Frequency();
+	EReference getPacketLossNetworkAttack_Frequency();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.MultipleMessagesNetworkAttack <em>Multiple Messages Network Attack</em>}'.
@@ -3426,15 +4987,15 @@ public interface AttacksPackage extends EPackage {
 	EClass getMultipleMessagesNetworkAttack();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.MultipleMessagesNetworkAttack#getHowManyClones <em>How Many Clones</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.MultipleMessagesNetworkAttack#getHowManyClones <em>How Many Clones</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>How Many Clones</em>'.
+	 * @return the meta object for the containment reference '<em>How Many Clones</em>'.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.MultipleMessagesNetworkAttack#getHowManyClones()
 	 * @see #getMultipleMessagesNetworkAttack()
 	 * @generated
 	 */
-	EAttribute getMultipleMessagesNetworkAttack_HowManyClones();
+	EReference getMultipleMessagesNetworkAttack_HowManyClones();
 
 	/**
 	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.OfflineAttackTime <em>Offline Attack Time</em>}'.
@@ -3504,12 +5065,28 @@ public interface AttacksPackage extends EPackage {
 		EReference ATTACK__ATTACK_ACTIVATION = eINSTANCE.getAttack_AttackActivation();
 
 		/**
+		 * The meta object literal for the '<em><b>Topic To Attack</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTACK__TOPIC_TO_ATTACK = eINSTANCE.getAttack_TopicToAttack();
+
+		/**
 		 * The meta object literal for the '<em><b>Messages From All Componenents</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ATTACK__MESSAGES_FROM_ALL_COMPONENENTS = eINSTANCE.getAttack_MessagesFromAllComponenents();
+
+		/**
+		 * The meta object literal for the '<em><b>From Nodes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTACK__FROM_NODES = eINSTANCE.getAttack_FromNodes();
 
 		/**
 		 * The meta object literal for the '<em><b>Messages To All Componenents</b></em>' attribute feature.
@@ -3520,6 +5097,22 @@ public interface AttacksPackage extends EPackage {
 		EAttribute ATTACK__MESSAGES_TO_ALL_COMPONENENTS = eINSTANCE.getAttack_MessagesToAllComponenents();
 
 		/**
+		 * The meta object literal for the '<em><b>To Nodes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTACK__TO_NODES = eINSTANCE.getAttack_ToNodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Node To Attack</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTACK__NODE_TO_ATTACK = eINSTANCE.getAttack_NodeToAttack();
+
+		/**
 		 * The meta object literal for the '<em><b>All Publishing Topics</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3528,12 +5121,36 @@ public interface AttacksPackage extends EPackage {
 		EAttribute ATTACK__ALL_PUBLISHING_TOPICS = eINSTANCE.getAttack_AllPublishingTopics();
 
 		/**
+		 * The meta object literal for the '<em><b>Publishing Topics</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTACK__PUBLISHING_TOPICS = eINSTANCE.getAttack_PublishingTopics();
+
+		/**
 		 * The meta object literal for the '<em><b>All Subscribing Topics</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ATTACK__ALL_SUBSCRIBING_TOPICS = eINSTANCE.getAttack_AllSubscribingTopics();
+
+		/**
+		 * The meta object literal for the '<em><b>Subscribing Topics</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTACK__SUBSCRIBING_TOPICS = eINSTANCE.getAttack_SubscribingTopics();
+
+		/**
+		 * The meta object literal for the '<em><b>Next</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTACK__NEXT = eINSTANCE.getAttack_Next();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.OfflineAttackImpl <em>Offline Attack</em>}' class.
@@ -3650,6 +5267,14 @@ public interface AttacksPackage extends EPackage {
 		EClass COMPONENT_PROPERTY_ATTACK = eINSTANCE.getComponentPropertyAttack();
 
 		/**
+		 * The meta object literal for the '<em><b>Property To Attack</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_PROPERTY_ATTACK__PROPERTY_TO_ATTACK = eINSTANCE.getComponentPropertyAttack_PropertyToAttack();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.ComponentSubPropertyAttackImpl <em>Component Sub Property Attack</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3660,6 +5285,22 @@ public interface AttacksPackage extends EPackage {
 		EClass COMPONENT_SUB_PROPERTY_ATTACK = eINSTANCE.getComponentSubPropertyAttack();
 
 		/**
+		 * The meta object literal for the '<em><b>Property To Attack</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_SUB_PROPERTY_ATTACK__PROPERTY_TO_ATTACK = eINSTANCE.getComponentSubPropertyAttack_PropertyToAttack();
+
+		/**
+		 * The meta object literal for the '<em><b>Sub Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPONENT_SUB_PROPERTY_ATTACK__SUB_PROPERTY = eINSTANCE.getComponentSubPropertyAttack_SubProperty();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.TopicAttackImpl <em>Topic Attack</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3668,6 +5309,14 @@ public interface AttacksPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TOPIC_ATTACK = eINSTANCE.getTopicAttack();
+
+		/**
+		 * The meta object literal for the '<em><b>Sub Parameters</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TOPIC_ATTACK__SUB_PARAMETERS = eINSTANCE.getTopicAttack_SubParameters();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.RandomValueAttackImpl <em>Random Value Attack</em>}' class.
@@ -3964,12 +5613,12 @@ public interface AttacksPackage extends EPackage {
 		EClass TIME_TRAVEL_STATE_ATTACK = eINSTANCE.getTimeTravelStateAttack();
 
 		/**
-		 * The meta object literal for the '<em><b>Time Travel Value</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Time Travel Value</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE = eINSTANCE.getTimeTravelStateAttack_TimeTravelValue();
+		EReference TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE = eINSTANCE.getTimeTravelStateAttack_TimeTravelValue();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.ProcessKillerStateAttackImpl <em>Process Killer State Attack</em>}' class.
@@ -4010,12 +5659,12 @@ public interface AttacksPackage extends EPackage {
 		EClass LATENCY_NETWORK_ATTACK = eINSTANCE.getLatencyNetworkAttack();
 
 		/**
-		 * The meta object literal for the '<em><b>Latency</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Latency</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LATENCY_NETWORK_ATTACK__LATENCY = eINSTANCE.getLatencyNetworkAttack_Latency();
+		EReference LATENCY_NETWORK_ATTACK__LATENCY = eINSTANCE.getLatencyNetworkAttack_Latency();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.PacketLossNetworkAttackImpl <em>Packet Loss Network Attack</em>}' class.
@@ -4028,12 +5677,12 @@ public interface AttacksPackage extends EPackage {
 		EClass PACKET_LOSS_NETWORK_ATTACK = eINSTANCE.getPacketLossNetworkAttack();
 
 		/**
-		 * The meta object literal for the '<em><b>Frequency</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Frequency</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PACKET_LOSS_NETWORK_ATTACK__FREQUENCY = eINSTANCE.getPacketLossNetworkAttack_Frequency();
+		EReference PACKET_LOSS_NETWORK_ATTACK__FREQUENCY = eINSTANCE.getPacketLossNetworkAttack_Frequency();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.MultipleMessagesNetworkAttackImpl <em>Multiple Messages Network Attack</em>}' class.
@@ -4046,12 +5695,12 @@ public interface AttacksPackage extends EPackage {
 		EClass MULTIPLE_MESSAGES_NETWORK_ATTACK = eINSTANCE.getMultipleMessagesNetworkAttack();
 
 		/**
-		 * The meta object literal for the '<em><b>How Many Clones</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>How Many Clones</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES = eINSTANCE.getMultipleMessagesNetworkAttack_HowManyClones();
+		EReference MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES = eINSTANCE.getMultipleMessagesNetworkAttack_HowManyClones();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.OfflineAttackTime <em>Offline Attack Time</em>}' enum.

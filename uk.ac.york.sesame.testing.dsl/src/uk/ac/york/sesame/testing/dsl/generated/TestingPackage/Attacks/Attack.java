@@ -5,6 +5,8 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,10 +20,17 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getPriority <em>Priority</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getAttackActivation <em>Attack Activation</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getTopicToAttack <em>Topic To Attack</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#isMessagesFromAllComponenents <em>Messages From All Componenents</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getFromNodes <em>From Nodes</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#isMessagesToAllComponenents <em>Messages To All Componenents</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getToNodes <em>To Nodes</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getNodeToAttack <em>Node To Attack</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#isAllPublishingTopics <em>All Publishing Topics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getPublishingTopics <em>Publishing Topics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#isAllSubscribingTopics <em>All Subscribing Topics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getSubscribingTopics <em>Subscribing Topics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getNext <em>Next</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack()
@@ -86,6 +95,28 @@ public interface Attack extends EObject {
 	EList<AttackActivation> getAttackActivation();
 
 	/**
+	 * Returns the value of the '<em><b>Topic To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Topic To Attack</em>' reference.
+	 * @see #setTopicToAttack(Topic)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack_TopicToAttack()
+	 * @model
+	 * @generated
+	 */
+	Topic getTopicToAttack();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getTopicToAttack <em>Topic To Attack</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Topic To Attack</em>' reference.
+	 * @see #getTopicToAttack()
+	 * @generated
+	 */
+	void setTopicToAttack(Topic value);
+
+	/**
 	 * Returns the value of the '<em><b>Messages From All Componenents</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
@@ -107,6 +138,18 @@ public interface Attack extends EObject {
 	 * @generated
 	 */
 	void setMessagesFromAllComponenents(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>From Nodes</b></em>' reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>From Nodes</em>' reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack_FromNodes()
+	 * @model
+	 * @generated
+	 */
+	EList<Node> getFromNodes();
 
 	/**
 	 * Returns the value of the '<em><b>Messages To All Componenents</b></em>' attribute.
@@ -132,6 +175,40 @@ public interface Attack extends EObject {
 	void setMessagesToAllComponenents(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>To Nodes</b></em>' reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>To Nodes</em>' reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack_ToNodes()
+	 * @model
+	 * @generated
+	 */
+	EList<Node> getToNodes();
+
+	/**
+	 * Returns the value of the '<em><b>Node To Attack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Node To Attack</em>' reference.
+	 * @see #setNodeToAttack(Node)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack_NodeToAttack()
+	 * @model
+	 * @generated
+	 */
+	Node getNodeToAttack();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getNodeToAttack <em>Node To Attack</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Node To Attack</em>' reference.
+	 * @see #getNodeToAttack()
+	 * @generated
+	 */
+	void setNodeToAttack(Node value);
+
+	/**
 	 * Returns the value of the '<em><b>All Publishing Topics</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
@@ -155,6 +232,18 @@ public interface Attack extends EObject {
 	void setAllPublishingTopics(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Publishing Topics</b></em>' reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Publishing Topics</em>' reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack_PublishingTopics()
+	 * @model
+	 * @generated
+	 */
+	EList<Topic> getPublishingTopics();
+
+	/**
 	 * Returns the value of the '<em><b>All Subscribing Topics</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
@@ -176,5 +265,39 @@ public interface Attack extends EObject {
 	 * @generated
 	 */
 	void setAllSubscribingTopics(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Subscribing Topics</b></em>' reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Subscribing Topics</em>' reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack_SubscribingTopics()
+	 * @model
+	 * @generated
+	 */
+	EList<Topic> getSubscribingTopics();
+
+	/**
+	 * Returns the value of the '<em><b>Next</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Next</em>' reference.
+	 * @see #setNext(Attack)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack_Next()
+	 * @model required="true"
+	 * @generated
+	 */
+	Attack getNext();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getNext <em>Next</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Next</em>' reference.
+	 * @see #getNext()
+	 * @generated
+	 */
+	void setNext(Attack value);
 
 } // Attack

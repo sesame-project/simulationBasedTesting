@@ -4,11 +4,14 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.DoubleRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TimeTravelStateAttack;
 
 /**
@@ -26,24 +29,14 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TimeTravel
  */
 public class TimeTravelStateAttackImpl extends StateAttackImpl implements TimeTravelStateAttack {
 	/**
-	 * The default value of the '{@link #getTimeTravelValue() <em>Time Travel Value</em>}' attribute.
+	 * The cached value of the '{@link #getTimeTravelValue() <em>Time Travel Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTimeTravelValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int TIME_TRAVEL_VALUE_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getTimeTravelValue() <em>Time Travel Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTimeTravelValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected int timeTravelValue = TIME_TRAVEL_VALUE_EDEFAULT;
+	protected DoubleRange timeTravelValue;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,7 +62,7 @@ public class TimeTravelStateAttackImpl extends StateAttackImpl implements TimeTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getTimeTravelValue() {
+	public DoubleRange getTimeTravelValue() {
 		return timeTravelValue;
 	}
 
@@ -78,11 +71,47 @@ public class TimeTravelStateAttackImpl extends StateAttackImpl implements TimeTr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTimeTravelValue(int newTimeTravelValue) {
-		int oldTimeTravelValue = timeTravelValue;
+	public NotificationChain basicSetTimeTravelValue(DoubleRange newTimeTravelValue, NotificationChain msgs) {
+		DoubleRange oldTimeTravelValue = timeTravelValue;
 		timeTravelValue = newTimeTravelValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AttacksPackage.TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE, oldTimeTravelValue, timeTravelValue));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AttacksPackage.TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE, oldTimeTravelValue, newTimeTravelValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTimeTravelValue(DoubleRange newTimeTravelValue) {
+		if (newTimeTravelValue != timeTravelValue) {
+			NotificationChain msgs = null;
+			if (timeTravelValue != null)
+				msgs = ((InternalEObject)timeTravelValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AttacksPackage.TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE, null, msgs);
+			if (newTimeTravelValue != null)
+				msgs = ((InternalEObject)newTimeTravelValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AttacksPackage.TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE, null, msgs);
+			msgs = basicSetTimeTravelValue(newTimeTravelValue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AttacksPackage.TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE, newTimeTravelValue, newTimeTravelValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AttacksPackage.TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE:
+				return basicSetTimeTravelValue(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -108,7 +137,7 @@ public class TimeTravelStateAttackImpl extends StateAttackImpl implements TimeTr
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AttacksPackage.TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE:
-				setTimeTravelValue((Integer)newValue);
+				setTimeTravelValue((DoubleRange)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -123,7 +152,7 @@ public class TimeTravelStateAttackImpl extends StateAttackImpl implements TimeTr
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case AttacksPackage.TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE:
-				setTimeTravelValue(TIME_TRAVEL_VALUE_EDEFAULT);
+				setTimeTravelValue((DoubleRange)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -138,25 +167,9 @@ public class TimeTravelStateAttackImpl extends StateAttackImpl implements TimeTr
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case AttacksPackage.TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE:
-				return timeTravelValue != TIME_TRAVEL_VALUE_EDEFAULT;
+				return timeTravelValue != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (timeTravelValue: ");
-		result.append(timeTravelValue);
-		result.append(')');
-		return result.toString();
 	}
 
 } //TimeTravelStateAttackImpl

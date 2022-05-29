@@ -21,25 +21,25 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks;
  */
 public interface LatencyNetworkAttack extends NetworkAttack {
 	/**
-	 * Returns the value of the '<em><b>Latency</b></em>' attribute.
+	 * Returns the value of the '<em><b>Latency</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Latency</em>' attribute.
-	 * @see #setLatency(double)
+	 * @return the value of the '<em>Latency</em>' containment reference.
+	 * @see #setLatency(DoubleRange)
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getLatencyNetworkAttack_Latency()
-	 * @model
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	double getLatency();
+	DoubleRange getLatency();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.LatencyNetworkAttack#getLatency <em>Latency</em>}' attribute.
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.LatencyNetworkAttack#getLatency <em>Latency</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Latency</em>' attribute.
+	 * @param value the new value of the '<em>Latency</em>' containment reference.
 	 * @see #getLatency()
 	 * @generated
 	 */
-	void setLatency(double value);
+	void setLatency(DoubleRange value);
 
 } // LatencyNetworkAttack

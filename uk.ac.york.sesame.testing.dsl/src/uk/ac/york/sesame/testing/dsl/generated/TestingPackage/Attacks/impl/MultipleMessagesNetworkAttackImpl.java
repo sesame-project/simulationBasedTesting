@@ -4,11 +4,14 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.IntRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.MultipleMessagesNetworkAttack;
 
 /**
@@ -26,24 +29,14 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.MultipleMe
  */
 public class MultipleMessagesNetworkAttackImpl extends NetworkAttackImpl implements MultipleMessagesNetworkAttack {
 	/**
-	 * The default value of the '{@link #getHowManyClones() <em>How Many Clones</em>}' attribute.
+	 * The cached value of the '{@link #getHowManyClones() <em>How Many Clones</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getHowManyClones()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int HOW_MANY_CLONES_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getHowManyClones() <em>How Many Clones</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getHowManyClones()
-	 * @generated
-	 * @ordered
-	 */
-	protected int howManyClones = HOW_MANY_CLONES_EDEFAULT;
+	protected IntRange howManyClones;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,7 +62,7 @@ public class MultipleMessagesNetworkAttackImpl extends NetworkAttackImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getHowManyClones() {
+	public IntRange getHowManyClones() {
 		return howManyClones;
 	}
 
@@ -78,11 +71,47 @@ public class MultipleMessagesNetworkAttackImpl extends NetworkAttackImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHowManyClones(int newHowManyClones) {
-		int oldHowManyClones = howManyClones;
+	public NotificationChain basicSetHowManyClones(IntRange newHowManyClones, NotificationChain msgs) {
+		IntRange oldHowManyClones = howManyClones;
 		howManyClones = newHowManyClones;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AttacksPackage.MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES, oldHowManyClones, howManyClones));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AttacksPackage.MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES, oldHowManyClones, newHowManyClones);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHowManyClones(IntRange newHowManyClones) {
+		if (newHowManyClones != howManyClones) {
+			NotificationChain msgs = null;
+			if (howManyClones != null)
+				msgs = ((InternalEObject)howManyClones).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AttacksPackage.MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES, null, msgs);
+			if (newHowManyClones != null)
+				msgs = ((InternalEObject)newHowManyClones).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AttacksPackage.MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES, null, msgs);
+			msgs = basicSetHowManyClones(newHowManyClones, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AttacksPackage.MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES, newHowManyClones, newHowManyClones));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AttacksPackage.MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES:
+				return basicSetHowManyClones(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -108,7 +137,7 @@ public class MultipleMessagesNetworkAttackImpl extends NetworkAttackImpl impleme
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AttacksPackage.MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES:
-				setHowManyClones((Integer)newValue);
+				setHowManyClones((IntRange)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -123,7 +152,7 @@ public class MultipleMessagesNetworkAttackImpl extends NetworkAttackImpl impleme
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case AttacksPackage.MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES:
-				setHowManyClones(HOW_MANY_CLONES_EDEFAULT);
+				setHowManyClones((IntRange)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -138,25 +167,9 @@ public class MultipleMessagesNetworkAttackImpl extends NetworkAttackImpl impleme
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case AttacksPackage.MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES:
-				return howManyClones != HOW_MANY_CLONES_EDEFAULT;
+				return howManyClones != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (howManyClones: ");
-		result.append(howManyClones);
-		result.append(')');
-		return result.toString();
 	}
 
 } //MultipleMessagesNetworkAttackImpl

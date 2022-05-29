@@ -17,6 +17,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.EvolutionaryAlgori
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpecification;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl;
@@ -159,18 +161,22 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		MetricsPackageImpl theMetricsPackage = (MetricsPackageImpl)(registeredPackage instanceof MetricsPackageImpl ? registeredPackage : MetricsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 		ResultsPackageImpl theResultsPackage = (ResultsPackageImpl)(registeredPackage instanceof ResultsPackageImpl ? registeredPackage : ResultsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
+		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTestingPackagePackage.createPackageContents();
 		theAttacksPackage.createPackageContents();
 		theMetricsPackage.createPackageContents();
 		theResultsPackage.createPackageContents();
+		theMRSPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTestingPackagePackage.initializePackageContents();
 		theAttacksPackage.initializePackageContents();
 		theMetricsPackage.initializePackageContents();
 		theResultsPackage.initializePackageContents();
+		theMRSPackagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theTestingPackagePackage.freeze();
@@ -495,11 +501,13 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		AttacksPackage theAttacksPackage = (AttacksPackage)EPackage.Registry.INSTANCE.getEPackage(AttacksPackage.eNS_URI);
 		MetricsPackage theMetricsPackage = (MetricsPackage)EPackage.Registry.INSTANCE.getEPackage(MetricsPackage.eNS_URI);
 		ResultsPackage theResultsPackage = (ResultsPackage)EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
+		MRSPackagePackage theMRSPackagePackage = (MRSPackagePackage)EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theAttacksPackage);
 		getESubpackages().add(theMetricsPackage);
 		getESubpackages().add(theResultsPackage);
+		getESubpackages().add(theMRSPackagePackage);
 
 		// Create type parameters
 

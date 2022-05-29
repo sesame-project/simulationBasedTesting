@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="ASCII"?>
-<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.Attacks="Attacks" xmlns:TestingMM.Metrics="Metrics" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_TiizQN04EeyAL51MCA53dw" name="wallCollisions"/>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_Vo1xYN04EeyAL51MCA53dw" name="completedRooms"/>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_g8Hi0N1AEeyWQcgNPk0koQ" name="humanCollisions"/>
-  <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="attackVel_robot0">
-    <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_bJdhUN04EeyAL51MCA53dw" endTime="1000.0"/>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="Attacks" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="StreamMetric" xmi:id="_TiizQN04EeyAL51MCA53dw" name="wallCollisions"/>
+  <metrics xsi:type="StreamMetric" xmi:id="_Vo1xYN04EeyAL51MCA53dw" name="completedRooms"/>
+  <metrics xsi:type="StreamMetric" xmi:id="_g8Hi0N1AEeyWQcgNPk0koQ" name="humanCollisions"/>
+  <possibleAttacks xsi:type="_1:RandomValueFromSetAttack" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="attackVel_robot0">
+    <attackActivation xsi:type="_1:AttackFixedTime" xmi:id="_bJdhUN04EeyAL51MCA53dw" endTime="1000.0"/>
     <topicToAttack href="healthcareMRS.model#_ayhwsCv_EeykGsd0UrLwGA"/>
-    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_zPrTYN04EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.x" lowerBound="-2.0" upperBound="2.0"/>
-    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_-o_VAN04EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.y" lowerBound="-2.0" upperBound="2.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_zPrTYN04EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.x" lowerBound="-2.0" upperBound="2.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_-o_VAN04EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.y" lowerBound="-2.0" upperBound="2.0"/>
   </possibleAttacks>
-  <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_mIrOcN0YEeyv8LH3vdSfnw" name="attackVel_robot1">
-    <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_ciaRQN04EeyAL51MCA53dw" endTime="1000.0"/>
+  <possibleAttacks xsi:type="_1:RandomValueFromSetAttack" xmi:id="_mIrOcN0YEeyv8LH3vdSfnw" name="attackVel_robot1">
+    <attackActivation xsi:type="_1:AttackFixedTime" xmi:id="_ciaRQN04EeyAL51MCA53dw" endTime="1000.0"/>
     <topicToAttack href="healthcareMRS.model#_QIchgKN9Eeyj3_3IBLBi4g"/>
-    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_2ElrAN04EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
-    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_Bot1gN05EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_2ElrAN04EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_Bot1gN05EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
   </possibleAttacks>
-  <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_mf6CsN0YEeyv8LH3vdSfnw" name="attackVel_robot2">
-    <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_eIZ-sN04EeyAL51MCA53dw" endTime="1000.0"/>
+  <possibleAttacks xsi:type="_1:RandomValueFromSetAttack" xmi:id="_mf6CsN0YEeyv8LH3vdSfnw" name="attackVel_robot2">
+    <attackActivation xsi:type="_1:AttackFixedTime" xmi:id="_eIZ-sN04EeyAL51MCA53dw" endTime="1000.0"/>
     <topicToAttack href="healthcareMRS.model#_SSKAAKN9Eeyj3_3IBLBi4g"/>
-    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_Df9rAN05EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
-    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_DunLAN05EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_Df9rAN05EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_DunLAN05EeyAL51MCA53dw" propertyName="geometry_msgs/twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
   </possibleAttacks>
-  <possibleAttacks xsi:type="TestingMM.Attacks:PacketLossNetworkAttack" xmi:id="__X7doN1DEeyWQcgNPk0koQ">
-    <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_WLT_8N1yEeyMroJPpUfYlA"/>
+  <possibleAttacks xsi:type="_1:PacketLossNetworkAttack" xmi:id="__X7doN1DEeyWQcgNPk0koQ">
+    <attackActivation xsi:type="_1:AttackFixedTime" xmi:id="_WLT_8N1yEeyMroJPpUfYlA"/>
     <topicToAttack href="healthcareMRS.model#_E2QZcN1CEeyWQcgNPk0koQ"/>
     <frequency xmi:id="_W2vikN1yEeyMroJPpUfYlA" upperBound="1.0"/>
   </possibleAttacks>
   <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_Vo1xYN04EeyAL51MCA53dw _TiizQN04EeyAL51MCA53dw _g8Hi0N1AEeyWQcgNPk0koQ" includedAttacks="_lc6UoN0YEeyv8LH3vdSfnw _mIrOcN0YEeyv8LH3vdSfnw _mf6CsN0YEeyv8LH3vdSfnw">
     <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="200"/>
+    <performedTests name="test-29-05-2022-02-02-43"/>
+    <performedTests name="test-29-05-2022-02-02-55"/>
+    <performedTests name="test-29-05-2022-02-03-02"/>
+    <performedTests name="test-29-05-2022-02-03-19"/>
+    <performedTests name="test-29-05-2022-02-03-40"/>
   </campaigns>
 </TestingMM:TestingSpace>

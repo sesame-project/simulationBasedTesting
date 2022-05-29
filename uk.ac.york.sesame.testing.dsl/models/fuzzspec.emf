@@ -89,7 +89,7 @@ class VariableSpecification {
 	attr String variable;
 	attr String reflectionName; //May be optional
 	val VariableType vtype;
-	attr VariableDirection dir; 	
+	attr VariableDirection dir;
 	val OperationParameterSetTypes[1..*] opParamsType;
 	attr boolean vehicleSpecific;
 	val TimingSpec[1] timeLimit;

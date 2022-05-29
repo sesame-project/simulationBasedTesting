@@ -54,7 +54,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 		this.theIProject = theIProject;
 		this.theIProjectPath = theIProjectPath;
 	}
-
+	
 	@Override
 	public void run(IProgressMonitor pm) throws InvocationTargetException, InterruptedException {
 

@@ -21,25 +21,25 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks;
  */
 public interface PacketLossNetworkAttack extends NetworkAttack {
 	/**
-	 * Returns the value of the '<em><b>Frequency</b></em>' attribute.
+	 * Returns the value of the '<em><b>Frequency</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Frequency</em>' attribute.
-	 * @see #setFrequency(double)
+	 * @return the value of the '<em>Frequency</em>' containment reference.
+	 * @see #setFrequency(DoubleRange)
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getPacketLossNetworkAttack_Frequency()
-	 * @model
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	double getFrequency();
+	DoubleRange getFrequency();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.PacketLossNetworkAttack#getFrequency <em>Frequency</em>}' attribute.
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.PacketLossNetworkAttack#getFrequency <em>Frequency</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Frequency</em>' attribute.
+	 * @param value the new value of the '<em>Frequency</em>' containment reference.
 	 * @see #getFrequency()
 	 * @generated
 	 */
-	void setFrequency(double value);
+	void setFrequency(DoubleRange value);
 
 } // PacketLossNetworkAttack

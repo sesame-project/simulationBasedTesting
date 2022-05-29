@@ -21,25 +21,25 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks;
  */
 public interface MultipleMessagesNetworkAttack extends NetworkAttack {
 	/**
-	 * Returns the value of the '<em><b>How Many Clones</b></em>' attribute.
+	 * Returns the value of the '<em><b>How Many Clones</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>How Many Clones</em>' attribute.
-	 * @see #setHowManyClones(int)
+	 * @return the value of the '<em>How Many Clones</em>' containment reference.
+	 * @see #setHowManyClones(IntRange)
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getMultipleMessagesNetworkAttack_HowManyClones()
-	 * @model
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	int getHowManyClones();
+	IntRange getHowManyClones();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.MultipleMessagesNetworkAttack#getHowManyClones <em>How Many Clones</em>}' attribute.
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.MultipleMessagesNetworkAttack#getHowManyClones <em>How Many Clones</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>How Many Clones</em>' attribute.
+	 * @param value the new value of the '<em>How Many Clones</em>' containment reference.
 	 * @see #getHowManyClones()
 	 * @generated
 	 */
-	void setHowManyClones(int value);
+	void setHowManyClones(IntRange value);
 
 } // MultipleMessagesNetworkAttack

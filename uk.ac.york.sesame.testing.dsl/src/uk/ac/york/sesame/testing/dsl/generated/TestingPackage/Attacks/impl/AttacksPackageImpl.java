@@ -50,6 +50,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TopicAttac
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ValueRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ValueSet;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl;
@@ -382,18 +384,22 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		MetricsPackageImpl theMetricsPackage = (MetricsPackageImpl)(registeredPackage instanceof MetricsPackageImpl ? registeredPackage : MetricsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 		ResultsPackageImpl theResultsPackage = (ResultsPackageImpl)(registeredPackage instanceof ResultsPackageImpl ? registeredPackage : ResultsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
+		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theAttacksPackage.createPackageContents();
 		theTestingPackagePackage.createPackageContents();
 		theMetricsPackage.createPackageContents();
 		theResultsPackage.createPackageContents();
+		theMRSPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theAttacksPackage.initializePackageContents();
 		theTestingPackagePackage.initializePackageContents();
 		theMetricsPackage.initializePackageContents();
 		theResultsPackage.initializePackageContents();
+		theMRSPackagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theAttacksPackage.freeze();
@@ -444,8 +450,8 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAttack_MessagesFromAllComponenents() {
-		return (EAttribute)attackEClass.getEStructuralFeatures().get(3);
+	public EReference getAttack_TopicToAttack() {
+		return (EReference)attackEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -453,7 +459,7 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAttack_MessagesToAllComponenents() {
+	public EAttribute getAttack_MessagesFromAllComponenents() {
 		return (EAttribute)attackEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -462,8 +468,53 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getAttack_FromNodes() {
+		return (EReference)attackEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttack_MessagesToAllComponenents() {
+		return (EAttribute)attackEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttack_ToNodes() {
+		return (EReference)attackEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttack_NodeToAttack() {
+		return (EReference)attackEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getAttack_AllPublishingTopics() {
-		return (EAttribute)attackEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)attackEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttack_PublishingTopics() {
+		return (EReference)attackEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -472,7 +523,25 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 	 * @generated
 	 */
 	public EAttribute getAttack_AllSubscribingTopics() {
-		return (EAttribute)attackEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)attackEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttack_SubscribingTopics() {
+		return (EReference)attackEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttack_Next() {
+		return (EReference)attackEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -588,6 +657,15 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getComponentPropertyAttack_PropertyToAttack() {
+		return (EReference)componentPropertyAttackEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getComponentSubPropertyAttack() {
 		return componentSubPropertyAttackEClass;
 	}
@@ -597,8 +675,35 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getComponentSubPropertyAttack_PropertyToAttack() {
+		return (EReference)componentSubPropertyAttackEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getComponentSubPropertyAttack_SubProperty() {
+		return (EReference)componentSubPropertyAttackEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTopicAttack() {
 		return topicAttackEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTopicAttack_SubParameters() {
+		return (EReference)topicAttackEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -894,8 +999,8 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTimeTravelStateAttack_TimeTravelValue() {
-		return (EAttribute)timeTravelStateAttackEClass.getEStructuralFeatures().get(0);
+	public EReference getTimeTravelStateAttack_TimeTravelValue() {
+		return (EReference)timeTravelStateAttackEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -939,8 +1044,8 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLatencyNetworkAttack_Latency() {
-		return (EAttribute)latencyNetworkAttackEClass.getEStructuralFeatures().get(0);
+	public EReference getLatencyNetworkAttack_Latency() {
+		return (EReference)latencyNetworkAttackEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -957,8 +1062,8 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPacketLossNetworkAttack_Frequency() {
-		return (EAttribute)packetLossNetworkAttackEClass.getEStructuralFeatures().get(0);
+	public EReference getPacketLossNetworkAttack_Frequency() {
+		return (EReference)packetLossNetworkAttackEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -975,8 +1080,8 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMultipleMessagesNetworkAttack_HowManyClones() {
-		return (EAttribute)multipleMessagesNetworkAttackEClass.getEStructuralFeatures().get(0);
+	public EReference getMultipleMessagesNetworkAttack_HowManyClones() {
+		return (EReference)multipleMessagesNetworkAttackEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1020,10 +1125,17 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		createEAttribute(attackEClass, ATTACK__NAME);
 		createEAttribute(attackEClass, ATTACK__PRIORITY);
 		createEReference(attackEClass, ATTACK__ATTACK_ACTIVATION);
+		createEReference(attackEClass, ATTACK__TOPIC_TO_ATTACK);
 		createEAttribute(attackEClass, ATTACK__MESSAGES_FROM_ALL_COMPONENENTS);
+		createEReference(attackEClass, ATTACK__FROM_NODES);
 		createEAttribute(attackEClass, ATTACK__MESSAGES_TO_ALL_COMPONENENTS);
+		createEReference(attackEClass, ATTACK__TO_NODES);
+		createEReference(attackEClass, ATTACK__NODE_TO_ATTACK);
 		createEAttribute(attackEClass, ATTACK__ALL_PUBLISHING_TOPICS);
+		createEReference(attackEClass, ATTACK__PUBLISHING_TOPICS);
 		createEAttribute(attackEClass, ATTACK__ALL_SUBSCRIBING_TOPICS);
+		createEReference(attackEClass, ATTACK__SUBSCRIBING_TOPICS);
+		createEReference(attackEClass, ATTACK__NEXT);
 
 		offlineAttackEClass = createEClass(OFFLINE_ATTACK);
 		createEAttribute(offlineAttackEClass, OFFLINE_ATTACK__ATTACK_TIME);
@@ -1045,10 +1157,14 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		componentAttackEClass = createEClass(COMPONENT_ATTACK);
 
 		componentPropertyAttackEClass = createEClass(COMPONENT_PROPERTY_ATTACK);
+		createEReference(componentPropertyAttackEClass, COMPONENT_PROPERTY_ATTACK__PROPERTY_TO_ATTACK);
 
 		componentSubPropertyAttackEClass = createEClass(COMPONENT_SUB_PROPERTY_ATTACK);
+		createEReference(componentSubPropertyAttackEClass, COMPONENT_SUB_PROPERTY_ATTACK__PROPERTY_TO_ATTACK);
+		createEReference(componentSubPropertyAttackEClass, COMPONENT_SUB_PROPERTY_ATTACK__SUB_PROPERTY);
 
 		topicAttackEClass = createEClass(TOPIC_ATTACK);
+		createEReference(topicAttackEClass, TOPIC_ATTACK__SUB_PARAMETERS);
 
 		randomValueAttackEClass = createEClass(RANDOM_VALUE_ATTACK);
 		createEAttribute(randomValueAttackEClass, RANDOM_VALUE_ATTACK__SEED);
@@ -1100,7 +1216,7 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		shutdownStateAttackEClass = createEClass(SHUTDOWN_STATE_ATTACK);
 
 		timeTravelStateAttackEClass = createEClass(TIME_TRAVEL_STATE_ATTACK);
-		createEAttribute(timeTravelStateAttackEClass, TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE);
+		createEReference(timeTravelStateAttackEClass, TIME_TRAVEL_STATE_ATTACK__TIME_TRAVEL_VALUE);
 
 		processKillerStateAttackEClass = createEClass(PROCESS_KILLER_STATE_ATTACK);
 		createEAttribute(processKillerStateAttackEClass, PROCESS_KILLER_STATE_ATTACK__PROCESS_ID);
@@ -1108,13 +1224,13 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		blackholeNetworkAttackEClass = createEClass(BLACKHOLE_NETWORK_ATTACK);
 
 		latencyNetworkAttackEClass = createEClass(LATENCY_NETWORK_ATTACK);
-		createEAttribute(latencyNetworkAttackEClass, LATENCY_NETWORK_ATTACK__LATENCY);
+		createEReference(latencyNetworkAttackEClass, LATENCY_NETWORK_ATTACK__LATENCY);
 
 		packetLossNetworkAttackEClass = createEClass(PACKET_LOSS_NETWORK_ATTACK);
-		createEAttribute(packetLossNetworkAttackEClass, PACKET_LOSS_NETWORK_ATTACK__FREQUENCY);
+		createEReference(packetLossNetworkAttackEClass, PACKET_LOSS_NETWORK_ATTACK__FREQUENCY);
 
 		multipleMessagesNetworkAttackEClass = createEClass(MULTIPLE_MESSAGES_NETWORK_ATTACK);
-		createEAttribute(multipleMessagesNetworkAttackEClass, MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES);
+		createEReference(multipleMessagesNetworkAttackEClass, MULTIPLE_MESSAGES_NETWORK_ATTACK__HOW_MANY_CLONES);
 
 		// Create enums
 		offlineAttackTimeEEnum = createEEnum(OFFLINE_ATTACK_TIME);
@@ -1142,6 +1258,9 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		setName(eNAME);
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
+
+		// Obtain other dependent packages
+		MRSPackagePackage theMRSPackagePackage = (MRSPackagePackage)EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1186,10 +1305,17 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		initEAttribute(getAttack_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttack_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAttack_AttackActivation(), this.getAttackActivation(), null, "attackActivation", null, 0, -1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttack_TopicToAttack(), theMRSPackagePackage.getTopic(), null, "topicToAttack", null, 0, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttack_MessagesFromAllComponenents(), ecorePackage.getEBoolean(), "messagesFromAllComponenents", "true", 0, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttack_FromNodes(), theMRSPackagePackage.getNode(), null, "fromNodes", null, 0, -1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttack_MessagesToAllComponenents(), ecorePackage.getEBoolean(), "messagesToAllComponenents", "true", 0, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttack_ToNodes(), theMRSPackagePackage.getNode(), null, "toNodes", null, 0, -1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttack_NodeToAttack(), theMRSPackagePackage.getNode(), null, "nodeToAttack", null, 0, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttack_AllPublishingTopics(), ecorePackage.getEBoolean(), "allPublishingTopics", "false", 0, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttack_PublishingTopics(), theMRSPackagePackage.getTopic(), null, "publishingTopics", null, 0, -1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttack_AllSubscribingTopics(), ecorePackage.getEBoolean(), "allSubscribingTopics", "false", 0, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttack_SubscribingTopics(), theMRSPackagePackage.getTopic(), null, "subscribingTopics", null, 0, -1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttack_Next(), this.getAttack(), null, "next", null, 1, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(offlineAttackEClass, OfflineAttack.class, "OfflineAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOfflineAttack_AttackTime(), this.getOfflineAttackTime(), "attackTime", null, 0, 1, OfflineAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1211,10 +1337,14 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		initEClass(componentAttackEClass, ComponentAttack.class, "ComponentAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(componentPropertyAttackEClass, ComponentPropertyAttack.class, "ComponentPropertyAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComponentPropertyAttack_PropertyToAttack(), theMRSPackagePackage.getComponentProperty(), null, "propertyToAttack", null, 0, 1, ComponentPropertyAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(componentSubPropertyAttackEClass, ComponentSubPropertyAttack.class, "ComponentSubPropertyAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComponentSubPropertyAttack_PropertyToAttack(), theMRSPackagePackage.getComponentProperty(), null, "propertyToAttack", null, 0, 1, ComponentSubPropertyAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponentSubPropertyAttack_SubProperty(), theMRSPackagePackage.getType(), null, "subProperty", null, 0, 1, ComponentSubPropertyAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(topicAttackEClass, TopicAttack.class, "TopicAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTopicAttack_SubParameters(), theMRSPackagePackage.getParameter(), null, "subParameters", null, 0, -1, TopicAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(randomValueAttackEClass, RandomValueAttack.class, "RandomValueAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRandomValueAttack_Seed(), ecorePackage.getEInt(), "seed", null, 0, 1, RandomValueAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1266,7 +1396,7 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		initEClass(shutdownStateAttackEClass, ShutdownStateAttack.class, "ShutdownStateAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(timeTravelStateAttackEClass, TimeTravelStateAttack.class, "TimeTravelStateAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTimeTravelStateAttack_TimeTravelValue(), ecorePackage.getEInt(), "timeTravelValue", null, 0, 1, TimeTravelStateAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTimeTravelStateAttack_TimeTravelValue(), this.getDoubleRange(), null, "timeTravelValue", null, 1, 1, TimeTravelStateAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(processKillerStateAttackEClass, ProcessKillerStateAttack.class, "ProcessKillerStateAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProcessKillerStateAttack_ProcessId(), ecorePackage.getEInt(), "processId", null, 0, 1, ProcessKillerStateAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1274,13 +1404,13 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		initEClass(blackholeNetworkAttackEClass, BlackholeNetworkAttack.class, "BlackholeNetworkAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(latencyNetworkAttackEClass, LatencyNetworkAttack.class, "LatencyNetworkAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLatencyNetworkAttack_Latency(), ecorePackage.getEDouble(), "latency", null, 0, 1, LatencyNetworkAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLatencyNetworkAttack_Latency(), this.getDoubleRange(), null, "latency", null, 1, 1, LatencyNetworkAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packetLossNetworkAttackEClass, PacketLossNetworkAttack.class, "PacketLossNetworkAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPacketLossNetworkAttack_Frequency(), ecorePackage.getEDouble(), "frequency", null, 0, 1, PacketLossNetworkAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPacketLossNetworkAttack_Frequency(), this.getDoubleRange(), null, "frequency", null, 1, 1, PacketLossNetworkAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multipleMessagesNetworkAttackEClass, MultipleMessagesNetworkAttack.class, "MultipleMessagesNetworkAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMultipleMessagesNetworkAttack_HowManyClones(), ecorePackage.getEInt(), "howManyClones", null, 0, 1, MultipleMessagesNetworkAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultipleMessagesNetworkAttack_HowManyClones(), this.getIntRange(), null, "howManyClones", null, 1, 1, MultipleMessagesNetworkAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(offlineAttackTimeEEnum, OfflineAttackTime.class, "OfflineAttackTime");

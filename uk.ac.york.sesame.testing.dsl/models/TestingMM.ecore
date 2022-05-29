@@ -48,28 +48,28 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attackActivation" upperBound="-1"
           eType="#//Attacks/AttackActivation" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="topicToAttack" eType="ecore:EClass http://ExSceMM#//Topic"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="topicToAttack" eType="#//MRSPackage/Topic"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="messagesFromAllComponenents"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="fromNodes" upperBound="-1"
-          eType="ecore:EClass http://ExSceMM#//Node"/>
+          eType="#//MRSPackage/Node"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="messagesToAllComponenents"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="toNodes" upperBound="-1"
-          eType="ecore:EClass http://ExSceMM#//Node"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="nodeToAttack" eType="ecore:EClass http://ExSceMM#//Node"/>
+          eType="#//MRSPackage/Node"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nodeToAttack" eType="#//MRSPackage/Node"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="allPublishingTopics"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="publishingTopics" upperBound="-1"
-          eType="ecore:EClass http://ExSceMM#//Topic"/>
+          eType="#//MRSPackage/Topic"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="allSubscribingTopics"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subscribingTopics" upperBound="-1"
-          eType="ecore:EClass http://ExSceMM#//Topic"/>
+          eType="#//MRSPackage/Topic"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1"
           eType="#//Attacks/Attack"/>
     </eClassifiers>
@@ -91,15 +91,15 @@
     <eClassifiers xsi:type="ecore:EClass" name="FuzzTestingAttack" eSuperTypes="#//Attacks/Attack"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComponentAttack" eSuperTypes="#//Attacks/FuzzTestingAttack"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComponentPropertyAttack" eSuperTypes="#//Attacks/FuzzTestingAttack">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="propertyToAttack" eType="ecore:EClass http://ExSceMM#//ComponentProperty"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="propertyToAttack" eType="#//MRSPackage/ComponentProperty"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComponentSubPropertyAttack" eSuperTypes="#//Attacks/FuzzTestingAttack">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="propertyToAttack" eType="ecore:EClass http://ExSceMM#//ComponentProperty"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="subProperty" eType="ecore:EClass http://ExSceMM#//Type"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="propertyToAttack" eType="#//MRSPackage/ComponentProperty"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subProperty" eType="#//MRSPackage/Type"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TopicAttack" eSuperTypes="#//Attacks/FuzzTestingAttack">
       <eStructuralFeatures xsi:type="ecore:EReference" name="subParameters" upperBound="-1"
-          eType="ecore:EClass http://ExSceMM#//Parameter"/>
+          eType="#//MRSPackage/Parameter"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RandomValueAttack" eSuperTypes="#//Attacks/ComponentPropertyAttack">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="seed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -171,11 +171,11 @@
     <eClassifiers xsi:type="ecore:EClass" name="Metric" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="relatedTopics" upperBound="-1"
-          eType="ecore:EClass http://ExSceMM#//Topic"/>
+          eType="#//MRSPackage/Topic"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TopicMetric" eSuperTypes="#//Metrics/Metric">
       <eStructuralFeatures xsi:type="ecore:EReference" name="chosenTopics" lowerBound="1"
-          eType="ecore:EClass http://ExSceMM#//Topic"/>
+          eType="#//MRSPackage/Topic"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MetricInstance">
       <eStructuralFeatures xsi:type="ecore:EReference" name="metric" lowerBound="1"
@@ -185,7 +185,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PropertyMetric" abstract="true" eSuperTypes="#//Metrics/Metric">
       <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
-          eType="ecore:EClass http://ExSceMM#//ComponentProperty"/>
+          eType="#//MRSPackage/ComponentProperty"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConditionalPropertyMetric" eSuperTypes="#//Metrics/PropertyMetric">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -205,6 +205,66 @@
     <eClassifiers xsi:type="ecore:EClass" name="Result">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="MRSPackage" nsURI="MRSPackage" nsPrefix="">
+    <eClassifiers xsi:type="ecore:EClass" name="MRS">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="topics" upperBound="-1"
+          eType="#//MRSPackage/Topic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="launchFileLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+          eType="#//MRSPackage/Node" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="simulator" lowerBound="1"
+          eType="#//MRSPackage/Simulator" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="propertyType" upperBound="-1"
+          eType="#//MRSPackage/Type" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Node">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subscriber" upperBound="-1"
+          eType="#//MRSPackage/Topic"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="publisher" upperBound="-1"
+          eType="#//MRSPackage/Topic"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+          eType="#//MRSPackage/ComponentProperty"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Topic">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+          eType="#//MRSPackage/Type"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Type">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="parsingMethod" lowerBound="1"
+          eType="#//MRSPackage/ParsingMethod"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+          eType="#//MRSPackage/Parameter" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ParsingMethod">
+      <eLiterals name="JSON"/>
+      <eLiterals name="CSV" value="1"/>
+      <eLiterals name="CUSTOM" value="2"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subparameters" upperBound="-1"
+          eType="#//MRSPackage/Parameter" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+          eType="#//MRSPackage/Type"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ComponentProperty">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+          eType="#//MRSPackage/Type"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Simulator" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ROSSimulator" eSuperTypes="#//MRSPackage/Simulator">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MOOSSimulator" eSuperTypes="#//MRSPackage/Simulator">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

@@ -290,10 +290,10 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	}
 
 	public String getMainClassName() {
-		return "mainClass.java";
+		return t.getName() + "_testSuiteRunner.java";
 	}
 
 	public void ensureModelUpdated(String spaceModelFileName) {
-		// TODO Auto-generated method stub
+		// TODO ensure the newly updated model is generated
 	}
 }

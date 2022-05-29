@@ -21,25 +21,25 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks;
  */
 public interface TimeTravelStateAttack extends StateAttack {
 	/**
-	 * Returns the value of the '<em><b>Time Travel Value</b></em>' attribute.
+	 * Returns the value of the '<em><b>Time Travel Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Time Travel Value</em>' attribute.
-	 * @see #setTimeTravelValue(int)
+	 * @return the value of the '<em>Time Travel Value</em>' containment reference.
+	 * @see #setTimeTravelValue(DoubleRange)
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getTimeTravelStateAttack_TimeTravelValue()
-	 * @model
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	int getTimeTravelValue();
+	DoubleRange getTimeTravelValue();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TimeTravelStateAttack#getTimeTravelValue <em>Time Travel Value</em>}' attribute.
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TimeTravelStateAttack#getTimeTravelValue <em>Time Travel Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Time Travel Value</em>' attribute.
+	 * @param value the new value of the '<em>Time Travel Value</em>' containment reference.
 	 * @see #getTimeTravelValue()
 	 * @generated
 	 */
-	void setTimeTravelValue(int value);
+	void setTimeTravelValue(DoubleRange value);
 
 } // TimeTravelStateAttack

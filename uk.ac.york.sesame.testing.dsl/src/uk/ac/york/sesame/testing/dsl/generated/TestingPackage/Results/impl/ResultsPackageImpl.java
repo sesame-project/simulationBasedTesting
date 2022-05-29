@@ -12,6 +12,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPac
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl;
@@ -92,18 +94,22 @@ public class ResultsPackageImpl extends EPackageImpl implements ResultsPackage {
 		AttacksPackageImpl theAttacksPackage = (AttacksPackageImpl)(registeredPackage instanceof AttacksPackageImpl ? registeredPackage : AttacksPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MetricsPackage.eNS_URI);
 		MetricsPackageImpl theMetricsPackage = (MetricsPackageImpl)(registeredPackage instanceof MetricsPackageImpl ? registeredPackage : MetricsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
+		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theResultsPackage.createPackageContents();
 		theTestingPackagePackage.createPackageContents();
 		theAttacksPackage.createPackageContents();
 		theMetricsPackage.createPackageContents();
+		theMRSPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theResultsPackage.initializePackageContents();
 		theTestingPackagePackage.initializePackageContents();
 		theAttacksPackage.initializePackageContents();
 		theMetricsPackage.initializePackageContents();
+		theMRSPackagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theResultsPackage.freeze();

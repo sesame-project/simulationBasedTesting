@@ -25,55 +25,18 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private Random rng;
 	private MetricHandler metricHandler;
 	
-//  TODO: this should be replaced with ROSSimualator or other simulator object
-//	private StartFuzzingProcesses runner;
-
 	private FileWriter tempLog;
 	private int variableFixedSize;
 	private int constraintCount = 0;
 	private int runCount = 0;
 
-	//private FuzzingExperimentGenerator initialGenerator;
-	private String bashPath;
-	private String workingPath;
-	private String middlewarePath;
-	private String logPath;
-	
-	private String exptTagBase;
-	
 	private String spaceModelFileName;
 	private String campaignName;
 	
 	// TODO: how to model the grammar
 	//Grammar<String> grammar;
 
-	private void readProperties() {
-		Properties prop = new Properties();
-		String fileName = "fuzzingexpt.config";
-		InputStream is = null;
-		try {
-			is = new FileInputStream(fileName);
-		} catch (FileNotFoundException ex) {
-			ex.printStackTrace();
-		}
-		try {
-			prop.load(is);
-			// logPath = prop.getProperty("paths.ros.log");
-			bashPath = prop.getProperty("paths.bash_script");
-			workingPath = prop.getProperty("paths.working");
-			logPath = workingPath + "/logs/";
-			middlewarePath = prop.getProperty("paths.middleware");
-			//runner = new StartFuzzingProcesses(bashPath, workingPath, middlewarePath);
-
-			is.close();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-	
-	public String getWorkingPath() {
-		return workingPath;
-	}
+	// properties have been removed - they are either redundant or set from the model
 
 	private void setup() throws IOException {
 
@@ -133,9 +96,10 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			solution.ensureModelUpdated(spaceModelFileName);
 			
 			// This needs to transform the testing space model into code - by invoking EGL
-			SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile);
+			SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName);
 			eglEx.run();
-			// TODO: now need to compile/execute the resulting main() method
+			
+			// TODO: need to compile/execute the resulting main() method now
 			CompileLoader.compileLoader(mainClassName);
 			// Invokes the main method for this code
 			RunExperiment.runExpt(mainClassName);			
@@ -143,7 +107,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 												
 			System.out.println("modelFileName = " + modelFileName);
 			// The metric values now need to be extracted from the model file
-			Map<SESAMEMetric, Double> res = metricHandler.extractAll(modelFileName);
+			Map<SESAMEMetric, Double> res = metricHandler.extractAll(spaceModelFileName);
 						
 			// --------------------------------------------------------------------------------------------			
 			// This is for handling the metrics and setting them for JMetal internal operations
@@ -186,6 +150,12 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	public SESAMETestSolution createSolution() {
 		// TODO: Needs to create the initial selections from the TestingSpace and constraints from TestCampaign
+		
+		// Create a new SESAMTestSolution 
+		// it is created with attacks specified within the space
+		// attacks can be a "subset" of each of the selected attacks
+		// probability of inclusion?
+		
 		return new SESAMETestSolution();
 		
 //		int tryCount = 0;

@@ -13,6 +13,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPac
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FileStreamResult;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.InputStream;
@@ -173,18 +175,22 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		AttacksPackageImpl theAttacksPackage = (AttacksPackageImpl)(registeredPackage instanceof AttacksPackageImpl ? registeredPackage : AttacksPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 		ResultsPackageImpl theResultsPackage = (ResultsPackageImpl)(registeredPackage instanceof ResultsPackageImpl ? registeredPackage : ResultsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
+		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theMetricsPackage.createPackageContents();
 		theTestingPackagePackage.createPackageContents();
 		theAttacksPackage.createPackageContents();
 		theResultsPackage.createPackageContents();
+		theMRSPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theMetricsPackage.initializePackageContents();
 		theTestingPackagePackage.initializePackageContents();
 		theAttacksPackage.initializePackageContents();
 		theResultsPackage.initializePackageContents();
+		theMRSPackagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theMetricsPackage.freeze();
@@ -244,8 +250,26 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMetric_RelatedTopics() {
+		return (EReference)metricEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTopicMetric() {
 		return topicMetricEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTopicMetric_ChosenTopics() {
+		return (EReference)topicMetricEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -282,6 +306,15 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 */
 	public EClass getPropertyMetric() {
 		return propertyMetricEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPropertyMetric_Property() {
+		return (EReference)propertyMetricEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -392,14 +425,17 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 
 		metricEClass = createEClass(METRIC);
 		createEAttribute(metricEClass, METRIC__NAME);
+		createEReference(metricEClass, METRIC__RELATED_TOPICS);
 
 		topicMetricEClass = createEClass(TOPIC_METRIC);
+		createEReference(topicMetricEClass, TOPIC_METRIC__CHOSEN_TOPICS);
 
 		metricInstanceEClass = createEClass(METRIC_INSTANCE);
 		createEReference(metricInstanceEClass, METRIC_INSTANCE__METRIC);
 		createEReference(metricInstanceEClass, METRIC_INSTANCE__RESULT);
 
 		propertyMetricEClass = createEClass(PROPERTY_METRIC);
+		createEReference(propertyMetricEClass, PROPERTY_METRIC__PROPERTY);
 
 		conditionalPropertyMetricEClass = createEClass(CONDITIONAL_PROPERTY_METRIC);
 		createEAttribute(conditionalPropertyMetricEClass, CONDITIONAL_PROPERTY_METRIC__CONDITION);
@@ -438,6 +474,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		MRSPackagePackage theMRSPackagePackage = (MRSPackagePackage)EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		ResultsPackage theResultsPackage = (ResultsPackage)EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 
 		// Create type parameters
@@ -462,14 +499,17 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 
 		initEClass(metricEClass, Metric.class, "Metric", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMetric_Name(), ecorePackage.getEString(), "name", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMetric_RelatedTopics(), theMRSPackagePackage.getTopic(), null, "relatedTopics", null, 0, -1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(topicMetricEClass, TopicMetric.class, "TopicMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTopicMetric_ChosenTopics(), theMRSPackagePackage.getTopic(), null, "chosenTopics", null, 1, 1, TopicMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(metricInstanceEClass, MetricInstance.class, "MetricInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMetricInstance_Metric(), this.getMetric(), null, "metric", null, 1, 1, MetricInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetricInstance_Result(), theResultsPackage.getResult(), null, "result", null, 1, 1, MetricInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyMetricEClass, PropertyMetric.class, "PropertyMetric", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPropertyMetric_Property(), theMRSPackagePackage.getComponentProperty(), null, "property", null, 1, 1, PropertyMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conditionalPropertyMetricEClass, ConditionalPropertyMetric.class, "ConditionalPropertyMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConditionalPropertyMetric_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, ConditionalPropertyMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

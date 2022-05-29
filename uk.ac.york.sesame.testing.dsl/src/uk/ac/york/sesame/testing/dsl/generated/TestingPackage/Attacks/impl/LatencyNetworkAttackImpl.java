@@ -4,11 +4,14 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.DoubleRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.LatencyNetworkAttack;
 
 /**
@@ -26,24 +29,14 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.LatencyNet
  */
 public class LatencyNetworkAttackImpl extends NetworkAttackImpl implements LatencyNetworkAttack {
 	/**
-	 * The default value of the '{@link #getLatency() <em>Latency</em>}' attribute.
+	 * The cached value of the '{@link #getLatency() <em>Latency</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLatency()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double LATENCY_EDEFAULT = 0.0;
-
-	/**
-	 * The cached value of the '{@link #getLatency() <em>Latency</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLatency()
-	 * @generated
-	 * @ordered
-	 */
-	protected double latency = LATENCY_EDEFAULT;
+	protected DoubleRange latency;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,7 +62,7 @@ public class LatencyNetworkAttackImpl extends NetworkAttackImpl implements Laten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getLatency() {
+	public DoubleRange getLatency() {
 		return latency;
 	}
 
@@ -78,11 +71,47 @@ public class LatencyNetworkAttackImpl extends NetworkAttackImpl implements Laten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLatency(double newLatency) {
-		double oldLatency = latency;
+	public NotificationChain basicSetLatency(DoubleRange newLatency, NotificationChain msgs) {
+		DoubleRange oldLatency = latency;
 		latency = newLatency;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AttacksPackage.LATENCY_NETWORK_ATTACK__LATENCY, oldLatency, latency));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AttacksPackage.LATENCY_NETWORK_ATTACK__LATENCY, oldLatency, newLatency);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLatency(DoubleRange newLatency) {
+		if (newLatency != latency) {
+			NotificationChain msgs = null;
+			if (latency != null)
+				msgs = ((InternalEObject)latency).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AttacksPackage.LATENCY_NETWORK_ATTACK__LATENCY, null, msgs);
+			if (newLatency != null)
+				msgs = ((InternalEObject)newLatency).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AttacksPackage.LATENCY_NETWORK_ATTACK__LATENCY, null, msgs);
+			msgs = basicSetLatency(newLatency, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AttacksPackage.LATENCY_NETWORK_ATTACK__LATENCY, newLatency, newLatency));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AttacksPackage.LATENCY_NETWORK_ATTACK__LATENCY:
+				return basicSetLatency(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -108,7 +137,7 @@ public class LatencyNetworkAttackImpl extends NetworkAttackImpl implements Laten
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AttacksPackage.LATENCY_NETWORK_ATTACK__LATENCY:
-				setLatency((Double)newValue);
+				setLatency((DoubleRange)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -123,7 +152,7 @@ public class LatencyNetworkAttackImpl extends NetworkAttackImpl implements Laten
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case AttacksPackage.LATENCY_NETWORK_ATTACK__LATENCY:
-				setLatency(LATENCY_EDEFAULT);
+				setLatency((DoubleRange)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -138,25 +167,9 @@ public class LatencyNetworkAttackImpl extends NetworkAttackImpl implements Laten
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case AttacksPackage.LATENCY_NETWORK_ATTACK__LATENCY:
-				return latency != LATENCY_EDEFAULT;
+				return latency != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (latency: ");
-		result.append(latency);
-		result.append(')');
-		return result.toString();
 	}
 
 } //LatencyNetworkAttackImpl

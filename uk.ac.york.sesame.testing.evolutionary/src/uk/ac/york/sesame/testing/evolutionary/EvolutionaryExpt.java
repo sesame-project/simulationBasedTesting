@@ -164,7 +164,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			((NSGAII_ResultLogging)algorithm).logMetricsForOutput("jmetal-final-csv-results.res", nonDomFinalFile);
 			
 			SESAMEEvaluationProblem sp = (SESAMEEvaluationProblem)problem;
-			String workingPath = sp.getWorkingPath();
+			//String workingPath = sp.getWorkingPath();
 			
 			if (!referenceParetoFront.equals("")) {
 				printQualityIndicators(population, referenceParetoFront);

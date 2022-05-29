@@ -160,13 +160,22 @@ public interface MetricsPackage extends EPackage {
 	int METRIC__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METRIC__RELATED_TOPICS = 1;
+
+	/**
 	 * The number of structural features of the '<em>Metric</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC_FEATURE_COUNT = 1;
+	int METRIC_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Metric</em>' class.
@@ -197,13 +206,31 @@ public interface MetricsPackage extends EPackage {
 	int TOPIC_METRIC__NAME = METRIC__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_METRIC__RELATED_TOPICS = METRIC__RELATED_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Chosen Topics</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_METRIC__CHOSEN_TOPICS = METRIC_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Topic Metric</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC_METRIC_FEATURE_COUNT = METRIC_FEATURE_COUNT + 0;
+	int TOPIC_METRIC_FEATURE_COUNT = METRIC_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Topic Metric</em>' class.
@@ -280,13 +307,31 @@ public interface MetricsPackage extends EPackage {
 	int PROPERTY_METRIC__NAME = METRIC__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_METRIC__RELATED_TOPICS = METRIC__RELATED_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_METRIC__PROPERTY = METRIC_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Property Metric</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_METRIC_FEATURE_COUNT = METRIC_FEATURE_COUNT + 0;
+	int PROPERTY_METRIC_FEATURE_COUNT = METRIC_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Property Metric</em>' class.
@@ -315,6 +360,24 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONDITIONAL_PROPERTY_METRIC__NAME = PROPERTY_METRIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_PROPERTY_METRIC__RELATED_TOPICS = PROPERTY_METRIC__RELATED_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_PROPERTY_METRIC__PROPERTY = PROPERTY_METRIC__PROPERTY;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -361,6 +424,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int STREAM_METRIC__NAME = METRIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STREAM_METRIC__RELATED_TOPICS = METRIC__RELATED_TOPICS;
 
 	/**
 	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
@@ -516,6 +588,17 @@ public interface MetricsPackage extends EPackage {
 	EAttribute getMetric_Name();
 
 	/**
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedTopics <em>Related Topics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Related Topics</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedTopics()
+	 * @see #getMetric()
+	 * @generated
+	 */
+	EReference getMetric_RelatedTopics();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.TopicMetric <em>Topic Metric</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -524,6 +607,17 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTopicMetric();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.TopicMetric#getChosenTopics <em>Chosen Topics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Chosen Topics</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.TopicMetric#getChosenTopics()
+	 * @see #getTopicMetric()
+	 * @generated
+	 */
+	EReference getTopicMetric_ChosenTopics();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance <em>Metric Instance</em>}'.
@@ -566,6 +660,17 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPropertyMetric();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.PropertyMetric#getProperty <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Property</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.PropertyMetric#getProperty()
+	 * @see #getPropertyMetric()
+	 * @generated
+	 */
+	EReference getPropertyMetric_Property();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric <em>Conditional Property Metric</em>}'.
@@ -723,6 +828,14 @@ public interface MetricsPackage extends EPackage {
 		EAttribute METRIC__NAME = eINSTANCE.getMetric_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Related Topics</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METRIC__RELATED_TOPICS = eINSTANCE.getMetric_RelatedTopics();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.TopicMetricImpl <em>Topic Metric</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -731,6 +844,14 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TOPIC_METRIC = eINSTANCE.getTopicMetric();
+
+		/**
+		 * The meta object literal for the '<em><b>Chosen Topics</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TOPIC_METRIC__CHOSEN_TOPICS = eINSTANCE.getTopicMetric_ChosenTopics();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricInstanceImpl <em>Metric Instance</em>}' class.
@@ -767,6 +888,14 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PROPERTY_METRIC = eINSTANCE.getPropertyMetric();
+
+		/**
+		 * The meta object literal for the '<em><b>Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROPERTY_METRIC__PROPERTY = eINSTANCE.getPropertyMetric_Property();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.ConditionalPropertyMetricImpl <em>Conditional Property Metric</em>}' class.
