@@ -160,13 +160,22 @@ public interface MetricsPackage extends EPackage {
 	int METRIC__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Metric ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METRIC__METRIC_ID = 1;
+
+	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC__RELATED_TOPICS = 1;
+	int METRIC__RELATED_TOPICS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Metric</em>' class.
@@ -175,7 +184,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC_FEATURE_COUNT = 2;
+	int METRIC_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Metric</em>' class.
@@ -204,6 +213,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOPIC_METRIC__NAME = METRIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Metric ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_METRIC__METRIC_ID = METRIC__METRIC_ID;
 
 	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
@@ -307,6 +325,15 @@ public interface MetricsPackage extends EPackage {
 	int PROPERTY_METRIC__NAME = METRIC__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Metric ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_METRIC__METRIC_ID = METRIC__METRIC_ID;
+
+	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -360,6 +387,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONDITIONAL_PROPERTY_METRIC__NAME = PROPERTY_METRIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Metric ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_PROPERTY_METRIC__METRIC_ID = PROPERTY_METRIC__METRIC_ID;
 
 	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
@@ -424,6 +460,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int STREAM_METRIC__NAME = METRIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Metric ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STREAM_METRIC__METRIC_ID = METRIC__METRIC_ID;
 
 	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
@@ -586,6 +631,17 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getMetric_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getMetricID <em>Metric ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Metric ID</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getMetricID()
+	 * @see #getMetric()
+	 * @generated
+	 */
+	EAttribute getMetric_MetricID();
 
 	/**
 	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedTopics <em>Related Topics</em>}'.
@@ -826,6 +882,14 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute METRIC__NAME = eINSTANCE.getMetric_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Metric ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METRIC__METRIC_ID = eINSTANCE.getMetric_MetricID();
 
 		/**
 		 * The meta object literal for the '<em><b>Related Topics</b></em>' reference list feature.

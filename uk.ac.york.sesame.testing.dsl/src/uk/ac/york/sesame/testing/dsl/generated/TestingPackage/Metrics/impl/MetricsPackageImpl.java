@@ -250,8 +250,17 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMetric_MetricID() {
+		return (EAttribute)metricEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getMetric_RelatedTopics() {
-		return (EReference)metricEClass.getEStructuralFeatures().get(1);
+		return (EReference)metricEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -425,6 +434,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 
 		metricEClass = createEClass(METRIC);
 		createEAttribute(metricEClass, METRIC__NAME);
+		createEAttribute(metricEClass, METRIC__METRIC_ID);
 		createEReference(metricEClass, METRIC__RELATED_TOPICS);
 
 		topicMetricEClass = createEClass(TOPIC_METRIC);
@@ -499,6 +509,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 
 		initEClass(metricEClass, Metric.class, "Metric", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMetric_Name(), ecorePackage.getEString(), "name", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMetric_MetricID(), ecorePackage.getEInt(), "metricID", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetric_RelatedTopics(), theMRSPackagePackage.getTopic(), null, "relatedTopics", null, 0, -1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(topicMetricEClass, TopicMetric.class, "TopicMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

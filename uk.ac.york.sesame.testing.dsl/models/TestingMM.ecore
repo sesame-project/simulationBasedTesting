@@ -170,6 +170,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="OutputStream" eSuperTypes="#//Metrics/SimStream"/>
     <eClassifiers xsi:type="ecore:EClass" name="Metric" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="metricID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="relatedTopics" upperBound="-1"
           eType="#//MRSPackage/Topic"/>
     </eClassifiers>
