@@ -1,22 +1,10 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
-import java.util.Properties;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 import org.uma.jmetal.algorithm.Algorithm;
-import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAII;
-import org.uma.jmetal.operator.mutation.MutationOperator;
 import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.TournamentSelection;
 import org.uma.jmetal.problem.Problem;
@@ -58,6 +46,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
 	static private String referenceParetoFront = "";
 
+	// TODO: mutation parameters, put into the model
 	private double timingMutProb;
 	private double participantsMutProb;
 	private double paramMutProb;
@@ -170,6 +159,10 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 				printQualityIndicators(population, referenceParetoFront);
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InvalidTestCampaign e) {
+			// TODO: auto-generated
+			System.out.println("Evaluation failed - invalid TestCampaign");
 			e.printStackTrace();
 		}
 	}

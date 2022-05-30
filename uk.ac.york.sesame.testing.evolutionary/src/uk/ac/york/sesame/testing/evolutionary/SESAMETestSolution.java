@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.uma.jmetal.solution.*;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl;
 
 public class SESAMETestSolution implements Solution<SESAMETestAttack> {
@@ -15,17 +16,13 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	private TestImpl t;
 	
 	private boolean actuallyRun;
-	private String exptTag;
 	private double exptRunTime;
-	String baseDir = "/tmp";
 	
 	private Map<Object, Object> attributes = new HashMap<Object, Object>();
 	private Map<Integer, Double> objectives = new HashMap<Integer, Double>();
-	private Map<Integer, SESAMEMetric> objectiveNames = new HashMap<Integer, SESAMEMetric>();
+	private Map<Integer, Metric> objectiveMetrics = new HashMap<Integer, Metric>();
 	private Map<Integer, Double> constraints = new HashMap<Integer, Double>();
 	private List<SESAMETestAttack> contents = new ArrayList<SESAMETestAttack>();
-
-	private String csvFileName;
 
 	public SESAMETestSolution() {
 		
@@ -276,17 +273,17 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 //		}
 //	}
 
-	public void setObjectiveMetric(int i, SESAMEMetric m) {
-		objectiveNames.put(i, m);
+	public void setObjectiveMetric(int i, Metric m) {
+		objectiveMetrics.put(i, m);
 	}
 	
-	public SESAMEMetric getObjectiveMetric(int i) {
-		return objectiveNames.get(i);
+	public Metric getObjectiveMetric(int i) {
+		return objectiveMetrics.get(i);
 	}
 	
 	public String getObjectiveMetricName(int i) {
-		SESAMEMetric m = objectiveNames.get(i);
-		return m.getClass().getSimpleName();
+		Metric m = objectiveMetrics.get(i);
+		return m.getName();
 	}
 
 	public String getMainClassName() {

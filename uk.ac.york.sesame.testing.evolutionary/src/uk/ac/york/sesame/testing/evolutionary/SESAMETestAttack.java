@@ -1,5 +1,6 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttackImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl;
 
@@ -7,10 +8,11 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl;
 public class SESAMETestAttack {
 	
 	private TestImpl parentTest;
-	private AttackImpl t;
+	private Attack t;
 	
-	public SESAMETestAttack(SESAMETestSolution sol) {
-		parentTest = sol.getInternalType();
+	public SESAMETestAttack(SESAMETestSolution sol, Attack t) {
+		this.parentTest = sol.getInternalType();
+		this.t = t;
 	}
 
 	public SESAMETestAttack dup() {
