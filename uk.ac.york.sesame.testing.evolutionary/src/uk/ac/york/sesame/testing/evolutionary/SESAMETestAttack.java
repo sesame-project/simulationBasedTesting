@@ -1,13 +1,12 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttackImpl;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl;
 
 // This is a holder for the implementation of the Attack
 public class SESAMETestAttack {
 	
-	private TestImpl parentTest;
+	private Test parentTest;
 	private Attack t;
 	
 	public SESAMETestAttack(SESAMETestSolution sol, Attack t) {

@@ -26,13 +26,15 @@ import org.eclipse.epsilon.eol.types.EolAnyType;
 public class SESAMEEGLExecutor {
 
 	private String testingModelPath;
-	private String mrsModelPath;
+	//private String mrsModelPath;
+	
+	private String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
 		
 	private String codeOutputPath = "/tmp/codegenerationPath/";
 	
 	public SESAMEEGLExecutor(String testingModelPath, String mrsModelPath, String campaignName) {
 		this.testingModelPath = testingModelPath;
-		this.mrsModelPath = mrsModelPath;
+		//this.mrsModelPath = mrsModelPath;
 	}
 	
 	protected static ArrayList<String> registerMMs() throws IOException, UnknownPath {
@@ -43,11 +45,11 @@ public class SESAMEEGLExecutor {
 
 		String modelPath = PathDefinitions.getPath(PathDefinitions.PathSpec.MODEL_PATH);
 
-		Resource mrsMM = xmiFactory.createResource(URI.createFileURI(modelPath + "ExSceMM.ecore"));
-		mrsMM.load(null);
-		EPackage pkgMRS = (EPackage) mrsMM.getContents().get(0);
-		EPackage.Registry.INSTANCE.put(pkgMRS.getNsURI(), pkgMRS);
-		mmURIs.add(pkgMRS.getNsURI());
+		//Resource mrsMM = xmiFactory.createResource(URI.createFileURI(modelPath + "ExSceMM.ecore"));
+		//mrsMM.load(null);
+		//EPackage pkgMRS = (EPackage) mrsMM.getContents().get(0);
+		//EPackage.Registry.INSTANCE.put(pkgMRS.getNsURI(), pkgMRS);
+		//mmURIs.add(pkgMRS.getNsURI());
 
 		Resource testingMM = xmiFactory.createResource(URI.createFileURI(modelPath + "TestingMM.ecore"));
 		testingMM.load(null);
@@ -85,7 +87,7 @@ public class SESAMEEGLExecutor {
 	public void run() {
 		try {
 			registerMMs();
-			EmfModel mrsModel = createAndLoadAnEmfModel("http://ExSceMM", this.mrsModelPath, "MRS", "true", "true");
+			//EmfModel mrsModel = createAndLoadAnEmfModel("http://ExSceMM", this.mrsModelPath, "MRS", "true", "true");
 			EmfModel testingModel = createAndLoadAnEmfModel("TestingMM", this.testingModelPath, "Testing", "true","true");
 
 			// EGX
@@ -96,7 +98,7 @@ public class SESAMEEGLExecutor {
 
 			egxModule.getContext().getFrameStack().put(new Variable("path", codeOutputPath, new EolAnyType()));
 			// TODO: orchestrator needs to only generate test code for this experiment
-			java.net.URI EgxFile = new File("files/orchestrator.egx").toURI();
+			java.net.URI EgxFile = new File(orchestratorBasePath + "/files/orchestrator.egx").toURI();
 			
 			System.out.println(EgxFile);
 			try {
@@ -107,7 +109,7 @@ public class SESAMEEGLExecutor {
 			}
 
 			factory.setOutputRoot(new File(codeOutputPath).toURI().toString());
-			egxModule.getContext().getModelRepository().addModel(mrsModel);
+			//egxModule.getContext().getModelRepository().addModel(mrsModel);
 			egxModule.getContext().getModelRepository().addModel(testingModel);
 			egxModule.execute();
 

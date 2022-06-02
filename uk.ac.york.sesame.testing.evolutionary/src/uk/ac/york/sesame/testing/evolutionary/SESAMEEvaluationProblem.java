@@ -43,18 +43,25 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	// properties here have been removed - they are either redundant or set from the model
 	
 	// Sets up a metric queue to listen for the given campaign
-	private void setupMetricQueue(TestCampaign campaign) {
+	private void setupMetricQueue(TestCampaign campaign) throws StreamSetupFailed {
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
+		metricHandler = new MetricHandler();
+		// TODO: initializing the rng for repeatable experiments
+		rng = new Random();
 		
 		metricStream = env.addSource(new FlinkKafkaConsumer<MetricMessage>("metricIN", new MetricMessageSchema(), properties)).returns(MetricMessage.class);
-		DataStream<MetricMessage> out = metricStream.process(metricHandler);
-		out.addSink(new MetricSink(campaign));
+		if (metricStream != null) {
+			//DataStream<MetricMessage> out = metricStream.process(metricHandler);
+			//out.addSink(new MetricSink(campaign));
+		} else {
+			throw new StreamSetupFailed("metricIN");
+		}
 	}
 
-	public SESAMEEvaluationProblem(String spaceModelFileName, String campaignName) throws InvalidTestCampaign {
+	public SESAMEEvaluationProblem(String spaceModelFileName, String campaignName) throws InvalidTestCampaign, StreamSetupFailed {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
 		SESAMEModelLoader loader = new SESAMEModelLoader();
@@ -142,6 +149,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		// Created with attacks specified within the space
 		// TODO: attacks can be a "subset" of each of the selected attacks
 		int i = 0;
+		System.out.println("createSolution");
+		
 		SESAMETestSolution sol = new SESAMETestSolution();
 
 		for (Attack a : selectedCampaign.getIncludedAttacks()) {

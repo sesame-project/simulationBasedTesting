@@ -121,20 +121,20 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			SolutionListEvaluator<SESAMETestSolution> evaluator;
 			Comparator<SESAMETestSolution> dominanceComparator;
 
-			// TODO: This should be generated with calls to custom operators for people to implement classes?
+			// TODO: Crossover, mutation and selection operations should be configurable in the model
 			crossover = new SESAMECrossoverMergeAttacks();
 			mutation = new SESAMESimpleMutation();
- 
-			selection = new TournamentSelection<SESAMETestSolution>(5);
+ 			selection = new TournamentSelection<SESAMETestSolution>(5);
 			dominanceComparator = new DominanceComparator<>();
 			evaluator = new SequentialSolutionListEvaluator<SESAMETestSolution>();
 
 			int matingPoolSize = offspringPopulationSize;
 			
 			// TODO: maxIterations needs to come from the test campaign model
-			int maxIterations = 10;
+			int maxIterations = 100;
+			populationSize = 10;
 			
-			// TODO: the algorithm should be selectable from the model
+			// TODO: the algorithm - here NSGA should be selectable from the TestCampaign model
 			algorithm = new NSGAII_ResultLogging(scenarioStr, problem, maxIterations, populationSize, matingPoolSize,
 					offspringPopulationSize, crossover, mutation, selection, dominanceComparator, evaluator);
 
@@ -143,17 +143,13 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			List<SESAMETestSolution> population = algorithm.getResult();
 			double duration = (System.currentTimeMillis() - startTime);
 			System.out.println("Total execution time: " + duration + "ms, " + (duration / 1000) + " seconds");
-
-			//((SESAMEMutationOperation)mutation).closeLog();
-			//((SESAMECrossoverOperation)crossover).closeLog();
-			 
+	 
 			String nonDomFinalFile = "jmetal-nondom-csv-results.res";
 			
 			((NSGAII_ResultLogging)algorithm).logFinalSolutionsCustom("jmetal-finalPopNonDom.res", "jmetal-finalPop.res");
 			((NSGAII_ResultLogging)algorithm).logMetricsForOutput("jmetal-final-csv-results.res", nonDomFinalFile);
 			
-			SESAMEEvaluationProblem sp = (SESAMEEvaluationProblem)problem;
-			//String workingPath = sp.getWorkingPath();
+			//SESAMEEvaluationProblem sp = (SESAMEEvaluationProblem)problem;
 			
 			if (!referenceParetoFront.equals("")) {
 				printQualityIndicators(population, referenceParetoFront);
@@ -163,6 +159,9 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		} catch (InvalidTestCampaign e) {
 			// TODO: auto-generated
 			System.out.println("Evaluation failed - invalid TestCampaign");
+			e.printStackTrace();
+		} catch (StreamSetupFailed e) {
+			System.out.println("Stream setup failed - " + e.toString());
 			e.printStackTrace();
 		}
 	}

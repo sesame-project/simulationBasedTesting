@@ -9,7 +9,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
 
 public class MetricSink extends RichSinkFunction<MetricMessage> {
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	private TestCampaign tc;
 	
 	public MetricSink(TestCampaign tc) {
@@ -40,6 +40,6 @@ public class MetricSink extends RichSinkFunction<MetricMessage> {
 	}
 	
 	public void invoke(MetricMessage mm, Context context) {
-		setMetricFromMsg(mm);
+		//setMetricFromMsg(mm);
 	}
 }

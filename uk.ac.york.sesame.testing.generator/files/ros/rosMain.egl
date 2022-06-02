@@ -1,8 +1,8 @@
 [%
-	var mrs = MRS!MRS.all().first();
+	var mrs = MRS.all().first();
 	var launchFileLocation = mrs.launchFileLocation;
 	var simulator = mrs.simulator;
-	var topicsNodesPublish = MRS!Node.all().publisher.flatten();
+	var topicsNodesPublish = Node.all().publisher.flatten();
 	topicsNodesPublish.println();
 %]
 import java.util.HashMap;
@@ -180,13 +180,19 @@ operation streamJavaName(stream) {
 // TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap and RandomValueFromSetAttack are supported
 operation produceFlatMapSignature(attack) {
 	var flatmap = "";
+	AttackActivation aa = attack.attackActivation;
+	if (aa.isTypeOf(Testing!AttackFixedTime)) {
+		var startTime = aa.startTime;
+		var endTime = aa.endTime;
+	}
+		
 	if (attack.isTypeOf(Testing!PacketLossNetworkAttack)) {
-		flatmap = "flatMap(new PacketLossFlatMap(\"" + attack.topicToAttack.name + "\", \"" + attack.attackTimes.first().startTime + "\", \"" + attack.attackTimes.first().endTime + "\", " + attack.frequency + ")).";
+		flatmap = "flatMap(new PacketLossFlatMap(\"" + attack.topicToAttack.name + "\", \"" + startTime + "\", \"" + endTime + "\", " + attack.frequency + ")).";
 	} else if (attack.isTypeOf(Testing!BlackholeNetworkAttack)) {
-		flatmap = "flatMap(new BlackHoleFlatMap(\"" + attack.topicToAttack.name + "\", \"" + attack.attackTimes.first().startTime + "\", \"" + attack.attackTimes.first().endTime + "\")).";
+		flatmap = "flatMap(new BlackHoleFlatMap(\"" + attack.topicToAttack.name + "\", \"" + startTime + "\", \"" + endTime + "\")).";
 	} else if (attack.isTypeOf(Testing!RandomValueFromSetAttack)) {
 		// TODO: set up proper random seed here
-		flatmap = "flatMap(new " + attack.name + "FlatMap(\"" + attack.topicToAttack.name + "\", \"" + attack.attackTimes.first().startTime + "\", \"" + attack.attackTimes.first().endTime + "\", 3434232L)).";
+		flatmap = "flatMap(new " + attack.name + "FlatMap(\"" + attack.topicToAttack.name + "\", \"" + startTime + "\", \"" + endTime + "\", 3434232L)).";
 	}
 	return flatmap;
 }

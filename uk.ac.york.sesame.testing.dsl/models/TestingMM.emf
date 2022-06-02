@@ -15,10 +15,15 @@ class TestingSpace {
 	val Attacks.Attack[*] possibleAttacks;
 	val GrammarSpecification[0..1] grammarSpecfication;
 	val TestCampaign[*] campaigns;
+	val MRSPackage.MRS[1] mrs;
 }
+
 
 // TestingCampaign - specifies an experiment 
 // (evolutionary process, selected metrics/attacks, and any constraints upon the grammar for this run)
+
+// Generally there should be probabilities of including each attack in the model - for the testCampaign
+
 class TestCampaign {
 	attr String name;
 	ref Metrics.Metric[*] metrics;

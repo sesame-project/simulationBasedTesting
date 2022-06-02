@@ -112,13 +112,22 @@ public interface TestingPackagePackage extends EPackage {
 	int TESTING_SPACE__CAMPAIGNS = 4;
 
 	/**
+	 * The feature id for the '<em><b>Mrs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TESTING_SPACE__MRS = 5;
+
+	/**
 	 * The number of structural features of the '<em>Testing Space</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TESTING_SPACE_FEATURE_COUNT = 5;
+	int TESTING_SPACE_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Testing Space</em>' class.
@@ -519,6 +528,17 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestingSpace_Campaigns();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getMrs <em>Mrs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Mrs</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getMrs()
+	 * @see #getTestingSpace()
+	 * @generated
+	 */
+	EReference getTestingSpace_Mrs();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign <em>Test Campaign</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -791,6 +811,14 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TESTING_SPACE__CAMPAIGNS = eINSTANCE.getTestingSpace_Campaigns();
+
+		/**
+		 * The meta object literal for the '<em><b>Mrs</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TESTING_SPACE__MRS = eINSTANCE.getTestingSpace_Mrs();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl <em>Test Campaign</em>}' class.

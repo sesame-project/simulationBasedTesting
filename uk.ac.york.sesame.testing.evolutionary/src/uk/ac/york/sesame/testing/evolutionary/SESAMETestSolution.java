@@ -7,16 +7,19 @@ import java.util.Map;
 
 import org.uma.jmetal.solution.*;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl;
 
 public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	private static final long serialVersionUID = 1L;
 
-	private TestImpl t;
+	private Test t;
 	
 	private boolean actuallyRun;
 	private double exptRunTime;
+	private TestingPackageFactory tFactory;
 	
 	private Map<Object, Object> attributes = new HashMap<Object, Object>();
 	private Map<Integer, Double> objectives = new HashMap<Integer, Double>();
@@ -24,11 +27,18 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	private Map<Integer, Double> constraints = new HashMap<Integer, Double>();
 	private List<SESAMETestAttack> contents = new ArrayList<SESAMETestAttack>();
 
-	public SESAMETestSolution() {
-		
+	private void setupTestingFactory() {
+		if (tFactory == null) {
+			tFactory = TestingPackageFactory.eINSTANCE;
+		}
 	}
 	
-	public TestImpl getInternalType() {
+	public SESAMETestSolution() {
+		setupTestingFactory();
+		t = tFactory.createTest();
+	}
+	
+	public Test getInternalType() {
 		return t;
 	}
 
@@ -75,8 +85,6 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	}
 
 	public SESAMETestAttack getVariable(int index) {
-		// System.out.println("index = " + index + ",contents.size()=" +
-		// contents.size());
 		if (index < contents.size() && index >= 0) {
 			return contents.get(index);
 		} else {

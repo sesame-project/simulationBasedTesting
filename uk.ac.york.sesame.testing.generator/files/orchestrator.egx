@@ -1,11 +1,3 @@
-/*
-rule ros2Main transform mrs: MRS!MRS{
-	guard : mrs.simulator.isTypeOf(MRS!ROSSimulator)
-	template : "ros/rosMain.egl"
-	target : "src/TestingTestSuiteRunner.java"
-}
-*/
-
 rule test2Class transform test: Testing!Test {
 	template : "ros/rosMain.egl"
 	target : "src/" + test.name.firstToUpperCase() + "TestingTestSuiteRunner.java"

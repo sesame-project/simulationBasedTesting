@@ -22,6 +22,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpecification;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
@@ -41,6 +42,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getPossibleAttacks <em>Possible Attacks</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getGrammarSpecfication <em>Grammar Specfication</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getCampaigns <em>Campaigns</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getMrs <em>Mrs</em>}</li>
  * </ul>
  *
  * @generated
@@ -105,6 +107,16 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 	 * @ordered
 	 */
 	protected EList<TestCampaign> campaigns;
+
+	/**
+	 * The cached value of the '{@link #getMrs() <em>Mrs</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMrs()
+	 * @generated
+	 * @ordered
+	 */
+	protected MRS mrs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -230,6 +242,49 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MRS getMrs() {
+		return mrs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetMrs(MRS newMrs, NotificationChain msgs) {
+		MRS oldMrs = mrs;
+		mrs = newMrs;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TESTING_SPACE__MRS, oldMrs, newMrs);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMrs(MRS newMrs) {
+		if (newMrs != mrs) {
+			NotificationChain msgs = null;
+			if (mrs != null)
+				msgs = ((InternalEObject)mrs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TESTING_SPACE__MRS, null, msgs);
+			if (newMrs != null)
+				msgs = ((InternalEObject)newMrs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TESTING_SPACE__MRS, null, msgs);
+			msgs = basicSetMrs(newMrs, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TESTING_SPACE__MRS, newMrs, newMrs));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -241,6 +296,8 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 				return basicSetGrammarSpecfication(null, msgs);
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				return ((InternalEList<?>)getCampaigns()).basicRemove(otherEnd, msgs);
+			case TestingPackagePackage.TESTING_SPACE__MRS:
+				return basicSetMrs(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -263,6 +320,8 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 				return getGrammarSpecfication();
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				return getCampaigns();
+			case TestingPackagePackage.TESTING_SPACE__MRS:
+				return getMrs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -294,6 +353,9 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 				getCampaigns().clear();
 				getCampaigns().addAll((Collection<? extends TestCampaign>)newValue);
 				return;
+			case TestingPackagePackage.TESTING_SPACE__MRS:
+				setMrs((MRS)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -321,6 +383,9 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				getCampaigns().clear();
 				return;
+			case TestingPackagePackage.TESTING_SPACE__MRS:
+				setMrs((MRS)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -343,6 +408,8 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 				return grammarSpecfication != null;
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				return campaigns != null && !campaigns.isEmpty();
+			case TestingPackagePackage.TESTING_SPACE__MRS:
+				return mrs != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -26,8 +26,8 @@ public class EvolutionaryRunner {
 		//ExperimentType etype = ExperimentType.FIXED_TIME_FUZZING;
 		
 		// Sets the space model file and the campaign to run here
-		String spaceModelFileName = "/home/jharbin/XXX/testSpace.model";
-		String campaignToRun = "nsga-test";
+		String spaceModelFileName = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.dsl/models/testingHealthcareSpace.model";
+		String campaignToRun = "firstExperiment";
 			
 		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(spaceModelFileName, campaignToRun);
 		jmetalExpt.runExperiment();

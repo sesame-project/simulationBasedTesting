@@ -15,12 +15,12 @@ public class SESAMECrossoverMergeAttacks extends SESAMECrossoverOperation {
 
 	@Override
 	public int getNumberOfRequiredParents() {
-		return 0;
+		return 2;
 	}
 
 	@Override
 	public int getNumberOfGeneratedChildren() {
-		return 0;
+		return 2;
 	}
 
 	@Override

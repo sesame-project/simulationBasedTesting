@@ -11,6 +11,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="campaigns" upperBound="-1"
         eType="#//TestCampaign" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mrs" lowerBound="1" eType="#//MRSPackage/MRS"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TestCampaign">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
 /**
@@ -24,6 +25,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getPossibleAttacks <em>Possible Attacks</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getGrammarSpecfication <em>Grammar Specfication</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getCampaigns <em>Campaigns</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getMrs <em>Mrs</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestingSpace()
@@ -110,5 +112,27 @@ public interface TestingSpace extends EObject {
 	 * @generated
 	 */
 	EList<TestCampaign> getCampaigns();
+
+	/**
+	 * Returns the value of the '<em><b>Mrs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mrs</em>' containment reference.
+	 * @see #setMrs(MRS)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestingSpace_Mrs()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	MRS getMrs();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getMrs <em>Mrs</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mrs</em>' containment reference.
+	 * @see #getMrs()
+	 * @generated
+	 */
+	void setMrs(MRS value);
 
 } // TestingSpace

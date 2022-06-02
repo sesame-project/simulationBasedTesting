@@ -245,6 +245,15 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTestingSpace_Mrs() {
+		return (EReference)testingSpaceEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTestCampaign() {
 		return testCampaignEClass;
 	}
@@ -445,6 +454,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEReference(testingSpaceEClass, TESTING_SPACE__POSSIBLE_ATTACKS);
 		createEReference(testingSpaceEClass, TESTING_SPACE__GRAMMAR_SPECFICATION);
 		createEReference(testingSpaceEClass, TESTING_SPACE__CAMPAIGNS);
+		createEReference(testingSpaceEClass, TESTING_SPACE__MRS);
 
 		testCampaignEClass = createEClass(TEST_CAMPAIGN);
 		createEAttribute(testCampaignEClass, TEST_CAMPAIGN__NAME);
@@ -525,6 +535,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEReference(getTestingSpace_PossibleAttacks(), theAttacksPackage.getAttack(), null, "possibleAttacks", null, 0, -1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_GrammarSpecfication(), this.getGrammarSpecification(), null, "grammarSpecfication", null, 0, 1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_Campaigns(), this.getTestCampaign(), null, "campaigns", null, 0, -1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestingSpace_Mrs(), theMRSPackagePackage.getMRS(), null, "mrs", null, 1, 1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testCampaignEClass, TestCampaign.class, "TestCampaign", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestCampaign_Name(), ecorePackage.getEString(), "name", null, 0, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
