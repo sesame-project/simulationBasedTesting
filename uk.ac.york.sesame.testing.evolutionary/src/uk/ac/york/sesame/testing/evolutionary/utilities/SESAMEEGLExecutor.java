@@ -24,17 +24,15 @@ import org.eclipse.epsilon.eol.models.IRelativePathResolver;
 import org.eclipse.epsilon.eol.types.EolAnyType;
 
 public class SESAMEEGLExecutor {
-
 	private String testingModelPath;
-	//private String mrsModelPath;
 	
 	private String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
 		
-	private String codeOutputPath = "/tmp/codegenerationPath/";
+	private String codeOutputPath;
 	
-	public SESAMEEGLExecutor(String testingModelPath, String mrsModelPath, String campaignName) {
+	public SESAMEEGLExecutor(String testingModelPath, String ___UNUSED_mrsModelPath, String campaignName, String codeOutputPath) {
 		this.testingModelPath = testingModelPath;
-		//this.mrsModelPath = mrsModelPath;
+		this.codeOutputPath = codeOutputPath;
 	}
 	
 	protected static ArrayList<String> registerMMs() throws IOException, UnknownPath {

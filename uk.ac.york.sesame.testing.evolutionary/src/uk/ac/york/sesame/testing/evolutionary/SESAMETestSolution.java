@@ -1,14 +1,20 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.EList;
 import org.uma.jmetal.solution.*;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl;
 
@@ -20,6 +26,8 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	private boolean actuallyRun;
 	private double exptRunTime;
 	private TestingPackageFactory tFactory;
+	
+	private static Integer numTest = 0;
 	
 	private Map<Object, Object> attributes = new HashMap<Object, Object>();
 	private Map<Integer, Double> objectives = new HashMap<Integer, Double>();
@@ -36,19 +44,16 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	public SESAMETestSolution() {
 		setupTestingFactory();
 		t = tFactory.createTest();
+		t.setName(createTestName());
 	}
 	
-	public Test getInternalType() {
-		return t;
+	private String createTestName() {
+		String date = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(new Date());
+		return (numTest++).toString() + date;
 	}
 
-	public SESAMETestSolution(List<SESAMETestAttack> recs) {
-		this.contents = new ArrayList<SESAMETestAttack>(recs.size());
-
-		for (SESAMETestAttack fi : recs) {
-			this.contents.add(fi.dup());
-		}
-		System.out.println("contents = " + contents);
+	public Test getInternalType() {
+		return t;
 	}
 
 	SESAMETestSolution(SESAMETestSolution other) {
@@ -297,8 +302,16 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	public String getMainClassName() {
 		return t.getName() + "_testSuiteRunner.java";
 	}
+	
+	private boolean modelContainsTest(EList<Test> tests, String targetName) {
+		return tests.stream().anyMatch(test -> test.getName().equals(targetName));
+	}
 
-	public void ensureModelUpdated(String spaceModelFileName) {
-		// TODO ensure the newly updated model is generated
+	public void ensureModelUpdated(TestCampaign campaign) {
+		EList<Test> tests = campaign.getPerformedTests();
+		if (!modelContainsTest(tests, t.getName())) {
+			tests.add(t);
+			System.out.println("Added a test to the model named " + t.getName());
+		}
 	}
 }

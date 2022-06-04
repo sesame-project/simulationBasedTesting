@@ -27,7 +27,7 @@ public class SesameWizard extends Wizard {
 
 	@Override
 	public boolean performFinish() {
-		wizardExecutor.setMrsModelPath(page.getMRSModelLocation());
+		//wizardExecutor.setMrsModelPath(page.getMRSModelLocation());
 		wizardExecutor.setTestingModelPath(page.getTestModelLocation());
 		return true;
 	}

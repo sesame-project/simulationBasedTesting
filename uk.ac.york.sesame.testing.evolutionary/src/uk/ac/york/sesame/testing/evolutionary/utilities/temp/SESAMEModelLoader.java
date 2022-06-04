@@ -29,7 +29,14 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.*;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl;
 
 public class SESAMEModelLoader {
-	public Resource loadTestingSpace(String filename) {
+	private String testingModelFilename;
+	Resource resource;
+	
+	public SESAMEModelLoader(String testingModelFilename) {
+		this.testingModelFilename = testingModelFilename;
+	}
+	
+	public Resource loadTestingSpace() {
 		// Initialize the model
 		AttacksPackage.eINSTANCE.eClass();
 		TestingPackagePackage.eINSTANCE.eClass();
@@ -44,51 +51,59 @@ public class SESAMEModelLoader {
 		ResourceSet resSet = new ResourceSetImpl();
 
 		// Get the resource
-		Resource resource = resSet.getResource(URI.createURI(filename), true);
+		resource = resSet.getResource(URI.createURI(testingModelFilename), true);
 		return resource;
 	}
 	
+//	public void saveTestingSpace(String customFilename) {
+//		AttacksPackage s = AttacksPackage.eINSTANCE;
+//		AttacksFactory factory = AttacksFactory.eINSTANCE;
+//
+//		Attack myAttack = factory.createAttack();
+//
+//		Adapter adapter = new AdapterImpl() {
+//			public void notifyChanged(Notification notification) {
+//				System.out.println("Notfication received from the data model. Data model has changed!!!");
+//			}
+//		};
+//		// why are there no adapters
+//		// myAttack.eAdapters().add(adapter);
+//		myAttack.setName("ATTACK2");
+//
+//		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+//		Map<String, Object> m = reg.getExtensionToFactoryMap();
+//		m.put("model", new XMIResourceFactoryImpl());
+//
+//		// Obtain a new resource set
+//		ResourceSet resSet = new ResourceSetImpl();
+//
+//		// create a resource
+//		Resource resource = resSet.createResource(URI.createURI(testingModelFilename));
+//		// Get the first model element and cast it to the right type, in my
+//		// example everything is hierarchical included in this first node
+//
+//		resource.getContents().add(myAttack);
+//
+//		// now save the content.
+//		try {
+//			resource.save(Collections.EMPTY_MAP);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+	
 	public void saveTestingSpace() {
-		AttacksPackage s = AttacksPackage.eINSTANCE;
-		AttacksFactory factory = AttacksFactory.eINSTANCE;
-
-		Attack myAttack = factory.createAttack();
-
-		Adapter adapter = new AdapterImpl() {
-			public void notifyChanged(Notification notification) {
-				System.out.println("Notfication received from the data model. Data model has changed!!!");
-			}
-		};
-		// why are there no adapters
-		// myAttack.eAdapters().add(adapter);
-		myAttack.setName("ATTACK2");
-
-		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-		Map<String, Object> m = reg.getExtensionToFactoryMap();
-		m.put("model", new XMIResourceFactoryImpl());
-
-		// Obtain a new resource set
-		ResourceSet resSet = new ResourceSetImpl();
-
-		// create a resource
-		Resource resource = resSet.createResource(URI.createURI("/tmp/attack.model"));
-		// Get the first model element and cast it to the right type, in my
-		// example everything is hierarchical included in this first node
-
-		resource.getContents().add(myAttack);
-
-		// now save the content.
 		try {
 			resource.save(Collections.EMPTY_MAP);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public static void main(String[] args) {
-		SESAMEModelLoader emf = new SESAMEModelLoader();
-		Resource testingSpaceModel = emf.loadTestingSpace("/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.dsl/models/testingHealthcareSpace.model");
+		SESAMEModelLoader emf = new SESAMEModelLoader("/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.dsl/models/testingHealthcareSpace.model");
+		Resource testingSpaceModel = emf.loadTestingSpace();
 		
 		// Get the first model element and cast it to the right type, in my
 		// example everything is hierarchical included in this first node

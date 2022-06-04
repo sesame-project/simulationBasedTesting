@@ -14,7 +14,7 @@ rule metricAsSingleStream transform metric: Testing!StreamMetric {
 	template : "metrics/singleStream.egl"
 	target : "src/"+ metric.name + "Metric.java"
 }
-
+ 
 /* Other metrics here */
 
 rule packetLoss2FlatMap transform attack: Testing!PacketLossNetworkAttack {

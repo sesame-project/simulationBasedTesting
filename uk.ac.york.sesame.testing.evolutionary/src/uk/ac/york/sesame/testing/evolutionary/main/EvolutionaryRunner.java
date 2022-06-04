@@ -26,10 +26,14 @@ public class EvolutionaryRunner {
 		//ExperimentType etype = ExperimentType.FIXED_TIME_FUZZING;
 		
 		// Sets the space model file and the campaign to run here
-		String spaceModelFileName = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.dsl/models/testingHealthcareSpace.model";
+		
+		// PATHS HERE
+		final String spaceModelFileName = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.dsl/models/testingHealthcareSpace.model";
+		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.evolutionary/src/uk/ac/york/sesame/testing/evolutionary/generatedTests/";
+		
 		String campaignToRun = "firstExperiment";
 			
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(spaceModelFileName, campaignToRun);
+		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY);
 		jmetalExpt.runExperiment();
 	}
 }

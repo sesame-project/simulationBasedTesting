@@ -29,7 +29,8 @@ import org.eclipse.ui.internal.ide.dialogs.FileFolderSelectionDialog;
 
 public class SesameWizardPage extends WizardPage {
 
-	private Text testingModelLocation, mrsModelLocation;
+	private Text testingModelLocation;
+	//mrsModelLocation;
 	private Composite container;
 
 	public SesameWizardPage() {
@@ -57,7 +58,8 @@ public class SesameWizardPage extends WizardPage {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if (!testingModelLocation.getText().isEmpty() && !mrsModelLocation.getText().isEmpty())
+				//if (!testingModelLocation.getText().isEmpty() && !mrsModelLocation.getText().isEmpty())
+				if (!testingModelLocation.getText().isEmpty())
 					setPageComplete(true);
 				else
 					setPageComplete(false);
@@ -73,49 +75,50 @@ public class SesameWizardPage extends WizardPage {
 			}
 		});
 
-		Label label2 = new Label(container, SWT.NONE);
-		label2.setText("MRS Model:");
-		mrsModelLocation = new Text(container, SWT.BORDER | SWT.SINGLE);
-		mrsModelLocation.addKeyListener(new KeyListener() {
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				if (!testingModelLocation.getText().isEmpty() && !mrsModelLocation.getText().isEmpty())
-					setPageComplete(true);
-				else
-					setPageComplete(false);
-			}
-
-		});
-		Button button = new Button(container, SWT.PUSH);
-		button.setText("Browse...");
-		button.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				handleBrowse(mrsModelLocation);
-			}
-		});
+//		Label label2 = new Label(container, SWT.NONE);
+//		label2.setText("MRS Model:");
+//		mrsModelLocation = new Text(container, SWT.BORDER | SWT.SINGLE);
+//		mrsModelLocation.addKeyListener(new KeyListener() {
+//
+//			@Override
+//			public void keyPressed(KeyEvent e) {
+//				// TODO Auto-generated method stub
+//			}
+//
+//			@Override
+//			public void keyReleased(KeyEvent e) {
+//				if (!testingModelLocation.getText().isEmpty() && !mrsModelLocation.getText().isEmpty())
+//					setPageComplete(true);
+//				else
+//					setPageComplete(false);
+//			}
+//
+//		});
+//		Button button = new Button(container, SWT.PUSH);
+//		button.setText("Browse...");
+//		button.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent e) {
+//				handleBrowse(mrsModelLocation);
+//			}
+//		});
 		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 		testingModelLocation.setLayoutData(gd);
-		mrsModelLocation.setLayoutData(gd);
+		//mrsModelLocation.setLayoutData(gd);
 		// required to avoid an error in the system
 		setControl(container);
 		//
-		setPageComplete(testingModelLocation.getText().length() > 0 && mrsModelLocation.getText().length() > 0);
+		//setPageComplete(testingModelLocation.getText().length() > 0 && mrsModelLocation.getText().length() > 0);
+		setPageComplete(testingModelLocation.getText().length() > 0);
 	}
 
 	public String getTestModelLocation() {
 		return testingModelLocation.getText();
 	}
 	
-	public String getMRSModelLocation() {
-		return mrsModelLocation.getText();
-	}
+//	public String getMRSModelLocation() {
+//		return mrsModelLocation.getText();
+//	}
 
 	protected void handleBrowse(Text textfield) {
 //		FileDialog dialog = new FileDialog(getShell());
@@ -125,7 +128,8 @@ public class SesameWizardPage extends WizardPage {
 		if (dialog.open() == Window.OK) {
 			Object[] result = dialog.getResult();
 				textfield.setText(((File) result[0]).getLocation().makeAbsolute().toOSString());
-				setPageComplete(testingModelLocation.getText().length() > 0 && mrsModelLocation.getText().length() > 0);
+				//setPageComplete(testingModelLocation.getText().length() > 0 && mrsModelLocation.getText().length() > 0);
+				setPageComplete(testingModelLocation.getText().length() > 0);
 		}
 	}
 

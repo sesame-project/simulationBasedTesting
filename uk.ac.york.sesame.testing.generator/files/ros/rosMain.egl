@@ -1,5 +1,5 @@
 [%
-	var mrs = MRS.all().first();
+	var mrs = Testing!TestingSpace.all().first().mrs;
 	var launchFileLocation = mrs.launchFileLocation;
 	var simulator = mrs.simulator;
 	var topicsNodesPublish = Node.all().publisher.flatten();
@@ -14,7 +14,7 @@ import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringEncoder;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.common.typeinfo.Types;
-import org.apache.flink.connector.file.sink.FileSink;
+import org.apache.flink.connector.file.sink.FileSink; 
 import org.apache.flink.core.fs.Path;
 import org.apache.flink.streaming.api.datastream.*;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -108,12 +108,14 @@ public class [%=test.name.firstToUpperCase()%]TestingTestSuiteRunner {
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance()
 							.consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
-						System.out.println("Topic: " + record.value().getTopic().toString());
-						rosSim.publishToTopic(record.value().getTopic().toString().replace(".", "/") + "OUT", record.value().getType(), record.value().getValue().toString());
+						String inTopic = record.value().getTopic().toString();
+						String outTopic = rosSim.translateTopicNameForOutput(inTopic);
+						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
+						rosSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
 					}
 				}
 			}
-		};
+		}; 
 		from_out_to_sim.start();
 		
 		// Generate keyed streams
@@ -180,10 +182,13 @@ operation streamJavaName(stream) {
 // TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap and RandomValueFromSetAttack are supported
 operation produceFlatMapSignature(attack) {
 	var flatmap = "";
-	AttackActivation aa = attack.attackActivation;
+	var aa = attack.attackActivation;
+	var startTime = 0;
+	var endTime = 10000.0;
+	
 	if (aa.isTypeOf(Testing!AttackFixedTime)) {
-		var startTime = aa.startTime;
-		var endTime = aa.endTime;
+		startTime = aa.startTime;
+		endTime = aa.endTime;
 	}
 		
 	if (attack.isTypeOf(Testing!PacketLossNetworkAttack)) {

@@ -75,7 +75,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 //			EmfModel sourceModelForEGL = createAndLoadAnEmfModel(
 //					"http://www.github.com/jrharbin-york/atlas-middleware/dsl/mission,http://www.github.com/jrharbin-york/atlas-middleware/dsl/region,http://www.github.com/jrharbin-york/atlas-middleware/dsl/message,http://www.github.com/jrharbin-york/atlas-middleware/dsl/fuzzing,http://www.github.com/jrharbin-york/atlas-middleware/dsl/faults,http://www.github.com/jrharbin-york/atlas-middleware/dsl/components",
 //					theFile.getRawLocation().toOSString(), "Source", "true", "true");
-			EmfModel mrsModel = createAndLoadAnEmfModel("http://ExSceMM", this.mrsModelPath, "MRS", "true", "true");
+			//EmfModel mrsModel = createAndLoadAnEmfModel("http://ExSceMM", this.mrsModelPath, "MRS", "true", "true");
 			EmfModel testingModel = createAndLoadAnEmfModel("TestingMM", this.testingModelPath, "Testing", "true",
 					"true");
 
@@ -99,7 +99,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 			}
 
 			factory.setOutputRoot(new File(theIProjectPath).toURI().toString());
-			egxModule.getContext().getModelRepository().addModel(mrsModel);
+			//egxModule.getContext().getModelRepository().addModel(mrsModel);
 			egxModule.getContext().getModelRepository().addModel(testingModel);
 			egxModule.execute();
 
@@ -144,11 +144,11 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 
 		String modelPath = PathDefinitions.getPath(PathDefinitions.PathSpec.MODEL_PATH);
 		
-		Resource mrsMM = xmiFactory.createResource(URI.createFileURI(modelPath + "ExSceMM.ecore"));
-		mrsMM.load(null);
-		EPackage pkgMRS = (EPackage) mrsMM.getContents().get(0);
-		EPackage.Registry.INSTANCE.put(pkgMRS.getNsURI(), pkgMRS);
-		mmURIs.add(pkgMRS.getNsURI());
+		//Resource mrsMM = xmiFactory.createResource(URI.createFileURI(modelPath + "ExSceMM.ecore"));
+		//mrsMM.load(null);
+		//EPackage pkgMRS = (EPackage) mrsMM.getContents().get(0);
+		//EPackage.Registry.INSTANCE.put(pkgMRS.getNsURI(), pkgMRS);
+		//mmURIs.add(pkgMRS.getNsURI());
 
 		Resource testingMM = xmiFactory.createResource(URI.createFileURI(modelPath + "TestingMM.ecore"));
 		testingMM.load(null);

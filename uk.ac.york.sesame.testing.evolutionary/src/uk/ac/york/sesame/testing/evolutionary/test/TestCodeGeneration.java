@@ -7,7 +7,9 @@ public class TestCodeGeneration {
 		String __mrsModelFile = "testingMRS.model";
 		String spaceModelFileName = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.dsl/models/testingHealthcareSpace.model";
 		String campaignName = "firstExperiment";
-		SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName);
+		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.evolutionary/src/uk/ac/york/sesame/testing/evolutionary/generatedTests/";
+		
+		SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, CODE_GENERATION_DIRECTORY);
 		System.out.println("eglEx - executor created");
 		eglEx.run();
 		System.out.println("eglEx - executor ran");

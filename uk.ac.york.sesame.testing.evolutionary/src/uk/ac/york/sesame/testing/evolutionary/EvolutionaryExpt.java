@@ -57,6 +57,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	
 	private String spaceModelFileName;
 	private String campaignName;
+	private String codeGenerationDirectory;
 
 //	private void readProperties() {
 //		Properties prop = new Properties();
@@ -76,9 +77,10 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 //		}
 //	}
 
-	public EvolutionaryExpt(String spaceModelFileName, String campaignName) {
+	public EvolutionaryExpt(String spaceModelFileName, String campaignName, String codeGenerationDirectory) {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
+		this.codeGenerationDirectory = codeGenerationDirectory;
 		
 //		this.populationSize = popSize;
 //		this.offspringPopulationSize = offspringPopSize;
@@ -110,7 +112,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			//FuzzingEngine fuzzEngine = GeneratedFuzzingSpec.createFuzzingEngine(mission, false);
 			//Grammar<String> g = Grammar.fromFile(new File(GRAMMAR_FILE));
 						
-			problem = new SESAMEEvaluationProblem(spaceModelFileName, campaignName);
+			problem = new SESAMEEvaluationProblem(spaceModelFileName, campaignName, codeGenerationDirectory);
 
 			Algorithm<List<SESAMETestSolution>> algorithm;
 			

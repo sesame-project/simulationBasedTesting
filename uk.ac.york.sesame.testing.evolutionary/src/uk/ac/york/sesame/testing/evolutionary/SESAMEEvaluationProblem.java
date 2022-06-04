@@ -11,9 +11,8 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.uma.jmetal.problem.Problem;
 
-import uk.ac.york.sesame.testing.evolutionary.utilities.CompileLoader;
-import uk.ac.york.sesame.testing.evolutionary.utilities.RunExperiment;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
+import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.architecture.data.MetricMessageSchema;
@@ -36,6 +35,11 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private DataStream<MetricMessage> metricStream;
 	private Resource testSpaceModel;
 	private TestCampaign selectedCampaign;
+	
+	private SESAMEEGLExecutor eglEx;
+	private String codeGenerationDirectory;
+	
+	private SESAMEModelLoader loader;
 	
 	// TODO: how to model the grammar
 	//Grammar<String> grammar;
@@ -61,12 +65,17 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		}
 	}
 
-	public SESAMEEvaluationProblem(String spaceModelFileName, String campaignName) throws InvalidTestCampaign, StreamSetupFailed {
+	public SESAMEEvaluationProblem(String spaceModelFileName, String campaignName, String codeGenerationDirectory) throws InvalidTestCampaign, StreamSetupFailed {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
-		SESAMEModelLoader loader = new SESAMEModelLoader();
-		testSpaceModel = loader.loadTestingSpace(spaceModelFileName);
+		this.codeGenerationDirectory = codeGenerationDirectory;
+		loader = new SESAMEModelLoader(spaceModelFileName);
+		testSpaceModel = loader.loadTestingSpace();
 		Optional<TestCampaign> tc_o = loader.getTestCampaign(testSpaceModel, campaignName);
+		
+		// TODO: mrsModelFile is not currently used - until the bug is fixed and there is a seperate model again
+		String __mrsModelFile = "testingMRS.model";
+		eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
 		
 		if (tc_o.isPresent()) {
 			selectedCampaign = tc_o.get();
@@ -98,7 +107,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		return "SESAMEEvaluationProblem";
 	}
 	
-	public void performSAFEMUVExperiment(SESAMETestSolution solution) {
+	public void performSAFEMUVTest(SESAMETestSolution solution) {
 		try {
 			String mainClassName = solution.getMainClassName();
 			String __mrsModelFile = "testingMRS.model";
@@ -106,17 +115,19 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			metricHandler.setSolution(solution);
 			
 			// This ensures that the new test is installed in the model 
-			solution.ensureModelUpdated(spaceModelFileName);
+			solution.ensureModelUpdated(selectedCampaign);
+			loader.saveTestingSpace();
 			
 			// This needs to transform the testing space model into code - by invoking EGL
-			SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName);
+
 			eglEx.run();
 			
-			// Need to compile/execute the resulting main() method now
-			CompileLoader.compileLoader(mainClassName);
+			// Need to compile/execute the resulting main() method now - or can we get Eclipse to do it automatically?
+			TestRunnerUtils.compile(mainClassName);
+					
 			// Invokes the main method for this code
-			RunExperiment.runExpt(mainClassName);
-			
+			TestRunnerUtils.exec(mainClassName);
+				
 			// The generated code will insert the metrics into that particular Test, within the model
 			// metricHandler will automatically insert the metrics into a particular solution
 
@@ -132,7 +143,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	}
 
 	public void evaluate(SESAMETestSolution solution) {
-		performSAFEMUVExperiment(solution);
+		performSAFEMUVTest(solution);
 	}
 
 	// Variable probability of inclusion? - needs to be specified from the Attack and TestCampaign
