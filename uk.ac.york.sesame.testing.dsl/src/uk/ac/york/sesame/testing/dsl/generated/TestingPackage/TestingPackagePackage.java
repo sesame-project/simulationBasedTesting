@@ -240,7 +240,7 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Attacks</b></em>' reference list.
+	 * The feature id for the '<em><b>Attacks</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -636,10 +636,10 @@ public interface TestingPackagePackage extends EPackage {
 	EAttribute getTest_Name();
 
 	/**
-	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getAttacks <em>Attacks</em>}'.
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getAttacks <em>Attacks</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Attacks</em>'.
+	 * @return the meta object for the containment reference list '<em>Attacks</em>'.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getAttacks()
 	 * @see #getTest()
 	 * @generated
@@ -897,7 +897,7 @@ public interface TestingPackagePackage extends EPackage {
 		EAttribute TEST__NAME = eINSTANCE.getTest_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Attacks</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Attacks</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

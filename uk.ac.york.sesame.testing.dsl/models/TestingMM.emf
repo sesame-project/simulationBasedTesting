@@ -36,7 +36,7 @@ class TestCampaign {
 // This is analagous to a fuzzing CSV file in SAFEMUV - multiple attacks
 class Test {
 	attr String name;
-	ref Attacks.Attack[*] attacks;
+	val Attacks.Attack[*] attacks;
 	val Metrics.MetricInstance[*] metrics;
 }
 
@@ -86,8 +86,7 @@ class Attack {
 	ref MRSPackage.Topic[*] publishingTopics;
 	attr boolean allSubscribingTopics = false;
 	ref MRSPackage.Topic[*] subscribingTopics;
-	ref Attack[1] next;
-	// 	the above repalces this: attr int order;
+	ref Attack[0..1] basedUpon;
 }
 
 class OfflineAttack extends Attack {

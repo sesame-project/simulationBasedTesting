@@ -30,7 +30,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Test">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attacks" upperBound="-1"
-        eType="#//Attacks/Attack"/>
+        eType="#//Attacks/Attack" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metrics" upperBound="-1"
         eType="#//Metrics/MetricInstance" containment="true"/>
   </eClassifiers>
@@ -72,8 +72,7 @@
           defaultValueLiteral="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subscribingTopics" upperBound="-1"
           eType="#//MRSPackage/Topic"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1"
-          eType="#//Attacks/Attack"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="basedUpon" eType="#//Attacks/Attack"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OfflineAttack" eSuperTypes="#//Attacks/Attack">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="attackTime" eType="#//Attacks/OfflineAttackTime"/>

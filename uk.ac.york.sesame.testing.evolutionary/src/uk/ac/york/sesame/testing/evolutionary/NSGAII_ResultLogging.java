@@ -258,9 +258,7 @@ public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGenetic
 					headerPrinted = true;
 				}
 				
-				String modelFile = fss.getTestModelFileName();
-						
-				fw.write(modelFile + ",");
+				fw.write(fss.toString() + ",");
 				for (int i = 0; i < fss.getNumberOfObjectives(); i++) {
 					String delim="";
 					if (i < fss.getNumberOfObjectives() - 1) {

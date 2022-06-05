@@ -18,17 +18,6 @@ import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverOperation
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEMutationOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESimpleMutation;
 
-//import atlasdsl.Mission;
-//import atlasdsl.loader.DSLLoadFailed;
-//import fuzzexperiment.runner.jmetal.SAFEMUVEvaluationProblem.ExperimentType;
-//import fuzzexperiment.runner.jmetal.customalg.NSGAII_JRH;
-//import fuzzexperiment.runner.jmetal.grammar.Grammar;
-//import fuzzexperiment.runner.metrics.Metric;
-//import fuzzexperiment.runner.metrics.OfflineMetric;
-//import fuzzexperiment.runner.rmkg.RMKGInterface;
-//import fuzzingengine.FuzzingEngine;
-//import fuzzingengine.spec.GeneratedFuzzingSpec;
-
 public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
 	// TODO: the grammar should be generated from the model
@@ -150,8 +139,6 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			
 			((NSGAII_ResultLogging)algorithm).logFinalSolutionsCustom("jmetal-finalPopNonDom.res", "jmetal-finalPop.res");
 			((NSGAII_ResultLogging)algorithm).logMetricsForOutput("jmetal-final-csv-results.res", nonDomFinalFile);
-			
-			//SESAMEEvaluationProblem sp = (SESAMEEvaluationProblem)problem;
 			
 			if (!referenceParetoFront.equals("")) {
 				printQualityIndicators(population, referenceParetoFront);

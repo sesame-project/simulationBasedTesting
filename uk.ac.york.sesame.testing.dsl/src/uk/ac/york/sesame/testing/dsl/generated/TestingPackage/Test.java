@@ -52,13 +52,13 @@ public interface Test extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Attacks</b></em>' reference list.
+	 * Returns the value of the '<em><b>Attacks</b></em>' containment reference list.
 	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Attacks</em>' reference list.
+	 * @return the value of the '<em>Attacks</em>' containment reference list.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTest_Attacks()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Attack> getAttacks();

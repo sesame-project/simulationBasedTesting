@@ -46,7 +46,6 @@ public class Test_29_05_2022_02_02_43TestingTestSuiteRunner {
 				new EventMessageSchema(), properties);
 
 		stream.
-				flatMap(new attackVel_robot1FlatMap("/tb3_1/cmd_velIN", "0", "10000.0", 3434232L)).
 		addSink(myProducer);
 	
 		ROSSimulator rosSim = new ROSSimulator();

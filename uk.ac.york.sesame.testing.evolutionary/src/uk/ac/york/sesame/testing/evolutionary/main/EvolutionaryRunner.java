@@ -22,7 +22,6 @@ public class EvolutionaryRunner {
 		int numIterations = 40;
 		int populationSize = 10;
 		int offspringSize = 10;
-		String scenarioStr = "S004";
 		//ExperimentType etype = ExperimentType.FIXED_TIME_FUZZING;
 		
 		// Sets the space model file and the campaign to run here

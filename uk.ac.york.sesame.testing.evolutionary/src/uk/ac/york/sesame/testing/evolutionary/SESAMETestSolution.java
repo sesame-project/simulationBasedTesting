@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.uma.jmetal.solution.*;
@@ -14,9 +13,8 @@ import org.uma.jmetal.solution.*;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl;
 
 public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	private static final long serialVersionUID = 1L;
@@ -49,7 +47,7 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	
 	private String createTestName() {
 		String date = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(new Date());
-		return (numTest++).toString() + date;
+		return "Test_" + String.format("%03d", ++numTest) + "_" + date;
 	}
 
 	public Test getInternalType() {
@@ -112,12 +110,6 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 			res[i] = getConstraint(i);
 		}
 		return res;
-	}
-
-	double FuzzingSelectionIntensity(SESAMETestAttack fs) {
-		// Assume the intensity is always 1 unless otherwise
-		double intensity = 1.0;
-		return intensity;
 	}
 
 	public double getConstraint(int index) {
@@ -204,87 +196,10 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	public Map<Object, Object> attributes() {
 		return getAttributes();
 	}
-
+	
 	public String toString() {
-		String out = "CSV:" + getTestModelFileName() + "\n";
-		for (int i = 0; i < contents.size(); i++) {
-			out += contents.get(i).generateDebugInfo() + "\n";
-		}
-		return out;
+		return t.getName();
 	}
-
-	public String getTestModelFileName() {
-		return ensureModelFileName();
-	}
-
-	private String ensureModelFileName() {
-		return "TEST-MODEL-FILE.model";
-	}
-
-//	public boolean containsTopicKey(String key) {
-//		return contents.stream().anyMatch(r -> r.containsTopic(key));
-//	}
-
-//	public void deleteOverlapping() {
-//		List<FuzzingKeySelectionRecord> toRemove = new ArrayList<FuzzingKeySelectionRecord>();
-//		// Find all matching overlapping keys and delete them
-//		// Find any with two keys - and with timing overlapping
-//		for (FuzzingSelectionRecord r1 : contents) {
-//			for (FuzzingSelectionRecord r2 : contents) {
-//				FuzzingKeySelectionRecord rk1 = (FuzzingKeySelectionRecord)r1;
-//				FuzzingKeySelectionRecord rk2 = (FuzzingKeySelectionRecord)r2;
-//				if (rk1.getKey().equals(rk2.getKey())) {
-//					
-//					if (isInside(rk1.getTimeSpec(), rk2.getTimeSpec())) {
-//						// delete rk1
-//						toRemove.add(rk1);
-//					} else {					
-//							if (isInside(rk2.getTimeSpec(), rk1.getTimeSpec())) {
-//								// delete rk1
-//								toRemove.add(rk2);
-//							} else {
-//								// If there is a partial overlapping between the two of them? cut them to not overlap
-//								trimIfOverlap(rk1, rk2);
-//							}
-//					}
-//				}
-//			}
-//		}
-//		
-//		// Remove the selected records
-//		for (FuzzingKeySelectionRecord r : toRemove) {
-//			contents.remove(r);
-//		}
-//	}
-
-//	// If ts1 and ts2 overlap (ts1 before ts2), trim it so ts1 ends before ts2
-//	// starts
-//	private void trimIfOverlap(FuzzingKeySelectionRecord rk1, FuzzingKeySelectionRecord rk2) {
-//		FuzzingTimeSpecification timeSpec1 = rk1.getTimeSpec();
-//		FuzzingTimeSpecification timeSpec2 = rk2.getTimeSpec();
-//		if ((timeSpec1 instanceof FuzzingFixedTimeSpecification)
-//				&& (timeSpec2 instanceof FuzzingFixedTimeSpecification)) {
-//			FuzzingFixedTimeSpecification tsfixed1 = (FuzzingFixedTimeSpecification) timeSpec1;
-//			FuzzingFixedTimeSpecification tsfixed2 = (FuzzingFixedTimeSpecification) timeSpec2;
-//			if ((tsfixed1.getStartTime() < tsfixed2.getStartTime())
-//					&& (tsfixed1.getEndTime() > tsfixed2.getStartTime())) {
-//				tsfixed1.setEndTime(tsfixed2.getStartTime());
-//			}
-//		}
-//	}
-//
-//	// Returns true if 1 is inside 2
-//	private boolean isInside(FuzzingTimeSpecification timeSpec1, FuzzingTimeSpecification timeSpec2) {
-//		if ((timeSpec1 instanceof FuzzingFixedTimeSpecification)
-//				&& (timeSpec2 instanceof FuzzingFixedTimeSpecification)) {
-//			FuzzingFixedTimeSpecification tsfixed1 = (FuzzingFixedTimeSpecification) timeSpec1;
-//			FuzzingFixedTimeSpecification tsfixed2 = (FuzzingFixedTimeSpecification) timeSpec2;
-//			return ((tsfixed1.getStartTime() > tsfixed2.getStartTime())
-//					&& (tsfixed1.getEndTime() < tsfixed2.getEndTime()));
-//		} else {
-//			return false;
-//		}
-//	}
 
 	public void setObjectiveMetric(int i, Metric m) {
 		objectiveMetrics.put(i, m);
@@ -308,9 +223,19 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	}
 
 	public void ensureModelUpdated(TestCampaign campaign) {
+		List<Attack> testAttacks = t.getAttacks();
+		// First, ensure the model attack objects are all updated in the model object
+		// from its contents
+		for (SESAMETestAttack sta : contents) {
+			Attack a = sta.getAttack();
+			testAttacks.add(a);
+		}
+		
+		// Add the test to the enclosing TestCampaign
 		EList<Test> tests = campaign.getPerformedTests();
 		if (!modelContainsTest(tests, t.getName())) {
 			tests.add(t);
+			
 			System.out.println("Added a test to the model named " + t.getName());
 		}
 	}

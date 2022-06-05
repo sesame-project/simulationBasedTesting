@@ -540,7 +540,7 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAttack_Next() {
+	public EReference getAttack_BasedUpon() {
 		return (EReference)attackEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -1135,7 +1135,7 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		createEReference(attackEClass, ATTACK__PUBLISHING_TOPICS);
 		createEAttribute(attackEClass, ATTACK__ALL_SUBSCRIBING_TOPICS);
 		createEReference(attackEClass, ATTACK__SUBSCRIBING_TOPICS);
-		createEReference(attackEClass, ATTACK__NEXT);
+		createEReference(attackEClass, ATTACK__BASED_UPON);
 
 		offlineAttackEClass = createEClass(OFFLINE_ATTACK);
 		createEAttribute(offlineAttackEClass, OFFLINE_ATTACK__ATTACK_TIME);
@@ -1315,7 +1315,7 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		initEReference(getAttack_PublishingTopics(), theMRSPackagePackage.getTopic(), null, "publishingTopics", null, 0, -1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttack_AllSubscribingTopics(), ecorePackage.getEBoolean(), "allSubscribingTopics", "false", 0, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAttack_SubscribingTopics(), theMRSPackagePackage.getTopic(), null, "subscribingTopics", null, 0, -1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAttack_Next(), this.getAttack(), null, "next", null, 1, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttack_BasedUpon(), this.getAttack(), null, "basedUpon", null, 0, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(offlineAttackEClass, OfflineAttack.class, "OfflineAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOfflineAttack_AttackTime(), this.getOfflineAttackTime(), "attackTime", null, 0, 1, OfflineAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

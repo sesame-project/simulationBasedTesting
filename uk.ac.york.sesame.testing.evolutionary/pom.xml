@@ -17,6 +17,20 @@
 	</build>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>connect-api</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.awaitility</groupId>
+			<artifactId>awaitility</artifactId>
+			<version>4.2.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-streaming-java_2.11</artifactId>
@@ -38,6 +52,12 @@
 			<artifactId>flink-connector-filesystem_2.12</artifactId>
 			<version>1.11.6</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-connector-files</artifactId>
+			<version>1.13.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-connector-files</artifactId>
@@ -103,7 +123,7 @@
 			<artifactId>uk.ac.york.sesame.testing.dsl</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>uk.ac.york.sesame.testing.architecture</groupId>
 			<artifactId>uk.ac.york.sesame.testing.architecture</artifactId>

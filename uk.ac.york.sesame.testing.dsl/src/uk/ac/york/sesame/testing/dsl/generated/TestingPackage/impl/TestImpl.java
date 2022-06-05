@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
@@ -63,7 +62,7 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAttacks() <em>Attacks</em>}' reference list.
+	 * The cached value of the '{@link #getAttacks() <em>Attacks</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getAttacks()
@@ -129,7 +128,7 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 */
 	public EList<Attack> getAttacks() {
 		if (attacks == null) {
-			attacks = new EObjectResolvingEList<Attack>(Attack.class, this, TestingPackagePackage.TEST__ATTACKS);
+			attacks = new EObjectContainmentEList<Attack>(Attack.class, this, TestingPackagePackage.TEST__ATTACKS);
 		}
 		return attacks;
 	}
@@ -154,6 +153,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case TestingPackagePackage.TEST__ATTACKS:
+				return ((InternalEList<?>)getAttacks()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TEST__METRICS:
 				return ((InternalEList<?>)getMetrics()).basicRemove(otherEnd, msgs);
 		}

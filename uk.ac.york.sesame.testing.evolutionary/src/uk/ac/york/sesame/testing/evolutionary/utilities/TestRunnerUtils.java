@@ -11,8 +11,7 @@ public class TestRunnerUtils {
 		ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./execute_testrunner_xterm.sh", mainClass);
 	}
 
-	public static void compile(String mainClassName) {
-		// TODO Auto-generated method stub
-		
+	public static void compileProject(String projectDir) {
+		ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./compile_project.sh", projectDir);
 	}
 }

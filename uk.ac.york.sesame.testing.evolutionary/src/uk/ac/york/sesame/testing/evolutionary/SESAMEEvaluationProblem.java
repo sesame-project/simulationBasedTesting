@@ -1,6 +1,8 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.Random;
@@ -8,9 +10,21 @@ import java.util.Random;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.TopicPartition;
+import org.apache.kafka.common.serialization.LongDeserializer;
+import org.apache.kafka.common.serialization.LongSerializer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.uma.jmetal.problem.Problem;
+import org.awaitility.Awaitility;
+import org.awaitility.Awaitility.*;
 
+import java.time.Duration.*;
+import java.util.concurrent.TimeUnit;
+
+import akka.remote.serialization.StringSerializer;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
@@ -20,8 +34,11 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
 
 public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
-
 	private static final long serialVersionUID = 1L;
+	
+	private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = false;
+	private static final boolean DEBUG_ACTUALLY_RUN = false;
+	
 	private Random rng;
 	private MetricHandler metricHandler;
 	
@@ -40,6 +57,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private String codeGenerationDirectory;
 	
 	private SESAMEModelLoader loader;
+	private MetricConsumer metricConsumer;
 	
 	// TODO: how to model the grammar
 	//Grammar<String> grammar;
@@ -47,22 +65,23 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	// properties here have been removed - they are either redundant or set from the model
 	
 	// Sets up a metric queue to listen for the given campaign
-	private void setupMetricQueue(TestCampaign campaign) throws StreamSetupFailed {
+	private void setupMetricListener(TestCampaign campaign) throws StreamSetupFailed {
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
-		metricHandler = new MetricHandler();
-		// TODO: initializing the rng for repeatable experiments
-		rng = new Random();
+		properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
+		properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
 		
-		metricStream = env.addSource(new FlinkKafkaConsumer<MetricMessage>("metricIN", new MetricMessageSchema(), properties)).returns(MetricMessage.class);
-		if (metricStream != null) {
-			//DataStream<MetricMessage> out = metricStream.process(metricHandler);
-			//out.addSink(new MetricSink(campaign));
-		} else {
-			throw new StreamSetupFailed("metricIN");
-		}
+		//metricHandler = new MetricHandler();
+
+		// TODO: initializing the rng properly for repeatable experiments
+		rng = new Random();
+		List<TopicPartition> parts = new ArrayList<TopicPartition>();
+		metricConsumer = new MetricConsumer(properties, parts);
+		
+		Thread t = new Thread(metricConsumer);
+		t.run();
 	}
 
 	public SESAMEEvaluationProblem(String spaceModelFileName, String campaignName, String codeGenerationDirectory) throws InvalidTestCampaign, StreamSetupFailed {
@@ -79,7 +98,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		
 		if (tc_o.isPresent()) {
 			selectedCampaign = tc_o.get();
-			setupMetricQueue(selectedCampaign);
+			setupMetricListener(selectedCampaign);
 		} else {
 			throw new InvalidTestCampaign(campaignName);
 		}
@@ -110,29 +129,35 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	public void performSAFEMUVTest(SESAMETestSolution solution) {
 		try {
 			String mainClassName = solution.getMainClassName();
-			String __mrsModelFile = "testingMRS.model";
-			
-			metricHandler.setSolution(solution);
+		
+			metricConsumer.setSolution(solution);
 			
 			// This ensures that the new test is installed in the model 
 			solution.ensureModelUpdated(selectedCampaign);
 			loader.saveTestingSpace();
 			
-			// This needs to transform the testing space model into code - by invoking EGL
-
-			eglEx.run();
+			System.out.println("Model updated");
 			
-			// Need to compile/execute the resulting main() method now - or can we get Eclipse to do it automatically?
-			TestRunnerUtils.compile(mainClassName);
+			if (DEBUG_ACTUALLY_GENERATE_EGL) {
+				// 	This needs to transform the testing space model into code - by invoking EGL
+			eglEx.run();
+			}
+			
+			if (DEBUG_ACTUALLY_RUN) {
+			// Invoke maven script to ensure that the project is rebuilt
+			TestRunnerUtils.compileProject(codeGenerationDirectory);
 					
 			// Invokes the main method for this code
 			TestRunnerUtils.exec(mainClassName);
-				
-			// The generated code will insert the metrics into that particular Test, within the model
-			// metricHandler will automatically insert the metrics into a particular solution
 
 			// TODO: Need to wait for simulation completion here...
+			// TODO: wait for the time given in the model under the test campaign
+			Awaitility.await().atMost(500, TimeUnit.SECONDS);
 			
+			// Ensure that the model is updated with the metric results
+			metricConsumer.updateMetricsInModel();
+			
+			}
 						
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -147,7 +172,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	}
 
 	// Variable probability of inclusion? - needs to be specified from the Attack and TestCampaign
-	// TODO: for now, just using 50% for all attacks
+	// TODO: this needs to be specified as an extension point, for now, just using 50% for all attacks
 	public boolean includeAttack(Attack a) {
 		final double INCLUDE_ATTACK_PROB = 0.5;
 		double v = rng.nextDouble();
@@ -166,8 +191,9 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 		for (Attack a : selectedCampaign.getIncludedAttacks()) {
 			if (includeAttack(a)) {
-				// TODO: attacks can be a "subset" of each of the selected attacks
-				SESAMETestAttack sta = new SESAMETestAttack(sol, a);
+				// Attacks produced as a  "subset" of each of the selected attacks
+				// TODO: this should be configurable somehow
+				SESAMETestAttack sta = SESAMETestAttack.reductionOfAttack(sol, a);
 				sol.addContents(i++, sta);
 			}
 		}

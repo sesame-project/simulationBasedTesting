@@ -30,7 +30,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getPublishingTopics <em>Publishing Topics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#isAllSubscribingTopics <em>All Subscribing Topics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getSubscribingTopics <em>Subscribing Topics</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getNext <em>Next</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getBasedUpon <em>Based Upon</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack()
@@ -279,25 +279,25 @@ public interface Attack extends EObject {
 	EList<Topic> getSubscribingTopics();
 
 	/**
-	 * Returns the value of the '<em><b>Next</b></em>' reference.
+	 * Returns the value of the '<em><b>Based Upon</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Next</em>' reference.
-	 * @see #setNext(Attack)
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack_Next()
-	 * @model required="true"
+	 * @return the value of the '<em>Based Upon</em>' reference.
+	 * @see #setBasedUpon(Attack)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack_BasedUpon()
+	 * @model
 	 * @generated
 	 */
-	Attack getNext();
+	Attack getBasedUpon();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getNext <em>Next</em>}' reference.
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getBasedUpon <em>Based Upon</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Next</em>' reference.
-	 * @see #getNext()
+	 * @param value the new value of the '<em>Based Upon</em>' reference.
+	 * @see #getBasedUpon()
 	 * @generated
 	 */
-	void setNext(Attack value);
+	void setBasedUpon(Attack value);
 
 } // Attack
