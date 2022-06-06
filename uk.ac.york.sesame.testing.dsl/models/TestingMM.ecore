@@ -26,6 +26,8 @@
         eType="#//TestGenerationApproach" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="performedTests" upperBound="-1"
         eType="#//Test" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultEndTrigger" lowerBound="1"
+        eType="#//ExecutionEndTrigger" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Test">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -33,6 +35,12 @@
         eType="#//Attacks/Attack" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metrics" upperBound="-1"
         eType="#//Metrics/MetricInstance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endTrigger" lowerBound="1"
+        eType="#//ExecutionEndTrigger" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionEndTrigger" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeBasedEnd" eSuperTypes="#//ExecutionEndTrigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeLimitSeconds" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GrammarConstraint"/>
   <eClassifiers xsi:type="ecore:EClass" name="TestGenerationApproach" abstract="true"/>

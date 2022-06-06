@@ -22,6 +22,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInst
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getAttacks <em>Attacks</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getMetrics <em>Metrics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getEndTrigger <em>End Trigger</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTest()
@@ -74,5 +75,27 @@ public interface Test extends EObject {
 	 * @generated
 	 */
 	EList<MetricInstance> getMetrics();
+
+	/**
+	 * Returns the value of the '<em><b>End Trigger</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>End Trigger</em>' containment reference.
+	 * @see #setEndTrigger(ExecutionEndTrigger)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTest_EndTrigger()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ExecutionEndTrigger getEndTrigger();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getEndTrigger <em>End Trigger</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>End Trigger</em>' containment reference.
+	 * @see #getEndTrigger()
+	 * @generated
+	 */
+	void setEndTrigger(ExecutionEndTrigger value);
 
 } // Test

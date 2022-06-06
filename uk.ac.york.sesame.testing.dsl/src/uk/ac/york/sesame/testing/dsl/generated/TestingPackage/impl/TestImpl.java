@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
@@ -36,6 +37,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getAttacks <em>Attacks</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getMetrics <em>Metrics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getEndTrigger <em>End Trigger</em>}</li>
  * </ul>
  *
  * @generated
@@ -80,6 +82,16 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * @ordered
 	 */
 	protected EList<MetricInstance> metrics;
+
+	/**
+	 * The cached value of the '{@link #getEndTrigger() <em>End Trigger</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndTrigger()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExecutionEndTrigger endTrigger;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,6 +162,49 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ExecutionEndTrigger getEndTrigger() {
+		return endTrigger;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetEndTrigger(ExecutionEndTrigger newEndTrigger, NotificationChain msgs) {
+		ExecutionEndTrigger oldEndTrigger = endTrigger;
+		endTrigger = newEndTrigger;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST__END_TRIGGER, oldEndTrigger, newEndTrigger);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEndTrigger(ExecutionEndTrigger newEndTrigger) {
+		if (newEndTrigger != endTrigger) {
+			NotificationChain msgs = null;
+			if (endTrigger != null)
+				msgs = ((InternalEObject)endTrigger).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST__END_TRIGGER, null, msgs);
+			if (newEndTrigger != null)
+				msgs = ((InternalEObject)newEndTrigger).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST__END_TRIGGER, null, msgs);
+			msgs = basicSetEndTrigger(newEndTrigger, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST__END_TRIGGER, newEndTrigger, newEndTrigger));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -157,6 +212,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return ((InternalEList<?>)getAttacks()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TEST__METRICS:
 				return ((InternalEList<?>)getMetrics()).basicRemove(otherEnd, msgs);
+			case TestingPackagePackage.TEST__END_TRIGGER:
+				return basicSetEndTrigger(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -175,6 +232,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return getAttacks();
 			case TestingPackagePackage.TEST__METRICS:
 				return getMetrics();
+			case TestingPackagePackage.TEST__END_TRIGGER:
+				return getEndTrigger();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -199,6 +258,9 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				getMetrics().clear();
 				getMetrics().addAll((Collection<? extends MetricInstance>)newValue);
 				return;
+			case TestingPackagePackage.TEST__END_TRIGGER:
+				setEndTrigger((ExecutionEndTrigger)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -220,6 +282,9 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 			case TestingPackagePackage.TEST__METRICS:
 				getMetrics().clear();
 				return;
+			case TestingPackagePackage.TEST__END_TRIGGER:
+				setEndTrigger((ExecutionEndTrigger)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -238,6 +303,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return attacks != null && !attacks.isEmpty();
 			case TestingPackagePackage.TEST__METRICS:
 				return metrics != null && !metrics.isEmpty();
+			case TestingPackagePackage.TEST__END_TRIGGER:
+				return endTrigger != null;
 		}
 		return super.eIsSet(featureID);
 	}

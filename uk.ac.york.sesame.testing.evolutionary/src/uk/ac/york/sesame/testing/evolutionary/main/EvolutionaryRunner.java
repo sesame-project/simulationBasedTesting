@@ -27,8 +27,8 @@ public class EvolutionaryRunner {
 		// Sets the space model file and the campaign to run here
 		
 		// PATHS HERE
-		final String spaceModelFileName = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.dsl/models/testingHealthcareSpace.model";
-		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.evolutionary/src/uk/ac/york/sesame/testing/evolutionary/generatedTests/";
+		final String spaceModelFileName = "/home/jharbin/eclipse-workspace/localAutoGen/models/testingHealthcareSpace.model";
+		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/eclipse-workspace/localAutoGen";
 		
 		String campaignToRun = "firstExperiment";
 			

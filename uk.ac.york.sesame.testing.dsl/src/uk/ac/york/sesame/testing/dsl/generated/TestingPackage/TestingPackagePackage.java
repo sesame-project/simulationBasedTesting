@@ -203,13 +203,22 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_CAMPAIGN__PERFORMED_TESTS = 5;
 
 	/**
+	 * The feature id for the '<em><b>Default End Trigger</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_CAMPAIGN__DEFAULT_END_TRIGGER = 6;
+
+	/**
 	 * The number of structural features of the '<em>Test Campaign</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN_FEATURE_COUNT = 6;
+	int TEST_CAMPAIGN_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Test Campaign</em>' class.
@@ -258,13 +267,22 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST__METRICS = 2;
 
 	/**
+	 * The feature id for the '<em><b>End Trigger</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST__END_TRIGGER = 3;
+
+	/**
 	 * The number of structural features of the '<em>Test</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_FEATURE_COUNT = 3;
+	int TEST_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Test</em>' class.
@@ -276,6 +294,71 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ExecutionEndTriggerImpl <em>Execution End Trigger</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ExecutionEndTriggerImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getExecutionEndTrigger()
+	 * @generated
+	 */
+	int EXECUTION_END_TRIGGER = 3;
+
+	/**
+	 * The number of structural features of the '<em>Execution End Trigger</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_END_TRIGGER_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Execution End Trigger</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_END_TRIGGER_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TimeBasedEndImpl <em>Time Based End</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TimeBasedEndImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTimeBasedEnd()
+	 * @generated
+	 */
+	int TIME_BASED_END = 4;
+
+	/**
+	 * The feature id for the '<em><b>Time Limit Seconds</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_BASED_END__TIME_LIMIT_SECONDS = EXECUTION_END_TRIGGER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Time Based End</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_BASED_END_FEATURE_COUNT = EXECUTION_END_TRIGGER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Time Based End</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_BASED_END_OPERATION_COUNT = EXECUTION_END_TRIGGER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarConstraintImpl <em>Grammar Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -283,7 +366,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getGrammarConstraint()
 	 * @generated
 	 */
-	int GRAMMAR_CONSTRAINT = 3;
+	int GRAMMAR_CONSTRAINT = 5;
 
 	/**
 	 * The number of structural features of the '<em>Grammar Constraint</em>' class.
@@ -311,7 +394,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTestGenerationApproach()
 	 * @generated
 	 */
-	int TEST_GENERATION_APPROACH = 4;
+	int TEST_GENERATION_APPROACH = 6;
 
 	/**
 	 * The number of structural features of the '<em>Test Generation Approach</em>' class.
@@ -339,7 +422,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRandomTestGeneration()
 	 * @generated
 	 */
-	int RANDOM_TEST_GENERATION = 5;
+	int RANDOM_TEST_GENERATION = 7;
 
 	/**
 	 * The number of structural features of the '<em>Random Test Generation</em>' class.
@@ -367,7 +450,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getEvolutionaryAlgorithm()
 	 * @generated
 	 */
-	int EVOLUTIONARY_ALGORITHM = 6;
+	int EVOLUTIONARY_ALGORITHM = 8;
 
 	/**
 	 * The number of structural features of the '<em>Evolutionary Algorithm</em>' class.
@@ -395,7 +478,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getNSGAEvolutionaryAlgorithm()
 	 * @generated
 	 */
-	int NSGA_EVOLUTIONARY_ALGORITHM = 7;
+	int NSGA_EVOLUTIONARY_ALGORITHM = 9;
 
 	/**
 	 * The feature id for the '<em><b>Population Size</b></em>' attribute.
@@ -441,7 +524,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getGrammarSpecification()
 	 * @generated
 	 */
-	int GRAMMAR_SPECIFICATION = 8;
+	int GRAMMAR_SPECIFICATION = 10;
 
 	/**
 	 * The number of structural features of the '<em>Grammar Specification</em>' class.
@@ -615,6 +698,17 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestCampaign_PerformedTests();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger <em>Default End Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Default End Trigger</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger()
+	 * @see #getTestCampaign()
+	 * @generated
+	 */
+	EReference getTestCampaign_DefaultEndTrigger();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test <em>Test</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -656,6 +750,48 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTest_Metrics();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getEndTrigger <em>End Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>End Trigger</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getEndTrigger()
+	 * @see #getTest()
+	 * @generated
+	 */
+	EReference getTest_EndTrigger();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger <em>Execution End Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Execution End Trigger</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger
+	 * @generated
+	 */
+	EClass getExecutionEndTrigger();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd <em>Time Based End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Time Based End</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd
+	 * @generated
+	 */
+	EClass getTimeBasedEnd();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd#getTimeLimitSeconds <em>Time Limit Seconds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time Limit Seconds</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd#getTimeLimitSeconds()
+	 * @see #getTimeBasedEnd()
+	 * @generated
+	 */
+	EAttribute getTimeBasedEnd_TimeLimitSeconds();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint <em>Grammar Constraint</em>}'.
@@ -879,6 +1015,14 @@ public interface TestingPackagePackage extends EPackage {
 		EReference TEST_CAMPAIGN__PERFORMED_TESTS = eINSTANCE.getTestCampaign_PerformedTests();
 
 		/**
+		 * The meta object literal for the '<em><b>Default End Trigger</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_CAMPAIGN__DEFAULT_END_TRIGGER = eINSTANCE.getTestCampaign_DefaultEndTrigger();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl <em>Test</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -911,6 +1055,42 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST__METRICS = eINSTANCE.getTest_Metrics();
+
+		/**
+		 * The meta object literal for the '<em><b>End Trigger</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST__END_TRIGGER = eINSTANCE.getTest_EndTrigger();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ExecutionEndTriggerImpl <em>Execution End Trigger</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ExecutionEndTriggerImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getExecutionEndTrigger()
+		 * @generated
+		 */
+		EClass EXECUTION_END_TRIGGER = eINSTANCE.getExecutionEndTrigger();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TimeBasedEndImpl <em>Time Based End</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TimeBasedEndImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTimeBasedEnd()
+		 * @generated
+		 */
+		EClass TIME_BASED_END = eINSTANCE.getTimeBasedEnd();
+
+		/**
+		 * The meta object literal for the '<em><b>Time Limit Seconds</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TIME_BASED_END__TIME_LIMIT_SECONDS = eINSTANCE.getTimeBasedEnd_TimeLimitSeconds();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarConstraintImpl <em>Grammar Constraint</em>}' class.

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
@@ -44,6 +45,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getPerformedTests <em>Performed Tests</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getDefaultEndTrigger <em>Default End Trigger</em>}</li>
  * </ul>
  *
  * @generated
@@ -118,6 +120,16 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * @ordered
 	 */
 	protected EList<Test> performedTests;
+
+	/**
+	 * The cached value of the '{@link #getDefaultEndTrigger() <em>Default End Trigger</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultEndTrigger()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExecutionEndTrigger defaultEndTrigger;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -255,6 +267,49 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ExecutionEndTrigger getDefaultEndTrigger() {
+		return defaultEndTrigger;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDefaultEndTrigger(ExecutionEndTrigger newDefaultEndTrigger, NotificationChain msgs) {
+		ExecutionEndTrigger oldDefaultEndTrigger = defaultEndTrigger;
+		defaultEndTrigger = newDefaultEndTrigger;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER, oldDefaultEndTrigger, newDefaultEndTrigger);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultEndTrigger(ExecutionEndTrigger newDefaultEndTrigger) {
+		if (newDefaultEndTrigger != defaultEndTrigger) {
+			NotificationChain msgs = null;
+			if (defaultEndTrigger != null)
+				msgs = ((InternalEObject)defaultEndTrigger).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER, null, msgs);
+			if (newDefaultEndTrigger != null)
+				msgs = ((InternalEObject)newDefaultEndTrigger).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER, null, msgs);
+			msgs = basicSetDefaultEndTrigger(newDefaultEndTrigger, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER, newDefaultEndTrigger, newDefaultEndTrigger));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -264,6 +319,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return basicSetApproach(null, msgs);
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
 				return ((InternalEList<?>)getPerformedTests()).basicRemove(otherEnd, msgs);
+			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
+				return basicSetDefaultEndTrigger(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -288,6 +345,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return getApproach();
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
 				return getPerformedTests();
+			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
+				return getDefaultEndTrigger();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -323,6 +382,9 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				getPerformedTests().clear();
 				getPerformedTests().addAll((Collection<? extends Test>)newValue);
 				return;
+			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
+				setDefaultEndTrigger((ExecutionEndTrigger)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -353,6 +415,9 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
 				getPerformedTests().clear();
 				return;
+			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
+				setDefaultEndTrigger((ExecutionEndTrigger)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -377,6 +442,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return approach != null;
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
 				return performedTests != null && !performedTests.isEmpty();
+			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
+				return defaultEndTrigger != null;
 		}
 		return super.eIsSet(featureID);
 	}

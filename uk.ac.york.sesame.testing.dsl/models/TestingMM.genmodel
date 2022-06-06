@@ -22,11 +22,17 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/constraints"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/approach"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/performedTests"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/defaultEndTrigger"/>
     </genClasses>
     <genClasses ecoreClass="TestingMM.ecore#//Test">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Test/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/attacks"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/metrics"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/endTrigger"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="TestingMM.ecore#//ExecutionEndTrigger"/>
+    <genClasses ecoreClass="TestingMM.ecore#//TimeBasedEnd">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//TimeBasedEnd/timeLimitSeconds"/>
     </genClasses>
     <genClasses ecoreClass="TestingMM.ecore#//GrammarConstraint"/>
     <genClasses image="false" ecoreClass="TestingMM.ecore#//TestGenerationApproach"/>

@@ -80,6 +80,14 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 				return createTestAdapter();
 			}
 			@Override
+			public Adapter caseExecutionEndTrigger(ExecutionEndTrigger object) {
+				return createExecutionEndTriggerAdapter();
+			}
+			@Override
+			public Adapter caseTimeBasedEnd(TimeBasedEnd object) {
+				return createTimeBasedEndAdapter();
+			}
+			@Override
 			public Adapter caseGrammarConstraint(GrammarConstraint object) {
 				return createGrammarConstraintAdapter();
 			}
@@ -162,6 +170,34 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTestAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger <em>Execution End Trigger</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger
+	 * @generated
+	 */
+	public Adapter createExecutionEndTriggerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd <em>Time Based End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd
+	 * @generated
+	 */
+	public Adapter createTimeBasedEndAdapter() {
 		return null;
 	}
 

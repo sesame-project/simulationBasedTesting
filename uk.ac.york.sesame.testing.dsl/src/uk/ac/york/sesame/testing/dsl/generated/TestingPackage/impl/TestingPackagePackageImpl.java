@@ -14,6 +14,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPac
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.EvolutionaryAlgorithm;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpecification;
 
@@ -36,6 +37,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationAppr
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,6 +66,20 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * @generated
 	 */
 	private EClass testEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass executionEndTriggerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass timeBasedEndEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -317,6 +333,15 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTestCampaign_DefaultEndTrigger() {
+		return (EReference)testCampaignEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTest() {
 		return testEClass;
 	}
@@ -346,6 +371,42 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 */
 	public EReference getTest_Metrics() {
 		return (EReference)testEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTest_EndTrigger() {
+		return (EReference)testEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExecutionEndTrigger() {
+		return executionEndTriggerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTimeBasedEnd() {
+		return timeBasedEndEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTimeBasedEnd_TimeLimitSeconds() {
+		return (EAttribute)timeBasedEndEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -463,11 +524,18 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__CONSTRAINTS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__APPROACH);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__PERFORMED_TESTS);
+		createEReference(testCampaignEClass, TEST_CAMPAIGN__DEFAULT_END_TRIGGER);
 
 		testEClass = createEClass(TEST);
 		createEAttribute(testEClass, TEST__NAME);
 		createEReference(testEClass, TEST__ATTACKS);
 		createEReference(testEClass, TEST__METRICS);
+		createEReference(testEClass, TEST__END_TRIGGER);
+
+		executionEndTriggerEClass = createEClass(EXECUTION_END_TRIGGER);
+
+		timeBasedEndEClass = createEClass(TIME_BASED_END);
+		createEAttribute(timeBasedEndEClass, TIME_BASED_END__TIME_LIMIT_SECONDS);
 
 		grammarConstraintEClass = createEClass(GRAMMAR_CONSTRAINT);
 
@@ -524,6 +592,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		timeBasedEndEClass.getESuperTypes().add(this.getExecutionEndTrigger());
 		randomTestGenerationEClass.getESuperTypes().add(this.getTestGenerationApproach());
 		evolutionaryAlgorithmEClass.getESuperTypes().add(this.getTestGenerationApproach());
 		nsgaEvolutionaryAlgorithmEClass.getESuperTypes().add(this.getEvolutionaryAlgorithm());
@@ -544,11 +613,18 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEReference(getTestCampaign_Constraints(), this.getGrammarConstraint(), null, "constraints", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Approach(), this.getTestGenerationApproach(), null, "approach", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_PerformedTests(), this.getTest(), null, "performedTests", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestCampaign_DefaultEndTrigger(), this.getExecutionEndTrigger(), null, "defaultEndTrigger", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testEClass, Test.class, "Test", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTest_Name(), ecorePackage.getEString(), "name", null, 0, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_Attacks(), theAttacksPackage.getAttack(), null, "attacks", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_Metrics(), theMetricsPackage.getMetricInstance(), null, "metrics", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTest_EndTrigger(), this.getExecutionEndTrigger(), null, "endTrigger", null, 1, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(executionEndTriggerEClass, ExecutionEndTrigger.class, "ExecutionEndTrigger", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(timeBasedEndEClass, TimeBasedEnd.class, "TimeBasedEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTimeBasedEnd_TimeLimitSeconds(), ecorePackage.getELong(), "timeLimitSeconds", null, 0, 1, TimeBasedEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(grammarConstraintEClass, GrammarConstraint.class, "GrammarConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

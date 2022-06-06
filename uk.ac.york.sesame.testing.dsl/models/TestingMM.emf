@@ -31,6 +31,7 @@ class TestCampaign {
 	val GrammarConstraint[*] constraints;
 	val TestGenerationApproach[1] approach;
 	val Test[*] performedTests;
+	val ExecutionEndTrigger[1] defaultEndTrigger;
 }
 
 // This is analagous to a fuzzing CSV file in SAFEMUV - multiple attacks
@@ -38,7 +39,18 @@ class Test {
 	attr String name;
 	val Attacks.Attack[*] attacks;
 	val Metrics.MetricInstance[*] metrics;
+	val ExecutionEndTrigger[1] endTrigger;
 }
+
+abstract class ExecutionEndTrigger {
+		
+}
+
+class TimeBasedEnd extends ExecutionEndTrigger {
+	attr long timeLimitSeconds;
+}
+
+// TODO: condition-based simulation end?
 
 class GrammarConstraint {
 	

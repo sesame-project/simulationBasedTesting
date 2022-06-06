@@ -25,6 +25,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getPerformedTests <em>Performed Tests</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger <em>Default End Trigger</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign()
@@ -123,5 +124,27 @@ public interface TestCampaign extends EObject {
 	 * @generated
 	 */
 	EList<Test> getPerformedTests();
+
+	/**
+	 * Returns the value of the '<em><b>Default End Trigger</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default End Trigger</em>' containment reference.
+	 * @see #setDefaultEndTrigger(ExecutionEndTrigger)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_DefaultEndTrigger()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ExecutionEndTrigger getDefaultEndTrigger();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger <em>Default End Trigger</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default End Trigger</em>' containment reference.
+	 * @see #getDefaultEndTrigger()
+	 * @generated
+	 */
+	void setDefaultEndTrigger(ExecutionEndTrigger value);
 
 } // TestCampaign

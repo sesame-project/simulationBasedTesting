@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/uk.ac.york.sesame.testing.dsl/src" modelPluginID="uk.ac.york.sesame.testing.dsl"
+    modelName="Fuzzspec" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>fuzzspec.ecore</foreignModel>
+  <genPackages prefix="Fuzzing" basePackage="test.jrh.fuzzing.gen" disposableProviderFactory="true"
+      ecorePackage="fuzzspec.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="fuzzspec.ecore#//VariableDirection">
+      <genEnumLiterals ecoreEnumLiteral="fuzzspec.ecore#//VariableDirection/INBOUND"/>
+      <genEnumLiterals ecoreEnumLiteral="fuzzspec.ecore#//VariableDirection/OUTBOUND"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="fuzzspec.ecore#//BasicVariableType">
+      <genEnumLiterals ecoreEnumLiteral="fuzzspec.ecore#//BasicVariableType/CUSTOM"/>
+      <genEnumLiterals ecoreEnumLiteral="fuzzspec.ecore#//BasicVariableType/STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="fuzzspec.ecore#//BasicVariableType/DOUBLE"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="fuzzspec.ecore#//VariableType"/>
+    <genClasses ecoreClass="fuzzspec.ecore#//TimingSpec">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//TimingSpec/startTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//TimingSpec/endTime"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//SimpleVariableType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//SimpleVariableType/vt"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//ROSVariableType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//ROSVariableType/ROSTypename"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//ConstantType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//ConstantType/constant"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//RegexpVariableType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//RegexpVariableType/regexp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//RegexpVariableType/groupNumToReplace"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//GrammarVariableType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//GrammarVariableType/subtypes"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="fuzzspec.ecore#//FuzzingNature"/>
+    <genClasses ecoreClass="fuzzspec.ecore#//BinaryFuzzing"/>
+    <genClasses ecoreClass="fuzzspec.ecore#//CustomConfigurationFuzzing">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//CustomConfigurationFuzzing/CustomFuzzingModifierClass"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//FuzzingComponent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//FuzzingComponent/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//FuzzingComponent/componentRelativePath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//FuzzingComponent/vars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//FuzzingComponent/nature"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//FileSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//FileSpecification/filePath"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//Environment"/>
+    <genClasses ecoreClass="fuzzspec.ecore#//OperationParameterSetTypes">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//OperationParameterSetTypes/opParam"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//OperationParameterSetTypes/subSpec"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//FuzzProbabilityInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//FuzzProbabilityInfo/includeVariableProbability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//FuzzProbabilityInfo/maxCount"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//VariableSpecification">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//VariableSpecification/component"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//VariableSpecification/variable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//VariableSpecification/reflectionName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//VariableSpecification/vtype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//VariableSpecification/dir"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//VariableSpecification/opParamsType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//VariableSpecification/vehicleSpecific"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//VariableSpecification/timeLimit"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//VariableSpecification/probInfo"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//FuzzingMessage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//FuzzingMessage/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//FuzzingMessage/messageRef"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//FuzzingMessage/vars"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//Simulator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//Simulator/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//Simulator/baseDirectory"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//Simulator/components"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//Simulator/launchers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//Simulator/entryPoint"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="fuzzspec.ecore#//OperationParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//OperationParameter/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="fuzzspec.ecore#//DoubleOperationParameter"/>
+    <genClasses image="false" ecoreClass="fuzzspec.ecore#//IntOperationParameter"/>
+    <genClasses image="false" ecoreClass="fuzzspec.ecore#//StringOperationParameter"/>
+    <genClasses ecoreClass="fuzzspec.ecore#//DoubleConstantOperationParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//DoubleConstantOperationParameter/value"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//DoubleListOperationParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//DoubleListOperationParameter/values"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//DoubleRangeOperationParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//DoubleRangeOperationParameter/lower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//DoubleRangeOperationParameter/upper"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//IntConstantOperationParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//IntConstantOperationParameter/value"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//IntListOperationParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//IntListOperationParameter/values"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//IntRangeOperationParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//IntRangeOperationParameter/lower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//IntRangeOperationParameter/upper"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//StringListOperationParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//StringListOperationParameter/values"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//StringConstantOperationParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//StringConstantOperationParameter/value"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//OperationParameterSet">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference fuzzspec.ecore#//OperationParameterSet/parent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//OperationParameterSet/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//OperationParameterSet/params"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//FuzzingOperation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//FuzzingOperation/operationClassName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//FuzzingOperation/paramSets"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="fuzzspec.ecore#//SimulationControlScript">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fuzzspec.ecore#//SimulationControlScript/path"/>
+    </genClasses>
+    <genClasses ecoreClass="fuzzspec.ecore#//ConfigScript"/>
+    <genClasses ecoreClass="fuzzspec.ecore#//ExecutableStartScript"/>
+    <genClasses ecoreClass="fuzzspec.ecore#//FuzzingSpecification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//FuzzingSpecification/sims"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//FuzzingSpecification/messageRefs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference fuzzspec.ecore#//FuzzingSpecification/operations"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Atlas" disposableProviderFactory="true" ecorePackage="atlas.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="atlas.ecore#//MutationAlgorithm">
+      <genEnumLiterals ecoreEnumLiteral="atlas.ecore#//MutationAlgorithm/RANDOM_SEARCH"/>
+      <genEnumLiterals ecoreEnumLiteral="atlas.ecore#//MutationAlgorithm/GA_SEARCH"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="atlas.ecore#//SensorType">
+      <genEnumLiterals ecoreEnumLiteral="atlas.ecore#//SensorType/SONAR"/>
+      <genEnumLiterals ecoreEnumLiteral="atlas.ecore#//SensorType/GPS_POSITION"/>
+      <genEnumLiterals ecoreEnumLiteral="atlas.ecore#//SensorType/CAMERA"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="atlas.ecore#//ActuatorType">
+      <genEnumLiterals ecoreEnumLiteral="atlas.ecore#//ActuatorType/MOTOR"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="atlas.ecore#//logicOps">
+      <genEnumLiterals ecoreEnumLiteral="atlas.ecore#//logicOps/ADD"/>
+      <genEnumLiterals ecoreEnumLiteral="atlas.ecore#//logicOps/SUBTRACT"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="atlas.ecore#//Region"/>
+    <genClasses ecoreClass="atlas.ecore#//Point">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Point/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Point/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Point/z"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Rectangle">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Rectangle/corner1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Rectangle/corner2"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Circle">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Circle/centre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Circle/radius"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Line">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Line/points"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Polygon">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Polygon/points"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//EnvironmentalObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//EnvironmentalObject/isHazard"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//EnvironmentalObject/label"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//EnvironmentalObstacleRegion">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//EnvironmentalObstacleRegion/region"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//EnvironmentalObstacle">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//EnvironmentalObstacle/poly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//EnvironmentalObstacle/label"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//FaultTimeProperties">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//FaultTimeProperties/earliestFaultStart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//FaultTimeProperties/latestFaultEnd"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//FaultTimeProperties/maxFaultLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//FaultTimeProperties/maxFaultRepeatCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//FaultTimeProperties/faultProb"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="atlas.ecore#//FaultImpact"/>
+    <genClasses image="false" ecoreClass="atlas.ecore#//MessageImpact">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//MessageImpact/affectedMessage"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//DelayMessage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//DelayMessage/delayLength"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//DeleteMessage"/>
+    <genClasses ecoreClass="atlas.ecore#//SubFieldSpec">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//SubFieldSpec/randomSelection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//SubFieldSpec/fieldStartNum"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//SubFieldSpec/fieldRangeLength"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//MutateMessage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//MutateMessage/affectedField"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//MutateMessage/newValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//MutateMessage/subfieldSpec"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="atlas.ecore#//MessageChange"/>
+    <genClasses ecoreClass="atlas.ecore#//IntMessageChange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//IntMessageChange/absoluteValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//IntMessageChange/incrementValue"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//StringMessageChange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//StringMessageChange/absoluteValue"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//FloatMessageChange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//FloatMessageChange/absoluteValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//FloatMessageChange/incrementValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//FloatMessageChange/multFactor"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//PointMessageChange">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//PointMessageChange/absoluteValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//PointMessageChange/maxOffsetValue"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="atlas.ecore#//ComponentImpact">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//ComponentImpact/affectedComponent"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//DisabledComponent"/>
+    <genClasses ecoreClass="atlas.ecore#//MotionFault">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//MotionFault/affectedProperty"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//MotionFault/newValue"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//EnergyLoss">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//EnergyLoss/fixedEnergyLoss"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Fault">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Fault/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Fault/affectedRegion"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Fault/affectedTime"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Fault/impact"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//MessageField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//MessageField/name"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Message">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Message/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//Message/from"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//Message/to"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Message/fields"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Model/components"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="atlas.ecore#//ComponentProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//ComponentProperty/name"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//IntProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//IntProperty/value"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//PointProperty">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//PointProperty/value"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//StringProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//StringProperty/value"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//DoubleProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//DoubleProperty/value"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Component">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Component/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Component/mutable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Component/componentProperties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Component/subcomponents"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//MutationProgram">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//MutationProgram/mutAlg"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//MutationProgram/mutationGroups"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//MutationGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//MutationGroup/minRequiredFromGroup"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//MutationGroup/maxRequiredFromGroup"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//MutationGroup/members"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Robot"/>
+    <genClasses ecoreClass="atlas.ecore#//Computer"/>
+    <genClasses ecoreClass="atlas.ecore#//Sensor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Sensor/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Sensor/detections"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Actuator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Actuator/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Actuator/commands"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//ProcessingUnit"/>
+    <genClasses ecoreClass="atlas.ecore#//MotionSource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//MotionSource/energyPerDistance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//MotionSource/params"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="atlas.ecore#//EnergyResource"/>
+    <genClasses ecoreClass="atlas.ecore#//Battery">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Battery/totalEnergy"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//EnergySource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//EnergySource/productionRate"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//GoalResultField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//GoalResultField/name"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//IntResultField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//IntResultField/value"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//StringResultField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//StringResultField/value"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//FloatResultField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//FloatResultField/value"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//RobotResultField"/>
+    <genClasses ecoreClass="atlas.ecore#//PointResultField"/>
+    <genClasses ecoreClass="atlas.ecore#//GoalResult">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//GoalResult/contents"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="atlas.ecore#//GoalAction"/>
+    <genClasses ecoreClass="atlas.ecore#//Visit"/>
+    <genClasses ecoreClass="atlas.ecore#//Patrol"/>
+    <genClasses ecoreClass="atlas.ecore#//Cover"/>
+    <genClasses ecoreClass="atlas.ecore#//Avoid">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Avoid/clearance"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//TrackDistances"/>
+    <genClasses ecoreClass="atlas.ecore#//ReturnOnLowEnergy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//ReturnOnLowEnergy/energyThreshold"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//StayInRegion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//StayInRegion/stopOnFirstViolation"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//AvoidOthers">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//AvoidOthers/clearance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//AvoidOthers/advancedAvoidance"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//DiscoverObjects">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//DiscoverObjects/objects"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//DiscoverObjects/verificationsMalicious"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//DiscoverObjects/verificationsBenign"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//SensorCover">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//SensorCover/density"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//SensorCover/samplesPerUnit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//SensorCover/sensortype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//SensorCover/collective"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="atlas.ecore#//GoalParticipants"/>
+    <genClasses ecoreClass="atlas.ecore#//RelativeParticipants">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//RelativeParticipants/parentGoal"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//RelativeParticipants/staticRobots"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//RelativeParticipants/setOperation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//RelativeParticipants/fieldName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//RelativeParticipants/participantLimit"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//StaticParticipants">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//StaticParticipants/participants"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//GoalTemporalConstraints">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//GoalTemporalConstraints/dependencies"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//GoalTemporalConstraints/earliestStartTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//GoalTemporalConstraints/latestFinishTime"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="atlas.ecore#//GoalRegion"/>
+    <genClasses ecoreClass="atlas.ecore#//StaticGoalRegion">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//StaticGoalRegion/staticRegion"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//DynamicGoalRegion">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//DynamicGoalRegion/relativeToGoal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//DynamicGoalRegion/relativeToGoalField"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//DynamicGoalRegion/relativeRange"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//GoalVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//GoalVariable/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//GoalVariable/variableType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//GoalVariable/vehicleSpecific"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Metric">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Metric/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Metric/computeOnline"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Goal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Goal/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Goal/priority"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Goal/requirements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Goal/participants"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Goal/action"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Goal/region"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference atlas.ecore#//Goal/behaviours"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Goal/variables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Goal/metrics"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//BehaviourVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//BehaviourVariable/varName"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Behaviour">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Behaviour/className"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Behaviour/bvars"/>
+    </genClasses>
+    <genClasses ecoreClass="atlas.ecore#//Mission">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Mission/mutProgram"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Mission/robots"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Mission/computers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Mission/regions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Mission/goals"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Mission/behaviours"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Mission/objects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Mission/obstacles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Mission/obstacleRegion"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Mission/messages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference atlas.ecore#//Mission/faults"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Mission/endTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute atlas.ecore#//Mission/stopVehicleOnNoEnergy"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

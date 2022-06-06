@@ -1,5 +1,6 @@
 package uk.ac.york.sesame.testing.evolutionary.utilities.temp;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -96,6 +97,16 @@ public class SESAMEModelLoader {
 	public void saveTestingSpace() {
 		try {
 			resource.save(Collections.EMPTY_MAP);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void saveTestingSpaceToNewFile(String filename) {
+		try {
+			FileOutputStream outfile = new FileOutputStream(filename);
+			resource.save(outfile, Collections.EMPTY_MAP);
+			outfile.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

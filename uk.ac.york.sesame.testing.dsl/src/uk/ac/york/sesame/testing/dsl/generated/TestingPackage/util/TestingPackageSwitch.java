@@ -84,6 +84,19 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TestingPackagePackage.EXECUTION_END_TRIGGER: {
+				ExecutionEndTrigger executionEndTrigger = (ExecutionEndTrigger)theEObject;
+				T result = caseExecutionEndTrigger(executionEndTrigger);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.TIME_BASED_END: {
+				TimeBasedEnd timeBasedEnd = (TimeBasedEnd)theEObject;
+				T result = caseTimeBasedEnd(timeBasedEnd);
+				if (result == null) result = caseExecutionEndTrigger(timeBasedEnd);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case TestingPackagePackage.GRAMMAR_CONSTRAINT: {
 				GrammarConstraint grammarConstraint = (GrammarConstraint)theEObject;
 				T result = caseGrammarConstraint(grammarConstraint);
@@ -170,6 +183,36 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTest(Test object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Execution End Trigger</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Execution End Trigger</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExecutionEndTrigger(ExecutionEndTrigger object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Time Based End</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Time Based End</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTimeBasedEnd(TimeBasedEnd object) {
 		return null;
 	}
 

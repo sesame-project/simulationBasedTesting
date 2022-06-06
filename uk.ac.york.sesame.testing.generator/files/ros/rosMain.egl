@@ -32,7 +32,7 @@ import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.data.EventMessageSchema;
 
-public class [%=test.name.firstToUpperCase()%]TestingTestSuiteRunner {
+public class [%=test.name.firstToUpperCase()%]_TestRunner {
 
 	public static void main(String[] args) {
 		

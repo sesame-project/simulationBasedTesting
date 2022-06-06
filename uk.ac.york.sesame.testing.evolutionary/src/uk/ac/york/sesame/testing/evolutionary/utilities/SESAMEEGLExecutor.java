@@ -17,6 +17,7 @@ import org.eclipse.epsilon.common.util.StringProperties;
 import org.eclipse.epsilon.egl.EglFileGeneratingTemplateFactory;
 import org.eclipse.epsilon.egl.EgxModule;
 import org.eclipse.epsilon.emc.emf.EmfModel;
+import org.eclipse.epsilon.emc.emf.EmfModelFactory;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.eclipse.epsilon.eol.execute.context.Variable;
@@ -26,11 +27,13 @@ import org.eclipse.epsilon.eol.types.EolAnyType;
 public class SESAMEEGLExecutor {
 	private String testingModelPath;
 	
+	// TODO: orchestratorBasePath needs to be configured properly
 	private String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
 		
 	private String codeOutputPath;
 	
 	public SESAMEEGLExecutor(String testingModelPath, String ___UNUSED_mrsModelPath, String campaignName, String codeOutputPath) {
+		System.out.println("SESAMEEGLExecutor - testing model path is " + testingModelPath);
 		this.testingModelPath = testingModelPath;
 		this.codeOutputPath = codeOutputPath;
 	}
@@ -40,7 +43,7 @@ public class SESAMEEGLExecutor {
 		System.out.println("CURRENT USER.DIR = " + System.getProperty("user.dir"));
 		ArrayList<String> mmURIs = new ArrayList<String>();
 		Resource.Factory xmiFactory = new XMIResourceFactoryImpl();
-
+		
 		String modelPath = PathDefinitions.getPath(PathDefinitions.PathSpec.MODEL_PATH);
 
 		//Resource mrsMM = xmiFactory.createResource(URI.createFileURI(modelPath + "ExSceMM.ecore"));
@@ -55,19 +58,19 @@ public class SESAMEEGLExecutor {
 		TreeIterator<EObject> allContents = testingMM.getAllContents();
 		while (allContents.hasNext()) {
 			EObject element = allContents.next();
-			System.out.println("The Element: " + element);
+			//System.out.println("The Element: " + element);
 
 			if (element.eClass().getName().equals("EPackage")) {
 				EPackage.Registry.INSTANCE.put(((EPackage) element).getNsURI(), element);
 				mmURIs.add(((EPackage) element).getNsURI());
 			}
 		}
-		
 		return mmURIs;
 	}
 	
 	private EmfModel createAndLoadAnEmfModel(String metamodelURI, String modelFile, String modelName, String readOnLoad,
 			String storeOnDisposal) throws EolModelLoadingException {
+			
 		EmfModel theModel = new EmfModel();
 		StringProperties properties = new StringProperties();
 		properties.put(EmfModel.PROPERTY_METAMODEL_URI, metamodelURI);
@@ -87,15 +90,23 @@ public class SESAMEEGLExecutor {
 			registerMMs();
 			//EmfModel mrsModel = createAndLoadAnEmfModel("http://ExSceMM", this.mrsModelPath, "MRS", "true", "true");
 			EmfModel testingModel = createAndLoadAnEmfModel("TestingMM", this.testingModelPath, "Testing", "true","true");
-
+			testingModel.clearCache();
+			
 			// EGX
 			// Create the standalone EgxModule
+			
+		
 			// https://www.eclipse.org/epsilon/doc/articles/code-generation-tutorial-egl/
 			EglFileGeneratingTemplateFactory factory = new EglFileGeneratingTemplateFactory();
+		
+			
+			//
+			
+			
 			EgxModule egxModule = new EgxModule(factory);
 
 			egxModule.getContext().getFrameStack().put(new Variable("path", codeOutputPath, new EolAnyType()));
-			// TODO: orchestrator needs to only generate test code for this experiment
+			// TODO: orchestrator needs to only generate test code for the given test campaign
 			java.net.URI EgxFile = new File(orchestratorBasePath + "/files/orchestrator.egx").toURI();
 			
 			System.out.println(EgxFile);
@@ -108,7 +119,7 @@ public class SESAMEEGLExecutor {
 
 			factory.setOutputRoot(new File(codeOutputPath).toURI().toString());
 			//egxModule.getContext().getModelRepository().addModel(mrsModel);
-			egxModule.getContext().getModelRepository().addModel(testingModel);
+			egxModule.getContext().getModelRepository().addModel(testingModel);			
 			egxModule.execute();
 
 			// EGX END

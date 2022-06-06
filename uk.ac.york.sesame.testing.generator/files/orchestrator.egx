@@ -1,6 +1,6 @@
 rule test2Class transform test: Testing!Test {
 	template : "ros/rosMain.egl"
-	target : "src/" + test.name.firstToUpperCase() + "TestingTestSuiteRunner.java"
+	target : "src/" + test.name.firstToUpperCase() + "_TestRunner.java"
 }
 
 rule metricAsMultiStream transform metric: Testing!StreamMetric {

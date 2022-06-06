@@ -24,6 +24,7 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	private boolean actuallyRun;
 	private double exptRunTime;
 	private TestingPackageFactory tFactory;
+	private TestCampaign selectedCampaign;
 	
 	private static Integer numTest = 0;
 	
@@ -33,16 +34,31 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	private Map<Integer, Double> constraints = new HashMap<Integer, Double>();
 	private List<SESAMETestAttack> contents = new ArrayList<SESAMETestAttack>();
 
-	private void setupTestingFactory() {
+	private void checkSetupTestingFactory() {
 		if (tFactory == null) {
 			tFactory = TestingPackageFactory.eINSTANCE;
 		}
 	}
 	
-	public SESAMETestSolution() {
-		setupTestingFactory();
+	private void setupInternalType(SESAMETestSolution sesameTestSolution) {
+		checkSetupTestingFactory();
 		t = tFactory.createTest();
 		t.setName(createTestName());
+		// Set up the test with the default end trigger
+		t.setEndTrigger(selectedCampaign.getDefaultEndTrigger());
+	}
+	
+	public String getName() {
+		return t.getName();
+	}
+	
+	public String toString() {
+		return t.getName() + "-[" + contents.size() + " attacks]";
+	}
+	
+	public SESAMETestSolution(TestCampaign selectedCampaign) {
+		this.selectedCampaign = selectedCampaign;
+		setupInternalType(this);
 	}
 	
 	private String createTestName() {
@@ -57,17 +73,14 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	SESAMETestSolution(SESAMETestSolution other) {
 		this.actuallyRun = other.actuallyRun;
 		this.exptRunTime = other.exptRunTime;
+		this.selectedCampaign = other.selectedCampaign;
 		this.contents = new ArrayList<SESAMETestAttack>(other.contents.size());
 
 		for (SESAMETestAttack fi : other.contents) {
 			this.contents.add(fi.dup());
 		}
-	}
-
-	public static SESAMETestSolution empty(SESAMETestSolution other) {
-		SESAMETestSolution fi = new SESAMETestSolution();
-		fi.contents = new ArrayList<SESAMETestAttack>();
-		return fi;
+		
+		setupInternalType(this);
 	}
 
 	public void setObjective(int index, double value) {
@@ -196,10 +209,6 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	public Map<Object, Object> attributes() {
 		return getAttributes();
 	}
-	
-	public String toString() {
-		return t.getName();
-	}
 
 	public void setObjectiveMetric(int i, Metric m) {
 		objectiveMetrics.put(i, m);
@@ -215,7 +224,10 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	}
 
 	public String getMainClassName() {
-		return t.getName() + "_testSuiteRunner.java";
+		// This has to match with the name used in test2Class in orchestrator.egx and in rosmain.egl
+		// (or other simulator internal implementation)
+		// FIXED: .class is not required to execute it
+		return t.getName() + "_TestRunner";
 	}
 	
 	private boolean modelContainsTest(EList<Test> tests, String targetName) {
@@ -235,8 +247,9 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 		EList<Test> tests = campaign.getPerformedTests();
 		if (!modelContainsTest(tests, t.getName())) {
 			tests.add(t);
-			
 			System.out.println("Added a test to the model named " + t.getName());
+		} else {
+			System.out.println(t.getName() + " is already in the model");
 		}
 	}
 }
