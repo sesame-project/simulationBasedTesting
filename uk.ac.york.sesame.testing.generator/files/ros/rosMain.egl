@@ -51,6 +51,14 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 		// Kafka Sink to OUT
 		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
 				new EventMessageSchema(), properties);
+				
+		// This connects the metrics via Kafka to the metrics monitoring on the SESAME tool
+		FlinkKafkaProducer<String> metricsProducer = new FlinkKafkaProducer<>(
+		        "metricMessages",             // target topic
+		        serializationSchema,    // serialization schema
+		        properties,             // producer config
+		        FlinkKafkaProducer.Semantic.EXACTLY_ONCE); // fault-tolerance
+				
 
 		stream.
 		[%
@@ -150,11 +158,19 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 			            	.withMaxPartSize(1024 * 1024 * 1024)
 				            .build())
 					.build();
-				[%= sMetric.name %]resStream.map(e -> e.toString()).sinkTo([%= sMetric.name %]streamFileSink);	
+				[%= sMetric.name %]resStream.map(e -> e.toString()).sinkTo([%= sMetric.name %]streamFileSink);
 			[% } %]
+				
+			DataStream<MetricMessage> metricMsg[%= sMetric.name %] = TrackPacketLossRatioresStream.map(d -> new MetricMessage("[%=test.name.firstToUpperCase()%]", "[%= sMetric.name %]", d));
+			
+			// TODO: set up metric stream union operations properly		
+			DataStream<MetricMessage> allMetrics = metricMsg1.union(metricMsg2);
+			allMetrics.addSink(metricsProducer);	
+				
+			
 			
 		[% } %]
-			
+		
 		try {
 			env.execute();
 		} catch (Exception e) {

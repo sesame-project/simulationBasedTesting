@@ -11,18 +11,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class MetricMessage implements IData, Serializer, Deserializer {
 	
 	private static ObjectMapper objectMapper = new ObjectMapper();
+	private static int testIDCounter = 0;
 	
-	String id;
+	int id = testIDCounter++;
 	String testID;
 	int metricNum;
 	String metricName;
 	Object value;
 	long timestamp;
-	String topic;
 	String type;
 	
 	public MetricMessage() {
 		
+	}
+	
+	public MetricMessage(String testID, String name, Double v) {
+		this.testID = testID;
+		this.metricName = name;
+		this.value = v;
+		this.type = "Double";
 	}
 	
 	public String getMetricID() {

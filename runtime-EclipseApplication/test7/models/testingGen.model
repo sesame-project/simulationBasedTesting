@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="Attacks">
+  <TestingMM:TestCampaign xmi:id="_l6YoEEXsEeybjfS_xnSIvQ" name="campaign">
+    <metrics xsi:type="StreamMetric" xmi:id="_KLSGsKDkEeyhotmuZQhBPw" name="TrackPacketLossRatio">
+      <relatedTopics href="turtleMRS.model#_ayhwsCv_EeykGsd0UrLwGA"/>
+      <relatedTopics href="turtleMRS.model#_-onDMCv_EeykGsd0UrLwGA"/>
+      <streams xsi:type="InputStream" xmi:id="_LMDAIKDkEeyhotmuZQhBPw"/>
+      <streams xsi:type="OutputStream" xmi:id="_LmI7IKDkEeyhotmuZQhBPw"/>
+      <res xsi:type="FileStreamResult" xmi:id="_GXN30KDnEeyhotmuZQhBPw" filename="/home/jharbin/academic/sesame/WP6/temp-stream-res/packetlossratio"/>
+    </metrics>
+    <metrics xsi:type="StreamMetric" xmi:id="_4Z1o4KDkEeyhotmuZQhBPw" name="DistanceToPoint">
+      <relatedTopics href="turtleMRS.model#_-onDMCv_EeykGsd0UrLwGA"/>
+      <streams xsi:type="InputStream" xmi:id="_SGwBEKDnEeyhotmuZQhBPw"/>
+      <res xsi:type="FileStreamResult" xmi:id="_geydoKDnEeyhotmuZQhBPw" filename="/home/jharbin/academic/sesame/WP6/temp-stream-res/distancetopoint"/>
+    </metrics>
+    <possibleAttacks xsi:type="_1:RandomValueFromSetAttack" xmi:id="_l6adQUXsEeybjfS_xnSIvQ" name="randomiseVelocity">
+      <attackTimes xmi:id="_Wq9BUJSMEey186sPczhW-A" startTime="0.0" endTime="60.0"/>
+      <topicToAttack href="turtleMRS.model#_ayhwsCv_EeykGsd0UrLwGA"/>
+      <valueSet xsi:type="_1:DoubleRange" xmi:id="_l6bEUkXsEeybjfS_xnSIvQ" propertyName="geometry_msgs/Twist.linear.x" lowerBound="-3.0" upperBound="3.0"/>
+      <valueSet xsi:type="_1:DoubleRange" xmi:id="_l6bEU0XsEeybjfS_xnSIvQ" propertyName="geometry_msgs/Twist.linear.y" lowerBound="-3.0" upperBound="3.0"/>
+    </possibleAttacks>
+    <possibleAttacks xsi:type="_1:PacketLossNetworkAttack" xmi:id="_n0pVUEXsEeybjfS_xnSIvQ" name="VelPacketLoss" frequency="0.3">
+      <attackTimes xmi:id="_E9LaoEYBEeyShcYTNWauzw" startTime="0.0" endTime="25.0"/>
+      <topicToAttack href="turtleMRS.model#_ayhwsCv_EeykGsd0UrLwGA"/>
+    </possibleAttacks>
+  </TestingMM:TestCampaign>
+  <TestingMM:Test xmi:id="_l6dgkEXsEeybjfS_xnSIvQ" name="T1" attacks="_l6adQUXsEeybjfS_xnSIvQ _n0pVUEXsEeybjfS_xnSIvQ">
+    <metrics xmi:id="_PA7KEKFfEey9ZbCUbsZj8A" metric="_4Z1o4KDkEeyhotmuZQhBPw">
+      <result xmi:id="_ShcqgKFfEey9ZbCUbsZj8A"/>
+    </metrics>
+  </TestingMM:Test>
+  <TestingMM:Test xmi:id="_l6eusEXsEeybjfS_xnSIvQ" name="T2" attacks="_n0pVUEXsEeybjfS_xnSIvQ"/>
+  <TestingMM:Test xmi:id="_l6fVwEXsEeybjfS_xnSIvQ" name="T3"/>
+</xmi:XMI>
