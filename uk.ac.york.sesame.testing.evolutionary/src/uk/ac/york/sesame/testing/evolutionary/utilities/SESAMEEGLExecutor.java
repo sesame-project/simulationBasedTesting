@@ -1,12 +1,10 @@
 package uk.ac.york.sesame.testing.evolutionary.utilities;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.List;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -17,10 +15,10 @@ import org.eclipse.epsilon.common.util.StringProperties;
 import org.eclipse.epsilon.egl.EglFileGeneratingTemplateFactory;
 import org.eclipse.epsilon.egl.EgxModule;
 import org.eclipse.epsilon.emc.emf.EmfModel;
-import org.eclipse.epsilon.emc.emf.EmfModelFactory;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.eclipse.epsilon.eol.execute.context.Variable;
+import org.eclipse.epsilon.eol.models.IModel;
 import org.eclipse.epsilon.eol.models.IRelativePathResolver;
 import org.eclipse.epsilon.eol.types.EolAnyType;
 
@@ -88,9 +86,9 @@ public class SESAMEEGLExecutor {
 	public void run() {
 		try {
 			registerMMs();
-			//EmfModel mrsModel = createAndLoadAnEmfModel("http://ExSceMM", this.mrsModelPath, "MRS", "true", "true");
+			
 			EmfModel testingModel = createAndLoadAnEmfModel("TestingMM", this.testingModelPath, "Testing", "true","true");
-			testingModel.clearCache();
+			//testingModel.clearCache();
 			
 			// EGX
 			// Create the standalone EgxModule
@@ -102,6 +100,7 @@ public class SESAMEEGLExecutor {
 			
 			//
 			
+		
 			
 			EgxModule egxModule = new EgxModule(factory);
 
@@ -119,8 +118,13 @@ public class SESAMEEGLExecutor {
 
 			factory.setOutputRoot(new File(codeOutputPath).toURI().toString());
 			//egxModule.getContext().getModelRepository().addModel(mrsModel);
-			egxModule.getContext().getModelRepository().addModel(testingModel);			
+			List<IModel> m = egxModule.getContext().getModelRepository().getModels();
+			System.out.println("Count of models in repo = " + m.size());
+			
+			egxModule.getContext().getModelRepository().addModel(testingModel);
+			
 			egxModule.execute();
+			testingModel.dispose();
 
 			// EGX END
 

@@ -13,15 +13,15 @@ public class MetricHandler extends ProcessFunction<MetricMessage,MetricMessage> 
 
 	public void processElement(MetricMessage mm, ProcessFunction<MetricMessage, MetricMessage>.Context ctx,
 			Collector<MetricMessage> output) throws Exception {
-		if (solution_o.isPresent()) {
-			SESAMETestSolution sol = solution_o.get();
-			// Get double value and integer for metric
-			int num = mm.getMetricNum();
-			Object val = mm.getValue();
-			Double d = Double.parseDouble(mm.getValue().toString());
-			// TODO: need to handle reversed signs for metric directions
-			sol.setObjective(num, d);
-		}
+//		if (solution_o.isPresent()) {
+//			SESAMETestSolution sol = solution_o.get();
+//			// Get double value and integer for metric
+//			int num = mm.getMetricNum();
+//			Object val = mm.getValue();
+//			Double d = Double.parseDouble(mm.getValue().toString());
+//			// TODO: need to handle reversed signs for metric directions
+//			sol.setObjective(num, d);
+//		}
 	}
 
 	public void setSolution(SESAMETestSolution solution) {

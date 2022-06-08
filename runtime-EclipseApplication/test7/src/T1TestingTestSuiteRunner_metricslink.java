@@ -132,8 +132,7 @@ public class T1TestingTestSuiteRunner_metricslink {
 				            .build())
 					.build();
 				TrackPacketLossRatioresStream.map(e -> e.toString()).sinkTo(TrackPacketLossRatiostreamFileSink);	
-			
-			
+						
 				DataStream<Double> DistanceToPointresStream = topicKeyedIn.process(new DistanceToPointMetric());
 			
  				final FileSink<String> DistanceToPointstreamFileSink = FileSink

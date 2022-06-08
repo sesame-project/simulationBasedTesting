@@ -17,6 +17,7 @@ import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.LongSerializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.uma.jmetal.problem.Problem;
 import org.awaitility.Awaitility;
 import org.awaitility.Awaitility.*;
@@ -85,14 +86,14 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		// TODO: initializing the rng properly for repeatable experiments
 		rng = new Random();
 		List<TopicPartition> parts = new ArrayList<TopicPartition>();
-		metricConsumer = new MetricConsumer(properties, parts);
+		metricConsumer = new MetricConsumer(campaign, properties, parts);
 
 		Thread t = new Thread(metricConsumer);
 		t.start();
 	}
 
 	public SESAMEEvaluationProblem(String spaceModelFileName, String campaignName, String codeGenerationDirectory)
-			throws InvalidTestCampaign, StreamSetupFailed {
+			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
 		this.codeGenerationDirectory = codeGenerationDirectory;
@@ -146,8 +147,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			solution.ensureModelUpdated(selectedCampaign);
 			loader.saveTestingSpace();
 			// THIS is a temporary change to test if caching is causing the model to be stale for EGL??? 
-			String novelModelFile = "/tmp/testingspace-updated-after-" + mainClassName + ".model";
-			loader.saveTestingSpaceToNewFile(novelModelFile);
+			//String novelModelFile = "/tmp/testingspace-updated-after-" + mainClassName + ".model";
+			//loader.saveTestingSpaceToNewFile(novelModelFile);
 			System.out.println("Model updated");
 			
 			System.out.print("Waiting to begin code generation...");
@@ -158,7 +159,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				// This transform the testing space model into code - by invoking EGX/EGL
 				// The MRS model file is currently redundant due to the temporary approach of merging the models
 				String __mrsModelFile = "testingMRS.model";
-				eglEx = new SESAMEEGLExecutor(novelModelFile, __mrsModelFile, campaignName, codeGenerationDirectory);
+				eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
 				eglEx.run();
 			}
 			System.out.println("code generation done");
@@ -203,7 +204,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				System.out.println("done");
 
 				// Ensure that the model is updated with the metric results
-				metricConsumer.updateMetricsInModel();
+				//metricConsumer.updateMetricsInModel();
 
 				TestRunnerUtils.killProcesses();
 				System.out.print("Waiting for simulation processes to be killed...");

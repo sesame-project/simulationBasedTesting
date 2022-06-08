@@ -8,17 +8,16 @@ import org.apache.kafka.common.serialization.Serializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class MetricMessage implements IData, Serializer, Deserializer {
+public class MetricMessage implements IData, Serializer<MetricMessage>, Deserializer<MetricMessage> {
 	
 	private static ObjectMapper objectMapper = new ObjectMapper();
 	private static int testIDCounter = 0;
 	
 	int id = testIDCounter++;
 	String testID;
-	int metricNum;
 	String metricName;
 	Object value;
-	long timestamp;
+	double timestamp;
 	String type;
 	
 	public MetricMessage() {
@@ -42,34 +41,17 @@ public class MetricMessage implements IData, Serializer, Deserializer {
 	
 	public MetricMessage(MetricMessage other) {
 		this.id = other.id;
-		this.metricNum = other.metricNum;
 		this.value = other.value;
 		this.timestamp = other.timestamp;
 		this.testID = other.testID;
 		this.type = other.type;
 	}
 		
-	public int getMetricNum() {
-		return metricNum;
-	}
-
-	public void setMetricNum(int metricNum) {
-		this.metricNum = metricNum;
-	}
-
-	public String getTopic() {
-		return topic;
-	}
-
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
-
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -81,7 +63,7 @@ public class MetricMessage implements IData, Serializer, Deserializer {
 		this.value = value;
 	}
 
-	public long getTimestamp() {
+	public double getTimestamp() {
 		return timestamp;
 	}
 
@@ -98,7 +80,7 @@ public class MetricMessage implements IData, Serializer, Deserializer {
 	}
 
 	@Override
-	public byte[] serialize(String arg0, Object arg1) {
+	public byte[] serialize(String arg0, MetricMessage arg1) {
 		return convertObjectToByteArray(arg1);
 	}
 	
@@ -119,11 +101,11 @@ public class MetricMessage implements IData, Serializer, Deserializer {
 	
 	@Override
 	public String toString() {
-		return "EventMessage (id: " + this.id + ", value: " + this.value + ", topic: " + this.topic + ", timestamp" + this.timestamp + ", type: " + this.type +")";
+		return "EventMessage (id: " + this.id + ", value: " + this.value + ", timestamp" + this.timestamp + ", type: " + this.type +")";
 	}
 
 	@Override
-	public Object deserialize(String arg0, byte[] data) {
+	public MetricMessage deserialize(String arg0, byte[] data) {
 		MetricMessage em = null;
 		try {
 			if (data != null) {

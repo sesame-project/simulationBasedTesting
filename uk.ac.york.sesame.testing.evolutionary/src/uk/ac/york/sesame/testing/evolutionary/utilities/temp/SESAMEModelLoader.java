@@ -19,6 +19,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.epsilon.common.util.StringProperties;
+import org.eclipse.epsilon.emc.emf.EmfModel;
+import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
+import org.eclipse.epsilon.eol.models.IRelativePathResolver;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
@@ -32,12 +36,12 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl;
 public class SESAMEModelLoader {
 	private String testingModelFilename;
 	Resource resource;
-	
+
 	public SESAMEModelLoader(String testingModelFilename) {
 		this.testingModelFilename = testingModelFilename;
 	}
-	
-	public Resource loadTestingSpace() {
+
+	public Resource loadTestingSpace() throws EolModelLoadingException {
 		// Initialize the model
 		AttacksPackage.eINSTANCE.eClass();
 		TestingPackagePackage.eINSTANCE.eClass();
@@ -55,45 +59,7 @@ public class SESAMEModelLoader {
 		resource = resSet.getResource(URI.createURI(testingModelFilename), true);
 		return resource;
 	}
-	
-//	public void saveTestingSpace(String customFilename) {
-//		AttacksPackage s = AttacksPackage.eINSTANCE;
-//		AttacksFactory factory = AttacksFactory.eINSTANCE;
-//
-//		Attack myAttack = factory.createAttack();
-//
-//		Adapter adapter = new AdapterImpl() {
-//			public void notifyChanged(Notification notification) {
-//				System.out.println("Notfication received from the data model. Data model has changed!!!");
-//			}
-//		};
-//		// why are there no adapters
-//		// myAttack.eAdapters().add(adapter);
-//		myAttack.setName("ATTACK2");
-//
-//		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-//		Map<String, Object> m = reg.getExtensionToFactoryMap();
-//		m.put("model", new XMIResourceFactoryImpl());
-//
-//		// Obtain a new resource set
-//		ResourceSet resSet = new ResourceSetImpl();
-//
-//		// create a resource
-//		Resource resource = resSet.createResource(URI.createURI(testingModelFilename));
-//		// Get the first model element and cast it to the right type, in my
-//		// example everything is hierarchical included in this first node
-//
-//		resource.getContents().add(myAttack);
-//
-//		// now save the content.
-//		try {
-//			resource.save(Collections.EMPTY_MAP);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-	
+
 	public void saveTestingSpace() {
 		try {
 			resource.save(Collections.EMPTY_MAP);
@@ -101,7 +67,7 @@ public class SESAMEModelLoader {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void saveTestingSpaceToNewFile(String filename) {
 		try {
 			FileOutputStream outfile = new FileOutputStream(filename);
@@ -113,40 +79,44 @@ public class SESAMEModelLoader {
 	}
 
 	public static void main(String[] args) {
-		SESAMEModelLoader emf = new SESAMEModelLoader("/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.dsl/models/testingHealthcareSpace.model");
-		Resource testingSpaceModel = emf.loadTestingSpace();
-		
-		// Get the first model element and cast it to the right type, in my
-		// example everything is hierarchical included in this first node
-		TestingSpace space = (TestingSpace)testingSpaceModel.getContents().get(0);
-		
-		System.out.println("EMF loaded");
-	
-		TestingPackageFactory tFactory = TestingPackageFactory.eINSTANCE;
-	
-		EList<TestCampaign> tsList = space.getCampaigns();
-		for (TestCampaign tc : tsList) {
-			System.out.println("Found test campaign named " + tc.getName());
-			EList<Test> tests = tc.getPerformedTests();
-			Test t = tFactory.createTest();
-			String date = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date());
-			t.setName("test-" + date);
-			tests.add(t);
-			System.out.println("Added a test to the model named " + t.getName());
-		}
-		
+		SESAMEModelLoader emf = new SESAMEModelLoader(
+				"/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.dsl/models/testingHealthcareSpace.model");
+		Resource testingSpaceModel;
 		try {
+			testingSpaceModel = emf.loadTestingSpace();
+
+			// Get the first model element and cast it to the right type, in my
+			// example everything is hierarchical included in this first node
+			TestingSpace space = (TestingSpace) testingSpaceModel.getContents().get(0);
+
+			System.out.println("EMF loaded");
+
+			TestingPackageFactory tFactory = TestingPackageFactory.eINSTANCE;
+
+			EList<TestCampaign> tsList = space.getCampaigns();
+			for (TestCampaign tc : tsList) {
+				System.out.println("Found test campaign named " + tc.getName());
+				EList<Test> tests = tc.getPerformedTests();
+				Test t = tFactory.createTest();
+				String date = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date());
+				t.setName("test-" + date);
+				tests.add(t);
+				System.out.println("Added a test to the model named " + t.getName());
+			}
+
 			testingSpaceModel.save(Collections.EMPTY_MAP);
 			System.out.println("EMF saved");
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (EolModelLoadingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		
 	}
-	
+
 	public Optional<TestCampaign> getTestCampaign(Resource testingSpaceModel, String testCampaignName) {
 		Optional<TestCampaign> tc_o = Optional.empty();
-		TestingSpace ts = (TestingSpace)testingSpaceModel.getContents().get(0);
+		TestingSpace ts = (TestingSpace) testingSpaceModel.getContents().get(0);
 		for (TestCampaign tc : ts.getCampaigns()) {
 			if (tc.getName().equals(testCampaignName)) {
 				tc_o = Optional.of(tc);

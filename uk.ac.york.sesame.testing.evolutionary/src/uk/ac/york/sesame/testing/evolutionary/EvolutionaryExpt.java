@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 
+import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.TournamentSelection;
@@ -151,6 +152,8 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			e.printStackTrace();
 		} catch (StreamSetupFailed e) {
 			System.out.println("Stream setup failed - " + e.toString());
+			e.printStackTrace();
+		} catch (EolModelLoadingException e) {
 			e.printStackTrace();
 		}
 	}

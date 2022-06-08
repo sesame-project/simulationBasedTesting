@@ -24,8 +24,8 @@ public class attackVel_robot0FlatMap extends Attack {
 	public void flatMap(EventMessage value, Collector<EventMessage> out) throws Exception { 			if (value.getTopic().equals(topic) && isReadyNow()) {
 				Object obj = JSONValue.parse(value.getValue().toString());
 	      		JSONObject jo = (JSONObject)obj;
-	      		jo = ParsingUtils.updateJSONObject(jo, "geometry_msgs/twist.linear.x", new DoubleRange(-2.0, 2.0).generateInRange(rng));
-	      		jo = ParsingUtils.updateJSONObject(jo, "geometry_msgs/twist.linear.y", new DoubleRange(-2.0, 2.0).generateInRange(rng));
+	      		jo = ParsingUtils.updateJSONObject(jo, "geometry_msgs/twist.linear.x", new DoubleRange(1.540311637603433, 1.540311637603433).generateInRange(rng));
+	      		jo = ParsingUtils.updateJSONObject(jo, "geometry_msgs/twist.linear.y", new DoubleRange(0.4572977046313993, 0.4572977046313993).generateInRange(rng));
 	      		EventMessage valueOut = new EventMessage(value);
 	      		valueOut.setValue(jo.toString());
 				out.collect(valueOut);
