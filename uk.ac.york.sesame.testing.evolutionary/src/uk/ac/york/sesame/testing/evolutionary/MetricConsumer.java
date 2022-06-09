@@ -5,6 +5,8 @@ import org.eclipse.emf.common.util.EList;
 import java.io.Serializable;
 import java.time.Duration;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ArrayList;
@@ -13,6 +15,9 @@ import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.apache.flink.runtime.metrics.dump.MetricDumpSerialization.MetricSerializationResult;
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.KafkaAdminClient;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -28,6 +33,9 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsFactory;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.Result;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsFactory;
 
 public class MetricConsumer implements Runnable {
 
@@ -40,22 +48,44 @@ public class MetricConsumer implements Runnable {
 	private KafkaConsumer<Long, MetricMessage> consumer;
 	private List<TopicPartition> partitions;
 	private TestCampaign selectedCampaign;
+	
+	//private AdminClient kafkaAdminClient = new KafkaAdminClient();
 
 	private AtomicBoolean closed = new AtomicBoolean();
 	private CountDownLatch shutdownlatch = new CountDownLatch(1);
+	
+	private String METRIC_TOPIC_NAME = "metricMessages";
+	
+	private HashMap<String,Metric> metricLookup = new LinkedHashMap<String,Metric>();
 
+	// This stores the ID for the metrics for JMetal
+	private HashMap<String,Integer> metricIDLookupByPlace = new LinkedHashMap<String,Integer>();
+	
 	// This holds the current test solution being evaluated
 	private Optional<SESAMETestSolution> currentSolution = Optional.empty();
 
-	public MetricConsumer(TestCampaign selectedCampaign, Properties configs, List<TopicPartition> partitions) {
+	private void setupMetricLookup() {
+		EList<Metric> metrics = selectedCampaign.getMetrics();
+		for (Metric m : metrics) {
+			metricLookup.put(m.getName(), m);
+		}
+	}
+	
+	public MetricConsumer(TestCampaign selectedCampaign, Properties configs, List<TopicPartition> partitions) throws InvalidTestCampaign {
 		this.clientId = configs.getProperty(ConsumerConfig.CLIENT_ID_CONFIG);
 		this.partitions = partitions;
 		this.consumer = new KafkaConsumer<>(configs);
+		if (selectedCampaign == null) {
+			throw new InvalidTestCampaign(InvalidTestCampaign.INVALIDITY_REASON.NULL_OBJECT);
+		}
+		
 		this.selectedCampaign = selectedCampaign;
 
 		List<String> topics = new ArrayList<String>();
-		topics.add("metricMessages");
+		topics.add(METRIC_TOPIC_NAME);
 		consumer.subscribe(topics);
+		
+		setupMetricLookup();
 	}
 
 	@Override
@@ -120,31 +150,65 @@ public class MetricConsumer implements Runnable {
 		this.currentSolution = Optional.of(solution);
 	}
 
-	public void updateMetricsInModel(MetricMessage msg) {
+	public void updateMetricsInModel(MetricMessage msg) throws InvalidName {
 		Double v = (Double) msg.getValue();
-		
+
 		if (currentSolution.isEmpty()) {
 			System.out.println("currentSolution not set - cannot update metric is empty");
 		} else {
+			try {
+			
 			Test t = currentSolution.get().getInternalType();
 			if (t != null) {
-			EList<MetricInstance> mList = t.getMetrics();
-			String targetMetricID = msg.getMetricID();
+				EList<MetricInstance> mList = t.getMetrics();
+				String targetMetricID = msg.getMetricID();
 
-			for (MetricInstance m : mList) {
-				if (m.getMetric().getName().equals(targetMetricID)) {
-					// Sets the name
-					m.getResult().setName(targetMetricID);
-					Double d = Double.parseDouble(msg.getValue().toString());
-					m.getResult().setValue(d);
+				boolean found = false;
+				// If there is already a metric instance for this, use it,
+				// rather than adding it to the model
+				for (MetricInstance m : mList) {
+					if (m.getMetric().getName().equals(targetMetricID)) {
+						found = true;
+						// Sets the name
+						m.getResult().setName(targetMetricID);
+						Double d = Double.parseDouble(msg.getValue().toString());
+						m.getResult().setValue(d);
+					}
 				}
+
+				if (!found) {
+					// Add a new metric instance containing the value
+					MetricsFactory factory = MetricsFactory.eINSTANCE;
+					ResultsFactory rfactory = ResultsFactory.eINSTANCE;
+					MetricInstance mNewInst = factory.createMetricInstance();
+					setMetricFromCampaign(mNewInst, msg.getMetricID());
+
+					Result mr = rfactory.createResult();
+					mr.setName(msg.getMetricID());
+					Double d = Double.parseDouble(msg.getValue().toString());
+					mr.setValue(d);
+					mNewInst.setResult(mr);
+					mList.add(mNewInst);
+				}
+
+			}
+			} catch (MissingMetric e) {
+				System.out.println("Missing metric");
 			}
 		}
+	}
+
+	private void setMetricFromCampaign(MetricInstance mNewInst, String targetID) throws MissingMetric {
+		Metric m = metricLookup.get(targetID);
+		if (m != null) {
+			mNewInst.setMetric(m);
+		} else {
+			throw new MissingMetric(targetID);
 		}
 	}
 
 	public void updateObjectivesJMetal(MetricMessage msg) {
-		// TODO: Metric numbers should come from the experiment itself, not the 
+		// TODO: Metric numbers should come from the experiment itself, not the
 		// metric messages
 		if (currentSolution.isPresent()) {
 			SESAMETestSolution sol = currentSolution.get();
@@ -161,5 +225,12 @@ public class MetricConsumer implements Runnable {
 			m.getName();
 		}
 		return 0;
+	}
+
+	public void clearTopic() {
+		List<String> topics = new ArrayList<String>();
+		topics.add(METRIC_TOPIC_NAME);
+		topics.get(0);
+		// TODO: use the admin utility to clear the topics
 	}
 }

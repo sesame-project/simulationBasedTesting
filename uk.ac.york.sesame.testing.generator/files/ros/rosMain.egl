@@ -3,8 +3,11 @@
 	var launchFileLocation = mrs.launchFileLocation;
 	var simulator = mrs.simulator;
 	var topicsNodesPublish = Node.all().publisher.flatten();
+	var topicsMetricsNeed = Metric.all().relatedTopics.flatten();
 	topicsNodesPublish.println();
+	topicsMetricsNeed.println();
 %]
+
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -17,6 +20,7 @@ import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.connector.file.sink.FileSink; 
 import org.apache.flink.core.fs.Path;
 import org.apache.flink.streaming.api.datastream.*;
+import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.filesystem.rollingpolicies.DefaultRollingPolicy;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
@@ -28,9 +32,9 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import uk.ac.york.sesame.testing.architecture.attacks.*;
 import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
-import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
-import uk.ac.york.sesame.testing.architecture.data.EventMessage;
-import uk.ac.york.sesame.testing.architecture.data.EventMessageSchema;
+import uk.ac.york.sesame.testing.architecture.data.*;
+
+import metrics.custom.*;
 
 public class [%=test.name.firstToUpperCase()%]_TestRunner {
 
@@ -53,13 +57,12 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 				new EventMessageSchema(), properties);
 				
 		// This connects the metrics via Kafka to the metrics monitoring on the SESAME tool
-		FlinkKafkaProducer<String> metricsProducer = new FlinkKafkaProducer<>(
+		FlinkKafkaProducer<MetricMessage> metricsProducer = new FlinkKafkaProducer<MetricMessage>(
 		        "metricMessages",             // target topic
-		        serializationSchema,    // serialization schema
-		        properties,             // producer config
-		        FlinkKafkaProducer.Semantic.EXACTLY_ONCE); // fault-tolerance
+		        new MetricMessageSchema(),    // serialization schema
+		        properties             // producer config
+		      );
 				
-
 		stream.
 		[%
 			for (attack in test.attacks) {
@@ -87,8 +90,7 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 		rosSim.run(params);
 		rosSim.connect(cp);
 		
-		[%
-		for (aTopic in topicsNodesPublish) { %]
+		[% for (aTopic in topicsNodesPublish) { %]
 		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
 			public void run() {
 				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
@@ -96,18 +98,18 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 			}
 		};
 		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
+		[% } %]
 		
-		[%
-		}
-		%]
-		
-		Thread time_subscriber = new Thread() {
+		[% for (aTopic in topicsMetricsNeed) { %]
+		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
 			public void run() {
-				System.out.println("updateTime starting");
-				rosSim.updateTime();
+				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
+				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
 			}
 		};
-		time_subscriber.start();
+		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
+		[% } %]
+
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
@@ -124,6 +126,7 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 				}
 			}
 		}; 
+		
 		from_out_to_sim.start();
 		
 		// Generate keyed streams
@@ -160,16 +163,23 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 					.build();
 				[%= sMetric.name %]resStream.map(e -> e.toString()).sinkTo([%= sMetric.name %]streamFileSink);
 			[% } %]
-				
-			DataStream<MetricMessage> metricMsg[%= sMetric.name %] = TrackPacketLossRatioresStream.map(d -> new MetricMessage("[%=test.name.firstToUpperCase()%]", "[%= sMetric.name %]", d));
-			
-			// TODO: set up metric stream union operations properly		
-			DataStream<MetricMessage> allMetrics = metricMsg1.union(metricMsg2);
-			allMetrics.addSink(metricsProducer);	
-				
-			
-			
 		[% } %]
+		
+		[* Add the topic metrics here *]
+		
+		[% var metrics = Testing!StreamMetric.all();
+		   for (sMetric in Testing!StreamMetric.all()) { %] 
+			// Generate a message stream for all metrics
+			DataStream<MetricMessage> metricMsg[%= sMetric.name %] = [%= sMetric.name %]resStream.map(d -> new MetricMessage("[%=test.name.firstToUpperCase() %]", "[%= sMetric.name %]", d));
+		[% } %]
+		
+		[* Create the unioned metric stream and link to the producer *]
+		[% var firstMetric = metrics.removeAt(0); %]
+		metricMsg[%= firstMetric.name%]
+		[% for (metric in metrics) { %]
+		.union(metricMsg[%= firstMetric.name %])
+		[% } %]
+		.addSink(metricsProducer);
 		
 		try {
 			env.execute();

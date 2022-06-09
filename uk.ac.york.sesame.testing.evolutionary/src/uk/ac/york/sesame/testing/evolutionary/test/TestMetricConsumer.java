@@ -9,15 +9,14 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.LongDeserializer;
-import org.apache.kafka.common.serialization.StringDeserializer;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 
 import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
+import uk.ac.york.sesame.testing.evolutionary.InvalidTestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.MetricConsumer;
+import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
 public class TestMetricConsumer {
@@ -42,14 +41,18 @@ public class TestMetricConsumer {
 
 			if (tc_o.isPresent()) {
 				TestCampaign tc = tc_o.get();
+				
+				SESAMETestSolution sol = new SESAMETestSolution(tc, "T1TestingTestSuiteRunner_metricslink");
 				MetricConsumer consumer = new MetricConsumer(tc, properties, parts);
+				consumer.setSolution(sol);
 
 				Thread t = new Thread(consumer);
 				t.run();
 			}
 
 		} catch (EolModelLoadingException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidTestCampaign e) {
 			e.printStackTrace();
 		}
 

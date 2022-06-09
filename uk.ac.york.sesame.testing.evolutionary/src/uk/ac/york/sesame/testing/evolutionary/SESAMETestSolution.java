@@ -61,6 +61,12 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 		setupInternalType(this);
 	}
 	
+	public SESAMETestSolution(TestCampaign selectedCampaign, String overrideName) {
+		this.selectedCampaign = selectedCampaign;
+		setupInternalType(this);
+		t.setName(overrideName);
+	}
+	
 	private String createTestName() {
 		String date = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(new Date());
 		return "Test_" + String.format("%03d", ++numTest) + "_" + date;

@@ -73,13 +73,13 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	// model
 
 	// Sets up a metric queue to listen for the given campaign
-	private void setupMetricListener(TestCampaign campaign) throws StreamSetupFailed {
+	private void setupMetricListener(TestCampaign campaign) throws StreamSetupFailed, InvalidTestCampaign {
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
 		properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
-		properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+		properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, MetricMessage.class.getName());
 
 		// metricHandler = new MetricHandler();
 
@@ -211,6 +211,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				System.out.flush();
 				TestRunnerUtils.waitForSeconds(DEFAULT_KILL_DELAY);
 				System.out.print("done");
+				
+				metricConsumer.clearTopic();
 
 			}
 

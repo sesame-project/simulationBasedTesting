@@ -101,7 +101,7 @@ public class MetricMessage implements IData, Serializer<MetricMessage>, Deserial
 	
 	@Override
 	public String toString() {
-		return "EventMessage (id: " + this.id + ", value: " + this.value + ", timestamp" + this.timestamp + ", type: " + this.type +")";
+		return "MetricMessage (id: " + this.id + ",testID = " + this.getTestID() + ",metricName = " + this.metricName +   ", value: " + this.value + ", timestamp" + this.timestamp + ", type: " + this.type +")";
 	}
 
 	@Override

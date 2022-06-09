@@ -1,0 +1,17 @@
+rule metricAsMultiStream transform metric: Testing!StreamMetric {
+	guard : metric.streams.size() == 2
+	template : "metrics/multiStream.egl"
+	target : "src/metrics/template/" + metric.name + "Metric.java"
+}
+
+rule metricAsSingleStream transform metric: Testing!StreamMetric {
+	guard : metric.streams.size() == 1
+	template : "metrics/singleStream.egl"
+	target : "src/metrics/template/" + metric.name + "Metric.java"
+}
+
+/* Other metrics here */
+/* Attack templates? */
+
+// First phase should also produce the EvolutionaryRunner.java - as the entry point?
+// Should also contain the properties?

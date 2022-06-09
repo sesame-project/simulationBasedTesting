@@ -48,6 +48,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 	private IProject theIProject;
 	private String testingModelPath;
 	private String mrsModelPath;
+	private String orchestratorPath;
 
 	public UpdateProjectHandlerExecutor(IProject theIProject, String theIProjectPath, ExecutionEvent event) {
 		this.event = event;
@@ -87,8 +88,14 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 			egxModule.getContext().getFrameStack().put(new Variable("path", theIProjectPath, new EolAnyType()));
 
 			System.out.println("theIProjectPath: " + theIProjectPath);
-			java.net.URI EgxFile = Activator.getDefault().getBundle().getResource("files/orchestrator.egx")
-					.toURI();
+			
+			if (orchestratorPath == null) {
+				orchestratorPath = "files/orchestratorFirstPhase.egx";
+			}
+			
+			//java.net.URI EgxFile = Activator.getDefault().getBundle().getResource("files/orchestrator.egx")
+//					.toURI();
+			java.net.URI EgxFile = Activator.getDefault().getBundle().getResource(orchestratorPath).toURI();
 			
 			System.out.println(EgxFile);
 			try {
@@ -197,5 +204,9 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 
 	public void setMrsModelPath(String mrsModelPath) {
 		this.mrsModelPath = mrsModelPath;
+	}
+
+	public void setOrchestratorPath(String egxPath) {
+		this.orchestratorPath = egxPath;	
 	}
 }

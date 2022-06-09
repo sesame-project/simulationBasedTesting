@@ -28,6 +28,7 @@ public class SesameWizard extends Wizard {
 	@Override
 	public boolean performFinish() {
 		//wizardExecutor.setMrsModelPath(page.getMRSModelLocation());
+		wizardExecutor.setOrchestratorPath("files/orchestratorFirstPhase.egx");
 		wizardExecutor.setTestingModelPath(page.getTestModelLocation());
 		return true;
 	}
