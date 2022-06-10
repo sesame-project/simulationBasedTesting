@@ -14,6 +14,7 @@ import org.uma.jmetal.util.comparator.DominanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
+import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverMergeAttacks;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEMutationOperation;
@@ -71,7 +72,6 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
 		this.codeGenerationDirectory = codeGenerationDirectory;
-		
 //		this.populationSize = popSize;
 //		this.offspringPopulationSize = offspringPopSize;
 //		this.maxIterations = maxIterations;
@@ -101,6 +101,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		try {
 			//FuzzingEngine fuzzEngine = GeneratedFuzzingSpec.createFuzzingEngine(mission, false);
 			//Grammar<String> g = Grammar.fromFile(new File(GRAMMAR_FILE));
+			Grammar g = null;
 						
 			problem = new SESAMEEvaluationProblem(spaceModelFileName, campaignName, codeGenerationDirectory);
 
@@ -115,7 +116,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
 			// TODO: Crossover, mutation and selection operations should be configurable in the model
 			crossover = new SESAMECrossoverMergeAttacks();
-			mutation = new SESAMESimpleMutation();
+			mutation = new SESAMESimpleMutation(g, null, campaignName, paramMutProb, paramMutProb);
  			selection = new TournamentSelection<SESAMETestSolution>(5);
 			dominanceComparator = new DominanceComparator<>();
 			evaluator = new SequentialSolutionListEvaluator<SESAMETestSolution>();

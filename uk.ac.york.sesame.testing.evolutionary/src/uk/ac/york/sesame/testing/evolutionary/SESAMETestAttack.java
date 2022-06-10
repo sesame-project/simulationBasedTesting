@@ -13,6 +13,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttackFixe
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.DoubleRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.RandomValueFromSetAttack;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ValueSet;
+import uk.ac.york.sesame.testing.evolutionary.utilities.RandomFunctions;
 
 // This is a holder for the implementation of the Attack
 // TODO: rename to SESAMEAttackWrapper or similar
@@ -42,8 +43,8 @@ public class SESAMETestAttack {
 				double endTime;
 				double origStartTime = ((AttackFixedTime)aa).getStartTime();
 				double origEndTime = ((AttackFixedTime)aa).getEndTime();
-				startTime = randomInRange(origStartTime, origEndTime);
-				endTime = randomInRange(startTime, origEndTime);
+				startTime = RandomFunctions.randomInRange(rng, origStartTime, origEndTime);
+				endTime = RandomFunctions.randomInRange(rng, startTime, origEndTime);
 				((AttackFixedTime)aa).setStartTime(startTime);
 				((AttackFixedTime)aa).setEndTime(endTime);
 				origAAList.add(aa);
@@ -51,9 +52,7 @@ public class SESAMETestAttack {
 		}
 	}
 	
-	private static double randomInRange(double s, double e) {
-		return s + rng.nextDouble() * (e-s);
-	}
+
 	
 	private static void reduceValueSet(EList<ValueSet> origValueSet) {
 		Collection<ValueSet> newAAList = EcoreUtil.copyAll(origValueSet);
@@ -65,8 +64,8 @@ public class SESAMETestAttack {
 				double ub;
 				double origLB = ((DoubleRange)vs).getLowerBound();
 				double origUB = ((DoubleRange)vs).getUpperBound();
-				lb = randomInRange(origLB, origUB);
-				ub = randomInRange(lb, origUB);
+				lb = RandomFunctions.randomInRange(rng, origLB, origUB);
+				ub = RandomFunctions.randomInRange(rng, lb, origUB);
 				((DoubleRange)vs).setLowerBound(lb);
 				((DoubleRange)vs).setUpperBound(ub);
 				origValueSet.add(vs);
@@ -94,6 +93,10 @@ public class SESAMETestAttack {
 	public Attack getAttack() {
 		return t;
 	}
+	
+	public String getName() {
+		return t.getName();
+	}
 
 	public String generateDebugInfo() {
 		return this.toString();
@@ -101,5 +104,10 @@ public class SESAMETestAttack {
 
 	public SESAMETestAttack dup() {
 		return new SESAMETestAttack(this.parentTest, this.t);
+	}
+
+	public void checkConstraints() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -122,7 +122,7 @@ public class MetricConsumer implements Runnable {
 					// TODO: handling of the incoming messages here, writing them to model,
 					// installing them
 					// into JMetal
-					Thread.sleep(50);
+					//Thread.sleep(50);
 				}
 				// User has to take care of committing the offsets
 			}
