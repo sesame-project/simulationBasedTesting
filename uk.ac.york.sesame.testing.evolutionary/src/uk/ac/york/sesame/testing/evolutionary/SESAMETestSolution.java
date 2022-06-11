@@ -258,4 +258,8 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 			System.out.println(t.getName() + " is already in the model");
 		}
 	}
+
+	public static SESAMETestSolution empty(SESAMETestSolution cy) {
+		return null;
+	}
 }

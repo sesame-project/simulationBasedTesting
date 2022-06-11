@@ -173,9 +173,9 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				System.out.println("done");
 
 				// Invokes the main method for this code
-				System.out.print("Launching test runner for " + mainClassName + "...");
+				System.out.print("Launching test runner for " + mainClassName + "... (classpath " + codeGenerationDirectory + ")");
 				System.out.flush();
-				TestRunnerUtils.exec(mainClassName);
+				TestRunnerUtils.exec(mainClassName, codeGenerationDirectory);
 				System.out.println("done");
 				System.out.flush();
 

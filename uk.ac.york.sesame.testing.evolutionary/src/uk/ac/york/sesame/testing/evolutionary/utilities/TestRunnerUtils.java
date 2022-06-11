@@ -8,9 +8,9 @@ public class TestRunnerUtils {
 	// TODO: pull out path to some central place
 	static final String ABS_SCRIPT_DIR = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.evolutionary/scripts/";
 
-	public static void exec(String mainClass) throws IOException {
+	public static void exec(String mainClass, String codeGenerationDir) throws IOException {
 		//ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./execute_testrunner_xterm.sh", mainClass);
-		ExptHelper.startCmd(ABS_SCRIPT_DIR, "./execute_testrunner_xterm.sh " + mainClass);
+		ExptHelper.startCmd(ABS_SCRIPT_DIR, "./execute_testrunner_xterm.sh " + mainClass + " " + codeGenerationDir);
 	}
 
 	public static void compileProject(String projectDir) throws IOException {

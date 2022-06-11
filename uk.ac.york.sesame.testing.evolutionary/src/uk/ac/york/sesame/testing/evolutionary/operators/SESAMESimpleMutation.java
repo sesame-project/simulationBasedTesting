@@ -2,9 +2,6 @@ package uk.ac.york.sesame.testing.evolutionary.operators;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
@@ -14,18 +11,14 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttackFixe
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestAttack;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 
-import org.apache.commons.lang3.RandomUtils;
 import org.eclipse.emf.common.util.EList;
-import org.uma.jmetal.operator.mutation.MutationOperator;
 
 //import it.units.malelab.jgea.representation.tree.Tree;
-
 import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
 import uk.ac.york.sesame.testing.evolutionary.utilities.RandomFunctions;
 
 // TODO: check mutation logic against the changes that I made with Simos on github last year
-// Things to check: ensuring all strings/options etc are fresh
-
+// Things to check: ensuring all Java object representations etc are fresh
 // I think it has to be ensured in the crossover operation - ensuring creating a fresh one
 public class SESAMESimpleMutation extends SESAMEMutation {
 
@@ -202,8 +195,6 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 //			return l.get(i);
 //		}
 //	}
-
-
 
 	private void newParameters(SESAMETestAttack m) {
 		// TODO: not all parameters are available

@@ -15,10 +15,11 @@ import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
 import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
-import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverMergeAttacks;
+
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEMutationOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESimpleMutation;
+import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESwapAttacksFromTestsCrossover;
 
 public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
@@ -49,6 +50,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	private String spaceModelFileName;
 	private String campaignName;
 	private String codeGenerationDirectory;
+	private int maxIterations;
 
 //	private void readProperties() {
 //		Properties prop = new Properties();
@@ -68,13 +70,13 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 //		}
 //	}
 
-	public EvolutionaryExpt(String spaceModelFileName, String campaignName, String codeGenerationDirectory) {
+	public EvolutionaryExpt(String spaceModelFileName, String campaignName, String codeGenerationDirectory, int maxIterations, int populationSize, int offspringPopSize) {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
 		this.codeGenerationDirectory = codeGenerationDirectory;
-//		this.populationSize = popSize;
-//		this.offspringPopulationSize = offspringPopSize;
-//		this.maxIterations = maxIterations;
+		this.populationSize = populationSize;
+		this.offspringPopulationSize = offspringPopSize;
+		this.maxIterations = maxIterations;
 //		this.timingMutProb = timingMutProb;
 //		this.participantsMutProb = participantsMutProb;
 //		this.paramMutProb = paramMutProb;
@@ -115,8 +117,10 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			Comparator<SESAMETestSolution> dominanceComparator;
 
 			// TODO: Crossover, mutation and selection operations should be configurable in the model
-			crossover = new SESAMECrossoverMergeAttacks();
+			crossover = new SESAMESwapAttacksFromTestsCrossover(paramMutProb, null, campaignName);
 			mutation = new SESAMESimpleMutation(g, null, campaignName, paramMutProb, paramMutProb);
+			
+			
  			selection = new TournamentSelection<SESAMETestSolution>(5);
 			dominanceComparator = new DominanceComparator<>();
 			evaluator = new SequentialSolutionListEvaluator<SESAMETestSolution>();

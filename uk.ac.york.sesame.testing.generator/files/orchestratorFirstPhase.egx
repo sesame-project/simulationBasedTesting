@@ -10,6 +10,11 @@ rule metricAsSingleStream transform metric: Testing!StreamMetric {
 	target : "src/metrics/template/" + metric.name + "Metric.java"
 }
 
+rule generateRunners transform campaign: Testing!TestingCampaign {
+	template : "exptrunners/exptrunner.egl"
+	target : "src/main/ExptRunner" + campaign.name + ".java"
+}
+
 /* Other metrics here */
 /* Attack templates? */
 
