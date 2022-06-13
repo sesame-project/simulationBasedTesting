@@ -34,7 +34,7 @@ public class EvolutionaryRunner {
 		String campaignToRun = "firstExperiment";
 		// Mention in documentation that pkill is required by default
 			
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY);
+		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, numIterations, populationSize, offspringSize);
 		jmetalExpt.runExperiment();
 	}
 }
