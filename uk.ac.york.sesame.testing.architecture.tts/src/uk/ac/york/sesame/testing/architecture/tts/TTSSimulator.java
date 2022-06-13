@@ -54,8 +54,7 @@ public class TTSSimulator implements ISimulator {
 	
 	@Override
 	public List<String> getTopics() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList(createdTopics.keySet());
 	}
 
 	@Override
@@ -108,6 +107,7 @@ public class TTSSimulator implements ISimulator {
 	@Override
 	public void run(HashMap<String, String> params) {
 		// TODO: execute the TTS simulator
+		// can we auto-invoke the simulator from command line?
 
 //		//boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 //		String launchFilePath = params.get("launchPath");
