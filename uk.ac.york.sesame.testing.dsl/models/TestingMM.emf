@@ -31,6 +31,7 @@ class TestCampaign {
 	val GrammarConstraint[*] constraints;
 	val TestGenerationApproach[1] approach;
 	val Test[*] performedTests;
+	ref Test[*] finalResults;
 	val ExecutionEndTrigger[1] defaultEndTrigger;
 }
 

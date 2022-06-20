@@ -26,6 +26,8 @@
         eType="#//TestGenerationApproach" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="performedTests" upperBound="-1"
         eType="#//Test" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="finalResults" upperBound="-1"
+        eType="#//Test"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultEndTrigger" lowerBound="1"
         eType="#//ExecutionEndTrigger" containment="true"/>
   </eClassifiers>
