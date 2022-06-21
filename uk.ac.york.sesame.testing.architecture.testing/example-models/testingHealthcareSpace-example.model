@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.Attacks="Attacks" xmlns:TestingMM.MRSPackage="MRSPackage" xmlns:TestingMM.Metrics="Metrics" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_TiizQN04EeyAL51MCA53dw" name="totalEnergyAtEnd">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_TdUpsOd4Eeym1vCwkNoiAw"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_Vo1xYN04EeyAL51MCA53dw" name="completedRooms">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_UBH6UOd4Eeym1vCwkNoiAw"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_g8Hi0N1AEeyWQcgNPk0koQ" name="distanceAtEnd">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_Uav7QOd4Eeym1vCwkNoiAw"/>
+  </metrics>
+  <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="attackVel_robot0" topicToAttack="_OxQuMOIdEeynuZg3j0KLEQ">
+    <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_bJdhUN04EeyAL51MCA53dw" endTime="1000.0"/>
+    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="__1npgOyJEeydR9YiPdGmrg" propertyName="geometry_msgs/twist.linear.x" lowerBound="-2.0" upperBound="2.0"/>
+    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="__1npgeyJEeydR9YiPdGmrg" propertyName="geometry_msgs/twist.linear.y" lowerBound="-2.0" upperBound="2.0"/>
+  </possibleAttacks>
+  <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_mIrOcN0YEeyv8LH3vdSfnw" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ">
+    <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_ciaRQN04EeyAL51MCA53dw" endTime="1000.0"/>
+    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="__1oQkOyJEeydR9YiPdGmrg" propertyName="geometry_msgs/twist.linear.x" lowerBound="-2.0" upperBound="2.0"/>
+    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="__1oQkeyJEeydR9YiPdGmrg" propertyName="geometry_msgs/twist.linear.y" lowerBound="-2.0" upperBound="2.0"/>
+  </possibleAttacks>
+  <possibleAttacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_mf6CsN0YEeyv8LH3vdSfnw" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ">
+    <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_eIZ-sN04EeyAL51MCA53dw" endTime="1000.0"/>
+    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="__1oQkuyJEeydR9YiPdGmrg" propertyName="geometry_msgs/twist.linear.x" lowerBound="-2.0" upperBound="2.0"/>
+    <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="__1oQk-yJEeydR9YiPdGmrg" propertyName="geometry_msgs/twist.linear.y" lowerBound="-2.0" upperBound="2.0"/>
+  </possibleAttacks>
+  <possibleAttacks xsi:type="TestingMM.Attacks:PacketLossNetworkAttack" xmi:id="__X7doN1DEeyWQcgNPk0koQ" topicToAttack="_OxQuMOIdEeynuZg3j0KLEQ">
+    <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_WLT_8N1yEeyMroJPpUfYlA" endTime="1000.0"/>
+    <frequency xmi:id="_W2vikN1yEeyMroJPpUfYlA" propertyName="" upperBound="1.0"/>
+  </possibleAttacks>
+  <possibleAttacks xsi:type="TestingMM.Attacks:PacketLossNetworkAttack" xmi:id="_wBUfBu3REeyvCt45PP9GFg" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ">
+    <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_wBUfB-3REeyvCt45PP9GFg" endTime="1000.0"/>
+    <frequency xmi:id="_wBUfCO3REeyvCt45PP9GFg" propertyName="" upperBound="1.0"/>
+  </possibleAttacks>
+  <possibleAttacks xsi:type="TestingMM.Attacks:PacketLossNetworkAttack" xmi:id="_wLZAQO3REeyvCt45PP9GFg" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ">
+    <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_wLZAQe3REeyvCt45PP9GFg" endTime="1000.0"/>
+    <frequency xmi:id="_wLZAQu3REeyvCt45PP9GFg" propertyName="" upperBound="1.0"/>
+  </possibleAttacks>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_Vo1xYN04EeyAL51MCA53dw _g8Hi0N1AEeyWQcgNPk0koQ _TiizQN04EeyAL51MCA53dw" includedAttacks="_lc6UoN0YEeyv8LH3vdSfnw _mIrOcN0YEeyv8LH3vdSfnw _mf6CsN0YEeyv8LH3vdSfnw __X7doN1DEeyWQcgNPk0koQ _wBUfBu3REeyvCt45PP9GFg _wLZAQO3REeyvCt45PP9GFg" finalResults="_B8TqQPCdEeyS58w81tKtxw _BlPOEPCdEeyS58w81tKtxw">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="200"/>
+    <performedTests xmi:id="_AqNJMPCdEeyS58w81tKtxw" name="Test_001">
+      <attacks xsi:type="TestingMM.Attacks:PacketLossNetworkAttack" xmi:id="_Mlw8QPCdEeyS58w81tKtxw" topicToAttack="_OxQuMOIdEeynuZg3j0KLEQ">
+        <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_Mlw8QfCdEeyS58w81tKtxw" startTime="37.0" endTime="140.0"/>
+        <frequency xmi:id="_Mlw8QvCdEeyS58w81tKtxw" propertyName="" lowerBound="0.567" upperBound="0.567"/>
+      </attacks>
+      <metrics xmi:id="_o-hhkPCdEeyS58w81tKtxw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_qJKIsPCdEeyS58w81tKtxw" name="completedRooms" value="11.0"/>
+      </metrics>
+      <metrics xmi:id="_tQwy0PCdEeyS58w81tKtxw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_tQwy0fCdEeyS58w81tKtxw" name="distanceAtEnd" value="0.34"/>
+      </metrics>
+      <metrics xmi:id="_w2VLUPCdEeyS58w81tKtxw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_w2VLUfCdEeyS58w81tKtxw" name="totalEnergyAtEnd" value="11134.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_BlPOEPCdEeyS58w81tKtxw" name="Test_002">
+      <attacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_USZQwPCdEeyS58w81tKtxw" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ">
+        <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_USZQwfCdEeyS58w81tKtxw" startTime="134.0" endTime="344.0"/>
+        <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_USZQwvCdEeyS58w81tKtxw" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.56" upperBound="0.52"/>
+        <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_USZQw_CdEeyS58w81tKtxw" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.1" upperBound="0.34"/>
+      </attacks>
+      <metrics xmi:id="_51SDUPCdEeyS58w81tKtxw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_51SDUfCdEeyS58w81tKtxw" name="completedRooms" value="7.0"/>
+      </metrics>
+      <metrics xmi:id="_6VyIUPCdEeyS58w81tKtxw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_6VyIUfCdEeyS58w81tKtxw" name="distanceAtEnd" value="0.11"/>
+      </metrics>
+      <metrics xmi:id="_65pDUPCdEeyS58w81tKtxw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_65pDUfCdEeyS58w81tKtxw" name="totalEnergyAtEnd" value="8223.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_B8TqQPCdEeyS58w81tKtxw" name="Test_003">
+      <attacks xsi:type="TestingMM.Attacks:RandomValueFromSetAttack" xmi:id="_Zu1EQPCdEeyS58w81tKtxw" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ">
+        <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_Zu1EQfCdEeyS58w81tKtxw" startTime="56.0" endTime="221.0"/>
+        <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_Zu1EQvCdEeyS58w81tKtxw" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.56" upperBound="0.52"/>
+        <valueSet xsi:type="TestingMM.Attacks:DoubleRange" xmi:id="_Zu1EQ_CdEeyS58w81tKtxw" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.1" upperBound="0.34"/>
+      </attacks>
+      <attacks xsi:type="TestingMM.Attacks:PacketLossNetworkAttack" xmi:id="_eca0wPCdEeyS58w81tKtxw" topicToAttack="_OxQuMOIdEeynuZg3j0KLEQ">
+        <attackActivation xsi:type="TestingMM.Attacks:AttackFixedTime" xmi:id="_eca0wfCdEeyS58w81tKtxw" startTime="37.0" endTime="140.0"/>
+        <frequency xmi:id="_eca0wvCdEeyS58w81tKtxw" propertyName="" lowerBound="0.22" upperBound="0.22"/>
+      </attacks>
+      <metrics xmi:id="_70FSUPCdEeyS58w81tKtxw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_70FSUfCdEeyS58w81tKtxw" name="completedRooms" value="12.0"/>
+      </metrics>
+      <metrics xmi:id="_8ZFc0PCdEeyS58w81tKtxw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_8ZFc0fCdEeyS58w81tKtxw" name="distanceAtEnd" value="13.0"/>
+      </metrics>
+      <metrics xmi:id="_80BFUPCdEeyS58w81tKtxw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_80BFUfCdEeyS58w81tKtxw" name="totalEnergyAtEnd"/>
+      </metrics>
+    </performedTests>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_healthcare.sh">
+    <topics xmi:id="_OxQuMOIdEeynuZg3j0KLEQ" name="/tb3_0/cmd_velIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <topics xmi:id="_TXerYOIdEeynuZg3j0KLEQ" name="/tb3_1/cmd_velIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <topics xmi:id="_VH-_sOIdEeynuZg3j0KLEQ" name="/tb3_2/cmd_velIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <topics xmi:id="_XUzckOIdEeynuZg3j0KLEQ" name="/tb3_0/amcl_pose" type="_SSj1kOMsEeylpr6FvsbTLQ"/>
+    <topics xmi:id="_Y4k8cOIdEeynuZg3j0KLEQ" name="/tb3_1/amcl_pose" type="_SSj1kOMsEeylpr6FvsbTLQ"/>
+    <topics xmi:id="_aSUWkOIdEeynuZg3j0KLEQ" name="/tb3_2/amcl_pose" type="_SSj1kOMsEeylpr6FvsbTLQ"/>
+    <topics xmi:id="_lUwUoOuyEeye997npOVsNQ" name="/tb3_0/completedRooms" type="_QJhQgOuzEeye997npOVsNQ"/>
+    <topics xmi:id="_zQnykOuyEeye997npOVsNQ" name="/tb3_1/completedRooms" type="_QJhQgOuzEeye997npOVsNQ"/>
+    <topics xmi:id="_zbYREOuyEeye997npOVsNQ" name="/tb3_2/completedRooms" type="_QJhQgOuzEeye997npOVsNQ"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="tb3_0" subscriber="_OxQuMOIdEeynuZg3j0KLEQ" publisher="_XUzckOIdEeynuZg3j0KLEQ"/>
+    <nodes xmi:id="_IXXz8OIdEeynuZg3j0KLEQ" name="tb3_1" subscriber="_TXerYOIdEeynuZg3j0KLEQ" publisher="_Y4k8cOIdEeynuZg3j0KLEQ"/>
+    <nodes xmi:id="_JclvkOIdEeynuZg3j0KLEQ" name="tb3_2" subscriber="_VH-_sOIdEeynuZg3j0KLEQ" publisher="_aSUWkOIdEeynuZg3j0KLEQ"/>
+    <nodes xmi:id="_MMQa0OIdEeynuZg3j0KLEQ" name="collective_intelligence" publisher="_OxQuMOIdEeynuZg3j0KLEQ _TXerYOIdEeynuZg3j0KLEQ _VH-_sOIdEeynuZg3j0KLEQ"/>
+    <simulator xsi:type="TestingMM.MRSPackage:ROSSimulator" xmi:id="_JmUQcOMnEeylpr6FvsbTLQ" hostname="0.0.0.0" port="9090"/>
+    <propertyType xmi:id="_fSym0OIdEeynuZg3j0KLEQ" name="geometry_msgs/Twist">
+      <parameters xmi:id="_iUwjAOIdEeynuZg3j0KLEQ" name="linear">
+        <subparameters xmi:id="_k6FmgOIdEeynuZg3j0KLEQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_mT1nsOIdEeynuZg3j0KLEQ" name="Y" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_nVtUYOIdEeynuZg3j0KLEQ" name="Z" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      </parameters>
+      <parameters xmi:id="_3ajbkOIeEeypgch9ckSMJQ" name="angular">
+        <subparameters xmi:id="_3ajbkeIeEeypgch9ckSMJQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_3ajbkuIeEeypgch9ckSMJQ" name="Y" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_3ajbk-IeEeypgch9ckSMJQ" name="Z" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      </parameters>
+    </propertyType>
+    <propertyType xmi:id="_xq0RkOIeEeypgch9ckSMJQ" name="float64"/>
+    <propertyType xmi:id="_SSj1kOMsEeylpr6FvsbTLQ" name="geometry_msgs/PoseWithCovarianceStamped">
+      <parameters xmi:id="_fiW3sOMsEeylpr6FvsbTLQ" name="pose">
+        <subparameters xmi:id="_iRjo4OMsEeylpr6FvsbTLQ" name="position"/>
+      </parameters>
+    </propertyType>
+    <propertyType xmi:id="_l5jqUOMsEeylpr6FvsbTLQ" name="geometry_msgs/Point">
+      <parameters xmi:id="_oT1UYOMsEeylpr6FvsbTLQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      <parameters xmi:id="_qCfOkOMsEeylpr6FvsbTLQ" name="Y" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      <parameters xmi:id="_sJRU4OMsEeylpr6FvsbTLQ" name="Z" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+    </propertyType>
+    <propertyType xmi:id="_QJhQgOuzEeye997npOVsNQ" name="std_msgs/Int32"/>
+  </mrs>
+</TestingMM:TestingSpace>
