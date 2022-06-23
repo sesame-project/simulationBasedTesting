@@ -16,7 +16,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getName <em>Name</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getMetricID <em>Metric ID</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedTopics <em>Related Topics</em>}</li>
  * </ul>
  *
@@ -46,28 +45,6 @@ public interface Metric extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Metric ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Metric ID</em>' attribute.
-	 * @see #setMetricID(int)
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getMetric_MetricID()
-	 * @model
-	 * @generated
-	 */
-	int getMetricID();
-
-	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getMetricID <em>Metric ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Metric ID</em>' attribute.
-	 * @see #getMetricID()
-	 * @generated
-	 */
-	void setMetricID(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Related Topics</b></em>' reference list.

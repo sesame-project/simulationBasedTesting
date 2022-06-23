@@ -203,13 +203,22 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_CAMPAIGN__PERFORMED_TESTS = 5;
 
 	/**
+	 * The feature id for the '<em><b>Final Results</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_CAMPAIGN__FINAL_RESULTS = 6;
+
+	/**
 	 * The feature id for the '<em><b>Default End Trigger</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__DEFAULT_END_TRIGGER = 6;
+	int TEST_CAMPAIGN__DEFAULT_END_TRIGGER = 7;
 
 	/**
 	 * The number of structural features of the '<em>Test Campaign</em>' class.
@@ -218,7 +227,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN_FEATURE_COUNT = 7;
+	int TEST_CAMPAIGN_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Test Campaign</em>' class.
@@ -698,6 +707,17 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestCampaign_PerformedTests();
 
 	/**
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getFinalResults <em>Final Results</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Final Results</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getFinalResults()
+	 * @see #getTestCampaign()
+	 * @generated
+	 */
+	EReference getTestCampaign_FinalResults();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger <em>Default End Trigger</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1013,6 +1033,14 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST_CAMPAIGN__PERFORMED_TESTS = eINSTANCE.getTestCampaign_PerformedTests();
+
+		/**
+		 * The meta object literal for the '<em><b>Final Results</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_CAMPAIGN__FINAL_RESULTS = eINSTANCE.getTestCampaign_FinalResults();
 
 		/**
 		 * The meta object literal for the '<em><b>Default End Trigger</b></em>' containment reference feature.

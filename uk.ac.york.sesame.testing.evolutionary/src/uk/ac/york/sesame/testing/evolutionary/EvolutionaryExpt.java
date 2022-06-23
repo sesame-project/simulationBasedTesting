@@ -3,6 +3,7 @@ package uk.ac.york.sesame.testing.evolutionary;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.uma.jmetal.algorithm.Algorithm;
@@ -39,10 +40,12 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	static private String referenceParetoFront = "";
 
 	// TODO: mutation parameters, put into the model
-	private double timingMutProb;
+	private double timingMutProb = 1.0;
 	private double participantsMutProb;
-	private double paramMutProb;
-
+	private double paramMutProb = 1.0;
+	
+	private double crossoverProb = 1.0; 
+	
 	private String logPath;
 
 	private String scenarioStr;
@@ -94,9 +97,12 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 //			metrics.add(m);
 //		}
 //
-//		Random problemRNG = new Random();
-//		Random crossoverRNG = new Random();
-//		Random mutationRNG = new Random();
+		Random problemRNG = new Random();
+		Random crossoverRNG = new Random();
+		Random mutationRNG = new Random();
+		
+		String crossoverLogFile = "crossover.log";
+		String mutationLogFile = "mutation.log";
 
 		Problem<SESAMETestSolution> problem;
 
@@ -117,8 +123,8 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			Comparator<SESAMETestSolution> dominanceComparator;
 
 			// TODO: Crossover, mutation and selection operations should be configurable in the model
-			crossover = new SESAMESwapAttacksFromTestsCrossover(paramMutProb, null, campaignName);
-			mutation = new SESAMESimpleMutation(g, null, campaignName, paramMutProb, paramMutProb);
+			crossover = new SESAMESwapAttacksFromTestsCrossover(crossoverRNG, crossoverProb, crossoverLogFile);
+			mutation = new SESAMESimpleMutation(g, mutationRNG, mutationLogFile, timingMutProb, paramMutProb);
 			
 			
  			selection = new TournamentSelection<SESAMETestSolution>(5);
@@ -126,10 +132,6 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			evaluator = new SequentialSolutionListEvaluator<SESAMETestSolution>();
 
 			int matingPoolSize = offspringPopulationSize;
-			
-			// TODO: maxIterations needs to come from the test campaign model
-			int maxIterations = 100;
-			populationSize = 10;
 			
 			// TODO: the algorithm - here NSGA should be selectable from the TestCampaign model
 			algorithm = new NSGAII_ResultLogging(scenarioStr, problem, maxIterations, populationSize, matingPoolSize,

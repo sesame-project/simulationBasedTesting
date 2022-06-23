@@ -2,12 +2,9 @@ package uk.ac.york.sesame.testing.evolutionary;
 
 import org.eclipse.emf.common.util.EList;
 
-import java.io.Serializable;
 import java.time.Duration;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +12,6 @@ import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.apache.flink.runtime.metrics.dump.MetricDumpSerialization.MetricSerializationResult;
-import org.apache.kafka.clients.admin.AdminClient;
-import org.apache.kafka.clients.admin.KafkaAdminClient;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -25,8 +19,6 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import org.apache.kafka.connect.sink.*;
 
 import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
@@ -48,43 +40,50 @@ public class MetricConsumer implements Runnable {
 	private KafkaConsumer<Long, MetricMessage> consumer;
 	private List<TopicPartition> partitions;
 	private TestCampaign selectedCampaign;
-	
-	//private AdminClient kafkaAdminClient = new KafkaAdminClient();
+
+	// private AdminClient kafkaAdminClient = new KafkaAdminClient();
 
 	private AtomicBoolean closed = new AtomicBoolean();
 	private CountDownLatch shutdownlatch = new CountDownLatch(1);
-	
+
 	private String METRIC_TOPIC_NAME = "metricMessages";
-	
-	private HashMap<String,Metric> metricLookup = new LinkedHashMap<String,Metric>();
+
+	private HashMap<String, Metric> metricLookup = new LinkedHashMap<String, Metric>();
 
 	// This stores the ID for the metrics for JMetal
-	private HashMap<String,Integer> metricIDLookupByPlace = new LinkedHashMap<String,Integer>();
-	
+	private HashMap<String, Integer> metricIDLookupByPlace = new LinkedHashMap<String, Integer>();
+
 	// This holds the current test solution being evaluated
 	private Optional<SESAMETestSolution> currentSolution = Optional.empty();
 
 	private void setupMetricLookup() {
 		EList<Metric> metrics = selectedCampaign.getMetrics();
+
+		int id = 0;
 		for (Metric m : metrics) {
-			metricLookup.put(m.getName(), m);
+			String name = m.getName();
+			metricLookup.put(name, m);
+			metricIDLookupByPlace.put(name, id);
+			System.out.println("metricIDLookup - metric " + name + " ID = " + id);
+			id++;
 		}
 	}
-	
-	public MetricConsumer(TestCampaign selectedCampaign, Properties configs, List<TopicPartition> partitions) throws InvalidTestCampaign {
+
+	public MetricConsumer(TestCampaign selectedCampaign, Properties configs, List<TopicPartition> partitions)
+			throws InvalidTestCampaign {
 		this.clientId = configs.getProperty(ConsumerConfig.CLIENT_ID_CONFIG);
 		this.partitions = partitions;
 		this.consumer = new KafkaConsumer<>(configs);
 		if (selectedCampaign == null) {
 			throw new InvalidTestCampaign(InvalidTestCampaign.INVALIDITY_REASON.NULL_OBJECT);
 		}
-		
+
 		this.selectedCampaign = selectedCampaign;
 
 		List<String> topics = new ArrayList<String>();
 		topics.add(METRIC_TOPIC_NAME);
 		consumer.subscribe(topics);
-		
+
 		setupMetricLookup();
 	}
 
@@ -113,16 +112,11 @@ public class MetricConsumer implements Runnable {
 					System.out.println(record.value());
 					MetricMessage msg = record.value();
 					System.out.println("msg = " + msg.toString());
-					String metricID = msg.getMetricID();
+					String metricID = msg.getMetricName();
 					Double val = (Double) msg.getValue();
 					System.out.println("MetricConsumer received metric: " + metricID + " - value " + val);
 					updateMetricsInModel(msg);
 					updateObjectivesJMetal(msg);
-
-					// TODO: handling of the incoming messages here, writing them to model,
-					// installing them
-					// into JMetal
-					//Thread.sleep(50);
 				}
 				// User has to take care of committing the offsets
 			}
@@ -157,41 +151,40 @@ public class MetricConsumer implements Runnable {
 			System.out.println("currentSolution not set - cannot update metric is empty");
 		} else {
 			try {
-			
-			Test t = currentSolution.get().getInternalType();
-			if (t != null) {
-				EList<MetricInstance> mList = t.getMetrics();
-				String targetMetricID = msg.getMetricID();
 
-				boolean found = false;
-				// If there is already a metric instance for this, use it,
-				// rather than adding it to the model
-				for (MetricInstance m : mList) {
-					if (m.getMetric().getName().equals(targetMetricID)) {
-						found = true;
-						// Sets the name
-						m.getResult().setName(targetMetricID);
+				Test t = currentSolution.get().getInternalType();
+				if (t != null) {
+					EList<MetricInstance> mList = t.getMetrics();
+					String targetMetricID = msg.getMetricName();
+
+					boolean found = false;
+					// If there is already a metric instance for this, use it,
+					// rather than adding it to the model
+					for (MetricInstance m : mList) {
+						if (m.getMetric().getName().equals(targetMetricID)) {
+							found = true;
+							// Sets the name
+							m.getResult().setName(targetMetricID);
+							Double d = Double.parseDouble(msg.getValue().toString());
+							m.getResult().setValue(d);
+						}
+					}
+
+					if (!found) {
+						// Add a new metric instance containing the value
+						MetricsFactory factory = MetricsFactory.eINSTANCE;
+						ResultsFactory rfactory = ResultsFactory.eINSTANCE;
+						MetricInstance mNewInst = factory.createMetricInstance();
+						setMetricFromCampaign(mNewInst, msg.getMetricName());
+
+						Result mr = rfactory.createResult();
+						mr.setName(msg.getMetricName());
 						Double d = Double.parseDouble(msg.getValue().toString());
-						m.getResult().setValue(d);
+						mr.setValue(d);
+						mNewInst.setResult(mr);
+						mList.add(mNewInst);
 					}
 				}
-
-				if (!found) {
-					// Add a new metric instance containing the value
-					MetricsFactory factory = MetricsFactory.eINSTANCE;
-					ResultsFactory rfactory = ResultsFactory.eINSTANCE;
-					MetricInstance mNewInst = factory.createMetricInstance();
-					setMetricFromCampaign(mNewInst, msg.getMetricID());
-
-					Result mr = rfactory.createResult();
-					mr.setName(msg.getMetricID());
-					Double d = Double.parseDouble(msg.getValue().toString());
-					mr.setValue(d);
-					mNewInst.setResult(mr);
-					mList.add(mNewInst);
-				}
-
-			}
 			} catch (MissingMetric e) {
 				System.out.println("Missing metric");
 			}
@@ -207,24 +200,26 @@ public class MetricConsumer implements Runnable {
 		}
 	}
 
-	public void updateObjectivesJMetal(MetricMessage msg) {
-		// TODO: Metric numbers should come from the experiment itself, not the
-		// metric messages
-		if (currentSolution.isPresent()) {
-			SESAMETestSolution sol = currentSolution.get();
-			int num = getMetricIDForCampaign(msg.getMetricID());
-			Object val = msg.getValue();
-			Double d = Double.parseDouble(msg.getValue().toString());
-			sol.setObjective(num, d);
+	public void updateObjectivesJMetal(MetricMessage msg) throws JMetalMetricSettingFailed {
+		try {
+			if (currentSolution.isPresent()) {
+				SESAMETestSolution sol = currentSolution.get();
+				int num = getMetricIDForCampaign(msg.getMetricName());
+				Object val = msg.getValue();
+				Double d = Double.parseDouble(val.toString());
+				sol.setObjective(num, d);
+			}
+		} catch (MissingMetric e) {
+			throw new JMetalMetricSettingFailed(e);
 		}
 	}
 
-	private int getMetricIDForCampaign(String metricID) {
-		EList<Metric> metrics = selectedCampaign.getMetrics();
-		for (Metric m : metrics) {
-			m.getName();
+	private int getMetricIDForCampaign(String metricID) throws MissingMetric {
+		if (metricIDLookupByPlace.containsKey(metricID)) {
+			return metricIDLookupByPlace.get(metricID);
+		} else {
+			throw new MissingMetric(metricID);
 		}
-		return 0;
 	}
 
 	public void clearTopic() {

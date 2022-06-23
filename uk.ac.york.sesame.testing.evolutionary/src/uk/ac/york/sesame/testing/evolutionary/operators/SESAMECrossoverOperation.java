@@ -2,6 +2,7 @@ package uk.ac.york.sesame.testing.evolutionary.operators;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
@@ -10,9 +11,11 @@ abstract public class SESAMECrossoverOperation implements CrossoverOperator<SESA
 
 	private static final long serialVersionUID = 1L;
 	private FileWriter crossoverLog;
+	protected Random rng;
 
-	SESAMECrossoverOperation(String crossoverLogFileName) throws IOException {
+	SESAMECrossoverOperation(Random rng, String crossoverLogFileName) throws IOException {
 		this.crossoverLog = new FileWriter(crossoverLogFileName);
+		this.rng = rng;
 	}
 	
 	protected void logWithoutException(String s) {

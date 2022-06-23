@@ -34,6 +34,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigge
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl;
 
 public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long serialVersionUID = 1L;
@@ -42,9 +43,12 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final boolean DEBUG_ACTUALLY_RUN = true;
 
 	private static final long DEFAULT_HARDCODED_DELAY = 30;
+	
 	private static final long DEFAULT_COMPILE_DELAY = 10;
 	private static final long DEFAULT_KILL_DELAY = 10;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 10;
+
+	private static final boolean DUMMY_EVAL = false;
 
 	private Random rng;
 	private MetricHandler metricHandler;
@@ -224,8 +228,21 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		}
 	}
 
+	private void dummyEval(SESAMETestSolution solution) {
+		int metricCount = selectedCampaign.getMetrics().size();
+		for (int i = 0; i < metricCount; i++) {
+			double v = rng.nextDouble();
+			System.out.println("Dummy evaluation of solution " + solution + " - metric " + i + " is " + v);
+			solution.setObjective(i, v);
+		}
+	}
+	
 	public void evaluate(SESAMETestSolution solution) {
-		performSESAMETest(solution);
+		if (!DUMMY_EVAL) {
+			performSESAMETest(solution);
+		} else {	
+			dummyEval(solution);
+		}
 	}
 
 	// Variable probability of inclusion? - needs to be specified from the Attack

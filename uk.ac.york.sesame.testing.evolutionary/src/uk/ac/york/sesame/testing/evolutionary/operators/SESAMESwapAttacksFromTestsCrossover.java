@@ -11,18 +11,16 @@ import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 
 public class SESAMESwapAttacksFromTestsCrossover extends SESAMECrossoverOperation {
 	private double crossoverProbability;
-	private Random randomGenerator;
 
 	private static final long serialVersionUID = 1L;
 
-	public SESAMESwapAttacksFromTestsCrossover(double crossoverProbability, Random randomGenerator, String crossoverLogFileName) throws IOException {
-		super(crossoverLogFileName);
+	public SESAMESwapAttacksFromTestsCrossover(Random rng, double crossoverProbability, String crossoverLogFileName) throws IOException {
+		super(rng, crossoverLogFileName);
 		if (crossoverProbability < 0) {
 			throw new JMetalException("Crossover probability is negative: " + crossoverProbability);
 		}
 
 		this.crossoverProbability = crossoverProbability;
-		this.randomGenerator = randomGenerator;		
 	}
 	
 
@@ -41,8 +39,8 @@ public class SESAMESwapAttacksFromTestsCrossover extends SESAMECrossoverOperatio
 		int ylimit = cy.getNumberOfVariables();
 
 		if (xlimit > 0 && ylimit > 0) {
-			int xcut = randomGenerator.nextInt(xlimit);
-			int ycut = randomGenerator.nextInt(ylimit);
+			int xcut = rng.nextInt(xlimit);
+			int ycut = rng.nextInt(ylimit);
 
 			// TODO: add constructors to duplicate these objects
 

@@ -10,7 +10,6 @@ public class EvolutionaryRunner {
 	//
 	//	How to write back the metric values into the models at the end of the evaluation?
 	
-	
 	public static void main(String [] args) {
 		// TODO: this parameters need to go into the model TestCampaign
 		// the nature of the evolutionary experiment and its parameters,
@@ -19,9 +18,9 @@ public class EvolutionaryRunner {
 		double participantProbMut = 0.333;
 		double paramProbMut = 0.333;
 				
-		int numIterations = 40;
-		int populationSize = 10;
-		int offspringSize = 10;
+		int maxIterations = 16;
+		int populationSize = 4;
+		int offspringSize = 4;
 		//ExperimentType etype = ExperimentType.FIXED_TIME_FUZZING;
 		
 		// Sets the space model file and the campaign to run here
@@ -34,7 +33,7 @@ public class EvolutionaryRunner {
 		String campaignToRun = "firstExperiment";
 		// Mention in documentation that pkill is required by default
 			
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY);
+		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize);
 		jmetalExpt.runExperiment();
 	}
 }

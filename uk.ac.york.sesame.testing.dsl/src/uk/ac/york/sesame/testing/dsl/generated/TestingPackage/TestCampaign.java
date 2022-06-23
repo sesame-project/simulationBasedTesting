@@ -25,6 +25,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getPerformedTests <em>Performed Tests</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getFinalResults <em>Final Results</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger <em>Default End Trigger</em>}</li>
  * </ul>
  *
@@ -124,6 +125,18 @@ public interface TestCampaign extends EObject {
 	 * @generated
 	 */
 	EList<Test> getPerformedTests();
+
+	/**
+	 * Returns the value of the '<em><b>Final Results</b></em>' reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Final Results</em>' reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_FinalResults()
+	 * @model
+	 * @generated
+	 */
+	EList<Test> getFinalResults();
 
 	/**
 	 * Returns the value of the '<em><b>Default End Trigger</b></em>' containment reference.

@@ -45,6 +45,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getPerformedTests <em>Performed Tests</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getFinalResults <em>Final Results</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getDefaultEndTrigger <em>Default End Trigger</em>}</li>
  * </ul>
  *
@@ -120,6 +121,16 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * @ordered
 	 */
 	protected EList<Test> performedTests;
+
+	/**
+	 * The cached value of the '{@link #getFinalResults() <em>Final Results</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFinalResults()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Test> finalResults;
 
 	/**
 	 * The cached value of the '{@link #getDefaultEndTrigger() <em>Default End Trigger</em>}' containment reference.
@@ -267,6 +278,18 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Test> getFinalResults() {
+		if (finalResults == null) {
+			finalResults = new EObjectResolvingEList<Test>(Test.class, this, TestingPackagePackage.TEST_CAMPAIGN__FINAL_RESULTS);
+		}
+		return finalResults;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExecutionEndTrigger getDefaultEndTrigger() {
 		return defaultEndTrigger;
 	}
@@ -345,6 +368,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return getApproach();
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
 				return getPerformedTests();
+			case TestingPackagePackage.TEST_CAMPAIGN__FINAL_RESULTS:
+				return getFinalResults();
 			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
 				return getDefaultEndTrigger();
 		}
@@ -382,6 +407,10 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				getPerformedTests().clear();
 				getPerformedTests().addAll((Collection<? extends Test>)newValue);
 				return;
+			case TestingPackagePackage.TEST_CAMPAIGN__FINAL_RESULTS:
+				getFinalResults().clear();
+				getFinalResults().addAll((Collection<? extends Test>)newValue);
+				return;
 			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
 				setDefaultEndTrigger((ExecutionEndTrigger)newValue);
 				return;
@@ -415,6 +444,9 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
 				getPerformedTests().clear();
 				return;
+			case TestingPackagePackage.TEST_CAMPAIGN__FINAL_RESULTS:
+				getFinalResults().clear();
+				return;
 			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
 				setDefaultEndTrigger((ExecutionEndTrigger)null);
 				return;
@@ -442,6 +474,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return approach != null;
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
 				return performedTests != null && !performedTests.isEmpty();
+			case TestingPackagePackage.TEST_CAMPAIGN__FINAL_RESULTS:
+				return finalResults != null && !finalResults.isEmpty();
 			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
 				return defaultEndTrigger != null;
 		}

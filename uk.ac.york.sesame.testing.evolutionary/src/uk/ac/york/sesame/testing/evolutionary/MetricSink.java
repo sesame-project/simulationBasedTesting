@@ -22,7 +22,7 @@ public class MetricSink extends SinkTask {
 	
 	private void setMetricForTest(Test t, MetricMessage mm) {
 		EList<MetricInstance> mList = t.getMetrics();
-		String targetMetricID = mm.getMetricID();
+		String targetMetricID = mm.getMetricName();
 		
 		for (MetricInstance m : mList) {
 			if (m.getMetric().getName().equals(targetMetricID)) {

@@ -177,7 +177,7 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 		[% var firstMetric = metrics.removeAt(0); %]
 		metricMsg[%= firstMetric.name%]
 		[% for (metric in metrics) { %]
-		.union(metricMsg[%= firstMetric.name %])
+		.union(metricMsg[%= metric.name %])
 		[% } %]
 		.addSink(metricsProducer);
 		

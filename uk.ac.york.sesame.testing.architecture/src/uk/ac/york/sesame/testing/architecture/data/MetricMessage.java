@@ -31,7 +31,7 @@ public class MetricMessage implements IData, Serializer<MetricMessage>, Deserial
 		this.type = "Double";
 	}
 	
-	public String getMetricID() {
+	public String getMetricName() {
 		return metricName;
 	}
 

@@ -74,15 +74,16 @@ public class SESAMETestAttack {
 	}
 
 	// Generates a solution with a timing reduction of the original attack
-	// TODO: generate a solution with specific parameter reductions for each class
 	public static SESAMETestAttack reductionOfAttack(SESAMETestSolution sol, Attack original) {
 		Attack newA = EcoreUtil.copy(original);
+
 		newA.setBasedUpon(original);
 		reduceAttackActivationsTiming(newA, newA.getAttackActivation());
 		
 		// TODO: better way of dispatching upon this type here
 		if (original instanceof RandomValueFromSetAttack) {
 			RandomValueFromSetAttack rvfsA = (RandomValueFromSetAttack)original;
+			// TODO: need to copy all the ValueSets
 			reduceValueSet(rvfsA.getValueSet());
 		}
 		

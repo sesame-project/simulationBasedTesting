@@ -333,8 +333,17 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_DefaultEndTrigger() {
+	public EReference getTestCampaign_FinalResults() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestCampaign_DefaultEndTrigger() {
+		return (EReference)testCampaignEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -524,6 +533,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__CONSTRAINTS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__APPROACH);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__PERFORMED_TESTS);
+		createEReference(testCampaignEClass, TEST_CAMPAIGN__FINAL_RESULTS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__DEFAULT_END_TRIGGER);
 
 		testEClass = createEClass(TEST);
@@ -613,6 +623,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEReference(getTestCampaign_Constraints(), this.getGrammarConstraint(), null, "constraints", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Approach(), this.getTestGenerationApproach(), null, "approach", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_PerformedTests(), this.getTest(), null, "performedTests", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestCampaign_FinalResults(), this.getTest(), null, "finalResults", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_DefaultEndTrigger(), this.getExecutionEndTrigger(), null, "defaultEndTrigger", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testEClass, Test.class, "Test", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

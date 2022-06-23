@@ -26,7 +26,7 @@ public class EvolutionaryRunner {
 		
 		String campaignToRun = "firstExperiment";
 			
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY);
-		jmetalExpt.runExperiment();
+		//EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY);
+		//jmetalExpt.runExperiment();
 	}
 }

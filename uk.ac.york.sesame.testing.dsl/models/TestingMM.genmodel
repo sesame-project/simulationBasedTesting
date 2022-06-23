@@ -22,6 +22,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/constraints"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/approach"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/performedTests"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/finalResults"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/defaultEndTrigger"/>
     </genClasses>
     <genClasses ecoreClass="TestingMM.ecore#//Test">
@@ -162,7 +163,6 @@
       <genClasses ecoreClass="TestingMM.ecore#//Metrics/OutputStream"/>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//Metrics/Metric">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/Metric/name"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/Metric/metricID"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/relatedTopics"/>
       </genClasses>

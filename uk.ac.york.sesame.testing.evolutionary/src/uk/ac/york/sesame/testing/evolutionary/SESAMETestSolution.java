@@ -226,7 +226,11 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	
 	public String getObjectiveMetricName(int i) {
 		Metric m = objectiveMetrics.get(i);
-		return m.getName();
+		if (m != null) {
+			return m.getName();
+		} else {
+			return "UNNAMED-METRIC-" + i;
+		}
 	}
 
 	public String getMainClassName() {
@@ -260,6 +264,8 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	}
 
 	public static SESAMETestSolution empty(SESAMETestSolution cy) {
-		return null;
+		SESAMETestSolution newEmpty = new SESAMETestSolution(cy);
+		cy.contents.clear();
+		return newEmpty;
 	}
 }
