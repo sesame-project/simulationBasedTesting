@@ -10,6 +10,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttackActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttackFixedTime;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.DoubleRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.RandomValueFromSetAttack;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ValueSet;
@@ -34,6 +35,7 @@ public class SESAMETestAttack {
 	}
 	
 	public static void reduceAttackActivationsTiming(Attack a, EList<AttackActivation> origAAList) {
+	
 		Collection<AttackActivation> newAAList = EcoreUtil.copyAll(origAAList);
 		origAAList.clear();
 		for (AttackActivation aa : newAAList) {
@@ -52,23 +54,25 @@ public class SESAMETestAttack {
 		}
 	}
 	
-
-	
 	private static void reduceValueSet(EList<ValueSet> origValueSet) {
-		Collection<ValueSet> newAAList = EcoreUtil.copyAll(origValueSet);
-		origValueSet.clear();
-		for (ValueSet vs : newAAList) {
+		AttacksFactory af = AttacksFactory.eINSTANCE;
+		Collection<ValueSet> newValues = EcoreUtil.copyAll(origValueSet);
+		newValues.clear();
+		
+		for (ValueSet vsOrig : origValueSet) {
 			// TODO: better way of dispatching upon this type here
-			if (vs instanceof DoubleRange) {
+			if (vsOrig instanceof DoubleRange) {
+				// Create new valueSet
 				double lb;
 				double ub;
-				double origLB = ((DoubleRange)vs).getLowerBound();
-				double origUB = ((DoubleRange)vs).getUpperBound();
+				double origLB = ((DoubleRange)vsOrig).getLowerBound();
+				double origUB = ((DoubleRange)vsOrig).getUpperBound();
 				lb = RandomFunctions.randomInRange(rng, origLB, origUB);
 				ub = RandomFunctions.randomInRange(rng, lb, origUB);
-				((DoubleRange)vs).setLowerBound(lb);
-				((DoubleRange)vs).setUpperBound(ub);
-				origValueSet.add(vs);
+				DoubleRange vs = af.createDoubleRange();
+				vs.setLowerBound(lb);
+				vs.setUpperBound(ub);
+				newValues.add(vs);
 			}
 		}
 	}
