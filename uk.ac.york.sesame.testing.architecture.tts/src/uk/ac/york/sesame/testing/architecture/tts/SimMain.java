@@ -20,10 +20,6 @@ public class SimMain {
 		propsMap.put(ConnectionProperties.PORT, 9090);
 		cp.setProperties(propsMap);
 		ttsSim.connect(cp);
-//		System.out.println("Here");
-//		rosSim.consumeFromTopic("/turtle1/cmd_vel1", "geometry_msgs/Twist", true);
-//		//DataStreamManager.getInstance().consume("/turtle1/cmd_vel");
-//		while(true) {}
 
 		ExSceModel model = new ExSceModel();
 //		ROSSimulator sim = new ROSSimulator();

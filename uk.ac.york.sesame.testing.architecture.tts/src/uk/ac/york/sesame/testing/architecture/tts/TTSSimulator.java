@@ -75,8 +75,7 @@ public class TTSSimulator implements ISimulator {
 		
 		blockingStub = SimlogAPIGrpc.newBlockingStub(channel);
 		asyncStub = SimlogAPIGrpc.newStub(channel);
-		// 	Looking for a valid feature
-		System.out.println("Subscribing");
+		System.out.println("TTSimulator: connection made");
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
@@ -227,16 +226,16 @@ public class TTSSimulator implements ISimulator {
 
 	@Override
 	public void updateTime() {
-		Topic topic = (Topic) createTopic("/clock", "rosgraph_msgs/Clock");
-		topic.subscribe(new TopicCallback() {
-			@Override
-			public void handleMessage(Message message) {
-				String seconds = message.toString().split("secs\":")[1].split(",")[0];
-				SimCore.getInstance().setTime(seconds);
-				//System.out.println("Seconds: " + seconds);
-			}
-		});
-		while(true) {}
+//		Topic topic = (Topic) createTopic("/clock", "rosgraph_msgs/Clock");
+//		topic.subscribe(new TopicCallback() {
+//			@Override
+//			public void handleMessage(Message message) {
+//				String seconds = message.toString().split("secs\":")[1].split(",")[0];
+//				SimCore.getInstance().setTime(seconds);
+//				//System.out.println("Seconds: " + seconds);
+//			}
+//		});
+//		while(true) {}
 	}
 
 private class ROSObserver implements StreamObserver<ROSMessage> {
