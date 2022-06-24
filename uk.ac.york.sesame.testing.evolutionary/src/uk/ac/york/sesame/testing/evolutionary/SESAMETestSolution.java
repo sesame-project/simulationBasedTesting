@@ -265,7 +265,13 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 
 	public static SESAMETestSolution empty(SESAMETestSolution cy) {
 		SESAMETestSolution newEmpty = new SESAMETestSolution(cy);
-		cy.contents.clear();
+		newEmpty.contents.clear();
 		return newEmpty;
+	}
+	
+	public void addDevelopedFrom(SESAMETestSolution parent) {
+		Test parentT = parent.getInternalType();
+		EList<Test> developedFrom = t.getDevelopedFrom();
+		developedFrom.add(parentT);
 	}
 }

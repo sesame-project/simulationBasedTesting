@@ -30,6 +30,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/attacks"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/metrics"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/endTrigger"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/developedFrom"/>
     </genClasses>
     <genClasses image="false" ecoreClass="TestingMM.ecore#//ExecutionEndTrigger"/>
     <genClasses ecoreClass="TestingMM.ecore#//TimeBasedEnd">
@@ -70,7 +71,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference TestingMM.ecore#//Attacks/Attack/subscribingTopics"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference TestingMM.ecore#//Attacks/Attack/basedUpon"/>
+            ecoreFeature="ecore:EReference TestingMM.ecore#//Attacks/Attack/fromTemplate"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//Attacks/OfflineAttack">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Attacks/OfflineAttack/attackTime"/>
@@ -158,11 +159,16 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Metrics" disposableProviderFactory="true" ecorePackage="TestingMM.ecore#//Metrics">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="TestingMM.ecore#//Metrics/MetricOptimisationDirection">
+        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//Metrics/MetricOptimisationDirection/HIGHEST"/>
+        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//Metrics/MetricOptimisationDirection/LOWEST"/>
+      </genEnums>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//Metrics/SimStream"/>
       <genClasses ecoreClass="TestingMM.ecore#//Metrics/InputStream"/>
       <genClasses ecoreClass="TestingMM.ecore#//Metrics/OutputStream"/>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//Metrics/Metric">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/Metric/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/Metric/dir"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/relatedTopics"/>
       </genClasses>

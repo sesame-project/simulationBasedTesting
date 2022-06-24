@@ -9,9 +9,7 @@ import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.TournamentSelection;
-import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.util.AbstractAlgorithmRunner;
-import org.uma.jmetal.util.comparator.DominanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
@@ -31,6 +29,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	private int offspringPopulationSize;
 	
 	private String crossoverLogFile = "crossover.log";
+	private String mutationLogFile = "mutation.log";
 	
 	// TODO: these should come from the evolutionary experiment model 
 	
@@ -54,24 +53,6 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	private String campaignName;
 	private String codeGenerationDirectory;
 	private int maxIterations;
-
-//	private void readProperties() {
-//		Properties prop = new Properties();
-//		String fileName = "fuzzingexpt.config";
-//		InputStream is = null;
-//		try {
-//			is = new FileInputStream(fileName);
-//		} catch (FileNotFoundException ex) {
-//			ex.printStackTrace();
-//		}
-//		try {
-//			prop.load(is);
-//			logPath = prop.getProperty("paths.ros.log");
-//			is.close();
-//		} catch (IOException ex) {
-//			ex.printStackTrace();
-//		}
-//	}
 
 	public EvolutionaryExpt(String spaceModelFileName, String campaignName, String codeGenerationDirectory, int maxIterations, int populationSize, int offspringPopSize) {
 		this.spaceModelFileName = spaceModelFileName;
@@ -100,11 +81,8 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		Random problemRNG = new Random();
 		Random crossoverRNG = new Random();
 		Random mutationRNG = new Random();
-		
-		String crossoverLogFile = "crossover.log";
-		String mutationLogFile = "mutation.log";
 
-		Problem<SESAMETestSolution> problem;
+		SESAMEEvaluationProblem problem;
 
 		try {
 			//FuzzingEngine fuzzEngine = GeneratedFuzzingSpec.createFuzzingEngine(mission, false);
@@ -122,13 +100,12 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			SolutionListEvaluator<SESAMETestSolution> evaluator;
 			Comparator<SESAMETestSolution> dominanceComparator;
 
-			// TODO: Crossover, mutation and selection operations should be configurable in the model
+			// TODO: Crossover, mutation and selection operations should be configurable in the model?
 			crossover = new SESAMESwapAttacksFromTestsCrossover(crossoverRNG, crossoverProb, crossoverLogFile);
 			mutation = new SESAMESimpleMutation(g, mutationRNG, mutationLogFile, timingMutProb, paramMutProb);
 			
-			
  			selection = new TournamentSelection<SESAMETestSolution>(5);
-			dominanceComparator = new DominanceComparator<>();
+			dominanceComparator = new DifferentCountsDominanceComparator<>();
 			evaluator = new SequentialSolutionListEvaluator<SESAMETestSolution>();
 
 			int matingPoolSize = offspringPopulationSize;
@@ -139,6 +116,11 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
 			long startTime = System.currentTimeMillis();
 			algorithm.run();
+			
+			// This is necessary to ensure the final model results are properly reflected in the model
+			problem.ensureFinalModelSaved();
+			
+			
 			List<SESAMETestSolution> population = algorithm.getResult();
 			double duration = (System.currentTimeMillis() - startTime);
 			System.out.println("Total execution time: " + duration + "ms, " + (duration / 1000) + " seconds");
@@ -147,6 +129,8 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			
 			((NSGAII_ResultLogging)algorithm).logFinalSolutionsCustom("jmetal-finalPopNonDom.res", "jmetal-finalPop.res");
 			((NSGAII_ResultLogging)algorithm).logMetricsForOutput("jmetal-final-csv-results.res", nonDomFinalFile);
+			
+			
 			
 			if (!referenceParetoFront.equals("")) {
 				printQualityIndicators(population, referenceParetoFront);

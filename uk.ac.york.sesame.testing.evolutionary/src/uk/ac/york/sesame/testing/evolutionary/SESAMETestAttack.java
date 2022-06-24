@@ -17,7 +17,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ValueSet;
 import uk.ac.york.sesame.testing.evolutionary.utilities.RandomFunctions;
 
 // This is a holder for the implementation of the Attack
-// TODO: rename to SESAMEAttackWrapper or similar
+// TODO: rename to SESAMEAttackWrapper or similar?
 public class SESAMETestAttack {
 	
 	private Test parentTest;
@@ -54,10 +54,9 @@ public class SESAMETestAttack {
 		}
 	}
 	
-	private static void reduceValueSet(EList<ValueSet> origValueSet) {
+	private static void reduceValueSet(EList<ValueSet> newValueSet, EList<ValueSet> origValueSet) {
 		AttacksFactory af = AttacksFactory.eINSTANCE;
-		Collection<ValueSet> newValues = EcoreUtil.copyAll(origValueSet);
-		newValues.clear();
+		newValueSet.clear();
 		
 		for (ValueSet vsOrig : origValueSet) {
 			// TODO: better way of dispatching upon this type here
@@ -72,7 +71,7 @@ public class SESAMETestAttack {
 				DoubleRange vs = af.createDoubleRange();
 				vs.setLowerBound(lb);
 				vs.setUpperBound(ub);
-				newValues.add(vs);
+				newValueSet.add(vs);
 			}
 		}
 	}
@@ -81,14 +80,14 @@ public class SESAMETestAttack {
 	public static SESAMETestAttack reductionOfAttack(SESAMETestSolution sol, Attack original) {
 		Attack newA = EcoreUtil.copy(original);
 
-		newA.setBasedUpon(original);
+		newA.setFromTemplate(original);
 		reduceAttackActivationsTiming(newA, newA.getAttackActivation());
 		
 		// TODO: better way of dispatching upon this type here
 		if (original instanceof RandomValueFromSetAttack) {
-			RandomValueFromSetAttack rvfsA = (RandomValueFromSetAttack)original;
-			// TODO: need to copy all the ValueSets
-			reduceValueSet(rvfsA.getValueSet());
+			RandomValueFromSetAttack rvfsO = (RandomValueFromSetAttack)original;
+			RandomValueFromSetAttack rvfsN = (RandomValueFromSetAttack)newA;
+			reduceValueSet(rvfsN.getValueSet(), rvfsO.getValueSet());
 		}
 		
 		return new SESAMETestAttack(sol, newA);
@@ -112,7 +111,6 @@ public class SESAMETestAttack {
 	}
 
 	public void checkConstraints() {
-		// TODO Auto-generated method stub
 		
 	}
 }

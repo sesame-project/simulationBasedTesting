@@ -285,13 +285,22 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST__END_TRIGGER = 3;
 
 	/**
+	 * The feature id for the '<em><b>Developed From</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST__DEVELOPED_FROM = 4;
+
+	/**
 	 * The number of structural features of the '<em>Test</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_FEATURE_COUNT = 4;
+	int TEST_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Test</em>' class.
@@ -783,6 +792,17 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTest_EndTrigger();
 
 	/**
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getDevelopedFrom <em>Developed From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Developed From</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getDevelopedFrom()
+	 * @see #getTest()
+	 * @generated
+	 */
+	EReference getTest_DevelopedFrom();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger <em>Execution End Trigger</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1091,6 +1111,14 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST__END_TRIGGER = eINSTANCE.getTest_EndTrigger();
+
+		/**
+		 * The meta object literal for the '<em><b>Developed From</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST__DEVELOPED_FROM = eINSTANCE.getTest_DevelopedFrom();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ExecutionEndTriggerImpl <em>Execution End Trigger</em>}' class.

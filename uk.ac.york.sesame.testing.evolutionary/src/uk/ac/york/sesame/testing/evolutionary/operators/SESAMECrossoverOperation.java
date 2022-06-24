@@ -10,7 +10,7 @@ import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 abstract public class SESAMECrossoverOperation implements CrossoverOperator<SESAMETestSolution> {
 
 	private static final long serialVersionUID = 1L;
-	private FileWriter crossoverLog;
+	protected FileWriter crossoverLog;
 	protected Random rng;
 
 	SESAMECrossoverOperation(Random rng, String crossoverLogFileName) throws IOException {

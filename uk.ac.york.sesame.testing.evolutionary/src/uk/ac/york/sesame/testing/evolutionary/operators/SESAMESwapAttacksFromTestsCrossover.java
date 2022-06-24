@@ -23,12 +23,16 @@ public class SESAMESwapAttacksFromTestsCrossover extends SESAMECrossoverOperatio
 		this.crossoverProbability = crossoverProbability;
 	}
 	
-
-
 	public List<SESAMETestSolution> doOnePointCrossover(List<SESAMETestSolution> output, SESAMETestSolution cx, SESAMETestSolution cy) {
-		// TODO: logging at start
 		SESAMETestSolution new1 = SESAMETestSolution.empty(cx);
 		SESAMETestSolution new2 = SESAMETestSolution.empty(cy);
+		
+		new1.addDevelopedFrom(cx);
+		new1.addDevelopedFrom(cy);
+		new2.addDevelopedFrom(cx);
+		new2.addDevelopedFrom(cy);
+		
+		
 		logWithoutException("crossover doOnePointCrossover: input1 = " + cx.toString());
 		logWithoutException("crossover doOnePointCrossover: input2 = " + cy.toString());
 		
@@ -46,7 +50,6 @@ public class SESAMESwapAttacksFromTestsCrossover extends SESAMECrossoverOperatio
 
 			for (int x = 0; x < xlimit; x++) {
 				if (x <= xcut) {
-					// Create a new fault instance object in every case here
 					new1.addContents(new1_index++, cx.getVariable(x).dup());
 				} else {
 					new2.addContents(new2_index++, cx.getVariable(x).dup());
@@ -65,6 +68,12 @@ public class SESAMESwapAttacksFromTestsCrossover extends SESAMECrossoverOperatio
 		logWithoutException("crossover doOnePointCrossover: output1 = " + new1.toString());
 		logWithoutException("crossover doOnePointCrossover: output2 = " + new2.toString());
 		logWithoutException("------------------------------------------------------------------------------------------\n");
+		try {
+			crossoverLog.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		output.add(new1);
 		output.add(new2);
 		return output;
@@ -78,10 +87,6 @@ public class SESAMESwapAttacksFromTestsCrossover extends SESAMECrossoverOperatio
 			throw new JMetalException("There must be two parents instead of " + solutions.size());
 		}
 		
-		// Ensure the original null solutions are included.
-		// We mutate these original solutions
-		//output.add(solutions.get(0).copy());
-		//output.add(solutions.get(1).copy());
 		output = doOnePointCrossover(output, solutions.get(0), solutions.get(1));
 		return output;
 	}

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 
 /**
@@ -25,6 +26,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPac
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getName <em>Name</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getDir <em>Dir</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getRelatedTopics <em>Related Topics</em>}</li>
  * </ul>
  *
@@ -50,6 +52,26 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDir() <em>Dir</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDir()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final MetricOptimisationDirection DIR_EDEFAULT = MetricOptimisationDirection.HIGHEST;
+
+	/**
+	 * The cached value of the '{@link #getDir() <em>Dir</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDir()
+	 * @generated
+	 * @ordered
+	 */
+	protected MetricOptimisationDirection dir = DIR_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRelatedTopics() <em>Related Topics</em>}' reference list.
@@ -106,6 +128,27 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MetricOptimisationDirection getDir() {
+		return dir;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDir(MetricOptimisationDirection newDir) {
+		MetricOptimisationDirection oldDir = dir;
+		dir = newDir == null ? DIR_EDEFAULT : newDir;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetricsPackage.METRIC__DIR, oldDir, dir));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Topic> getRelatedTopics() {
 		if (relatedTopics == null) {
 			relatedTopics = new EObjectResolvingEList<Topic>(Topic.class, this, MetricsPackage.METRIC__RELATED_TOPICS);
@@ -123,6 +166,8 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case MetricsPackage.METRIC__NAME:
 				return getName();
+			case MetricsPackage.METRIC__DIR:
+				return getDir();
 			case MetricsPackage.METRIC__RELATED_TOPICS:
 				return getRelatedTopics();
 		}
@@ -140,6 +185,9 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case MetricsPackage.METRIC__NAME:
 				setName((String)newValue);
+				return;
+			case MetricsPackage.METRIC__DIR:
+				setDir((MetricOptimisationDirection)newValue);
 				return;
 			case MetricsPackage.METRIC__RELATED_TOPICS:
 				getRelatedTopics().clear();
@@ -160,6 +208,9 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 			case MetricsPackage.METRIC__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case MetricsPackage.METRIC__DIR:
+				setDir(DIR_EDEFAULT);
+				return;
 			case MetricsPackage.METRIC__RELATED_TOPICS:
 				getRelatedTopics().clear();
 				return;
@@ -177,6 +228,8 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case MetricsPackage.METRIC__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case MetricsPackage.METRIC__DIR:
+				return dir != DIR_EDEFAULT;
 			case MetricsPackage.METRIC__RELATED_TOPICS:
 				return relatedTopics != null && !relatedTopics.isEmpty();
 		}
@@ -195,6 +248,8 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", dir: ");
+		result.append(dir);
 		result.append(')');
 		return result.toString();
 	}

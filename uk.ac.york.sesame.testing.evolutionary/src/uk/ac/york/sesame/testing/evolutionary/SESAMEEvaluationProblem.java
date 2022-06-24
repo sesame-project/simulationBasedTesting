@@ -16,6 +16,7 @@ import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.LongSerializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.uma.jmetal.problem.Problem;
@@ -48,7 +49,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long DEFAULT_KILL_DELAY = 10;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 10;
 
-	private static final boolean DUMMY_EVAL = false;
+	private static final boolean DUMMY_EVAL = true;
 
 	private Random rng;
 	private MetricHandler metricHandler;
@@ -139,6 +140,10 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	public String getName() {
 		return "SESAMEEvaluationProblem";
 	}
+	
+	public void ensureFinalModelSaved() {
+		loader.saveTestingSpace();
+	}
 
 	public void performSESAMETest(SESAMETestSolution solution) {
 		try {
@@ -166,6 +171,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
 				eglEx.run();
 			}
+			
 			System.out.println("code generation done");
 
 			if (DEBUG_ACTUALLY_RUN) {
@@ -266,7 +272,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 		SESAMETestSolution sol = new SESAMETestSolution(selectedCampaign);
 
-		for (Attack a : selectedCampaign.getIncludedAttacks()) {
+		EList<Attack> attacksInCampaign = selectedCampaign.getIncludedAttacks();
+		for (Attack a : attacksInCampaign) {
 			if (includeAttack(a)) {
 				// Attacks produced as a "subset" of each of the selected attacks
 				// TODO: this should be configurable somehow
@@ -274,7 +281,21 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				sol.addContents(i++, sta);
 			}
 		}
-
+		
+		// If we haven't picked any, pick one
+		if (sol.getNumberOfVariables() == 0) {
+			Attack baseAttack = getRandomAttack(attacksInCampaign);
+			SESAMETestAttack sta = SESAMETestAttack.reductionOfAttack(sol, baseAttack);
+			sol.addContents(i++, sta);
+		}
+		
 		return sol;
+	}
+
+	private Attack getRandomAttack(EList<Attack> attacks)
+	{
+	    int listSize = attacks.size();
+	    int randomIndex = rng.nextInt(listSize);
+	    return attacks.get(randomIndex);
 	}
 }

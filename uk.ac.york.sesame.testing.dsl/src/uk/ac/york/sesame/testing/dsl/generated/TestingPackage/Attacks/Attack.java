@@ -30,7 +30,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getPublishingTopics <em>Publishing Topics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#isAllSubscribingTopics <em>All Subscribing Topics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getSubscribingTopics <em>Subscribing Topics</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getBasedUpon <em>Based Upon</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getFromTemplate <em>From Template</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack()
@@ -279,25 +279,25 @@ public interface Attack extends EObject {
 	EList<Topic> getSubscribingTopics();
 
 	/**
-	 * Returns the value of the '<em><b>Based Upon</b></em>' reference.
+	 * Returns the value of the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Based Upon</em>' reference.
-	 * @see #setBasedUpon(Attack)
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack_BasedUpon()
+	 * @return the value of the '<em>From Template</em>' reference.
+	 * @see #setFromTemplate(Attack)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack_FromTemplate()
 	 * @model
 	 * @generated
 	 */
-	Attack getBasedUpon();
+	Attack getFromTemplate();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getBasedUpon <em>Based Upon</em>}' reference.
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getFromTemplate <em>From Template</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Based Upon</em>' reference.
-	 * @see #getBasedUpon()
+	 * @param value the new value of the '<em>From Template</em>' reference.
+	 * @see #getFromTemplate()
 	 * @generated
 	 */
-	void setBasedUpon(Attack value);
+	void setFromTemplate(Attack value);
 
 } // Attack

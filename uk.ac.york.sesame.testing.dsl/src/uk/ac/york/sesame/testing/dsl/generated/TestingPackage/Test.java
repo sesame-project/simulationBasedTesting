@@ -23,6 +23,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInst
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getAttacks <em>Attacks</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getMetrics <em>Metrics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getEndTrigger <em>End Trigger</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getDevelopedFrom <em>Developed From</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTest()
@@ -97,5 +98,17 @@ public interface Test extends EObject {
 	 * @generated
 	 */
 	void setEndTrigger(ExecutionEndTrigger value);
+
+	/**
+	 * Returns the value of the '<em><b>Developed From</b></em>' reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Developed From</em>' reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTest_DevelopedFrom()
+	 * @model
+	 * @generated
+	 */
+	EList<Test> getDevelopedFrom();
 
 } // Test

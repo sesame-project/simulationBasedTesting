@@ -46,7 +46,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttackImpl#getPublishingTopics <em>Publishing Topics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttackImpl#isAllSubscribingTopics <em>All Subscribing Topics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttackImpl#getSubscribingTopics <em>Subscribing Topics</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttackImpl#getBasedUpon <em>Based Upon</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttackImpl#getFromTemplate <em>From Template</em>}</li>
  * </ul>
  *
  * @generated
@@ -243,14 +243,14 @@ public class AttackImpl extends MinimalEObjectImpl.Container implements Attack {
 	protected EList<Topic> subscribingTopics;
 
 	/**
-	 * The cached value of the '{@link #getBasedUpon() <em>Based Upon</em>}' reference.
+	 * The cached value of the '{@link #getFromTemplate() <em>From Template</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBasedUpon()
+	 * @see #getFromTemplate()
 	 * @generated
 	 * @ordered
 	 */
-	protected Attack basedUpon;
+	protected Attack fromTemplate;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -538,16 +538,16 @@ public class AttackImpl extends MinimalEObjectImpl.Container implements Attack {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attack getBasedUpon() {
-		if (basedUpon != null && basedUpon.eIsProxy()) {
-			InternalEObject oldBasedUpon = (InternalEObject)basedUpon;
-			basedUpon = (Attack)eResolveProxy(oldBasedUpon);
-			if (basedUpon != oldBasedUpon) {
+	public Attack getFromTemplate() {
+		if (fromTemplate != null && fromTemplate.eIsProxy()) {
+			InternalEObject oldFromTemplate = (InternalEObject)fromTemplate;
+			fromTemplate = (Attack)eResolveProxy(oldFromTemplate);
+			if (fromTemplate != oldFromTemplate) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AttacksPackage.ATTACK__BASED_UPON, oldBasedUpon, basedUpon));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AttacksPackage.ATTACK__FROM_TEMPLATE, oldFromTemplate, fromTemplate));
 			}
 		}
-		return basedUpon;
+		return fromTemplate;
 	}
 
 	/**
@@ -555,8 +555,8 @@ public class AttackImpl extends MinimalEObjectImpl.Container implements Attack {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Attack basicGetBasedUpon() {
-		return basedUpon;
+	public Attack basicGetFromTemplate() {
+		return fromTemplate;
 	}
 
 	/**
@@ -564,11 +564,11 @@ public class AttackImpl extends MinimalEObjectImpl.Container implements Attack {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBasedUpon(Attack newBasedUpon) {
-		Attack oldBasedUpon = basedUpon;
-		basedUpon = newBasedUpon;
+	public void setFromTemplate(Attack newFromTemplate) {
+		Attack oldFromTemplate = fromTemplate;
+		fromTemplate = newFromTemplate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AttacksPackage.ATTACK__BASED_UPON, oldBasedUpon, basedUpon));
+			eNotify(new ENotificationImpl(this, Notification.SET, AttacksPackage.ATTACK__FROM_TEMPLATE, oldFromTemplate, fromTemplate));
 	}
 
 	/**
@@ -621,9 +621,9 @@ public class AttackImpl extends MinimalEObjectImpl.Container implements Attack {
 				return isAllSubscribingTopics();
 			case AttacksPackage.ATTACK__SUBSCRIBING_TOPICS:
 				return getSubscribingTopics();
-			case AttacksPackage.ATTACK__BASED_UPON:
-				if (resolve) return getBasedUpon();
-				return basicGetBasedUpon();
+			case AttacksPackage.ATTACK__FROM_TEMPLATE:
+				if (resolve) return getFromTemplate();
+				return basicGetFromTemplate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -681,8 +681,8 @@ public class AttackImpl extends MinimalEObjectImpl.Container implements Attack {
 				getSubscribingTopics().clear();
 				getSubscribingTopics().addAll((Collection<? extends Topic>)newValue);
 				return;
-			case AttacksPackage.ATTACK__BASED_UPON:
-				setBasedUpon((Attack)newValue);
+			case AttacksPackage.ATTACK__FROM_TEMPLATE:
+				setFromTemplate((Attack)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -735,8 +735,8 @@ public class AttackImpl extends MinimalEObjectImpl.Container implements Attack {
 			case AttacksPackage.ATTACK__SUBSCRIBING_TOPICS:
 				getSubscribingTopics().clear();
 				return;
-			case AttacksPackage.ATTACK__BASED_UPON:
-				setBasedUpon((Attack)null);
+			case AttacksPackage.ATTACK__FROM_TEMPLATE:
+				setFromTemplate((Attack)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -776,8 +776,8 @@ public class AttackImpl extends MinimalEObjectImpl.Container implements Attack {
 				return allSubscribingTopics != ALL_SUBSCRIBING_TOPICS_EDEFAULT;
 			case AttacksPackage.ATTACK__SUBSCRIBING_TOPICS:
 				return subscribingTopics != null && !subscribingTopics.isEmpty();
-			case AttacksPackage.ATTACK__BASED_UPON:
-				return basedUpon != null;
+			case AttacksPackage.ATTACK__FROM_TEMPLATE:
+				return fromTemplate != null;
 		}
 		return super.eIsSet(featureID);
 	}

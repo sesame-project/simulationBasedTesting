@@ -204,9 +204,12 @@ public class MetricConsumer implements Runnable {
 		try {
 			if (currentSolution.isPresent()) {
 				SESAMETestSolution sol = currentSolution.get();
-				int num = getMetricIDForCampaign(msg.getMetricName());
+				String name = msg.getMetricName();
+				int num = getMetricIDForCampaign(name);
+				Metric m = getMetricForCampaign(name);
 				Object val = msg.getValue();
 				Double d = Double.parseDouble(val.toString());
+				sol.setObjectiveMetric(num, m);
 				sol.setObjective(num, d);
 			}
 		} catch (MissingMetric e) {
@@ -217,6 +220,14 @@ public class MetricConsumer implements Runnable {
 	private int getMetricIDForCampaign(String metricID) throws MissingMetric {
 		if (metricIDLookupByPlace.containsKey(metricID)) {
 			return metricIDLookupByPlace.get(metricID);
+		} else {
+			throw new MissingMetric(metricID);
+		}
+	}
+	
+	private Metric getMetricForCampaign(String metricID) throws MissingMetric {
+		if (metricLookup.containsKey(metricID)) {
+			return metricLookup.get(metricID);
 		} else {
 			throw new MissingMetric(metricID);
 		}

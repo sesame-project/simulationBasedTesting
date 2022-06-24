@@ -4,6 +4,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -20,6 +21,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FileStream
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.InputStream;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.OutputStream;
@@ -120,6 +122,13 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * @generated
 	 */
 	private EClass fileStreamResultEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum metricOptimisationDirectionEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -250,8 +259,17 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMetric_Dir() {
+		return (EAttribute)metricEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getMetric_RelatedTopics() {
-		return (EReference)metricEClass.getEStructuralFeatures().get(1);
+		return (EReference)metricEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -394,6 +412,15 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getMetricOptimisationDirection() {
+		return metricOptimisationDirectionEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MetricsFactory getMetricsFactory() {
 		return (MetricsFactory)getEFactoryInstance();
 	}
@@ -425,6 +452,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 
 		metricEClass = createEClass(METRIC);
 		createEAttribute(metricEClass, METRIC__NAME);
+		createEAttribute(metricEClass, METRIC__DIR);
 		createEReference(metricEClass, METRIC__RELATED_TOPICS);
 
 		topicMetricEClass = createEClass(TOPIC_METRIC);
@@ -448,6 +476,9 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 
 		fileStreamResultEClass = createEClass(FILE_STREAM_RESULT);
 		createEAttribute(fileStreamResultEClass, FILE_STREAM_RESULT__FILENAME);
+
+		// Create enums
+		metricOptimisationDirectionEEnum = createEEnum(METRIC_OPTIMISATION_DIRECTION);
 	}
 
 	/**
@@ -499,6 +530,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 
 		initEClass(metricEClass, Metric.class, "Metric", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMetric_Name(), ecorePackage.getEString(), "name", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMetric_Dir(), this.getMetricOptimisationDirection(), "dir", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetric_RelatedTopics(), theMRSPackagePackage.getTopic(), null, "relatedTopics", null, 0, -1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(topicMetricEClass, TopicMetric.class, "TopicMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -522,6 +554,11 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 
 		initEClass(fileStreamResultEClass, FileStreamResult.class, "FileStreamResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFileStreamResult_Filename(), ecorePackage.getEString(), "filename", null, 0, 1, FileStreamResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(metricOptimisationDirectionEEnum, MetricOptimisationDirection.class, "MetricOptimisationDirection");
+		addEEnumLiteral(metricOptimisationDirectionEEnum, MetricOptimisationDirection.HIGHEST);
+		addEEnumLiteral(metricOptimisationDirectionEEnum, MetricOptimisationDirection.LOWEST);
 	}
 
 } //MetricsPackageImpl

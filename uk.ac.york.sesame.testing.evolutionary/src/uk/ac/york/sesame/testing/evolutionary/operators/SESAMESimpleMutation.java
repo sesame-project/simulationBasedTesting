@@ -116,7 +116,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		EList<AttackActivation> aas = krec.getAttack().getAttackActivation();
 		int i = 0;
 		for (AttackActivation aa : aas) {
-			Optional<AttackActivation> aaSpace = getAttackActivation(krec.getAttack().getBasedUpon(), i);
+			Optional<AttackActivation> aaSpace = getAttackActivation(krec.getAttack().getFromTemplate(), i);
 			if (aaSpace.isPresent()) {
 				mutateIndividualActivation(aa, aaSpace.get());
 			}
@@ -270,10 +270,11 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		// POST-MUTATION DEBUGGING
 		try {
 			mutationLog.write(sol.toString() + "\n");
+			mutationLog.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 		return sol;
 	}
 

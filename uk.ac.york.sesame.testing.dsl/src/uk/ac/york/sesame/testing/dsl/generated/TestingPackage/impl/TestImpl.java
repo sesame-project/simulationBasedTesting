@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
@@ -38,6 +39,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getAttacks <em>Attacks</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getMetrics <em>Metrics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getEndTrigger <em>End Trigger</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getDevelopedFrom <em>Developed From</em>}</li>
  * </ul>
  *
  * @generated
@@ -92,6 +94,16 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * @ordered
 	 */
 	protected ExecutionEndTrigger endTrigger;
+
+	/**
+	 * The cached value of the '{@link #getDevelopedFrom() <em>Developed From</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDevelopedFrom()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Test> developedFrom;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -205,6 +217,18 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Test> getDevelopedFrom() {
+		if (developedFrom == null) {
+			developedFrom = new EObjectResolvingEList<Test>(Test.class, this, TestingPackagePackage.TEST__DEVELOPED_FROM);
+		}
+		return developedFrom;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -234,6 +258,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return getMetrics();
 			case TestingPackagePackage.TEST__END_TRIGGER:
 				return getEndTrigger();
+			case TestingPackagePackage.TEST__DEVELOPED_FROM:
+				return getDevelopedFrom();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -261,6 +287,10 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 			case TestingPackagePackage.TEST__END_TRIGGER:
 				setEndTrigger((ExecutionEndTrigger)newValue);
 				return;
+			case TestingPackagePackage.TEST__DEVELOPED_FROM:
+				getDevelopedFrom().clear();
+				getDevelopedFrom().addAll((Collection<? extends Test>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -285,6 +315,9 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 			case TestingPackagePackage.TEST__END_TRIGGER:
 				setEndTrigger((ExecutionEndTrigger)null);
 				return;
+			case TestingPackagePackage.TEST__DEVELOPED_FROM:
+				getDevelopedFrom().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -305,6 +338,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return metrics != null && !metrics.isEmpty();
 			case TestingPackagePackage.TEST__END_TRIGGER:
 				return endTrigger != null;
+			case TestingPackagePackage.TEST__DEVELOPED_FROM:
+				return developedFrom != null && !developedFrom.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

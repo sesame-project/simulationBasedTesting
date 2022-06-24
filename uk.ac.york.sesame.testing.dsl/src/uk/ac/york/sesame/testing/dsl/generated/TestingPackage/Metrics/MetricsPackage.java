@@ -4,6 +4,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -160,13 +161,22 @@ public interface MetricsPackage extends EPackage {
 	int METRIC__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Dir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METRIC__DIR = 1;
+
+	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC__RELATED_TOPICS = 1;
+	int METRIC__RELATED_TOPICS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Metric</em>' class.
@@ -175,7 +185,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC_FEATURE_COUNT = 2;
+	int METRIC_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Metric</em>' class.
@@ -204,6 +214,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOPIC_METRIC__NAME = METRIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Dir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_METRIC__DIR = METRIC__DIR;
 
 	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
@@ -307,6 +326,15 @@ public interface MetricsPackage extends EPackage {
 	int PROPERTY_METRIC__NAME = METRIC__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Dir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_METRIC__DIR = METRIC__DIR;
+
+	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -360,6 +388,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONDITIONAL_PROPERTY_METRIC__NAME = PROPERTY_METRIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Dir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_PROPERTY_METRIC__DIR = PROPERTY_METRIC__DIR;
 
 	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
@@ -424,6 +461,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int STREAM_METRIC__NAME = METRIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Dir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STREAM_METRIC__DIR = METRIC__DIR;
 
 	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
@@ -537,6 +583,17 @@ public interface MetricsPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection <em>Metric Optimisation Direction</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricOptimisationDirection()
+	 * @generated
+	 */
+	int METRIC_OPTIMISATION_DIRECTION = 11;
+
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.SimStream <em>Sim Stream</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -586,6 +643,17 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getMetric_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDir <em>Dir</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dir</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDir()
+	 * @see #getMetric()
+	 * @generated
+	 */
+	EAttribute getMetric_Dir();
 
 	/**
 	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedTopics <em>Related Topics</em>}'.
@@ -757,6 +825,16 @@ public interface MetricsPackage extends EPackage {
 	EAttribute getFileStreamResult_Filename();
 
 	/**
+	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection <em>Metric Optimisation Direction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Metric Optimisation Direction</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection
+	 * @generated
+	 */
+	EEnum getMetricOptimisationDirection();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -826,6 +904,14 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute METRIC__NAME = eINSTANCE.getMetric_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Dir</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METRIC__DIR = eINSTANCE.getMetric_Dir();
 
 		/**
 		 * The meta object literal for the '<em><b>Related Topics</b></em>' reference list feature.
@@ -968,6 +1054,16 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FILE_STREAM_RESULT__FILENAME = eINSTANCE.getFileStreamResult_Filename();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection <em>Metric Optimisation Direction</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricOptimisationDirection()
+		 * @generated
+		 */
+		EEnum METRIC_OPTIMISATION_DIRECTION = eINSTANCE.getMetricOptimisationDirection();
 
 	}
 

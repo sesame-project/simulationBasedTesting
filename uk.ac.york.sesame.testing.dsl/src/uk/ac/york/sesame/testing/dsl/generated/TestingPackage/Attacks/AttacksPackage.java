@@ -185,13 +185,13 @@ public interface AttacksPackage extends EPackage {
 	int ATTACK__SUBSCRIBING_TOPICS = 12;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK__BASED_UPON = 13;
+	int ATTACK__FROM_TEMPLATE = 13;
 
 	/**
 	 * The number of structural features of the '<em>Attack</em>' class.
@@ -339,13 +339,13 @@ public interface AttacksPackage extends EPackage {
 	int OFFLINE_ATTACK__SUBSCRIBING_TOPICS = ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OFFLINE_ATTACK__BASED_UPON = ATTACK__BASED_UPON;
+	int OFFLINE_ATTACK__FROM_TEMPLATE = ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>Attack Time</b></em>' attribute.
@@ -502,13 +502,13 @@ public interface AttacksPackage extends EPackage {
 	int CUSTOM_ATTACK__SUBSCRIBING_TOPICS = ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CUSTOM_ATTACK__BASED_UPON = ATTACK__BASED_UPON;
+	int CUSTOM_ATTACK__FROM_TEMPLATE = ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The number of structural features of the '<em>Custom Attack</em>' class.
@@ -656,13 +656,13 @@ public interface AttacksPackage extends EPackage {
 	int CUSTOM_OFFLINE_ATTACK__SUBSCRIBING_TOPICS = OFFLINE_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CUSTOM_OFFLINE_ATTACK__BASED_UPON = OFFLINE_ATTACK__BASED_UPON;
+	int CUSTOM_OFFLINE_ATTACK__FROM_TEMPLATE = OFFLINE_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>Attack Time</b></em>' attribute.
@@ -921,13 +921,13 @@ public interface AttacksPackage extends EPackage {
 	int FUZZ_TESTING_ATTACK__SUBSCRIBING_TOPICS = ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZ_TESTING_ATTACK__BASED_UPON = ATTACK__BASED_UPON;
+	int FUZZ_TESTING_ATTACK__FROM_TEMPLATE = ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The number of structural features of the '<em>Fuzz Testing Attack</em>' class.
@@ -1075,13 +1075,13 @@ public interface AttacksPackage extends EPackage {
 	int COMPONENT_ATTACK__SUBSCRIBING_TOPICS = FUZZ_TESTING_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_ATTACK__BASED_UPON = FUZZ_TESTING_ATTACK__BASED_UPON;
+	int COMPONENT_ATTACK__FROM_TEMPLATE = FUZZ_TESTING_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The number of structural features of the '<em>Component Attack</em>' class.
@@ -1229,13 +1229,13 @@ public interface AttacksPackage extends EPackage {
 	int COMPONENT_PROPERTY_ATTACK__SUBSCRIBING_TOPICS = FUZZ_TESTING_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_PROPERTY_ATTACK__BASED_UPON = FUZZ_TESTING_ATTACK__BASED_UPON;
+	int COMPONENT_PROPERTY_ATTACK__FROM_TEMPLATE = FUZZ_TESTING_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>Property To Attack</b></em>' reference.
@@ -1392,13 +1392,13 @@ public interface AttacksPackage extends EPackage {
 	int COMPONENT_SUB_PROPERTY_ATTACK__SUBSCRIBING_TOPICS = FUZZ_TESTING_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SUB_PROPERTY_ATTACK__BASED_UPON = FUZZ_TESTING_ATTACK__BASED_UPON;
+	int COMPONENT_SUB_PROPERTY_ATTACK__FROM_TEMPLATE = FUZZ_TESTING_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>Property To Attack</b></em>' reference.
@@ -1564,13 +1564,13 @@ public interface AttacksPackage extends EPackage {
 	int TOPIC_ATTACK__SUBSCRIBING_TOPICS = FUZZ_TESTING_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC_ATTACK__BASED_UPON = FUZZ_TESTING_ATTACK__BASED_UPON;
+	int TOPIC_ATTACK__FROM_TEMPLATE = FUZZ_TESTING_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>Sub Parameters</b></em>' reference list.
@@ -1727,13 +1727,13 @@ public interface AttacksPackage extends EPackage {
 	int RANDOM_VALUE_ATTACK__SUBSCRIBING_TOPICS = COMPONENT_PROPERTY_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_VALUE_ATTACK__BASED_UPON = COMPONENT_PROPERTY_ATTACK__BASED_UPON;
+	int RANDOM_VALUE_ATTACK__FROM_TEMPLATE = COMPONENT_PROPERTY_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>Property To Attack</b></em>' reference.
@@ -1899,13 +1899,13 @@ public interface AttacksPackage extends EPackage {
 	int RANDOM_VALUE_FROM_SET_ATTACK__SUBSCRIBING_TOPICS = RANDOM_VALUE_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_VALUE_FROM_SET_ATTACK__BASED_UPON = RANDOM_VALUE_ATTACK__BASED_UPON;
+	int RANDOM_VALUE_FROM_SET_ATTACK__FROM_TEMPLATE = RANDOM_VALUE_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>Property To Attack</b></em>' reference.
@@ -2347,13 +2347,13 @@ public interface AttacksPackage extends EPackage {
 	int RESOURCE_ATTACK__SUBSCRIBING_TOPICS = ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESOURCE_ATTACK__BASED_UPON = ATTACK__BASED_UPON;
+	int RESOURCE_ATTACK__FROM_TEMPLATE = ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The number of structural features of the '<em>Resource Attack</em>' class.
@@ -2501,13 +2501,13 @@ public interface AttacksPackage extends EPackage {
 	int STATE_ATTACK__SUBSCRIBING_TOPICS = ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_ATTACK__BASED_UPON = ATTACK__BASED_UPON;
+	int STATE_ATTACK__FROM_TEMPLATE = ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The number of structural features of the '<em>State Attack</em>' class.
@@ -2655,13 +2655,13 @@ public interface AttacksPackage extends EPackage {
 	int NETWORK_ATTACK__SUBSCRIBING_TOPICS = ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NETWORK_ATTACK__BASED_UPON = ATTACK__BASED_UPON;
+	int NETWORK_ATTACK__FROM_TEMPLATE = ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The number of structural features of the '<em>Network Attack</em>' class.
@@ -2809,13 +2809,13 @@ public interface AttacksPackage extends EPackage {
 	int LOAD_RESOURCE_ATTACK__SUBSCRIBING_TOPICS = RESOURCE_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOAD_RESOURCE_ATTACK__BASED_UPON = RESOURCE_ATTACK__BASED_UPON;
+	int LOAD_RESOURCE_ATTACK__FROM_TEMPLATE = RESOURCE_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>Load Type</b></em>' reference.
@@ -3202,13 +3202,13 @@ public interface AttacksPackage extends EPackage {
 	int SHUTDOWN_STATE_ATTACK__SUBSCRIBING_TOPICS = STATE_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SHUTDOWN_STATE_ATTACK__BASED_UPON = STATE_ATTACK__BASED_UPON;
+	int SHUTDOWN_STATE_ATTACK__FROM_TEMPLATE = STATE_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The number of structural features of the '<em>Shutdown State Attack</em>' class.
@@ -3356,13 +3356,13 @@ public interface AttacksPackage extends EPackage {
 	int TIME_TRAVEL_STATE_ATTACK__SUBSCRIBING_TOPICS = STATE_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_TRAVEL_STATE_ATTACK__BASED_UPON = STATE_ATTACK__BASED_UPON;
+	int TIME_TRAVEL_STATE_ATTACK__FROM_TEMPLATE = STATE_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>Time Travel Value</b></em>' containment reference.
@@ -3519,13 +3519,13 @@ public interface AttacksPackage extends EPackage {
 	int PROCESS_KILLER_STATE_ATTACK__SUBSCRIBING_TOPICS = STATE_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_KILLER_STATE_ATTACK__BASED_UPON = STATE_ATTACK__BASED_UPON;
+	int PROCESS_KILLER_STATE_ATTACK__FROM_TEMPLATE = STATE_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>Process Id</b></em>' attribute.
@@ -3682,13 +3682,13 @@ public interface AttacksPackage extends EPackage {
 	int BLACKHOLE_NETWORK_ATTACK__SUBSCRIBING_TOPICS = NETWORK_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLACKHOLE_NETWORK_ATTACK__BASED_UPON = NETWORK_ATTACK__BASED_UPON;
+	int BLACKHOLE_NETWORK_ATTACK__FROM_TEMPLATE = NETWORK_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The number of structural features of the '<em>Blackhole Network Attack</em>' class.
@@ -3836,13 +3836,13 @@ public interface AttacksPackage extends EPackage {
 	int LATENCY_NETWORK_ATTACK__SUBSCRIBING_TOPICS = NETWORK_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LATENCY_NETWORK_ATTACK__BASED_UPON = NETWORK_ATTACK__BASED_UPON;
+	int LATENCY_NETWORK_ATTACK__FROM_TEMPLATE = NETWORK_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>Latency</b></em>' containment reference.
@@ -3999,13 +3999,13 @@ public interface AttacksPackage extends EPackage {
 	int PACKET_LOSS_NETWORK_ATTACK__SUBSCRIBING_TOPICS = NETWORK_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKET_LOSS_NETWORK_ATTACK__BASED_UPON = NETWORK_ATTACK__BASED_UPON;
+	int PACKET_LOSS_NETWORK_ATTACK__FROM_TEMPLATE = NETWORK_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>Frequency</b></em>' containment reference.
@@ -4162,13 +4162,13 @@ public interface AttacksPackage extends EPackage {
 	int MULTIPLE_MESSAGES_NETWORK_ATTACK__SUBSCRIBING_TOPICS = NETWORK_ATTACK__SUBSCRIBING_TOPICS;
 
 	/**
-	 * The feature id for the '<em><b>Based Upon</b></em>' reference.
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLE_MESSAGES_NETWORK_ATTACK__BASED_UPON = NETWORK_ATTACK__BASED_UPON;
+	int MULTIPLE_MESSAGES_NETWORK_ATTACK__FROM_TEMPLATE = NETWORK_ATTACK__FROM_TEMPLATE;
 
 	/**
 	 * The feature id for the '<em><b>How Many Clones</b></em>' containment reference.
@@ -4362,15 +4362,15 @@ public interface AttacksPackage extends EPackage {
 	EReference getAttack_SubscribingTopics();
 
 	/**
-	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getBasedUpon <em>Based Upon</em>}'.
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getFromTemplate <em>From Template</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Based Upon</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getBasedUpon()
+	 * @return the meta object for the reference '<em>From Template</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getFromTemplate()
 	 * @see #getAttack()
 	 * @generated
 	 */
-	EReference getAttack_BasedUpon();
+	EReference getAttack_FromTemplate();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.OfflineAttack <em>Offline Attack</em>}'.
@@ -5145,12 +5145,12 @@ public interface AttacksPackage extends EPackage {
 		EReference ATTACK__SUBSCRIBING_TOPICS = eINSTANCE.getAttack_SubscribingTopics();
 
 		/**
-		 * The meta object literal for the '<em><b>Based Upon</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>From Template</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ATTACK__BASED_UPON = eINSTANCE.getAttack_BasedUpon();
+		EReference ATTACK__FROM_TEMPLATE = eINSTANCE.getAttack_FromTemplate();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.OfflineAttackImpl <em>Offline Attack</em>}' class.

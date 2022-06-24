@@ -39,6 +39,8 @@
         eType="#//Metrics/MetricInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="endTrigger" lowerBound="1"
         eType="#//ExecutionEndTrigger" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="developedFrom" upperBound="-1"
+        eType="#//Test"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExecutionEndTrigger" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="TimeBasedEnd" eSuperTypes="#//ExecutionEndTrigger">
@@ -82,7 +84,7 @@
           defaultValueLiteral="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subscribingTopics" upperBound="-1"
           eType="#//MRSPackage/Topic"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="basedUpon" eType="#//Attacks/Attack"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="fromTemplate" eType="#//Attacks/Attack"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OfflineAttack" eSuperTypes="#//Attacks/Attack">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="attackTime" eType="#//Attacks/OfflineAttackTime"/>
@@ -179,8 +181,13 @@
     <eClassifiers xsi:type="ecore:EClass" name="SimStream" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="InputStream" eSuperTypes="#//Metrics/SimStream"/>
     <eClassifiers xsi:type="ecore:EClass" name="OutputStream" eSuperTypes="#//Metrics/SimStream"/>
+    <eClassifiers xsi:type="ecore:EEnum" name="MetricOptimisationDirection">
+      <eLiterals name="HIGHEST" value="1"/>
+      <eLiterals name="LOWEST" value="2"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Metric" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dir" eType="#//Metrics/MetricOptimisationDirection"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="relatedTopics" upperBound="-1"
           eType="#//MRSPackage/Topic"/>
     </eClassifiers>

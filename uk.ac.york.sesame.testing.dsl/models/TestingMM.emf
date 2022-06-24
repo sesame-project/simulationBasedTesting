@@ -41,6 +41,8 @@ class Test {
 	val Attacks.Attack[*] attacks;
 	val Metrics.MetricInstance[*] metrics;
 	val ExecutionEndTrigger[1] endTrigger;
+	
+	ref Test[*] developedFrom; 
 }
 
 abstract class ExecutionEndTrigger {
@@ -99,7 +101,7 @@ class Attack {
 	ref MRSPackage.Topic[*] publishingTopics;
 	attr boolean allSubscribingTopics = false;
 	ref MRSPackage.Topic[*] subscribingTopics;
-	ref Attack[0..1] basedUpon;
+	ref Attack[0..1] fromTemplate;
 }
 
 class OfflineAttack extends Attack {
@@ -278,9 +280,15 @@ class InputStream extends SimStream {
 class OutputStream extends SimStream {
 	
 }
+
+enum MetricOptimisationDirection {
+	HIGHEST = 1;
+	LOWEST = 2;
+}
 	
 abstract class Metric {
 	attr String name;
+	attr MetricOptimisationDirection dir;
 	ref MRSPackage.Topic[*] relatedTopics;	
 }
 
