@@ -59,9 +59,12 @@ public class SESAMETestAttack {
 		newValueSet.clear();
 		
 		for (ValueSet vsOrig : origValueSet) {
+			
 			// TODO: better way of dispatching upon this type here
 			if (vsOrig instanceof DoubleRange) {
 				// Create new valueSet
+				
+				
 				double lb;
 				double ub;
 				double origLB = ((DoubleRange)vsOrig).getLowerBound();
@@ -69,6 +72,8 @@ public class SESAMETestAttack {
 				lb = RandomFunctions.randomInRange(rng, origLB, origUB);
 				ub = RandomFunctions.randomInRange(rng, lb, origUB);
 				DoubleRange vs = af.createDoubleRange();
+				// Property name must be set
+				vs.setPropertyName(((DoubleRange)vsOrig).getPropertyName());
 				vs.setLowerBound(lb);
 				vs.setUpperBound(ub);
 				newValueSet.add(vs);
