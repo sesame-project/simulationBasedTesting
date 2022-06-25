@@ -132,19 +132,21 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 		// Generate keyed streams
 		KeyedStream<EventMessage, String> topicKeyedIn = stream.keyBy(value -> value.getTopic());
 		KeyedStream<EventMessage, String> topicKeyedOut = streamOut.keyBy(value -> value.getTopic());
+		KeyedStream<EventMessage, String> testKeyedIn = stream.keyBy(value -> "[%= test.name %]");
+		KeyedStream<EventMessage, String> testKeyedOut = streamOut.keyBy(value -> "[%= test.name %]");;
 		
 		// Stream metrics here
 		[% for (sMetric in Testing!StreamMetric.all()) { %]
 			[% if (sMetric.streams.size() == 2) {
 				var stream1 = sMetric.streams.get(0);
 				var stream2 = sMetric.streams.get(1); %]
-				ConnectedStreams<EventMessage, EventMessage> [%= sMetric.name %]combinedStream = [%= streamJavaName(stream1) %].connect([%= streamJavaName(stream2) %]);
+				ConnectedStreams<EventMessage, EventMessage> [%= sMetric.name %]combinedStream = [%= streamJavaName(sMetric,stream1) %].connect([%= streamJavaName(sMetric,stream2) %]);
 				DataStream<Double> [%= sMetric.name %]resStream = [%= sMetric.name %]combinedStream.process(new [%= sMetric.name %]Metric());
 			[% } %]
 			
 			[% if (sMetric.streams.size() == 1) { 
 				var stream = sMetric.streams.get(0); %]
-				DataStream<Double> [%= sMetric.name %]resStream = [%= streamJavaName(stream) %].process(new [%= sMetric.name %]Metric());
+				DataStream<Double> [%= sMetric.name %]resStream = [%= streamJavaName(sMetric,stream) %].process(new [%= sMetric.name %]Metric());
 			[% } %]
 			
 			[* If the stream has a FileStreamResult, log it to a file *]
@@ -167,19 +169,29 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 		
 		[* Add the topic metrics here *]
 		
-		[% var metrics = Testing!StreamMetric.all();
-		   for (sMetric in Testing!StreamMetric.all()) { %] 
+		[%  var parentCampaign = test.parentCampaign;
+			var allMetrics = parentCampaign.metrics.clone();
+		    for (sMetric in allMetrics.selectByKind(StreamMetric)) { %] 
 			// Generate a message stream for all metrics
 			DataStream<MetricMessage> metricMsg[%= sMetric.name %] = [%= sMetric.name %]resStream.map(d -> new MetricMessage("[%=test.name.firstToUpperCase() %]", "[%= sMetric.name %]", d));
 		[% } %]
 		
+		
 		[* Create the unioned metric stream and link to the producer *]
-		[% var firstMetric = metrics.removeAt(0); %]
+		[% 	if (allMetrics.size() > 0) {
+			var firstMetric = allMetrics.removeAt(0); %]
 		metricMsg[%= firstMetric.name%]
-		[% for (metric in metrics) { %]
+		
+		[* One element has been removed from allMetrics - so compare against zero, not one! *]
+		[% if (allMetrics.size() > 0) {
+				for (metric in allMetrics) { %]
 		.union(metricMsg[%= metric.name %])
-		[% } %]
+				[% }
+		} %]
+				
 		.addSink(metricsProducer);
+		[% } %]
+		
 		
 		try {
 			env.execute();
@@ -195,14 +207,29 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 
 [%
 
-operation streamJavaName(stream) {
-	if (stream.isTypeOf(Testing!InputStream)) {
-		return "topicKeyedIn";
-	}
+operation streamJavaName(sMetric, stream) {
+	// TODO: Get comparison of enum working rather than using literal value
+	// Metrics!MetricStateKeyedBy#TEST doesn't work
+//	if (sMetric.keyedBy == 2) {
+//		if (stream.isTypeOf(Testing!InputStream)) {
+//			return "topicKeyedIn";
+//		}
+//	
+//		if (stream.isTypeOf(Testing!OutputStream)) {
+//			return "topicKeyedOut";
+//		}
+//	}
 	
-	if (stream.isTypeOf(Testing!OutputStream)) {
-		return "topicKeyedOut";
-	}
+	
+//	if (sMetric.keyedBy == 1) {
+		if (stream.isTypeOf(Testing!InputStream)) {
+			return "testKeyedIn";
+		}
+	
+		if (stream.isTypeOf(Testing!OutputStream)) {
+			return "testKeyedOut";
+		}
+//	}
 }
 
 // TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap and RandomValueFromSetAttack are supported

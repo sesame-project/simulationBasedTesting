@@ -170,13 +170,22 @@ public interface MetricsPackage extends EPackage {
 	int METRIC__DIR = 1;
 
 	/**
+	 * The feature id for the '<em><b>Keyed By</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METRIC__KEYED_BY = 2;
+
+	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC__RELATED_TOPICS = 2;
+	int METRIC__RELATED_TOPICS = 3;
 
 	/**
 	 * The number of structural features of the '<em>Metric</em>' class.
@@ -185,7 +194,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC_FEATURE_COUNT = 3;
+	int METRIC_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Metric</em>' class.
@@ -223,6 +232,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOPIC_METRIC__DIR = METRIC__DIR;
+
+	/**
+	 * The feature id for the '<em><b>Keyed By</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_METRIC__KEYED_BY = METRIC__KEYED_BY;
 
 	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
@@ -335,6 +353,15 @@ public interface MetricsPackage extends EPackage {
 	int PROPERTY_METRIC__DIR = METRIC__DIR;
 
 	/**
+	 * The feature id for the '<em><b>Keyed By</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_METRIC__KEYED_BY = METRIC__KEYED_BY;
+
+	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -397,6 +424,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONDITIONAL_PROPERTY_METRIC__DIR = PROPERTY_METRIC__DIR;
+
+	/**
+	 * The feature id for the '<em><b>Keyed By</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_PROPERTY_METRIC__KEYED_BY = PROPERTY_METRIC__KEYED_BY;
 
 	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
@@ -470,6 +506,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int STREAM_METRIC__DIR = METRIC__DIR;
+
+	/**
+	 * The feature id for the '<em><b>Keyed By</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STREAM_METRIC__KEYED_BY = METRIC__KEYED_BY;
 
 	/**
 	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
@@ -594,6 +639,17 @@ public interface MetricsPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy <em>Metric State Keyed By</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricStateKeyedBy()
+	 * @generated
+	 */
+	int METRIC_STATE_KEYED_BY = 12;
+
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.SimStream <em>Sim Stream</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -654,6 +710,17 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getMetric_Dir();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getKeyedBy <em>Keyed By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Keyed By</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getKeyedBy()
+	 * @see #getMetric()
+	 * @generated
+	 */
+	EAttribute getMetric_KeyedBy();
 
 	/**
 	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedTopics <em>Related Topics</em>}'.
@@ -835,6 +902,16 @@ public interface MetricsPackage extends EPackage {
 	EEnum getMetricOptimisationDirection();
 
 	/**
+	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy <em>Metric State Keyed By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Metric State Keyed By</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy
+	 * @generated
+	 */
+	EEnum getMetricStateKeyedBy();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -912,6 +989,14 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute METRIC__DIR = eINSTANCE.getMetric_Dir();
+
+		/**
+		 * The meta object literal for the '<em><b>Keyed By</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METRIC__KEYED_BY = eINSTANCE.getMetric_KeyedBy();
 
 		/**
 		 * The meta object literal for the '<em><b>Related Topics</b></em>' reference list feature.
@@ -1064,6 +1149,16 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum METRIC_OPTIMISATION_DIRECTION = eINSTANCE.getMetricOptimisationDirection();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy <em>Metric State Keyed By</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricStateKeyedBy()
+		 * @generated
+		 */
+		EEnum METRIC_STATE_KEYED_BY = eINSTANCE.getMetricStateKeyedBy();
 
 	}
 

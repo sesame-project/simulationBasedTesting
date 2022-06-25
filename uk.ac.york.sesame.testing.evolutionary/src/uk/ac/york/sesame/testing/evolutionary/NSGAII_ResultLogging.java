@@ -231,7 +231,7 @@ public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGenetic
 	public void logPopulationMetrics(String scenarioStr, String filename, boolean nonDom) throws IOException {
 		System.out.println("Evaluations = " + evaluations);
 		FileWriter fw = new FileWriter(filename);
-		fw.write("#ScenarioName,FuzzingTestNum,RunNum,");
+		//fw.write("#ScenarioName,FuzzingTestNum,RunNum,");
 		boolean headerPrinted = false;
 		
 		List<S> targetPop;

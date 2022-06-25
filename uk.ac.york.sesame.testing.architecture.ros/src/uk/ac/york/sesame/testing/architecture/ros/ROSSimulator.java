@@ -141,7 +141,7 @@ public class ROSSimulator implements ISimulator {
 				}
 			}
 		});
-		while(true) {}
+		//while(true) {}
 	}
 	
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {

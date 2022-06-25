@@ -294,13 +294,22 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST__DEVELOPED_FROM = 4;
 
 	/**
+	 * The feature id for the '<em><b>Parent Campaign</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST__PARENT_CAMPAIGN = 5;
+
+	/**
 	 * The number of structural features of the '<em>Test</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_FEATURE_COUNT = 5;
+	int TEST_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Test</em>' class.
@@ -803,6 +812,17 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTest_DevelopedFrom();
 
 	/**
+	 * Returns the meta object for the container reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getParentCampaign <em>Parent Campaign</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Parent Campaign</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getParentCampaign()
+	 * @see #getTest()
+	 * @generated
+	 */
+	EReference getTest_ParentCampaign();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger <em>Execution End Trigger</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1119,6 +1139,14 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST__DEVELOPED_FROM = eINSTANCE.getTest_DevelopedFrom();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent Campaign</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST__PARENT_CAMPAIGN = eINSTANCE.getTest_ParentCampaign();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ExecutionEndTriggerImpl <em>Execution End Trigger</em>}' class.

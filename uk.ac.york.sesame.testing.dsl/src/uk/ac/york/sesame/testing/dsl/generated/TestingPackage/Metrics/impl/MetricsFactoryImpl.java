@@ -79,6 +79,8 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 		switch (eDataType.getClassifierID()) {
 			case MetricsPackage.METRIC_OPTIMISATION_DIRECTION:
 				return createMetricOptimisationDirectionFromString(eDataType, initialValue);
+			case MetricsPackage.METRIC_STATE_KEYED_BY:
+				return createMetricStateKeyedByFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -94,6 +96,8 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 		switch (eDataType.getClassifierID()) {
 			case MetricsPackage.METRIC_OPTIMISATION_DIRECTION:
 				return convertMetricOptimisationDirectionToString(eDataType, instanceValue);
+			case MetricsPackage.METRIC_STATE_KEYED_BY:
+				return convertMetricStateKeyedByToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -186,6 +190,26 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 	 * @generated
 	 */
 	public String convertMetricOptimisationDirectionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MetricStateKeyedBy createMetricStateKeyedByFromString(EDataType eDataType, String initialValue) {
+		MetricStateKeyedBy result = MetricStateKeyedBy.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertMetricStateKeyedByToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

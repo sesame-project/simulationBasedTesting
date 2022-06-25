@@ -24,6 +24,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInst
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getMetrics <em>Metrics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getEndTrigger <em>End Trigger</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getDevelopedFrom <em>Developed From</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getParentCampaign <em>Parent Campaign</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTest()
@@ -110,5 +111,18 @@ public interface Test extends EObject {
 	 * @generated
 	 */
 	EList<Test> getDevelopedFrom();
+
+	/**
+	 * Returns the value of the '<em><b>Parent Campaign</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getPerformedTests <em>Performed Tests</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parent Campaign</em>' container reference.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTest_ParentCampaign()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getPerformedTests
+	 * @model opposite="performedTests" required="true" changeable="false"
+	 * @generated
+	 */
+	TestCampaign getParentCampaign();
 
 } // Test

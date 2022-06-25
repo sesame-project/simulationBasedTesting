@@ -20,6 +20,10 @@ public class TestRunnerUtils {
 	public static void killProcesses() {
 		ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./terminate_sim.sh");
 	}
+	
+	public static void clearKafka() {
+		ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./clear_kafka.sh");
+	}
 
 	public static void waitForSeconds(long timeDelaySeconds) {
 		long endTimeMillis = System.currentTimeMillis() + timeDelaySeconds * 1000;

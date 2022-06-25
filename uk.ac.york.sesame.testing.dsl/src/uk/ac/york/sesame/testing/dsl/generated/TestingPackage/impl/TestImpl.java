@@ -25,6 +25,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigge
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
 /**
@@ -40,6 +41,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getMetrics <em>Metrics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getEndTrigger <em>End Trigger</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getDevelopedFrom <em>Developed From</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getParentCampaign <em>Parent Campaign</em>}</li>
  * </ul>
  *
  * @generated
@@ -229,6 +231,32 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TestCampaign getParentCampaign() {
+		if (eContainerFeatureID() != TestingPackagePackage.TEST__PARENT_CAMPAIGN) return null;
+		return (TestCampaign)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return eBasicSetContainer(otherEnd, TestingPackagePackage.TEST__PARENT_CAMPAIGN, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -238,8 +266,24 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return ((InternalEList<?>)getMetrics()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TEST__END_TRIGGER:
 				return basicSetEndTrigger(null, msgs);
+			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
+				return eBasicSetContainer(null, TestingPackagePackage.TEST__PARENT_CAMPAIGN, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
+				return eInternalContainer().eInverseRemove(this, TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS, TestCampaign.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -260,6 +304,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return getEndTrigger();
 			case TestingPackagePackage.TEST__DEVELOPED_FROM:
 				return getDevelopedFrom();
+			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
+				return getParentCampaign();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -340,6 +386,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return endTrigger != null;
 			case TestingPackagePackage.TEST__DEVELOPED_FROM:
 				return developedFrom != null && !developedFrom.isEmpty();
+			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
+				return getParentCampaign() != null;
 		}
 		return super.eIsSet(featureID);
 	}

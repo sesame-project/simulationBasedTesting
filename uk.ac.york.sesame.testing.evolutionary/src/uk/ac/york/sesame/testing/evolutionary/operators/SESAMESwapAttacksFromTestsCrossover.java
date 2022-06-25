@@ -27,11 +27,11 @@ public class SESAMESwapAttacksFromTestsCrossover extends SESAMECrossoverOperatio
 		SESAMETestSolution new1 = SESAMETestSolution.empty(cx);
 		SESAMETestSolution new2 = SESAMETestSolution.empty(cy);
 		
+		// Set the development history of these
 		new1.addDevelopedFrom(cx);
 		new1.addDevelopedFrom(cy);
 		new2.addDevelopedFrom(cx);
 		new2.addDevelopedFrom(cy);
-		
 		
 		logWithoutException("crossover doOnePointCrossover: input1 = " + cx.toString());
 		logWithoutException("crossover doOnePointCrossover: input2 = " + cy.toString());

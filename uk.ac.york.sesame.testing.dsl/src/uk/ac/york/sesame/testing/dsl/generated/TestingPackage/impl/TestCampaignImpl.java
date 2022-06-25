@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -268,7 +269,7 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 */
 	public EList<Test> getPerformedTests() {
 		if (performedTests == null) {
-			performedTests = new EObjectContainmentEList<Test>(Test.class, this, TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS);
+			performedTests = new EObjectContainmentWithInverseEList<Test>(Test.class, this, TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS, TestingPackagePackage.TEST__PARENT_CAMPAIGN);
 		}
 		return performedTests;
 	}
@@ -326,6 +327,21 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER, newDefaultEndTrigger, newDefaultEndTrigger));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPerformedTests()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

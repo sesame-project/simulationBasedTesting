@@ -22,6 +22,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.InputStrea
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.OutputStream;
@@ -129,6 +130,13 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * @generated
 	 */
 	private EEnum metricOptimisationDirectionEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum metricStateKeyedByEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -268,8 +276,17 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMetric_KeyedBy() {
+		return (EAttribute)metricEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getMetric_RelatedTopics() {
-		return (EReference)metricEClass.getEStructuralFeatures().get(2);
+		return (EReference)metricEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -421,6 +438,15 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getMetricStateKeyedBy() {
+		return metricStateKeyedByEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MetricsFactory getMetricsFactory() {
 		return (MetricsFactory)getEFactoryInstance();
 	}
@@ -453,6 +479,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		metricEClass = createEClass(METRIC);
 		createEAttribute(metricEClass, METRIC__NAME);
 		createEAttribute(metricEClass, METRIC__DIR);
+		createEAttribute(metricEClass, METRIC__KEYED_BY);
 		createEReference(metricEClass, METRIC__RELATED_TOPICS);
 
 		topicMetricEClass = createEClass(TOPIC_METRIC);
@@ -479,6 +506,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 
 		// Create enums
 		metricOptimisationDirectionEEnum = createEEnum(METRIC_OPTIMISATION_DIRECTION);
+		metricStateKeyedByEEnum = createEEnum(METRIC_STATE_KEYED_BY);
 	}
 
 	/**
@@ -531,6 +559,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		initEClass(metricEClass, Metric.class, "Metric", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMetric_Name(), ecorePackage.getEString(), "name", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMetric_Dir(), this.getMetricOptimisationDirection(), "dir", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMetric_KeyedBy(), this.getMetricStateKeyedBy(), "keyedBy", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetric_RelatedTopics(), theMRSPackagePackage.getTopic(), null, "relatedTopics", null, 0, -1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(topicMetricEClass, TopicMetric.class, "TopicMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -559,6 +588,10 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		initEEnum(metricOptimisationDirectionEEnum, MetricOptimisationDirection.class, "MetricOptimisationDirection");
 		addEEnumLiteral(metricOptimisationDirectionEEnum, MetricOptimisationDirection.HIGHEST);
 		addEEnumLiteral(metricOptimisationDirectionEEnum, MetricOptimisationDirection.LOWEST);
+
+		initEEnum(metricStateKeyedByEEnum, MetricStateKeyedBy.class, "MetricStateKeyedBy");
+		addEEnumLiteral(metricStateKeyedByEEnum, MetricStateKeyedBy.TEST);
+		addEEnumLiteral(metricStateKeyedByEEnum, MetricStateKeyedBy.TOPIC);
 	}
 
 } //MetricsPackageImpl

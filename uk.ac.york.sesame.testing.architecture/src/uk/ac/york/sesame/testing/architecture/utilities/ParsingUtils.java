@@ -50,4 +50,22 @@ public class ParsingUtils {
 		}
 		return obj;
 	}
+	
+	public static Object getField(JSONObject obj, String parameterStr) {
+		String[] split = parameterStr.split("\\.");
+		JSONObject obj2 = obj;
+		for (int i = 0; i < split.length; i++) {
+			Object val = obj2.get(split[i].toLowerCase());
+			if (val instanceof JSONObject) {
+				obj2 = (JSONObject)val;
+			}
+			if (val instanceof Double) {
+				return (Double)val;
+			}
+			if (val instanceof Integer) {
+				return (Integer)val;
+			}
+		}
+		return obj2;
+	}
 }

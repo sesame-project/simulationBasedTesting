@@ -147,6 +147,8 @@ public class MetricConsumer implements Runnable {
 	public void updateMetricsInModel(MetricMessage msg) throws InvalidName {
 		Double v = (Double) msg.getValue();
 
+		
+		
 		if (currentSolution.isEmpty()) {
 			System.out.println("currentSolution not set - cannot update metric is empty");
 		} else {

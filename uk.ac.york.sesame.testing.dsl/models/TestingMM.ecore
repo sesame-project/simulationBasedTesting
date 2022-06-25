@@ -25,7 +25,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="approach" lowerBound="1"
         eType="#//TestGenerationApproach" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="performedTests" upperBound="-1"
-        eType="#//Test" containment="true"/>
+        eType="#//Test" containment="true" eOpposite="#//Test/parentCampaign"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="finalResults" upperBound="-1"
         eType="#//Test"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultEndTrigger" lowerBound="1"
@@ -41,6 +41,8 @@
         eType="#//ExecutionEndTrigger" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="developedFrom" upperBound="-1"
         eType="#//Test"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentCampaign" lowerBound="1"
+        eType="#//TestCampaign" changeable="false" transient="true" eOpposite="#//TestCampaign/performedTests"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExecutionEndTrigger" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="TimeBasedEnd" eSuperTypes="#//ExecutionEndTrigger">
@@ -185,9 +187,14 @@
       <eLiterals name="HIGHEST" value="1"/>
       <eLiterals name="LOWEST" value="2"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="MetricStateKeyedBy">
+      <eLiterals name="TEST" value="1"/>
+      <eLiterals name="TOPIC" value="2"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Metric" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dir" eType="#//Metrics/MetricOptimisationDirection"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="keyedBy" eType="#//Metrics/MetricStateKeyedBy"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="relatedTopics" upperBound="-1"
           eType="#//MRSPackage/Topic"/>
     </eClassifiers>

@@ -43,13 +43,13 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = true;
 	private static final boolean DEBUG_ACTUALLY_RUN = true;
 
-	private static final long DEFAULT_HARDCODED_DELAY = 30;
+	private static final long DEFAULT_HARDCODED_DELAY = 150;
 	
 	private static final long DEFAULT_COMPILE_DELAY = 10;
 	private static final long DEFAULT_KILL_DELAY = 10;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 10;
 
-	private static final boolean DUMMY_EVAL = true;
+	private static final boolean DUMMY_EVAL = false;
 
 	private Random rng;
 	private MetricHandler metricHandler;
@@ -217,6 +217,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				//metricConsumer.updateMetricsInModel();
 
 				TestRunnerUtils.killProcesses();
+				TestRunnerUtils.clearKafka();
 				System.out.print("Waiting for simulation processes to be killed...");
 				System.out.flush();
 				TestRunnerUtils.waitForSeconds(DEFAULT_KILL_DELAY);

@@ -30,7 +30,7 @@ class TestCampaign {
 	ref Attacks.Attack[*] includedAttacks;
 	val GrammarConstraint[*] constraints;
 	val TestGenerationApproach[1] approach;
-	val Test[*] performedTests;
+	val Test[*]#parentCampaign performedTests;
 	ref Test[*] finalResults;
 	val ExecutionEndTrigger[1] defaultEndTrigger;
 }
@@ -41,8 +41,8 @@ class Test {
 	val Attacks.Attack[*] attacks;
 	val Metrics.MetricInstance[*] metrics;
 	val ExecutionEndTrigger[1] endTrigger;
-	
 	ref Test[*] developedFrom; 
+	readonly transient ref TestCampaign[1]#performedTests parentCampaign;
 }
 
 abstract class ExecutionEndTrigger {
@@ -285,10 +285,16 @@ enum MetricOptimisationDirection {
 	HIGHEST = 1;
 	LOWEST = 2;
 }
+
+enum MetricStateKeyedBy {
+	TEST = 1;
+	TOPIC = 2;
+}
 	
 abstract class Metric {
 	attr String name;
 	attr MetricOptimisationDirection dir;
+	attr MetricStateKeyedBy keyedBy;
 	ref MRSPackage.Topic[*] relatedTopics;	
 }
 

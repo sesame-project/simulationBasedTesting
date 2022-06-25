@@ -117,11 +117,13 @@ public interface TestCampaign extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Performed Tests</b></em>' containment reference list.
 	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test}.
+	 * It is bidirectional and its opposite is '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getParentCampaign <em>Parent Campaign</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Performed Tests</em>' containment reference list.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_PerformedTests()
-	 * @model containment="true"
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getParentCampaign
+	 * @model opposite="parentCampaign" containment="true"
 	 * @generated
 	 */
 	EList<Test> getPerformedTests();
