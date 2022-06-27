@@ -92,6 +92,12 @@ public class MetricsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MetricsPackage.METRIC_DEFAULT: {
+				MetricDefault metricDefault = (MetricDefault)theEObject;
+				T result = caseMetricDefault(metricDefault);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MetricsPackage.TOPIC_METRIC: {
 				TopicMetric topicMetric = (TopicMetric)theEObject;
 				T result = caseTopicMetric(topicMetric);
@@ -201,6 +207,21 @@ public class MetricsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMetric(Metric object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Metric Default</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Metric Default</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMetricDefault(MetricDefault object) {
 		return null;
 	}
 

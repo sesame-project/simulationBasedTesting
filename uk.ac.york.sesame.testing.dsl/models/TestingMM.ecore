@@ -197,6 +197,11 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="keyedBy" eType="#//Metrics/MetricStateKeyedBy"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="relatedTopics" upperBound="-1"
           eType="#//MRSPackage/Topic"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="default" eType="#//Metrics/MetricDefault"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MetricDefault">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultVal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TopicMetric" eSuperTypes="#//Metrics/Metric">
       <eStructuralFeatures xsi:type="ecore:EReference" name="chosenTopics" lowerBound="1"

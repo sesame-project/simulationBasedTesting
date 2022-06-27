@@ -177,6 +177,10 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/Metric/keyedBy"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/relatedTopics"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/default"/>
+      </genClasses>
+      <genClasses ecoreClass="TestingMM.ecore#//Metrics/MetricDefault">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/MetricDefault/defaultVal"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//Metrics/TopicMetric">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

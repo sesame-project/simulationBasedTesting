@@ -295,7 +295,12 @@ abstract class Metric {
 	attr String name;
 	attr MetricOptimisationDirection dir;
 	attr MetricStateKeyedBy keyedBy;
-	ref MRSPackage.Topic[*] relatedTopics;	
+	ref MRSPackage.Topic[*] relatedTopics;
+	val MetricDefault[0..1] default;	
+}
+
+class MetricDefault {
+	attr double defaultVal;
 }
 
 class TopicMetric extends Metric {

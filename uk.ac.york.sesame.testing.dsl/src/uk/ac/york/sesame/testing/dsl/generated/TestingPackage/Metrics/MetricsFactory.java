@@ -40,6 +40,15 @@ public interface MetricsFactory extends EFactory {
 	OutputStream createOutputStream();
 
 	/**
+	 * Returns a new object of class '<em>Metric Default</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Metric Default</em>'.
+	 * @generated
+	 */
+	MetricDefault createMetricDefault();
+
+	/**
 	 * Returns a new object of class '<em>Topic Metric</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

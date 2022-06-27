@@ -19,6 +19,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDir <em>Dir</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getKeyedBy <em>Keyed By</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedTopics <em>Related Topics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDefault <em>Default</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getMetric()
@@ -109,5 +110,27 @@ public interface Metric extends EObject {
 	 * @generated
 	 */
 	EList<Topic> getRelatedTopics();
+
+	/**
+	 * Returns the value of the '<em><b>Default</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default</em>' containment reference.
+	 * @see #setDefault(MetricDefault)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getMetric_Default()
+	 * @model containment="true"
+	 * @generated
+	 */
+	MetricDefault getDefault();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDefault <em>Default</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default</em>' containment reference.
+	 * @see #getDefault()
+	 * @generated
+	 */
+	void setDefault(MetricDefault value);
 
 } // Metric

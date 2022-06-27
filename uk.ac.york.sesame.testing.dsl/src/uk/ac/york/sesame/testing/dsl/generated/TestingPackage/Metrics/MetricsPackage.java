@@ -188,13 +188,22 @@ public interface MetricsPackage extends EPackage {
 	int METRIC__RELATED_TOPICS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Default</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METRIC__DEFAULT = 4;
+
+	/**
 	 * The number of structural features of the '<em>Metric</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC_FEATURE_COUNT = 4;
+	int METRIC_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Metric</em>' class.
@@ -206,6 +215,43 @@ public interface MetricsPackage extends EPackage {
 	int METRIC_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricDefaultImpl <em>Metric Default</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricDefaultImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricDefault()
+	 * @generated
+	 */
+	int METRIC_DEFAULT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Default Val</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METRIC_DEFAULT__DEFAULT_VAL = 0;
+
+	/**
+	 * The number of structural features of the '<em>Metric Default</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METRIC_DEFAULT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Metric Default</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METRIC_DEFAULT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.TopicMetricImpl <em>Topic Metric</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -213,7 +259,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getTopicMetric()
 	 * @generated
 	 */
-	int TOPIC_METRIC = 4;
+	int TOPIC_METRIC = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -252,6 +298,15 @@ public interface MetricsPackage extends EPackage {
 	int TOPIC_METRIC__RELATED_TOPICS = METRIC__RELATED_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Default</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_METRIC__DEFAULT = METRIC__DEFAULT;
+
+	/**
 	 * The feature id for the '<em><b>Chosen Topics</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -286,7 +341,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricInstance()
 	 * @generated
 	 */
-	int METRIC_INSTANCE = 5;
+	int METRIC_INSTANCE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Metric</b></em>' reference.
@@ -332,7 +387,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getPropertyMetric()
 	 * @generated
 	 */
-	int PROPERTY_METRIC = 6;
+	int PROPERTY_METRIC = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -371,6 +426,15 @@ public interface MetricsPackage extends EPackage {
 	int PROPERTY_METRIC__RELATED_TOPICS = METRIC__RELATED_TOPICS;
 
 	/**
+	 * The feature id for the '<em><b>Default</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_METRIC__DEFAULT = METRIC__DEFAULT;
+
+	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -405,7 +469,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getConditionalPropertyMetric()
 	 * @generated
 	 */
-	int CONDITIONAL_PROPERTY_METRIC = 7;
+	int CONDITIONAL_PROPERTY_METRIC = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -442,6 +506,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONDITIONAL_PROPERTY_METRIC__RELATED_TOPICS = PROPERTY_METRIC__RELATED_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Default</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_PROPERTY_METRIC__DEFAULT = PROPERTY_METRIC__DEFAULT;
 
 	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
@@ -487,7 +560,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getStreamMetric()
 	 * @generated
 	 */
-	int STREAM_METRIC = 8;
+	int STREAM_METRIC = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -524,6 +597,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int STREAM_METRIC__RELATED_TOPICS = METRIC__RELATED_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Default</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STREAM_METRIC__DEFAULT = METRIC__DEFAULT;
 
 	/**
 	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
@@ -569,7 +651,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getStreamResult()
 	 * @generated
 	 */
-	int STREAM_RESULT = 9;
+	int STREAM_RESULT = 10;
 
 	/**
 	 * The number of structural features of the '<em>Stream Result</em>' class.
@@ -597,7 +679,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getFileStreamResult()
 	 * @generated
 	 */
-	int FILE_STREAM_RESULT = 10;
+	int FILE_STREAM_RESULT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Filename</b></em>' attribute.
@@ -635,7 +717,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricOptimisationDirection()
 	 * @generated
 	 */
-	int METRIC_OPTIMISATION_DIRECTION = 11;
+	int METRIC_OPTIMISATION_DIRECTION = 12;
 
 
 	/**
@@ -646,7 +728,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricStateKeyedBy()
 	 * @generated
 	 */
-	int METRIC_STATE_KEYED_BY = 12;
+	int METRIC_STATE_KEYED_BY = 13;
 
 
 	/**
@@ -732,6 +814,38 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMetric_RelatedTopics();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDefault <em>Default</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Default</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDefault()
+	 * @see #getMetric()
+	 * @generated
+	 */
+	EReference getMetric_Default();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault <em>Metric Default</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Metric Default</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault
+	 * @generated
+	 */
+	EClass getMetricDefault();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault#getDefaultVal <em>Default Val</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Val</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault#getDefaultVal()
+	 * @see #getMetricDefault()
+	 * @generated
+	 */
+	EAttribute getMetricDefault_DefaultVal();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.TopicMetric <em>Topic Metric</em>}'.
@@ -1005,6 +1119,32 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference METRIC__RELATED_TOPICS = eINSTANCE.getMetric_RelatedTopics();
+
+		/**
+		 * The meta object literal for the '<em><b>Default</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METRIC__DEFAULT = eINSTANCE.getMetric_Default();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricDefaultImpl <em>Metric Default</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricDefaultImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricDefault()
+		 * @generated
+		 */
+		EClass METRIC_DEFAULT = eINSTANCE.getMetricDefault();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Val</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METRIC_DEFAULT__DEFAULT_VAL = eINSTANCE.getMetricDefault_DefaultVal();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.TopicMetricImpl <em>Topic Metric</em>}' class.

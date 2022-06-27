@@ -20,6 +20,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Conditiona
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FileStreamResult;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.InputStream;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy;
@@ -74,6 +75,13 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * @generated
 	 */
 	private EClass metricEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass metricDefaultEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -294,6 +302,33 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMetric_Default() {
+		return (EReference)metricEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMetricDefault() {
+		return metricDefaultEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMetricDefault_DefaultVal() {
+		return (EAttribute)metricDefaultEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTopicMetric() {
 		return topicMetricEClass;
 	}
@@ -481,6 +516,10 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		createEAttribute(metricEClass, METRIC__DIR);
 		createEAttribute(metricEClass, METRIC__KEYED_BY);
 		createEReference(metricEClass, METRIC__RELATED_TOPICS);
+		createEReference(metricEClass, METRIC__DEFAULT);
+
+		metricDefaultEClass = createEClass(METRIC_DEFAULT);
+		createEAttribute(metricDefaultEClass, METRIC_DEFAULT__DEFAULT_VAL);
 
 		topicMetricEClass = createEClass(TOPIC_METRIC);
 		createEReference(topicMetricEClass, TOPIC_METRIC__CHOSEN_TOPICS);
@@ -561,6 +600,10 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		initEAttribute(getMetric_Dir(), this.getMetricOptimisationDirection(), "dir", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMetric_KeyedBy(), this.getMetricStateKeyedBy(), "keyedBy", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetric_RelatedTopics(), theMRSPackagePackage.getTopic(), null, "relatedTopics", null, 0, -1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMetric_Default(), this.getMetricDefault(), null, "default", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(metricDefaultEClass, MetricDefault.class, "MetricDefault", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMetricDefault_DefaultVal(), ecorePackage.getEDouble(), "defaultVal", null, 0, 1, MetricDefault.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(topicMetricEClass, TopicMetric.class, "TopicMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTopicMetric_ChosenTopics(), theMRSPackagePackage.getTopic(), null, "chosenTopics", null, 1, 1, TopicMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

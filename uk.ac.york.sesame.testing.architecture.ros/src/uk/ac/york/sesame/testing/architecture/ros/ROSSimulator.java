@@ -113,7 +113,7 @@ public class ROSSimulator implements ISimulator {
 	 * This is for ROS Topics
 	 */
 	@Override
-	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean debugThisMessage) {
+	public synchronized void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean debugThisMessage) {
 		System.out.println("TopicName: " + topicName);
 
 		Topic topic;

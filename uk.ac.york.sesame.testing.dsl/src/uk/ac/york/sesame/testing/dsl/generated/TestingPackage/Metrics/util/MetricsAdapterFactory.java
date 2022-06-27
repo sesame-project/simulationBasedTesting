@@ -84,6 +84,10 @@ public class MetricsAdapterFactory extends AdapterFactoryImpl {
 				return createMetricAdapter();
 			}
 			@Override
+			public Adapter caseMetricDefault(MetricDefault object) {
+				return createMetricDefaultAdapter();
+			}
+			@Override
 			public Adapter caseTopicMetric(TopicMetric object) {
 				return createTopicMetricAdapter();
 			}
@@ -184,6 +188,20 @@ public class MetricsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMetricAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault <em>Metric Default</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault
+	 * @generated
+	 */
+	public Adapter createMetricDefaultAdapter() {
 		return null;
 	}
 

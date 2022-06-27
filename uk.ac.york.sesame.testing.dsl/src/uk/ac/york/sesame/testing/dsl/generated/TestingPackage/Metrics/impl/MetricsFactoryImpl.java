@@ -59,6 +59,7 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 		switch (eClass.getClassifierID()) {
 			case MetricsPackage.INPUT_STREAM: return createInputStream();
 			case MetricsPackage.OUTPUT_STREAM: return createOutputStream();
+			case MetricsPackage.METRIC_DEFAULT: return createMetricDefault();
 			case MetricsPackage.TOPIC_METRIC: return createTopicMetric();
 			case MetricsPackage.METRIC_INSTANCE: return createMetricInstance();
 			case MetricsPackage.CONDITIONAL_PROPERTY_METRIC: return createConditionalPropertyMetric();
@@ -121,6 +122,16 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 	public OutputStream createOutputStream() {
 		OutputStreamImpl outputStream = new OutputStreamImpl();
 		return outputStream;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MetricDefault createMetricDefault() {
+		MetricDefaultImpl metricDefault = new MetricDefaultImpl();
+		return metricDefault;
 	}
 
 	/**

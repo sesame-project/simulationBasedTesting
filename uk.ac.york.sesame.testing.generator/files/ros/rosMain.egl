@@ -235,14 +235,18 @@ operation streamJavaName(sMetric, stream) {
 // TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap and RandomValueFromSetAttack are supported
 operation produceFlatMapSignature(attack) {
 	var flatmap = "";
-	var aa = attack.attackActivation;
-	var startTime = 0;
-	var endTime = 10000.0;
+	var aaList = attack.attackActivation;
+	var startTime;
+	var endTime;
 	
-	if (aa.isTypeOf(Testing!AttackFixedTime)) {
+	// TODO: currently, this only uses the first AttackActivation
+	var aa = aaList.first();
+	
+	if (aa.isKindOf(AttackFixedTime)) {
 		startTime = aa.startTime;
 		endTime = aa.endTime;
 	}
+			
 		
 	if (attack.isTypeOf(Testing!PacketLossNetworkAttack)) {
 		flatmap = "flatMap(new PacketLossFlatMap(\"" + attack.topicToAttack.name + "\", \"" + startTime + "\", \"" + endTime + "\", " + attack.frequency + ")).";
@@ -250,8 +254,9 @@ operation produceFlatMapSignature(attack) {
 		flatmap = "flatMap(new BlackHoleFlatMap(\"" + attack.topicToAttack.name + "\", \"" + startTime + "\", \"" + endTime + "\")).";
 	} else if (attack.isTypeOf(Testing!RandomValueFromSetAttack)) {
 		// TODO: set up proper random seed here
-		flatmap = "flatMap(new " + attack.name + "FlatMap(\"" + attack.topicToAttack.name + "\", \"" + startTime + "\", \"" + endTime + "\", 3434232L)).";
+		flatmap = "flatMap(new " + attack.name + "FlatMap(\"" + attack.topicToAttack.name + "\", \"" + startTime + "\", \"" + endTime + "\"," + attack.seed + ")).";
 	}
+	
 	return flatmap;
 }
 %]

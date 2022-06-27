@@ -5,15 +5,18 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
@@ -30,6 +33,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPac
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getDir <em>Dir</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getKeyedBy <em>Keyed By</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getRelatedTopics <em>Related Topics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getDefault <em>Default</em>}</li>
  * </ul>
  *
  * @generated
@@ -104,6 +108,16 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected EList<Topic> relatedTopics;
+
+	/**
+	 * The cached value of the '{@link #getDefault() <em>Default</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefault()
+	 * @generated
+	 * @ordered
+	 */
+	protected MetricDefault default_;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -204,6 +218,63 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MetricDefault getDefault() {
+		return default_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDefault(MetricDefault newDefault, NotificationChain msgs) {
+		MetricDefault oldDefault = default_;
+		default_ = newDefault;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MetricsPackage.METRIC__DEFAULT, oldDefault, newDefault);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefault(MetricDefault newDefault) {
+		if (newDefault != default_) {
+			NotificationChain msgs = null;
+			if (default_ != null)
+				msgs = ((InternalEObject)default_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MetricsPackage.METRIC__DEFAULT, null, msgs);
+			if (newDefault != null)
+				msgs = ((InternalEObject)newDefault).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MetricsPackage.METRIC__DEFAULT, null, msgs);
+			msgs = basicSetDefault(newDefault, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetricsPackage.METRIC__DEFAULT, newDefault, newDefault));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MetricsPackage.METRIC__DEFAULT:
+				return basicSetDefault(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -215,6 +286,8 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 				return getKeyedBy();
 			case MetricsPackage.METRIC__RELATED_TOPICS:
 				return getRelatedTopics();
+			case MetricsPackage.METRIC__DEFAULT:
+				return getDefault();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -241,6 +314,9 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 				getRelatedTopics().clear();
 				getRelatedTopics().addAll((Collection<? extends Topic>)newValue);
 				return;
+			case MetricsPackage.METRIC__DEFAULT:
+				setDefault((MetricDefault)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -265,6 +341,9 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 			case MetricsPackage.METRIC__RELATED_TOPICS:
 				getRelatedTopics().clear();
 				return;
+			case MetricsPackage.METRIC__DEFAULT:
+				setDefault((MetricDefault)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -285,6 +364,8 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 				return keyedBy != KEYED_BY_EDEFAULT;
 			case MetricsPackage.METRIC__RELATED_TOPICS:
 				return relatedTopics != null && !relatedTopics.isEmpty();
+			case MetricsPackage.METRIC__DEFAULT:
+				return default_ != null;
 		}
 		return super.eIsSet(featureID);
 	}

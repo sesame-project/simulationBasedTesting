@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.Optional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -24,7 +26,9 @@ import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.Result;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsFactory;
@@ -52,6 +56,9 @@ public class MetricConsumer implements Runnable {
 
 	// This stores the ID for the metrics for JMetal
 	private HashMap<String, Integer> metricIDLookupByPlace = new LinkedHashMap<String, Integer>();
+	
+	// This stores the value for the metric when found
+	private HashMap<String,MetricMessage> metricMessages = new LinkedHashMap<String, MetricMessage>(); 
 
 	// This holds the current test solution being evaluated
 	private Optional<SESAMETestSolution> currentSolution = Optional.empty();
@@ -115,8 +122,8 @@ public class MetricConsumer implements Runnable {
 					String metricID = msg.getMetricName();
 					Double val = (Double) msg.getValue();
 					System.out.println("MetricConsumer received metric: " + metricID + " - value " + val);
-					updateMetricsInModel(msg);
-					updateObjectivesJMetal(msg);
+					
+					storeArrivingMessage(msg);
 				}
 				// User has to take care of committing the offsets
 			}
@@ -129,6 +136,13 @@ public class MetricConsumer implements Runnable {
 			shutdownlatch.countDown();
 			logger.info("C : {}, consumer exited", clientId);
 		}
+	}
+
+	private void storeArrivingMessage(MetricMessage msg) {
+		String targetMetricID = msg.getMetricName();
+		// This assumes that the last message is the only one we obtain
+		// the metric from
+		metricMessages.put(targetMetricID, msg);
 	}
 
 	public void close() {
@@ -144,30 +158,25 @@ public class MetricConsumer implements Runnable {
 		this.currentSolution = Optional.of(solution);
 	}
 
-	public void updateMetricsInModel(MetricMessage msg) throws InvalidName {
-		Double v = (Double) msg.getValue();
-
-		
-		
+	public void updateMetricsInModel(String metricName, Object val) throws InvalidName {
+	
 		if (currentSolution.isEmpty()) {
 			System.out.println("currentSolution not set - cannot update metric is empty");
 		} else {
 			try {
-
 				Test t = currentSolution.get().getInternalType();
 				if (t != null) {
 					EList<MetricInstance> mList = t.getMetrics();
-					String targetMetricID = msg.getMetricName();
 
 					boolean found = false;
 					// If there is already a metric instance for this, use it,
 					// rather than adding it to the model
 					for (MetricInstance m : mList) {
-						if (m.getMetric().getName().equals(targetMetricID)) {
+						if (m.getMetric().getName().equals(metricName)) {
 							found = true;
 							// Sets the name
-							m.getResult().setName(targetMetricID);
-							Double d = Double.parseDouble(msg.getValue().toString());
+							m.getResult().setName(metricName);
+							Double d = Double.parseDouble(val.toString());
 							m.getResult().setValue(d);
 						}
 					}
@@ -177,11 +186,11 @@ public class MetricConsumer implements Runnable {
 						MetricsFactory factory = MetricsFactory.eINSTANCE;
 						ResultsFactory rfactory = ResultsFactory.eINSTANCE;
 						MetricInstance mNewInst = factory.createMetricInstance();
-						setMetricFromCampaign(mNewInst, msg.getMetricName());
+						setMetricFromCampaign(mNewInst, metricName);
 
 						Result mr = rfactory.createResult();
-						mr.setName(msg.getMetricName());
-						Double d = Double.parseDouble(msg.getValue().toString());
+						mr.setName(metricName);
+						Double d = Double.parseDouble(val.toString());
 						mr.setValue(d);
 						mNewInst.setResult(mr);
 						mList.add(mNewInst);
@@ -202,17 +211,23 @@ public class MetricConsumer implements Runnable {
 		}
 	}
 
-	public void updateObjectivesJMetal(MetricMessage msg) throws JMetalMetricSettingFailed {
+	public void updateObjectivesJMetal(String metricName, Object val) throws JMetalMetricSettingFailed {
 		try {
 			if (currentSolution.isPresent()) {
 				SESAMETestSolution sol = currentSolution.get();
-				String name = msg.getMetricName();
-				int num = getMetricIDForCampaign(name);
-				Metric m = getMetricForCampaign(name);
-				Object val = msg.getValue();
+				int num = getMetricIDForCampaign(metricName);
+				Metric m = getMetricForCampaign(metricName);
 				Double d = Double.parseDouble(val.toString());
+				
 				sol.setObjectiveMetric(num, m);
-				sol.setObjective(num, d);
+				
+				if (m.getDir() == MetricOptimisationDirection.HIGHEST) {
+					sol.setObjective(num, -d);
+				}
+				
+				if (m.getDir() == MetricOptimisationDirection.LOWEST) {
+					sol.setObjective(num, d);
+				}	
 			}
 		} catch (MissingMetric e) {
 			throw new JMetalMetricSettingFailed(e);
@@ -240,5 +255,43 @@ public class MetricConsumer implements Runnable {
 		topics.add(METRIC_TOPIC_NAME);
 		topics.get(0);
 		// TODO: use the admin utility to clear the topics
+	}
+
+	public void finaliseUpdates() {
+		for (Map.Entry<String,Metric> me : metricLookup.entrySet()) {
+			String metricName = me.getKey();
+			Metric m = me.getValue();
+			
+			if (metricMessages.containsKey(metricName)) {
+				MetricMessage msg = metricMessages.get(metricName);
+				Object val = msg.getValue();
+				try {
+					updateMetricsInModel(metricName, val);
+					updateObjectivesJMetal(metricName, val);
+				} catch (InvalidName e1) {
+					e1.printStackTrace();
+				} catch (JMetalMetricSettingFailed e) {
+					e.printStackTrace();
+				}
+			} else {
+				// Metric is not defined.. use a default if it exists
+				if (m.getDefault() != null) {
+					MetricDefault mDef = m.getDefault();
+					Double val = mDef.getDefaultVal();
+					try {
+						updateMetricsInModel(metricName, val);
+						updateObjectivesJMetal(metricName, val);
+					} catch (InvalidName e1) {
+						e1.printStackTrace();
+					} catch (JMetalMetricSettingFailed e) {
+						e.printStackTrace();
+					}
+				} else {
+					System.out.println("No metric default available for " + m.getDefault());
+				}
+			}
+		}
+		
+		metricMessages.clear();
 	}
 }

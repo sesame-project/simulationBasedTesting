@@ -214,7 +214,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				System.out.println("done");
 
 				// Ensure that the model is updated with the metric results
-				//metricConsumer.updateMetricsInModel();
+				metricConsumer.finaliseUpdates();
 
 				TestRunnerUtils.killProcesses();
 				TestRunnerUtils.clearKafka();
