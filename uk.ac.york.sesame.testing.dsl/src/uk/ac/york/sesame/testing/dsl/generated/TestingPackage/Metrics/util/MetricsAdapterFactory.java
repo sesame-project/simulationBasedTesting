@@ -108,6 +108,10 @@ public class MetricsAdapterFactory extends AdapterFactoryImpl {
 				return createStreamMetricAdapter();
 			}
 			@Override
+			public Adapter caseAttackTimesMetric(AttackTimesMetric object) {
+				return createAttackTimesMetricAdapter();
+			}
+			@Override
 			public Adapter caseStreamResult(StreamResult object) {
 				return createStreamResultAdapter();
 			}
@@ -272,6 +276,20 @@ public class MetricsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStreamMetricAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.AttackTimesMetric <em>Attack Times Metric</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.AttackTimesMetric
+	 * @generated
+	 */
+	public Adapter createAttackTimesMetricAdapter() {
 		return null;
 	}
 

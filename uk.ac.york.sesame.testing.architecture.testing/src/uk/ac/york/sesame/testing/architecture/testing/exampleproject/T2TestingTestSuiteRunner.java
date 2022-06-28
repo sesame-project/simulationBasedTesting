@@ -46,7 +46,7 @@ public class T2TestingTestSuiteRunner {
 		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
 				new EventMessageSchema(), properties);
 
-		stream.flatMap(new PacketLossFlatMap("/turtle1/cmd_vel", "0.0", "30.0", 0.3)).addSink(myProducer);
+		stream.flatMap(new PacketLossFlatMap("/turtle1/cmd_vel", 0.0, 30.0, 0.3)).addSink(myProducer);
 		
 //		stream.addSink(myProducer);
 	

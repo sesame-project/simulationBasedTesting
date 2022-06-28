@@ -85,6 +85,15 @@ public interface MetricsFactory extends EFactory {
 	StreamMetric createStreamMetric();
 
 	/**
+	 * Returns a new object of class '<em>Attack Times Metric</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attack Times Metric</em>'.
+	 * @generated
+	 */
+	AttackTimesMetric createAttackTimesMetric();
+
+	/**
 	 * Returns a new object of class '<em>File Stream Result</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

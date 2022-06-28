@@ -41,7 +41,7 @@ public class PL_RVTestingTestSuiteRunner {
 
 		stream.
 				//flatMap(new PacketLossFlatMap("/tb3_0/cmd_vel", "0.0", "1000.0", 0.1)).
-				flatMap(new cmdVelRandomErrorFlatMap("/tb3_0/cmd_vel", "0.0", "1000.0", 3434232L)).
+				flatMap(new cmdVelRandomErrorFlatMap("/tb3_0/cmd_vel", 0.0, 1000.0, 3434232L)).
 		addSink(myProducer);
 	
 		ROSSimulator rosSim = new ROSSimulator();

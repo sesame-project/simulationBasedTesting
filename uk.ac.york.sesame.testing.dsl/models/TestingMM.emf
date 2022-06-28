@@ -38,7 +38,7 @@ class TestCampaign {
 // This is analagous to a fuzzing CSV file in SAFEMUV - multiple attacks
 class Test {
 	attr String name;
-	val Attacks.Attack[*] attacks;
+	val Attacks.Attack[*]#containingTest attacks;
 	val Metrics.MetricInstance[*] metrics;
 	val ExecutionEndTrigger[1] endTrigger;
 	ref Test[*] developedFrom; 
@@ -102,6 +102,8 @@ class Attack {
 	attr boolean allSubscribingTopics = false;
 	ref MRSPackage.Topic[*] subscribingTopics;
 	ref Attack[0..1] fromTemplate;
+	
+	readonly transient ref Test[0..1]#attacks containingTest;
 }
 
 class OfflineAttack extends Attack {
@@ -324,6 +326,10 @@ class StreamMetric extends Metric {
 	val SimStream[*] streams;
 	val StreamResult res; 
 }
+
+class AttackTimesMetric extends StreamMetric {
+	
+} 
 
 abstract class StreamResult {
 	

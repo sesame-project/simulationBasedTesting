@@ -64,6 +64,7 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 			case MetricsPackage.METRIC_INSTANCE: return createMetricInstance();
 			case MetricsPackage.CONDITIONAL_PROPERTY_METRIC: return createConditionalPropertyMetric();
 			case MetricsPackage.STREAM_METRIC: return createStreamMetric();
+			case MetricsPackage.ATTACK_TIMES_METRIC: return createAttackTimesMetric();
 			case MetricsPackage.FILE_STREAM_RESULT: return createFileStreamResult();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -172,6 +173,16 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 	public StreamMetric createStreamMetric() {
 		StreamMetricImpl streamMetric = new StreamMetricImpl();
 		return streamMetric;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttackTimesMetric createAttackTimesMetric() {
+		AttackTimesMetricImpl attackTimesMetric = new AttackTimesMetricImpl();
+		return attackTimesMetric;
 	}
 
 	/**

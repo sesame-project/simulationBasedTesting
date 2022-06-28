@@ -1,3 +1,5 @@
+[% var classNameExt = attack.containingTest.name.firstToUpperCase(); %]
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
@@ -10,12 +12,12 @@ import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 import uk.ac.york.sesame.testing.architecture.attacks.Attack;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
-public class [%=attack.name%]FlatMap extends Attack {
+public class [%=attack.name%]FlatMap_[%= classNameExt %] extends Attack {
 
 	private static final long serialVersionUID = 1L;
 	Random rng;
 
-	public [%=attack.name%]FlatMap(String topic, String start, String end, long seed) {
+	public [%=attack.name%]FlatMap_[%= classNameExt %](String topic, double start, double end, long seed) {
 		super(topic,start,end);
 		this.rng = new Random(seed);
 	}

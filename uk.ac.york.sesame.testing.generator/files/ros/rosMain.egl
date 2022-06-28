@@ -6,8 +6,11 @@
 	var topicsMetricsNeed = Metric.all().relatedTopics.flatten();
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
+	var testNameString = test.name.firstToUpperCase();
 %]
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -35,9 +38,9 @@ import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.*;
 
 import metrics.custom.*;
+import metrics.fixed.*;
 
-public class [%=test.name.firstToUpperCase()%]_TestRunner {
-
+public class [%= testNameString %]_TestRunner {
 	public static void main(String[] args) {
 		
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -73,7 +76,8 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 			}
 		%]
 		addSink(myProducer);
-	
+		
+
 		[%
 		if (simulator.isTypeOf(ROSSimulator)) { %]
 		ROSSimulator rosSim = new ROSSimulator();
@@ -110,6 +114,14 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
 		[% } %]
 
+		Thread time_subscriber = new Thread() {
+			public void run() {
+				System.out.println("updateTime starting");
+				rosSim.updateTime();
+			}
+		};
+		time_subscriber.start();
+
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
@@ -135,18 +147,24 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 		KeyedStream<EventMessage, String> testKeyedIn = stream.keyBy(value -> "[%= test.name %]");
 		KeyedStream<EventMessage, String> testKeyedOut = streamOut.keyBy(value -> "[%= test.name %]");;
 		
-		// Stream metrics here
+		[* For attack times metric *]
+		List<Double> attackTimes = new ArrayList<Double>(); 
+		[% for (attack in test.attacks) { %]
+			[%= produceAttackTimeString(attack) %]
+		[% } %]
+		
+		[* Stream metrics here *]
 		[% for (sMetric in Testing!StreamMetric.all()) { %]
 			[% if (sMetric.streams.size() == 2) {
 				var stream1 = sMetric.streams.get(0);
 				var stream2 = sMetric.streams.get(1); %]
 				ConnectedStreams<EventMessage, EventMessage> [%= sMetric.name %]combinedStream = [%= streamJavaName(sMetric,stream1) %].connect([%= streamJavaName(sMetric,stream2) %]);
-				DataStream<Double> [%= sMetric.name %]resStream = [%= sMetric.name %]combinedStream.process(new [%= sMetric.name %]Metric());
+				DataStream<Double> [%= sMetric.name %]resStream = [%= sMetric.name %]combinedStream.process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
 			[% } %]
 			
 			[% if (sMetric.streams.size() == 1) { 
 				var stream = sMetric.streams.get(0); %]
-				DataStream<Double> [%= sMetric.name %]resStream = [%= streamJavaName(sMetric,stream) %].process(new [%= sMetric.name %]Metric());
+				DataStream<Double> [%= sMetric.name %]resStream = [%= streamJavaName(sMetric,stream) %].process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
 			[% } %]
 			
 			[* If the stream has a FileStreamResult, log it to a file *]
@@ -167,7 +185,11 @@ public class [%=test.name.firstToUpperCase()%]_TestRunner {
 			[% } %]
 		[% } %]
 		
-		[* Add the topic metrics here *]
+		[* TODO: Add the topic metrics here *]
+		
+
+	
+		[* StreamMetrics *]
 		
 		[%  var parentCampaign = test.parentCampaign;
 			var allMetrics = parentCampaign.metrics.clone();
@@ -249,14 +271,34 @@ operation produceFlatMapSignature(attack) {
 			
 		
 	if (attack.isTypeOf(Testing!PacketLossNetworkAttack)) {
-		flatmap = "flatMap(new PacketLossFlatMap(\"" + attack.topicToAttack.name + "\", \"" + startTime + "\", \"" + endTime + "\", " + attack.frequency + ")).";
+		flatmap = "flatMap(new PacketLossFlatMap_" + testNameString + "(\"" + attack.topicToAttack.name + "\"," + startTime + "," + endTime + "," + attack.frequency + ")).";
 	} else if (attack.isTypeOf(Testing!BlackholeNetworkAttack)) {
-		flatmap = "flatMap(new BlackHoleFlatMap(\"" + attack.topicToAttack.name + "\", \"" + startTime + "\", \"" + endTime + "\")).";
+		flatmap = "flatMap(new BlackHoleFlatMap_" + testNameString + "(\"" + attack.topicToAttack.name + "\"," + startTime + "," + endTime + ")).";
 	} else if (attack.isTypeOf(Testing!RandomValueFromSetAttack)) {
 		// TODO: set up proper random seed here
-		flatmap = "flatMap(new " + attack.name + "FlatMap(\"" + attack.topicToAttack.name + "\", \"" + startTime + "\", \"" + endTime + "\"," + attack.seed + ")).";
+		flatmap = "flatMap(new " + attack.name + "FlatMap_" + testNameString + "(\"" + attack.topicToAttack.name + "\"," + startTime + "," + endTime + "," + attack.seed + ")).";
 	}
 	
 	return flatmap;
+}
+
+operation produceAttackTimeString(attack) {
+	var aaList = attack.attackActivation;
+	
+	var str="";
+	for (aa in aaList) {
+		if (aa.isKindOf(AttackFixedTime)) {
+			str = "attackTimes.add(new Double(" + (aa.endTime - aa.startTime) + "));\n";
+		}
+	}
+	return str;
+}
+
+operation additionalInfo(sMetric) {
+	if (sMetric.isTypeOf(AttackTimesMetric)) {
+		return "attackTimes";
+	} else {
+		return "";
+	}
 }
 %]

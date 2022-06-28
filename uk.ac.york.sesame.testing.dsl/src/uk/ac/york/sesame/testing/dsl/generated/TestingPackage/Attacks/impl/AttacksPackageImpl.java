@@ -549,6 +549,15 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getAttack_ContainingTest() {
+		return (EReference)attackEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOfflineAttack() {
 		return offlineAttackEClass;
 	}
@@ -1136,6 +1145,7 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		createEAttribute(attackEClass, ATTACK__ALL_SUBSCRIBING_TOPICS);
 		createEReference(attackEClass, ATTACK__SUBSCRIBING_TOPICS);
 		createEReference(attackEClass, ATTACK__FROM_TEMPLATE);
+		createEReference(attackEClass, ATTACK__CONTAINING_TEST);
 
 		offlineAttackEClass = createEClass(OFFLINE_ATTACK);
 		createEAttribute(offlineAttackEClass, OFFLINE_ATTACK__ATTACK_TIME);
@@ -1261,6 +1271,7 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 
 		// Obtain other dependent packages
 		MRSPackagePackage theMRSPackagePackage = (MRSPackagePackage)EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
+		TestingPackagePackage theTestingPackagePackage = (TestingPackagePackage)EPackage.Registry.INSTANCE.getEPackage(TestingPackagePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1316,6 +1327,7 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		initEAttribute(getAttack_AllSubscribingTopics(), ecorePackage.getEBoolean(), "allSubscribingTopics", "false", 0, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAttack_SubscribingTopics(), theMRSPackagePackage.getTopic(), null, "subscribingTopics", null, 0, -1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAttack_FromTemplate(), this.getAttack(), null, "fromTemplate", null, 0, 1, Attack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttack_ContainingTest(), theTestingPackagePackage.getTest(), theTestingPackagePackage.getTest_Attacks(), "containingTest", null, 0, 1, Attack.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(offlineAttackEClass, OfflineAttack.class, "OfflineAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOfflineAttack_AttackTime(), this.getOfflineAttackTime(), "attackTime", null, 0, 1, OfflineAttack.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

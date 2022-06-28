@@ -16,7 +16,7 @@ public class tpowpFlatMap extends Attack {
 	// Map<String, DoubleRange> possibleValues = new HashMap<String,DoubleRange>();
 	Random rng;
 
-	public tpowpFlatMap(String topic, String start, String end, long seed) {
+	public tpowpFlatMap(String topic, double start, double end, long seed) {
 		super(topic, start, end);
 		this.rng = new Random(seed);
 	}

@@ -130,11 +130,15 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			((NSGAII_ResultLogging)algorithm).logFinalSolutionsCustom("jmetal-finalPopNonDom.res", "jmetal-finalPop.res");
 			((NSGAII_ResultLogging)algorithm).logMetricsForOutput("jmetal-final-csv-results.res", nonDomFinalFile);
 			
-			
+			// Close the socket to terminate experiment
+			problem.shutDownMetricListener();
 			
 			if (!referenceParetoFront.equals("")) {
 				printQualityIndicators(population, referenceParetoFront);
 			}
+			
+			System.out.println("Done!");
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InvalidTestCampaign e) {

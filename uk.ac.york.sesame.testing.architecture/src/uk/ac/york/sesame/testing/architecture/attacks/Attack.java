@@ -37,10 +37,10 @@ public abstract class Attack implements FlatMapFunction<EventMessage, EventMessa
 		this.end = end;
 	}
 
-	public Attack(String topic, String start, String end) {
+	public Attack(String topic, double start, double end) {
 		this.topic = topic;
-		this.start = Double.parseDouble(start);
-		this.end = Double.parseDouble(end);
+		this.start = start;
+		this.end = end;
 	}
 	
 	public boolean isReadyNow() {

@@ -50,8 +50,8 @@ public class T1TestingTestSuiteRunner {
 				new EventMessageSchema(), properties);
 
 		stream.
-				flatMap(new randomiseVelocityFlatMap("/turtle1/cmd_vel", "0.0", "60.0", 3434232L)).
-				flatMap(new PacketLossFlatMap("/turtle1/cmd_vel", "0.0", "25.0", 0.3)).
+				flatMap(new randomiseVelocityFlatMap("/turtle1/cmd_vel", 0.0, 60.0, 3434232L)).
+				flatMap(new PacketLossFlatMap("/turtle1/cmd_vel", 0.0, 25.0, 0.3)).
 		addSink(myProducer);
 	
 		ROSSimulator rosSim = new ROSSimulator();

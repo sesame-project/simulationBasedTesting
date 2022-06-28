@@ -43,13 +43,13 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = true;
 	private static final boolean DEBUG_ACTUALLY_RUN = true;
 
-	private static final long DEFAULT_HARDCODED_DELAY = 150;
+	private static final long DEFAULT_HARDCODED_DELAY = 300;
 	
 	private static final long DEFAULT_COMPILE_DELAY = 10;
 	private static final long DEFAULT_KILL_DELAY = 10;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 10;
 
-	private static final boolean DUMMY_EVAL = false;
+	private static final boolean DUMMY_EVAL = true;
 
 	private Random rng;
 	private MetricHandler metricHandler;
@@ -284,7 +284,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		}
 		
 		// If we haven't picked any, pick one
-		if (sol.getNumberOfVariables() == 0) {
+		if (sol.getNumberOfVariables() == 0 && attacksInCampaign.size() > 0) {
 			Attack baseAttack = getRandomAttack(attacksInCampaign);
 			SESAMETestAttack sta = SESAMETestAttack.reductionOfAttack(sol, baseAttack);
 			sol.addContents(i++, sta);
@@ -298,5 +298,10 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	    int listSize = attacks.size();
 	    int randomIndex = rng.nextInt(listSize);
 	    return attacks.get(randomIndex);
+	}
+
+	public void shutDownMetricListener() {
+		metricConsumer.close();
+		
 	}
 }

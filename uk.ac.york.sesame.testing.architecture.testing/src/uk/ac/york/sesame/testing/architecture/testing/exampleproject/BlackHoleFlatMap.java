@@ -9,7 +9,7 @@ public class BlackHoleFlatMap extends Attack {
 
 	private static final long serialVersionUID = 1L;
 
-	public BlackHoleFlatMap(String topic, String start, String end) {
+	public BlackHoleFlatMap(String topic, double start, double end) {
 		super(topic,start,end);
 	}
 	

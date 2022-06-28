@@ -133,6 +133,14 @@ public class MetricsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MetricsPackage.ATTACK_TIMES_METRIC: {
+				AttackTimesMetric attackTimesMetric = (AttackTimesMetric)theEObject;
+				T result = caseAttackTimesMetric(attackTimesMetric);
+				if (result == null) result = caseStreamMetric(attackTimesMetric);
+				if (result == null) result = caseMetric(attackTimesMetric);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MetricsPackage.STREAM_RESULT: {
 				StreamResult streamResult = (StreamResult)theEObject;
 				T result = caseStreamResult(streamResult);
@@ -297,6 +305,21 @@ public class MetricsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseStreamMetric(StreamMetric object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attack Times Metric</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attack Times Metric</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttackTimesMetric(AttackTimesMetric object) {
 		return null;
 	}
 

@@ -3,34 +3,22 @@ rule test2Class transform test: Testing!Test {
 	target : "src/" + test.name.firstToUpperCase() + "_TestRunner.java"
 }
 
-/*
-rule metricAsMultiStream transform metric: Testing!StreamMetric {
-	guard : metric.streams.size() == 2
-	template : "metrics/multiStream.egl"
-	target : "src/"+ metric.name + "Metric.java"
-}
-
-rule metricAsSingleStream transform metric: Testing!StreamMetric {
-	guard : metric.streams.size() == 1
-	template : "metrics/singleStream.egl"
-	target : "src/"+ metric.name + "Metric.java"
-}
-*/
-
 rule packetLoss2FlatMap transform attack: Testing!PacketLossNetworkAttack {
+	guard : attack.containingTest != null
 	template : "attacks/packetLoss.egl"
-	//target : "src/"+ attack.name.firstToUpperCase() + "FlatMap.java"
-	target : "src/PacketLossFlatMap.java"	
+	target : "src/PacketLossFlatMap_" + attack.containingTest.name.firstToUpperCase() + ".java"	
 }
 
 rule blackHole2FlatMap transform attack: Testing!BlackholeNetworkAttack {
+	guard : attack.containingTest != null
 	template : "attacks/blackHole.egl"
-	target : "src/BlackHoleFlatMap.java"	
+	target : "src/BlackHoleFlatMap_" + attack.containingTest.name.firstToUpperCase() + ".java"	
 }
 
 rule fuzzRange2FlatMap transform attack: Testing!RandomValueFromSetAttack {
+	guard : attack.containingTest != null
 	template : "attacks/fuzzRange.egl"
-	target : "src/"+ attack.name + "FlatMap.java"
+	target : "src/"+ attack.name + "FlatMap_" + attack.containingTest.name.firstToUpperCase() + ".java"
 }
 
 rule rangeClass transform testCampaign: Testing!TestCampaign {

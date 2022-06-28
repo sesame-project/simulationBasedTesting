@@ -644,6 +644,97 @@ public interface MetricsPackage extends EPackage {
 	int STREAM_METRIC_OPERATION_COUNT = METRIC_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.AttackTimesMetricImpl <em>Attack Times Metric</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.AttackTimesMetricImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getAttackTimesMetric()
+	 * @generated
+	 */
+	int ATTACK_TIMES_METRIC = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK_TIMES_METRIC__NAME = STREAM_METRIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Dir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK_TIMES_METRIC__DIR = STREAM_METRIC__DIR;
+
+	/**
+	 * The feature id for the '<em><b>Keyed By</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK_TIMES_METRIC__KEYED_BY = STREAM_METRIC__KEYED_BY;
+
+	/**
+	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK_TIMES_METRIC__RELATED_TOPICS = STREAM_METRIC__RELATED_TOPICS;
+
+	/**
+	 * The feature id for the '<em><b>Default</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK_TIMES_METRIC__DEFAULT = STREAM_METRIC__DEFAULT;
+
+	/**
+	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK_TIMES_METRIC__STREAMS = STREAM_METRIC__STREAMS;
+
+	/**
+	 * The feature id for the '<em><b>Res</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK_TIMES_METRIC__RES = STREAM_METRIC__RES;
+
+	/**
+	 * The number of structural features of the '<em>Attack Times Metric</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK_TIMES_METRIC_FEATURE_COUNT = STREAM_METRIC_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Attack Times Metric</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACK_TIMES_METRIC_OPERATION_COUNT = STREAM_METRIC_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StreamResultImpl <em>Stream Result</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -651,7 +742,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getStreamResult()
 	 * @generated
 	 */
-	int STREAM_RESULT = 10;
+	int STREAM_RESULT = 11;
 
 	/**
 	 * The number of structural features of the '<em>Stream Result</em>' class.
@@ -679,7 +770,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getFileStreamResult()
 	 * @generated
 	 */
-	int FILE_STREAM_RESULT = 11;
+	int FILE_STREAM_RESULT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Filename</b></em>' attribute.
@@ -717,7 +808,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricOptimisationDirection()
 	 * @generated
 	 */
-	int METRIC_OPTIMISATION_DIRECTION = 12;
+	int METRIC_OPTIMISATION_DIRECTION = 13;
 
 
 	/**
@@ -728,7 +819,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricStateKeyedBy()
 	 * @generated
 	 */
-	int METRIC_STATE_KEYED_BY = 13;
+	int METRIC_STATE_KEYED_BY = 14;
 
 
 	/**
@@ -973,6 +1064,16 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getStreamMetric_Res();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.AttackTimesMetric <em>Attack Times Metric</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attack Times Metric</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.AttackTimesMetric
+	 * @generated
+	 */
+	EClass getAttackTimesMetric();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StreamResult <em>Stream Result</em>}'.
@@ -1251,6 +1352,16 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference STREAM_METRIC__RES = eINSTANCE.getStreamMetric_Res();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.AttackTimesMetricImpl <em>Attack Times Metric</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.AttackTimesMetricImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getAttackTimesMetric()
+		 * @generated
+		 */
+		EClass ATTACK_TIMES_METRIC = eINSTANCE.getAttackTimesMetric();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StreamResultImpl <em>Stream Result</em>}' class.

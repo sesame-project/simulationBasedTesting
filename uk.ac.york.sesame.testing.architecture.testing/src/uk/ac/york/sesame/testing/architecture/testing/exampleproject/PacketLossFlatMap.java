@@ -20,7 +20,7 @@ public class PacketLossFlatMap extends Attack {
 		this.frequency = frequency;
 	}
 
-	public PacketLossFlatMap(String topic, String start, String end, double frequency) {
+	public PacketLossFlatMap(String topic, double start, double end, double frequency) {
 		super(topic, start, end);
 		this.frequency = frequency;
 	}

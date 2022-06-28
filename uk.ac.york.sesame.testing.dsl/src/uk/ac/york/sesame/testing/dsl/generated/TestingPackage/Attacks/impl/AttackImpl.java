@@ -24,6 +24,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttackActi
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,6 +49,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttackImpl#isAllSubscribingTopics <em>All Subscribing Topics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttackImpl#getSubscribingTopics <em>Subscribing Topics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttackImpl#getFromTemplate <em>From Template</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttackImpl#getContainingTest <em>Containing Test</em>}</li>
  * </ul>
  *
  * @generated
@@ -576,13 +579,55 @@ public class AttackImpl extends MinimalEObjectImpl.Container implements Attack {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Test getContainingTest() {
+		if (eContainerFeatureID() != AttacksPackage.ATTACK__CONTAINING_TEST) return null;
+		return (Test)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AttacksPackage.ATTACK__CONTAINING_TEST:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return eBasicSetContainer(otherEnd, AttacksPackage.ATTACK__CONTAINING_TEST, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case AttacksPackage.ATTACK__ATTACK_ACTIVATION:
 				return ((InternalEList<?>)getAttackActivation()).basicRemove(otherEnd, msgs);
+			case AttacksPackage.ATTACK__CONTAINING_TEST:
+				return eBasicSetContainer(null, AttacksPackage.ATTACK__CONTAINING_TEST, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case AttacksPackage.ATTACK__CONTAINING_TEST:
+				return eInternalContainer().eInverseRemove(this, TestingPackagePackage.TEST__ATTACKS, Test.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -624,6 +669,8 @@ public class AttackImpl extends MinimalEObjectImpl.Container implements Attack {
 			case AttacksPackage.ATTACK__FROM_TEMPLATE:
 				if (resolve) return getFromTemplate();
 				return basicGetFromTemplate();
+			case AttacksPackage.ATTACK__CONTAINING_TEST:
+				return getContainingTest();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -778,6 +825,8 @@ public class AttackImpl extends MinimalEObjectImpl.Container implements Attack {
 				return subscribingTopics != null && !subscribingTopics.isEmpty();
 			case AttacksPackage.ATTACK__FROM_TEMPLATE:
 				return fromTemplate != null;
+			case AttacksPackage.ATTACK__CONTAINING_TEST:
+				return getContainingTest() != null;
 		}
 		return super.eIsSet(featureID);
 	}

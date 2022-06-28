@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,6 +32,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#isAllSubscribingTopics <em>All Subscribing Topics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getSubscribingTopics <em>Subscribing Topics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getFromTemplate <em>From Template</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getContainingTest <em>Containing Test</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack()
@@ -299,5 +301,18 @@ public interface Attack extends EObject {
 	 * @generated
 	 */
 	void setFromTemplate(Attack value);
+
+	/**
+	 * Returns the value of the '<em><b>Containing Test</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getAttacks <em>Attacks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Containing Test</em>' container reference.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getAttack_ContainingTest()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getAttacks
+	 * @model opposite="attacks" changeable="false"
+	 * @generated
+	 */
+	Test getContainingTest();
 
 } // Attack

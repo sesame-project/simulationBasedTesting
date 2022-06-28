@@ -34,7 +34,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Test">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attacks" upperBound="-1"
-        eType="#//Attacks/Attack" containment="true"/>
+        eType="#//Attacks/Attack" containment="true" eOpposite="#//Attacks/Attack/containingTest"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metrics" upperBound="-1"
         eType="#//Metrics/MetricInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="endTrigger" lowerBound="1"
@@ -87,6 +87,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="subscribingTopics" upperBound="-1"
           eType="#//MRSPackage/Topic"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="fromTemplate" eType="#//Attacks/Attack"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containingTest" eType="#//Test"
+          changeable="false" transient="true" eOpposite="#//Test/attacks"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OfflineAttack" eSuperTypes="#//Attacks/Attack">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="attackTime" eType="#//Attacks/OfflineAttackTime"/>
@@ -226,6 +228,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="res" eType="#//Metrics/StreamResult"
           containment="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttackTimesMetric" eSuperTypes="#//Metrics/StreamMetric"/>
     <eClassifiers xsi:type="ecore:EClass" name="StreamResult" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="FileStreamResult" eSuperTypes="#//Metrics/StreamResult">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="filename" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

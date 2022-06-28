@@ -16,6 +16,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.Attac
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.AttackTimesMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FileStreamResult;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.InputStream;
@@ -117,6 +118,13 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * @generated
 	 */
 	private EClass streamMetricEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attackTimesMetricEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -437,6 +445,15 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAttackTimesMetric() {
+		return attackTimesMetricEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStreamResult() {
 		return streamResultEClass;
 	}
@@ -538,6 +555,8 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		createEReference(streamMetricEClass, STREAM_METRIC__STREAMS);
 		createEReference(streamMetricEClass, STREAM_METRIC__RES);
 
+		attackTimesMetricEClass = createEClass(ATTACK_TIMES_METRIC);
+
 		streamResultEClass = createEClass(STREAM_RESULT);
 
 		fileStreamResultEClass = createEClass(FILE_STREAM_RESULT);
@@ -586,6 +605,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		propertyMetricEClass.getESuperTypes().add(this.getMetric());
 		conditionalPropertyMetricEClass.getESuperTypes().add(this.getPropertyMetric());
 		streamMetricEClass.getESuperTypes().add(this.getMetric());
+		attackTimesMetricEClass.getESuperTypes().add(this.getStreamMetric());
 		fileStreamResultEClass.getESuperTypes().add(this.getStreamResult());
 
 		// Initialize classes, features, and operations; add parameters
@@ -621,6 +641,8 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		initEClass(streamMetricEClass, StreamMetric.class, "StreamMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStreamMetric_Streams(), this.getSimStream(), null, "streams", null, 0, -1, StreamMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStreamMetric_Res(), this.getStreamResult(), null, "res", null, 0, 1, StreamMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(attackTimesMetricEClass, AttackTimesMetric.class, "AttackTimesMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(streamResultEClass, StreamResult.class, "StreamResult", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -19,7 +19,7 @@ public class FlatMap extends Attack {
 	private static final long serialVersionUID = 1L;
 	Random rng;
 
-	public FlatMap(String topic, String start, String end, long seed) {
+	public FlatMap(String topic, double start, double end, long seed) {
 		super(topic,start,end);
 		this.rng = new Random(seed);
 	}

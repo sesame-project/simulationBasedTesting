@@ -16,11 +16,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
 
@@ -154,7 +156,7 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 */
 	public EList<Attack> getAttacks() {
 		if (attacks == null) {
-			attacks = new EObjectContainmentEList<Attack>(Attack.class, this, TestingPackagePackage.TEST__ATTACKS);
+			attacks = new EObjectContainmentWithInverseEList<Attack>(Attack.class, this, TestingPackagePackage.TEST__ATTACKS, AttacksPackage.ATTACK__CONTAINING_TEST);
 		}
 		return attacks;
 	}
@@ -241,9 +243,12 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case TestingPackagePackage.TEST__ATTACKS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAttacks()).basicAdd(otherEnd, msgs);
 			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);

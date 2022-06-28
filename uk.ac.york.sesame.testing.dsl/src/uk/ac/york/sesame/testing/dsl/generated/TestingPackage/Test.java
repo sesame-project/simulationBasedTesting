@@ -57,11 +57,13 @@ public interface Test extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Attacks</b></em>' containment reference list.
 	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack}.
+	 * It is bidirectional and its opposite is '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getContainingTest <em>Containing Test</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attacks</em>' containment reference list.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTest_Attacks()
-	 * @model containment="true"
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack#getContainingTest
+	 * @model opposite="containingTest" containment="true"
 	 * @generated
 	 */
 	EList<Attack> getAttacks();

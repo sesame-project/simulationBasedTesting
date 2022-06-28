@@ -1,12 +1,14 @@
+[% var classNameExt = attack.containingTest.name.firstToUpperCase(); %]
+
 import org.apache.flink.util.Collector;
 import uk.ac.york.sesame.testing.architecture.attacks.Attack;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
-public class BlackHoleFlatMap extends Attack {
+public class BlackHoleFlatMap_[%= classNameExt %] extends Attack {
 
 	private static final long serialVersionUID = 1L;
 
-	public BlackHoleFlatMap(String topic, String start, String end) {
+	public BlackHoleFlatMap_[%= classNameExt %](String topic, double start, double end) {
 		super(topic,start,end);
 	}
 	

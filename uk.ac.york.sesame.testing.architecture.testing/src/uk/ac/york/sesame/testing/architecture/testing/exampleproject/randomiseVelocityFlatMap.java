@@ -14,7 +14,7 @@ public class randomiseVelocityFlatMap extends Attack {
 	private static final long serialVersionUID = 1L;
 	Random rng;
 
-	public randomiseVelocityFlatMap(String topic, String start, String end, long seed) {
+	public randomiseVelocityFlatMap(String topic, double start, double end, long seed) {
 		super(topic, start, end);
 		this.rng = new Random(seed);
 	}
