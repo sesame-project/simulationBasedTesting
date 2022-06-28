@@ -4,6 +4,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -13,6 +14,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPac
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.EvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint;
@@ -27,6 +29,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.Metri
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RandomTestGeneration;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.impl.ResultsPackageImpl;
@@ -66,6 +69,13 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * @generated
 	 */
 	private EClass testEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass campaignResultSetEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,6 +132,13 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * @generated
 	 */
 	private EClass grammarSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum resultSetStatusEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -333,7 +350,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_FinalResults() {
+	public EReference getTestCampaign_ResultSets() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -407,6 +424,42 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 */
 	public EReference getTest_ParentCampaign() {
 		return (EReference)testEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCampaignResultSet() {
+		return campaignResultSetEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCampaignResultSet_Name() {
+		return (EAttribute)campaignResultSetEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCampaignResultSet_Status() {
+		return (EAttribute)campaignResultSetEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCampaignResultSet_Results() {
+		return (EReference)campaignResultSetEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -513,6 +566,15 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getResultSetStatus() {
+		return resultSetStatusEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TestingPackageFactory getTestingPackageFactory() {
 		return (TestingPackageFactory)getEFactoryInstance();
 	}
@@ -551,7 +613,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__CONSTRAINTS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__APPROACH);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__PERFORMED_TESTS);
-		createEReference(testCampaignEClass, TEST_CAMPAIGN__FINAL_RESULTS);
+		createEReference(testCampaignEClass, TEST_CAMPAIGN__RESULT_SETS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__DEFAULT_END_TRIGGER);
 
 		testEClass = createEClass(TEST);
@@ -561,6 +623,11 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEReference(testEClass, TEST__END_TRIGGER);
 		createEReference(testEClass, TEST__DEVELOPED_FROM);
 		createEReference(testEClass, TEST__PARENT_CAMPAIGN);
+
+		campaignResultSetEClass = createEClass(CAMPAIGN_RESULT_SET);
+		createEAttribute(campaignResultSetEClass, CAMPAIGN_RESULT_SET__NAME);
+		createEAttribute(campaignResultSetEClass, CAMPAIGN_RESULT_SET__STATUS);
+		createEReference(campaignResultSetEClass, CAMPAIGN_RESULT_SET__RESULTS);
 
 		executionEndTriggerEClass = createEClass(EXECUTION_END_TRIGGER);
 
@@ -580,6 +647,9 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEAttribute(nsgaEvolutionaryAlgorithmEClass, NSGA_EVOLUTIONARY_ALGORITHM__ITERATIONS);
 
 		grammarSpecificationEClass = createEClass(GRAMMAR_SPECIFICATION);
+
+		// Create enums
+		resultSetStatusEEnum = createEEnum(RESULT_SET_STATUS);
 	}
 
 	/**
@@ -643,7 +713,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEReference(getTestCampaign_Constraints(), this.getGrammarConstraint(), null, "constraints", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Approach(), this.getTestGenerationApproach(), null, "approach", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_PerformedTests(), this.getTest(), this.getTest_ParentCampaign(), "performedTests", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestCampaign_FinalResults(), this.getTest(), null, "finalResults", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestCampaign_ResultSets(), this.getCampaignResultSet(), null, "resultSets", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_DefaultEndTrigger(), this.getExecutionEndTrigger(), null, "defaultEndTrigger", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testEClass, Test.class, "Test", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -653,6 +723,11 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEReference(getTest_EndTrigger(), this.getExecutionEndTrigger(), null, "endTrigger", null, 1, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_DevelopedFrom(), this.getTest(), null, "developedFrom", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_ParentCampaign(), this.getTestCampaign(), this.getTestCampaign_PerformedTests(), "parentCampaign", null, 1, 1, Test.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(campaignResultSetEClass, CampaignResultSet.class, "CampaignResultSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCampaignResultSet_Name(), ecorePackage.getEString(), "name", null, 0, 1, CampaignResultSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCampaignResultSet_Status(), this.getResultSetStatus(), "status", null, 0, 1, CampaignResultSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCampaignResultSet_Results(), this.getTest(), null, "results", null, 0, -1, CampaignResultSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(executionEndTriggerEClass, ExecutionEndTrigger.class, "ExecutionEndTrigger", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -672,6 +747,11 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEAttribute(getNSGAEvolutionaryAlgorithm_Iterations(), ecorePackage.getEInt(), "iterations", null, 0, 1, NSGAEvolutionaryAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(grammarSpecificationEClass, GrammarSpecification.class, "GrammarSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
+		initEEnum(resultSetStatusEEnum, ResultSetStatus.class, "ResultSetStatus");
+		addEEnumLiteral(resultSetStatusEEnum, ResultSetStatus.FINAL);
+		addEEnumLiteral(resultSetStatusEEnum, ResultSetStatus.INTERMEDIATE);
 
 		// Create resource
 		createResource(eNS_URI);

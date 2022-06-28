@@ -26,8 +26,8 @@
         eType="#//TestGenerationApproach" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="performedTests" upperBound="-1"
         eType="#//Test" containment="true" eOpposite="#//Test/parentCampaign"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="finalResults" upperBound="-1"
-        eType="#//Test"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultSets" upperBound="-1"
+        eType="#//CampaignResultSet" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultEndTrigger" lowerBound="1"
         eType="#//ExecutionEndTrigger" containment="true"/>
   </eClassifiers>
@@ -43,6 +43,16 @@
         eType="#//Test"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentCampaign" lowerBound="1"
         eType="#//TestCampaign" changeable="false" transient="true" eOpposite="#//TestCampaign/performedTests"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ResultSetStatus">
+    <eLiterals name="FINAL" value="1"/>
+    <eLiterals name="INTERMEDIATE" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CampaignResultSet">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//ResultSetStatus"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="results" upperBound="-1"
+        eType="#//Test"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExecutionEndTrigger" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="TimeBasedEnd" eSuperTypes="#//ExecutionEndTrigger">
@@ -296,6 +306,10 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MOOSSimulator" eSuperTypes="#//MRSPackage/Simulator">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TTSSimulator" eSuperTypes="#//MRSPackage/Simulator">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>

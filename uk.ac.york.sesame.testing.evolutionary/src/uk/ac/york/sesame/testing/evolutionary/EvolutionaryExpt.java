@@ -13,6 +13,7 @@ import org.uma.jmetal.util.AbstractAlgorithmRunner;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
 
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverOperation;
@@ -90,6 +91,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			Grammar g = null;
 						
 			problem = new SESAMEEvaluationProblem(spaceModelFileName, campaignName, codeGenerationDirectory);
+			TestCampaign selectedCampaign = problem.getCampaign();
 
 			Algorithm<List<SESAMETestSolution>> algorithm;
 			
@@ -111,13 +113,13 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			int matingPoolSize = offspringPopulationSize;
 			
 			// TODO: the algorithm - here NSGA should be selectable from the TestCampaign model
-			algorithm = new NSGAII_ResultLogging(scenarioStr, problem, maxIterations, populationSize, matingPoolSize,
+			algorithm = new NSGAII_ResultLogging(selectedCampaign, scenarioStr, problem, maxIterations, populationSize, matingPoolSize,
 					offspringPopulationSize, crossover, mutation, selection, dominanceComparator, evaluator);
 
 			long startTime = System.currentTimeMillis();
 			algorithm.run();
 			
-			// This is necessary to ensure the final model results are properly reflected in the model
+			// This is necessary to ensure the final test results are properly reflected in the model
 			problem.ensureFinalModelSaved();
 			
 			
@@ -128,7 +130,13 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			String nonDomFinalFile = "jmetal-nondom-csv-results.res";
 			
 			((NSGAII_ResultLogging)algorithm).logFinalSolutionsCustom("jmetal-finalPopNonDom.res", "jmetal-finalPop.res");
-			((NSGAII_ResultLogging)algorithm).logMetricsForOutput("jmetal-final-csv-results.res", nonDomFinalFile);
+			((NSGAII_ResultLogging)algorithm).logMetricsForOutput("jmetal-final-csv-results.res", nonDomFinalFile, true);
+			
+			// Log the results to the model
+			
+			
+			// This is necessary to ensure the final model results for the resultset are properly saved
+			problem.ensureFinalModelSaved();
 			
 			// Close the socket to terminate experiment
 			problem.shutDownMetricListener();

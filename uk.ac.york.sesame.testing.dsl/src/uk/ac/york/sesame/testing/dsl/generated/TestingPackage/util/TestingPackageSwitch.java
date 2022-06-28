@@ -84,6 +84,12 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TestingPackagePackage.CAMPAIGN_RESULT_SET: {
+				CampaignResultSet campaignResultSet = (CampaignResultSet)theEObject;
+				T result = caseCampaignResultSet(campaignResultSet);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case TestingPackagePackage.EXECUTION_END_TRIGGER: {
 				ExecutionEndTrigger executionEndTrigger = (ExecutionEndTrigger)theEObject;
 				T result = caseExecutionEndTrigger(executionEndTrigger);
@@ -183,6 +189,21 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTest(Test object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Campaign Result Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Campaign Result Set</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCampaignResultSet(CampaignResultSet object) {
 		return null;
 	}
 

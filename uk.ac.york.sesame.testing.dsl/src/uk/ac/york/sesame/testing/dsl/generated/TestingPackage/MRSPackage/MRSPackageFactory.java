@@ -94,6 +94,15 @@ public interface MRSPackageFactory extends EFactory {
 	MOOSSimulator createMOOSSimulator();
 
 	/**
+	 * Returns a new object of class '<em>TTS Simulator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>TTS Simulator</em>'.
+	 * @generated
+	 */
+	TTSSimulator createTTSSimulator();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

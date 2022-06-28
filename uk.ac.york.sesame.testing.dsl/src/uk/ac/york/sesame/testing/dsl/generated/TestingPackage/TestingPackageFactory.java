@@ -49,6 +49,15 @@ public interface TestingPackageFactory extends EFactory {
 	Test createTest();
 
 	/**
+	 * Returns a new object of class '<em>Campaign Result Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Campaign Result Set</em>'.
+	 * @generated
+	 */
+	CampaignResultSet createCampaignResultSet();
+
+	/**
 	 * Returns a new object of class '<em>Time Based End</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

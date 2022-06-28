@@ -3,6 +3,7 @@
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -59,6 +60,7 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 			case TestingPackagePackage.TESTING_SPACE: return createTestingSpace();
 			case TestingPackagePackage.TEST_CAMPAIGN: return createTestCampaign();
 			case TestingPackagePackage.TEST: return createTest();
+			case TestingPackagePackage.CAMPAIGN_RESULT_SET: return createCampaignResultSet();
 			case TestingPackagePackage.TIME_BASED_END: return createTimeBasedEnd();
 			case TestingPackagePackage.GRAMMAR_CONSTRAINT: return createGrammarConstraint();
 			case TestingPackagePackage.RANDOM_TEST_GENERATION: return createRandomTestGeneration();
@@ -66,6 +68,36 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 			case TestingPackagePackage.GRAMMAR_SPECIFICATION: return createGrammarSpecification();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case TestingPackagePackage.RESULT_SET_STATUS:
+				return createResultSetStatusFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case TestingPackagePackage.RESULT_SET_STATUS:
+				return convertResultSetStatusToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -97,6 +129,16 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	public Test createTest() {
 		TestImpl test = new TestImpl();
 		return test;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CampaignResultSet createCampaignResultSet() {
+		CampaignResultSetImpl campaignResultSet = new CampaignResultSetImpl();
+		return campaignResultSet;
 	}
 
 	/**
@@ -147,6 +189,26 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	public GrammarSpecification createGrammarSpecification() {
 		GrammarSpecificationImpl grammarSpecification = new GrammarSpecificationImpl();
 		return grammarSpecification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResultSetStatus createResultSetStatusFromString(EDataType eDataType, String initialValue) {
+		ResultSetStatus result = ResultSetStatus.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertResultSetStatusToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

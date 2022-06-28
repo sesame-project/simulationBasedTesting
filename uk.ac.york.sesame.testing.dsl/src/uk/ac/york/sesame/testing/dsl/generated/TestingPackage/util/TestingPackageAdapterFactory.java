@@ -80,6 +80,10 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 				return createTestAdapter();
 			}
 			@Override
+			public Adapter caseCampaignResultSet(CampaignResultSet object) {
+				return createCampaignResultSetAdapter();
+			}
+			@Override
 			public Adapter caseExecutionEndTrigger(ExecutionEndTrigger object) {
 				return createExecutionEndTriggerAdapter();
 			}
@@ -170,6 +174,20 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTestAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet <em>Campaign Result Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet
+	 * @generated
+	 */
+	public Adapter createCampaignResultSetAdapter() {
 		return null;
 	}
 

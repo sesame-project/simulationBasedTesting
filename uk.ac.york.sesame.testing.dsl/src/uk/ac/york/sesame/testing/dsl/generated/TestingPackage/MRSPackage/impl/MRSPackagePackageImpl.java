@@ -23,6 +23,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Paramet
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParsingMethod;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSSimulator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Simulator;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type;
 
@@ -107,6 +108,13 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * @generated
 	 */
 	private EClass moosSimulatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass ttsSimulatorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -487,6 +495,33 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTTSSimulator() {
+		return ttsSimulatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTTSSimulator_Hostname() {
+		return (EAttribute)ttsSimulatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTTSSimulator_Port() {
+		return (EAttribute)ttsSimulatorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getParsingMethod() {
 		return parsingMethodEEnum;
 	}
@@ -560,6 +595,10 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		createEAttribute(moosSimulatorEClass, MOOS_SIMULATOR__HOSTNAME);
 		createEAttribute(moosSimulatorEClass, MOOS_SIMULATOR__PORT);
 
+		ttsSimulatorEClass = createEClass(TTS_SIMULATOR);
+		createEAttribute(ttsSimulatorEClass, TTS_SIMULATOR__HOSTNAME);
+		createEAttribute(ttsSimulatorEClass, TTS_SIMULATOR__PORT);
+
 		// Create enums
 		parsingMethodEEnum = createEEnum(PARSING_METHOD);
 	}
@@ -594,6 +633,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		// Add supertypes to classes
 		rosSimulatorEClass.getESuperTypes().add(this.getSimulator());
 		moosSimulatorEClass.getESuperTypes().add(this.getSimulator());
+		ttsSimulatorEClass.getESuperTypes().add(this.getSimulator());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mrsEClass, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, "MRS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -636,6 +676,10 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		initEClass(moosSimulatorEClass, MOOSSimulator.class, "MOOSSimulator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMOOSSimulator_Hostname(), ecorePackage.getEString(), "hostname", null, 0, 1, MOOSSimulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMOOSSimulator_Port(), ecorePackage.getEString(), "port", null, 0, 1, MOOSSimulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(ttsSimulatorEClass, TTSSimulator.class, "TTSSimulator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTTSSimulator_Hostname(), ecorePackage.getEString(), "hostname", null, 0, 1, TTSSimulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTTSSimulator_Port(), ecorePackage.getEString(), "port", null, 0, 1, TTSSimulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(parsingMethodEEnum, ParsingMethod.class, "ParsingMethod");

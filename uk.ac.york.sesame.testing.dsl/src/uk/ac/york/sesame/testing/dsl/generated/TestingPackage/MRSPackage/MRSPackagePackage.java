@@ -517,6 +517,52 @@ public interface MRSPackagePackage extends EPackage {
 	int MOOS_SIMULATOR_OPERATION_COUNT = SIMULATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TTSSimulatorImpl <em>TTS Simulator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TTSSimulatorImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getTTSSimulator()
+	 * @generated
+	 */
+	int TTS_SIMULATOR = 9;
+
+	/**
+	 * The feature id for the '<em><b>Hostname</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TTS_SIMULATOR__HOSTNAME = SIMULATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Port</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TTS_SIMULATOR__PORT = SIMULATOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>TTS Simulator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TTS_SIMULATOR_FEATURE_COUNT = SIMULATOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>TTS Simulator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TTS_SIMULATOR_OPERATION_COUNT = SIMULATOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParsingMethod <em>Parsing Method</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -524,7 +570,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getParsingMethod()
 	 * @generated
 	 */
-	int PARSING_METHOD = 9;
+	int PARSING_METHOD = 10;
 
 
 	/**
@@ -871,6 +917,38 @@ public interface MRSPackagePackage extends EPackage {
 	EAttribute getMOOSSimulator_Port();
 
 	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator <em>TTS Simulator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>TTS Simulator</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator
+	 * @generated
+	 */
+	EClass getTTSSimulator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator#getHostname <em>Hostname</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hostname</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator#getHostname()
+	 * @see #getTTSSimulator()
+	 * @generated
+	 */
+	EAttribute getTTSSimulator_Hostname();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator#getPort <em>Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Port</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator#getPort()
+	 * @see #getTTSSimulator()
+	 * @generated
+	 */
+	EAttribute getTTSSimulator_Port();
+
+	/**
 	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParsingMethod <em>Parsing Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1176,6 +1254,32 @@ public interface MRSPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MOOS_SIMULATOR__PORT = eINSTANCE.getMOOSSimulator_Port();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TTSSimulatorImpl <em>TTS Simulator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TTSSimulatorImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getTTSSimulator()
+		 * @generated
+		 */
+		EClass TTS_SIMULATOR = eINSTANCE.getTTSSimulator();
+
+		/**
+		 * The meta object literal for the '<em><b>Hostname</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TTS_SIMULATOR__HOSTNAME = eINSTANCE.getTTSSimulator_Hostname();
+
+		/**
+		 * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TTS_SIMULATOR__PORT = eINSTANCE.getTTSSimulator_Port();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParsingMethod <em>Parsing Method</em>}' enum.

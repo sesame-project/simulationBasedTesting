@@ -1,5 +1,6 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
+import org.eclipse.emf.common.util.EList;
 import org.uma.jmetal.algorithm.impl.AbstractGeneticAlgorithm;
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
 import org.uma.jmetal.operator.mutation.MutationOperator;
@@ -15,10 +16,18 @@ import org.uma.jmetal.util.fileoutput.SolutionListOutput;
 import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
+
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,28 +46,32 @@ public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGenetic
 
 	protected int matingPoolSize;
 	protected int offspringPopulationSize;
+	
+	private TestCampaign selectedCampaign;
 
 	private String scenarioStr;
  
 	/**
 	 * Constructor
 	 */
-	public NSGAII_ResultLogging(String scenarioStr, Problem<S> problem, int maxEvaluations, int populationSize, int matingPoolSize,
+	public NSGAII_ResultLogging(TestCampaign selectedCampaign, String scenarioStr, Problem<S> problem, int maxEvaluations, int populationSize, int matingPoolSize,
 			int offspringPopulationSize, CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator,
 			SelectionOperator<List<S>, S> selectionOperator, SolutionListEvaluator<S> evaluator) {
-		this(scenarioStr, problem, maxEvaluations, populationSize, matingPoolSize, offspringPopulationSize, crossoverOperator,
+		this(selectedCampaign, scenarioStr, problem, maxEvaluations, populationSize, matingPoolSize, offspringPopulationSize, crossoverOperator,
 				mutationOperator, selectionOperator, new DominanceComparator<S>(), evaluator);
+		this.selectedCampaign = selectedCampaign;
 	}
 
 	/**
 	 * Constructor
 	 */
-	public NSGAII_ResultLogging(String scenarioStr, Problem<S> problem, int maxEvaluations, int populationSize, int matingPoolSize,
+	public NSGAII_ResultLogging(TestCampaign selectedCampaign, String scenarioStr, Problem<S> problem, int maxEvaluations, int populationSize, int matingPoolSize,
 			int offspringPopulationSize, CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator,
 			SelectionOperator<List<S>, S> selectionOperator, Comparator<S> dominanceComparator,
 			SolutionListEvaluator<S> evaluator) {
 		super(problem);
 		this.maxEvaluations = maxEvaluations;
+		this.selectedCampaign = selectedCampaign;
 		setMaxPopulationSize(populationSize);
 		;
 
@@ -187,7 +200,7 @@ public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGenetic
 		
 		String logNonDomMetrics = "jmetal-intermediate-nondom-eval" + evaluations + ".csv";
 		String logFullMetrics = "jmetal-intermediate-full-eval" + evaluations + ".csv";
-		logMetricsForOutput(logFullMetrics, logNonDomMetrics);
+		logMetricsForOutput(logFullMetrics, logNonDomMetrics, false);
 		// Log the intermediate metric values
 	}
 
@@ -272,8 +285,53 @@ public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGenetic
 		fw.close();
 	}
 	
-	public void logMetricsForOutput(String fullPopFile, String nonDomFile) throws IOException {
-		logPopulationMetrics(scenarioStr, fullPopFile, false);
-		logPopulationMetrics(scenarioStr, nonDomFile, true);
+	private void logPopulationRefsToModel(TestCampaign selectedCampaign, String scenarioStr, boolean nonDom, boolean isFinalResults) {
+		List<S> targetPop;
+		String name;
+		String dateStr = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(new Date());
+		
+		if (nonDom) {
+			targetPop = SolutionListUtils.getNonDominatedSolutions(getPopulation());
+			name = "NONDOM-" + dateStr;
+		} else {
+			targetPop = getPopulation();
+			name = "FULL-" + dateStr;
+		}
+		
+		ResultSetStatus status;
+		if (isFinalResults) {
+			status = ResultSetStatus.FINAL;
+			name = name + "-final";
+		} else {
+			status = ResultSetStatus.INTERMEDIATE;
+			name = name + "-intermediate-" + String.valueOf(evaluations);
+		}
+				
+		TestingPackageFactory tf = TestingPackageFactory.eINSTANCE;
+		
+		// Create new result set in the model
+		EList<CampaignResultSet> resultSets = selectedCampaign.getResultSets();
+		CampaignResultSet rs = tf.createCampaignResultSet();
+		rs.setName(name);
+		rs.setStatus(status);
+		EList<Test> results = rs.getResults();
+
+		for (S s : targetPop) {
+			if (s instanceof SESAMETestSolution) {
+				Test t = ((SESAMETestSolution)s).getInternalType();
+				results.add(t);
+			}
+		}
+		
+		resultSets.add(rs);
 	}
+	
+	public void logMetricsForOutput(String fullPopFile, String nonDomFile, boolean isFinal) throws IOException {
+		logPopulationMetrics(scenarioStr, fullPopFile, false);
+		logPopulationRefsToModel(selectedCampaign, scenarioStr, false, isFinal);
+		logPopulationMetrics(scenarioStr, nonDomFile, true);
+		logPopulationRefsToModel(selectedCampaign, scenarioStr, true, isFinal);
+	}
+
+
 }

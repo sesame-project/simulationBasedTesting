@@ -4,6 +4,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -203,13 +204,13 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_CAMPAIGN__PERFORMED_TESTS = 5;
 
 	/**
-	 * The feature id for the '<em><b>Final Results</b></em>' reference list.
+	 * The feature id for the '<em><b>Result Sets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__FINAL_RESULTS = 6;
+	int TEST_CAMPAIGN__RESULT_SETS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Default End Trigger</b></em>' containment reference.
@@ -321,6 +322,61 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.CampaignResultSetImpl <em>Campaign Result Set</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.CampaignResultSetImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getCampaignResultSet()
+	 * @generated
+	 */
+	int CAMPAIGN_RESULT_SET = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMPAIGN_RESULT_SET__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMPAIGN_RESULT_SET__STATUS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Results</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMPAIGN_RESULT_SET__RESULTS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Campaign Result Set</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMPAIGN_RESULT_SET_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Campaign Result Set</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMPAIGN_RESULT_SET_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ExecutionEndTriggerImpl <em>Execution End Trigger</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -328,7 +384,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getExecutionEndTrigger()
 	 * @generated
 	 */
-	int EXECUTION_END_TRIGGER = 3;
+	int EXECUTION_END_TRIGGER = 4;
 
 	/**
 	 * The number of structural features of the '<em>Execution End Trigger</em>' class.
@@ -356,7 +412,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTimeBasedEnd()
 	 * @generated
 	 */
-	int TIME_BASED_END = 4;
+	int TIME_BASED_END = 5;
 
 	/**
 	 * The feature id for the '<em><b>Time Limit Seconds</b></em>' attribute.
@@ -393,7 +449,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getGrammarConstraint()
 	 * @generated
 	 */
-	int GRAMMAR_CONSTRAINT = 5;
+	int GRAMMAR_CONSTRAINT = 6;
 
 	/**
 	 * The number of structural features of the '<em>Grammar Constraint</em>' class.
@@ -421,7 +477,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTestGenerationApproach()
 	 * @generated
 	 */
-	int TEST_GENERATION_APPROACH = 6;
+	int TEST_GENERATION_APPROACH = 7;
 
 	/**
 	 * The number of structural features of the '<em>Test Generation Approach</em>' class.
@@ -449,7 +505,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRandomTestGeneration()
 	 * @generated
 	 */
-	int RANDOM_TEST_GENERATION = 7;
+	int RANDOM_TEST_GENERATION = 8;
 
 	/**
 	 * The number of structural features of the '<em>Random Test Generation</em>' class.
@@ -477,7 +533,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getEvolutionaryAlgorithm()
 	 * @generated
 	 */
-	int EVOLUTIONARY_ALGORITHM = 8;
+	int EVOLUTIONARY_ALGORITHM = 9;
 
 	/**
 	 * The number of structural features of the '<em>Evolutionary Algorithm</em>' class.
@@ -505,7 +561,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getNSGAEvolutionaryAlgorithm()
 	 * @generated
 	 */
-	int NSGA_EVOLUTIONARY_ALGORITHM = 9;
+	int NSGA_EVOLUTIONARY_ALGORITHM = 10;
 
 	/**
 	 * The feature id for the '<em><b>Population Size</b></em>' attribute.
@@ -551,7 +607,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getGrammarSpecification()
 	 * @generated
 	 */
-	int GRAMMAR_SPECIFICATION = 10;
+	int GRAMMAR_SPECIFICATION = 11;
 
 	/**
 	 * The number of structural features of the '<em>Grammar Specification</em>' class.
@@ -570,6 +626,17 @@ public interface TestingPackagePackage extends EPackage {
 	 * @ordered
 	 */
 	int GRAMMAR_SPECIFICATION_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus <em>Result Set Status</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getResultSetStatus()
+	 * @generated
+	 */
+	int RESULT_SET_STATUS = 12;
 
 
 	/**
@@ -725,15 +792,15 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestCampaign_PerformedTests();
 
 	/**
-	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getFinalResults <em>Final Results</em>}'.
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getResultSets <em>Result Sets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Final Results</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getFinalResults()
+	 * @return the meta object for the containment reference list '<em>Result Sets</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getResultSets()
 	 * @see #getTestCampaign()
 	 * @generated
 	 */
-	EReference getTestCampaign_FinalResults();
+	EReference getTestCampaign_ResultSets();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger <em>Default End Trigger</em>}'.
@@ -821,6 +888,49 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTest_ParentCampaign();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet <em>Campaign Result Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Campaign Result Set</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet
+	 * @generated
+	 */
+	EClass getCampaignResultSet();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet#getName()
+	 * @see #getCampaignResultSet()
+	 * @generated
+	 */
+	EAttribute getCampaignResultSet_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet#getStatus <em>Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Status</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet#getStatus()
+	 * @see #getCampaignResultSet()
+	 * @generated
+	 */
+	EAttribute getCampaignResultSet_Status();
+
+	/**
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet#getResults <em>Results</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Results</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet#getResults()
+	 * @see #getCampaignResultSet()
+	 * @generated
+	 */
+	EReference getCampaignResultSet_Results();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger <em>Execution End Trigger</em>}'.
@@ -934,6 +1044,16 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getGrammarSpecification();
+
+	/**
+	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus <em>Result Set Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Result Set Status</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus
+	 * @generated
+	 */
+	EEnum getResultSetStatus();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1075,12 +1195,12 @@ public interface TestingPackagePackage extends EPackage {
 		EReference TEST_CAMPAIGN__PERFORMED_TESTS = eINSTANCE.getTestCampaign_PerformedTests();
 
 		/**
-		 * The meta object literal for the '<em><b>Final Results</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Result Sets</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_CAMPAIGN__FINAL_RESULTS = eINSTANCE.getTestCampaign_FinalResults();
+		EReference TEST_CAMPAIGN__RESULT_SETS = eINSTANCE.getTestCampaign_ResultSets();
 
 		/**
 		 * The meta object literal for the '<em><b>Default End Trigger</b></em>' containment reference feature.
@@ -1147,6 +1267,40 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST__PARENT_CAMPAIGN = eINSTANCE.getTest_ParentCampaign();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.CampaignResultSetImpl <em>Campaign Result Set</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.CampaignResultSetImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getCampaignResultSet()
+		 * @generated
+		 */
+		EClass CAMPAIGN_RESULT_SET = eINSTANCE.getCampaignResultSet();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CAMPAIGN_RESULT_SET__NAME = eINSTANCE.getCampaignResultSet_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Status</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CAMPAIGN_RESULT_SET__STATUS = eINSTANCE.getCampaignResultSet_Status();
+
+		/**
+		 * The meta object literal for the '<em><b>Results</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CAMPAIGN_RESULT_SET__RESULTS = eINSTANCE.getCampaignResultSet_Results();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ExecutionEndTriggerImpl <em>Execution End Trigger</em>}' class.
@@ -1251,6 +1405,16 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EClass GRAMMAR_SPECIFICATION = eINSTANCE.getGrammarSpecification();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus <em>Result Set Status</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getResultSetStatus()
+		 * @generated
+		 */
+		EEnum RESULT_SET_STATUS = eINSTANCE.getResultSetStatus();
 
 	}
 

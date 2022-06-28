@@ -122,6 +122,13 @@ public class MRSPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MRSPackagePackage.TTS_SIMULATOR: {
+				TTSSimulator ttsSimulator = (TTSSimulator)theEObject;
+				T result = caseTTSSimulator(ttsSimulator);
+				if (result == null) result = caseSimulator(ttsSimulator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -258,6 +265,21 @@ public class MRSPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMOOSSimulator(MOOSSimulator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>TTS Simulator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>TTS Simulator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTTSSimulator(TTSSimulator object) {
 		return null;
 	}
 

@@ -173,7 +173,7 @@ public class [%= testNameString %]_TestRunner {
 				%] 
 
 				final FileSink<String> [%= sMetric.name %]streamFileSink = FileSink
-				    .forRowFormat(new Path("[%= filename %]"), new SimpleStringEncoder<String>("UTF-8"))
+				    .forRowFormat(new Path("[%= filename %]-[%= testNameString %]"), new SimpleStringEncoder<String>("UTF-8"))
 			    	.withRollingPolicy(
 				        DefaultRollingPolicy.builder()
 			            	.withRolloverInterval(TimeUnit.MINUTES.toMillis(150))
@@ -181,7 +181,7 @@ public class [%= testNameString %]_TestRunner {
 			            	.withMaxPartSize(1024 * 1024 * 1024)
 				            .build())
 					.build();
-				[%= sMetric.name %]resStream.map(e -> e.toString()).sinkTo([%= sMetric.name %]streamFileSink);
+				[%= sMetric.name %]resStream.map(d -> d.toString()).sinkTo([%= sMetric.name %]streamFileSink);
 			[% } %]
 		[% } %]
 		

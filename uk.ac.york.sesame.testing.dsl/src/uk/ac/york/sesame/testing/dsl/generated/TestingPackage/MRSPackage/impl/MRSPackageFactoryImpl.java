@@ -65,6 +65,7 @@ public class MRSPackageFactoryImpl extends EFactoryImpl implements MRSPackageFac
 			case MRSPackagePackage.COMPONENT_PROPERTY: return createComponentProperty();
 			case MRSPackagePackage.ROS_SIMULATOR: return createROSSimulator();
 			case MRSPackagePackage.MOOS_SIMULATOR: return createMOOSSimulator();
+			case MRSPackagePackage.TTS_SIMULATOR: return createTTSSimulator();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -178,6 +179,16 @@ public class MRSPackageFactoryImpl extends EFactoryImpl implements MRSPackageFac
 	public MOOSSimulator createMOOSSimulator() {
 		MOOSSimulatorImpl moosSimulator = new MOOSSimulatorImpl();
 		return moosSimulator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TTSSimulator createTTSSimulator() {
+		TTSSimulatorImpl ttsSimulator = new TTSSimulatorImpl();
+		return ttsSimulator;
 	}
 
 	/**

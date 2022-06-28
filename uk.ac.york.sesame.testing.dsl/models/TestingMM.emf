@@ -31,7 +31,7 @@ class TestCampaign {
 	val GrammarConstraint[*] constraints;
 	val TestGenerationApproach[1] approach;
 	val Test[*]#parentCampaign performedTests;
-	ref Test[*] finalResults;
+	val CampaignResultSet[*] resultSets;
 	val ExecutionEndTrigger[1] defaultEndTrigger;
 }
 
@@ -43,6 +43,17 @@ class Test {
 	val ExecutionEndTrigger[1] endTrigger;
 	ref Test[*] developedFrom; 
 	readonly transient ref TestCampaign[1]#performedTests parentCampaign;
+}
+
+enum ResultSetStatus {
+	FINAL = 1;
+	INTERMEDIATE = 2;
+}
+
+class CampaignResultSet {
+	attr String name;
+	attr ResultSetStatus status;
+	ref Test[*] results; 
 }
 
 abstract class ExecutionEndTrigger {
@@ -407,6 +418,11 @@ class ROSSimulator extends Simulator {
 }
 
 class MOOSSimulator extends Simulator {
+	attr String hostname;
+	attr String port;
+}
+
+class TTSSimulator extends Simulator {
 	attr String hostname;
 	attr String port;
 }

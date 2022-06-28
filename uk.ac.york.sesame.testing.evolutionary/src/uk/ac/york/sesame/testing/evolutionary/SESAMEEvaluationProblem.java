@@ -49,10 +49,9 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long DEFAULT_KILL_DELAY = 10;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 10;
 
-	private static final boolean DUMMY_EVAL = true;
+	private static final boolean DUMMY_EVAL = false;
 
 	private Random rng;
-	private MetricHandler metricHandler;
 
 	private int variableFixedSize;
 	private int constraintCount = 0;
@@ -61,7 +60,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private String campaignName;
 
 	private StreamExecutionEnvironment env;
-	private DataStream<MetricMessage> metricStream;
+	//private DataStream<MetricMessage> metricStream;
 	private Resource testSpaceModel;
 	private TestCampaign selectedCampaign;
 
@@ -117,6 +116,10 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		} else {
 			throw new InvalidTestCampaign(campaignName);
 		}
+	}
+	
+	public TestCampaign getCampaign() {
+		return selectedCampaign;
 	}
 
 	public int getNumberOfVariables() {
@@ -241,6 +244,14 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			double v = rng.nextDouble();
 			System.out.println("Dummy evaluation of solution " + solution + " - metric " + i + " is " + v);
 			solution.setObjective(i, v);
+		}
+		
+		solution.ensureModelUpdated(selectedCampaign); 
+		loader.saveTestingSpace();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 	
