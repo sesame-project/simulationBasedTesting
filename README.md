@@ -5,8 +5,8 @@ the SESAME simulation-based testing platform developed for the system.
 The software, its design principles and rationale are described in the
 SESAME deliverable documents 
 
-- D6.2: 
-- D6.3:
+- D6.2: D6.2 Simulation-Based Testing Methodology for EDDIs
+- D6.3: Tools for Automated Quality Assurance of EDDI-Supported MRS (Initial Version)
 
 This online guide complements D6.3 in reference to providing
 installation instructions for the platform.
