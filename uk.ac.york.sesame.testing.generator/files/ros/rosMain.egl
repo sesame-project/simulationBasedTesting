@@ -37,6 +37,8 @@ import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.*;
 
+import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
+
 import metrics.custom.*;
 import metrics.fixed.*;
 
@@ -166,11 +168,24 @@ public class [%= testNameString %]_TestRunner {
 				var stream = sMetric.streams.get(0); %]
 				DataStream<Double> [%= sMetric.name %]resStream = [%= streamJavaName(sMetric,stream) %].process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
 			[% } %]
-			
+		[% } %]
+		
+		[* TODO: Add the topic metrics here *]
+		
+		SimCore simcore = SimCore.getInstance();
+		[* StreamMetrics *]
+		
+		[%  var parentCampaign = test.parentCampaign;
+			var allMetrics = parentCampaign.metrics.clone();
+		    for (sMetric in allMetrics.selectByKind(StreamMetric)) { %] 
+			// Generate a message stream for all metrics
+			DataStream<MetricMessage> metricMsg[%= sMetric.name %] = [%= sMetric.name %]resStream.map(d -> new MetricMessage("[%=test.name.firstToUpperCase() %]", "[%= sMetric.name %]", d));
+		[% } %]
+		
+		[% for (sMetric in allMetrics.selectByKind(StreamMetric)) { %]
 			[* If the stream has a FileStreamResult, log it to a file *]
 			[% if (sMetric.res.isTypeOf(Testing!FileStreamResult)) { 
-				var filename = sMetric.res.filename;
-				%] 
+				var filename = sMetric.res.filename; %] 
 
 				final FileSink<String> [%= sMetric.name %]streamFileSink = FileSink
 				    .forRowFormat(new Path("[%= filename %]-[%= testNameString %]"), new SimpleStringEncoder<String>("UTF-8"))
@@ -181,24 +196,10 @@ public class [%= testNameString %]_TestRunner {
 			            	.withMaxPartSize(1024 * 1024 * 1024)
 				            .build())
 					.build();
-				[%= sMetric.name %]resStream.map(d -> d.toString()).sinkTo([%= sMetric.name %]streamFileSink);
+				metricMsg[%= sMetric.name %].map(msg -> msg.timeStampedValString()).sinkTo([%= sMetric.name %]streamFileSink);
 			[% } %]
 		[% } %]
-		
-		[* TODO: Add the topic metrics here *]
-		
-
-	
-		[* StreamMetrics *]
-		
-		[%  var parentCampaign = test.parentCampaign;
-			var allMetrics = parentCampaign.metrics.clone();
-		    for (sMetric in allMetrics.selectByKind(StreamMetric)) { %] 
-			// Generate a message stream for all metrics
-			DataStream<MetricMessage> metricMsg[%= sMetric.name %] = [%= sMetric.name %]resStream.map(d -> new MetricMessage("[%=test.name.firstToUpperCase() %]", "[%= sMetric.name %]", d));
-		[% } %]
-		
-		
+				
 		[* Create the unioned metric stream and link to the producer *]
 		[% 	if (allMetrics.size() > 0) {
 			var firstMetric = allMetrics.removeAt(0); %]

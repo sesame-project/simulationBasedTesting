@@ -8,6 +8,8 @@ import org.apache.kafka.common.serialization.Serializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
+
 public class MetricMessage implements IData, Serializer<MetricMessage>, Deserializer<MetricMessage> {
 	
 	private static ObjectMapper objectMapper = new ObjectMapper();
@@ -29,6 +31,11 @@ public class MetricMessage implements IData, Serializer<MetricMessage>, Deserial
 		this.metricName = name;
 		this.value = v;
 		this.type = "Double";
+		this.timestamp = Double.parseDouble(SimCore.getInstance().getTime());
+	}
+	
+	public String timeStampedValString() {
+		return Double.valueOf(timestamp) + "," + String.valueOf(value);
 	}
 	
 	public String getMetricName() {
