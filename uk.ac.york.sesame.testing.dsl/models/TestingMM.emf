@@ -13,7 +13,7 @@ class TestingSpace {
 	attr String name;
 	val Metrics.Metric[*] metrics;
 	val Attacks.Attack[*] possibleAttacks;
-	val GrammarSpecification[0..1] grammarSpecfication;
+	val GrammarSpecification[0..1] grammarSpecification;
 	val TestCampaign[*] campaigns;
 	val MRSPackage.MRS[1] mrs;
 }
