@@ -1,4 +1,17 @@
-# Simulation-Based Testing Platform
+# SESAME Simulation-Based Testing Platform Installation Guide
+
+This repository presents the installation guide and source code for
+the SESAME simulation-based testing platform developed for the system.
+The software, its design principles and rationale are described in the
+SESAME deliverable documents 
+
+- D6.2: 
+- D6.3:
+
+This online guide complements D6.3 in reference to providing
+installation instructions for the platform.
+
+# Installation
 
 ## Installing dependencies of the platform:
 
