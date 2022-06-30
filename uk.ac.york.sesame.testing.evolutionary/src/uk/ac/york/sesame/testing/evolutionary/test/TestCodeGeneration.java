@@ -8,8 +8,9 @@ public class TestCodeGeneration {
 		String spaceModelFileName = "/home/jharbin/eclipse-workspace/localAutoGen/models/testingHealthcareSpace.model";
 		String campaignName = "firstExperiment";
 		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/eclipse-workspace/localAutoGen/";
+		final String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
 		
-		SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, CODE_GENERATION_DIRECTORY);
+		SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(orchestratorBasePath, spaceModelFileName, __mrsModelFile, campaignName, CODE_GENERATION_DIRECTORY);
 		System.out.println("eglEx - executor created");
 		eglEx.run();
 		System.out.println("eglEx - executor ran");

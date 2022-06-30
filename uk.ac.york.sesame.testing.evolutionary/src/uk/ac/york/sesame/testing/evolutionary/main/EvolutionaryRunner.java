@@ -28,12 +28,13 @@ public class EvolutionaryRunner {
 		// PATHS HERE
 		final String spaceModelFileName = "/home/jharbin/eclipse-workspace/localAutoGen/models/testingHealthcareSpace.model";
 		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/eclipse-workspace/localAutoGen";
-		// orchestratorBasePath in SESAMEEGLExecutor needs to be configured properly - with the base path of the generator project
+		final String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
+
 		// uk.ac.york.sesame.testing.evolutionary/scripts/execute_testrunner.sh needs the CODE_GENERATION_DIRECTORY as the classpath
 		String campaignToRun = "firstExperiment";
 		// Mention in documentation that pkill is required by default
 			
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize);
+		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize);
 		jmetalExpt.runExperiment();
 	}
 }

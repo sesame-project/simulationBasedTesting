@@ -58,7 +58,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	private String spaceModelFileName;
 	private String campaignName;
-
+	private String orchestratorBasePath;
+	
 	private StreamExecutionEnvironment env;
 	//private DataStream<MetricMessage> metricStream;
 	private Resource testSpaceModel;
@@ -96,7 +97,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		t.start();
 	}
 
-	public SESAMEEvaluationProblem(String spaceModelFileName, String campaignName, String codeGenerationDirectory)
+	public SESAMEEvaluationProblem(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory)
 			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
@@ -171,7 +172,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				// This transform the testing space model into code - by invoking EGX/EGL
 				// The MRS model file is currently redundant due to the temporary approach of merging the models
 				String __mrsModelFile = "testingMRS.model";
-				eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
+				eglEx = new SESAMEEGLExecutor(orchestratorBasePath, spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
 				eglEx.run();
 			}
 			
@@ -189,6 +190,23 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				System.out.print("Launching test runner for " + mainClassName + "... (classpath " + codeGenerationDirectory + ")");
 				System.out.flush();
 				TestRunnerUtils.exec(mainClassName, codeGenerationDirectory);
+				
+				////////////////////////////// THIS IS ONLY FOR TEMPORARY LOGGING OF THE POSITIONS FOR THE EXPERIMENT 
+				// Take out after 1st July!
+				Thread varLogThread = new Thread() {
+					public void run() {				
+						try {
+							System.out.println("Starting var logging thread");
+							TestRunnerUtils.__variableLogging(mainClassName);
+							System.out.println("Var logging thread completed");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				};
+				varLogThread.start();
+				//////////////////////////////////////////////////////////////////////////////////////////////////////
+				
 				System.out.println("done");
 				System.out.flush();
 

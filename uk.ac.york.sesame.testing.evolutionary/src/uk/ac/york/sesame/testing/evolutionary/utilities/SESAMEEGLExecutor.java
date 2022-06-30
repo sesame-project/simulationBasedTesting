@@ -26,14 +26,16 @@ public class SESAMEEGLExecutor {
 	private String testingModelPath;
 	
 	// TODO: orchestratorBasePath needs to be configured properly
-	private String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
+	//private String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
 		
+	private String orchestratorBasePath;
 	private String codeOutputPath;
 	
-	public SESAMEEGLExecutor(String testingModelPath, String ___UNUSED_mrsModelPath, String campaignName, String codeOutputPath) {
+	public SESAMEEGLExecutor(String orchestratorBasePath, String testingModelPath, String ___UNUSED_mrsModelPath, String campaignName, String codeOutputPath) {
 		System.out.println("SESAMEEGLExecutor - testing model path is " + testingModelPath);
 		this.testingModelPath = testingModelPath;
 		this.codeOutputPath = codeOutputPath;
+		this.orchestratorBasePath = orchestratorBasePath;
 	}
 	
 	protected static ArrayList<String> registerMMs() throws IOException, UnknownPath {

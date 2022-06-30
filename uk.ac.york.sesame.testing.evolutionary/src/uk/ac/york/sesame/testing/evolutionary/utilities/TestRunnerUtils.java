@@ -24,6 +24,10 @@ public class TestRunnerUtils {
 	public static void clearKafka() {
 		ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./clear_kafka.sh");
 	}
+	
+	public static void __variableLogging(String mainClass) throws IOException {
+		ExptHelper.runScriptNewWithBashTimeout(ABS_SCRIPT_DIR, "./log_topics.sh " + mainClass, 300);
+	}
 
 	public static void waitForSeconds(long timeDelaySeconds) {
 		long endTimeMillis = System.currentTimeMillis() + timeDelaySeconds * 1000;

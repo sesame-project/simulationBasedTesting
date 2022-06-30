@@ -10,6 +10,7 @@ import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.TournamentSelection;
 import org.uma.jmetal.util.AbstractAlgorithmRunner;
+import org.uma.jmetal.util.comparator.DominanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
@@ -53,15 +54,17 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	private String spaceModelFileName;
 	private String campaignName;
 	private String codeGenerationDirectory;
+	private String orchestratorBasePath;
 	private int maxIterations;
 
-	public EvolutionaryExpt(String spaceModelFileName, String campaignName, String codeGenerationDirectory, int maxIterations, int populationSize, int offspringPopSize) {
+	public EvolutionaryExpt(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, int maxIterations, int populationSize, int offspringPopSize) {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
 		this.codeGenerationDirectory = codeGenerationDirectory;
 		this.populationSize = populationSize;
 		this.offspringPopulationSize = offspringPopSize;
 		this.maxIterations = maxIterations;
+		this.orchestratorBasePath = orchestratorBasePath;
 //		this.timingMutProb = timingMutProb;
 //		this.participantsMutProb = participantsMutProb;
 //		this.paramMutProb = paramMutProb;
@@ -90,7 +93,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			//Grammar<String> g = Grammar.fromFile(new File(GRAMMAR_FILE));
 			Grammar g = null;
 						
-			problem = new SESAMEEvaluationProblem(spaceModelFileName, campaignName, codeGenerationDirectory);
+			problem = new SESAMEEvaluationProblem(orchestratorBasePath, spaceModelFileName, campaignName, codeGenerationDirectory);
 			TestCampaign selectedCampaign = problem.getCampaign();
 
 			Algorithm<List<SESAMETestSolution>> algorithm;
@@ -107,7 +110,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			mutation = new SESAMESimpleMutation(g, mutationRNG, mutationLogFile, timingMutProb, paramMutProb);
 			
  			selection = new TournamentSelection<SESAMETestSolution>(5);
-			dominanceComparator = new DifferentCountsDominanceComparator<>();
+			dominanceComparator = new DominanceComparator<>();
 			evaluator = new SequentialSolutionListEvaluator<SESAMETestSolution>();
 
 			int matingPoolSize = offspringPopulationSize;

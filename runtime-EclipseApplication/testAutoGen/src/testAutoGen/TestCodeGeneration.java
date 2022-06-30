@@ -9,7 +9,7 @@ public class TestCodeGeneration {
 		String campaignName = "firstExperiment";
 		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/runtime-EclipseApplication/testAutoGen/";
 		
-		SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, CODE_GENERATION_DIRECTORY);
+		//SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, CODE_GENERATION_DIRECTORY);
 		System.out.println("eglEx - executor created");
 		eglEx.run();
 		System.out.println("eglEx - executor ran");
