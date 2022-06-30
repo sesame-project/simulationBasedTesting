@@ -1,0 +1,893 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="Attacks" xmlns:_2="MRSPackage" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="StreamMetric" xmi:id="_TiizQN04EeyAL51MCA53dw" name="totalEnergyAtEnd" dir="LOWEST">
+    <default xmi:id="_w22pAPeeEeylIplG5t0blg" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_TdUpsOd4Eeym1vCwkNoiAw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_PURDYPb_EeyPjPxeigDHmw" filename="/home/jharbin/academic/sesame/WP6/metric-results/totalEnergy"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_Vo1xYN04EeyAL51MCA53dw" name="completedRooms" dir="LOWEST" relatedTopics="_lUwUoOuyEeye997npOVsNQ _zQnykOuyEeye997npOVsNQ _zbYREOuyEeye997npOVsNQ">
+    <default xmi:id="_JWrkAPUlEeyXNMijK69yfA" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_UBH6UOd4Eeym1vCwkNoiAw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_QmNzcPb_EeyPjPxeigDHmw" filename="/home/jharbin/academic/sesame/WP6/metric-results/completedRooms"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_g8Hi0N1AEeyWQcgNPk0koQ" name="totalDistanceAtEnd">
+    <default xmi:id="_1PD_YPeeEeylIplG5t0blg" defaultVal="-100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_Uav7QOd4Eeym1vCwkNoiAw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_RIG_kPb_EeyPjPxeigDHmw" filename="/home/jharbin/academic/sesame/WP6/metric-results/totalDistance"/>
+  </metrics>
+  <metrics xsi:type="AttackTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="attackTimes" dir="LOWEST">
+    <streams xsi:type="InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+  </metrics>
+  <possibleAttacks xsi:type="_1:RandomValueFromSetAttack" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="attackVel_robot0" topicToAttack="_OxQuMOIdEeynuZg3j0KLEQ">
+    <attackActivation xsi:type="_1:AttackFixedTime" xmi:id="_bJdhUN04EeyAL51MCA53dw" startTime="100.0" endTime="350.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_SlE2IPLIEeyyicYP_3f6ng" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_SlE2IfLIEeyyicYP_3f6ng" propertyName="geometry_msgs/twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
+  </possibleAttacks>
+  <possibleAttacks xsi:type="_1:RandomValueFromSetAttack" xmi:id="_mIrOcN0YEeyv8LH3vdSfnw" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ">
+    <attackActivation xsi:type="_1:AttackFixedTime" xmi:id="_ciaRQN04EeyAL51MCA53dw" startTime="100.0" endTime="350.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_SlE2IvLIEeyyicYP_3f6ng" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_SlE2I_LIEeyyicYP_3f6ng" propertyName="geometry_msgs/twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
+  </possibleAttacks>
+  <possibleAttacks xsi:type="_1:RandomValueFromSetAttack" xmi:id="_mf6CsN0YEeyv8LH3vdSfnw" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ">
+    <attackActivation xsi:type="_1:AttackFixedTime" xmi:id="_eIZ-sN04EeyAL51MCA53dw" startTime="100.0" endTime="350.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_SlE2JPLIEeyyicYP_3f6ng" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_SlE2JfLIEeyyicYP_3f6ng" propertyName="geometry_msgs/twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
+  </possibleAttacks>
+  <possibleAttacks xsi:type="_1:PacketLossNetworkAttack" xmi:id="__X7doN1DEeyWQcgNPk0koQ">
+    <attackActivation xsi:type="_1:AttackFixedTime" xmi:id="_WLT_8N1yEeyMroJPpUfYlA"/>
+    <frequency xmi:id="_W2vikN1yEeyMroJPpUfYlA" propertyName="perception_msgs/DetectedObject" upperBound="1.0"/>
+  </possibleAttacks>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_Vo1xYN04EeyAL51MCA53dw _g8Hi0N1AEeyWQcgNPk0koQ _hrtGEPZBEeypkdw9q4st1A" includedAttacks="_lc6UoN0YEeyv8LH3vdSfnw _mIrOcN0YEeyv8LH3vdSfnw _mf6CsN0YEeyv8LH3vdSfnw">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="200"/>
+    <performedTests name="Test_001_29_06_2022_23_15_33">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="343.01223297583726" endTime="345.60937512890297"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5473301127020768"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="2.597142153065704"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_002_29_06_2022_23_15_33">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="101.67524372266736" endTime="154.81917108892196"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="5.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="17.545121022745025"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="53.1439273662546"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_003_29_06_2022_23_15_33">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot0" topicToAttack="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="299.29692422177095" endTime="316.4535419705013"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.6882988117306545" upperBound="-0.15774176176286714"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.5820920031218719" upperBound="0.7594556455955617"/>
+      </attacks>
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="318.35621411136117" endTime="320.78509508951635"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.6026936119998425" upperBound="-0.5924332337106073"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.2327596906467977" upperBound="0.5496115377886936"/>
+      </attacks>
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="166.42206932398125" endTime="279.53817312014934"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.7503831017971088" upperBound="0.3441755194935361"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.07952457069382568" upperBound="0.6263361941845899"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="7.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="4.9557582402730755"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="132.70160252305362"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_004_29_06_2022_23_15_33">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="272.47871147431994" endTime="296.06248203874907"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7333377759623396" upperBound="0.867814219071515"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.07970083503456737" upperBound="0.5564089438059175"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5847270315201274"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="23.58377056442913"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_005_29_06_2022_23_15_33">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot0" topicToAttack="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="129.7518022903498" endTime="267.0822694950615"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.7622244488899941" upperBound="0.5578052215168137"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.6765246514111871" upperBound="0.9839552098788649"/>
+      </attacks>
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="186.87194582780631" endTime="335.3872580771447"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.6319647315490551" upperBound="0.637968595295169"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.17702028464539654" upperBound="0.36964906545132525"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="6.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="2.542603430887393"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="285.8457794540501"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_006_29_06_2022_23_15_33">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="189.80704177479606" endTime="228.08392751402533"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.6775257480803658" upperBound="0.8993373620269296"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.08154135773577709" upperBound="0.27323513007752487"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5955185819075914"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="38.27688573922927"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_007_29_06_2022_23_15_33">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="253.82037244260974" endTime="335.30006701667594"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.3013915294135734" upperBound="-0.19724687109596828"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.7756514024971946" upperBound="0.6893266219020551"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="1.9960513704461633"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="81.4796945740662"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_008_29_06_2022_23_15_33">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="244.29924733569285" endTime="254.15383080748856"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.06686983543675762" upperBound="0.9434142759392583"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.8656075833124428" upperBound="0.8785347016494345"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.49237666523740886"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="9.854583471795706"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_009_29_06_2022_23_59_47" developedFrom="//@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.0">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="101.41997148801462" endTime="349.8321457700407"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7333377759623396" upperBound="0.867814219071515"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.07970083503456737" upperBound="0.5564089438059175"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="6.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="1.709306963803177"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="248.4121742820261"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_010_29_06_2022_23_59_47" developedFrom="//@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.0">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="300.0329520765974" endTime="307.9058431560826"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.6234540296178168"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="7.872891079485214"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_011_29_06_2022_23_59_47" developedFrom="//@campaigns.0/@performedTests.6 //@campaigns.0/@performedTests.7">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="347.21000427133856" endTime="347.5325162942225"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.3013915294135734" upperBound="-0.19724687109596828"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.7756514024971946" upperBound="0.6893266219020551"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5386511464007884"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="0.32251202288392733"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_012_29_06_2022_23_59_47" developedFrom="//@campaigns.0/@performedTests.6 //@campaigns.0/@performedTests.7">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="212.85446816389498" endTime="321.60485411518414"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.06686983543675762" upperBound="0.9434142759392583"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.8656075833124428" upperBound="0.8785347016494345"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="8.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5344787472656704"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="108.75038595128916"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_013_29_06_2022_23_59_47" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.4">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="225.66456514313603" endTime="272.45531415224906"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5931175220762128"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="46.79074900911303"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_014_29_06_2022_23_59_47" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.4">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot0" topicToAttack="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="336.6410463178179" endTime="339.96088248341863"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.7622244488899941" upperBound="0.5578052215168137"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.6765246514111871" upperBound="0.9839552098788649"/>
+      </attacks>
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="267.1003480366344" endTime="328.9541805931771"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.6319647315490551" upperBound="0.637968595295169"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.17702028464539654" upperBound="0.36964906545132525"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="1.1164369227087252"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="65.17366872214347"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_015_29_06_2022_23_59_47" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.2">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="273.2870578193048" endTime="339.7276710022859"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="333.1658465009005" endTime="339.9857183782042"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.7503831017971088" upperBound="0.3441755194935361"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.07952457069382568" upperBound="0.6263361941845899"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5383475694377997"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="73.2604850602848"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_016_29_06_2022_23_59_47" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.2">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot0" topicToAttack="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="173.52183029309333" endTime="312.4260384218753"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.6882988117306545" upperBound="-0.15774176176286714"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.5820920031218719" upperBound="0.7594556455955617"/>
+      </attacks>
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="207.10967918737768" endTime="208.50858849304413"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.6026936119998425" upperBound="-0.5924332337106073"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.2327596906467977" upperBound="0.5496115377886936"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="8.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="1.2865534001043026"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="140.30311743444844"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_017_30_06_2022_00_44_00" developedFrom="//@campaigns.0/@performedTests.10">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="140.26551057795137" endTime="292.45198320527163"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.3013915294135734" upperBound="-0.19724687109596828"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.7756514024971946" upperBound="0.6893266219020551"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="6.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="4.956565513198713"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="152.18647262732026"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_018_30_06_2022_00_44_00" developedFrom="//@campaigns.0/@performedTests.10">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="241.13213875007946" endTime="291.21318016298403"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.3013915294135734" upperBound="-0.19724687109596828"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.7756514024971946" upperBound="0.6893266219020551"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.48108592861806065"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="50.08104141290457"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_019_30_06_2022_00_44_00" developedFrom="//@campaigns.0/@performedTests.1">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="277.44689905941823" endTime="304.07714711464916"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.873087613352346"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="26.630248055230936"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_020_30_06_2022_00_44_00" developedFrom="//@campaigns.0/@performedTests.1">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="190.7026150895239" endTime="305.88229471588505"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="8.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5374959585946852"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="115.17967962636115"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_021_30_06_2022_00_44_00" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.10">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="170.4162235104777" endTime="272.3531725760415"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="7.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.6068863933404773"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="101.93694906556382"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_022_30_06_2022_00_44_00" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.10">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="178.22579439626713" endTime="266.723180918638"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.3013915294135734" upperBound="-0.19724687109596828"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.7756514024971946" upperBound="0.6893266219020551"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="8.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5339708269879083"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="88.49738652237085"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_023_30_06_2022_00_44_00" developedFrom="//@campaigns.0/@performedTests.1">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="146.58547869019873" endTime="305.4458342516568"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="5.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="8.940866224279711"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="158.86035556145805"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_024_30_06_2022_00_44_00" developedFrom="//@campaigns.0/@performedTests.1">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="290.93943207308814" endTime="343.6240538153792"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5317801924335592"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="52.684621742291085"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_025_30_06_2022_01_28_14" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.1">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="227.42930533370287" endTime="274.88226104346364"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="9.226254407972943"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="47.45295570976077"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_026_30_06_2022_01_28_14" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.1">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="130.4265097220695" endTime="140.9537459942699"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="6.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="4.838065359302337"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="10.527236272200383"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_027_30_06_2022_01_28_14" developedFrom="//@campaigns.0/@performedTests.9 //@campaigns.0/@performedTests.7">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="245.4791148772354" endTime="334.3523056565313"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="9.346865860240975"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="88.87319077929592"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_028_30_06_2022_01_28_14" developedFrom="//@campaigns.0/@performedTests.9 //@campaigns.0/@performedTests.7">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="193.62456496240182" endTime="330.5444418777938"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.06686983543675762" upperBound="0.9434142759392583"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.8656075833124428" upperBound="0.8785347016494345"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="8.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.6158428972392117"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="136.919876915392"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_029_30_06_2022_01_28_14" developedFrom="//@campaigns.0/@performedTests.22 //@campaigns.0/@performedTests.10">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="162.4433534579564" endTime="327.5563480155357"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="7.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="4.443083867243849"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="165.11299455757933"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_030_30_06_2022_01_28_14" developedFrom="//@campaigns.0/@performedTests.22 //@campaigns.0/@performedTests.10">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="277.715024754252" endTime="283.96104913594127"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.3013915294135734" upperBound="-0.19724687109596828"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.7756514024971946" upperBound="0.6893266219020551"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5116324869948186"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="6.246024381689267"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_031_30_06_2022_01_28_14" developedFrom="//@campaigns.0/@performedTests.22 //@campaigns.0/@performedTests.10">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="187.086639471908" endTime="191.1264392617818"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.568270573030168"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="4.039799789873797"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_032_30_06_2022_01_28_14" developedFrom="//@campaigns.0/@performedTests.22 //@campaigns.0/@performedTests.10">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="163.77539618710372" endTime="339.32335200046464"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.3013915294135734" upperBound="-0.19724687109596828"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.7756514024971946" upperBound="0.6893266219020551"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="7.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.6339608617980597"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="175.54795581336091"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_033_30_06_2022_02_12_28" developedFrom="//@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.0">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="104.00063656480576" endTime="194.10999325117544"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="6.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="2.195724769403392"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="90.10935668636968"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_034_30_06_2022_02_12_28" developedFrom="//@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.0">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="146.57704296242773" endTime="330.04225667257845"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="7.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="5.58811927191749"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="183.46521371015072"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_035_30_06_2022_02_12_28" developedFrom="//@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.22">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="286.89947643285075" endTime="302.78026981435215"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.3013915294135734" upperBound="-0.19724687109596828"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.7756514024971946" upperBound="0.6893266219020551"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5823493850832728"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="15.880793381501405"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_036_30_06_2022_02_12_28" developedFrom="//@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.22">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="290.4114145676053" endTime="333.5858496156479"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5623064772946564"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="43.1744350480426"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_037_30_06_2022_02_12_28" developedFrom="//@campaigns.0/@performedTests.9">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="182.57251693976062" endTime="220.8113178591686"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="8.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="7.628044757461292"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="38.23880091940799"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_038_30_06_2022_02_12_28" developedFrom="//@campaigns.0/@performedTests.9">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="103.32754764057522" endTime="311.9305321541815"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="6.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="2.0556860432981"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="208.60298451360626"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_039_30_06_2022_02_12_28" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.22">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="114.12725551515149" endTime="258.97544807023087"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="7.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.6291493726726032"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="144.84819255507938"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_040_30_06_2022_02_12_28" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.22">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="134.66361525251588" endTime="147.86175203621292"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.519732788778714"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="13.198136783697038"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_041_30_06_2022_02_56_43" developedFrom="//@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.30">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="314.65523363188686" endTime="327.9117573238955"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5933008691902765"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="13.256523692008614"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_042_30_06_2022_02_56_43" developedFrom="//@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.30">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="313.25537527299946" endTime="343.7662290429663"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5628878000323871"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="30.510853769966843"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_043_30_06_2022_02_56_43" developedFrom="//@campaigns.0/@performedTests.36 //@campaigns.0/@performedTests.10">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="164.9537132119783" endTime="209.2398220847219"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="7.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="4.773694062695289"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="44.2861088727436"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_044_30_06_2022_02_56_43" developedFrom="//@campaigns.0/@performedTests.36 //@campaigns.0/@performedTests.10">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="156.20428050641402" endTime="300.185678034808"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.3013915294135734" upperBound="-0.19724687109596828"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.7756514024971946" upperBound="0.6893266219020551"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="7.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5622186529176404"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="143.98139752839398"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_045_30_06_2022_02_56_43" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.25">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="171.43595889600925" endTime="210.76412925099947"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="7.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="4.791913331154018"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="39.32817035499022"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_046_30_06_2022_02_56_43" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.25">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot2" topicToAttack="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="290.58812970376835" endTime="347.3713691096211"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9037770849983822" upperBound="0.9468777375511598"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6478631114004776" upperBound="-0.012868934369874352"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="3.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.27822690108165055"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="56.78323940585278"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_047_30_06_2022_02_56_43" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.36">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="282.8629386906325" endTime="348.4134817891064"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="4.038214137140418"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="65.5505430984739"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_048_30_06_2022_02_56_43" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.36">
+      <attacks xsi:type="_1:RandomValueFromSetAttack" name="attackVel_robot1" topicToAttack="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <attackActivation xsi:type="_1:AttackFixedTime" startTime="292.9970128254488" endTime="329.7742081946069"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.7652686205028691" upperBound="0.9813069100778989"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.03570924308884127" upperBound="0.5875634607092374"/>
+      </attacks>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5980927544277999"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="attackTimes" value="36.77719536915811"/>
+      </metrics>
+    </performedTests>
+    <resultSets name="FULL-30_06_2022_00_44_00-intermediate-16" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.9 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.2 //@campaigns.0/@performedTests.4 //@campaigns.0/@performedTests.7 //@campaigns.0/@performedTests.8"/>
+    <resultSets name="NONDOM-30_06_2022_00_44_00-intermediate-16" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.9 //@campaigns.0/@performedTests.10"/>
+    <resultSets name="FULL-30_06_2022_01_28_14-intermediate-24" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.9 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.22 //@campaigns.0/@performedTests.7 //@campaigns.0/@performedTests.23"/>
+    <resultSets name="NONDOM-30_06_2022_01_28_14-intermediate-24" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.9 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.18"/>
+    <resultSets name="FULL-30_06_2022_02_12_28-intermediate-32" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.9 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.30 //@campaigns.0/@performedTests.22"/>
+    <resultSets name="NONDOM-30_06_2022_02_12_28-intermediate-32" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.9 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.30"/>
+    <resultSets name="FULL-30_06_2022_02_56_43-intermediate-40" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.30 //@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.36 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.9 //@campaigns.0/@performedTests.0"/>
+    <resultSets name="NONDOM-30_06_2022_02_56_43-intermediate-40" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.30 //@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.36 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.9 //@campaigns.0/@performedTests.0"/>
+    <resultSets name="FULL-30_06_2022_03_40_58-intermediate-48" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.36 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.9"/>
+    <resultSets name="NONDOM-30_06_2022_03_40_58-intermediate-48" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.36 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.9"/>
+    <resultSets name="FULL-30_06_2022_03_40_58-final" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.36 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.9"/>
+    <resultSets name="NONDOM-30_06_2022_03_40_58-final" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.36 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.9"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_healthcare.sh">
+    <topics xmi:id="_OxQuMOIdEeynuZg3j0KLEQ" name="/tb3_0/cmd_velIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <topics xmi:id="_TXerYOIdEeynuZg3j0KLEQ" name="/tb3_1/cmd_velIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <topics xmi:id="_VH-_sOIdEeynuZg3j0KLEQ" name="/tb3_2/cmd_velIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <topics xmi:id="_XUzckOIdEeynuZg3j0KLEQ" name="/tb3_0/amcl_pose" type="_SSj1kOMsEeylpr6FvsbTLQ"/>
+    <topics xmi:id="_Y4k8cOIdEeynuZg3j0KLEQ" name="/tb3_1/amcl_pose" type="_SSj1kOMsEeylpr6FvsbTLQ"/>
+    <topics xmi:id="_aSUWkOIdEeynuZg3j0KLEQ" name="/tb3_2/amcl_pose" type="_SSj1kOMsEeylpr6FvsbTLQ"/>
+    <topics xmi:id="_lUwUoOuyEeye997npOVsNQ" name="/tb3_0/roomCompleted" type="_QJhQgOuzEeye997npOVsNQ"/>
+    <topics xmi:id="_zQnykOuyEeye997npOVsNQ" name="/tb3_1/roomCompleted" type="_QJhQgOuzEeye997npOVsNQ"/>
+    <topics xmi:id="_zbYREOuyEeye997npOVsNQ" name="/tb3_2/roomCompleted" type="_QJhQgOuzEeye997npOVsNQ"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="tb3_0" subscriber="_OxQuMOIdEeynuZg3j0KLEQ" publisher="_XUzckOIdEeynuZg3j0KLEQ"/>
+    <nodes xmi:id="_IXXz8OIdEeynuZg3j0KLEQ" name="tb3_1" subscriber="_TXerYOIdEeynuZg3j0KLEQ" publisher="_Y4k8cOIdEeynuZg3j0KLEQ"/>
+    <nodes xmi:id="_JclvkOIdEeynuZg3j0KLEQ" name="tb3_2" subscriber="_VH-_sOIdEeynuZg3j0KLEQ" publisher="_aSUWkOIdEeynuZg3j0KLEQ"/>
+    <nodes xmi:id="_MMQa0OIdEeynuZg3j0KLEQ" name="collective_intelligence" publisher="_OxQuMOIdEeynuZg3j0KLEQ _TXerYOIdEeynuZg3j0KLEQ _VH-_sOIdEeynuZg3j0KLEQ"/>
+    <simulator xsi:type="_2:ROSSimulator" xmi:id="_JmUQcOMnEeylpr6FvsbTLQ" hostname="0.0.0.0" port="9090"/>
+    <propertyType xmi:id="_fSym0OIdEeynuZg3j0KLEQ" name="geometry_msgs/Twist">
+      <parameters xmi:id="_iUwjAOIdEeynuZg3j0KLEQ" name="linear">
+        <subparameters xmi:id="_k6FmgOIdEeynuZg3j0KLEQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_mT1nsOIdEeynuZg3j0KLEQ" name="Y" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_nVtUYOIdEeynuZg3j0KLEQ" name="Z" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      </parameters>
+      <parameters xmi:id="_3ajbkOIeEeypgch9ckSMJQ" name="angular">
+        <subparameters xmi:id="_3ajbkeIeEeypgch9ckSMJQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_3ajbkuIeEeypgch9ckSMJQ" name="Y" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_3ajbk-IeEeypgch9ckSMJQ" name="Z" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      </parameters>
+    </propertyType>
+    <propertyType xmi:id="_xq0RkOIeEeypgch9ckSMJQ" name="float64"/>
+    <propertyType xmi:id="_SSj1kOMsEeylpr6FvsbTLQ" name="geometry_msgs/PoseWithCovarianceStamped">
+      <parameters xmi:id="_fiW3sOMsEeylpr6FvsbTLQ" name="pose">
+        <subparameters xmi:id="_iRjo4OMsEeylpr6FvsbTLQ" name="position" type="_l5jqUOMsEeylpr6FvsbTLQ"/>
+      </parameters>
+    </propertyType>
+    <propertyType xmi:id="_l5jqUOMsEeylpr6FvsbTLQ" name="geometry_msgs/Point">
+      <parameters xmi:id="_oT1UYOMsEeylpr6FvsbTLQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      <parameters xmi:id="_qCfOkOMsEeylpr6FvsbTLQ" name="Y" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      <parameters xmi:id="_sJRU4OMsEeylpr6FvsbTLQ" name="Z" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+    </propertyType>
+    <propertyType xmi:id="_QJhQgOuzEeye997npOVsNQ" name="std_msgs/Int32"/>
+  </mrs>
+</TestingMM:TestingSpace>
