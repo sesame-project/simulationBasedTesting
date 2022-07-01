@@ -44,22 +44,28 @@ installation instructions for the platform.
 - Upon another terminal, after zookeeper has started successfully (it takes 5-6 seconds) start a Kafka server:\\
   \verb$./bin/kafka-server-start.sh config/server.properties$}
 
-### Installing Simulation-Based Testing 
+### Installing Simulation-Based Testing Framework Packages
 
-To install the Eclipse packages, clone the repository from
-\url{https://www.github.com/sesame-project/WP6} from the repository
-branch ``initial-version'' to a directory on your system. Then
-import the Maven projects using ``File'' / ``Import'' / ``Maven'' /
-``Existing Maven Projects''. Then select the repository and the
-directory ``WP6'' and all projects underneath it as shown in Figure
-\ref{FIG-IMPORTING-MAVEN-PROJECTS}. Then press ``Finish'':
+- To install the Eclipse packages, firstly clone the current
+  repository branch ``main'' to a directory on your system.
 
-Import the generator project using ``File'' / ``Import'' / ``General''
-/ ``Existing Projects Into Workspace''. Select the directory ``WP6''
-of the imported repository and the project directory
-``uk.ac.york.sesame.testing.generator'' and select ``Finish'' (see
-Figure \ref{FIG-IMPORTING-GENERATOR-PROJECT}).
+- Then import the Maven projects using ``File'' / ``Import'' / ``Maven'' / ``Existing Maven Projects''.
 
-- screenshots/importing-projects
-- Import steps for the SESAME simulation-based framework
+- Then select the repository and the directory ``simulationBasedTesting'' and all projects underneath it as shown below
 
+![Screenshot for Maven project importing](readme-images/importing-projects.png)
+
+- Then press ``Finish'':
+
+- Import the generator project using ``File'' / ``Import'' / ``General'' / ``Existing Projects Into Workspace''.
+- Select the directory ``WP6'' of the imported repository and the project directory ``uk.ac.york.sesame.testing.generator'' and select ``Finish''
+
+![Screenshot for Maven project importing](readme-images/import-generator-project.png)
+
+### Setting paths
+
+```
+final String spaceModelFileName = "/home/jharbin/runtime-EclipseApplication/TestSesame/models/testingHealthcare.model";
+final String CODE_GENERATION_DIRECTORY = "/home/jharbin/runtime-EclipseApplication/TestSesame";
+final String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
+```
