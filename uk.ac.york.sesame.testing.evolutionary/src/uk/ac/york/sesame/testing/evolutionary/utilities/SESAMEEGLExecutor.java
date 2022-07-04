@@ -36,6 +36,7 @@ public class SESAMEEGLExecutor {
 		this.testingModelPath = testingModelPath;
 		this.codeOutputPath = codeOutputPath;
 		this.orchestratorBasePath = orchestratorBasePath;
+		System.out.println("orchestratorBasePath = " + orchestratorBasePath);
 	}
 	
 	protected static ArrayList<String> registerMMs() throws IOException, UnknownPath {

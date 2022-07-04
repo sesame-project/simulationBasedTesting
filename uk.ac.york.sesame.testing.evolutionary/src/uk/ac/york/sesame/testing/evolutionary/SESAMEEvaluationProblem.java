@@ -43,7 +43,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = true;
 	private static final boolean DEBUG_ACTUALLY_RUN = true;
 
-	private static final long DEFAULT_HARDCODED_DELAY = 300;
+	private static final long DEFAULT_HARDCODED_DELAY = 100;
 	
 	private static final long DEFAULT_COMPILE_DELAY = 10;
 	private static final long DEFAULT_KILL_DELAY = 10;
@@ -102,6 +102,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
 		this.codeGenerationDirectory = codeGenerationDirectory;
+		this.orchestratorBasePath = orchestratorBasePath;
 		loader = new SESAMEModelLoader(spaceModelFileName);
 		testSpaceModel = loader.loadTestingSpace();
 		Optional<TestCampaign> tc_o = loader.getTestCampaign(testSpaceModel, campaignName);
