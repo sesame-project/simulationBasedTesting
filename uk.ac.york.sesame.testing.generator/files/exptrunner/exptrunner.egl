@@ -1,0 +1,36 @@
+package main;
+
+import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
+
+public class ExptRunner_[%= campaign.name %] {
+	public static void main(String [] args) {
+
+		// Parameters for NSGA-II
+		double timingProbMut = 0.666;
+		double participantProbMut = 0.333;
+		double paramProbMut = 0.333;
+				
+		[% if (campaign.approach.isTypeOf(NSGAEvolutionaryAlgorithm)) { %]
+		[% var nsgainfo = campaign.approach; %]
+		int maxIterations = [%= nsgainfo.iterations %];
+		int populationSize = [%= nsgainfo.populationSize %];
+		int offspringSize = [%= nsgainfo.populationSize %];
+		//ExperimentType etype = ExperimentType.FIXED_TIME_FUZZING;
+		// Sets the space model file and the campaign to run here
+		
+		// PATHS HERE
+		// This should be the absolute path of the model file on the system
+		final String spaceModelFileName = "...";
+		// This should be the absolute path of the project under which the code should be generated
+		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/eclipse-workspace/localAutoGen";
+		// This should be the absolute path of the generator project under the parent eclipse 
+		final String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
+		
+		String campaignToRun = "[%= campaign.name %]";
+			
+		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize);
+		jmetalExpt.runExperiment();
+		[% } %]
+		
+	}
+}
