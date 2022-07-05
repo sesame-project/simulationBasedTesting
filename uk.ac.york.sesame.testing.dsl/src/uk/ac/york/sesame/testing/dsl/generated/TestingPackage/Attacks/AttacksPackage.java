@@ -812,13 +812,31 @@ public interface AttacksPackage extends EPackage {
 	int CONDITION_BASED = 6;
 
 	/**
+	 * The feature id for the '<em><b>Starting</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED__STARTING = ATTACK_ACTIVATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Ending</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED__ENDING = ATTACK_ACTIVATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Condition Based</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_BASED_FEATURE_COUNT = ATTACK_ACTIVATION_FEATURE_COUNT + 0;
+	int CONDITION_BASED_FEATURE_COUNT = ATTACK_ACTIVATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Condition Based</em>' class.
@@ -4675,6 +4693,28 @@ public interface AttacksPackage extends EPackage {
 	EClass getConditionBased();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ConditionBased#getStarting <em>Starting</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Starting</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ConditionBased#getStarting()
+	 * @see #getConditionBased()
+	 * @generated
+	 */
+	EReference getConditionBased_Starting();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ConditionBased#getEnding <em>Ending</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Ending</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ConditionBased#getEnding()
+	 * @see #getConditionBased()
+	 * @generated
+	 */
+	EReference getConditionBased_Ending();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.FuzzTestingAttack <em>Fuzz Testing Attack</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5452,6 +5492,22 @@ public interface AttacksPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONDITION_BASED = eINSTANCE.getConditionBased();
+
+		/**
+		 * The meta object literal for the '<em><b>Starting</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITION_BASED__STARTING = eINSTANCE.getConditionBased_Starting();
+
+		/**
+		 * The meta object literal for the '<em><b>Ending</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITION_BASED__ENDING = eINSTANCE.getConditionBased_Ending();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.FuzzTestingAttackImpl <em>Fuzz Testing Attack</em>}' class.

@@ -95,13 +95,13 @@ public interface TestingPackagePackage extends EPackage {
 	int TESTING_SPACE__POSSIBLE_ATTACKS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Grammar Specfication</b></em>' containment reference.
+	 * The feature id for the '<em><b>Grammar Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TESTING_SPACE__GRAMMAR_SPECFICATION = 3;
+	int TESTING_SPACE__GRAMMAR_SPECIFICATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Campaigns</b></em>' containment reference list.
@@ -442,34 +442,6 @@ public interface TestingPackagePackage extends EPackage {
 	int TIME_BASED_END_OPERATION_COUNT = EXECUTION_END_TRIGGER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarConstraintImpl <em>Grammar Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarConstraintImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getGrammarConstraint()
-	 * @generated
-	 */
-	int GRAMMAR_CONSTRAINT = 6;
-
-	/**
-	 * The number of structural features of the '<em>Grammar Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAMMAR_CONSTRAINT_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Grammar Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAMMAR_CONSTRAINT_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestGenerationApproachImpl <em>Test Generation Approach</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -477,7 +449,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTestGenerationApproach()
 	 * @generated
 	 */
-	int TEST_GENERATION_APPROACH = 7;
+	int TEST_GENERATION_APPROACH = 6;
 
 	/**
 	 * The number of structural features of the '<em>Test Generation Approach</em>' class.
@@ -505,7 +477,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRandomTestGeneration()
 	 * @generated
 	 */
-	int RANDOM_TEST_GENERATION = 8;
+	int RANDOM_TEST_GENERATION = 7;
 
 	/**
 	 * The number of structural features of the '<em>Random Test Generation</em>' class.
@@ -533,7 +505,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getEvolutionaryAlgorithm()
 	 * @generated
 	 */
-	int EVOLUTIONARY_ALGORITHM = 9;
+	int EVOLUTIONARY_ALGORITHM = 8;
 
 	/**
 	 * The number of structural features of the '<em>Evolutionary Algorithm</em>' class.
@@ -561,7 +533,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getNSGAEvolutionaryAlgorithm()
 	 * @generated
 	 */
-	int NSGA_EVOLUTIONARY_ALGORITHM = 10;
+	int NSGA_EVOLUTIONARY_ALGORITHM = 9;
 
 	/**
 	 * The feature id for the '<em><b>Population Size</b></em>' attribute.
@@ -600,35 +572,6 @@ public interface TestingPackagePackage extends EPackage {
 	int NSGA_EVOLUTIONARY_ALGORITHM_OPERATION_COUNT = EVOLUTIONARY_ALGORITHM_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarSpecificationImpl <em>Grammar Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarSpecificationImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getGrammarSpecification()
-	 * @generated
-	 */
-	int GRAMMAR_SPECIFICATION = 11;
-
-	/**
-	 * The number of structural features of the '<em>Grammar Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAMMAR_SPECIFICATION_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Grammar Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAMMAR_SPECIFICATION_OPERATION_COUNT = 0;
-
-
-	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus <em>Result Set Status</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -636,7 +579,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getResultSetStatus()
 	 * @generated
 	 */
-	int RESULT_SET_STATUS = 12;
+	int RESULT_SET_STATUS = 10;
 
 
 	/**
@@ -683,15 +626,15 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestingSpace_PossibleAttacks();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getGrammarSpecfication <em>Grammar Specfication</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getGrammarSpecification <em>Grammar Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Grammar Specfication</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getGrammarSpecfication()
+	 * @return the meta object for the containment reference '<em>Grammar Specification</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getGrammarSpecification()
 	 * @see #getTestingSpace()
 	 * @generated
 	 */
-	EReference getTestingSpace_GrammarSpecfication();
+	EReference getTestingSpace_GrammarSpecification();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getCampaigns <em>Campaigns</em>}'.
@@ -964,16 +907,6 @@ public interface TestingPackagePackage extends EPackage {
 	EAttribute getTimeBasedEnd_TimeLimitSeconds();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint <em>Grammar Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Grammar Constraint</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint
-	 * @generated
-	 */
-	EClass getGrammarConstraint();
-
-	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationApproach <em>Test Generation Approach</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1034,16 +967,6 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNSGAEvolutionaryAlgorithm_Iterations();
-
-	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpecification <em>Grammar Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Grammar Specification</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpecification
-	 * @generated
-	 */
-	EClass getGrammarSpecification();
 
 	/**
 	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus <em>Result Set Status</em>}'.
@@ -1113,12 +1036,12 @@ public interface TestingPackagePackage extends EPackage {
 		EReference TESTING_SPACE__POSSIBLE_ATTACKS = eINSTANCE.getTestingSpace_PossibleAttacks();
 
 		/**
-		 * The meta object literal for the '<em><b>Grammar Specfication</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Grammar Specification</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TESTING_SPACE__GRAMMAR_SPECFICATION = eINSTANCE.getTestingSpace_GrammarSpecfication();
+		EReference TESTING_SPACE__GRAMMAR_SPECIFICATION = eINSTANCE.getTestingSpace_GrammarSpecification();
 
 		/**
 		 * The meta object literal for the '<em><b>Campaigns</b></em>' containment reference list feature.
@@ -1331,16 +1254,6 @@ public interface TestingPackagePackage extends EPackage {
 		EAttribute TIME_BASED_END__TIME_LIMIT_SECONDS = eINSTANCE.getTimeBasedEnd_TimeLimitSeconds();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarConstraintImpl <em>Grammar Constraint</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarConstraintImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getGrammarConstraint()
-		 * @generated
-		 */
-		EClass GRAMMAR_CONSTRAINT = eINSTANCE.getGrammarConstraint();
-
-		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestGenerationApproachImpl <em>Test Generation Approach</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1395,16 +1308,6 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NSGA_EVOLUTIONARY_ALGORITHM__ITERATIONS = eINSTANCE.getNSGAEvolutionaryAlgorithm_Iterations();
-
-		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarSpecificationImpl <em>Grammar Specification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarSpecificationImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getGrammarSpecification()
-		 * @generated
-		 */
-		EClass GRAMMAR_SPECIFICATION = eINSTANCE.getGrammarSpecification();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus <em>Result Set Status</em>}' enum.

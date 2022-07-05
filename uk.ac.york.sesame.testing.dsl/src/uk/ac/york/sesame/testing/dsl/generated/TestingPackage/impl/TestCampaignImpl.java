@@ -24,8 +24,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint;
-
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarConstraint;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;

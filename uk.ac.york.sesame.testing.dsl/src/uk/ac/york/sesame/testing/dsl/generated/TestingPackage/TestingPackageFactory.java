@@ -67,15 +67,6 @@ public interface TestingPackageFactory extends EFactory {
 	TimeBasedEnd createTimeBasedEnd();
 
 	/**
-	 * Returns a new object of class '<em>Grammar Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Grammar Constraint</em>'.
-	 * @generated
-	 */
-	GrammarConstraint createGrammarConstraint();
-
-	/**
 	 * Returns a new object of class '<em>Random Test Generation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,15 +83,6 @@ public interface TestingPackageFactory extends EFactory {
 	 * @generated
 	 */
 	NSGAEvolutionaryAlgorithm createNSGAEvolutionaryAlgorithm();
-
-	/**
-	 * Returns a new object of class '<em>Grammar Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Grammar Specification</em>'.
-	 * @generated
-	 */
-	GrammarSpecification createGrammarSpecification();
 
 	/**
 	 * Returns the package supported by this factory.

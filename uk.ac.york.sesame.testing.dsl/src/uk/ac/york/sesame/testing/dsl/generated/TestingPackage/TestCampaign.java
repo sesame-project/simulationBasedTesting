@@ -7,7 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
-
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarConstraint;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
 /**
@@ -82,7 +82,7 @@ public interface TestCampaign extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
-	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint}.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constraints</em>' containment reference list.

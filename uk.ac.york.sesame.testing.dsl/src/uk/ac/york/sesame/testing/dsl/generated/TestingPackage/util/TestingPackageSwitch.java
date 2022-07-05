@@ -103,12 +103,6 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TestingPackagePackage.GRAMMAR_CONSTRAINT: {
-				GrammarConstraint grammarConstraint = (GrammarConstraint)theEObject;
-				T result = caseGrammarConstraint(grammarConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case TestingPackagePackage.TEST_GENERATION_APPROACH: {
 				TestGenerationApproach testGenerationApproach = (TestGenerationApproach)theEObject;
 				T result = caseTestGenerationApproach(testGenerationApproach);
@@ -134,12 +128,6 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				T result = caseNSGAEvolutionaryAlgorithm(nsgaEvolutionaryAlgorithm);
 				if (result == null) result = caseEvolutionaryAlgorithm(nsgaEvolutionaryAlgorithm);
 				if (result == null) result = caseTestGenerationApproach(nsgaEvolutionaryAlgorithm);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TestingPackagePackage.GRAMMAR_SPECIFICATION: {
-				GrammarSpecification grammarSpecification = (GrammarSpecification)theEObject;
-				T result = caseGrammarSpecification(grammarSpecification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -238,21 +226,6 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Grammar Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Grammar Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGrammarConstraint(GrammarConstraint object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Test Generation Approach</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -309,21 +282,6 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNSGAEvolutionaryAlgorithm(NSGAEvolutionaryAlgorithm object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Grammar Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Grammar Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGrammarSpecification(GrammarSpecification object) {
 		return null;
 	}
 

@@ -92,10 +92,6 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 				return createTimeBasedEndAdapter();
 			}
 			@Override
-			public Adapter caseGrammarConstraint(GrammarConstraint object) {
-				return createGrammarConstraintAdapter();
-			}
-			@Override
 			public Adapter caseTestGenerationApproach(TestGenerationApproach object) {
 				return createTestGenerationApproachAdapter();
 			}
@@ -110,10 +106,6 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseNSGAEvolutionaryAlgorithm(NSGAEvolutionaryAlgorithm object) {
 				return createNSGAEvolutionaryAlgorithmAdapter();
-			}
-			@Override
-			public Adapter caseGrammarSpecification(GrammarSpecification object) {
-				return createGrammarSpecificationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -220,20 +212,6 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint <em>Grammar Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint
-	 * @generated
-	 */
-	public Adapter createGrammarConstraintAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationApproach <em>Test Generation Approach</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -286,20 +264,6 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNSGAEvolutionaryAlgorithmAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpecification <em>Grammar Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpecification
-	 * @generated
-	 */
-	public Adapter createGrammarSpecificationAdapter() {
 		return null;
 	}
 

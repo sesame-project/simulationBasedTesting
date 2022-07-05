@@ -62,10 +62,8 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 			case TestingPackagePackage.TEST: return createTest();
 			case TestingPackagePackage.CAMPAIGN_RESULT_SET: return createCampaignResultSet();
 			case TestingPackagePackage.TIME_BASED_END: return createTimeBasedEnd();
-			case TestingPackagePackage.GRAMMAR_CONSTRAINT: return createGrammarConstraint();
 			case TestingPackagePackage.RANDOM_TEST_GENERATION: return createRandomTestGeneration();
 			case TestingPackagePackage.NSGA_EVOLUTIONARY_ALGORITHM: return createNSGAEvolutionaryAlgorithm();
-			case TestingPackagePackage.GRAMMAR_SPECIFICATION: return createGrammarSpecification();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -156,16 +154,6 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GrammarConstraint createGrammarConstraint() {
-		GrammarConstraintImpl grammarConstraint = new GrammarConstraintImpl();
-		return grammarConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public RandomTestGeneration createRandomTestGeneration() {
 		RandomTestGenerationImpl randomTestGeneration = new RandomTestGenerationImpl();
 		return randomTestGeneration;
@@ -179,16 +167,6 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	public NSGAEvolutionaryAlgorithm createNSGAEvolutionaryAlgorithm() {
 		NSGAEvolutionaryAlgorithmImpl nsgaEvolutionaryAlgorithm = new NSGAEvolutionaryAlgorithmImpl();
 		return nsgaEvolutionaryAlgorithm;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GrammarSpecification createGrammarSpecification() {
-		GrammarSpecificationImpl grammarSpecification = new GrammarSpecificationImpl();
-		return grammarSpecification;
 	}
 
 	/**

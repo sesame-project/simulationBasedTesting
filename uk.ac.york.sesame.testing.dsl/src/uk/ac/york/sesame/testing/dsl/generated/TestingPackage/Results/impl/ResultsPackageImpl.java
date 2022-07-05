@@ -12,6 +12,10 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPac
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.ConditionsPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarSpecPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.impl.GrammarSpecPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
@@ -22,6 +26,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.Result;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPackage;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl;
@@ -94,6 +100,12 @@ public class ResultsPackageImpl extends EPackageImpl implements ResultsPackage {
 		AttacksPackageImpl theAttacksPackage = (AttacksPackageImpl)(registeredPackage instanceof AttacksPackageImpl ? registeredPackage : AttacksPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MetricsPackage.eNS_URI);
 		MetricsPackageImpl theMetricsPackage = (MetricsPackageImpl)(registeredPackage instanceof MetricsPackageImpl ? registeredPackage : MetricsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ConditionsPackage.eNS_URI);
+		ConditionsPackageImpl theConditionsPackage = (ConditionsPackageImpl)(registeredPackage instanceof ConditionsPackageImpl ? registeredPackage : ConditionsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GrammarSpecPackage.eNS_URI);
+		GrammarSpecPackageImpl theGrammarSpecPackage = (GrammarSpecPackageImpl)(registeredPackage instanceof GrammarSpecPackageImpl ? registeredPackage : GrammarSpecPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
+		StandardGrammarPackageImpl theStandardGrammarPackage = (StandardGrammarPackageImpl)(registeredPackage instanceof StandardGrammarPackageImpl ? registeredPackage : StandardGrammarPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
 
@@ -102,6 +114,9 @@ public class ResultsPackageImpl extends EPackageImpl implements ResultsPackage {
 		theTestingPackagePackage.createPackageContents();
 		theAttacksPackage.createPackageContents();
 		theMetricsPackage.createPackageContents();
+		theConditionsPackage.createPackageContents();
+		theGrammarSpecPackage.createPackageContents();
+		theStandardGrammarPackage.createPackageContents();
 		theMRSPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -109,6 +124,9 @@ public class ResultsPackageImpl extends EPackageImpl implements ResultsPackage {
 		theTestingPackagePackage.initializePackageContents();
 		theAttacksPackage.initializePackageContents();
 		theMetricsPackage.initializePackageContents();
+		theConditionsPackage.initializePackageContents();
+		theGrammarSpecPackage.initializePackageContents();
+		theStandardGrammarPackage.initializePackageContents();
 		theMRSPackagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

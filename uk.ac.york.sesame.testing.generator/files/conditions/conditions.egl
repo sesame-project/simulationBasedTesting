@@ -1,0 +1,48 @@
+package conditions.generated;
+
+import org.apache.flink.util.Collector;
+import uk.ac.york.sesame.testing.architecture.data.EventMessage;
+
+public class [%= condition.name %] extends ConditionProcessing {
+
+    private static final long serialVersionUID = 1L;
+
+    // Change to ConditionMessage?
+    public void processElement(EventMessage msg, Context ctx, Collector<Boolean> out) throws Exception {
+        updateStateFrom(msg);
+        
+        [* Find every instance of "var" in the condition
+        Traverse the tree finding everything with "elt" equals var *]
+		
+        [% for (n in varNameValues) { %]
+        [* TODO: this assumes all types are double for now *]
+        double [%= n.value %] = (double)varState.get("[%= n.value %]");
+        [% } %]
+        
+        [* Traverse and expand all the elements according to their elt name *]
+        boolean res = generateConditionValue();
+        out.collect(res);
+    }
+}
+
+[% 
+operation findEltsWithName(cond, targetname) {
+	var varElts = new List();
+	findEltsWithNameRec(varElts, node, targetname);
+	return varElts;
+}
+
+operation findEltsWithNameRec(ve, node, targetname) {
+	if (node.grammarElt.name == targetname) {
+		ve.add(e);	
+	}
+	
+	for (c in node.subNodes) {
+		findEltsWithNameRec(ve, node, targetname);
+	}
+}
+
+operation generateCode() {
+	
+}
+%]

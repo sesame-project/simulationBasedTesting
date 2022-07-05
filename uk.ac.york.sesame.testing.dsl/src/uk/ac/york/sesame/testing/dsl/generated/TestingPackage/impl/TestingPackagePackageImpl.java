@@ -15,11 +15,12 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPac
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.ConditionsPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.EvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpecification;
-
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarSpecPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.impl.GrammarSpecPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
@@ -34,6 +35,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPac
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.impl.ResultsPackageImpl;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationApproach;
@@ -96,13 +99,6 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass grammarConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass testGenerationApproachEClass = null;
 
 	/**
@@ -125,13 +121,6 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * @generated
 	 */
 	private EClass nsgaEvolutionaryAlgorithmEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass grammarSpecificationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -194,6 +183,12 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		MetricsPackageImpl theMetricsPackage = (MetricsPackageImpl)(registeredPackage instanceof MetricsPackageImpl ? registeredPackage : MetricsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 		ResultsPackageImpl theResultsPackage = (ResultsPackageImpl)(registeredPackage instanceof ResultsPackageImpl ? registeredPackage : ResultsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ConditionsPackage.eNS_URI);
+		ConditionsPackageImpl theConditionsPackage = (ConditionsPackageImpl)(registeredPackage instanceof ConditionsPackageImpl ? registeredPackage : ConditionsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GrammarSpecPackage.eNS_URI);
+		GrammarSpecPackageImpl theGrammarSpecPackage = (GrammarSpecPackageImpl)(registeredPackage instanceof GrammarSpecPackageImpl ? registeredPackage : GrammarSpecPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
+		StandardGrammarPackageImpl theStandardGrammarPackage = (StandardGrammarPackageImpl)(registeredPackage instanceof StandardGrammarPackageImpl ? registeredPackage : StandardGrammarPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
 
@@ -202,6 +197,9 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		theAttacksPackage.createPackageContents();
 		theMetricsPackage.createPackageContents();
 		theResultsPackage.createPackageContents();
+		theConditionsPackage.createPackageContents();
+		theGrammarSpecPackage.createPackageContents();
+		theStandardGrammarPackage.createPackageContents();
 		theMRSPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -209,6 +207,9 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		theAttacksPackage.initializePackageContents();
 		theMetricsPackage.initializePackageContents();
 		theResultsPackage.initializePackageContents();
+		theConditionsPackage.initializePackageContents();
+		theGrammarSpecPackage.initializePackageContents();
+		theStandardGrammarPackage.initializePackageContents();
 		theMRSPackagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -260,7 +261,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestingSpace_GrammarSpecfication() {
+	public EReference getTestingSpace_GrammarSpecification() {
 		return (EReference)testingSpaceEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -494,15 +495,6 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGrammarConstraint() {
-		return grammarConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTestGenerationApproach() {
 		return testGenerationApproachEClass;
 	}
@@ -557,15 +549,6 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGrammarSpecification() {
-		return grammarSpecificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getResultSetStatus() {
 		return resultSetStatusEEnum;
 	}
@@ -602,7 +585,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEAttribute(testingSpaceEClass, TESTING_SPACE__NAME);
 		createEReference(testingSpaceEClass, TESTING_SPACE__METRICS);
 		createEReference(testingSpaceEClass, TESTING_SPACE__POSSIBLE_ATTACKS);
-		createEReference(testingSpaceEClass, TESTING_SPACE__GRAMMAR_SPECFICATION);
+		createEReference(testingSpaceEClass, TESTING_SPACE__GRAMMAR_SPECIFICATION);
 		createEReference(testingSpaceEClass, TESTING_SPACE__CAMPAIGNS);
 		createEReference(testingSpaceEClass, TESTING_SPACE__MRS);
 
@@ -634,8 +617,6 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		timeBasedEndEClass = createEClass(TIME_BASED_END);
 		createEAttribute(timeBasedEndEClass, TIME_BASED_END__TIME_LIMIT_SECONDS);
 
-		grammarConstraintEClass = createEClass(GRAMMAR_CONSTRAINT);
-
 		testGenerationApproachEClass = createEClass(TEST_GENERATION_APPROACH);
 
 		randomTestGenerationEClass = createEClass(RANDOM_TEST_GENERATION);
@@ -645,8 +626,6 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		nsgaEvolutionaryAlgorithmEClass = createEClass(NSGA_EVOLUTIONARY_ALGORITHM);
 		createEAttribute(nsgaEvolutionaryAlgorithmEClass, NSGA_EVOLUTIONARY_ALGORITHM__POPULATION_SIZE);
 		createEAttribute(nsgaEvolutionaryAlgorithmEClass, NSGA_EVOLUTIONARY_ALGORITHM__ITERATIONS);
-
-		grammarSpecificationEClass = createEClass(GRAMMAR_SPECIFICATION);
 
 		// Create enums
 		resultSetStatusEEnum = createEEnum(RESULT_SET_STATUS);
@@ -679,12 +658,18 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		AttacksPackage theAttacksPackage = (AttacksPackage)EPackage.Registry.INSTANCE.getEPackage(AttacksPackage.eNS_URI);
 		MetricsPackage theMetricsPackage = (MetricsPackage)EPackage.Registry.INSTANCE.getEPackage(MetricsPackage.eNS_URI);
 		ResultsPackage theResultsPackage = (ResultsPackage)EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
+		ConditionsPackage theConditionsPackage = (ConditionsPackage)EPackage.Registry.INSTANCE.getEPackage(ConditionsPackage.eNS_URI);
+		GrammarSpecPackage theGrammarSpecPackage = (GrammarSpecPackage)EPackage.Registry.INSTANCE.getEPackage(GrammarSpecPackage.eNS_URI);
+		StandardGrammarPackage theStandardGrammarPackage = (StandardGrammarPackage)EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
 		MRSPackagePackage theMRSPackagePackage = (MRSPackagePackage)EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theAttacksPackage);
 		getESubpackages().add(theMetricsPackage);
 		getESubpackages().add(theResultsPackage);
+		getESubpackages().add(theConditionsPackage);
+		getESubpackages().add(theGrammarSpecPackage);
+		getESubpackages().add(theStandardGrammarPackage);
 		getESubpackages().add(theMRSPackagePackage);
 
 		// Create type parameters
@@ -702,7 +687,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEAttribute(getTestingSpace_Name(), ecorePackage.getEString(), "name", null, 0, 1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_Metrics(), theMetricsPackage.getMetric(), null, "metrics", null, 0, -1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_PossibleAttacks(), theAttacksPackage.getAttack(), null, "possibleAttacks", null, 0, -1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestingSpace_GrammarSpecfication(), this.getGrammarSpecification(), null, "grammarSpecfication", null, 0, 1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestingSpace_GrammarSpecification(), theGrammarSpecPackage.getGrammarSpecification(), null, "grammarSpecification", null, 0, 1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_Campaigns(), this.getTestCampaign(), null, "campaigns", null, 0, -1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_Mrs(), theMRSPackagePackage.getMRS(), null, "mrs", null, 1, 1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -710,7 +695,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEAttribute(getTestCampaign_Name(), ecorePackage.getEString(), "name", null, 0, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Metrics(), theMetricsPackage.getMetric(), null, "metrics", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_IncludedAttacks(), theAttacksPackage.getAttack(), null, "includedAttacks", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestCampaign_Constraints(), this.getGrammarConstraint(), null, "constraints", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestCampaign_Constraints(), theGrammarSpecPackage.getGrammarConstraint(), null, "constraints", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Approach(), this.getTestGenerationApproach(), null, "approach", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_PerformedTests(), this.getTest(), this.getTest_ParentCampaign(), "performedTests", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_ResultSets(), this.getCampaignResultSet(), null, "resultSets", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -734,8 +719,6 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEClass(timeBasedEndEClass, TimeBasedEnd.class, "TimeBasedEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTimeBasedEnd_TimeLimitSeconds(), ecorePackage.getELong(), "timeLimitSeconds", null, 0, 1, TimeBasedEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(grammarConstraintEClass, GrammarConstraint.class, "GrammarConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(testGenerationApproachEClass, TestGenerationApproach.class, "TestGenerationApproach", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(randomTestGenerationEClass, RandomTestGeneration.class, "RandomTestGeneration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -745,8 +728,6 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEClass(nsgaEvolutionaryAlgorithmEClass, NSGAEvolutionaryAlgorithm.class, "NSGAEvolutionaryAlgorithm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNSGAEvolutionaryAlgorithm_PopulationSize(), ecorePackage.getEInt(), "populationSize", null, 0, 1, NSGAEvolutionaryAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNSGAEvolutionaryAlgorithm_Iterations(), ecorePackage.getEInt(), "iterations", null, 0, 1, NSGAEvolutionaryAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(grammarSpecificationEClass, GrammarSpecification.class, "GrammarSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(resultSetStatusEEnum, ResultSetStatus.class, "ResultSetStatus");
