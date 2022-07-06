@@ -256,15 +256,26 @@
   <eSubpackages name="Conditions" nsURI="Conditions" nsPrefix="">
     <eClassifiers xsi:type="ecore:EClass" name="Condition">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="elt" lowerBound="1" eType="#//GrammarSpec/GrammarElt"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="elt" lowerBound="1" eType="#//Conditions/Node"
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Node">
       <eStructuralFeatures xsi:type="ecore:EReference" name="grammarElt" lowerBound="1"
           eType="#//GrammarSpec/GrammarElt"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="subNode" upperBound="-1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subNodes" upperBound="-1"
           eType="#//Conditions/Node" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
+          eType="#//Conditions/NodeValue" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NodeValue" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IntNodeValue" eSuperTypes="#//Conditions/NodeValue">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StringNodeValue" eSuperTypes="#//Conditions/NodeValue">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DoubleNodeValue" eSuperTypes="#//Conditions/NodeValue">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="GrammarSpec" nsURI="GrammarSpec" nsPrefix="">
@@ -273,7 +284,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="rootElement" lowerBound="1"
           eType="#//GrammarSpec/GrammarElt"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-          eType="#//GrammarSpec/GrammarElt" containment="true"/>
+          eType="#//GrammarSpec/GrammarElt" containment="true" eOpposite="#//GrammarSpec/GrammarElt/parentGrammar"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
           eType="#//GrammarSpec/GrammarRule" containment="true"/>
     </eClassifiers>
@@ -282,6 +293,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GrammarElt" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentGrammar" lowerBound="1"
+          eType="#//GrammarSpec/GrammarSpecification" changeable="false" transient="true"
+          eOpposite="#//GrammarSpec/GrammarSpecification/elements"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NonterminalGrammarElt" eSuperTypes="#//GrammarSpec/GrammarElt"/>
     <eClassifiers xsi:type="ecore:EClass" name="TerminalGrammarElt" eSuperTypes="#//GrammarSpec/GrammarElt">

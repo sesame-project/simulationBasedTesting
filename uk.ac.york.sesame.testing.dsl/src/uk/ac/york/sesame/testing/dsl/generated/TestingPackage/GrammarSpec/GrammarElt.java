@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarElt#getName <em>Name</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarElt#getParentGrammar <em>Parent Grammar</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarSpecPackage#getGrammarElt()
@@ -42,5 +43,18 @@ public interface GrammarElt extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Parent Grammar</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarSpecification#getElements <em>Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parent Grammar</em>' container reference.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarSpecPackage#getGrammarElt_ParentGrammar()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarSpecification#getElements
+	 * @model opposite="elements" required="true" changeable="false"
+	 * @generated
+	 */
+	GrammarSpecification getParentGrammar();
 
 } // GrammarElt

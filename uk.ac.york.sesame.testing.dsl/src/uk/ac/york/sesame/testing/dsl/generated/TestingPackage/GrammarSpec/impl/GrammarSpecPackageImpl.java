@@ -294,6 +294,15 @@ public class GrammarSpecPackageImpl extends EPackageImpl implements GrammarSpecP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getGrammarElt_ParentGrammar() {
+		return (EReference)grammarEltEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNonterminalGrammarElt() {
 		return nonterminalGrammarEltEClass;
 	}
@@ -436,6 +445,7 @@ public class GrammarSpecPackageImpl extends EPackageImpl implements GrammarSpecP
 
 		grammarEltEClass = createEClass(GRAMMAR_ELT);
 		createEAttribute(grammarEltEClass, GRAMMAR_ELT__NAME);
+		createEReference(grammarEltEClass, GRAMMAR_ELT__PARENT_GRAMMAR);
 
 		nonterminalGrammarEltEClass = createEClass(NONTERMINAL_GRAMMAR_ELT);
 
@@ -491,7 +501,7 @@ public class GrammarSpecPackageImpl extends EPackageImpl implements GrammarSpecP
 		initEClass(grammarSpecificationEClass, GrammarSpecification.class, "GrammarSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGrammarSpecification_Name(), ecorePackage.getEString(), "name", null, 0, 1, GrammarSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGrammarSpecification_RootElement(), this.getGrammarElt(), null, "rootElement", null, 1, 1, GrammarSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGrammarSpecification_Elements(), this.getGrammarElt(), null, "elements", null, 0, -1, GrammarSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGrammarSpecification_Elements(), this.getGrammarElt(), this.getGrammarElt_ParentGrammar(), "elements", null, 0, -1, GrammarSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGrammarSpecification_Rules(), this.getGrammarRule(), null, "rules", null, 0, -1, GrammarSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(grammarTagEClass, GrammarTag.class, "GrammarTag", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -499,6 +509,7 @@ public class GrammarSpecPackageImpl extends EPackageImpl implements GrammarSpecP
 
 		initEClass(grammarEltEClass, GrammarElt.class, "GrammarElt", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGrammarElt_Name(), ecorePackage.getEString(), "name", null, 0, 1, GrammarElt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGrammarElt_ParentGrammar(), this.getGrammarSpecification(), this.getGrammarSpecification_Elements(), "parentGrammar", null, 1, 1, GrammarElt.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nonterminalGrammarEltEClass, NonterminalGrammarElt.class, "NonterminalGrammarElt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

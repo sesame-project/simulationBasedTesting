@@ -40,6 +40,33 @@ public interface ConditionsFactory extends EFactory {
 	Node createNode();
 
 	/**
+	 * Returns a new object of class '<em>Int Node Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Int Node Value</em>'.
+	 * @generated
+	 */
+	IntNodeValue createIntNodeValue();
+
+	/**
+	 * Returns a new object of class '<em>String Node Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>String Node Value</em>'.
+	 * @generated
+	 */
+	StringNodeValue createStringNodeValue();
+
+	/**
+	 * Returns a new object of class '<em>Double Node Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Double Node Value</em>'.
+	 * @generated
+	 */
+	DoubleNodeValue createDoubleNodeValue();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

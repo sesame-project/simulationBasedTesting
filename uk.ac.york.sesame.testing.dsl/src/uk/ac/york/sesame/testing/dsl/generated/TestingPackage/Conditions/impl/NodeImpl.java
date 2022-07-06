@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.ConditionsPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Node;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.NodeValue;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarElt;
 
 /**
@@ -32,7 +33,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.Gramma
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.NodeImpl#getGrammarElt <em>Grammar Elt</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.NodeImpl#getSubNode <em>Sub Node</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.NodeImpl#getSubNodes <em>Sub Nodes</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.NodeImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -50,34 +51,24 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	protected GrammarElt grammarElt;
 
 	/**
-	 * The cached value of the '{@link #getSubNode() <em>Sub Node</em>}' containment reference list.
+	 * The cached value of the '{@link #getSubNodes() <em>Sub Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSubNode()
+	 * @see #getSubNodes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Node> subNode;
+	protected EList<Node> subNodes;
 
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Object VALUE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected Object value = VALUE_EDEFAULT;
+	protected NodeValue value;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -141,11 +132,11 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Node> getSubNode() {
-		if (subNode == null) {
-			subNode = new EObjectContainmentEList<Node>(Node.class, this, ConditionsPackage.NODE__SUB_NODE);
+	public EList<Node> getSubNodes() {
+		if (subNodes == null) {
+			subNodes = new EObjectContainmentEList<Node>(Node.class, this, ConditionsPackage.NODE__SUB_NODES);
 		}
-		return subNode;
+		return subNodes;
 	}
 
 	/**
@@ -153,7 +144,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getValue() {
+	public NodeValue getValue() {
 		return value;
 	}
 
@@ -162,11 +153,33 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(Object newValue) {
-		Object oldValue = value;
+	public NotificationChain basicSetValue(NodeValue newValue, NotificationChain msgs) {
+		NodeValue oldValue = value;
 		value = newValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionsPackage.NODE__VALUE, oldValue, value));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConditionsPackage.NODE__VALUE, oldValue, newValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(NodeValue newValue) {
+		if (newValue != value) {
+			NotificationChain msgs = null;
+			if (value != null)
+				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConditionsPackage.NODE__VALUE, null, msgs);
+			if (newValue != null)
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConditionsPackage.NODE__VALUE, null, msgs);
+			msgs = basicSetValue(newValue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionsPackage.NODE__VALUE, newValue, newValue));
 	}
 
 	/**
@@ -177,8 +190,10 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConditionsPackage.NODE__SUB_NODE:
-				return ((InternalEList<?>)getSubNode()).basicRemove(otherEnd, msgs);
+			case ConditionsPackage.NODE__SUB_NODES:
+				return ((InternalEList<?>)getSubNodes()).basicRemove(otherEnd, msgs);
+			case ConditionsPackage.NODE__VALUE:
+				return basicSetValue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -194,8 +209,8 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 			case ConditionsPackage.NODE__GRAMMAR_ELT:
 				if (resolve) return getGrammarElt();
 				return basicGetGrammarElt();
-			case ConditionsPackage.NODE__SUB_NODE:
-				return getSubNode();
+			case ConditionsPackage.NODE__SUB_NODES:
+				return getSubNodes();
 			case ConditionsPackage.NODE__VALUE:
 				return getValue();
 		}
@@ -214,12 +229,12 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 			case ConditionsPackage.NODE__GRAMMAR_ELT:
 				setGrammarElt((GrammarElt)newValue);
 				return;
-			case ConditionsPackage.NODE__SUB_NODE:
-				getSubNode().clear();
-				getSubNode().addAll((Collection<? extends Node>)newValue);
+			case ConditionsPackage.NODE__SUB_NODES:
+				getSubNodes().clear();
+				getSubNodes().addAll((Collection<? extends Node>)newValue);
 				return;
 			case ConditionsPackage.NODE__VALUE:
-				setValue(newValue);
+				setValue((NodeValue)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -236,11 +251,11 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 			case ConditionsPackage.NODE__GRAMMAR_ELT:
 				setGrammarElt((GrammarElt)null);
 				return;
-			case ConditionsPackage.NODE__SUB_NODE:
-				getSubNode().clear();
+			case ConditionsPackage.NODE__SUB_NODES:
+				getSubNodes().clear();
 				return;
 			case ConditionsPackage.NODE__VALUE:
-				setValue(VALUE_EDEFAULT);
+				setValue((NodeValue)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -256,28 +271,12 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 		switch (featureID) {
 			case ConditionsPackage.NODE__GRAMMAR_ELT:
 				return grammarElt != null;
-			case ConditionsPackage.NODE__SUB_NODE:
-				return subNode != null && !subNode.isEmpty();
+			case ConditionsPackage.NODE__SUB_NODES:
+				return subNodes != null && !subNodes.isEmpty();
 			case ConditionsPackage.NODE__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+				return value != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (value: ");
-		result.append(value);
-		result.append(')');
-		return result.toString();
 	}
 
 } //NodeImpl

@@ -16,8 +16,12 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.Attac
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Condition;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.ConditionsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.ConditionsPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.DoubleNodeValue;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.IntNodeValue;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Node;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.NodeValue;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.StringNodeValue;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarSpecPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.impl.GrammarSpecPackageImpl;
@@ -62,6 +66,34 @@ public class ConditionsPackageImpl extends EPackageImpl implements ConditionsPac
 	 * @generated
 	 */
 	private EClass nodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nodeValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass intNodeValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stringNodeValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass doubleNodeValueEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -204,7 +236,7 @@ public class ConditionsPackageImpl extends EPackageImpl implements ConditionsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNode_SubNode() {
+	public EReference getNode_SubNodes() {
 		return (EReference)nodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -213,8 +245,71 @@ public class ConditionsPackageImpl extends EPackageImpl implements ConditionsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNode_Value() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(2);
+	public EReference getNode_Value() {
+		return (EReference)nodeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNodeValue() {
+		return nodeValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIntNodeValue() {
+		return intNodeValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIntNodeValue_Value() {
+		return (EAttribute)intNodeValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStringNodeValue() {
+		return stringNodeValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStringNodeValue_Value() {
+		return (EAttribute)stringNodeValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDoubleNodeValue() {
+		return doubleNodeValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDoubleNodeValue_Value() {
+		return (EAttribute)doubleNodeValueEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -251,8 +346,19 @@ public class ConditionsPackageImpl extends EPackageImpl implements ConditionsPac
 
 		nodeEClass = createEClass(NODE);
 		createEReference(nodeEClass, NODE__GRAMMAR_ELT);
-		createEReference(nodeEClass, NODE__SUB_NODE);
-		createEAttribute(nodeEClass, NODE__VALUE);
+		createEReference(nodeEClass, NODE__SUB_NODES);
+		createEReference(nodeEClass, NODE__VALUE);
+
+		nodeValueEClass = createEClass(NODE_VALUE);
+
+		intNodeValueEClass = createEClass(INT_NODE_VALUE);
+		createEAttribute(intNodeValueEClass, INT_NODE_VALUE__VALUE);
+
+		stringNodeValueEClass = createEClass(STRING_NODE_VALUE);
+		createEAttribute(stringNodeValueEClass, STRING_NODE_VALUE__VALUE);
+
+		doubleNodeValueEClass = createEClass(DOUBLE_NODE_VALUE);
+		createEAttribute(doubleNodeValueEClass, DOUBLE_NODE_VALUE__VALUE);
 	}
 
 	/**
@@ -286,16 +392,30 @@ public class ConditionsPackageImpl extends EPackageImpl implements ConditionsPac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		intNodeValueEClass.getESuperTypes().add(this.getNodeValue());
+		stringNodeValueEClass.getESuperTypes().add(this.getNodeValue());
+		doubleNodeValueEClass.getESuperTypes().add(this.getNodeValue());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCondition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCondition_Elt(), theGrammarSpecPackage.getGrammarElt(), null, "elt", null, 1, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCondition_Elt(), this.getNode(), null, "elt", null, 1, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNode_GrammarElt(), theGrammarSpecPackage.getGrammarElt(), null, "grammarElt", null, 1, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNode_SubNode(), this.getNode(), null, "subNode", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNode_Value(), ecorePackage.getEJavaObject(), "value", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_SubNodes(), this.getNode(), null, "subNodes", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_Value(), this.getNodeValue(), null, "value", null, 1, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(nodeValueEClass, NodeValue.class, "NodeValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(intNodeValueEClass, IntNodeValue.class, "IntNodeValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIntNodeValue_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntNodeValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stringNodeValueEClass, StringNodeValue.class, "StringNodeValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStringNodeValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringNodeValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(doubleNodeValueEClass, DoubleNodeValue.class, "DoubleNodeValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDoubleNodeValue_Value(), ecorePackage.getEDouble(), "value", null, 0, 1, DoubleNodeValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //ConditionsPackageImpl

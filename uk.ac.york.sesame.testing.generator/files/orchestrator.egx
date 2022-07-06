@@ -26,3 +26,9 @@ rule rangeClass transform testCampaign: Testing!TestCampaign {
 	template : "datatypes/doubleRange.egl"
 	target : "src/datatypes/DoubleRange.java"
 }
+
+rule conditionClass transform condition: Testing!Conditions::Condition {
+	guard : condition.elt.parentGrammar.name == "BasicComparisonVariables"
+	template : "conditions/conditions.egl"
+	target : "src/metrics/generated/" + condition.name + ".java"
+}

@@ -78,6 +78,33 @@ public class ConditionsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ConditionsPackage.NODE_VALUE: {
+				NodeValue nodeValue = (NodeValue)theEObject;
+				T result = caseNodeValue(nodeValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConditionsPackage.INT_NODE_VALUE: {
+				IntNodeValue intNodeValue = (IntNodeValue)theEObject;
+				T result = caseIntNodeValue(intNodeValue);
+				if (result == null) result = caseNodeValue(intNodeValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConditionsPackage.STRING_NODE_VALUE: {
+				StringNodeValue stringNodeValue = (StringNodeValue)theEObject;
+				T result = caseStringNodeValue(stringNodeValue);
+				if (result == null) result = caseNodeValue(stringNodeValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConditionsPackage.DOUBLE_NODE_VALUE: {
+				DoubleNodeValue doubleNodeValue = (DoubleNodeValue)theEObject;
+				T result = caseDoubleNodeValue(doubleNodeValue);
+				if (result == null) result = caseNodeValue(doubleNodeValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -109,6 +136,66 @@ public class ConditionsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNode(Node object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Node Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Node Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNodeValue(NodeValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Int Node Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Int Node Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIntNodeValue(IntNodeValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>String Node Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>String Node Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStringNodeValue(StringNodeValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Double Node Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Double Node Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDoubleNodeValue(DoubleNodeValue object) {
 		return null;
 	}
 

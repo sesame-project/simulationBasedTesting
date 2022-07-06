@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarElt;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarRule;
@@ -167,7 +168,7 @@ public class GrammarSpecificationImpl extends MinimalEObjectImpl.Container imple
 	 */
 	public EList<GrammarElt> getElements() {
 		if (elements == null) {
-			elements = new EObjectContainmentEList<GrammarElt>(GrammarElt.class, this, GrammarSpecPackage.GRAMMAR_SPECIFICATION__ELEMENTS);
+			elements = new EObjectContainmentWithInverseEList<GrammarElt>(GrammarElt.class, this, GrammarSpecPackage.GRAMMAR_SPECIFICATION__ELEMENTS, GrammarSpecPackage.GRAMMAR_ELT__PARENT_GRAMMAR);
 		}
 		return elements;
 	}
@@ -182,6 +183,21 @@ public class GrammarSpecificationImpl extends MinimalEObjectImpl.Container imple
 			rules = new EObjectContainmentEList<GrammarRule>(GrammarRule.class, this, GrammarSpecPackage.GRAMMAR_SPECIFICATION__RULES);
 		}
 		return rules;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case GrammarSpecPackage.GRAMMAR_SPECIFICATION__ELEMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getElements()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

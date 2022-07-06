@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Condition;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.ConditionsPackage;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarElt;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +59,7 @@ public class ConditionImpl extends MinimalEObjectImpl.Container implements Condi
 	 * @generated
 	 * @ordered
 	 */
-	protected GrammarElt elt;
+	protected Node elt;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,7 +106,7 @@ public class ConditionImpl extends MinimalEObjectImpl.Container implements Condi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GrammarElt getElt() {
+	public Node getElt() {
 		return elt;
 	}
 
@@ -115,8 +115,8 @@ public class ConditionImpl extends MinimalEObjectImpl.Container implements Condi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetElt(GrammarElt newElt, NotificationChain msgs) {
-		GrammarElt oldElt = elt;
+	public NotificationChain basicSetElt(Node newElt, NotificationChain msgs) {
+		Node oldElt = elt;
 		elt = newElt;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConditionsPackage.CONDITION__ELT, oldElt, newElt);
@@ -130,7 +130,7 @@ public class ConditionImpl extends MinimalEObjectImpl.Container implements Condi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElt(GrammarElt newElt) {
+	public void setElt(Node newElt) {
 		if (newElt != elt) {
 			NotificationChain msgs = null;
 			if (elt != null)
@@ -186,7 +186,7 @@ public class ConditionImpl extends MinimalEObjectImpl.Container implements Condi
 				setName((String)newValue);
 				return;
 			case ConditionsPackage.CONDITION__ELT:
-				setElt((GrammarElt)newValue);
+				setElt((Node)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -204,7 +204,7 @@ public class ConditionImpl extends MinimalEObjectImpl.Container implements Condi
 				setName(NAME_EDEFAULT);
 				return;
 			case ConditionsPackage.CONDITION__ELT:
-				setElt((GrammarElt)null);
+				setElt((Node)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -76,6 +76,22 @@ public class ConditionsAdapterFactory extends AdapterFactoryImpl {
 				return createNodeAdapter();
 			}
 			@Override
+			public Adapter caseNodeValue(NodeValue object) {
+				return createNodeValueAdapter();
+			}
+			@Override
+			public Adapter caseIntNodeValue(IntNodeValue object) {
+				return createIntNodeValueAdapter();
+			}
+			@Override
+			public Adapter caseStringNodeValue(StringNodeValue object) {
+				return createStringNodeValueAdapter();
+			}
+			@Override
+			public Adapter caseDoubleNodeValue(DoubleNodeValue object) {
+				return createDoubleNodeValueAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -120,6 +136,62 @@ public class ConditionsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.NodeValue <em>Node Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.NodeValue
+	 * @generated
+	 */
+	public Adapter createNodeValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.IntNodeValue <em>Int Node Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.IntNodeValue
+	 * @generated
+	 */
+	public Adapter createIntNodeValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.StringNodeValue <em>String Node Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.StringNodeValue
+	 * @generated
+	 */
+	public Adapter createStringNodeValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.DoubleNodeValue <em>Double Node Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.DoubleNodeValue
+	 * @generated
+	 */
+	public Adapter createDoubleNodeValueAdapter() {
 		return null;
 	}
 

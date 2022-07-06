@@ -4,8 +4,6 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions;
 
 import org.eclipse.emf.ecore.EObject;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarElt;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Condition</b></em>'.
@@ -51,12 +49,12 @@ public interface Condition extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Elt</em>' containment reference.
-	 * @see #setElt(GrammarElt)
+	 * @see #setElt(Node)
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.ConditionsPackage#getCondition_Elt()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	GrammarElt getElt();
+	Node getElt();
 
 	/**
 	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Condition#getElt <em>Elt</em>}' containment reference.
@@ -66,6 +64,6 @@ public interface Condition extends EObject {
 	 * @see #getElt()
 	 * @generated
 	 */
-	void setElt(GrammarElt value);
+	void setElt(Node value);
 
 } // Condition

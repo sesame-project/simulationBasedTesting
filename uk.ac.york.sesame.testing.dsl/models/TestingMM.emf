@@ -352,14 +352,30 @@ class Result {
 package Conditions {
 	class Condition {
 		attr String name;
-		val GrammarSpec.GrammarElt[1] elt;
+		val Node[1] elt;
 	}
 
 	class Node {
 		ref GrammarSpec.GrammarElt[1] grammarElt;
-		val Node[*] subNode;
+		val Node[*] subNodes;
 		// Constraint: Only the non-terminals have a value?
-		attr Object value;
+		val NodeValue[1] value;
+	}
+	
+	abstract class NodeValue {
+				
+	}
+	
+	class IntNodeValue extends NodeValue {
+		attr int value;
+	}
+	
+	class StringNodeValue extends NodeValue {
+		attr String value;
+	}
+	
+	class DoubleNodeValue extends NodeValue {
+		attr double value;
 	}
 }
 
@@ -367,7 +383,7 @@ package GrammarSpec {
 	class GrammarSpecification {
 		attr String name;
 		ref GrammarElt[1] rootElement;
-		val GrammarElt[*] elements;
+		val GrammarElt[*]#parentGrammar elements;
 		val GrammarRule[*] rules;
 	}
 	
@@ -376,7 +392,8 @@ package GrammarSpec {
 	}
 
 	abstract class GrammarElt {
-		attr String name; 
+		attr String name;
+		readonly transient ref GrammarSpecification[1]#elements parentGrammar; 
 	}
 	
 	class NonterminalGrammarElt extends GrammarElt {
@@ -428,15 +445,6 @@ package StandardGrammar {
 		val Expression left;
 		val Expression right;
 	}
-	
-//	enum UnaryComparator {
-//		LESS_THAN = 1;
-//		GREATER_THAN = 2;	
-//	}
-	
-//	class UnaryExpression extends Expression {
-//		val Expression e;
-//	}
 	
 	enum BinaryComparator {
 		LESS_THAN = 1;

@@ -177,13 +177,22 @@ public interface GrammarSpecPackage extends EPackage {
 	int GRAMMAR_ELT__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Parent Grammar</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAMMAR_ELT__PARENT_GRAMMAR = 1;
+
+	/**
 	 * The number of structural features of the '<em>Grammar Elt</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAMMAR_ELT_FEATURE_COUNT = 1;
+	int GRAMMAR_ELT_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Grammar Elt</em>' class.
@@ -212,6 +221,15 @@ public interface GrammarSpecPackage extends EPackage {
 	 * @ordered
 	 */
 	int NONTERMINAL_GRAMMAR_ELT__NAME = GRAMMAR_ELT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Parent Grammar</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NONTERMINAL_GRAMMAR_ELT__PARENT_GRAMMAR = GRAMMAR_ELT__PARENT_GRAMMAR;
 
 	/**
 	 * The number of structural features of the '<em>Nonterminal Grammar Elt</em>' class.
@@ -249,6 +267,15 @@ public interface GrammarSpecPackage extends EPackage {
 	 * @ordered
 	 */
 	int TERMINAL_GRAMMAR_ELT__NAME = GRAMMAR_ELT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Parent Grammar</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERMINAL_GRAMMAR_ELT__PARENT_GRAMMAR = GRAMMAR_ELT__PARENT_GRAMMAR;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -532,6 +559,17 @@ public interface GrammarSpecPackage extends EPackage {
 	EAttribute getGrammarElt_Name();
 
 	/**
+	 * Returns the meta object for the container reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarElt#getParentGrammar <em>Parent Grammar</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Parent Grammar</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarElt#getParentGrammar()
+	 * @see #getGrammarElt()
+	 * @generated
+	 */
+	EReference getGrammarElt_ParentGrammar();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.NonterminalGrammarElt <em>Nonterminal Grammar Elt</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -757,6 +795,14 @@ public interface GrammarSpecPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GRAMMAR_ELT__NAME = eINSTANCE.getGrammarElt_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent Grammar</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GRAMMAR_ELT__PARENT_GRAMMAR = eINSTANCE.getGrammarElt_ParentGrammar();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.impl.NonterminalGrammarEltImpl <em>Nonterminal Grammar Elt</em>}' class.

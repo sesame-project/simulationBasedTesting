@@ -233,8 +233,18 @@
       <genClasses ecoreClass="TestingMM.ecore#//Conditions/Node">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference TestingMM.ecore#//Conditions/Node/grammarElt"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Conditions/Node/subNode"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Conditions/Node/value"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Conditions/Node/subNodes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Conditions/Node/value"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//Conditions/NodeValue"/>
+      <genClasses ecoreClass="TestingMM.ecore#//Conditions/IntNodeValue">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Conditions/IntNodeValue/value"/>
+      </genClasses>
+      <genClasses ecoreClass="TestingMM.ecore#//Conditions/StringNodeValue">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Conditions/StringNodeValue/value"/>
+      </genClasses>
+      <genClasses ecoreClass="TestingMM.ecore#//Conditions/DoubleNodeValue">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Conditions/DoubleNodeValue/value"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="GrammarSpec" disposableProviderFactory="true" ecorePackage="TestingMM.ecore#//GrammarSpec">
@@ -249,6 +259,7 @@
       </genClasses>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//GrammarSpec/GrammarElt">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//GrammarSpec/GrammarElt/name"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TestingMM.ecore#//GrammarSpec/GrammarElt/parentGrammar"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//GrammarSpec/NonterminalGrammarElt"/>
       <genClasses ecoreClass="TestingMM.ecore#//GrammarSpec/TerminalGrammarElt">

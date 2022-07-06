@@ -20,7 +20,7 @@ public class [%= condition.name %] extends ConditionProcessing {
         [% } %]
         
         [* Traverse and expand all the elements according to their elt name *]
-        boolean res = generateConditionValue();
+        boolean res = [%= generateJavaCode() %];
         out.collect(res);
     }
 }
@@ -42,7 +42,38 @@ operation findEltsWithNameRec(ve, node, targetname) {
 	}
 }
 
-operation generateCode() {
+// Generates the code for the operations
+operation generateJavaCode(node) {
+	g = node.grammarElt;
+	if (g.name == "var") {
+		return g.value.value;
+	}
 	
+	if (g.name == "int") {
+		return g.value.value;
+	}
+	
+	if (g.name == "bincomp") {
+		gsub1 = node.subNodes.first();
+		gsub2 = node.subNodes.second();
+		gsub3 = node.subNodes.third();
+		return "(" + generateJavaCode(gsub1) + ")" + generateJavaCode(gsub2) + "(" + generateJavaCode(gsub3) + ")";
+	}
+	
+	if (g.name == "LESS_THAN") {
+		return "<";	
+	}
+	
+	if (g.name == "GREATER_THAN") {
+		return ">";
+	}
+	
+	if (g.name == "AND") {
+		return "&&";
+	}
+	
+	if (g.name == "OR") {
+		return "||";
+	}
 }
 %]

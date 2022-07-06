@@ -122,16 +122,16 @@ public interface ConditionsPackage extends EPackage {
 	int NODE__GRAMMAR_ELT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Sub Node</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sub Nodes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__SUB_NODE = 1;
+	int NODE__SUB_NODES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -156,6 +156,146 @@ public interface ConditionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int NODE_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.NodeValueImpl <em>Node Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.NodeValueImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl#getNodeValue()
+	 * @generated
+	 */
+	int NODE_VALUE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Node Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_VALUE_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Node Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE_VALUE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.IntNodeValueImpl <em>Int Node Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.IntNodeValueImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl#getIntNodeValue()
+	 * @generated
+	 */
+	int INT_NODE_VALUE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INT_NODE_VALUE__VALUE = NODE_VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Int Node Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INT_NODE_VALUE_FEATURE_COUNT = NODE_VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Int Node Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INT_NODE_VALUE_OPERATION_COUNT = NODE_VALUE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.StringNodeValueImpl <em>String Node Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.StringNodeValueImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl#getStringNodeValue()
+	 * @generated
+	 */
+	int STRING_NODE_VALUE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_NODE_VALUE__VALUE = NODE_VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>String Node Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_NODE_VALUE_FEATURE_COUNT = NODE_VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>String Node Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_NODE_VALUE_OPERATION_COUNT = NODE_VALUE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.DoubleNodeValueImpl <em>Double Node Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.DoubleNodeValueImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl#getDoubleNodeValue()
+	 * @generated
+	 */
+	int DOUBLE_NODE_VALUE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOUBLE_NODE_VALUE__VALUE = NODE_VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Double Node Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOUBLE_NODE_VALUE_FEATURE_COUNT = NODE_VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Double Node Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOUBLE_NODE_VALUE_OPERATION_COUNT = NODE_VALUE_OPERATION_COUNT + 0;
 
 
 	/**
@@ -212,26 +352,99 @@ public interface ConditionsPackage extends EPackage {
 	EReference getNode_GrammarElt();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Node#getSubNode <em>Sub Node</em>}'.
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Node#getSubNodes <em>Sub Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Sub Node</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Node#getSubNode()
+	 * @return the meta object for the containment reference list '<em>Sub Nodes</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Node#getSubNodes()
 	 * @see #getNode()
 	 * @generated
 	 */
-	EReference getNode_SubNode();
+	EReference getNode_SubNodes();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Node#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Node#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @return the meta object for the containment reference '<em>Value</em>'.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Node#getValue()
 	 * @see #getNode()
 	 * @generated
 	 */
-	EAttribute getNode_Value();
+	EReference getNode_Value();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.NodeValue <em>Node Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Node Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.NodeValue
+	 * @generated
+	 */
+	EClass getNodeValue();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.IntNodeValue <em>Int Node Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Int Node Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.IntNodeValue
+	 * @generated
+	 */
+	EClass getIntNodeValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.IntNodeValue#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.IntNodeValue#getValue()
+	 * @see #getIntNodeValue()
+	 * @generated
+	 */
+	EAttribute getIntNodeValue_Value();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.StringNodeValue <em>String Node Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>String Node Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.StringNodeValue
+	 * @generated
+	 */
+	EClass getStringNodeValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.StringNodeValue#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.StringNodeValue#getValue()
+	 * @see #getStringNodeValue()
+	 * @generated
+	 */
+	EAttribute getStringNodeValue_Value();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.DoubleNodeValue <em>Double Node Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Double Node Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.DoubleNodeValue
+	 * @generated
+	 */
+	EClass getDoubleNodeValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.DoubleNodeValue#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.DoubleNodeValue#getValue()
+	 * @see #getDoubleNodeValue()
+	 * @generated
+	 */
+	EAttribute getDoubleNodeValue_Value();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -301,12 +514,40 @@ public interface ConditionsPackage extends EPackage {
 		EReference NODE__GRAMMAR_ELT = eINSTANCE.getNode_GrammarElt();
 
 		/**
-		 * The meta object literal for the '<em><b>Sub Node</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Sub Nodes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NODE__SUB_NODE = eINSTANCE.getNode_SubNode();
+		EReference NODE__SUB_NODES = eINSTANCE.getNode_SubNodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE__VALUE = eINSTANCE.getNode_Value();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.NodeValueImpl <em>Node Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.NodeValueImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl#getNodeValue()
+		 * @generated
+		 */
+		EClass NODE_VALUE = eINSTANCE.getNodeValue();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.IntNodeValueImpl <em>Int Node Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.IntNodeValueImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl#getIntNodeValue()
+		 * @generated
+		 */
+		EClass INT_NODE_VALUE = eINSTANCE.getIntNodeValue();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -314,7 +555,43 @@ public interface ConditionsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NODE__VALUE = eINSTANCE.getNode_Value();
+		EAttribute INT_NODE_VALUE__VALUE = eINSTANCE.getIntNodeValue_Value();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.StringNodeValueImpl <em>String Node Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.StringNodeValueImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl#getStringNodeValue()
+		 * @generated
+		 */
+		EClass STRING_NODE_VALUE = eINSTANCE.getStringNodeValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRING_NODE_VALUE__VALUE = eINSTANCE.getStringNodeValue_Value();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.DoubleNodeValueImpl <em>Double Node Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.DoubleNodeValueImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl#getDoubleNodeValue()
+		 * @generated
+		 */
+		EClass DOUBLE_NODE_VALUE = eINSTANCE.getDoubleNodeValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOUBLE_NODE_VALUE__VALUE = eINSTANCE.getDoubleNodeValue_Value();
 
 	}
 
