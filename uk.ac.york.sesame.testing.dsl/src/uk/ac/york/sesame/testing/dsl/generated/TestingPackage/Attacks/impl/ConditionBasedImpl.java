@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ConditionBased;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Condition;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardComparisonGrammar.StandardCondition;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +35,7 @@ public class ConditionBasedImpl extends AttackActivationImpl implements Conditio
 	 * @generated
 	 * @ordered
 	 */
-	protected Condition starting;
+	protected StandardCondition starting;
 	/**
 	 * The cached value of the '{@link #getEnding() <em>Ending</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -44,7 +44,7 @@ public class ConditionBasedImpl extends AttackActivationImpl implements Conditio
 	 * @generated
 	 * @ordered
 	 */
-	protected Condition ending;
+	protected StandardCondition ending;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,7 +70,7 @@ public class ConditionBasedImpl extends AttackActivationImpl implements Conditio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Condition getStarting() {
+	public StandardCondition getStarting() {
 		return starting;
 	}
 
@@ -79,8 +79,8 @@ public class ConditionBasedImpl extends AttackActivationImpl implements Conditio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetStarting(Condition newStarting, NotificationChain msgs) {
-		Condition oldStarting = starting;
+	public NotificationChain basicSetStarting(StandardCondition newStarting, NotificationChain msgs) {
+		StandardCondition oldStarting = starting;
 		starting = newStarting;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AttacksPackage.CONDITION_BASED__STARTING, oldStarting, newStarting);
@@ -94,7 +94,7 @@ public class ConditionBasedImpl extends AttackActivationImpl implements Conditio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStarting(Condition newStarting) {
+	public void setStarting(StandardCondition newStarting) {
 		if (newStarting != starting) {
 			NotificationChain msgs = null;
 			if (starting != null)
@@ -113,7 +113,7 @@ public class ConditionBasedImpl extends AttackActivationImpl implements Conditio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Condition getEnding() {
+	public StandardCondition getEnding() {
 		return ending;
 	}
 
@@ -122,8 +122,8 @@ public class ConditionBasedImpl extends AttackActivationImpl implements Conditio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEnding(Condition newEnding, NotificationChain msgs) {
-		Condition oldEnding = ending;
+	public NotificationChain basicSetEnding(StandardCondition newEnding, NotificationChain msgs) {
+		StandardCondition oldEnding = ending;
 		ending = newEnding;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AttacksPackage.CONDITION_BASED__ENDING, oldEnding, newEnding);
@@ -137,7 +137,7 @@ public class ConditionBasedImpl extends AttackActivationImpl implements Conditio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnding(Condition newEnding) {
+	public void setEnding(StandardCondition newEnding) {
 		if (newEnding != ending) {
 			NotificationChain msgs = null;
 			if (ending != null)
@@ -192,10 +192,10 @@ public class ConditionBasedImpl extends AttackActivationImpl implements Conditio
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AttacksPackage.CONDITION_BASED__STARTING:
-				setStarting((Condition)newValue);
+				setStarting((StandardCondition)newValue);
 				return;
 			case AttacksPackage.CONDITION_BASED__ENDING:
-				setEnding((Condition)newValue);
+				setEnding((StandardCondition)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -210,10 +210,10 @@ public class ConditionBasedImpl extends AttackActivationImpl implements Conditio
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case AttacksPackage.CONDITION_BASED__STARTING:
-				setStarting((Condition)null);
+				setStarting((StandardCondition)null);
 				return;
 			case AttacksPackage.CONDITION_BASED__ENDING:
-				setEnding((Condition)null);
+				setEnding((StandardCondition)null);
 				return;
 		}
 		super.eUnset(featureID);

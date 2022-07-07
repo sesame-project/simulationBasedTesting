@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarSpecification;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
@@ -38,7 +37,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getMetrics <em>Metrics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getPossibleAttacks <em>Possible Attacks</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getGrammarSpecification <em>Grammar Specification</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getCampaigns <em>Campaigns</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getMrs <em>Mrs</em>}</li>
  * </ul>
@@ -85,16 +83,6 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 	 * @ordered
 	 */
 	protected EList<Attack> possibleAttacks;
-
-	/**
-	 * The cached value of the '{@link #getGrammarSpecification() <em>Grammar Specification</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGrammarSpecification()
-	 * @generated
-	 * @ordered
-	 */
-	protected GrammarSpecification grammarSpecification;
 
 	/**
 	 * The cached value of the '{@link #getCampaigns() <em>Campaigns</em>}' containment reference list.
@@ -185,49 +173,6 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GrammarSpecification getGrammarSpecification() {
-		return grammarSpecification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGrammarSpecification(GrammarSpecification newGrammarSpecification, NotificationChain msgs) {
-		GrammarSpecification oldGrammarSpecification = grammarSpecification;
-		grammarSpecification = newGrammarSpecification;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECIFICATION, oldGrammarSpecification, newGrammarSpecification);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGrammarSpecification(GrammarSpecification newGrammarSpecification) {
-		if (newGrammarSpecification != grammarSpecification) {
-			NotificationChain msgs = null;
-			if (grammarSpecification != null)
-				msgs = ((InternalEObject)grammarSpecification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECIFICATION, null, msgs);
-			if (newGrammarSpecification != null)
-				msgs = ((InternalEObject)newGrammarSpecification).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECIFICATION, null, msgs);
-			msgs = basicSetGrammarSpecification(newGrammarSpecification, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECIFICATION, newGrammarSpecification, newGrammarSpecification));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<TestCampaign> getCampaigns() {
 		if (campaigns == null) {
 			campaigns = new EObjectContainmentEList<TestCampaign>(TestCampaign.class, this, TestingPackagePackage.TESTING_SPACE__CAMPAIGNS);
@@ -290,8 +235,6 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 				return ((InternalEList<?>)getMetrics()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_ATTACKS:
 				return ((InternalEList<?>)getPossibleAttacks()).basicRemove(otherEnd, msgs);
-			case TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECIFICATION:
-				return basicSetGrammarSpecification(null, msgs);
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				return ((InternalEList<?>)getCampaigns()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TESTING_SPACE__MRS:
@@ -314,8 +257,6 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 				return getMetrics();
 			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_ATTACKS:
 				return getPossibleAttacks();
-			case TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECIFICATION:
-				return getGrammarSpecification();
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				return getCampaigns();
 			case TestingPackagePackage.TESTING_SPACE__MRS:
@@ -343,9 +284,6 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_ATTACKS:
 				getPossibleAttacks().clear();
 				getPossibleAttacks().addAll((Collection<? extends Attack>)newValue);
-				return;
-			case TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECIFICATION:
-				setGrammarSpecification((GrammarSpecification)newValue);
 				return;
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				getCampaigns().clear();
@@ -375,9 +313,6 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_ATTACKS:
 				getPossibleAttacks().clear();
 				return;
-			case TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECIFICATION:
-				setGrammarSpecification((GrammarSpecification)null);
-				return;
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				getCampaigns().clear();
 				return;
@@ -402,8 +337,6 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 				return metrics != null && !metrics.isEmpty();
 			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_ATTACKS:
 				return possibleAttacks != null && !possibleAttacks.isEmpty();
-			case TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECIFICATION:
-				return grammarSpecification != null;
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				return campaigns != null && !campaigns.isEmpty();
 			case TestingPackagePackage.TESTING_SPACE__MRS:

@@ -24,7 +24,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarConstraint;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
@@ -43,7 +42,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getMetrics <em>Metrics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getIncludedAttacks <em>Included Attacks</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getPerformedTests <em>Performed Tests</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getResultSets <em>Result Sets</em>}</li>
@@ -92,16 +90,6 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * @ordered
 	 */
 	protected EList<Attack> includedAttacks;
-
-	/**
-	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraints()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<GrammarConstraint> constraints;
 
 	/**
 	 * The cached value of the '{@link #getApproach() <em>Approach</em>}' containment reference.
@@ -205,18 +193,6 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			includedAttacks = new EObjectResolvingEList<Attack>(Attack.class, this, TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS);
 		}
 		return includedAttacks;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<GrammarConstraint> getConstraints() {
-		if (constraints == null) {
-			constraints = new EObjectContainmentEList<GrammarConstraint>(GrammarConstraint.class, this, TestingPackagePackage.TEST_CAMPAIGN__CONSTRAINTS);
-		}
-		return constraints;
 	}
 
 	/**
@@ -352,8 +328,6 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TestingPackagePackage.TEST_CAMPAIGN__CONSTRAINTS:
-				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				return basicSetApproach(null, msgs);
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
@@ -380,8 +354,6 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return getMetrics();
 			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS:
 				return getIncludedAttacks();
-			case TestingPackagePackage.TEST_CAMPAIGN__CONSTRAINTS:
-				return getConstraints();
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				return getApproach();
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
@@ -413,10 +385,6 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS:
 				getIncludedAttacks().clear();
 				getIncludedAttacks().addAll((Collection<? extends Attack>)newValue);
-				return;
-			case TestingPackagePackage.TEST_CAMPAIGN__CONSTRAINTS:
-				getConstraints().clear();
-				getConstraints().addAll((Collection<? extends GrammarConstraint>)newValue);
 				return;
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				setApproach((TestGenerationApproach)newValue);
@@ -453,9 +421,6 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS:
 				getIncludedAttacks().clear();
 				return;
-			case TestingPackagePackage.TEST_CAMPAIGN__CONSTRAINTS:
-				getConstraints().clear();
-				return;
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				setApproach((TestGenerationApproach)null);
 				return;
@@ -486,8 +451,6 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return metrics != null && !metrics.isEmpty();
 			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS:
 				return includedAttacks != null && !includedAttacks.isEmpty();
-			case TestingPackagePackage.TEST_CAMPAIGN__CONSTRAINTS:
-				return constraints != null && !constraints.isEmpty();
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				return approach != null;
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:

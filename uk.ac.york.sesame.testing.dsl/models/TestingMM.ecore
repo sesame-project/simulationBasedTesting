@@ -7,8 +7,6 @@
         eType="#//Metrics/Metric" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="possibleAttacks" upperBound="-1"
         eType="#//Attacks/Attack" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="grammarSpecification" eType="#//GrammarSpec/GrammarSpecification"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="campaigns" upperBound="-1"
         eType="#//TestCampaign" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mrs" lowerBound="1" eType="#//MRSPackage/MRS"
@@ -20,8 +18,6 @@
         eType="#//Metrics/Metric"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="includedAttacks" upperBound="-1"
         eType="#//Attacks/Attack"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-        eType="#//GrammarSpec/GrammarConstraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="approach" lowerBound="1"
         eType="#//TestGenerationApproach" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="performedTests" upperBound="-1"
@@ -113,9 +109,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="endTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConditionBased" eSuperTypes="#//Attacks/AttackActivation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="starting" eType="#//Conditions/Condition"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="starting" eType="#//StandardComparisonGrammar/StandardCondition"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="ending" eType="#//Conditions/Condition"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ending" eType="#//StandardComparisonGrammar/StandardCondition"
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FuzzTestingAttack" eSuperTypes="#//Attacks/Attack"/>
@@ -253,82 +249,35 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="Conditions" nsURI="Conditions" nsPrefix="">
-    <eClassifiers xsi:type="ecore:EClass" name="Condition">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="elt" lowerBound="1" eType="#//Conditions/Node"
-          containment="true"/>
+  <eSubpackages name="Conditions" nsURI="Conditions" nsPrefix=""/>
+  <eSubpackages name="StandardComparisonGrammar" nsURI="StandardComparisonGrammar"
+      nsPrefix="">
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionElement" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CompositeCondition" eSuperTypes="#//StandardComparisonGrammar/ConditionElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1"
+          eType="#//StandardComparisonGrammar/ConditionElement" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="binop" lowerBound="1"
+          eType="#//StandardComparisonGrammar/BinaryLogicalOperation"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1"
+          eType="#//StandardComparisonGrammar/ConditionElement" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Node">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="grammarElt" lowerBound="1"
-          eType="#//GrammarSpec/GrammarElt"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="subNodes" upperBound="-1"
-          eType="#//Conditions/Node" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
-          eType="#//Conditions/NodeValue" containment="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BasicCondition" eSuperTypes="#//StandardComparisonGrammar/ConditionElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1"
+          eType="#//StandardComparisonGrammar/Variable" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="bincomp" lowerBound="1"
+          eType="#//StandardComparisonGrammar/BinaryComparisonOperation"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1"
+          eType="#//StandardComparisonGrammar/Literal" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NodeValue" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="IntNodeValue" eSuperTypes="#//Conditions/NodeValue">
+    <eClassifiers xsi:type="ecore:EClass" name="Literal" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionInteger" eSuperTypes="#//StandardComparisonGrammar/Literal">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="StringNodeValue" eSuperTypes="#//Conditions/NodeValue">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//StandardComparisonGrammar/Literal">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="metric" lowerBound="1"
+          eType="#//Metrics/Metric"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DoubleNodeValue" eSuperTypes="#//Conditions/NodeValue">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-    </eClassifiers>
-  </eSubpackages>
-  <eSubpackages name="GrammarSpec" nsURI="GrammarSpec" nsPrefix="">
-    <eClassifiers xsi:type="ecore:EClass" name="GrammarSpecification">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="rootElement" lowerBound="1"
-          eType="#//GrammarSpec/GrammarElt"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-          eType="#//GrammarSpec/GrammarElt" containment="true" eOpposite="#//GrammarSpec/GrammarElt/parentGrammar"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
-          eType="#//GrammarSpec/GrammarRule" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GrammarTag">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GrammarElt" abstract="true">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parentGrammar" lowerBound="1"
-          eType="#//GrammarSpec/GrammarSpecification" changeable="false" transient="true"
-          eOpposite="#//GrammarSpec/GrammarSpecification/elements"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NonterminalGrammarElt" eSuperTypes="#//GrammarSpec/GrammarElt"/>
-    <eClassifiers xsi:type="ecore:EClass" name="TerminalGrammarElt" eSuperTypes="#//GrammarSpec/GrammarElt">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
-          eType="#//GrammarSpec/GrammarValue" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GrammarValue">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GrammarRhsElt">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="elt" lowerBound="1" eType="#//GrammarSpec/GrammarElt"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GrammarRule">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ruleName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" lowerBound="1" eType="#//GrammarSpec/NonterminalGrammarElt"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="rhsElts" upperBound="-1"
-          eType="#//GrammarSpec/GrammarRhsElt" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GrammarConstraint"/>
-  </eSubpackages>
-  <eSubpackages name="StandardGrammar" nsURI="StandardGrammar" nsPrefix="">
-    <eClassifiers xsi:type="ecore:EClass" name="Variable" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="SimulatorVariable" eSuperTypes="#//StandardGrammar/Variable">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="BinaryExpression" eSuperTypes="#//StandardGrammar/Expression">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//StandardGrammar/Expression"
-          containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//StandardGrammar/Expression"
-          containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="BinaryComparator">
+    <eClassifiers xsi:type="ecore:EEnum" name="BinaryComparisonOperation">
       <eLiterals name="LESS_THAN" value="1"/>
       <eLiterals name="GREATER_THAN" value="2"/>
     </eClassifiers>
@@ -336,11 +285,11 @@
       <eLiterals name="AND" value="1"/>
       <eLiterals name="OR" value="2"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="BinaryComparison" eSuperTypes="#//StandardGrammar/BinaryExpression">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="comp" eType="#//StandardGrammar/BinaryComparator"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="BinaryLogicalExpression" eSuperTypes="#//StandardGrammar/BinaryExpression">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="binOp" eType="#//StandardGrammar/BinaryLogicalOperation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="StandardCondition">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="c" lowerBound="1" eType="#//StandardComparisonGrammar/ConditionElement"
+          containment="true"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="MRSPackage" nsURI="MRSPackage" nsPrefix="">

@@ -15,12 +15,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPac
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.ConditionsPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.EvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarSpecPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.impl.GrammarSpecPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
@@ -35,8 +31,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPac
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.impl.ResultsPackageImpl;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardComparisonGrammar.StandardComparisonGrammarPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardComparisonGrammar.impl.StandardComparisonGrammarPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationApproach;
@@ -183,12 +179,8 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		MetricsPackageImpl theMetricsPackage = (MetricsPackageImpl)(registeredPackage instanceof MetricsPackageImpl ? registeredPackage : MetricsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 		ResultsPackageImpl theResultsPackage = (ResultsPackageImpl)(registeredPackage instanceof ResultsPackageImpl ? registeredPackage : ResultsPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ConditionsPackage.eNS_URI);
-		ConditionsPackageImpl theConditionsPackage = (ConditionsPackageImpl)(registeredPackage instanceof ConditionsPackageImpl ? registeredPackage : ConditionsPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GrammarSpecPackage.eNS_URI);
-		GrammarSpecPackageImpl theGrammarSpecPackage = (GrammarSpecPackageImpl)(registeredPackage instanceof GrammarSpecPackageImpl ? registeredPackage : GrammarSpecPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
-		StandardGrammarPackageImpl theStandardGrammarPackage = (StandardGrammarPackageImpl)(registeredPackage instanceof StandardGrammarPackageImpl ? registeredPackage : StandardGrammarPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardComparisonGrammarPackage.eNS_URI);
+		StandardComparisonGrammarPackageImpl theStandardComparisonGrammarPackage = (StandardComparisonGrammarPackageImpl)(registeredPackage instanceof StandardComparisonGrammarPackageImpl ? registeredPackage : StandardComparisonGrammarPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
 
@@ -197,9 +189,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		theAttacksPackage.createPackageContents();
 		theMetricsPackage.createPackageContents();
 		theResultsPackage.createPackageContents();
-		theConditionsPackage.createPackageContents();
-		theGrammarSpecPackage.createPackageContents();
-		theStandardGrammarPackage.createPackageContents();
+		theStandardComparisonGrammarPackage.createPackageContents();
 		theMRSPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -207,9 +197,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		theAttacksPackage.initializePackageContents();
 		theMetricsPackage.initializePackageContents();
 		theResultsPackage.initializePackageContents();
-		theConditionsPackage.initializePackageContents();
-		theGrammarSpecPackage.initializePackageContents();
-		theStandardGrammarPackage.initializePackageContents();
+		theStandardComparisonGrammarPackage.initializePackageContents();
 		theMRSPackagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -261,7 +249,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestingSpace_GrammarSpecification() {
+	public EReference getTestingSpace_Campaigns() {
 		return (EReference)testingSpaceEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -270,17 +258,8 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestingSpace_Campaigns() {
-		return (EReference)testingSpaceEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getTestingSpace_Mrs() {
-		return (EReference)testingSpaceEClass.getEStructuralFeatures().get(5);
+		return (EReference)testingSpaceEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -324,7 +303,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_Constraints() {
+	public EReference getTestCampaign_Approach() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -333,7 +312,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_Approach() {
+	public EReference getTestCampaign_PerformedTests() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -342,7 +321,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_PerformedTests() {
+	public EReference getTestCampaign_ResultSets() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -351,17 +330,8 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_ResultSets() {
-		return (EReference)testCampaignEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getTestCampaign_DefaultEndTrigger() {
-		return (EReference)testCampaignEClass.getEStructuralFeatures().get(7);
+		return (EReference)testCampaignEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -585,7 +555,6 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEAttribute(testingSpaceEClass, TESTING_SPACE__NAME);
 		createEReference(testingSpaceEClass, TESTING_SPACE__METRICS);
 		createEReference(testingSpaceEClass, TESTING_SPACE__POSSIBLE_ATTACKS);
-		createEReference(testingSpaceEClass, TESTING_SPACE__GRAMMAR_SPECIFICATION);
 		createEReference(testingSpaceEClass, TESTING_SPACE__CAMPAIGNS);
 		createEReference(testingSpaceEClass, TESTING_SPACE__MRS);
 
@@ -593,7 +562,6 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEAttribute(testCampaignEClass, TEST_CAMPAIGN__NAME);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__METRICS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__INCLUDED_ATTACKS);
-		createEReference(testCampaignEClass, TEST_CAMPAIGN__CONSTRAINTS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__APPROACH);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__PERFORMED_TESTS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__RESULT_SETS);
@@ -658,18 +626,14 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		AttacksPackage theAttacksPackage = (AttacksPackage)EPackage.Registry.INSTANCE.getEPackage(AttacksPackage.eNS_URI);
 		MetricsPackage theMetricsPackage = (MetricsPackage)EPackage.Registry.INSTANCE.getEPackage(MetricsPackage.eNS_URI);
 		ResultsPackage theResultsPackage = (ResultsPackage)EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
-		ConditionsPackage theConditionsPackage = (ConditionsPackage)EPackage.Registry.INSTANCE.getEPackage(ConditionsPackage.eNS_URI);
-		GrammarSpecPackage theGrammarSpecPackage = (GrammarSpecPackage)EPackage.Registry.INSTANCE.getEPackage(GrammarSpecPackage.eNS_URI);
-		StandardGrammarPackage theStandardGrammarPackage = (StandardGrammarPackage)EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
+		StandardComparisonGrammarPackage theStandardComparisonGrammarPackage = (StandardComparisonGrammarPackage)EPackage.Registry.INSTANCE.getEPackage(StandardComparisonGrammarPackage.eNS_URI);
 		MRSPackagePackage theMRSPackagePackage = (MRSPackagePackage)EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theAttacksPackage);
 		getESubpackages().add(theMetricsPackage);
 		getESubpackages().add(theResultsPackage);
-		getESubpackages().add(theConditionsPackage);
-		getESubpackages().add(theGrammarSpecPackage);
-		getESubpackages().add(theStandardGrammarPackage);
+		getESubpackages().add(theStandardComparisonGrammarPackage);
 		getESubpackages().add(theMRSPackagePackage);
 
 		// Create type parameters
@@ -687,7 +651,6 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEAttribute(getTestingSpace_Name(), ecorePackage.getEString(), "name", null, 0, 1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_Metrics(), theMetricsPackage.getMetric(), null, "metrics", null, 0, -1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_PossibleAttacks(), theAttacksPackage.getAttack(), null, "possibleAttacks", null, 0, -1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestingSpace_GrammarSpecification(), theGrammarSpecPackage.getGrammarSpecification(), null, "grammarSpecification", null, 0, 1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_Campaigns(), this.getTestCampaign(), null, "campaigns", null, 0, -1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_Mrs(), theMRSPackagePackage.getMRS(), null, "mrs", null, 1, 1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -695,7 +658,6 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEAttribute(getTestCampaign_Name(), ecorePackage.getEString(), "name", null, 0, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Metrics(), theMetricsPackage.getMetric(), null, "metrics", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_IncludedAttacks(), theAttacksPackage.getAttack(), null, "includedAttacks", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestCampaign_Constraints(), theGrammarSpecPackage.getGrammarConstraint(), null, "constraints", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Approach(), this.getTestGenerationApproach(), null, "approach", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_PerformedTests(), this.getTest(), this.getTest_ParentCampaign(), "performedTests", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_ResultSets(), this.getCampaignResultSet(), null, "resultSets", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

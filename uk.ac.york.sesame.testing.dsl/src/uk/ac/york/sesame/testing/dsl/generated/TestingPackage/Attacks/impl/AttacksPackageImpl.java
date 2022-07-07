@@ -49,11 +49,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TimeTravel
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.TopicAttack;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ValueRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ValueSet;
-
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.ConditionsPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarSpecPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.impl.GrammarSpecPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
@@ -64,8 +59,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPac
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.impl.ResultsPackageImpl;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardComparisonGrammar.StandardComparisonGrammarPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardComparisonGrammar.impl.StandardComparisonGrammarPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl;
@@ -390,12 +385,8 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		MetricsPackageImpl theMetricsPackage = (MetricsPackageImpl)(registeredPackage instanceof MetricsPackageImpl ? registeredPackage : MetricsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 		ResultsPackageImpl theResultsPackage = (ResultsPackageImpl)(registeredPackage instanceof ResultsPackageImpl ? registeredPackage : ResultsPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ConditionsPackage.eNS_URI);
-		ConditionsPackageImpl theConditionsPackage = (ConditionsPackageImpl)(registeredPackage instanceof ConditionsPackageImpl ? registeredPackage : ConditionsPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GrammarSpecPackage.eNS_URI);
-		GrammarSpecPackageImpl theGrammarSpecPackage = (GrammarSpecPackageImpl)(registeredPackage instanceof GrammarSpecPackageImpl ? registeredPackage : GrammarSpecPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
-		StandardGrammarPackageImpl theStandardGrammarPackage = (StandardGrammarPackageImpl)(registeredPackage instanceof StandardGrammarPackageImpl ? registeredPackage : StandardGrammarPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardComparisonGrammarPackage.eNS_URI);
+		StandardComparisonGrammarPackageImpl theStandardComparisonGrammarPackage = (StandardComparisonGrammarPackageImpl)(registeredPackage instanceof StandardComparisonGrammarPackageImpl ? registeredPackage : StandardComparisonGrammarPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
 
@@ -404,9 +395,7 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		theTestingPackagePackage.createPackageContents();
 		theMetricsPackage.createPackageContents();
 		theResultsPackage.createPackageContents();
-		theConditionsPackage.createPackageContents();
-		theGrammarSpecPackage.createPackageContents();
-		theStandardGrammarPackage.createPackageContents();
+		theStandardComparisonGrammarPackage.createPackageContents();
 		theMRSPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -414,9 +403,7 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		theTestingPackagePackage.initializePackageContents();
 		theMetricsPackage.initializePackageContents();
 		theResultsPackage.initializePackageContents();
-		theConditionsPackage.initializePackageContents();
-		theGrammarSpecPackage.initializePackageContents();
-		theStandardGrammarPackage.initializePackageContents();
+		theStandardComparisonGrammarPackage.initializePackageContents();
 		theMRSPackagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -1310,7 +1297,7 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		// Obtain other dependent packages
 		MRSPackagePackage theMRSPackagePackage = (MRSPackagePackage)EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		TestingPackagePackage theTestingPackagePackage = (TestingPackagePackage)EPackage.Registry.INSTANCE.getEPackage(TestingPackagePackage.eNS_URI);
-		ConditionsPackage theConditionsPackage = (ConditionsPackage)EPackage.Registry.INSTANCE.getEPackage(ConditionsPackage.eNS_URI);
+		StandardComparisonGrammarPackage theStandardComparisonGrammarPackage = (StandardComparisonGrammarPackage)EPackage.Registry.INSTANCE.getEPackage(StandardComparisonGrammarPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1382,8 +1369,8 @@ public class AttacksPackageImpl extends EPackageImpl implements AttacksPackage {
 		initEAttribute(getAttackFixedTime_EndTime(), ecorePackage.getEDouble(), "endTime", null, 0, 1, AttackFixedTime.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conditionBasedEClass, ConditionBased.class, "ConditionBased", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConditionBased_Starting(), theConditionsPackage.getCondition(), null, "starting", null, 0, 1, ConditionBased.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConditionBased_Ending(), theConditionsPackage.getCondition(), null, "ending", null, 0, 1, ConditionBased.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConditionBased_Starting(), theStandardComparisonGrammarPackage.getStandardCondition(), null, "starting", null, 0, 1, ConditionBased.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConditionBased_Ending(), theStandardComparisonGrammarPackage.getStandardCondition(), null, "ending", null, 0, 1, ConditionBased.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fuzzTestingAttackEClass, FuzzTestingAttack.class, "FuzzTestingAttack", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

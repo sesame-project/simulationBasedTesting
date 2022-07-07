@@ -13,11 +13,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
-
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.ConditionsPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarSpecPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.impl.GrammarSpecPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ComponentProperty;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MOOSSimulator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackageFactory;
@@ -39,8 +34,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPac
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.impl.ResultsPackageImpl;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardComparisonGrammar.StandardComparisonGrammarPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardComparisonGrammar.impl.StandardComparisonGrammarPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl;
@@ -185,12 +180,8 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		MetricsPackageImpl theMetricsPackage = (MetricsPackageImpl)(registeredPackage instanceof MetricsPackageImpl ? registeredPackage : MetricsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 		ResultsPackageImpl theResultsPackage = (ResultsPackageImpl)(registeredPackage instanceof ResultsPackageImpl ? registeredPackage : ResultsPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ConditionsPackage.eNS_URI);
-		ConditionsPackageImpl theConditionsPackage = (ConditionsPackageImpl)(registeredPackage instanceof ConditionsPackageImpl ? registeredPackage : ConditionsPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GrammarSpecPackage.eNS_URI);
-		GrammarSpecPackageImpl theGrammarSpecPackage = (GrammarSpecPackageImpl)(registeredPackage instanceof GrammarSpecPackageImpl ? registeredPackage : GrammarSpecPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
-		StandardGrammarPackageImpl theStandardGrammarPackage = (StandardGrammarPackageImpl)(registeredPackage instanceof StandardGrammarPackageImpl ? registeredPackage : StandardGrammarPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardComparisonGrammarPackage.eNS_URI);
+		StandardComparisonGrammarPackageImpl theStandardComparisonGrammarPackage = (StandardComparisonGrammarPackageImpl)(registeredPackage instanceof StandardComparisonGrammarPackageImpl ? registeredPackage : StandardComparisonGrammarPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theMRSPackagePackage.createPackageContents();
@@ -198,9 +189,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		theAttacksPackage.createPackageContents();
 		theMetricsPackage.createPackageContents();
 		theResultsPackage.createPackageContents();
-		theConditionsPackage.createPackageContents();
-		theGrammarSpecPackage.createPackageContents();
-		theStandardGrammarPackage.createPackageContents();
+		theStandardComparisonGrammarPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theMRSPackagePackage.initializePackageContents();
@@ -208,9 +197,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		theAttacksPackage.initializePackageContents();
 		theMetricsPackage.initializePackageContents();
 		theResultsPackage.initializePackageContents();
-		theConditionsPackage.initializePackageContents();
-		theGrammarSpecPackage.initializePackageContents();
-		theStandardGrammarPackage.initializePackageContents();
+		theStandardComparisonGrammarPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theMRSPackagePackage.freeze();

@@ -19,8 +19,6 @@ public class testCondition extends ConditionProcessing {
         double interrobot_distance = (double) varState.get("interrobot_distance");
         double human_distance = (double) varState.get("human_distance");
         
-        [* Find every instance of "expr" in the condi*]
- 
         // Java conversion needed: AND -> &&
         // insert parentheses around each sub-expression
         // How to incorporate functions? - functions need to reference a given Java function?

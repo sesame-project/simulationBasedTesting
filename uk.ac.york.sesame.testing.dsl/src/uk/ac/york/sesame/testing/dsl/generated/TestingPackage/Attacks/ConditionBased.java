@@ -2,8 +2,7 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.Condition;
-
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardComparisonGrammar.StandardCondition;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,12 +28,12 @@ public interface ConditionBased extends AttackActivation {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Starting</em>' containment reference.
-	 * @see #setStarting(Condition)
+	 * @see #setStarting(StandardCondition)
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getConditionBased_Starting()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Condition getStarting();
+	StandardCondition getStarting();
 
 	/**
 	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ConditionBased#getStarting <em>Starting</em>}' containment reference.
@@ -44,19 +43,19 @@ public interface ConditionBased extends AttackActivation {
 	 * @see #getStarting()
 	 * @generated
 	 */
-	void setStarting(Condition value);
+	void setStarting(StandardCondition value);
 
 	/**
 	 * Returns the value of the '<em><b>Ending</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ending</em>' containment reference.
-	 * @see #setEnding(Condition)
+	 * @see #setEnding(StandardCondition)
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage#getConditionBased_Ending()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Condition getEnding();
+	StandardCondition getEnding();
 
 	/**
 	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.ConditionBased#getEnding <em>Ending</em>}' containment reference.
@@ -66,5 +65,5 @@ public interface ConditionBased extends AttackActivation {
 	 * @see #getEnding()
 	 * @generated
 	 */
-	void setEnding(Condition value);
+	void setEnding(StandardCondition value);
 } // ConditionBased

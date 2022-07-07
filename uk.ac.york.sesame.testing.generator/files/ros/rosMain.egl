@@ -2,9 +2,9 @@
 	var mrs = Testing!TestingSpace.all().first().mrs;
 	var launchFileLocation = mrs.launchFileLocation;
 	var simulator = mrs.simulator;
-	var topicsNodesPublish = MRSPackage::Node.all().publisher.flatten();
+	var topicsNodesPublish = Node.all().publisher.flatten();
 	var topicsMetricsNeed = Metric.all().relatedTopics.flatten();
-	//topicsNodesPublish.println();
+	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
 %]
@@ -79,7 +79,6 @@ public class [%= testNameString %]_TestRunner {
 		%]
 		addSink(myProducer);
 		
-
 		[%
 		if (simulator.isTypeOf(ROSSimulator)) { %]
 		ROSSimulator rosSim = new ROSSimulator();

@@ -13,7 +13,7 @@ class TestingSpace {
 	attr String name;
 	val Metrics.Metric[*] metrics;
 	val Attacks.Attack[*] possibleAttacks;
-	val GrammarSpec.GrammarSpecification[0..1] grammarSpecification;
+	//val GrammarSpec.GrammarSpecification[0..1] grammarSpecification;
 	val TestCampaign[*] campaigns;
 	val MRSPackage.MRS[1] mrs;
 }
@@ -28,7 +28,7 @@ class TestCampaign {
 	attr String name;
 	ref Metrics.Metric[*] metrics;
 	ref Attacks.Attack[*] includedAttacks;
-	val GrammarSpec.GrammarConstraint[*] constraints;
+	//val GrammarSpec.GrammarConstraint[*] constraints;
 	val TestGenerationApproach[1] approach;
 	val Test[*]#parentCampaign performedTests;
 	val CampaignResultSet[*] resultSets;
@@ -134,8 +134,8 @@ class AttackFixedTime extends AttackActivation {
 }
 
 class ConditionBased extends AttackActivation {
-	val Conditions.Condition starting;
-	val Conditions.Condition ending;
+	val StandardComparisonGrammar.StandardCondition starting;
+	val StandardComparisonGrammar.StandardCondition ending;
 }
 
 class FuzzTestingAttack extends Attack {
@@ -350,103 +350,41 @@ class Result {
 }
 
 package Conditions {
-	class Condition {
-		attr String name;
-		val Node[1] elt;
-	}
 
-	class Node {
-		ref GrammarSpec.GrammarElt[1] grammarElt;
-		val Node[*] subNodes;
-		// Constraint: Only the non-terminals have a value?
-		val NodeValue[1] value;
-	}
-	
-	abstract class NodeValue {
-				
-	}
-	
-	class IntNodeValue extends NodeValue {
-		attr int value;
-	}
-	
-	class StringNodeValue extends NodeValue {
-		attr String value;
-	}
-	
-	class DoubleNodeValue extends NodeValue {
-		attr double value;
-	}
-}
-
-package GrammarSpec {
-	class GrammarSpecification {
-		attr String name;
-		ref GrammarElt[1] rootElement;
-		val GrammarElt[*]#parentGrammar elements;
-		val GrammarRule[*] rules;
-	}
-	
-	class GrammarTag {
-		attr String name;
-	}
-
-	abstract class GrammarElt {
-		attr String name;
-		readonly transient ref GrammarSpecification[1]#elements parentGrammar; 
-	}
-	
-	class NonterminalGrammarElt extends GrammarElt {
-		
-	}
-	
-	class TerminalGrammarElt extends GrammarElt {
-		val GrammarValue[1] value;
-	}
-	
-	class GrammarValue {
-		attr Object object;		
-	}
-	
-	// workaround for: https://bugs.eclipse.org/bugs/show_bug.cgi?id=89325#c4
-	// This has to contain a single reference
-	class GrammarRhsElt {
-		ref GrammarElt[1] elt;
-	}	
-	
-	class GrammarRule {
-		attr String ruleName; 
-		ref NonterminalGrammarElt[1] lhs;
-		val GrammarRhsElt[*] rhsElts;
-	}
-	
-	class GrammarConstraint {
-		// Allowed and forbidden rules
-	}
 }
 
 // This is a standard grammar - may not be sufficiently generic
-package StandardGrammar {
-
-	abstract class Variable {
-	}
-
-	class SimulatorVariable extends Variable {
-		attr String name;
-	}
+package StandardComparisonGrammar {
 	
-	// Others: class MetricVariable - exposes values from Metrics
-
-	abstract class Expression {
+	abstract class ConditionElement {
 		
 	}
 	
-	class BinaryExpression extends Expression {
-		val Expression left;
-		val Expression right;
+	class CompositeCondition extends ConditionElement {
+		val ConditionElement[1] left;
+		attr BinaryLogicalOperation[1] binop;
+		val ConditionElement[1] right;
 	}
 	
-	enum BinaryComparator {
+	class BasicCondition extends ConditionElement {
+		val Variable[1] left;
+		attr BinaryComparisonOperation[1] bincomp;
+		val Literal[1] right;
+	}
+	
+	abstract class Literal {
+		
+	}
+	
+	class ConditionInteger extends Literal {
+		attr int value;
+	}
+	
+	class Variable extends Literal {
+		ref Metrics.Metric[1] metric;
+	}
+	
+	enum BinaryComparisonOperation {
 		LESS_THAN = 1;
 		GREATER_THAN = 2;	
 	}
@@ -456,12 +394,13 @@ package StandardGrammar {
 		OR = 2;	
 	}
 	
-	class BinaryComparison extends BinaryExpression {
-		attr BinaryComparator comp;
+	abstract class Condition {
+		
 	}
-	
-	class BinaryLogicalExpression extends BinaryExpression {
-		attr BinaryLogicalOperation binOp; 
+
+	class StandardCondition {
+		attr String name;
+		val StandardComparisonGrammar.ConditionElement[1] c; 
 	}
 }
 

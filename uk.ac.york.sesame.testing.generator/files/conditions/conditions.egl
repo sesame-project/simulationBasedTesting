@@ -3,6 +3,11 @@ package conditions.generated;
 import org.apache.flink.util.Collector;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
+[* Generates condition processing according to the condition processing state
+
+https://nightlies.apache.org/flink/flink-docs-master/docs/dev/datastream/fault-tolerance/queryable_state/
+*]
+
 public class [%= condition.name %] extends ConditionProcessing {
 
     private static final long serialVersionUID = 1L;

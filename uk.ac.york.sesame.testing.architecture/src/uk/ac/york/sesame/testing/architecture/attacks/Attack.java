@@ -43,6 +43,7 @@ public abstract class Attack implements FlatMapFunction<EventMessage, EventMessa
 		this.end = end;
 	}
 	
+	// Extend for condition-based fuzzing
 	public boolean isReadyNow() {
 		double time = Double.parseDouble(SimCore.getInstance().getTime());
 		System.out.println("time=" + time + ",start=" + start + ",end=" + end);

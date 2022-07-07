@@ -95,22 +95,13 @@ public interface TestingPackagePackage extends EPackage {
 	int TESTING_SPACE__POSSIBLE_ATTACKS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Grammar Specification</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TESTING_SPACE__GRAMMAR_SPECIFICATION = 3;
-
-	/**
 	 * The feature id for the '<em><b>Campaigns</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TESTING_SPACE__CAMPAIGNS = 4;
+	int TESTING_SPACE__CAMPAIGNS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Mrs</b></em>' containment reference.
@@ -119,7 +110,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TESTING_SPACE__MRS = 5;
+	int TESTING_SPACE__MRS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Testing Space</em>' class.
@@ -128,7 +119,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TESTING_SPACE_FEATURE_COUNT = 6;
+	int TESTING_SPACE_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Testing Space</em>' class.
@@ -177,22 +168,13 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_CAMPAIGN__INCLUDED_ATTACKS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEST_CAMPAIGN__CONSTRAINTS = 3;
-
-	/**
 	 * The feature id for the '<em><b>Approach</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__APPROACH = 4;
+	int TEST_CAMPAIGN__APPROACH = 3;
 
 	/**
 	 * The feature id for the '<em><b>Performed Tests</b></em>' containment reference list.
@@ -201,7 +183,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__PERFORMED_TESTS = 5;
+	int TEST_CAMPAIGN__PERFORMED_TESTS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Result Sets</b></em>' containment reference list.
@@ -210,7 +192,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__RESULT_SETS = 6;
+	int TEST_CAMPAIGN__RESULT_SETS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Default End Trigger</b></em>' containment reference.
@@ -219,7 +201,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__DEFAULT_END_TRIGGER = 7;
+	int TEST_CAMPAIGN__DEFAULT_END_TRIGGER = 6;
 
 	/**
 	 * The number of structural features of the '<em>Test Campaign</em>' class.
@@ -228,7 +210,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN_FEATURE_COUNT = 8;
+	int TEST_CAMPAIGN_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Test Campaign</em>' class.
@@ -626,17 +608,6 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestingSpace_PossibleAttacks();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getGrammarSpecification <em>Grammar Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Grammar Specification</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getGrammarSpecification()
-	 * @see #getTestingSpace()
-	 * @generated
-	 */
-	EReference getTestingSpace_GrammarSpecification();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getCampaigns <em>Campaigns</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -700,17 +671,6 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTestCampaign_IncludedAttacks();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConstraints <em>Constraints</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConstraints()
-	 * @see #getTestCampaign()
-	 * @generated
-	 */
-	EReference getTestCampaign_Constraints();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getApproach <em>Approach</em>}'.
@@ -1036,14 +996,6 @@ public interface TestingPackagePackage extends EPackage {
 		EReference TESTING_SPACE__POSSIBLE_ATTACKS = eINSTANCE.getTestingSpace_PossibleAttacks();
 
 		/**
-		 * The meta object literal for the '<em><b>Grammar Specification</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TESTING_SPACE__GRAMMAR_SPECIFICATION = eINSTANCE.getTestingSpace_GrammarSpecification();
-
-		/**
 		 * The meta object literal for the '<em><b>Campaigns</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1092,14 +1044,6 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST_CAMPAIGN__INCLUDED_ATTACKS = eINSTANCE.getTestCampaign_IncludedAttacks();
-
-		/**
-		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEST_CAMPAIGN__CONSTRAINTS = eINSTANCE.getTestCampaign_Constraints();
 
 		/**
 		 * The meta object literal for the '<em><b>Approach</b></em>' containment reference feature.
