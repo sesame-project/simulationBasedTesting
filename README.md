@@ -65,7 +65,7 @@ installation instructions for the platform.
 ### Setting paths
 
 There are several paths in the generated runner which should be set before executing the generated experiment runner:
-- spaceModelFilename: gives the full absolute path of the (model filename which is used in the wizard)
+- spaceModelFilename: gives the full absolute path of the model filename (which is used in the wizard)
 - CODE_GENERATION_DIRECTORY: the full base path of the project which should be used
 - orchestratorBasePath: the full path of the generator project in the user's file system
 
