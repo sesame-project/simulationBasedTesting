@@ -1,0 +1,52 @@
+package uk.ac.york.sesame.testing.architecture.attacks;
+
+import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.util.Collector;
+
+import uk.ac.york.sesame.testing.architecture.data.EventMessage;
+import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
+
+public abstract class TimeBasedAttack extends Attack {
+	private static final long serialVersionUID = 1L;
+	
+	protected String topic;
+	protected double start;
+	protected double end;
+
+	public String getTopic() {
+		return topic;
+	}
+
+	public void setTopic(String topic) {
+		this.topic = topic;
+	}
+
+	public double getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
+	}
+
+	public double getEnd() {
+		return end;
+	}
+
+	public void setEnd(int end) {
+		this.end = end;
+	}
+
+	public TimeBasedAttack(String topic, double start, double end) {
+		super(topic);
+		this.start = start;
+		this.end = end;
+	}
+	
+	// Extend for condition-based fuzzing
+	public boolean isReadyNow() {
+		double time = Double.parseDouble(SimCore.getInstance().getTime());
+		System.out.println("time=" + time + ",start=" + start + ",end=" + end);
+		return (time >= start) && (time <= end);
+	}
+}

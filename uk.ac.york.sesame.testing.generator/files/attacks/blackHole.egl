@@ -1,10 +1,15 @@
-[% var classNameExt = attack.containingTest.name.firstToUpperCase(); %]
+[% var classNameExt = attack.containingTest.name.firstToUpperCase();
+   var attackCommon : Template = TemplateFactory.load("/files/attacks/attackCommon.egl");
+   // Populate variables here
+ %]
 
 import org.apache.flink.util.Collector;
 import uk.ac.york.sesame.testing.architecture.attacks.Attack;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
-public class BlackHoleFlatMap_[%= classNameExt %] extends Attack {
+// TODO: EGL generators need to generate based on attack activation
+
+public class BlackHoleFlatMap_[%= classNameExt %] extends [%= attackCommon.superclassName() %] {
 
 	private static final long serialVersionUID = 1L;
 
@@ -12,8 +17,8 @@ public class BlackHoleFlatMap_[%= classNameExt %] extends Attack {
 		super(topic,start,end);
 	}
 	
-	@Override
-	public void flatMap(EventMessage value, Collector<EventMessage> out) throws Exception {
+	@Override 
+	public void processElement(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
 		if (value.getTopic().equalsIgnoreCase(topic) && isReadyNow()) {
 			System.out.println("Message: " + value + " discarded.");
 		} else {

@@ -1,4 +1,7 @@
-[% var classNameExt = attack.containingTest.name.firstToUpperCase(); %]
+[% var classNameExt = attack.containingTest.name.firstToUpperCase(); 
+   var attackCommon : Template = TemplateFactory.load("/files/attacks/attackCommon.egl");
+   // Populate variables here
+%]
 
 import java.util.Map;
 import java.util.HashMap;
@@ -12,7 +15,8 @@ import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 import uk.ac.york.sesame.testing.architecture.attacks.Attack;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
-public class [%=attack.name%]FlatMap_[%= classNameExt %] extends Attack {
+// TODO: EGL generators need to generate based on attack activation
+public class [%=attack.name%]FlatMap_[%= classNameExt %] extends [%= attackCommon.superclassName() %] {
 
 	private static final long serialVersionUID = 1L;
 	Random rng;
@@ -23,10 +27,11 @@ public class [%=attack.name%]FlatMap_[%= classNameExt %] extends Attack {
 	}
 	
 	@Override
-	public void flatMap(EventMessage value, Collector<EventMessage> out) throws Exception { [%
+	public void processElement(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception { 
+	[%
 		var parsingMethod = attack.topicToAttack.type.parsingMethod.name;
-		if (parsingMethod.equalsIgnoreCase("JSON")) {
-			%]
+		if (parsingMethod.equalsIgnoreCase("JSON")) { 
+	%]
 			if (value.getTopic().equals(topic) && isReadyNow()) {
 				Object obj = JSONValue.parse(value.getValue().toString());
 	      		JSONObject jo = (JSONObject)obj;
