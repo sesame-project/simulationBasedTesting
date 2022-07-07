@@ -64,6 +64,13 @@ installation instructions for the platform.
 
 ### Setting paths
 
+There are several paths in the generated runner which should be set before executing the generated experiment runner:
+- spaceModelFilename: gives the full absolute path of the (model filename which is used in the wizard)
+- CODE_GENERATION_DIRECTORY: the full base path of the project which should be used
+- orchestratorBasePath: the full path of the generator project in the user's file system
+
+In future work, we will have these file paths set up automatically, or configurable from a property file.
+
 ```
 final String spaceModelFileName = "/home/jharbin/runtime-EclipseApplication/TestSesame/models/testingHealthcare.model";
 final String CODE_GENERATION_DIRECTORY = "/home/jharbin/runtime-EclipseApplication/TestSesame";
