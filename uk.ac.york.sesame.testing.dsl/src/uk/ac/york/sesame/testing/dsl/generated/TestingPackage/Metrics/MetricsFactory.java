@@ -49,13 +49,13 @@ public interface MetricsFactory extends EFactory {
 	MetricDefault createMetricDefault();
 
 	/**
-	 * Returns a new object of class '<em>Topic Metric</em>'.
+	 * Returns a new object of class '<em>Variable Metric</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Topic Metric</em>'.
+	 * @return a new object of class '<em>Variable Metric</em>'.
 	 * @generated
 	 */
-	TopicMetric createTopicMetric();
+	VariableMetric createVariableMetric();
 
 	/**
 	 * Returns a new object of class '<em>Metric Instance</em>'.
@@ -85,13 +85,13 @@ public interface MetricsFactory extends EFactory {
 	StreamMetric createStreamMetric();
 
 	/**
-	 * Returns a new object of class '<em>Attack Times Metric</em>'.
+	 * Returns a new object of class '<em>Fuzzing Operation Times Metric</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attack Times Metric</em>'.
+	 * @return a new object of class '<em>Fuzzing Operation Times Metric</em>'.
 	 * @generated
 	 */
-	AttackTimesMetric createAttackTimesMetric();
+	FuzzingOperationTimesMetric createFuzzingOperationTimesMetric();
 
 	/**
 	 * Returns a new object of class '<em>File Stream Result</em>'.

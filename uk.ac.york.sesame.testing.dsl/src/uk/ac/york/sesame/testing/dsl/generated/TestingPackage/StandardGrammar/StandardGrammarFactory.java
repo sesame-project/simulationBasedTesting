@@ -22,40 +22,49 @@ public interface StandardGrammarFactory extends EFactory {
 	StandardGrammarFactory eINSTANCE = uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Simulator Variable</em>'.
+	 * Returns a new object of class '<em>Composite Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simulator Variable</em>'.
+	 * @return a new object of class '<em>Composite Condition</em>'.
 	 * @generated
 	 */
-	SimulatorVariable createSimulatorVariable();
+	CompositeCondition createCompositeCondition();
 
 	/**
-	 * Returns a new object of class '<em>Binary Expression</em>'.
+	 * Returns a new object of class '<em>Basic Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binary Expression</em>'.
+	 * @return a new object of class '<em>Basic Condition</em>'.
 	 * @generated
 	 */
-	BinaryExpression createBinaryExpression();
+	BasicCondition createBasicCondition();
 
 	/**
-	 * Returns a new object of class '<em>Binary Comparison</em>'.
+	 * Returns a new object of class '<em>Condition Integer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binary Comparison</em>'.
+	 * @return a new object of class '<em>Condition Integer</em>'.
 	 * @generated
 	 */
-	BinaryComparison createBinaryComparison();
+	ConditionInteger createConditionInteger();
 
 	/**
-	 * Returns a new object of class '<em>Binary Logical Expression</em>'.
+	 * Returns a new object of class '<em>Condition Variable</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binary Logical Expression</em>'.
+	 * @return a new object of class '<em>Condition Variable</em>'.
 	 * @generated
 	 */
-	BinaryLogicalExpression createBinaryLogicalExpression();
+	ConditionVariable createConditionVariable();
+
+	/**
+	 * Returns a new object of class '<em>Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Condition</em>'.
+	 * @generated
+	 */
+	Condition createCondition();
 
 	/**
 	 * Returns the package supported by this factory.

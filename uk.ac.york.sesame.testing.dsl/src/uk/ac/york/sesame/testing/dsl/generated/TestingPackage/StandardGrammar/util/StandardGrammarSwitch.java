@@ -66,45 +66,49 @@ public class StandardGrammarSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case StandardGrammarPackage.VARIABLE: {
-				Variable variable = (Variable)theEObject;
-				T result = caseVariable(variable);
+			case StandardGrammarPackage.CONDITION_ELEMENT: {
+				ConditionElement conditionElement = (ConditionElement)theEObject;
+				T result = caseConditionElement(conditionElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StandardGrammarPackage.SIMULATOR_VARIABLE: {
-				SimulatorVariable simulatorVariable = (SimulatorVariable)theEObject;
-				T result = caseSimulatorVariable(simulatorVariable);
-				if (result == null) result = caseVariable(simulatorVariable);
+			case StandardGrammarPackage.COMPOSITE_CONDITION: {
+				CompositeCondition compositeCondition = (CompositeCondition)theEObject;
+				T result = caseCompositeCondition(compositeCondition);
+				if (result == null) result = caseConditionElement(compositeCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StandardGrammarPackage.EXPRESSION: {
-				Expression expression = (Expression)theEObject;
-				T result = caseExpression(expression);
+			case StandardGrammarPackage.BASIC_CONDITION: {
+				BasicCondition basicCondition = (BasicCondition)theEObject;
+				T result = caseBasicCondition(basicCondition);
+				if (result == null) result = caseConditionElement(basicCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StandardGrammarPackage.BINARY_EXPRESSION: {
-				BinaryExpression binaryExpression = (BinaryExpression)theEObject;
-				T result = caseBinaryExpression(binaryExpression);
-				if (result == null) result = caseExpression(binaryExpression);
+			case StandardGrammarPackage.CONDITION_LITERAL: {
+				ConditionLiteral conditionLiteral = (ConditionLiteral)theEObject;
+				T result = caseConditionLiteral(conditionLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StandardGrammarPackage.BINARY_COMPARISON: {
-				BinaryComparison binaryComparison = (BinaryComparison)theEObject;
-				T result = caseBinaryComparison(binaryComparison);
-				if (result == null) result = caseBinaryExpression(binaryComparison);
-				if (result == null) result = caseExpression(binaryComparison);
+			case StandardGrammarPackage.CONDITION_INTEGER: {
+				ConditionInteger conditionInteger = (ConditionInteger)theEObject;
+				T result = caseConditionInteger(conditionInteger);
+				if (result == null) result = caseConditionLiteral(conditionInteger);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StandardGrammarPackage.BINARY_LOGICAL_EXPRESSION: {
-				BinaryLogicalExpression binaryLogicalExpression = (BinaryLogicalExpression)theEObject;
-				T result = caseBinaryLogicalExpression(binaryLogicalExpression);
-				if (result == null) result = caseBinaryExpression(binaryLogicalExpression);
-				if (result == null) result = caseExpression(binaryLogicalExpression);
+			case StandardGrammarPackage.CONDITION_VARIABLE: {
+				ConditionVariable conditionVariable = (ConditionVariable)theEObject;
+				T result = caseConditionVariable(conditionVariable);
+				if (result == null) result = caseConditionLiteral(conditionVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StandardGrammarPackage.CONDITION: {
+				Condition condition = (Condition)theEObject;
+				T result = caseCondition(condition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -113,92 +117,107 @@ public class StandardGrammarSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVariable(Variable object) {
+	public T caseConditionElement(ConditionElement object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Simulator Variable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Simulator Variable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSimulatorVariable(SimulatorVariable object) {
+	public T caseCompositeCondition(CompositeCondition object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Basic Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Basic Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExpression(Expression object) {
+	public T caseBasicCondition(BasicCondition object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binary Expression</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binary Expression</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Literal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBinaryExpression(BinaryExpression object) {
+	public T caseConditionLiteral(ConditionLiteral object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binary Comparison</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Integer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binary Comparison</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Integer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBinaryComparison(BinaryComparison object) {
+	public T caseConditionInteger(ConditionInteger object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binary Logical Expression</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Variable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binary Logical Expression</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Variable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBinaryLogicalExpression(BinaryLogicalExpression object) {
+	public T caseConditionVariable(ConditionVariable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Condition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCondition(Condition object) {
 		return null;
 	}
 

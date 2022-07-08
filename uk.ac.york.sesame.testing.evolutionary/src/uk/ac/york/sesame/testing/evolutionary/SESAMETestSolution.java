@@ -13,7 +13,7 @@ import org.uma.jmetal.solution.*;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
 public class SESAMETestSolution implements Solution<SESAMETestAttack> {
@@ -245,11 +245,11 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	}
 
 	public void ensureModelUpdated(TestCampaign campaign) {
-		List<Attack> testAttacks = t.getAttacks();
+		List<FuzzingOperation> testAttacks = t.getOperations();
 		// First, ensure the model attack objects are all updated in the model object
 		// from its contents
 		for (SESAMETestAttack sta : contents) {
-			Attack a = sta.getAttack();
+			FuzzingOperation a = sta.getAttack();
 			testAttacks.add(a);
 		}
 		

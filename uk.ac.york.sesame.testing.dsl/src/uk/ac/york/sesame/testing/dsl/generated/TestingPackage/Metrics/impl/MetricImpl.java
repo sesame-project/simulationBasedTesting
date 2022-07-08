@@ -3,22 +3,25 @@
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 
 /**
@@ -31,8 +34,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPac
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getDir <em>Dir</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getKeyedBy <em>Keyed By</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getRelatedTopics <em>Related Topics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getRelatedVariables <em>Related Variables</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getDefault <em>Default</em>}</li>
  * </ul>
  *
@@ -80,34 +82,14 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 	protected MetricOptimisationDirection dir = DIR_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getKeyedBy() <em>Keyed By</em>}' attribute.
+	 * The cached value of the '{@link #getRelatedVariables() <em>Related Variables</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKeyedBy()
+	 * @see #getRelatedVariables()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final MetricStateKeyedBy KEYED_BY_EDEFAULT = MetricStateKeyedBy.TEST;
-
-	/**
-	 * The cached value of the '{@link #getKeyedBy() <em>Keyed By</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getKeyedBy()
-	 * @generated
-	 * @ordered
-	 */
-	protected MetricStateKeyedBy keyedBy = KEYED_BY_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getRelatedTopics() <em>Related Topics</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRelatedTopics()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Topic> relatedTopics;
+	protected EList<Variable> relatedVariables;
 
 	/**
 	 * The cached value of the '{@link #getDefault() <em>Default</em>}' containment reference.
@@ -185,32 +167,11 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetricStateKeyedBy getKeyedBy() {
-		return keyedBy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setKeyedBy(MetricStateKeyedBy newKeyedBy) {
-		MetricStateKeyedBy oldKeyedBy = keyedBy;
-		keyedBy = newKeyedBy == null ? KEYED_BY_EDEFAULT : newKeyedBy;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetricsPackage.METRIC__KEYED_BY, oldKeyedBy, keyedBy));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Topic> getRelatedTopics() {
-		if (relatedTopics == null) {
-			relatedTopics = new EObjectResolvingEList<Topic>(Topic.class, this, MetricsPackage.METRIC__RELATED_TOPICS);
+	public EList<Variable> getRelatedVariables() {
+		if (relatedVariables == null) {
+			relatedVariables = new EObjectResolvingEList<Variable>(Variable.class, this, MetricsPackage.METRIC__RELATED_VARIABLES);
 		}
-		return relatedTopics;
+		return relatedVariables;
 	}
 
 	/**
@@ -282,10 +243,8 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 				return getName();
 			case MetricsPackage.METRIC__DIR:
 				return getDir();
-			case MetricsPackage.METRIC__KEYED_BY:
-				return getKeyedBy();
-			case MetricsPackage.METRIC__RELATED_TOPICS:
-				return getRelatedTopics();
+			case MetricsPackage.METRIC__RELATED_VARIABLES:
+				return getRelatedVariables();
 			case MetricsPackage.METRIC__DEFAULT:
 				return getDefault();
 		}
@@ -307,12 +266,9 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 			case MetricsPackage.METRIC__DIR:
 				setDir((MetricOptimisationDirection)newValue);
 				return;
-			case MetricsPackage.METRIC__KEYED_BY:
-				setKeyedBy((MetricStateKeyedBy)newValue);
-				return;
-			case MetricsPackage.METRIC__RELATED_TOPICS:
-				getRelatedTopics().clear();
-				getRelatedTopics().addAll((Collection<? extends Topic>)newValue);
+			case MetricsPackage.METRIC__RELATED_VARIABLES:
+				getRelatedVariables().clear();
+				getRelatedVariables().addAll((Collection<? extends Variable>)newValue);
 				return;
 			case MetricsPackage.METRIC__DEFAULT:
 				setDefault((MetricDefault)newValue);
@@ -335,11 +291,8 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 			case MetricsPackage.METRIC__DIR:
 				setDir(DIR_EDEFAULT);
 				return;
-			case MetricsPackage.METRIC__KEYED_BY:
-				setKeyedBy(KEYED_BY_EDEFAULT);
-				return;
-			case MetricsPackage.METRIC__RELATED_TOPICS:
-				getRelatedTopics().clear();
+			case MetricsPackage.METRIC__RELATED_VARIABLES:
+				getRelatedVariables().clear();
 				return;
 			case MetricsPackage.METRIC__DEFAULT:
 				setDefault((MetricDefault)null);
@@ -360,10 +313,8 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case MetricsPackage.METRIC__DIR:
 				return dir != DIR_EDEFAULT;
-			case MetricsPackage.METRIC__KEYED_BY:
-				return keyedBy != KEYED_BY_EDEFAULT;
-			case MetricsPackage.METRIC__RELATED_TOPICS:
-				return relatedTopics != null && !relatedTopics.isEmpty();
+			case MetricsPackage.METRIC__RELATED_VARIABLES:
+				return relatedVariables != null && !relatedVariables.isEmpty();
 			case MetricsPackage.METRIC__DEFAULT:
 				return default_ != null;
 		}
@@ -384,8 +335,6 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 		result.append(name);
 		result.append(", dir: ");
 		result.append(dir);
-		result.append(", keyedBy: ");
-		result.append(keyedBy);
 		result.append(')');
 		return result.toString();
 	}

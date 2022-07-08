@@ -68,28 +68,32 @@ public class StandardGrammarAdapterFactory extends AdapterFactoryImpl {
 	protected StandardGrammarSwitch<Adapter> modelSwitch =
 		new StandardGrammarSwitch<Adapter>() {
 			@Override
-			public Adapter caseVariable(Variable object) {
-				return createVariableAdapter();
+			public Adapter caseConditionElement(ConditionElement object) {
+				return createConditionElementAdapter();
 			}
 			@Override
-			public Adapter caseSimulatorVariable(SimulatorVariable object) {
-				return createSimulatorVariableAdapter();
+			public Adapter caseCompositeCondition(CompositeCondition object) {
+				return createCompositeConditionAdapter();
 			}
 			@Override
-			public Adapter caseExpression(Expression object) {
-				return createExpressionAdapter();
+			public Adapter caseBasicCondition(BasicCondition object) {
+				return createBasicConditionAdapter();
 			}
 			@Override
-			public Adapter caseBinaryExpression(BinaryExpression object) {
-				return createBinaryExpressionAdapter();
+			public Adapter caseConditionLiteral(ConditionLiteral object) {
+				return createConditionLiteralAdapter();
 			}
 			@Override
-			public Adapter caseBinaryComparison(BinaryComparison object) {
-				return createBinaryComparisonAdapter();
+			public Adapter caseConditionInteger(ConditionInteger object) {
+				return createConditionIntegerAdapter();
 			}
 			@Override
-			public Adapter caseBinaryLogicalExpression(BinaryLogicalExpression object) {
-				return createBinaryLogicalExpressionAdapter();
+			public Adapter caseConditionVariable(ConditionVariable object) {
+				return createConditionVariableAdapter();
+			}
+			@Override
+			public Adapter caseCondition(Condition object) {
+				return createConditionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -112,86 +116,100 @@ public class StandardGrammarAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Variable <em>Variable</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionElement <em>Condition Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Variable
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionElement
 	 * @generated
 	 */
-	public Adapter createVariableAdapter() {
+	public Adapter createConditionElementAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.SimulatorVariable <em>Simulator Variable</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition <em>Composite Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.SimulatorVariable
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition
 	 * @generated
 	 */
-	public Adapter createSimulatorVariableAdapter() {
+	public Adapter createCompositeConditionAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Expression <em>Expression</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition <em>Basic Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Expression
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition
 	 * @generated
 	 */
-	public Adapter createExpressionAdapter() {
+	public Adapter createBasicConditionAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryExpression <em>Binary Expression</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionLiteral <em>Condition Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryExpression
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionLiteral
 	 * @generated
 	 */
-	public Adapter createBinaryExpressionAdapter() {
+	public Adapter createConditionLiteralAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparison <em>Binary Comparison</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionInteger <em>Condition Integer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparison
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionInteger
 	 * @generated
 	 */
-	public Adapter createBinaryComparisonAdapter() {
+	public Adapter createConditionIntegerAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalExpression <em>Binary Logical Expression</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionVariable <em>Condition Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalExpression
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionVariable
 	 * @generated
 	 */
-	public Adapter createBinaryLogicalExpressionAdapter() {
+	public Adapter createConditionVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition
+	 * @generated
+	 */
+	public Adapter createConditionAdapter() {
 		return null;
 	}
 

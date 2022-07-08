@@ -10,29 +10,34 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
-
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
-
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.EvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RandomTestGeneration;
-
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.impl.ResultsPackageImpl;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardComparisonGrammar.StandardComparisonGrammarPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardComparisonGrammar.impl.StandardComparisonGrammarPackageImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationApproach;
@@ -173,31 +178,31 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(AttacksPackage.eNS_URI);
-		AttacksPackageImpl theAttacksPackage = (AttacksPackageImpl)(registeredPackage instanceof AttacksPackageImpl ? registeredPackage : AttacksPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FuzzingOperationsPackage.eNS_URI);
+		FuzzingOperationsPackageImpl theFuzzingOperationsPackage = (FuzzingOperationsPackageImpl)(registeredPackage instanceof FuzzingOperationsPackageImpl ? registeredPackage : FuzzingOperationsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MetricsPackage.eNS_URI);
 		MetricsPackageImpl theMetricsPackage = (MetricsPackageImpl)(registeredPackage instanceof MetricsPackageImpl ? registeredPackage : MetricsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 		ResultsPackageImpl theResultsPackage = (ResultsPackageImpl)(registeredPackage instanceof ResultsPackageImpl ? registeredPackage : ResultsPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardComparisonGrammarPackage.eNS_URI);
-		StandardComparisonGrammarPackageImpl theStandardComparisonGrammarPackage = (StandardComparisonGrammarPackageImpl)(registeredPackage instanceof StandardComparisonGrammarPackageImpl ? registeredPackage : StandardComparisonGrammarPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
+		StandardGrammarPackageImpl theStandardGrammarPackage = (StandardGrammarPackageImpl)(registeredPackage instanceof StandardGrammarPackageImpl ? registeredPackage : StandardGrammarPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTestingPackagePackage.createPackageContents();
-		theAttacksPackage.createPackageContents();
+		theFuzzingOperationsPackage.createPackageContents();
 		theMetricsPackage.createPackageContents();
 		theResultsPackage.createPackageContents();
-		theStandardComparisonGrammarPackage.createPackageContents();
+		theStandardGrammarPackage.createPackageContents();
 		theMRSPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTestingPackagePackage.initializePackageContents();
-		theAttacksPackage.initializePackageContents();
+		theFuzzingOperationsPackage.initializePackageContents();
 		theMetricsPackage.initializePackageContents();
 		theResultsPackage.initializePackageContents();
-		theStandardComparisonGrammarPackage.initializePackageContents();
+		theStandardGrammarPackage.initializePackageContents();
 		theMRSPackagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -240,7 +245,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestingSpace_PossibleAttacks() {
+	public EReference getTestingSpace_PossibleFuzzingOperations() {
 		return (EReference)testingSpaceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -294,7 +299,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_IncludedAttacks() {
+	public EReference getTestCampaign_IncludedOperations() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -357,7 +362,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTest_Attacks() {
+	public EReference getTest_Operations() {
 		return (EReference)testEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -554,14 +559,14 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		testingSpaceEClass = createEClass(TESTING_SPACE);
 		createEAttribute(testingSpaceEClass, TESTING_SPACE__NAME);
 		createEReference(testingSpaceEClass, TESTING_SPACE__METRICS);
-		createEReference(testingSpaceEClass, TESTING_SPACE__POSSIBLE_ATTACKS);
+		createEReference(testingSpaceEClass, TESTING_SPACE__POSSIBLE_FUZZING_OPERATIONS);
 		createEReference(testingSpaceEClass, TESTING_SPACE__CAMPAIGNS);
 		createEReference(testingSpaceEClass, TESTING_SPACE__MRS);
 
 		testCampaignEClass = createEClass(TEST_CAMPAIGN);
 		createEAttribute(testCampaignEClass, TEST_CAMPAIGN__NAME);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__METRICS);
-		createEReference(testCampaignEClass, TEST_CAMPAIGN__INCLUDED_ATTACKS);
+		createEReference(testCampaignEClass, TEST_CAMPAIGN__INCLUDED_OPERATIONS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__APPROACH);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__PERFORMED_TESTS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__RESULT_SETS);
@@ -569,7 +574,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 
 		testEClass = createEClass(TEST);
 		createEAttribute(testEClass, TEST__NAME);
-		createEReference(testEClass, TEST__ATTACKS);
+		createEReference(testEClass, TEST__OPERATIONS);
 		createEReference(testEClass, TEST__METRICS);
 		createEReference(testEClass, TEST__END_TRIGGER);
 		createEReference(testEClass, TEST__DEVELOPED_FROM);
@@ -623,17 +628,17 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		AttacksPackage theAttacksPackage = (AttacksPackage)EPackage.Registry.INSTANCE.getEPackage(AttacksPackage.eNS_URI);
+		FuzzingOperationsPackage theFuzzingOperationsPackage = (FuzzingOperationsPackage)EPackage.Registry.INSTANCE.getEPackage(FuzzingOperationsPackage.eNS_URI);
 		MetricsPackage theMetricsPackage = (MetricsPackage)EPackage.Registry.INSTANCE.getEPackage(MetricsPackage.eNS_URI);
 		ResultsPackage theResultsPackage = (ResultsPackage)EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
-		StandardComparisonGrammarPackage theStandardComparisonGrammarPackage = (StandardComparisonGrammarPackage)EPackage.Registry.INSTANCE.getEPackage(StandardComparisonGrammarPackage.eNS_URI);
+		StandardGrammarPackage theStandardGrammarPackage = (StandardGrammarPackage)EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
 		MRSPackagePackage theMRSPackagePackage = (MRSPackagePackage)EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 
 		// Add subpackages
-		getESubpackages().add(theAttacksPackage);
+		getESubpackages().add(theFuzzingOperationsPackage);
 		getESubpackages().add(theMetricsPackage);
 		getESubpackages().add(theResultsPackage);
-		getESubpackages().add(theStandardComparisonGrammarPackage);
+		getESubpackages().add(theStandardGrammarPackage);
 		getESubpackages().add(theMRSPackagePackage);
 
 		// Create type parameters
@@ -650,14 +655,14 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEClass(testingSpaceEClass, TestingSpace.class, "TestingSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestingSpace_Name(), ecorePackage.getEString(), "name", null, 0, 1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_Metrics(), theMetricsPackage.getMetric(), null, "metrics", null, 0, -1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestingSpace_PossibleAttacks(), theAttacksPackage.getAttack(), null, "possibleAttacks", null, 0, -1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestingSpace_PossibleFuzzingOperations(), theFuzzingOperationsPackage.getFuzzingOperation(), null, "possibleFuzzingOperations", null, 0, -1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_Campaigns(), this.getTestCampaign(), null, "campaigns", null, 0, -1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestingSpace_Mrs(), theMRSPackagePackage.getMRS(), null, "mrs", null, 1, 1, TestingSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testCampaignEClass, TestCampaign.class, "TestCampaign", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestCampaign_Name(), ecorePackage.getEString(), "name", null, 0, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Metrics(), theMetricsPackage.getMetric(), null, "metrics", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestCampaign_IncludedAttacks(), theAttacksPackage.getAttack(), null, "includedAttacks", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestCampaign_IncludedOperations(), theFuzzingOperationsPackage.getFuzzingOperation(), null, "includedOperations", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Approach(), this.getTestGenerationApproach(), null, "approach", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_PerformedTests(), this.getTest(), this.getTest_ParentCampaign(), "performedTests", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_ResultSets(), this.getCampaignResultSet(), null, "resultSets", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -665,7 +670,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 
 		initEClass(testEClass, Test.class, "Test", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTest_Name(), ecorePackage.getEString(), "name", null, 0, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTest_Attacks(), theAttacksPackage.getAttack(), theAttacksPackage.getAttack_ContainingTest(), "attacks", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTest_Operations(), theFuzzingOperationsPackage.getFuzzingOperation(), theFuzzingOperationsPackage.getFuzzingOperation_ContainingTest(), "operations", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_Metrics(), theMetricsPackage.getMetricInstance(), null, "metrics", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_EndTrigger(), this.getExecutionEndTrigger(), null, "endTrigger", null, 1, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_DevelopedFrom(), this.getTest(), null, "developedFrom", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

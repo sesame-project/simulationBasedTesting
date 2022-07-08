@@ -170,22 +170,13 @@ public interface MetricsPackage extends EPackage {
 	int METRIC__DIR = 1;
 
 	/**
-	 * The feature id for the '<em><b>Keyed By</b></em>' attribute.
+	 * The feature id for the '<em><b>Related Variables</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC__KEYED_BY = 2;
-
-	/**
-	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int METRIC__RELATED_TOPICS = 3;
+	int METRIC__RELATED_VARIABLES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' containment reference.
@@ -194,7 +185,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC__DEFAULT = 4;
+	int METRIC__DEFAULT = 3;
 
 	/**
 	 * The number of structural features of the '<em>Metric</em>' class.
@@ -203,7 +194,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC_FEATURE_COUNT = 5;
+	int METRIC_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Metric</em>' class.
@@ -252,14 +243,14 @@ public interface MetricsPackage extends EPackage {
 	int METRIC_DEFAULT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.TopicMetricImpl <em>Topic Metric</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.VariableMetricImpl <em>Variable Metric</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.TopicMetricImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getTopicMetric()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.VariableMetricImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getVariableMetric()
 	 * @generated
 	 */
-	int TOPIC_METRIC = 5;
+	int VARIABLE_METRIC = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -268,7 +259,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC_METRIC__NAME = METRIC__NAME;
+	int VARIABLE_METRIC__NAME = METRIC__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Dir</b></em>' attribute.
@@ -277,25 +268,16 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC_METRIC__DIR = METRIC__DIR;
+	int VARIABLE_METRIC__DIR = METRIC__DIR;
 
 	/**
-	 * The feature id for the '<em><b>Keyed By</b></em>' attribute.
+	 * The feature id for the '<em><b>Related Variables</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC_METRIC__KEYED_BY = METRIC__KEYED_BY;
-
-	/**
-	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOPIC_METRIC__RELATED_TOPICS = METRIC__RELATED_TOPICS;
+	int VARIABLE_METRIC__RELATED_VARIABLES = METRIC__RELATED_VARIABLES;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' containment reference.
@@ -304,34 +286,34 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC_METRIC__DEFAULT = METRIC__DEFAULT;
+	int VARIABLE_METRIC__DEFAULT = METRIC__DEFAULT;
 
 	/**
-	 * The feature id for the '<em><b>Chosen Topics</b></em>' reference.
+	 * The feature id for the '<em><b>Chosen Variables</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC_METRIC__CHOSEN_TOPICS = METRIC_FEATURE_COUNT + 0;
+	int VARIABLE_METRIC__CHOSEN_VARIABLES = METRIC_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Topic Metric</em>' class.
+	 * The number of structural features of the '<em>Variable Metric</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC_METRIC_FEATURE_COUNT = METRIC_FEATURE_COUNT + 1;
+	int VARIABLE_METRIC_FEATURE_COUNT = METRIC_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Topic Metric</em>' class.
+	 * The number of operations of the '<em>Variable Metric</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC_METRIC_OPERATION_COUNT = METRIC_OPERATION_COUNT + 0;
+	int VARIABLE_METRIC_OPERATION_COUNT = METRIC_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricInstanceImpl <em>Metric Instance</em>}' class.
@@ -408,22 +390,13 @@ public interface MetricsPackage extends EPackage {
 	int PROPERTY_METRIC__DIR = METRIC__DIR;
 
 	/**
-	 * The feature id for the '<em><b>Keyed By</b></em>' attribute.
+	 * The feature id for the '<em><b>Related Variables</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_METRIC__KEYED_BY = METRIC__KEYED_BY;
-
-	/**
-	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_METRIC__RELATED_TOPICS = METRIC__RELATED_TOPICS;
+	int PROPERTY_METRIC__RELATED_VARIABLES = METRIC__RELATED_VARIABLES;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' containment reference.
@@ -490,22 +463,13 @@ public interface MetricsPackage extends EPackage {
 	int CONDITIONAL_PROPERTY_METRIC__DIR = PROPERTY_METRIC__DIR;
 
 	/**
-	 * The feature id for the '<em><b>Keyed By</b></em>' attribute.
+	 * The feature id for the '<em><b>Related Variables</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_PROPERTY_METRIC__KEYED_BY = PROPERTY_METRIC__KEYED_BY;
-
-	/**
-	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__RELATED_TOPICS = PROPERTY_METRIC__RELATED_TOPICS;
+	int CONDITIONAL_PROPERTY_METRIC__RELATED_VARIABLES = PROPERTY_METRIC__RELATED_VARIABLES;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' containment reference.
@@ -581,22 +545,13 @@ public interface MetricsPackage extends EPackage {
 	int STREAM_METRIC__DIR = METRIC__DIR;
 
 	/**
-	 * The feature id for the '<em><b>Keyed By</b></em>' attribute.
+	 * The feature id for the '<em><b>Related Variables</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STREAM_METRIC__KEYED_BY = METRIC__KEYED_BY;
-
-	/**
-	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STREAM_METRIC__RELATED_TOPICS = METRIC__RELATED_TOPICS;
+	int STREAM_METRIC__RELATED_VARIABLES = METRIC__RELATED_VARIABLES;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' containment reference.
@@ -644,14 +599,14 @@ public interface MetricsPackage extends EPackage {
 	int STREAM_METRIC_OPERATION_COUNT = METRIC_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.AttackTimesMetricImpl <em>Attack Times Metric</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.FuzzingOperationTimesMetricImpl <em>Fuzzing Operation Times Metric</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.AttackTimesMetricImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getAttackTimesMetric()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.FuzzingOperationTimesMetricImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getFuzzingOperationTimesMetric()
 	 * @generated
 	 */
-	int ATTACK_TIMES_METRIC = 10;
+	int FUZZING_OPERATION_TIMES_METRIC = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -660,7 +615,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK_TIMES_METRIC__NAME = STREAM_METRIC__NAME;
+	int FUZZING_OPERATION_TIMES_METRIC__NAME = STREAM_METRIC__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Dir</b></em>' attribute.
@@ -669,25 +624,16 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK_TIMES_METRIC__DIR = STREAM_METRIC__DIR;
+	int FUZZING_OPERATION_TIMES_METRIC__DIR = STREAM_METRIC__DIR;
 
 	/**
-	 * The feature id for the '<em><b>Keyed By</b></em>' attribute.
+	 * The feature id for the '<em><b>Related Variables</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK_TIMES_METRIC__KEYED_BY = STREAM_METRIC__KEYED_BY;
-
-	/**
-	 * The feature id for the '<em><b>Related Topics</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACK_TIMES_METRIC__RELATED_TOPICS = STREAM_METRIC__RELATED_TOPICS;
+	int FUZZING_OPERATION_TIMES_METRIC__RELATED_VARIABLES = STREAM_METRIC__RELATED_VARIABLES;
 
 	/**
 	 * The feature id for the '<em><b>Default</b></em>' containment reference.
@@ -696,7 +642,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK_TIMES_METRIC__DEFAULT = STREAM_METRIC__DEFAULT;
+	int FUZZING_OPERATION_TIMES_METRIC__DEFAULT = STREAM_METRIC__DEFAULT;
 
 	/**
 	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
@@ -705,7 +651,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK_TIMES_METRIC__STREAMS = STREAM_METRIC__STREAMS;
+	int FUZZING_OPERATION_TIMES_METRIC__STREAMS = STREAM_METRIC__STREAMS;
 
 	/**
 	 * The feature id for the '<em><b>Res</b></em>' containment reference.
@@ -714,25 +660,25 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK_TIMES_METRIC__RES = STREAM_METRIC__RES;
+	int FUZZING_OPERATION_TIMES_METRIC__RES = STREAM_METRIC__RES;
 
 	/**
-	 * The number of structural features of the '<em>Attack Times Metric</em>' class.
+	 * The number of structural features of the '<em>Fuzzing Operation Times Metric</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK_TIMES_METRIC_FEATURE_COUNT = STREAM_METRIC_FEATURE_COUNT + 0;
+	int FUZZING_OPERATION_TIMES_METRIC_FEATURE_COUNT = STREAM_METRIC_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Attack Times Metric</em>' class.
+	 * The number of operations of the '<em>Fuzzing Operation Times Metric</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACK_TIMES_METRIC_OPERATION_COUNT = STREAM_METRIC_OPERATION_COUNT + 0;
+	int FUZZING_OPERATION_TIMES_METRIC_OPERATION_COUNT = STREAM_METRIC_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StreamResultImpl <em>Stream Result</em>}' class.
@@ -799,7 +745,6 @@ public interface MetricsPackage extends EPackage {
 	 */
 	int FILE_STREAM_RESULT_OPERATION_COUNT = STREAM_RESULT_OPERATION_COUNT + 0;
 
-
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection <em>Metric Optimisation Direction</em>}' enum.
 	 * <!-- begin-user-doc -->
@@ -809,17 +754,6 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 */
 	int METRIC_OPTIMISATION_DIRECTION = 13;
-
-
-	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy <em>Metric State Keyed By</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricStateKeyedBy()
-	 * @generated
-	 */
-	int METRIC_STATE_KEYED_BY = 14;
 
 
 	/**
@@ -885,26 +819,15 @@ public interface MetricsPackage extends EPackage {
 	EAttribute getMetric_Dir();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getKeyedBy <em>Keyed By</em>}'.
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedVariables <em>Related Variables</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Keyed By</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getKeyedBy()
+	 * @return the meta object for the reference list '<em>Related Variables</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedVariables()
 	 * @see #getMetric()
 	 * @generated
 	 */
-	EAttribute getMetric_KeyedBy();
-
-	/**
-	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedTopics <em>Related Topics</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Related Topics</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedTopics()
-	 * @see #getMetric()
-	 * @generated
-	 */
-	EReference getMetric_RelatedTopics();
+	EReference getMetric_RelatedVariables();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDefault <em>Default</em>}'.
@@ -939,25 +862,25 @@ public interface MetricsPackage extends EPackage {
 	EAttribute getMetricDefault_DefaultVal();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.TopicMetric <em>Topic Metric</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric <em>Variable Metric</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Topic Metric</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.TopicMetric
+	 * @return the meta object for class '<em>Variable Metric</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric
 	 * @generated
 	 */
-	EClass getTopicMetric();
+	EClass getVariableMetric();
 
 	/**
-	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.TopicMetric#getChosenTopics <em>Chosen Topics</em>}'.
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric#getChosenVariables <em>Chosen Variables</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Chosen Topics</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.TopicMetric#getChosenTopics()
-	 * @see #getTopicMetric()
+	 * @return the meta object for the reference '<em>Chosen Variables</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric#getChosenVariables()
+	 * @see #getVariableMetric()
 	 * @generated
 	 */
-	EReference getTopicMetric_ChosenTopics();
+	EReference getVariableMetric_ChosenVariables();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance <em>Metric Instance</em>}'.
@@ -1066,14 +989,14 @@ public interface MetricsPackage extends EPackage {
 	EReference getStreamMetric_Res();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.AttackTimesMetric <em>Attack Times Metric</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FuzzingOperationTimesMetric <em>Fuzzing Operation Times Metric</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Attack Times Metric</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.AttackTimesMetric
+	 * @return the meta object for class '<em>Fuzzing Operation Times Metric</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FuzzingOperationTimesMetric
 	 * @generated
 	 */
-	EClass getAttackTimesMetric();
+	EClass getFuzzingOperationTimesMetric();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StreamResult <em>Stream Result</em>}'.
@@ -1115,16 +1038,6 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getMetricOptimisationDirection();
-
-	/**
-	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy <em>Metric State Keyed By</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Metric State Keyed By</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy
-	 * @generated
-	 */
-	EEnum getMetricStateKeyedBy();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1206,20 +1119,12 @@ public interface MetricsPackage extends EPackage {
 		EAttribute METRIC__DIR = eINSTANCE.getMetric_Dir();
 
 		/**
-		 * The meta object literal for the '<em><b>Keyed By</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Related Variables</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute METRIC__KEYED_BY = eINSTANCE.getMetric_KeyedBy();
-
-		/**
-		 * The meta object literal for the '<em><b>Related Topics</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference METRIC__RELATED_TOPICS = eINSTANCE.getMetric_RelatedTopics();
+		EReference METRIC__RELATED_VARIABLES = eINSTANCE.getMetric_RelatedVariables();
 
 		/**
 		 * The meta object literal for the '<em><b>Default</b></em>' containment reference feature.
@@ -1248,22 +1153,22 @@ public interface MetricsPackage extends EPackage {
 		EAttribute METRIC_DEFAULT__DEFAULT_VAL = eINSTANCE.getMetricDefault_DefaultVal();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.TopicMetricImpl <em>Topic Metric</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.VariableMetricImpl <em>Variable Metric</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.TopicMetricImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getTopicMetric()
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.VariableMetricImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getVariableMetric()
 		 * @generated
 		 */
-		EClass TOPIC_METRIC = eINSTANCE.getTopicMetric();
+		EClass VARIABLE_METRIC = eINSTANCE.getVariableMetric();
 
 		/**
-		 * The meta object literal for the '<em><b>Chosen Topics</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Chosen Variables</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TOPIC_METRIC__CHOSEN_TOPICS = eINSTANCE.getTopicMetric_ChosenTopics();
+		EReference VARIABLE_METRIC__CHOSEN_VARIABLES = eINSTANCE.getVariableMetric_ChosenVariables();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricInstanceImpl <em>Metric Instance</em>}' class.
@@ -1354,14 +1259,14 @@ public interface MetricsPackage extends EPackage {
 		EReference STREAM_METRIC__RES = eINSTANCE.getStreamMetric_Res();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.AttackTimesMetricImpl <em>Attack Times Metric</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.FuzzingOperationTimesMetricImpl <em>Fuzzing Operation Times Metric</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.AttackTimesMetricImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getAttackTimesMetric()
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.FuzzingOperationTimesMetricImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getFuzzingOperationTimesMetric()
 		 * @generated
 		 */
-		EClass ATTACK_TIMES_METRIC = eINSTANCE.getAttackTimesMetric();
+		EClass FUZZING_OPERATION_TIMES_METRIC = eINSTANCE.getFuzzingOperationTimesMetric();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StreamResultImpl <em>Stream Result</em>}' class.
@@ -1400,16 +1305,6 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum METRIC_OPTIMISATION_DIRECTION = eINSTANCE.getMetricOptimisationDirection();
-
-		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy <em>Metric State Keyed By</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricStateKeyedBy()
-		 * @generated
-		 */
-		EEnum METRIC_STATE_KEYED_BY = eINSTANCE.getMetricStateKeyedBy();
 
 	}
 

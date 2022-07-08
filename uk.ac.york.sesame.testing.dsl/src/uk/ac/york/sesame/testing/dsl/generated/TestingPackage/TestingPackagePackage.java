@@ -86,13 +86,13 @@ public interface TestingPackagePackage extends EPackage {
 	int TESTING_SPACE__METRICS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Possible Attacks</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Possible Fuzzing Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TESTING_SPACE__POSSIBLE_ATTACKS = 2;
+	int TESTING_SPACE__POSSIBLE_FUZZING_OPERATIONS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Campaigns</b></em>' containment reference list.
@@ -159,13 +159,13 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_CAMPAIGN__METRICS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Included Attacks</b></em>' reference list.
+	 * The feature id for the '<em><b>Included Operations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__INCLUDED_ATTACKS = 2;
+	int TEST_CAMPAIGN__INCLUDED_OPERATIONS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Approach</b></em>' containment reference.
@@ -241,13 +241,13 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Attacks</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST__ATTACKS = 1;
+	int TEST__OPERATIONS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Metrics</b></em>' containment reference list.
@@ -597,15 +597,15 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestingSpace_Metrics();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getPossibleAttacks <em>Possible Attacks</em>}'.
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getPossibleFuzzingOperations <em>Possible Fuzzing Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Possible Attacks</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getPossibleAttacks()
+	 * @return the meta object for the containment reference list '<em>Possible Fuzzing Operations</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getPossibleFuzzingOperations()
 	 * @see #getTestingSpace()
 	 * @generated
 	 */
-	EReference getTestingSpace_PossibleAttacks();
+	EReference getTestingSpace_PossibleFuzzingOperations();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getCampaigns <em>Campaigns</em>}'.
@@ -662,15 +662,15 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestCampaign_Metrics();
 
 	/**
-	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedAttacks <em>Included Attacks</em>}'.
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedOperations <em>Included Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Included Attacks</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedAttacks()
+	 * @return the meta object for the reference list '<em>Included Operations</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedOperations()
 	 * @see #getTestCampaign()
 	 * @generated
 	 */
-	EReference getTestCampaign_IncludedAttacks();
+	EReference getTestCampaign_IncludedOperations();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getApproach <em>Approach</em>}'.
@@ -738,15 +738,15 @@ public interface TestingPackagePackage extends EPackage {
 	EAttribute getTest_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getAttacks <em>Attacks</em>}'.
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getOperations <em>Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Attacks</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getAttacks()
+	 * @return the meta object for the containment reference list '<em>Operations</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getOperations()
 	 * @see #getTest()
 	 * @generated
 	 */
-	EReference getTest_Attacks();
+	EReference getTest_Operations();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getMetrics <em>Metrics</em>}'.
@@ -988,12 +988,12 @@ public interface TestingPackagePackage extends EPackage {
 		EReference TESTING_SPACE__METRICS = eINSTANCE.getTestingSpace_Metrics();
 
 		/**
-		 * The meta object literal for the '<em><b>Possible Attacks</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Possible Fuzzing Operations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TESTING_SPACE__POSSIBLE_ATTACKS = eINSTANCE.getTestingSpace_PossibleAttacks();
+		EReference TESTING_SPACE__POSSIBLE_FUZZING_OPERATIONS = eINSTANCE.getTestingSpace_PossibleFuzzingOperations();
 
 		/**
 		 * The meta object literal for the '<em><b>Campaigns</b></em>' containment reference list feature.
@@ -1038,12 +1038,12 @@ public interface TestingPackagePackage extends EPackage {
 		EReference TEST_CAMPAIGN__METRICS = eINSTANCE.getTestCampaign_Metrics();
 
 		/**
-		 * The meta object literal for the '<em><b>Included Attacks</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Included Operations</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_CAMPAIGN__INCLUDED_ATTACKS = eINSTANCE.getTestCampaign_IncludedAttacks();
+		EReference TEST_CAMPAIGN__INCLUDED_OPERATIONS = eINSTANCE.getTestCampaign_IncludedOperations();
 
 		/**
 		 * The meta object literal for the '<em><b>Approach</b></em>' containment reference feature.
@@ -1096,12 +1096,12 @@ public interface TestingPackagePackage extends EPackage {
 		EAttribute TEST__NAME = eINSTANCE.getTest_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Attacks</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Operations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST__ATTACKS = eINSTANCE.getTest_Attacks();
+		EReference TEST__OPERATIONS = eINSTANCE.getTest_Operations();
 
 		/**
 		 * The meta object literal for the '<em><b>Metrics</b></em>' containment reference list feature.

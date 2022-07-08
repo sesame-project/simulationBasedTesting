@@ -131,6 +131,7 @@ class FixedTimeActivation extends Activation {
 class ConditionBasedActivation extends Activation {
 	val StandardGrammar.Condition starting;
 	val StandardGrammar.Condition ending;
+	attr int maximumActivations = 1;
 }
 
 class FuzzTestingOperation extends FuzzingOperation {

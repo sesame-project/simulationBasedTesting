@@ -60,11 +60,11 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 			case MetricsPackage.INPUT_STREAM: return createInputStream();
 			case MetricsPackage.OUTPUT_STREAM: return createOutputStream();
 			case MetricsPackage.METRIC_DEFAULT: return createMetricDefault();
-			case MetricsPackage.TOPIC_METRIC: return createTopicMetric();
+			case MetricsPackage.VARIABLE_METRIC: return createVariableMetric();
 			case MetricsPackage.METRIC_INSTANCE: return createMetricInstance();
 			case MetricsPackage.CONDITIONAL_PROPERTY_METRIC: return createConditionalPropertyMetric();
 			case MetricsPackage.STREAM_METRIC: return createStreamMetric();
-			case MetricsPackage.ATTACK_TIMES_METRIC: return createAttackTimesMetric();
+			case MetricsPackage.FUZZING_OPERATION_TIMES_METRIC: return createFuzzingOperationTimesMetric();
 			case MetricsPackage.FILE_STREAM_RESULT: return createFileStreamResult();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -81,8 +81,6 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 		switch (eDataType.getClassifierID()) {
 			case MetricsPackage.METRIC_OPTIMISATION_DIRECTION:
 				return createMetricOptimisationDirectionFromString(eDataType, initialValue);
-			case MetricsPackage.METRIC_STATE_KEYED_BY:
-				return createMetricStateKeyedByFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -98,8 +96,6 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 		switch (eDataType.getClassifierID()) {
 			case MetricsPackage.METRIC_OPTIMISATION_DIRECTION:
 				return convertMetricOptimisationDirectionToString(eDataType, instanceValue);
-			case MetricsPackage.METRIC_STATE_KEYED_BY:
-				return convertMetricStateKeyedByToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -140,9 +136,9 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TopicMetric createTopicMetric() {
-		TopicMetricImpl topicMetric = new TopicMetricImpl();
-		return topicMetric;
+	public VariableMetric createVariableMetric() {
+		VariableMetricImpl variableMetric = new VariableMetricImpl();
+		return variableMetric;
 	}
 
 	/**
@@ -180,9 +176,9 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttackTimesMetric createAttackTimesMetric() {
-		AttackTimesMetricImpl attackTimesMetric = new AttackTimesMetricImpl();
-		return attackTimesMetric;
+	public FuzzingOperationTimesMetric createFuzzingOperationTimesMetric() {
+		FuzzingOperationTimesMetricImpl fuzzingOperationTimesMetric = new FuzzingOperationTimesMetricImpl();
+		return fuzzingOperationTimesMetric;
 	}
 
 	/**
@@ -212,26 +208,6 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 	 * @generated
 	 */
 	public String convertMetricOptimisationDirectionToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MetricStateKeyedBy createMetricStateKeyedByFromString(EDataType eDataType, String initialValue) {
-		MetricStateKeyedBy result = MetricStateKeyedBy.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertMetricStateKeyedByToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

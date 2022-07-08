@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.Random;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttackActivation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttackFixedTime;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestAttack;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 
@@ -81,7 +79,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 
 	// This should be pushed into a subclass to indicate that it only does totally
 	// random time generation. Other approaches, e.g. time shifting are possible.
-	private void mutateFixedTimeSpec(AttackFixedTime aft, AttackFixedTime aftSpace) {
+	private void mutateFixedTimeSpec(FixedTimeActivation aft, FixedTimeActivation aftSpace) {
 		// Look up the attack that it is based upon
 		double startTime;
 		double endTime;
@@ -94,33 +92,31 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		aft.setEndTime(endTime);	
 	}
 
-	private void mutateIndividualActivation(AttackActivation aa, AttackActivation aaSpace) {
-		if ((aa instanceof AttackFixedTime) && (aaSpace instanceof AttackFixedTime)) {
-			mutateFixedTimeSpec((AttackFixedTime)aa, (AttackFixedTime)aaSpace);
+	private void mutateIndividualActivation(Activation aa, Activation aaSpace) {
+		if ((aa instanceof FixedTimeActivation) && (aaSpace instanceof FixedTimeActivation)) {
+			mutateFixedTimeSpec((FixedTimeActivation)aa, (FixedTimeActivation)aaSpace);
 		}
 	}
 	
-	private Optional<AttackActivation> getAttackActivation(Attack basedUpon, int i) {
+	private Optional<Activation> getActivation(FuzzingOperation basedUpon) {
 		if (basedUpon == null) {
 			return Optional.empty();
 		}
 		
-		if (basedUpon.getAttackActivation() == null) {
+		if (basedUpon.getActivation() == null) {
 			return Optional.empty();
 		}
 		
-		return Optional.of(basedUpon.getAttackActivation().get(i));
+		return Optional.of(basedUpon.getActivation());
+		
+		
 	}
 	
 	private void mutateActivations(SESAMETestAttack krec) {
-		EList<AttackActivation> aas = krec.getAttack().getAttackActivation();
-		int i = 0;
-		for (AttackActivation aa : aas) {
-			Optional<AttackActivation> aaSpace = getAttackActivation(krec.getAttack().getFromTemplate(), i);
-			if (aaSpace.isPresent()) {
-				mutateIndividualActivation(aa, aaSpace.get());
-			}
-			i++;
+		Activation aa = krec.getAttack().getActivation();
+		Optional<Activation> aaSpace = getActivation(krec.getAttack().getFromTemplate());
+		if (aaSpace.isPresent()) {
+			mutateIndividualActivation(aa, aaSpace.get());
 		}
 	}
 	

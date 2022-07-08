@@ -57,10 +57,11 @@ public class StandardGrammarFactoryImpl extends EFactoryImpl implements Standard
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case StandardGrammarPackage.SIMULATOR_VARIABLE: return createSimulatorVariable();
-			case StandardGrammarPackage.BINARY_EXPRESSION: return createBinaryExpression();
-			case StandardGrammarPackage.BINARY_COMPARISON: return createBinaryComparison();
-			case StandardGrammarPackage.BINARY_LOGICAL_EXPRESSION: return createBinaryLogicalExpression();
+			case StandardGrammarPackage.COMPOSITE_CONDITION: return createCompositeCondition();
+			case StandardGrammarPackage.BASIC_CONDITION: return createBasicCondition();
+			case StandardGrammarPackage.CONDITION_INTEGER: return createConditionInteger();
+			case StandardGrammarPackage.CONDITION_VARIABLE: return createConditionVariable();
+			case StandardGrammarPackage.CONDITION: return createCondition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -74,8 +75,8 @@ public class StandardGrammarFactoryImpl extends EFactoryImpl implements Standard
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case StandardGrammarPackage.BINARY_COMPARATOR:
-				return createBinaryComparatorFromString(eDataType, initialValue);
+			case StandardGrammarPackage.BINARY_COMPARISON_OPERATION:
+				return createBinaryComparisonOperationFromString(eDataType, initialValue);
 			case StandardGrammarPackage.BINARY_LOGICAL_OPERATION:
 				return createBinaryLogicalOperationFromString(eDataType, initialValue);
 			default:
@@ -91,8 +92,8 @@ public class StandardGrammarFactoryImpl extends EFactoryImpl implements Standard
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case StandardGrammarPackage.BINARY_COMPARATOR:
-				return convertBinaryComparatorToString(eDataType, instanceValue);
+			case StandardGrammarPackage.BINARY_COMPARISON_OPERATION:
+				return convertBinaryComparisonOperationToString(eDataType, instanceValue);
 			case StandardGrammarPackage.BINARY_LOGICAL_OPERATION:
 				return convertBinaryLogicalOperationToString(eDataType, instanceValue);
 			default:
@@ -105,9 +106,9 @@ public class StandardGrammarFactoryImpl extends EFactoryImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimulatorVariable createSimulatorVariable() {
-		SimulatorVariableImpl simulatorVariable = new SimulatorVariableImpl();
-		return simulatorVariable;
+	public CompositeCondition createCompositeCondition() {
+		CompositeConditionImpl compositeCondition = new CompositeConditionImpl();
+		return compositeCondition;
 	}
 
 	/**
@@ -115,9 +116,9 @@ public class StandardGrammarFactoryImpl extends EFactoryImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BinaryExpression createBinaryExpression() {
-		BinaryExpressionImpl binaryExpression = new BinaryExpressionImpl();
-		return binaryExpression;
+	public BasicCondition createBasicCondition() {
+		BasicConditionImpl basicCondition = new BasicConditionImpl();
+		return basicCondition;
 	}
 
 	/**
@@ -125,9 +126,9 @@ public class StandardGrammarFactoryImpl extends EFactoryImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BinaryComparison createBinaryComparison() {
-		BinaryComparisonImpl binaryComparison = new BinaryComparisonImpl();
-		return binaryComparison;
+	public ConditionInteger createConditionInteger() {
+		ConditionIntegerImpl conditionInteger = new ConditionIntegerImpl();
+		return conditionInteger;
 	}
 
 	/**
@@ -135,9 +136,9 @@ public class StandardGrammarFactoryImpl extends EFactoryImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BinaryLogicalExpression createBinaryLogicalExpression() {
-		BinaryLogicalExpressionImpl binaryLogicalExpression = new BinaryLogicalExpressionImpl();
-		return binaryLogicalExpression;
+	public ConditionVariable createConditionVariable() {
+		ConditionVariableImpl conditionVariable = new ConditionVariableImpl();
+		return conditionVariable;
 	}
 
 	/**
@@ -145,8 +146,18 @@ public class StandardGrammarFactoryImpl extends EFactoryImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BinaryComparator createBinaryComparatorFromString(EDataType eDataType, String initialValue) {
-		BinaryComparator result = BinaryComparator.get(initialValue);
+	public Condition createCondition() {
+		ConditionImpl condition = new ConditionImpl();
+		return condition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BinaryComparisonOperation createBinaryComparisonOperationFromString(EDataType eDataType, String initialValue) {
+		BinaryComparisonOperation result = BinaryComparisonOperation.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -156,7 +167,7 @@ public class StandardGrammarFactoryImpl extends EFactoryImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertBinaryComparatorToString(EDataType eDataType, Object instanceValue) {
+	public String convertBinaryComparisonOperationToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -2,6 +2,7 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Time Based End</b></em>'.

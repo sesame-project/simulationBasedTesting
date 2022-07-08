@@ -22,8 +22,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Simulator;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +33,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getTopics <em>Topics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getVariables <em>Variables</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getLaunchFileLocation <em>Launch File Location</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getSimulator <em>Simulator</em>}</li>
@@ -44,14 +44,14 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type;
  */
 public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	/**
-	 * The cached value of the '{@link #getTopics() <em>Topics</em>}' containment reference list.
+	 * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTopics()
+	 * @see #getVariables()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Topic> topics;
+	protected EList<Variable> variables;
 
 	/**
 	 * The default value of the '{@link #getLaunchFileLocation() <em>Launch File Location</em>}' attribute.
@@ -127,11 +127,11 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Topic> getTopics() {
-		if (topics == null) {
-			topics = new EObjectContainmentEList<Topic>(Topic.class, this, MRSPackagePackage.MRS__TOPICS);
+	public EList<Variable> getVariables() {
+		if (variables == null) {
+			variables = new EObjectContainmentEList<Variable>(Variable.class, this, MRSPackagePackage.MRS__VARIABLES);
 		}
-		return topics;
+		return variables;
 	}
 
 	/**
@@ -230,8 +230,8 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MRSPackagePackage.MRS__TOPICS:
-				return ((InternalEList<?>)getTopics()).basicRemove(otherEnd, msgs);
+			case MRSPackagePackage.MRS__VARIABLES:
+				return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
 			case MRSPackagePackage.MRS__NODES:
 				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
 			case MRSPackagePackage.MRS__SIMULATOR:
@@ -250,8 +250,8 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MRSPackagePackage.MRS__TOPICS:
-				return getTopics();
+			case MRSPackagePackage.MRS__VARIABLES:
+				return getVariables();
 			case MRSPackagePackage.MRS__LAUNCH_FILE_LOCATION:
 				return getLaunchFileLocation();
 			case MRSPackagePackage.MRS__NODES:
@@ -273,9 +273,9 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MRSPackagePackage.MRS__TOPICS:
-				getTopics().clear();
-				getTopics().addAll((Collection<? extends Topic>)newValue);
+			case MRSPackagePackage.MRS__VARIABLES:
+				getVariables().clear();
+				getVariables().addAll((Collection<? extends Variable>)newValue);
 				return;
 			case MRSPackagePackage.MRS__LAUNCH_FILE_LOCATION:
 				setLaunchFileLocation((String)newValue);
@@ -303,8 +303,8 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MRSPackagePackage.MRS__TOPICS:
-				getTopics().clear();
+			case MRSPackagePackage.MRS__VARIABLES:
+				getVariables().clear();
 				return;
 			case MRSPackagePackage.MRS__LAUNCH_FILE_LOCATION:
 				setLaunchFileLocation(LAUNCH_FILE_LOCATION_EDEFAULT);
@@ -330,8 +330,8 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MRSPackagePackage.MRS__TOPICS:
-				return topics != null && !topics.isEmpty();
+			case MRSPackagePackage.MRS__VARIABLES:
+				return variables != null && !variables.isEmpty();
 			case MRSPackagePackage.MRS__LAUNCH_FILE_LOCATION:
 				return LAUNCH_FILE_LOCATION_EDEFAULT == null ? launchFileLocation != null : !LAUNCH_FILE_LOCATION_EDEFAULT.equals(launchFileLocation);
 			case MRSPackagePackage.MRS__NODES:

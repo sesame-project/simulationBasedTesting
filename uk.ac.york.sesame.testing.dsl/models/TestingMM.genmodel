@@ -82,7 +82,7 @@
         <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/FuzzingOperation/containingTest"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation/attackTime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation/operationTime"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/CustomFuzzingOperation"/>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/CustomOfflineFuzzingOperation"/>
@@ -107,9 +107,9 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/ComponentSubPropertyOperation/subProperty"/>
       </genClasses>
-      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/TopicOperation">
+      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/VariableOperation">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/TopicOperation/subParameters"/>
+            ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/VariableOperation/subParameters"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/RandomValueFuzzingOperation">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/RandomValueFuzzingOperation/seed"/>
@@ -181,15 +181,15 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/Metric/name"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/Metric/dir"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/relatedTopics"/>
+            ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/relatedVariables"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/default"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//Metrics/MetricDefault">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/MetricDefault/defaultVal"/>
       </genClasses>
-      <genClasses ecoreClass="TestingMM.ecore#//Metrics/TopicMetric">
+      <genClasses ecoreClass="TestingMM.ecore#//Metrics/VariableMetric">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/TopicMetric/chosenTopics"/>
+            ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/VariableMetric/chosenVariables"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//Metrics/MetricInstance">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

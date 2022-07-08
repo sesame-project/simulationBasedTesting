@@ -59,7 +59,7 @@ public class MRSPackageFactoryImpl extends EFactoryImpl implements MRSPackageFac
 		switch (eClass.getClassifierID()) {
 			case MRSPackagePackage.MRS: return createMRS();
 			case MRSPackagePackage.NODE: return createNode();
-			case MRSPackagePackage.TOPIC: return createTopic();
+			case MRSPackagePackage.VARIABLE: return createVariable();
 			case MRSPackagePackage.TYPE: return createType();
 			case MRSPackagePackage.PARAMETER: return createParameter();
 			case MRSPackagePackage.COMPONENT_PROPERTY: return createComponentProperty();
@@ -126,9 +126,9 @@ public class MRSPackageFactoryImpl extends EFactoryImpl implements MRSPackageFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Topic createTopic() {
-		TopicImpl topic = new TopicImpl();
-		return topic;
+	public Variable createVariable() {
+		VariableImpl variable = new VariableImpl();
+		return variable;
 	}
 
 	/**

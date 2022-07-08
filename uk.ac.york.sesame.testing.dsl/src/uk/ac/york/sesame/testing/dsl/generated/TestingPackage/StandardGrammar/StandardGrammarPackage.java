@@ -58,42 +58,254 @@ public interface StandardGrammarPackage extends EPackage {
 	StandardGrammarPackage eINSTANCE = uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.VariableImpl <em>Variable</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionElementImpl <em>Condition Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.VariableImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getVariable()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionElementImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionElement()
 	 * @generated
 	 */
-	int VARIABLE = 0;
+	int CONDITION_ELEMENT = 0;
 
 	/**
-	 * The number of structural features of the '<em>Variable</em>' class.
+	 * The number of structural features of the '<em>Condition Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE_COUNT = 0;
+	int CONDITION_ELEMENT_FEATURE_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>Variable</em>' class.
+	 * The number of operations of the '<em>Condition Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_OPERATION_COUNT = 0;
+	int CONDITION_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.SimulatorVariableImpl <em>Simulator Variable</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.CompositeConditionImpl <em>Composite Condition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.SimulatorVariableImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getSimulatorVariable()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.CompositeConditionImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getCompositeCondition()
 	 * @generated
 	 */
-	int SIMULATOR_VARIABLE = 1;
+	int COMPOSITE_CONDITION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_CONDITION__LEFT = CONDITION_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Binop</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_CONDITION__BINOP = CONDITION_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_CONDITION__RIGHT = CONDITION_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Composite Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_CONDITION_FEATURE_COUNT = CONDITION_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Composite Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_CONDITION_OPERATION_COUNT = CONDITION_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BasicConditionImpl <em>Basic Condition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BasicConditionImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBasicCondition()
+	 * @generated
+	 */
+	int BASIC_CONDITION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_CONDITION__LEFT = CONDITION_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Bincomp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_CONDITION__BINCOMP = CONDITION_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_CONDITION__RIGHT = CONDITION_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Basic Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_CONDITION_FEATURE_COUNT = CONDITION_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Basic Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_CONDITION_OPERATION_COUNT = CONDITION_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionLiteralImpl <em>Condition Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionLiteralImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionLiteral()
+	 * @generated
+	 */
+	int CONDITION_LITERAL = 3;
+
+	/**
+	 * The number of structural features of the '<em>Condition Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_LITERAL_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Condition Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_LITERAL_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionIntegerImpl <em>Condition Integer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionIntegerImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionInteger()
+	 * @generated
+	 */
+	int CONDITION_INTEGER = 4;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_INTEGER__VALUE = CONDITION_LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Condition Integer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_INTEGER_FEATURE_COUNT = CONDITION_LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Condition Integer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_INTEGER_OPERATION_COUNT = CONDITION_LITERAL_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionVariableImpl <em>Condition Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionVariableImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionVariable()
+	 * @generated
+	 */
+	int CONDITION_VARIABLE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Metric</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_VARIABLE__METRIC = CONDITION_LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Condition Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_VARIABLE_FEATURE_COUNT = CONDITION_LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Condition Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_VARIABLE_OPERATION_COUNT = CONDITION_LITERAL_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionImpl <em>Condition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getCondition()
+	 * @generated
+	 */
+	int CONDITION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -102,219 +314,44 @@ public interface StandardGrammarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATOR_VARIABLE__NAME = VARIABLE_FEATURE_COUNT + 0;
+	int CONDITION__NAME = 0;
 
 	/**
-	 * The number of structural features of the '<em>Simulator Variable</em>' class.
+	 * The feature id for the '<em><b>C</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATOR_VARIABLE_FEATURE_COUNT = VARIABLE_FEATURE_COUNT + 1;
+	int CONDITION__C = 1;
 
 	/**
-	 * The number of operations of the '<em>Simulator Variable</em>' class.
+	 * The number of structural features of the '<em>Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATOR_VARIABLE_OPERATION_COUNT = VARIABLE_OPERATION_COUNT + 0;
+	int CONDITION_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ExpressionImpl <em>Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ExpressionImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getExpression()
-	 * @generated
-	 */
-	int EXPRESSION = 2;
-
-	/**
-	 * The number of structural features of the '<em>Expression</em>' class.
+	 * The number of operations of the '<em>Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_FEATURE_COUNT = 0;
+	int CONDITION_OPERATION_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>Expression</em>' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparisonOperation <em>Binary Comparison Operation</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BinaryExpressionImpl <em>Binary Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BinaryExpressionImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryExpression()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparisonOperation
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryComparisonOperation()
 	 * @generated
 	 */
-	int BINARY_EXPRESSION = 3;
-
-	/**
-	 * The feature id for the '<em><b>Left</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_EXPRESSION__LEFT = EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Right</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_EXPRESSION__RIGHT = EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Binary Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Binary Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BinaryComparisonImpl <em>Binary Comparison</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BinaryComparisonImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryComparison()
-	 * @generated
-	 */
-	int BINARY_COMPARISON = 4;
-
-	/**
-	 * The feature id for the '<em><b>Left</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_COMPARISON__LEFT = BINARY_EXPRESSION__LEFT;
-
-	/**
-	 * The feature id for the '<em><b>Right</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_COMPARISON__RIGHT = BINARY_EXPRESSION__RIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Comp</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_COMPARISON__COMP = BINARY_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Binary Comparison</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_COMPARISON_FEATURE_COUNT = BINARY_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Binary Comparison</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_COMPARISON_OPERATION_COUNT = BINARY_EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BinaryLogicalExpressionImpl <em>Binary Logical Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BinaryLogicalExpressionImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryLogicalExpression()
-	 * @generated
-	 */
-	int BINARY_LOGICAL_EXPRESSION = 5;
-
-	/**
-	 * The feature id for the '<em><b>Left</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LOGICAL_EXPRESSION__LEFT = BINARY_EXPRESSION__LEFT;
-
-	/**
-	 * The feature id for the '<em><b>Right</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LOGICAL_EXPRESSION__RIGHT = BINARY_EXPRESSION__RIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Bin Op</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LOGICAL_EXPRESSION__BIN_OP = BINARY_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Binary Logical Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LOGICAL_EXPRESSION_FEATURE_COUNT = BINARY_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Binary Logical Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_LOGICAL_EXPRESSION_OPERATION_COUNT = BINARY_EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparator <em>Binary Comparator</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparator
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryComparator()
-	 * @generated
-	 */
-	int BINARY_COMPARATOR = 6;
+	int BINARY_COMPARISON_OPERATION = 7;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalOperation <em>Binary Logical Operation</em>}' enum.
@@ -324,133 +361,198 @@ public interface StandardGrammarPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryLogicalOperation()
 	 * @generated
 	 */
-	int BINARY_LOGICAL_OPERATION = 7;
+	int BINARY_LOGICAL_OPERATION = 8;
 
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Variable <em>Variable</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionElement <em>Condition Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Variable</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Variable
+	 * @return the meta object for class '<em>Condition Element</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionElement
 	 * @generated
 	 */
-	EClass getVariable();
+	EClass getConditionElement();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.SimulatorVariable <em>Simulator Variable</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition <em>Composite Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Simulator Variable</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.SimulatorVariable
+	 * @return the meta object for class '<em>Composite Condition</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition
 	 * @generated
 	 */
-	EClass getSimulatorVariable();
+	EClass getCompositeCondition();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.SimulatorVariable#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.SimulatorVariable#getName()
-	 * @see #getSimulatorVariable()
-	 * @generated
-	 */
-	EAttribute getSimulatorVariable_Name();
-
-	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Expression <em>Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Expression</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Expression
-	 * @generated
-	 */
-	EClass getExpression();
-
-	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryExpression <em>Binary Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Binary Expression</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryExpression
-	 * @generated
-	 */
-	EClass getBinaryExpression();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryExpression#getLeft <em>Left</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition#getLeft <em>Left</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Left</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryExpression#getLeft()
-	 * @see #getBinaryExpression()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition#getLeft()
+	 * @see #getCompositeCondition()
 	 * @generated
 	 */
-	EReference getBinaryExpression_Left();
+	EReference getCompositeCondition_Left();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryExpression#getRight <em>Right</em>}'.
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition#getBinop <em>Binop</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Binop</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition#getBinop()
+	 * @see #getCompositeCondition()
+	 * @generated
+	 */
+	EAttribute getCompositeCondition_Binop();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition#getRight <em>Right</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Right</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryExpression#getRight()
-	 * @see #getBinaryExpression()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition#getRight()
+	 * @see #getCompositeCondition()
 	 * @generated
 	 */
-	EReference getBinaryExpression_Right();
+	EReference getCompositeCondition_Right();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparison <em>Binary Comparison</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition <em>Basic Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Binary Comparison</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparison
+	 * @return the meta object for class '<em>Basic Condition</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition
 	 * @generated
 	 */
-	EClass getBinaryComparison();
+	EClass getBasicCondition();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparison#getComp <em>Comp</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition#getLeft <em>Left</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Comp</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparison#getComp()
-	 * @see #getBinaryComparison()
+	 * @return the meta object for the containment reference '<em>Left</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition#getLeft()
+	 * @see #getBasicCondition()
 	 * @generated
 	 */
-	EAttribute getBinaryComparison_Comp();
+	EReference getBasicCondition_Left();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalExpression <em>Binary Logical Expression</em>}'.
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition#getBincomp <em>Bincomp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Binary Logical Expression</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalExpression
+	 * @return the meta object for the attribute '<em>Bincomp</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition#getBincomp()
+	 * @see #getBasicCondition()
 	 * @generated
 	 */
-	EClass getBinaryLogicalExpression();
+	EAttribute getBasicCondition_Bincomp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalExpression#getBinOp <em>Bin Op</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition#getRight <em>Right</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Bin Op</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalExpression#getBinOp()
-	 * @see #getBinaryLogicalExpression()
+	 * @return the meta object for the containment reference '<em>Right</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition#getRight()
+	 * @see #getBasicCondition()
 	 * @generated
 	 */
-	EAttribute getBinaryLogicalExpression_BinOp();
+	EReference getBasicCondition_Right();
 
 	/**
-	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparator <em>Binary Comparator</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionLiteral <em>Condition Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Binary Comparator</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparator
+	 * @return the meta object for class '<em>Condition Literal</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionLiteral
 	 * @generated
 	 */
-	EEnum getBinaryComparator();
+	EClass getConditionLiteral();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionInteger <em>Condition Integer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Condition Integer</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionInteger
+	 * @generated
+	 */
+	EClass getConditionInteger();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionInteger#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionInteger#getValue()
+	 * @see #getConditionInteger()
+	 * @generated
+	 */
+	EAttribute getConditionInteger_Value();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionVariable <em>Condition Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Condition Variable</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionVariable
+	 * @generated
+	 */
+	EClass getConditionVariable();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionVariable#getMetric <em>Metric</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Metric</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionVariable#getMetric()
+	 * @see #getConditionVariable()
+	 * @generated
+	 */
+	EReference getConditionVariable_Metric();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Condition</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition
+	 * @generated
+	 */
+	EClass getCondition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition#getName()
+	 * @see #getCondition()
+	 * @generated
+	 */
+	EAttribute getCondition_Name();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition#getC <em>C</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>C</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition#getC()
+	 * @see #getCondition()
+	 * @generated
+	 */
+	EReference getCondition_C();
+
+	/**
+	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparisonOperation <em>Binary Comparison Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Binary Comparison Operation</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparisonOperation
+	 * @generated
+	 */
+	EEnum getBinaryComparisonOperation();
 
 	/**
 	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalOperation <em>Binary Logical Operation</em>}'.
@@ -486,52 +588,24 @@ public interface StandardGrammarPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.VariableImpl <em>Variable</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionElementImpl <em>Condition Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.VariableImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getVariable()
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionElementImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionElement()
 		 * @generated
 		 */
-		EClass VARIABLE = eINSTANCE.getVariable();
+		EClass CONDITION_ELEMENT = eINSTANCE.getConditionElement();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.SimulatorVariableImpl <em>Simulator Variable</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.CompositeConditionImpl <em>Composite Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.SimulatorVariableImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getSimulatorVariable()
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.CompositeConditionImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getCompositeCondition()
 		 * @generated
 		 */
-		EClass SIMULATOR_VARIABLE = eINSTANCE.getSimulatorVariable();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SIMULATOR_VARIABLE__NAME = eINSTANCE.getSimulatorVariable_Name();
-
-		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ExpressionImpl <em>Expression</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ExpressionImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getExpression()
-		 * @generated
-		 */
-		EClass EXPRESSION = eINSTANCE.getExpression();
-
-		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BinaryExpressionImpl <em>Binary Expression</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BinaryExpressionImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryExpression()
-		 * @generated
-		 */
-		EClass BINARY_EXPRESSION = eINSTANCE.getBinaryExpression();
+		EClass COMPOSITE_CONDITION = eINSTANCE.getCompositeCondition();
 
 		/**
 		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
@@ -539,7 +613,15 @@ public interface StandardGrammarPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BINARY_EXPRESSION__LEFT = eINSTANCE.getBinaryExpression_Left();
+		EReference COMPOSITE_CONDITION__LEFT = eINSTANCE.getCompositeCondition_Left();
+
+		/**
+		 * The meta object literal for the '<em><b>Binop</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPOSITE_CONDITION__BINOP = eINSTANCE.getCompositeCondition_Binop();
 
 		/**
 		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
@@ -547,53 +629,123 @@ public interface StandardGrammarPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BINARY_EXPRESSION__RIGHT = eINSTANCE.getBinaryExpression_Right();
+		EReference COMPOSITE_CONDITION__RIGHT = eINSTANCE.getCompositeCondition_Right();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BinaryComparisonImpl <em>Binary Comparison</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BasicConditionImpl <em>Basic Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BinaryComparisonImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryComparison()
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BasicConditionImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBasicCondition()
 		 * @generated
 		 */
-		EClass BINARY_COMPARISON = eINSTANCE.getBinaryComparison();
+		EClass BASIC_CONDITION = eINSTANCE.getBasicCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Comp</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BINARY_COMPARISON__COMP = eINSTANCE.getBinaryComparison_Comp();
-
-		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BinaryLogicalExpressionImpl <em>Binary Logical Expression</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.BinaryLogicalExpressionImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryLogicalExpression()
-		 * @generated
-		 */
-		EClass BINARY_LOGICAL_EXPRESSION = eINSTANCE.getBinaryLogicalExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Bin Op</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BINARY_LOGICAL_EXPRESSION__BIN_OP = eINSTANCE.getBinaryLogicalExpression_BinOp();
+		EReference BASIC_CONDITION__LEFT = eINSTANCE.getBasicCondition_Left();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparator <em>Binary Comparator</em>}' enum.
+		 * The meta object literal for the '<em><b>Bincomp</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparator
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryComparator()
 		 * @generated
 		 */
-		EEnum BINARY_COMPARATOR = eINSTANCE.getBinaryComparator();
+		EAttribute BASIC_CONDITION__BINCOMP = eINSTANCE.getBasicCondition_Bincomp();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BASIC_CONDITION__RIGHT = eINSTANCE.getBasicCondition_Right();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionLiteralImpl <em>Condition Literal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionLiteralImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionLiteral()
+		 * @generated
+		 */
+		EClass CONDITION_LITERAL = eINSTANCE.getConditionLiteral();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionIntegerImpl <em>Condition Integer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionIntegerImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionInteger()
+		 * @generated
+		 */
+		EClass CONDITION_INTEGER = eINSTANCE.getConditionInteger();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONDITION_INTEGER__VALUE = eINSTANCE.getConditionInteger_Value();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionVariableImpl <em>Condition Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionVariableImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionVariable()
+		 * @generated
+		 */
+		EClass CONDITION_VARIABLE = eINSTANCE.getConditionVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Metric</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITION_VARIABLE__METRIC = eINSTANCE.getConditionVariable_Metric();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionImpl <em>Condition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getCondition()
+		 * @generated
+		 */
+		EClass CONDITION = eINSTANCE.getCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONDITION__NAME = eINSTANCE.getCondition_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>C</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITION__C = eINSTANCE.getCondition_C();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparisonOperation <em>Binary Comparison Operation</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparisonOperation
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryComparisonOperation()
+		 * @generated
+		 */
+		EEnum BINARY_COMPARISON_OPERATION = eINSTANCE.getBinaryComparisonOperation();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalOperation <em>Binary Logical Operation</em>}' enum.

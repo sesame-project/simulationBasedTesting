@@ -10,15 +10,9 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
-
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.ConditionsPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Conditions.impl.ConditionsPackageImpl;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.GrammarSpecPackage;
-
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpec.impl.GrammarSpecPackageImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 
@@ -32,16 +26,17 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPac
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.impl.ResultsPackageImpl;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparator;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparison;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryExpression;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalExpression;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparisonOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalOperation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Expression;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.SimulatorVariable;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionElement;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionInteger;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionLiteral;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Variable;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
@@ -59,49 +54,56 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass variableEClass = null;
+	private EClass conditionElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass simulatorVariableEClass = null;
+	private EClass compositeConditionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass expressionEClass = null;
+	private EClass basicConditionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass binaryExpressionEClass = null;
+	private EClass conditionLiteralEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass binaryComparisonEClass = null;
+	private EClass conditionIntegerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass binaryLogicalExpressionEClass = null;
+	private EClass conditionVariableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum binaryComparatorEEnum = null;
+	private EClass conditionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum binaryComparisonOperationEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -160,37 +162,29 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(TestingPackagePackage.eNS_URI);
 		TestingPackagePackageImpl theTestingPackagePackage = (TestingPackagePackageImpl)(registeredPackage instanceof TestingPackagePackageImpl ? registeredPackage : TestingPackagePackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(AttacksPackage.eNS_URI);
-		AttacksPackageImpl theAttacksPackage = (AttacksPackageImpl)(registeredPackage instanceof AttacksPackageImpl ? registeredPackage : AttacksPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FuzzingOperationsPackage.eNS_URI);
+		FuzzingOperationsPackageImpl theFuzzingOperationsPackage = (FuzzingOperationsPackageImpl)(registeredPackage instanceof FuzzingOperationsPackageImpl ? registeredPackage : FuzzingOperationsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MetricsPackage.eNS_URI);
 		MetricsPackageImpl theMetricsPackage = (MetricsPackageImpl)(registeredPackage instanceof MetricsPackageImpl ? registeredPackage : MetricsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 		ResultsPackageImpl theResultsPackage = (ResultsPackageImpl)(registeredPackage instanceof ResultsPackageImpl ? registeredPackage : ResultsPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ConditionsPackage.eNS_URI);
-		ConditionsPackageImpl theConditionsPackage = (ConditionsPackageImpl)(registeredPackage instanceof ConditionsPackageImpl ? registeredPackage : ConditionsPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GrammarSpecPackage.eNS_URI);
-		GrammarSpecPackageImpl theGrammarSpecPackage = (GrammarSpecPackageImpl)(registeredPackage instanceof GrammarSpecPackageImpl ? registeredPackage : GrammarSpecPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theStandardGrammarPackage.createPackageContents();
 		theTestingPackagePackage.createPackageContents();
-		theAttacksPackage.createPackageContents();
+		theFuzzingOperationsPackage.createPackageContents();
 		theMetricsPackage.createPackageContents();
 		theResultsPackage.createPackageContents();
-		theConditionsPackage.createPackageContents();
-		theGrammarSpecPackage.createPackageContents();
 		theMRSPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theStandardGrammarPackage.initializePackageContents();
 		theTestingPackagePackage.initializePackageContents();
-		theAttacksPackage.initializePackageContents();
+		theFuzzingOperationsPackage.initializePackageContents();
 		theMetricsPackage.initializePackageContents();
 		theResultsPackage.initializePackageContents();
-		theConditionsPackage.initializePackageContents();
-		theGrammarSpecPackage.initializePackageContents();
 		theMRSPackagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -206,8 +200,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVariable() {
-		return variableEClass;
+	public EClass getConditionElement() {
+		return conditionElementEClass;
 	}
 
 	/**
@@ -215,8 +209,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSimulatorVariable() {
-		return simulatorVariableEClass;
+	public EClass getCompositeCondition() {
+		return compositeConditionEClass;
 	}
 
 	/**
@@ -224,8 +218,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimulatorVariable_Name() {
-		return (EAttribute)simulatorVariableEClass.getEStructuralFeatures().get(0);
+	public EReference getCompositeCondition_Left() {
+		return (EReference)compositeConditionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -233,8 +227,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExpression() {
-		return expressionEClass;
+	public EAttribute getCompositeCondition_Binop() {
+		return (EAttribute)compositeConditionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -242,8 +236,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBinaryExpression() {
-		return binaryExpressionEClass;
+	public EReference getCompositeCondition_Right() {
+		return (EReference)compositeConditionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -251,8 +245,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBinaryExpression_Left() {
-		return (EReference)binaryExpressionEClass.getEStructuralFeatures().get(0);
+	public EClass getBasicCondition() {
+		return basicConditionEClass;
 	}
 
 	/**
@@ -260,8 +254,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBinaryExpression_Right() {
-		return (EReference)binaryExpressionEClass.getEStructuralFeatures().get(1);
+	public EReference getBasicCondition_Left() {
+		return (EReference)basicConditionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -269,8 +263,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBinaryComparison() {
-		return binaryComparisonEClass;
+	public EAttribute getBasicCondition_Bincomp() {
+		return (EAttribute)basicConditionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -278,8 +272,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBinaryComparison_Comp() {
-		return (EAttribute)binaryComparisonEClass.getEStructuralFeatures().get(0);
+	public EReference getBasicCondition_Right() {
+		return (EReference)basicConditionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -287,8 +281,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBinaryLogicalExpression() {
-		return binaryLogicalExpressionEClass;
+	public EClass getConditionLiteral() {
+		return conditionLiteralEClass;
 	}
 
 	/**
@@ -296,8 +290,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBinaryLogicalExpression_BinOp() {
-		return (EAttribute)binaryLogicalExpressionEClass.getEStructuralFeatures().get(0);
+	public EClass getConditionInteger() {
+		return conditionIntegerEClass;
 	}
 
 	/**
@@ -305,8 +299,62 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getBinaryComparator() {
-		return binaryComparatorEEnum;
+	public EAttribute getConditionInteger_Value() {
+		return (EAttribute)conditionIntegerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConditionVariable() {
+		return conditionVariableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConditionVariable_Metric() {
+		return (EReference)conditionVariableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCondition() {
+		return conditionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCondition_Name() {
+		return (EAttribute)conditionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCondition_C() {
+		return (EReference)conditionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getBinaryComparisonOperation() {
+		return binaryComparisonOperationEEnum;
 	}
 
 	/**
@@ -346,25 +394,32 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		isCreated = true;
 
 		// Create classes and their features
-		variableEClass = createEClass(VARIABLE);
+		conditionElementEClass = createEClass(CONDITION_ELEMENT);
 
-		simulatorVariableEClass = createEClass(SIMULATOR_VARIABLE);
-		createEAttribute(simulatorVariableEClass, SIMULATOR_VARIABLE__NAME);
+		compositeConditionEClass = createEClass(COMPOSITE_CONDITION);
+		createEReference(compositeConditionEClass, COMPOSITE_CONDITION__LEFT);
+		createEAttribute(compositeConditionEClass, COMPOSITE_CONDITION__BINOP);
+		createEReference(compositeConditionEClass, COMPOSITE_CONDITION__RIGHT);
 
-		expressionEClass = createEClass(EXPRESSION);
+		basicConditionEClass = createEClass(BASIC_CONDITION);
+		createEReference(basicConditionEClass, BASIC_CONDITION__LEFT);
+		createEAttribute(basicConditionEClass, BASIC_CONDITION__BINCOMP);
+		createEReference(basicConditionEClass, BASIC_CONDITION__RIGHT);
 
-		binaryExpressionEClass = createEClass(BINARY_EXPRESSION);
-		createEReference(binaryExpressionEClass, BINARY_EXPRESSION__LEFT);
-		createEReference(binaryExpressionEClass, BINARY_EXPRESSION__RIGHT);
+		conditionLiteralEClass = createEClass(CONDITION_LITERAL);
 
-		binaryComparisonEClass = createEClass(BINARY_COMPARISON);
-		createEAttribute(binaryComparisonEClass, BINARY_COMPARISON__COMP);
+		conditionIntegerEClass = createEClass(CONDITION_INTEGER);
+		createEAttribute(conditionIntegerEClass, CONDITION_INTEGER__VALUE);
 
-		binaryLogicalExpressionEClass = createEClass(BINARY_LOGICAL_EXPRESSION);
-		createEAttribute(binaryLogicalExpressionEClass, BINARY_LOGICAL_EXPRESSION__BIN_OP);
+		conditionVariableEClass = createEClass(CONDITION_VARIABLE);
+		createEReference(conditionVariableEClass, CONDITION_VARIABLE__METRIC);
+
+		conditionEClass = createEClass(CONDITION);
+		createEAttribute(conditionEClass, CONDITION__NAME);
+		createEReference(conditionEClass, CONDITION__C);
 
 		// Create enums
-		binaryComparatorEEnum = createEEnum(BINARY_COMPARATOR);
+		binaryComparisonOperationEEnum = createEEnum(BINARY_COMPARISON_OPERATION);
 		binaryLogicalOperationEEnum = createEEnum(BINARY_LOGICAL_OPERATION);
 	}
 
@@ -391,38 +446,48 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		MetricsPackage theMetricsPackage = (MetricsPackage)EPackage.Registry.INSTANCE.getEPackage(MetricsPackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		simulatorVariableEClass.getESuperTypes().add(this.getVariable());
-		binaryExpressionEClass.getESuperTypes().add(this.getExpression());
-		binaryComparisonEClass.getESuperTypes().add(this.getBinaryExpression());
-		binaryLogicalExpressionEClass.getESuperTypes().add(this.getBinaryExpression());
+		compositeConditionEClass.getESuperTypes().add(this.getConditionElement());
+		basicConditionEClass.getESuperTypes().add(this.getConditionElement());
+		conditionIntegerEClass.getESuperTypes().add(this.getConditionLiteral());
+		conditionVariableEClass.getESuperTypes().add(this.getConditionLiteral());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(variableEClass, Variable.class, "Variable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(conditionElementEClass, ConditionElement.class, "ConditionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(simulatorVariableEClass, SimulatorVariable.class, "SimulatorVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSimulatorVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, SimulatorVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(compositeConditionEClass, CompositeCondition.class, "CompositeCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeCondition_Left(), this.getConditionElement(), null, "left", null, 1, 1, CompositeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompositeCondition_Binop(), this.getBinaryLogicalOperation(), "binop", null, 1, 1, CompositeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeCondition_Right(), this.getConditionElement(), null, "right", null, 1, 1, CompositeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(expressionEClass, Expression.class, "Expression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(basicConditionEClass, BasicCondition.class, "BasicCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBasicCondition_Left(), this.getConditionVariable(), null, "left", null, 1, 1, BasicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBasicCondition_Bincomp(), this.getBinaryComparisonOperation(), "bincomp", null, 1, 1, BasicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBasicCondition_Right(), this.getConditionLiteral(), null, "right", null, 1, 1, BasicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(binaryExpressionEClass, BinaryExpression.class, "BinaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBinaryExpression_Left(), this.getExpression(), null, "left", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBinaryExpression_Right(), this.getExpression(), null, "right", null, 0, 1, BinaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(conditionLiteralEClass, ConditionLiteral.class, "ConditionLiteral", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(binaryComparisonEClass, BinaryComparison.class, "BinaryComparison", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBinaryComparison_Comp(), this.getBinaryComparator(), "comp", null, 0, 1, BinaryComparison.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(conditionIntegerEClass, ConditionInteger.class, "ConditionInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConditionInteger_Value(), ecorePackage.getEInt(), "value", null, 0, 1, ConditionInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(binaryLogicalExpressionEClass, BinaryLogicalExpression.class, "BinaryLogicalExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBinaryLogicalExpression_BinOp(), this.getBinaryLogicalOperation(), "binOp", null, 0, 1, BinaryLogicalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(conditionVariableEClass, ConditionVariable.class, "ConditionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConditionVariable_Metric(), theMetricsPackage.getMetric(), null, "metric", null, 1, 1, ConditionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCondition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCondition_C(), this.getConditionElement(), null, "c", null, 1, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
-		initEEnum(binaryComparatorEEnum, BinaryComparator.class, "BinaryComparator");
-		addEEnumLiteral(binaryComparatorEEnum, BinaryComparator.LESS_THAN);
-		addEEnumLiteral(binaryComparatorEEnum, BinaryComparator.GREATER_THAN);
+		initEEnum(binaryComparisonOperationEEnum, BinaryComparisonOperation.class, "BinaryComparisonOperation");
+		addEEnumLiteral(binaryComparisonOperationEEnum, BinaryComparisonOperation.LESS_THAN);
+		addEEnumLiteral(binaryComparisonOperationEEnum, BinaryComparisonOperation.GREATER_THAN);
 
 		initEEnum(binaryLogicalOperationEEnum, BinaryLogicalOperation.class, "BinaryLogicalOperation");
 		addEEnumLiteral(binaryLogicalOperationEEnum, BinaryLogicalOperation.AND);

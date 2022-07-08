@@ -20,10 +20,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
-
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
@@ -39,7 +40,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getName <em>Name</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getAttacks <em>Attacks</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getMetrics <em>Metrics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getEndTrigger <em>End Trigger</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getDevelopedFrom <em>Developed From</em>}</li>
@@ -70,14 +71,14 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAttacks() <em>Attacks</em>}' containment reference list.
+	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAttacks()
+	 * @see #getOperations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Attack> attacks;
+	protected EList<FuzzingOperation> operations;
 
 	/**
 	 * The cached value of the '{@link #getMetrics() <em>Metrics</em>}' containment reference list.
@@ -154,11 +155,11 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Attack> getAttacks() {
-		if (attacks == null) {
-			attacks = new EObjectContainmentWithInverseEList<Attack>(Attack.class, this, TestingPackagePackage.TEST__ATTACKS, AttacksPackage.ATTACK__CONTAINING_TEST);
+	public EList<FuzzingOperation> getOperations() {
+		if (operations == null) {
+			operations = new EObjectContainmentWithInverseEList<FuzzingOperation>(FuzzingOperation.class, this, TestingPackagePackage.TEST__OPERATIONS, FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST);
 		}
-		return attacks;
+		return operations;
 	}
 
 	/**
@@ -247,8 +248,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TestingPackagePackage.TEST__ATTACKS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAttacks()).basicAdd(otherEnd, msgs);
+			case TestingPackagePackage.TEST__OPERATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperations()).basicAdd(otherEnd, msgs);
 			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -265,8 +266,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TestingPackagePackage.TEST__ATTACKS:
-				return ((InternalEList<?>)getAttacks()).basicRemove(otherEnd, msgs);
+			case TestingPackagePackage.TEST__OPERATIONS:
+				return ((InternalEList<?>)getOperations()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TEST__METRICS:
 				return ((InternalEList<?>)getMetrics()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TEST__END_TRIGGER:
@@ -301,8 +302,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 		switch (featureID) {
 			case TestingPackagePackage.TEST__NAME:
 				return getName();
-			case TestingPackagePackage.TEST__ATTACKS:
-				return getAttacks();
+			case TestingPackagePackage.TEST__OPERATIONS:
+				return getOperations();
 			case TestingPackagePackage.TEST__METRICS:
 				return getMetrics();
 			case TestingPackagePackage.TEST__END_TRIGGER:
@@ -327,9 +328,9 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 			case TestingPackagePackage.TEST__NAME:
 				setName((String)newValue);
 				return;
-			case TestingPackagePackage.TEST__ATTACKS:
-				getAttacks().clear();
-				getAttacks().addAll((Collection<? extends Attack>)newValue);
+			case TestingPackagePackage.TEST__OPERATIONS:
+				getOperations().clear();
+				getOperations().addAll((Collection<? extends FuzzingOperation>)newValue);
 				return;
 			case TestingPackagePackage.TEST__METRICS:
 				getMetrics().clear();
@@ -357,8 +358,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 			case TestingPackagePackage.TEST__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case TestingPackagePackage.TEST__ATTACKS:
-				getAttacks().clear();
+			case TestingPackagePackage.TEST__OPERATIONS:
+				getOperations().clear();
 				return;
 			case TestingPackagePackage.TEST__METRICS:
 				getMetrics().clear();
@@ -383,8 +384,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 		switch (featureID) {
 			case TestingPackagePackage.TEST__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TestingPackagePackage.TEST__ATTACKS:
-				return attacks != null && !attacks.isEmpty();
+			case TestingPackagePackage.TEST__OPERATIONS:
+				return operations != null && !operations.isEmpty();
 			case TestingPackagePackage.TEST__METRICS:
 				return metrics != null && !metrics.isEmpty();
 			case TestingPackagePackage.TEST__END_TRIGGER:

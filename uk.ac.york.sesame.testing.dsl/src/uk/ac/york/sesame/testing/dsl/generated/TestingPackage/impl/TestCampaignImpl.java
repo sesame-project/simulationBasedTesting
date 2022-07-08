@@ -20,10 +20,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
-
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
@@ -41,7 +42,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getMetrics <em>Metrics</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getIncludedAttacks <em>Included Attacks</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getIncludedOperations <em>Included Operations</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getPerformedTests <em>Performed Tests</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getResultSets <em>Result Sets</em>}</li>
@@ -82,14 +83,14 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	protected EList<Metric> metrics;
 
 	/**
-	 * The cached value of the '{@link #getIncludedAttacks() <em>Included Attacks</em>}' reference list.
+	 * The cached value of the '{@link #getIncludedOperations() <em>Included Operations</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIncludedAttacks()
+	 * @see #getIncludedOperations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Attack> includedAttacks;
+	protected EList<FuzzingOperation> includedOperations;
 
 	/**
 	 * The cached value of the '{@link #getApproach() <em>Approach</em>}' containment reference.
@@ -188,11 +189,11 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Attack> getIncludedAttacks() {
-		if (includedAttacks == null) {
-			includedAttacks = new EObjectResolvingEList<Attack>(Attack.class, this, TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS);
+	public EList<FuzzingOperation> getIncludedOperations() {
+		if (includedOperations == null) {
+			includedOperations = new EObjectResolvingEList<FuzzingOperation>(FuzzingOperation.class, this, TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS);
 		}
-		return includedAttacks;
+		return includedOperations;
 	}
 
 	/**
@@ -352,8 +353,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return getName();
 			case TestingPackagePackage.TEST_CAMPAIGN__METRICS:
 				return getMetrics();
-			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS:
-				return getIncludedAttacks();
+			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
+				return getIncludedOperations();
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				return getApproach();
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
@@ -382,9 +383,9 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				getMetrics().clear();
 				getMetrics().addAll((Collection<? extends Metric>)newValue);
 				return;
-			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS:
-				getIncludedAttacks().clear();
-				getIncludedAttacks().addAll((Collection<? extends Attack>)newValue);
+			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
+				getIncludedOperations().clear();
+				getIncludedOperations().addAll((Collection<? extends FuzzingOperation>)newValue);
 				return;
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				setApproach((TestGenerationApproach)newValue);
@@ -418,8 +419,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TEST_CAMPAIGN__METRICS:
 				getMetrics().clear();
 				return;
-			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS:
-				getIncludedAttacks().clear();
+			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
+				getIncludedOperations().clear();
 				return;
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				setApproach((TestGenerationApproach)null);
@@ -449,8 +450,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case TestingPackagePackage.TEST_CAMPAIGN__METRICS:
 				return metrics != null && !metrics.isEmpty();
-			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS:
-				return includedAttacks != null && !includedAttacks.isEmpty();
+			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
+				return includedOperations != null && !includedOperations.isEmpty();
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				return approach != null;
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:

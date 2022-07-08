@@ -34,7 +34,7 @@ import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl;
 
 public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
@@ -191,23 +191,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				System.out.print("Launching test runner for " + mainClassName + "... (classpath " + codeGenerationDirectory + ")");
 				System.out.flush();
 				TestRunnerUtils.exec(mainClassName, codeGenerationDirectory);
-				
-				////////////////////////////// THIS IS ONLY FOR TEMPORARY LOGGING OF THE POSITIONS FOR THE EXPERIMENT 
-				// Take out after 1st July!
-				Thread varLogThread = new Thread() {
-					public void run() {				
-						try {
-							System.out.println("Starting var logging thread");
-							TestRunnerUtils.__variableLogging(mainClassName);
-							System.out.println("Var logging thread completed");
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
-				};
-				varLogThread.start();
-				//////////////////////////////////////////////////////////////////////////////////////////////////////
-				
+						
 				System.out.println("done");
 				System.out.flush();
 
@@ -286,27 +270,27 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	// and TestCampaign
 	// TODO: this needs to be specified as an extension point, for now, just using
 	// 50% for all attacks
-	public boolean includeAttack(Attack a) {
-		final double INCLUDE_ATTACK_PROB = 0.5;
+	public boolean shouldIncludeFuzzingOperation(FuzzingOperation a) {
+		final double INCLUDE_FuzzingOperation_PROB = 0.5;
 		double v = rng.nextDouble();
-		return (v < INCLUDE_ATTACK_PROB);
+		return (v < INCLUDE_FuzzingOperation_PROB);
 	}
 
 	public SESAMETestSolution createSolution() {
 		// Needs to create the initial selections from the TestingSpace and constraints
 		// from TestCampaign
 
-		// Created with attacks specified within the space
-		// TODO: attacks can be a "subset" of each of the selected attacks
+		// Created with FuzzingOperations specified within the space
+		// TODO: FuzzingOperations can be a "subset" of each of the selected FuzzingOperations
 		int i = 0;
 		System.out.println("createSolution");
 
 		SESAMETestSolution sol = new SESAMETestSolution(selectedCampaign);
 
-		EList<Attack> attacksInCampaign = selectedCampaign.getIncludedAttacks();
-		for (Attack a : attacksInCampaign) {
-			if (includeAttack(a)) {
-				// Attacks produced as a "subset" of each of the selected attacks
+		EList<FuzzingOperation> FuzzingOperationsInCampaign = selectedCampaign.getIncludedOperations();
+		for (FuzzingOperation a : FuzzingOperationsInCampaign) {
+			if (shouldIncludeFuzzingOperation(a)) {
+				// FuzzingOperations produced as a "subset" of each of the selected FuzzingOperations
 				// TODO: this should be configurable somehow
 				SESAMETestAttack sta = SESAMETestAttack.reductionOfAttack(sol, a);
 				sol.addContents(i++, sta);
@@ -314,20 +298,20 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		}
 		
 		// If we haven't picked any, pick one
-		if (sol.getNumberOfVariables() == 0 && attacksInCampaign.size() > 0) {
-			Attack baseAttack = getRandomAttack(attacksInCampaign);
-			SESAMETestAttack sta = SESAMETestAttack.reductionOfAttack(sol, baseAttack);
+		if (sol.getNumberOfVariables() == 0 && FuzzingOperationsInCampaign.size() > 0) {
+			FuzzingOperation baseFuzzingOperation = getRandomFuzzingOperation(FuzzingOperationsInCampaign);
+			SESAMETestAttack sta = SESAMETestAttack.reductionOfAttack(sol, baseFuzzingOperation);
 			sol.addContents(i++, sta);
 		}
 		
 		return sol;
 	}
 
-	private Attack getRandomAttack(EList<Attack> attacks)
+	private FuzzingOperation getRandomFuzzingOperation(EList<FuzzingOperation> FuzzingOperations)
 	{
-	    int listSize = attacks.size();
+	    int listSize = FuzzingOperations.size();
 	    int randomIndex = rng.nextInt(listSize);
-	    return attacks.get(randomIndex);
+	    return FuzzingOperations.get(randomIndex);
 	}
 
 	public void shutDownMetricListener() {
