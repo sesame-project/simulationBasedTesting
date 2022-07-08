@@ -101,7 +101,7 @@ abstract class FuzzingOperation {
 }
 
 class OfflineFuzzingOperation extends FuzzingOperation {
-	attr OfflineOperationTime attackTime;
+	attr OfflineOperationTime operationTime;
 }
 
 enum OfflineOperationTime {
@@ -141,17 +141,15 @@ class ComponentOperation extends FuzzTestingOperation {
 }
 
 class ComponentPropertyOperation extends FuzzTestingOperation {
-	// This might need to be MRSPackage.Type
 	ref MRSPackage.ComponentProperty[0..1] propertyToAffect;
 }
 
 class ComponentSubPropertyOperation extends FuzzTestingOperation {
-	// This might need to be MRSPackage.Type
 	ref MRSPackage.ComponentProperty[0..1] propertyToAffect;
 	ref MRSPackage.Type[0..1] subProperty;
 }
 
-class TopicOperation extends FuzzTestingOperation {
+class VariableOperation extends FuzzTestingOperation {
 	ref MRSPackage.Parameter[*] subParameters;
 }
 
@@ -284,7 +282,7 @@ enum MetricOptimisationDirection {
 abstract class Metric {
 	attr String name;
 	attr MetricOptimisationDirection dir;
-	ref MRSPackage.Variable[*] relatedTopics;
+	ref MRSPackage.Variable[*] relatedVariables;
 	val MetricDefault[0..1] default;	
 }
 
@@ -292,8 +290,8 @@ class MetricDefault {
 	attr double defaultVal;
 }
 
-class TopicMetric extends Metric {
-	ref MRSPackage.Variable[1] chosenTopics;
+class VariableMetric extends Metric {
+	ref MRSPackage.Variable[1] chosenVariables;
 }
 
 class MetricInstance {
