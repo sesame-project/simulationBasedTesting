@@ -3,21 +3,17 @@
 package TestingPackage;
 //import "http://ExSceMM";
 
-// To register updated models in the child eclipse, need to click the
-// "Generate SESAME code" button
-
 // TestingSpace - which specifies the boundaries of the testing space
 // (the possible attacks), a grammar used for conditions,
 // and the metrics to be used. 
 class TestingSpace {
 	attr String name;
 	val Metrics.Metric[*] metrics;
-	val Attacks.Attack[*] possibleAttacks;
+	val FuzzingOperations.FuzzingOperation[*] possibleFuzzingOperations;
 	//val GrammarSpec.GrammarSpecification[0..1] grammarSpecification;
 	val TestCampaign[*] campaigns;
 	val MRSPackage.MRS[1] mrs;
 }
-
 
 // TestingCampaign - specifies an experiment 
 // (evolutionary process, selected metrics/attacks, and any constraints upon the grammar for this run)
@@ -27,7 +23,7 @@ class TestingSpace {
 class TestCampaign {
 	attr String name;
 	ref Metrics.Metric[*] metrics;
-	ref Attacks.Attack[*] includedAttacks;
+	ref FuzzingOperations.FuzzingOperation[*] includedOperations;
 	//val GrammarSpec.GrammarConstraint[*] constraints;
 	val TestGenerationApproach[1] approach;
 	val Test[*]#parentCampaign performedTests;
@@ -38,9 +34,11 @@ class TestCampaign {
 // This is analagous to a fuzzing CSV file in SAFEMUV - multiple attacks
 class Test {
 	attr String name;
-	val Attacks.Attack[*]#containingTest attacks;
+	val FuzzingOperations.FuzzingOperation[*]#containingTest operations;
 	val Metrics.MetricInstance[*] metrics;
 	val ExecutionEndTrigger[1] endTrigger;
+	// developedFrom can contain e.g. the evolutionary history of this Test,
+	// which other tests it was developed from
 	ref Test[*] developedFrom; 
 	readonly transient ref TestCampaign[1]#performedTests parentCampaign;
 }
@@ -81,90 +79,87 @@ class NSGAEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 	attr int iterations;
 }
 
-package Attacks {
+package FuzzingOperations {
 
-// TODO: why is this not abstract?
-class Attack {
+abstract class FuzzingOperation {
 	attr String name;
 	attr int priority;
 
-	// TODO: should Attack have a single or multiple activations	
-	val AttackActivation[*] attackActivation;
-	ref MRSPackage.Topic[0..1] topicToAttack;
+	val Activation[1] activation; // FuzzingOperation only has a single activation
+	ref MRSPackage.Variable[0..1] variableToAffect;
 	attr boolean messagesFromAllComponenents = true;
 	ref MRSPackage.Node[*] fromNodes;
 	attr boolean messagesToAllComponenents = true;
 	ref MRSPackage.Node[*] toNodes;
-	ref MRSPackage.Node[0..1] nodeToAttack;
-	attr boolean allPublishingTopics = false;
-	ref MRSPackage.Topic[*] publishingTopics;
-	attr boolean allSubscribingTopics = false;
-	ref MRSPackage.Topic[*] subscribingTopics;
-	ref Attack[0..1] fromTemplate;
-	
-	readonly transient ref Test[0..1]#attacks containingTest;
+	ref MRSPackage.Node[0..1] nodeToFuzz;
+	attr boolean allPublishingVars = false;
+	ref MRSPackage.Variable[*] publishingVars;
+	attr boolean allSubscribingVars = false;
+	ref MRSPackage.Variable[*] subscribingVars;
+	ref FuzzingOperation[0..1] fromTemplate;
+	readonly transient ref Test[0..1]#operations containingTest;
 }
 
-class OfflineAttack extends Attack {
-	attr OfflineAttackTime attackTime;
+class OfflineFuzzingOperation extends FuzzingOperation {
+	attr OfflineOperationTime attackTime;
 }
 
-enum OfflineAttackTime {
+enum OfflineOperationTime {
 	PRE;
 	POST;
 }
 
 // I envision this as an instance where just the infrastructure (Flink flatmap) will be created and 
 // added to the orchestrator and users will need to write their own code. Extensibility point...
-class CustomAttack extends Attack {
+class CustomFuzzingOperation extends FuzzingOperation {
 	
 }
 
-class CustomOfflineAttack extends OfflineAttack {
+class CustomOfflineFuzzingOperation extends OfflineFuzzingOperation {
 	
 }
 
-abstract class AttackActivation {
+abstract class Activation {
 	
 }
 
-class AttackFixedTime extends AttackActivation {
+class FixedTimeActivation extends Activation {
 	attr double startTime;
 	attr double endTime;
 }
 
-class ConditionBased extends AttackActivation {
-	val StandardComparisonGrammar.StandardCondition starting;
-	val StandardComparisonGrammar.StandardCondition ending;
+class ConditionBasedActivation extends Activation {
+	val StandardGrammar.Condition starting;
+	val StandardGrammar.Condition ending;
 }
 
-class FuzzTestingAttack extends Attack {
+class FuzzTestingOperation extends FuzzingOperation {
 	
 }
 
-class ComponentAttack extends FuzzTestingAttack {
+class ComponentOperation extends FuzzTestingOperation {
 }
 
-class ComponentPropertyAttack extends FuzzTestingAttack {
+class ComponentPropertyOperation extends FuzzTestingOperation {
 	// This might need to be MRSPackage.Type
-	ref MRSPackage.ComponentProperty[0..1] propertyToAttack;
+	ref MRSPackage.ComponentProperty[0..1] propertyToAffect;
 }
 
-class ComponentSubPropertyAttack extends FuzzTestingAttack {
+class ComponentSubPropertyOperation extends FuzzTestingOperation {
 	// This might need to be MRSPackage.Type
-	ref MRSPackage.ComponentProperty[0..1] propertyToAttack;
+	ref MRSPackage.ComponentProperty[0..1] propertyToAffect;
 	ref MRSPackage.Type[0..1] subProperty;
 }
 
-class TopicAttack extends FuzzTestingAttack {
+class TopicOperation extends FuzzTestingOperation {
 	ref MRSPackage.Parameter[*] subParameters;
 }
 
-class RandomValueAttack extends ComponentPropertyAttack {
+class RandomValueFuzzingOperation extends ComponentOperation {
 	attr int seed;
 }
 
-class RandomValueFromSetAttack extends RandomValueAttack {
+class RandomValueFromSetOperation extends RandomValueFuzzingOperation {
 	val ValueSet[*] valueSet;
 }
 
@@ -199,22 +194,21 @@ class ExternalResourceSet extends ValueSet {
 }
 // End of Value Sets
 
-class ResourceAttack extends Attack {
+class ResourceFuzzingOperation extends FuzzingOperation {
+	
+}
+
+class StateFuzzingOperation extends FuzzingOperation {
 
 	
 }
 
-class StateAttack extends Attack {
+class NetworkFuzzingOperation extends FuzzingOperation {
 
 	
 }
 
-class NetworkAttack extends Attack {
-
-	
-}
-
-class LoadResourceAttack extends ResourceAttack {
+class LoadResourceOperation extends ResourceFuzzingOperation {
 	ref LoadType[1] loadType;
 }
 
@@ -239,38 +233,37 @@ class DiskLoadType extends LoadType {
 
 }
 
-class ShutdownStateAttack extends StateAttack {
+class ShutdownStateOperaton extends StateFuzzingOperation {
 	
 }
 
-class TimeTravelStateAttack extends StateAttack {
+class TimeTravelStateOperaton extends StateFuzzingOperation {
 	val DoubleRange[1] timeTravelValue;
 }
 
-class ProcessKillerStateAttack extends StateAttack {
+class ProcessKillerStateOperaton extends StateFuzzingOperation {
 	attr int processId;
 }
 
-class BlackholeNetworkAttack extends NetworkAttack {
+class BlackholeNetworkOperation extends NetworkFuzzingOperation {
 	
 }
 
-class LatencyNetworkAttack extends NetworkAttack {
+class LatencyNetworkOperation extends NetworkFuzzingOperation {
 	val DoubleRange[1] latency;
 }
 
-class PacketLossNetworkAttack extends NetworkAttack {
+class PacketLossNetworkOperation extends NetworkFuzzingOperation {
 	val DoubleRange[1] frequency;
 }
 
-class MultipleMessagesNetworkAttack extends NetworkAttack {
+class MultipleMessagesNetworkOperation extends NetworkFuzzingOperation {
 	val IntRange[1] howManyClones;
 }
 
 }
 
 package Metrics {
-	
 abstract class SimStream {
 	
 }
@@ -288,16 +281,10 @@ enum MetricOptimisationDirection {
 	LOWEST = 2;
 }
 
-enum MetricStateKeyedBy {
-	TEST = 1;
-	TOPIC = 2;
-}
-	
 abstract class Metric {
 	attr String name;
 	attr MetricOptimisationDirection dir;
-	attr MetricStateKeyedBy keyedBy;
-	ref MRSPackage.Topic[*] relatedTopics;
+	ref MRSPackage.Variable[*] relatedTopics;
 	val MetricDefault[0..1] default;	
 }
 
@@ -306,7 +293,7 @@ class MetricDefault {
 }
 
 class TopicMetric extends Metric {
-	ref MRSPackage.Topic[1] chosenTopics;
+	ref MRSPackage.Variable[1] chosenTopics;
 }
 
 class MetricInstance {
@@ -327,7 +314,7 @@ class StreamMetric extends Metric {
 	val StreamResult res; 
 }
 
-class AttackTimesMetric extends StreamMetric {
+class FuzzingOperationTimesMetric extends StreamMetric {
 	
 } 
 
@@ -338,136 +325,131 @@ abstract class StreamResult {
 class FileStreamResult extends StreamResult {
 	attr String filename; 
 }
-
 }
 
 package Results {
-	
-class Result {
-	attr String name;
-	attr double value;
-}
+	class Result {
+		attr String name;
+		attr double value;
+	}
 }
 
 package Conditions {
 
 }
 
-// This is a standard grammar - may not be sufficiently generic
-package StandardComparisonGrammar {
+// This is the defined standard grammar - supports basic and composite
+// conditions as in the MODELS'22 paper
+package StandardGrammar {
 	
-	abstract class ConditionElement {
+abstract class ConditionElement {
 		
-	}
+}
 	
-	class CompositeCondition extends ConditionElement {
-		val ConditionElement[1] left;
-		attr BinaryLogicalOperation[1] binop;
-		val ConditionElement[1] right;
-	}
+class CompositeCondition extends ConditionElement {
+	val ConditionElement[1] left;
+	attr BinaryLogicalOperation[1] binop;
+	val ConditionElement[1] right;
+}
 	
-	class BasicCondition extends ConditionElement {
-		val Variable[1] left;
-		attr BinaryComparisonOperation[1] bincomp;
-		val Literal[1] right;
-	}
+class BasicCondition extends ConditionElement {
+	val ConditionVariable[1] left;
+	attr BinaryComparisonOperation[1] bincomp;
+	val ConditionLiteral[1] right;
+}
 	
-	abstract class Literal {
+abstract class ConditionLiteral {
 		
-	}
+}
 	
-	class ConditionInteger extends Literal {
-		attr int value;
-	}
+class ConditionInteger extends ConditionLiteral {
+	attr int value;
+}
 	
-	class Variable extends Literal {
-		ref Metrics.Metric[1] metric;
-	}
+// Variables reference the metrics that supply their values
+class ConditionVariable extends ConditionLiteral {
+	ref Metrics.Metric[1] metric;
+}
 	
-	enum BinaryComparisonOperation {
-		LESS_THAN = 1;
-		GREATER_THAN = 2;	
-	}
+enum BinaryComparisonOperation {
+	LESS_THAN = 1;
+	GREATER_THAN = 2;	
+}
 	
-	enum BinaryLogicalOperation {
-		AND = 1;
-		OR = 2;	
-	}
+enum BinaryLogicalOperation {
+	AND = 1;
+	OR = 2;	
+}
 	
-	abstract class Condition {
-		
-	}
-
-	class StandardCondition {
-		attr String name;
-		val StandardComparisonGrammar.ConditionElement[1] c; 
-	}
+class Condition {
+	attr String name;
+	val StandardGrammar.ConditionElement[1] c; 
+}
 }
 
 //------------------------------------------------------------
 
 package MRSPackage {
+	class MRS {
+	    val Variable[*] variables;
+		attr String launchFileLocation;
+		val Node[*] nodes;
+		val Simulator[1] simulator;
+		val Type[*] propertyType;
+	}
+
+	class Node {
+		attr String name;
+		ref Variable[*] subscriber;
+		ref Variable[*] publisher;
+		ref ComponentProperty[*] properties;
+	}
+
+	class Variable {
+		attr String name;
+		ref Type[1] type;
+	}
+
+	class Type {
+		attr String name;
+		attr ParsingMethod[1] parsingMethod;
+		val Parameter[*] parameters;
+		//ref Type[*] subTypes;
+	}
+
+	enum ParsingMethod {
+		JSON;
+		CSV;
+		CUSTOM;
+	}
+
+	class Parameter {
+		attr String name;
+		val Parameter[*] subparameters;
+		ref Type[1] type;
+	}
+
+	class ComponentProperty {
+		attr String name;
+		ref Type[1] type;
+	}
+
+	abstract class Simulator {
 	
+	}
 
-class MRS {
-    val Topic[*] topics;
-	attr String launchFileLocation;
-	val Node[*] nodes;
-	val Simulator[1] simulator;
-	val Type[*] propertyType;
-}
+	class ROSSimulator extends Simulator {
+		attr String hostname;
+		attr String port;
+	}
 
-class Node {
-	attr String name;
-	ref Topic[*] subscriber;
-	ref Topic[*] publisher;
-	ref ComponentProperty[*] properties;
-}
+	class MOOSSimulator extends Simulator {
+		attr String hostname;
+		attr String port;
+	}
 
-class Topic {
-	attr String name;
-	ref Type[1] type;
-}
-
-class Type {
-	attr String name;
-	attr ParsingMethod[1] parsingMethod;
-	val Parameter[*] parameters;
-	//ref Type[*] subTypes;
-}
-
-enum ParsingMethod {
-	JSON;
-	CSV;
-	CUSTOM;
-}
-
-class Parameter {
-	attr String name;
-	val Parameter[*] subparameters;
-	ref Type[1] type;
-}
-
-class ComponentProperty {
-	attr String name;
-	ref Type[1] type;
-}
-
-abstract class Simulator {
-}
-
-class ROSSimulator extends Simulator {
-	attr String hostname;
-	attr String port;
-}
-
-class MOOSSimulator extends Simulator {
-	attr String hostname;
-	attr String port;
-}
-
-class TTSSimulator extends Simulator {
-	attr String hostname;
-	attr String port;
-}
+	class TTSSimulator extends Simulator {
+		attr String hostname;
+		attr String port;
+	}
 }
