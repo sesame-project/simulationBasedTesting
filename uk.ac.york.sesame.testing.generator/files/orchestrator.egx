@@ -3,32 +3,26 @@ rule test2Class transform test: Testing!Test {
 	target : "src/" + test.name.firstToUpperCase() + "_TestRunner.java"
 }
 
-rule packetLoss2FlatMap transform attack: Testing!PacketLossNetworkAttack {
-	guard : attack.containingTest != null
-	template : "attacks/packetLoss.egl"
+rule packetLoss2FlatMap transform fuzzOp: Testing!PacketLossNetworkOperation {
+	guard : fuzzOp.containingTest != null
+	template : "fuzzingoperations/packetLoss.egl"
 	target : "src/PacketLossFlatMap_" + attack.containingTest.name.firstToUpperCase() + ".java"	
 }
 
-rule blackHole2FlatMap transform attack: Testing!BlackholeNetworkAttack {
-	guard : attack.containingTest != null
-	template : "attacks/blackHole.egl"
+rule blackHole2FlatMap transform fuzzOp: Testing!BlackholeNetworkOperation {
+	guard : fuzzOp.containingTest != null
+	template : "fuzzingoperations/blackHole.egl"
 	target : "src/BlackHoleFlatMap_" + attack.containingTest.name.firstToUpperCase() + ".java"	
 }
 
-rule fuzzRange2FlatMap transform attack: Testing!RandomValueFromSetAttack {
-	guard : attack.containingTest != null
-	template : "attacks/fuzzRange.egl"
-	target : "src/"+ attack.name + "FlatMap_" + attack.containingTest.name.firstToUpperCase() + ".java"
+rule fuzzRange2FlatMap transform fuzzOp: Testing!RandomValueFromSetOperation {
+	guard : fuzzOp.containingTest != null
+	template : "fuzzingoperations/fuzzRange.egl"
+	target : "src/"+ fuzzOp.name + "FlatMap_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 }
 
 rule rangeClass transform testCampaign: Testing!TestCampaign {
 	guard : Testing!DoubleRange.all().notEmpty()
 	template : "datatypes/doubleRange.egl"
 	target : "src/datatypes/DoubleRange.java"
-}
-
-rule conditionClass transform condition: Testing!Conditions::Condition {
-	guard : condition.elt.parentGrammar.name == "BasicComparisonVariables"
-	template : "conditions/conditions.egl"
-	target : "src/metrics/generated/" + condition.name + ".java"
 }

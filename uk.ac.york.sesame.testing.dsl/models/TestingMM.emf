@@ -373,6 +373,7 @@ class ConditionVariable extends ConditionLiteral {
 enum BinaryComparisonOperation {
 	LESS_THAN = 1;
 	GREATER_THAN = 2;	
+	EQUALS = 3;
 }
 	
 enum BinaryLogicalOperation {

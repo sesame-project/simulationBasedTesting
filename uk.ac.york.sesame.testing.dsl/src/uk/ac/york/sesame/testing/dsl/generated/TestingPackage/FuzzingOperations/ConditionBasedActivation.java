@@ -15,6 +15,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Co
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedActivation#getStarting <em>Starting</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedActivation#getEnding <em>Ending</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedActivation#getMaximumActivations <em>Maximum Activations</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getConditionBasedActivation()
@@ -65,5 +66,28 @@ public interface ConditionBasedActivation extends Activation {
 	 * @generated
 	 */
 	void setEnding(Condition value);
+
+	/**
+	 * Returns the value of the '<em><b>Maximum Activations</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maximum Activations</em>' attribute.
+	 * @see #setMaximumActivations(int)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getConditionBasedActivation_MaximumActivations()
+	 * @model default="1"
+	 * @generated
+	 */
+	int getMaximumActivations();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedActivation#getMaximumActivations <em>Maximum Activations</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maximum Activations</em>' attribute.
+	 * @see #getMaximumActivations()
+	 * @generated
+	 */
+	void setMaximumActivations(int value);
 
 } // ConditionBasedActivation

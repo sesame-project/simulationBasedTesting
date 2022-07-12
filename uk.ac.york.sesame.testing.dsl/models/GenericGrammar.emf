@@ -1,0 +1,77 @@
+@namespace(uri="GenericGrammar", prefix="GenericGrammar")
+
+package Conditions;
+
+class Condition {
+	attr String name;
+	val Node[1] elt;
+}
+
+class Node {
+	ref GrammarElt[1] grammarElt;
+	val Node[*] subNodes;
+	// Constraint: Only the non-terminals have a value?
+	val NodeValue[1] value;
+}
+	
+abstract class NodeValue {
+				
+}
+	
+class IntNodeValue extends NodeValue {
+	attr int value;
+}
+	
+class StringNodeValue extends NodeValue {
+	attr String value;
+}
+	
+// Metric reference as a NodeValue
+		
+class DoubleNodeValue extends NodeValue {
+	attr double value;
+}
+
+class GrammarSpecification {
+	attr String name;
+	ref GrammarElt[1] rootElement;
+	val GrammarElt[*]#parentGrammar elements;
+	val GrammarRule[*] rules;
+}
+	
+class GrammarTag {
+	attr String name;
+}
+
+abstract class GrammarElt {
+	attr String name;
+	readonly transient ref GrammarSpecification[1]#elements parentGrammar; 
+}
+
+class NonterminalGrammarElt extends GrammarElt {
+	
+}
+	
+class TerminalGrammarElt extends GrammarElt {
+	val GrammarValue[1] value;
+}
+	
+class GrammarValue {
+	attr Object object;		
+}
+	
+// workaround for: https://bugs.eclipse.org/bugs/show_bug.cgi?id=89325#c4
+// This has to contain a single reference
+class GrammarRhsElt {
+	ref GrammarElt[1] elt;
+}	
+	
+class GrammarRule {
+	attr String ruleName; 
+	ref NonterminalGrammarElt[1] lhs;
+	val GrammarRhsElt[*] rhsElts;
+}
+
+class GrammarConstraint {
+	// Allowed and forbidden rules
+}

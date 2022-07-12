@@ -94,6 +94,7 @@
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/ConditionBasedActivation">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/ConditionBasedActivation/starting"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/ConditionBasedActivation/ending"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/ConditionBasedActivation/maximumActivations"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/FuzzTestingOperation"/>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/ComponentOperation"/>
@@ -224,6 +225,7 @@
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="TestingMM.ecore#//StandardGrammar/BinaryComparisonOperation">
         <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//StandardGrammar/BinaryComparisonOperation/LESS_THAN"/>
         <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//StandardGrammar/BinaryComparisonOperation/GREATER_THAN"/>
+        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//StandardGrammar/BinaryComparisonOperation/EQUALS"/>
       </genEnums>
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="TestingMM.ecore#//StandardGrammar/BinaryLogicalOperation">
         <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//StandardGrammar/BinaryLogicalOperation/AND"/>

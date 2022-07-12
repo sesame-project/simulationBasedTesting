@@ -1,13 +1,16 @@
-[% var classNameExt = attack.containingTest.name.firstToUpperCase(); %]
+[% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase(); 
+   var fuzzOpCommon : Template = TemplateFactory.load("fuzzingoperations/fuzzOpCommon.egl");
+%]
 
 import org.apache.flink.util.Collector;
 import java.util.Random;
 
-import uk.ac.york.sesame.testing.architecture.attacks.Attack;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
+import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
+
 // TODO: EGL generators need to generate based on attack activation
-public class PacketLossFlatMap_[%= classNameExt %] extends [%= attackCommon.superclassName() %] {
+public class PacketLossFlatMap_[%= classNameExt %] extends [%= fuzzOpCommon.superClassName() %] {
 
 	private static final long serialVersionUID = 1L;
 	

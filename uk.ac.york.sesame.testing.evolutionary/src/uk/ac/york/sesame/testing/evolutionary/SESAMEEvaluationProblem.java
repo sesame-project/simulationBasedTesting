@@ -47,7 +47,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	
 	private static final long DEFAULT_COMPILE_DELAY = 10;
 	private static final long DEFAULT_KILL_DELAY = 10;
-	private static final long DEFAULT_MODEL_SAVING_DELAY = 10;
+	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
 
 	private static final boolean DUMMY_EVAL = false;
 

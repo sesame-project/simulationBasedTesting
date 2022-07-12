@@ -111,6 +111,8 @@
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ending" eType="#//StandardGrammar/Condition"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumActivations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+          defaultValueLiteral="1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FuzzTestingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation"/>
     <eClassifiers xsi:type="ecore:EClass" name="ComponentOperation" eSuperTypes="#//FuzzingOperations/FuzzTestingOperation"/>
@@ -273,6 +275,7 @@
     <eClassifiers xsi:type="ecore:EEnum" name="BinaryComparisonOperation">
       <eLiterals name="LESS_THAN" value="1"/>
       <eLiterals name="GREATER_THAN" value="2"/>
+      <eLiterals name="EQUALS" value="3"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="BinaryLogicalOperation">
       <eLiterals name="AND" value="1"/>

@@ -488,6 +488,7 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		initEEnum(binaryComparisonOperationEEnum, BinaryComparisonOperation.class, "BinaryComparisonOperation");
 		addEEnumLiteral(binaryComparisonOperationEEnum, BinaryComparisonOperation.LESS_THAN);
 		addEEnumLiteral(binaryComparisonOperationEEnum, BinaryComparisonOperation.GREATER_THAN);
+		addEEnumLiteral(binaryComparisonOperationEEnum, BinaryComparisonOperation.EQUALS);
 
 		initEEnum(binaryLogicalOperationEEnum, BinaryLogicalOperation.class, "BinaryLogicalOperation");
 		addEEnumLiteral(binaryLogicalOperationEEnum, BinaryLogicalOperation.AND);

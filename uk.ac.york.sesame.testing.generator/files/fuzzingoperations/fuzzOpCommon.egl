@@ -1,0 +1,9 @@
+// Generated from fuzzOpCommon template
+
+[%
+@template
+ operation superClassName() {
+	return "SUPERCLASSNAME";
+} 
+
+%]

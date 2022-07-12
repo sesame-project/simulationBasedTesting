@@ -36,7 +36,15 @@ public enum BinaryComparisonOperation implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GREATER_THAN(2, "GREATER_THAN", "GREATER_THAN");
+	GREATER_THAN(2, "GREATER_THAN", "GREATER_THAN"), /**
+	 * The '<em><b>EQUALS</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #EQUALS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	EQUALS(3, "EQUALS", "EQUALS");
 
 	/**
 	 * The '<em><b>LESS THAN</b></em>' literal value.
@@ -61,6 +69,17 @@ public enum BinaryComparisonOperation implements Enumerator {
 	public static final int GREATER_THAN_VALUE = 2;
 
 	/**
+	 * The '<em><b>EQUALS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #EQUALS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EQUALS_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Binary Comparison Operation</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,6 +89,7 @@ public enum BinaryComparisonOperation implements Enumerator {
 		new BinaryComparisonOperation[] {
 			LESS_THAN,
 			GREATER_THAN,
+			EQUALS,
 		};
 
 	/**
@@ -128,6 +148,7 @@ public enum BinaryComparisonOperation implements Enumerator {
 		switch (value) {
 			case LESS_THAN_VALUE: return LESS_THAN;
 			case GREATER_THAN_VALUE: return GREATER_THAN;
+			case EQUALS_VALUE: return EQUALS;
 		}
 		return null;
 	}

@@ -830,13 +830,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int CONDITION_BASED_ACTIVATION__ENDING = ACTIVATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Maximum Activations</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED_ACTIVATION__MAXIMUM_ACTIVATIONS = ACTIVATION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Condition Based Activation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_BASED_ACTIVATION_FEATURE_COUNT = ACTIVATION_FEATURE_COUNT + 2;
+	int CONDITION_BASED_ACTIVATION_FEATURE_COUNT = ACTIVATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Condition Based Activation</em>' class.
@@ -4697,6 +4706,17 @@ public interface FuzzingOperationsPackage extends EPackage {
 	EReference getConditionBasedActivation_Ending();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedActivation#getMaximumActivations <em>Maximum Activations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Activations</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedActivation#getMaximumActivations()
+	 * @see #getConditionBasedActivation()
+	 * @generated
+	 */
+	EAttribute getConditionBasedActivation_MaximumActivations();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzTestingOperation <em>Fuzz Testing Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5490,6 +5510,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONDITION_BASED_ACTIVATION__ENDING = eINSTANCE.getConditionBasedActivation_Ending();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Activations</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONDITION_BASED_ACTIVATION__MAXIMUM_ACTIVATIONS = eINSTANCE.getConditionBasedActivation_MaximumActivations();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzTestingOperationImpl <em>Fuzz Testing Operation</em>}' class.

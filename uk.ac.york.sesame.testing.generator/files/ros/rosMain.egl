@@ -3,7 +3,7 @@
 	var launchFileLocation = mrs.launchFileLocation;
 	var simulator = mrs.simulator;
 	var topicsNodesPublish = Node.all().publisher.flatten();
-	var topicsMetricsNeed = Metric.all().relatedTopics.flatten();
+	var topicsMetricsNeed = Metric.all().relatedVariables.flatten();
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
@@ -21,6 +21,9 @@ import org.apache.flink.api.common.serialization.SimpleStringEncoder;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.connector.file.sink.FileSink; 
+
+import org.apache.flink.configuration.Configuration;
+
 import org.apache.flink.core.fs.Path;
 import org.apache.flink.streaming.api.datastream.*;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -32,7 +35,7 @@ import org.apache.flink.util.Collector;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
-import uk.ac.york.sesame.testing.architecture.attacks.*;
+import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
 import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.*;
@@ -45,10 +48,16 @@ import metrics.fixed.*;
 public class [%= testNameString %]_TestRunner {
 	public static void main(String[] args) {
 		
-		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+		// JRH: needed to increase the number of buffers used
+		Configuration cfg = new Configuration();
+		int defaultLocalParallelism = 1;
+		cfg.setString("taskmanager.network.numberOfBuffers", "4096");
+		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(defaultLocalParallelism, cfg);
+		
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
+		
 		
 		DataStream<EventMessage> stream = env
 			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
@@ -67,18 +76,7 @@ public class [%= testNameString %]_TestRunner {
 		        new MetricMessageSchema(),    // serialization schema
 		        properties             // producer config
 		      );
-				
-		stream.
-		[%
-			for (attack in test.attacks) {
-				var flatMapString = produceFlatMapSignature(attack);
-				%]
-				[%=flatMapString%]
-				[%
-			}
-		%]
-		addSink(myProducer);
-		
+					
 		[%
 		if (simulator.isTypeOf(ROSSimulator)) { %]
 		ROSSimulator rosSim = new ROSSimulator();
@@ -149,10 +147,12 @@ public class [%= testNameString %]_TestRunner {
 		KeyedStream<EventMessage, String> testKeyedOut = streamOut.keyBy(value -> "[%= test.name %]");;
 		
 		[* For attack times metric *]
-		List<Double> attackTimes = new ArrayList<Double>(); 
-		[% for (attack in test.attacks) { %]
-			[%= produceAttackTimeString(attack) %]
+		List<Double> fuzzOpTimes = new ArrayList<Double>(); 
+		
+		[% for (fuzzOp in test.operations) { %]
+			[%= produceTimeString(fuzzOp) %]
 		[% } %]
+		
 		
 		[* Stream metrics here *]
 		[% for (sMetric in Testing!StreamMetric.all()) { %]
@@ -198,9 +198,11 @@ public class [%= testNameString %]_TestRunner {
 				metricMsg[%= sMetric.name %].map(msg -> msg.timeStampedValString()).sinkTo([%= sMetric.name %]streamFileSink);
 			[% } %]
 		[% } %]
-				
+		
+		DataStream<MetricMessage> allMetrics = 		
 		[* Create the unioned metric stream and link to the producer *]
 		[% 	if (allMetrics.size() > 0) {
+		
 			var firstMetric = allMetrics.removeAt(0); %]
 		metricMsg[%= firstMetric.name%]
 		
@@ -209,11 +211,35 @@ public class [%= testNameString %]_TestRunner {
 				for (metric in allMetrics) { %]
 		.union(metricMsg[%= metric.name %])
 				[% }
-		} %]
-				
-		.addSink(metricsProducer);
-		[% } %]
+		} %]	
+		[% } %];
 		
+		allMetrics.addSink(metricsProducer);
+				
+		final String TESTNAME = "Test_001_05_07_2022_00_37_06";
+		
+		ConnectedStreams<EventMessage,MetricMessage> allMetricsPlusEvents = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
+		
+		[% var foStreamCount = 0;
+		   var foLen = test.operations;
+		   for (fo in test.operations) { %]
+		   [% if (foStreamCount < foLen) {
+		   		var inputStream = "streamFO" + foStreamCount;
+		   		if (foStreamCount == 0) {
+					inputStream = "allMetricsPlusEvents";
+		   		} %]
+			   	ConnectedStreams<EventMessage,MetricMessage> streamFO[%= foStreamCount++ %] = [%= inputStream %].
+					process([%= produceFOGenerationSignature(fo) %]).connect(allMetrics).keyBy(e -> TESTNAME, m -> TESTNAME);	
+		   
+				[% } else { 
+				var inputStream = "streamFO" + (foLen - 1);
+				%]
+		   		DataStream<EventMessage> streamFO[%= foStreamCount++ %] = allMetricsPlusEvents.
+				process([%= produceFOGenerationSignature(fo)%]);
+				[% }
+		   } %]
+				
+		streamFO[%= foStreamCount %].addSink(myProducer);
 		
 		try {
 			env.execute();
@@ -221,29 +247,13 @@ public class [%= testNameString %]_TestRunner {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		[%
-		}
-		%]
+		[% } %]
 	}
 }
 
 [%
 
 operation streamJavaName(sMetric, stream) {
-	// TODO: Get comparison of enum working rather than using literal value
-	// Metrics!MetricStateKeyedBy#TEST doesn't work
-//	if (sMetric.keyedBy == 2) {
-//		if (stream.isTypeOf(Testing!InputStream)) {
-//			return "topicKeyedIn";
-//		}
-//	
-//		if (stream.isTypeOf(Testing!OutputStream)) {
-//			return "topicKeyedOut";
-//		}
-//	}
-	
-	
-//	if (sMetric.keyedBy == 1) {
 		if (stream.isTypeOf(Testing!InputStream)) {
 			return "testKeyedIn";
 		}
@@ -251,52 +261,53 @@ operation streamJavaName(sMetric, stream) {
 		if (stream.isTypeOf(Testing!OutputStream)) {
 			return "testKeyedOut";
 		}
-//	}
 }
 
 // TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap and RandomValueFromSetAttack are supported
-operation produceFlatMapSignature(attack) {
+operation produceFOGenerationSignature(fo) {
 	var flatmap = "";
-	var aaList = attack.attackActivation;
-	var startTime;
-	var endTime;
+	var aa = fo.activation;
 	
-	// TODO: currently, this only uses the first AttackActivation
-	var aa = aaList.first();
-	
-	if (aa.isKindOf(AttackFixedTime)) {
-		startTime = aa.startTime;
-		endTime = aa.endTime;
-	}
-			
+	if (aa.isKindOf(Testing!FixedTimeActivation)) {
+		var startTime = aa.startTime;
+		var endTime = aa.endTime;
 		
-	if (attack.isTypeOf(Testing!PacketLossNetworkAttack)) {
-		flatmap = "flatMap(new PacketLossFlatMap_" + testNameString + "(\"" + attack.topicToAttack.name + "\"," + startTime + "," + endTime + "," + attack.frequency + ")).";
-	} else if (attack.isTypeOf(Testing!BlackholeNetworkAttack)) {
-		flatmap = "flatMap(new BlackHoleFlatMap_" + testNameString + "(\"" + attack.topicToAttack.name + "\"," + startTime + "," + endTime + ")).";
-	} else if (attack.isTypeOf(Testing!RandomValueFromSetAttack)) {
-		// TODO: set up proper random seed here
-		flatmap = "flatMap(new " + attack.name + "FlatMap_" + testNameString + "(\"" + attack.topicToAttack.name + "\"," + startTime + "," + endTime + "," + attack.seed + ")).";
+		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
+			flatmap = "new PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.frequency + ")";
+		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
+			flatmap = "new BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + ")";
+		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
+			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
+		}
+	}
+	
+	if (aa.isKindOf(Testing!ConditionBasedActivation)) {
+		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
+			flatmap = "new PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "," + fo.frequency + ")";
+		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
+			flatmap = "new BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + ")";
+		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
+			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + ")";
+		}
 	}
 	
 	return flatmap;
 }
 
-operation produceAttackTimeString(attack) {
-	var aaList = attack.attackActivation;
-	
+operation produceTimeString(fuzzOp) {
+	var aaList = fuzzOp.activation;
 	var str="";
 	for (aa in aaList) {
-		if (aa.isKindOf(AttackFixedTime)) {
-			str = "attackTimes.add(new Double(" + (aa.endTime - aa.startTime) + "));\n";
+		if (aa.isKindOf(FixedTimeActivation)) {
+			str = "fuzzOpTimes.add(Double.valueOf(" + (aa.endTime - aa.startTime) + "));\n";
 		}
 	}
 	return str;
 }
 
 operation additionalInfo(sMetric) {
-	if (sMetric.isTypeOf(AttackTimesMetric)) {
-		return "attackTimes";
+	if (sMetric.isTypeOf(FuzzingOperationTimesMetric)) {
+		return "fuzzOpTimes";
 	} else {
 		return "";
 	}

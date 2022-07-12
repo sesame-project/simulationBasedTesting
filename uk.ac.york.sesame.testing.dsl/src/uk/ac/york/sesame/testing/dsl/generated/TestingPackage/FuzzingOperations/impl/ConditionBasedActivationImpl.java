@@ -25,6 +25,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Co
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedActivationImpl#getStarting <em>Starting</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedActivationImpl#getEnding <em>Ending</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedActivationImpl#getMaximumActivations <em>Maximum Activations</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,6 +50,26 @@ public class ConditionBasedActivationImpl extends ActivationImpl implements Cond
 	 * @ordered
 	 */
 	protected Condition ending;
+
+	/**
+	 * The default value of the '{@link #getMaximumActivations() <em>Maximum Activations</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumActivations()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAXIMUM_ACTIVATIONS_EDEFAULT = 1;
+
+	/**
+	 * The cached value of the '{@link #getMaximumActivations() <em>Maximum Activations</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumActivations()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maximumActivations = MAXIMUM_ACTIVATIONS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -160,6 +181,27 @@ public class ConditionBasedActivationImpl extends ActivationImpl implements Cond
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getMaximumActivations() {
+		return maximumActivations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaximumActivations(int newMaximumActivations) {
+		int oldMaximumActivations = maximumActivations;
+		maximumActivations = newMaximumActivations;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION__MAXIMUM_ACTIVATIONS, oldMaximumActivations, maximumActivations));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -183,6 +225,8 @@ public class ConditionBasedActivationImpl extends ActivationImpl implements Cond
 				return getStarting();
 			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION__ENDING:
 				return getEnding();
+			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION__MAXIMUM_ACTIVATIONS:
+				return getMaximumActivations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -200,6 +244,9 @@ public class ConditionBasedActivationImpl extends ActivationImpl implements Cond
 				return;
 			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION__ENDING:
 				setEnding((Condition)newValue);
+				return;
+			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION__MAXIMUM_ACTIVATIONS:
+				setMaximumActivations((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -219,6 +266,9 @@ public class ConditionBasedActivationImpl extends ActivationImpl implements Cond
 			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION__ENDING:
 				setEnding((Condition)null);
 				return;
+			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION__MAXIMUM_ACTIVATIONS:
+				setMaximumActivations(MAXIMUM_ACTIVATIONS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -235,8 +285,26 @@ public class ConditionBasedActivationImpl extends ActivationImpl implements Cond
 				return starting != null;
 			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION__ENDING:
 				return ending != null;
+			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION__MAXIMUM_ACTIVATIONS:
+				return maximumActivations != MAXIMUM_ACTIVATIONS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (maximumActivations: ");
+		result.append(maximumActivations);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ConditionBasedActivationImpl

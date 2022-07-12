@@ -667,6 +667,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getConditionBasedActivation_MaximumActivations() {
+		return (EAttribute)conditionBasedActivationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFuzzTestingOperation() {
 		return fuzzTestingOperationEClass;
 	}
@@ -1191,6 +1200,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		conditionBasedActivationEClass = createEClass(CONDITION_BASED_ACTIVATION);
 		createEReference(conditionBasedActivationEClass, CONDITION_BASED_ACTIVATION__STARTING);
 		createEReference(conditionBasedActivationEClass, CONDITION_BASED_ACTIVATION__ENDING);
+		createEAttribute(conditionBasedActivationEClass, CONDITION_BASED_ACTIVATION__MAXIMUM_ACTIVATIONS);
 
 		fuzzTestingOperationEClass = createEClass(FUZZ_TESTING_OPERATION);
 
@@ -1376,6 +1386,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEClass(conditionBasedActivationEClass, ConditionBasedActivation.class, "ConditionBasedActivation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConditionBasedActivation_Starting(), theStandardGrammarPackage.getCondition(), null, "starting", null, 0, 1, ConditionBasedActivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConditionBasedActivation_Ending(), theStandardGrammarPackage.getCondition(), null, "ending", null, 0, 1, ConditionBasedActivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConditionBasedActivation_MaximumActivations(), ecorePackage.getEInt(), "maximumActivations", "1", 0, 1, ConditionBasedActivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fuzzTestingOperationEClass, FuzzTestingOperation.class, "FuzzTestingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -1,9 +1,12 @@
 package uk.ac.york.sesame.testing.architecture.testing.conditionbased;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.flink.api.common.serialization.SimpleStringEncoder;
+import org.apache.flink.configuration.Configuration;
 import org.apache.flink.connector.file.sink.FileSink; 
 import org.apache.flink.core.fs.Path;
 import org.apache.flink.streaming.api.datastream.*;
@@ -24,10 +27,16 @@ import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import metrics.custom.*;
 import metrics.fixed.*;
 
-public class Test_001_05_07_2022_00_37_06_TestRunner {
+public class Test_001_05_07_2022_00_37_06_TestRunner_backup {
 	public static void main(String[] args) {
 		
-		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+		// JRH: needed to increase the number of buffers used
+		Configuration cfg = new Configuration();
+		int defaultLocalParallelism = 1;
+		cfg.setString("taskmanager.network.numberOfBuffers", "4096");
+		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(defaultLocalParallelism, cfg);
+
+		
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
@@ -162,14 +171,19 @@ public class Test_001_05_07_2022_00_37_06_TestRunner {
 		KeyedStream<EventMessage, String> testKeyedIn = stream.keyBy(value -> "Test_001_05_07_2022_00_37_06");
 		KeyedStream<EventMessage, String> testKeyedOut = streamOut.keyBy(value -> "Test_001_05_07_2022_00_37_06");
 		
+		List<Double> attackTimes = new ArrayList<Double>(); 
+			attackTimes.add(new Double(7.116086716835866));
+			attackTimes.add(new Double(24.05104454814216));
 		
+			
 				DataStream<Double> totalEnergyAtEndresStream = testKeyedIn.process(new totalEnergyAtEndMetric());
 			
 				DataStream<Double> completedRoomsresStream = testKeyedIn.process(new completedRoomsMetric());
 			
 				DataStream<Double> totalDistanceAtEndresStream = testKeyedIn.process(new totalDistanceAtEndMetric());
 			
-	
+				DataStream<Double> attackTimesresStream = testKeyedIn.process(new attackTimesMetric(attackTimes));
+		
 		
 		SimCore simcore = SimCore.getInstance();
 		
@@ -179,6 +193,10 @@ public class Test_001_05_07_2022_00_37_06_TestRunner {
  
 			// Generate a message stream for all metrics
 			DataStream<MetricMessage> metricMsgtotalDistanceAtEnd = totalDistanceAtEndresStream.map(d -> new MetricMessage("Test_001_05_07_2022_00_37_06", "totalDistanceAtEnd", d));
+ 
+			// Generate a message stream for all metrics
+			DataStream<MetricMessage> metricMsgattackTimes = attackTimesresStream.map(d -> new MetricMessage("Test_001_05_07_2022_00_37_06", "attackTimes", d));
+		
  
 
 				final FileSink<String> completedRoomsstreamFileSink = FileSink
@@ -191,7 +209,6 @@ public class Test_001_05_07_2022_00_37_06_TestRunner {
 				            .build())
 					.build();
 				metricMsgcompletedRooms.map(msg -> msg.timeStampedValString()).sinkTo(completedRoomsstreamFileSink);
- 
 
 				final FileSink<String> totalDistanceAtEndstreamFileSink = FileSink
 				    .forRowFormat(new Path("/home/jharbin/academic/sesame/WP6/metric-results/totalDistance-Test_001_05_07_2022_00_37_06"), new SimpleStringEncoder<String>("UTF-8"))
@@ -204,18 +221,25 @@ public class Test_001_05_07_2022_00_37_06_TestRunner {
 					.build();
 				metricMsgtotalDistanceAtEnd.map(msg -> msg.timeStampedValString()).sinkTo(totalDistanceAtEndstreamFileSink);
 				
-		DataStream<MetricMessage> allMetrics = metricMsgcompletedRooms.union(metricMsgtotalDistanceAtEnd);
+		DataStream<MetricMessage> allMetrics = metricMsgcompletedRooms.union(metricMsgtotalDistanceAtEnd).union(metricMsgattackTimes);
 		
 		allMetrics.addSink(metricsProducer);
 		
-		// New stream connections to link metrics with the fuzzing operations
 		final String TESTNAME = "Test_001_05_07_2022_00_37_06";
 		ConnectedStreams<EventMessage,MetricMessage> allMetricsPlusEvents = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
-
+		
+//		ConnectedStreams<EventMessage,MetricMessage> s2 = allMetricsPlusEvents.
+//				process(new attackVel_robot1FlatMap_Test_001_05_07_2022_00_37_06("/tb3_1/cmd_velIN",0)).connect(allMetrics).keyBy(e -> TESTNAME, m -> TESTNAME);
+//		DataStream<EventMessage> sOut = s2.
+//		process(new attackVel_robot2FlatMap_Test_001_05_07_2022_00_37_06("/tb3_2/cmd_velIN",213.8077081394938,237.85875268763596,0));
+		
 		DataStream<EventMessage> s2 = allMetricsPlusEvents.
 		process(new attackVel_robot1FlatMap_Test_001_05_07_2022_00_37_06("/tb3_1/cmd_velIN",0));
 
+
+		
 		s2.addSink(myProducer);
+		//sOut.addSink(myProducer);
 
 		try {
 			env.execute();
