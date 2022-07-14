@@ -21,6 +21,7 @@
     <genClasses ecoreClass="TestingMM.ecore#//TestCampaign">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//TestCampaign/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/metrics"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/conditionMetrics"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/includedOperations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/approach"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/performedTests"/>

@@ -42,6 +42,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getMetrics <em>Metrics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getConditionMetrics <em>Condition Metrics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getIncludedOperations <em>Included Operations</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getPerformedTests <em>Performed Tests</em>}</li>
@@ -81,6 +82,16 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * @ordered
 	 */
 	protected EList<Metric> metrics;
+
+	/**
+	 * The cached value of the '{@link #getConditionMetrics() <em>Condition Metrics</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConditionMetrics()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Metric> conditionMetrics;
 
 	/**
 	 * The cached value of the '{@link #getIncludedOperations() <em>Included Operations</em>}' reference list.
@@ -182,6 +193,18 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			metrics = new EObjectResolvingEList<Metric>(Metric.class, this, TestingPackagePackage.TEST_CAMPAIGN__METRICS);
 		}
 		return metrics;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Metric> getConditionMetrics() {
+		if (conditionMetrics == null) {
+			conditionMetrics = new EObjectResolvingEList<Metric>(Metric.class, this, TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS);
+		}
+		return conditionMetrics;
 	}
 
 	/**
@@ -353,6 +376,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return getName();
 			case TestingPackagePackage.TEST_CAMPAIGN__METRICS:
 				return getMetrics();
+			case TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS:
+				return getConditionMetrics();
 			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
 				return getIncludedOperations();
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
@@ -382,6 +407,10 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TEST_CAMPAIGN__METRICS:
 				getMetrics().clear();
 				getMetrics().addAll((Collection<? extends Metric>)newValue);
+				return;
+			case TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS:
+				getConditionMetrics().clear();
+				getConditionMetrics().addAll((Collection<? extends Metric>)newValue);
 				return;
 			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
 				getIncludedOperations().clear();
@@ -419,6 +448,9 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TEST_CAMPAIGN__METRICS:
 				getMetrics().clear();
 				return;
+			case TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS:
+				getConditionMetrics().clear();
+				return;
 			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
 				getIncludedOperations().clear();
 				return;
@@ -450,6 +482,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case TestingPackagePackage.TEST_CAMPAIGN__METRICS:
 				return metrics != null && !metrics.isEmpty();
+			case TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS:
+				return conditionMetrics != null && !conditionMetrics.isEmpty();
 			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
 				return includedOperations != null && !includedOperations.isEmpty();
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:

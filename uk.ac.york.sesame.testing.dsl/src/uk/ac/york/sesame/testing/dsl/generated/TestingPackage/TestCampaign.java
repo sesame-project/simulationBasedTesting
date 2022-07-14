@@ -21,6 +21,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getMetrics <em>Metrics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConditionMetrics <em>Condition Metrics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedOperations <em>Included Operations</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getPerformedTests <em>Performed Tests</em>}</li>
@@ -66,6 +67,18 @@ public interface TestCampaign extends EObject {
 	 * @generated
 	 */
 	EList<Metric> getMetrics();
+
+	/**
+	 * Returns the value of the '<em><b>Condition Metrics</b></em>' reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Condition Metrics</em>' reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_ConditionMetrics()
+	 * @model
+	 * @generated
+	 */
+	EList<Metric> getConditionMetrics();
 
 	/**
 	 * Returns the value of the '<em><b>Included Operations</b></em>' reference list.

@@ -1,5 +1,7 @@
 package datatypes;
 
+import java.util.Random;
+
 public class DoubleRange {
 	
 	private double lower, upper;
@@ -11,7 +13,7 @@ public class DoubleRange {
 		this.range = this.upper - this.lower;
 	}
 	
-	public double generateInRange(Random r) {
+	public Double generateInRange(Random r) {
 		return r.nextDouble() * range + this.lower;
 	}
 }

@@ -299,7 +299,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_IncludedOperations() {
+	public EReference getTestCampaign_ConditionMetrics() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -308,7 +308,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_Approach() {
+	public EReference getTestCampaign_IncludedOperations() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -317,7 +317,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_PerformedTests() {
+	public EReference getTestCampaign_Approach() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -326,7 +326,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_ResultSets() {
+	public EReference getTestCampaign_PerformedTests() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -335,8 +335,17 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_DefaultEndTrigger() {
+	public EReference getTestCampaign_ResultSets() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestCampaign_DefaultEndTrigger() {
+		return (EReference)testCampaignEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -566,6 +575,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		testCampaignEClass = createEClass(TEST_CAMPAIGN);
 		createEAttribute(testCampaignEClass, TEST_CAMPAIGN__NAME);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__METRICS);
+		createEReference(testCampaignEClass, TEST_CAMPAIGN__CONDITION_METRICS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__INCLUDED_OPERATIONS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__APPROACH);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__PERFORMED_TESTS);
@@ -662,6 +672,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEClass(testCampaignEClass, TestCampaign.class, "TestCampaign", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestCampaign_Name(), ecorePackage.getEString(), "name", null, 0, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Metrics(), theMetricsPackage.getMetric(), null, "metrics", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestCampaign_ConditionMetrics(), theMetricsPackage.getMetric(), null, "conditionMetrics", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_IncludedOperations(), theFuzzingOperationsPackage.getFuzzingOperation(), null, "includedOperations", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Approach(), this.getTestGenerationApproach(), null, "approach", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_PerformedTests(), this.getTest(), this.getTest_ParentCampaign(), "performedTests", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

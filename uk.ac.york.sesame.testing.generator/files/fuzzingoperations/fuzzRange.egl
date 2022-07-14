@@ -1,5 +1,5 @@
 [% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase(); 
-   
+  
 %]
 import java.util.Map;
 import java.util.HashMap;
@@ -39,14 +39,22 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 	protected boolean evalStartCondition() {
 		boolean res = false;
 		try {
-			///// GENERATED CODE START - STARTCOND
-			Double completedRooms = (Double) varState.get("completedRooms");
-			// this should check all the generated Doubles for all metrics
-			if (completedRooms != null) {
+			///// GENERATED CUSTOM CONDITION CODE START - STARTCOND
+			[% var varList = extractVarsForCond(startCond); %]
+			[% for (v in varList) { %]
+				Double [%= v %] = (Double) varState.get("[%= v %]");
+			[% } %]
+			[* this should check all the generated Doubles for all metrics *]
+			boolean shouldEval = true;
+			[% for (v in varList) { %]
+				shouldEval = shouldEval && ([%= v %] != null);
+			[% } %]
+						
+			if (shouldEval) {
 			[* get all the doubles for the variable and check they are not null *]
 			res = [%= generateCondBoolean(startCond) %];	
 			}
-			///// GENERATED CODE END - STARTCOND
+			///// GENERATED CUSTOM CONDITION CODE END - STARTCOND
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,13 +65,21 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 	protected boolean evalEndCondition() {
 		boolean res = false;
 		try {
-			///// GENERATED CODE START - ENDCOND
-			Double completedRooms = (Double) varState.get("completedRooms");
-			// this should check all the generated Doubles for all metrics
-			if (completedRooms != null) {
+			///// GENERATED CUSTOM CONDITION CODE START - ENDCOND
+			[% var varList = extractVarsForCond(startCond); %]
+			[% for (v in varList) { %] 
+				Double [%= v %] = (Double) varState.get("[%= v %]");
+			[% } %]		
+
+			boolean shouldEval = true;
+			[% for (v in varList) { %]
+				shouldEval = shouldEval && ([%= v %] != null);
+			[% } %]
+						
+			if (shouldEval) {
 			res = [%= generateCondBoolean(endCond) %];
 			}
-			///// GENERATED CODE END - ENDCOND
+			///// GENERATED CUSTOM CONDITION CODE END - ENDCOND
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -81,7 +97,6 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 			if (value.getTopic().equals(topic) && isReadyNow()) {
 				Object obj = JSONValue.parse(value.getValue().toString());
 	      		JSONObject jo = (JSONObject)obj;
-	      	[* Need to dispatch upon the fuzz range type here *]
 	      	[% for (aParameter in fuzzOp.valueSet) { %]
 	      		jo = ParsingUtils.updateJSONObject(jo, "[%= aParameter.propertyName %]", new DoubleRange([%= aParameter.lowerBound %], [%=aParameter.upperBound %]).generateInRange(rng));
 	      	[% } %]
@@ -142,10 +157,6 @@ operation generateBinComp(binop) {
 
 operation generateCondElement(c) {
 	if (c.isTypeOf(CompositeCondition)) {
-		return "(" + generateCondElement(c.left) + ") " + generateBinOp() + " (" + generateCondElement(c.right) + ")";
-	}
-	
-	if (c.isTypeOf(CompositeCondition)) {
 		return "(" + generateCondElement(c.left) + ") " + generateBinLogicOp(c.binop) + " (" + generateCondElement(c.right) + ")";
 	}
 	
@@ -163,7 +174,12 @@ operation generateCondElement(c) {
 }
 
 operation generateCondBoolean(cond) {
-	return "(" + generateCondElement(cond.c) + ")";
+	return generateCondElement(cond.c);
 }
+
+operation extractVarsForCond(cond) {
+	return new List;
+}
+
 %]
 

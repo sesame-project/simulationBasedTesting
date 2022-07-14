@@ -26,3 +26,8 @@ rule rangeClass transform testCampaign: Testing!TestCampaign {
 	template : "datatypes/doubleRange.egl"
 	target : "src/datatypes/DoubleRange.java"
 }
+
+rule genGrammar transform testCampaign: Testing!TestCampaign {
+	template : "grammar/generateGrammar.egl"
+	target : "grammar/sesame-standardgrammar-" + testCampaign.name + ".bnf"
+}

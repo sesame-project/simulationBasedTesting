@@ -16,6 +16,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metrics" upperBound="-1"
         eType="#//Metrics/Metric"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionMetrics" upperBound="-1"
+        eType="#//Metrics/Metric"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="includedOperations" upperBound="-1"
         eType="#//FuzzingOperations/FuzzingOperation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="approach" lowerBound="1"

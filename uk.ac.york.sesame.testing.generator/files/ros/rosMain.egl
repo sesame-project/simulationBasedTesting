@@ -216,30 +216,28 @@ public class [%= testNameString %]_TestRunner {
 		
 		allMetrics.addSink(metricsProducer);
 				
-		final String TESTNAME = "Test_001_05_07_2022_00_37_06";
+		final String TESTNAME = "[%= testNameString %]";
 		
-		ConnectedStreams<EventMessage,MetricMessage> allMetricsPlusEvents = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
+		ConnectedStreams<EventMessage,MetricMessage> streamFO0 = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
 		
 		[% var foStreamCount = 0;
-		   var foLen = test.operations;
-		   for (fo in test.operations) { %]
-		   [% if (foStreamCount < foLen) {
-		   		var inputStream = "streamFO" + foStreamCount;
-		   		if (foStreamCount == 0) {
-					inputStream = "allMetricsPlusEvents";
-		   		} %]
-			   	ConnectedStreams<EventMessage,MetricMessage> streamFO[%= foStreamCount++ %] = [%= inputStream %].
-					process([%= produceFOGenerationSignature(fo) %]).connect(allMetrics).keyBy(e -> TESTNAME, m -> TESTNAME);	
-		   
-				[% } else { 
-				var inputStream = "streamFO" + (foLen - 1);
-				%]
-		   		DataStream<EventMessage> streamFO[%= foStreamCount++ %] = allMetricsPlusEvents.
+		   var foLen = test.operations.size();
+		   for (fo in test.operations) {
+		   	  var inputStream = "streamFO" + foStreamCount;
+		      var outputStream = "streamFO" + (foStreamCount + 1);
+		      foStreamCount++; 
+		      if (foStreamCount < foLen) { %]
+		      	[* For the first stream, we require to produce an output with an EventStream only *]
+			   	ConnectedStreams<EventMessage,MetricMessage> [%= outputStream %] = [%= inputStream %].
+					process([%= produceFOGenerationSignature(fo) %]).connect(allMetrics).keyBy(e -> TESTNAME, m -> TESTNAME);
+ 			[% } else { %]
+				[* For the final stream, we require to produce an output with an EventStream only *]
+		   		DataStream<EventMessage> [%= outputStream %] = [%= inputStream %].
 				process([%= produceFOGenerationSignature(fo)%]);
 				[% }
 		   } %]
 				
-		streamFO[%= foStreamCount %].addSink(myProducer);
+		streamFO[%= foLen %].addSink(myProducer);
 		
 		try {
 			env.execute();

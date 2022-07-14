@@ -23,6 +23,7 @@ class TestingSpace {
 class TestCampaign {
 	attr String name;
 	ref Metrics.Metric[*] metrics;
+	ref Metrics.Metric[*] conditionMetrics;
 	ref FuzzingOperations.FuzzingOperation[*] includedOperations;
 	//val GrammarSpec.GrammarConstraint[*] constraints;
 	val TestGenerationApproach[1] approach;

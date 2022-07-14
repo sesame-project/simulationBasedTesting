@@ -159,13 +159,22 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_CAMPAIGN__METRICS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Condition Metrics</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_CAMPAIGN__CONDITION_METRICS = 2;
+
+	/**
 	 * The feature id for the '<em><b>Included Operations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__INCLUDED_OPERATIONS = 2;
+	int TEST_CAMPAIGN__INCLUDED_OPERATIONS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Approach</b></em>' containment reference.
@@ -174,7 +183,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__APPROACH = 3;
+	int TEST_CAMPAIGN__APPROACH = 4;
 
 	/**
 	 * The feature id for the '<em><b>Performed Tests</b></em>' containment reference list.
@@ -183,7 +192,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__PERFORMED_TESTS = 4;
+	int TEST_CAMPAIGN__PERFORMED_TESTS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Result Sets</b></em>' containment reference list.
@@ -192,7 +201,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__RESULT_SETS = 5;
+	int TEST_CAMPAIGN__RESULT_SETS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Default End Trigger</b></em>' containment reference.
@@ -201,7 +210,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__DEFAULT_END_TRIGGER = 6;
+	int TEST_CAMPAIGN__DEFAULT_END_TRIGGER = 7;
 
 	/**
 	 * The number of structural features of the '<em>Test Campaign</em>' class.
@@ -210,7 +219,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN_FEATURE_COUNT = 7;
+	int TEST_CAMPAIGN_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Test Campaign</em>' class.
@@ -662,6 +671,17 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestCampaign_Metrics();
 
 	/**
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConditionMetrics <em>Condition Metrics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Condition Metrics</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConditionMetrics()
+	 * @see #getTestCampaign()
+	 * @generated
+	 */
+	EReference getTestCampaign_ConditionMetrics();
+
+	/**
 	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedOperations <em>Included Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1036,6 +1056,14 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST_CAMPAIGN__METRICS = eINSTANCE.getTestCampaign_Metrics();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition Metrics</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_CAMPAIGN__CONDITION_METRICS = eINSTANCE.getTestCampaign_ConditionMetrics();
 
 		/**
 		 * The meta object literal for the '<em><b>Included Operations</b></em>' reference list feature.
