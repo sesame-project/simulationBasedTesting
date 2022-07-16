@@ -8,22 +8,23 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarFactory;
+import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 import uk.ac.york.sesame.testing.evolutionary.utilities.RandomFunctions;
 
-// This is a holder for the implementation of the Attack
-// TODO: rename to SESAMEAttackWrapper or similar?
-public class SESAMETestAttack {
+public class SESAMEFuzzingOperationWrapper {
 	
 	private Test parentTest;
 	private FuzzingOperation t;
 	private static Random rng = new Random();
 	
-	public SESAMETestAttack(Test parentTest, FuzzingOperation t) {
+	public SESAMEFuzzingOperationWrapper(Test parentTest, FuzzingOperation t) {
 		this.parentTest = parentTest;
 		this.t = EcoreUtil.copy(t);
 	}
 	
-	public SESAMETestAttack(SESAMETestSolution sol, FuzzingOperation t) {
+	public SESAMEFuzzingOperationWrapper(SESAMETestSolution sol, FuzzingOperation t) {
 		this.parentTest = sol.getInternalType();
 		this.t = EcoreUtil.copy(t);
 	}
@@ -68,12 +69,32 @@ public class SESAMETestAttack {
 			}
 		}
 	}
+	
+	
 
-	// Generates a solution with a timing reduction of the original attack
-	public static SESAMETestAttack reductionOfAttack(SESAMETestSolution sol, FuzzingOperation original) {
+	// Generates a solution with a timing reduction of the original fuzzing operation
+	public static SESAMEFuzzingOperationWrapper reductionOfOperation(SESAMETestSolution sol, FuzzingOperation original, ConditionGenerator cg) throws ConversionFailed {
 		FuzzingOperation newA = EcoreUtil.copy(original);
 
 		newA.setFromTemplate(original);
+		createNewConditionActivation(newA, cg);
+				
+		// TODO: better way of dispatching upon this type here
+		if (original instanceof RandomValueFromSetOperation) {
+			RandomValueFromSetOperation rvfsO = (RandomValueFromSetOperation)original;
+			RandomValueFromSetOperation rvfsN = (RandomValueFromSetOperation)newA;
+			reduceValueSet(rvfsN.getValueSet(), rvfsO.getValueSet());
+		}
+		
+		return new SESAMEFuzzingOperationWrapper(sol, newA);
+	}
+	
+	// Generates a solution with a timing reduction of the original fuzzing operation
+	public static SESAMEFuzzingOperationWrapper reductionOfOperation(SESAMETestSolution sol, FuzzingOperation original ) {
+		FuzzingOperation newA = EcoreUtil.copy(original);
+
+		newA.setFromTemplate(original);
+		
 		reduceAttackActivationsTiming(newA, original.getActivation());
 		
 		// TODO: better way of dispatching upon this type here
@@ -83,9 +104,18 @@ public class SESAMETestAttack {
 			reduceValueSet(rvfsN.getValueSet(), rvfsO.getValueSet());
 		}
 		
-		return new SESAMETestAttack(sol, newA);
+		return new SESAMEFuzzingOperationWrapper(sol, newA);
 	}
-	
+
+	private static void createNewConditionActivation(FuzzingOperation newA, ConditionGenerator cg) throws ConversionFailed {
+		Condition start = cg.generateOne();
+		Condition end = cg.generateOne();
+		FuzzingOperationsFactory f = FuzzingOperationsFactory.eINSTANCE;
+		ConditionBasedActivation ca = f.createConditionBasedActivation();
+		ca.setStarting(start);
+		ca.setEnding(end);
+		newA.setActivation(ca);
+	}
 
 	public FuzzingOperation getAttack() {
 		return t;
@@ -99,8 +129,8 @@ public class SESAMETestAttack {
 		return this.toString();
 	}
 
-	public SESAMETestAttack dup() {
-		return new SESAMETestAttack(this.parentTest, this.t);
+	public SESAMEFuzzingOperationWrapper dup() {
+		return new SESAMEFuzzingOperationWrapper(this.parentTest, this.t);
 	}
 
 	public void checkConstraints() {

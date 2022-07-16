@@ -196,32 +196,32 @@ public interface StandardGrammarPackage extends EPackage {
 	int BASIC_CONDITION_OPERATION_COUNT = CONDITION_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionLiteralImpl <em>Condition Literal</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionExprImpl <em>Condition Expr</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionLiteralImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionLiteral()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionExprImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionExpr()
 	 * @generated
 	 */
-	int CONDITION_LITERAL = 3;
+	int CONDITION_EXPR = 3;
 
 	/**
-	 * The number of structural features of the '<em>Condition Literal</em>' class.
+	 * The number of structural features of the '<em>Condition Expr</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_LITERAL_FEATURE_COUNT = 0;
+	int CONDITION_EXPR_FEATURE_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>Condition Literal</em>' class.
+	 * The number of operations of the '<em>Condition Expr</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_LITERAL_OPERATION_COUNT = 0;
+	int CONDITION_EXPR_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionIntegerImpl <em>Condition Integer</em>}' class.
@@ -240,7 +240,7 @@ public interface StandardGrammarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_INTEGER__VALUE = CONDITION_LITERAL_FEATURE_COUNT + 0;
+	int CONDITION_INTEGER__VALUE = CONDITION_EXPR_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Condition Integer</em>' class.
@@ -249,7 +249,7 @@ public interface StandardGrammarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_INTEGER_FEATURE_COUNT = CONDITION_LITERAL_FEATURE_COUNT + 1;
+	int CONDITION_INTEGER_FEATURE_COUNT = CONDITION_EXPR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Condition Integer</em>' class.
@@ -258,7 +258,7 @@ public interface StandardGrammarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_INTEGER_OPERATION_COUNT = CONDITION_LITERAL_OPERATION_COUNT + 0;
+	int CONDITION_INTEGER_OPERATION_COUNT = CONDITION_EXPR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionVariableImpl <em>Condition Variable</em>}' class.
@@ -277,7 +277,7 @@ public interface StandardGrammarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_VARIABLE__METRIC = CONDITION_LITERAL_FEATURE_COUNT + 0;
+	int CONDITION_VARIABLE__METRIC = CONDITION_EXPR_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Condition Variable</em>' class.
@@ -286,7 +286,7 @@ public interface StandardGrammarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_VARIABLE_FEATURE_COUNT = CONDITION_LITERAL_FEATURE_COUNT + 1;
+	int CONDITION_VARIABLE_FEATURE_COUNT = CONDITION_EXPR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Condition Variable</em>' class.
@@ -295,7 +295,7 @@ public interface StandardGrammarPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_VARIABLE_OPERATION_COUNT = CONDITION_LITERAL_OPERATION_COUNT + 0;
+	int CONDITION_VARIABLE_OPERATION_COUNT = CONDITION_EXPR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionImpl <em>Condition</em>}' class.
@@ -461,14 +461,14 @@ public interface StandardGrammarPackage extends EPackage {
 	EReference getBasicCondition_Right();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionLiteral <em>Condition Literal</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionExpr <em>Condition Expr</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Condition Literal</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionLiteral
+	 * @return the meta object for class '<em>Condition Expr</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionExpr
 	 * @generated
 	 */
-	EClass getConditionLiteral();
+	EClass getConditionExpr();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionInteger <em>Condition Integer</em>}'.
@@ -666,14 +666,14 @@ public interface StandardGrammarPackage extends EPackage {
 		EReference BASIC_CONDITION__RIGHT = eINSTANCE.getBasicCondition_Right();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionLiteralImpl <em>Condition Literal</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionExprImpl <em>Condition Expr</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionLiteralImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionLiteral()
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionExprImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionExpr()
 		 * @generated
 		 */
-		EClass CONDITION_LITERAL = eINSTANCE.getConditionLiteral();
+		EClass CONDITION_EXPR = eINSTANCE.getConditionExpr();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionIntegerImpl <em>Condition Integer</em>}' class.

@@ -80,8 +80,8 @@ public class StandardGrammarAdapterFactory extends AdapterFactoryImpl {
 				return createBasicConditionAdapter();
 			}
 			@Override
-			public Adapter caseConditionLiteral(ConditionLiteral object) {
-				return createConditionLiteralAdapter();
+			public Adapter caseConditionExpr(ConditionExpr object) {
+				return createConditionExprAdapter();
 			}
 			@Override
 			public Adapter caseConditionInteger(ConditionInteger object) {
@@ -158,16 +158,16 @@ public class StandardGrammarAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionLiteral <em>Condition Literal</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionExpr <em>Condition Expr</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionLiteral
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionExpr
 	 * @generated
 	 */
-	public Adapter createConditionLiteralAdapter() {
+	public Adapter createConditionExprAdapter() {
 		return null;
 	}
 

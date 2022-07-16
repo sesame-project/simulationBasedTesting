@@ -24,7 +24,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.St
  *
  * @generated
  */
-public class ConditionIntegerImpl extends ConditionLiteralImpl implements ConditionInteger {
+public class ConditionIntegerImpl extends ConditionExprImpl implements ConditionInteger {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->

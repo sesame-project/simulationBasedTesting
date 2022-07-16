@@ -264,13 +264,13 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="bincomp" lowerBound="1"
           eType="#//StandardGrammar/BinaryComparisonOperation"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1"
-          eType="#//StandardGrammar/ConditionLiteral" containment="true"/>
+          eType="#//StandardGrammar/ConditionExpr" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConditionLiteral" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ConditionInteger" eSuperTypes="#//StandardGrammar/ConditionLiteral">
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionExpr" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionInteger" eSuperTypes="#//StandardGrammar/ConditionExpr">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConditionVariable" eSuperTypes="#//StandardGrammar/ConditionLiteral">
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionVariable" eSuperTypes="#//StandardGrammar/ConditionExpr">
       <eStructuralFeatures xsi:type="ecore:EReference" name="metric" lowerBound="1"
           eType="#//Metrics/Metric"/>
     </eClassifiers>

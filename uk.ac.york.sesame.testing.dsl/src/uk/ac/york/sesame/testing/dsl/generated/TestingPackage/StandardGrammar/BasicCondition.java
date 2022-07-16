@@ -74,12 +74,12 @@ public interface BasicCondition extends ConditionElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right</em>' containment reference.
-	 * @see #setRight(ConditionLiteral)
+	 * @see #setRight(ConditionExpr)
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage#getBasicCondition_Right()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ConditionLiteral getRight();
+	ConditionExpr getRight();
 
 	/**
 	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition#getRight <em>Right</em>}' containment reference.
@@ -89,6 +89,6 @@ public interface BasicCondition extends ConditionElement {
 	 * @see #getRight()
 	 * @generated
 	 */
-	void setRight(ConditionLiteral value);
+	void setRight(ConditionExpr value);
 
 } // BasicCondition

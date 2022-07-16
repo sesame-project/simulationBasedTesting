@@ -19,7 +19,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar;
  * @model
  * @generated
  */
-public interface ConditionInteger extends ConditionLiteral {
+public interface ConditionInteger extends ConditionExpr {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

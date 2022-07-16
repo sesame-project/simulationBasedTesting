@@ -20,7 +20,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
  * @model
  * @generated
  */
-public interface ConditionVariable extends ConditionLiteral {
+public interface ConditionVariable extends ConditionExpr {
 	/**
 	 * Returns the value of the '<em><b>Metric</b></em>' reference.
 	 * <!-- begin-user-doc -->

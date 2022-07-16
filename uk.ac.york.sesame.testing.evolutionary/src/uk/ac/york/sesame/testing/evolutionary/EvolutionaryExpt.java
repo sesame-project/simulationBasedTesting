@@ -33,6 +33,8 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	private String crossoverLogFile = "crossover.log";
 	private String mutationLogFile = "mutation.log";
 	
+	private boolean conditionBased;
+	
 	// TODO: these should come from the evolutionary experiment model 
 	
 	//static double crossoverProb = 0.5;
@@ -57,7 +59,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	private String orchestratorBasePath;
 	private int maxIterations;
 
-	public EvolutionaryExpt(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, int maxIterations, int populationSize, int offspringPopSize) {
+	public EvolutionaryExpt(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, int maxIterations, int populationSize, int offspringPopSize, boolean conditionBased) {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
 		this.codeGenerationDirectory = codeGenerationDirectory;
@@ -65,6 +67,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		this.offspringPopulationSize = offspringPopSize;
 		this.maxIterations = maxIterations;
 		this.orchestratorBasePath = orchestratorBasePath;
+		this.conditionBased = conditionBased;
 //		this.timingMutProb = timingMutProb;
 //		this.participantsMutProb = participantsMutProb;
 //		this.paramMutProb = paramMutProb;
@@ -93,7 +96,9 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			//Grammar<String> g = Grammar.fromFile(new File(GRAMMAR_FILE));
 			Grammar g = null;
 						
-			problem = new SESAMEEvaluationProblem(orchestratorBasePath, spaceModelFileName, campaignName, codeGenerationDirectory);
+			
+			
+			problem = new SESAMEEvaluationProblem(orchestratorBasePath, spaceModelFileName, campaignName, codeGenerationDirectory, conditionBased);
 			TestCampaign selectedCampaign = problem.getCampaign();
 
 			Algorithm<List<SESAMETestSolution>> algorithm;

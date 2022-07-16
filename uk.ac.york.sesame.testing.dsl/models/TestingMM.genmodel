@@ -243,7 +243,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//StandardGrammar/BasicCondition/bincomp"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//StandardGrammar/BasicCondition/right"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="TestingMM.ecore#//StandardGrammar/ConditionLiteral"/>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//StandardGrammar/ConditionExpr"/>
       <genClasses ecoreClass="TestingMM.ecore#//StandardGrammar/ConditionInteger">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//StandardGrammar/ConditionInteger/value"/>
       </genClasses>

@@ -50,6 +50,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
 
 	private static final boolean DUMMY_EVAL = false;
+	
+	private boolean conditionBased;
 
 	private Random rng;
 
@@ -60,7 +62,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private String campaignName;
 	private String orchestratorBasePath;
 	
-	private StreamExecutionEnvironment env;
+	private ConditionGenerator condGenerator;
+
 	//private DataStream<MetricMessage> metricStream;
 	private Resource testSpaceModel;
 	private TestCampaign selectedCampaign;
@@ -79,7 +82,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	// Sets up a metric queue to listen for the given campaign
 	private void setupMetricListener(TestCampaign campaign) throws StreamSetupFailed, InvalidTestCampaign {
-		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+//		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
@@ -97,16 +100,18 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		t.start();
 	}
 
-	public SESAMEEvaluationProblem(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory)
+	public SESAMEEvaluationProblem(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, boolean conditionBased)
 			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
 		this.codeGenerationDirectory = codeGenerationDirectory;
 		this.orchestratorBasePath = orchestratorBasePath;
+		this.conditionBased = conditionBased;
 		loader = new SESAMEModelLoader(spaceModelFileName);
 		testSpaceModel = loader.loadTestingSpace();
 		Optional<TestCampaign> tc_o = loader.getTestCampaign(testSpaceModel, campaignName);
-
+		
+	
 		// TODO: mrsModelFile is not currently used - until the bug is fixed and there
 		// is a seperate model again
 		//String __mrsModelFile = "testingMRS.model";
@@ -115,6 +120,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		if (tc_o.isPresent()) {
 			selectedCampaign = tc_o.get();
 			setupMetricListener(selectedCampaign);
+			ConditionGenerator condGenerator = new ConditionGenerator(selectedCampaign);
 		} else {
 			throw new InvalidTestCampaign(campaignName);
 		}
@@ -292,16 +298,27 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			if (shouldIncludeFuzzingOperation(a)) {
 				// FuzzingOperations produced as a "subset" of each of the selected FuzzingOperations
 				// TODO: this should be configurable somehow
-				SESAMETestAttack sta = SESAMETestAttack.reductionOfAttack(sol, a);
-				sol.addContents(i++, sta);
+				if (conditionBased) {
+					SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a, condGenerator);
+					sol.addContents(i++, sta);
+				} else {
+					SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a);
+					sol.addContents(i++, sta);
+				}
+				
 			}
 		}
 		
 		// If we haven't picked any, pick one
 		if (sol.getNumberOfVariables() == 0 && FuzzingOperationsInCampaign.size() > 0) {
 			FuzzingOperation baseFuzzingOperation = getRandomFuzzingOperation(FuzzingOperationsInCampaign);
-			SESAMETestAttack sta = SESAMETestAttack.reductionOfAttack(sol, baseFuzzingOperation);
-			sol.addContents(i++, sta);
+			if (conditionBased) {
+				SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, baseFuzzingOperation, condGenerator);
+				sol.addContents(i++, sta);
+			} else {
+				SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, baseFuzzingOperation);
+				sol.addContents(i++, sta);
+			}
 		}
 		
 		return sol;

@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.Random;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
-import uk.ac.york.sesame.testing.evolutionary.SESAMETestAttack;
+import uk.ac.york.sesame.testing.evolutionary.SESAMEFuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 
 import org.eclipse.emf.common.util.EList;
@@ -112,7 +112,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		
 	}
 	
-	private void mutateActivations(SESAMETestAttack krec) {
+	private void mutateActivations(SESAMEFuzzingOperationWrapper krec) {
 		Activation aa = krec.getAttack().getActivation();
 		Optional<Activation> aaSpace = getActivation(krec.getAttack().getFromTemplate());
 		if (aaSpace.isPresent()) {
@@ -192,7 +192,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 //		}
 //	}
 
-	private void newParameters(SESAMETestAttack m) {
+	private void newParameters(SESAMEFuzzingOperationWrapper m) {
 		// TODO: not all parameters are available
 //		for (Map.Entry<String, VariableSpecification> vs : fsm.getRecords().entrySet()) {
 //			VariableSpecification var = vs.getValue();
@@ -225,7 +225,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		}
 	}
 
-	public void modifyGivenRecord(SESAMETestAttack sta) {
+	public void modifyGivenRecord(SESAMEFuzzingOperationWrapper sta) {
 			if (rng.nextDouble() < probTemporalMutation) {
 				logWithoutError("Performing temporal mutation on " + sta.getName());
 				mutateActivations(sta);
@@ -258,7 +258,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		}
 
 		for (int i = 0; i < sol.getNumberOfVariables(); i++) {
-			SESAMETestAttack sta = sol.getVariable(i);
+			SESAMEFuzzingOperationWrapper sta = sol.getVariable(i);
 			System.out.println("Before modification SESAMETestAttack=" + sta);
 			modifyGivenRecord(sta);
 		}

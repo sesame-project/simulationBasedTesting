@@ -49,7 +49,7 @@ enum ResultSetStatus {
 	INTERMEDIATE = 2;
 }
 
-class CampaignResultSet {
+class CampaignResultSet { 
 	attr String name;
 	attr ResultSetStatus status;
 	ref Test[*] results; 
@@ -60,7 +60,7 @@ abstract class ExecutionEndTrigger {
 }
 
 class TimeBasedEnd extends ExecutionEndTrigger {
-	attr long timeLimitSeconds;
+	attr long timeLimitSeconds; 
 }
 
 abstract class TestGenerationApproach {
@@ -355,19 +355,19 @@ class CompositeCondition extends ConditionElement {
 class BasicCondition extends ConditionElement {
 	val ConditionVariable[1] left;
 	attr BinaryComparisonOperation[1] bincomp;
-	val ConditionLiteral[1] right;
+	val ConditionExpr[1] right;
 }
 	
-abstract class ConditionLiteral {
+abstract class ConditionExpr {
 		
 }
 	
-class ConditionInteger extends ConditionLiteral {
+class ConditionInteger extends ConditionExpr {
 	attr int value;
 }
 	
 // Variables reference the metrics that supply their values
-class ConditionVariable extends ConditionLiteral {
+class ConditionVariable extends ConditionExpr {
 	ref Metrics.Metric[1] metric;
 }
 	

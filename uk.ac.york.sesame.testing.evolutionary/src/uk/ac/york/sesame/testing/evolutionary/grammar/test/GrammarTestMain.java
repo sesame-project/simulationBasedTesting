@@ -29,20 +29,32 @@ public class GrammarTestMain {
 			if (tc_o.isPresent()) {
 				TestCampaign selectedCampaign = tc_o.get();
 				GrammarConverter gc = new GrammarConverter(selectedCampaign);
+				GrammarConverterReverse gcr = new GrammarConverterReverse(selectedCampaign);
 				try {
 					Random rng = new Random();
 					grammar = Grammar.fromFile(GRAMMAR_FILE);
-					int MAX_GRAMMAR_HEIGHT = 6;
-					int COUNT_TO_BUILD = 100;
+					int MAX_GRAMMAR_HEIGHT = 4;
+					int COUNT_TO_BUILD = 1000;
 					
 					GrowGrammarTreeFactory<String> gen = new GrowGrammarTreeFactory<String>(MAX_GRAMMAR_HEIGHT, grammar);
 			        List<Tree<String>> generated = gen.build(COUNT_TO_BUILD, rng);
-			        
+			        			        
 			        for (Tree<String> t : generated) {
-			        	System.out.println("Generated grammar tree string: " + t);
-			        	t.prettyPrint(System.out);
 			        	Condition c = gc.convertTree(t);
 			        	System.out.println("Converted condition: " + c.toString());		        	
+			        	Tree<String> tConvertedBack = gcr.convertConditionToTree(c);
+			        	
+			        	System.out.println("Generated grammar tree string: " + t);
+			        	System.out.println("Tree string converted back: " + tConvertedBack);
+			        	t.prettyPrint(System.out);
+			        	System.out.println("---------------------------");
+			        	tConvertedBack.prettyPrint(System.out);
+			        	System.out.println("===========================================================================================================");
+			        	
+			        	//Condition c2 = gc.convertTree(tConvertedBack);
+			        	
+			        	boolean isSame = tConvertedBack.equals(t);
+			        	
 			        }
 			        
 				} catch (IOException e) {

@@ -32,8 +32,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Bi
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionElement;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionExpr;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionInteger;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionLiteral;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
@@ -75,7 +75,7 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass conditionLiteralEClass = null;
+	private EClass conditionExprEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -281,8 +281,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConditionLiteral() {
-		return conditionLiteralEClass;
+	public EClass getConditionExpr() {
+		return conditionExprEClass;
 	}
 
 	/**
@@ -406,7 +406,7 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		createEAttribute(basicConditionEClass, BASIC_CONDITION__BINCOMP);
 		createEReference(basicConditionEClass, BASIC_CONDITION__RIGHT);
 
-		conditionLiteralEClass = createEClass(CONDITION_LITERAL);
+		conditionExprEClass = createEClass(CONDITION_EXPR);
 
 		conditionIntegerEClass = createEClass(CONDITION_INTEGER);
 		createEAttribute(conditionIntegerEClass, CONDITION_INTEGER__VALUE);
@@ -456,8 +456,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		// Add supertypes to classes
 		compositeConditionEClass.getESuperTypes().add(this.getConditionElement());
 		basicConditionEClass.getESuperTypes().add(this.getConditionElement());
-		conditionIntegerEClass.getESuperTypes().add(this.getConditionLiteral());
-		conditionVariableEClass.getESuperTypes().add(this.getConditionLiteral());
+		conditionIntegerEClass.getESuperTypes().add(this.getConditionExpr());
+		conditionVariableEClass.getESuperTypes().add(this.getConditionExpr());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(conditionElementEClass, ConditionElement.class, "ConditionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -470,9 +470,9 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		initEClass(basicConditionEClass, BasicCondition.class, "BasicCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBasicCondition_Left(), this.getConditionVariable(), null, "left", null, 1, 1, BasicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBasicCondition_Bincomp(), this.getBinaryComparisonOperation(), "bincomp", null, 1, 1, BasicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBasicCondition_Right(), this.getConditionLiteral(), null, "right", null, 1, 1, BasicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBasicCondition_Right(), this.getConditionExpr(), null, "right", null, 1, 1, BasicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(conditionLiteralEClass, ConditionLiteral.class, "ConditionLiteral", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(conditionExprEClass, ConditionExpr.class, "ConditionExpr", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(conditionIntegerEClass, ConditionInteger.class, "ConditionInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConditionInteger_Value(), ecorePackage.getEInt(), "value", null, 0, 1, ConditionInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -86,23 +86,23 @@ public class StandardGrammarSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StandardGrammarPackage.CONDITION_LITERAL: {
-				ConditionLiteral conditionLiteral = (ConditionLiteral)theEObject;
-				T result = caseConditionLiteral(conditionLiteral);
+			case StandardGrammarPackage.CONDITION_EXPR: {
+				ConditionExpr conditionExpr = (ConditionExpr)theEObject;
+				T result = caseConditionExpr(conditionExpr);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case StandardGrammarPackage.CONDITION_INTEGER: {
 				ConditionInteger conditionInteger = (ConditionInteger)theEObject;
 				T result = caseConditionInteger(conditionInteger);
-				if (result == null) result = caseConditionLiteral(conditionInteger);
+				if (result == null) result = caseConditionExpr(conditionInteger);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case StandardGrammarPackage.CONDITION_VARIABLE: {
 				ConditionVariable conditionVariable = (ConditionVariable)theEObject;
 				T result = caseConditionVariable(conditionVariable);
-				if (result == null) result = caseConditionLiteral(conditionVariable);
+				if (result == null) result = caseConditionExpr(conditionVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -162,17 +162,17 @@ public class StandardGrammarSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Condition Literal</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Expr</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Condition Literal</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Expr</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConditionLiteral(ConditionLiteral object) {
+	public T caseConditionExpr(ConditionExpr object) {
 		return null;
 	}
 

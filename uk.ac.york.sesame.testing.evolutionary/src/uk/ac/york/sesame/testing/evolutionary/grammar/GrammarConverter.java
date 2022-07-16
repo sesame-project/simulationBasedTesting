@@ -12,11 +12,12 @@ public class GrammarConverter {
 	private StandardGrammarFactory factory = StandardGrammarFactory.eINSTANCE;
 	private TestCampaign testCampaign;
 	
+	protected final boolean DEBUG_GRAMMER_CONVERT = false; 
+	
 	public GrammarConverter(TestCampaign tc) { 
 		this.testCampaign = tc;
 	}
 	
-	// TODO: conversion from the string tree to an actual condition
 	public Condition convertTree(Tree<String> t) throws ConversionFailed {
 		StandardGrammarFactory f = StandardGrammarFactory.eINSTANCE;
 		Condition c = (Condition)f.createCondition();
@@ -24,17 +25,13 @@ public class GrammarConverter {
 			ConditionElement ce = convert(t);
 			c.setC(ce);
 		} catch (UnrecognisedBinOp | UnrecognisedLiteral | UnrecognisedComparison | UnrecognisedTreeNode e) {
+			e.toString();
+			e.printStackTrace();
 			throw new ConversionFailed(e);
 		}
 		return c;
-	}
+	}	
 
-	public Tree<String> convertTree(Condition c) {
-		return new Tree<String>(null, null);
-	}
-
-	protected final boolean DEBUG_GRAMMER_CONVERT = true; 
-	
 	protected ConditionVariable createVariable(String varName) {
 		ConditionVariable v = factory.createConditionVariable();
 		EList<Metric> ms = testCampaign.getConditionMetrics();
@@ -81,6 +78,16 @@ public class GrammarConverter {
 			return c;
 		}
 		
+		if (s.equals("<compcond>") && stringTree.nChildren() == 1) {
+			if (DEBUG_GRAMMER_CONVERT) {
+				System.out.println("COMPCOND - SINGLE");
+				System.out.println("Child 0 = " + stringTree.child(0));
+			}
+			
+			Tree<String> inner = stringTree.child(0);
+			return convert(inner);
+		}
+		
 		if (s.equals("<basic_cond>")) {
 			if (DEBUG_GRAMMER_CONVERT) {
 				System.out.println("BASIC_COND");
@@ -92,17 +99,11 @@ public class GrammarConverter {
 			String bincomp = stringTree.child(1).child(0).content();
 			Tree<String> rhs = stringTree.child(2);
 			
-//			// If the string is a literal
-//			if (rhs.child(0).content().equals("<var>")) {
-//				
-//				
-//			}
-			
 			ConditionVariable v = convertVariable(lhs);
-			ConditionLiteral l = convertLiteral(rhs);
+			ConditionExpr e = convertExpr(rhs);
 			BasicCondition basicCond = factory.createBasicCondition();
 			basicCond.setLeft(v);
-			basicCond.setRight(l);
+			basicCond.setRight(e);
 			basicCond.setBincomp(convertCompare(bincomp));
 			return basicCond;
 		}
@@ -111,21 +112,28 @@ public class GrammarConverter {
 			return convert(stringTree.child(0));
 		}
 		
+		System.out.println(s);
 		throw new UnrecognisedTreeNode(s);
 		
 	}
 	
 	private ConditionVariable convertVariable(Tree<String> t) {
-		return createVariable(t.child(1).content());
+		if (t.content().equals("<var>")) {
+			return createVariable(t.child(0).content());
+		} else {
+			// extract from <expr>
+			return createVariable(t.child(0).child(0).content());
+		}
+		
 	}
 	
-	private ConditionLiteral convertLiteral(Tree<String> t) throws UnrecognisedLiteral {
+	private ConditionExpr convertExpr(Tree<String> t) throws UnrecognisedLiteral {
 		if (t.child(0).content().equals("<var>")) {
 			return convertVariable(t);
 		}
 		
 		if (t.child(0).content().equals("<int>")) {
-			int i = Integer.valueOf(t.child(1).content());
+			int i = Integer.valueOf(t.child(0).child(0).content());
 			ConditionInteger ci = factory.createConditionInteger();
 			ci.setValue(i);
 			return ci;

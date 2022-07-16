@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BasicCondition;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparisonOperation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionLiteral;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionExpr;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
 
@@ -70,7 +70,7 @@ public class BasicConditionImpl extends ConditionElementImpl implements BasicCon
 	 * @generated
 	 * @ordered
 	 */
-	protected ConditionLiteral right;
+	protected ConditionExpr right;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -160,7 +160,7 @@ public class BasicConditionImpl extends ConditionElementImpl implements BasicCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionLiteral getRight() {
+	public ConditionExpr getRight() {
 		return right;
 	}
 
@@ -169,8 +169,8 @@ public class BasicConditionImpl extends ConditionElementImpl implements BasicCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRight(ConditionLiteral newRight, NotificationChain msgs) {
-		ConditionLiteral oldRight = right;
+	public NotificationChain basicSetRight(ConditionExpr newRight, NotificationChain msgs) {
+		ConditionExpr oldRight = right;
 		right = newRight;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StandardGrammarPackage.BASIC_CONDITION__RIGHT, oldRight, newRight);
@@ -184,7 +184,7 @@ public class BasicConditionImpl extends ConditionElementImpl implements BasicCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRight(ConditionLiteral newRight) {
+	public void setRight(ConditionExpr newRight) {
 		if (newRight != right) {
 			NotificationChain msgs = null;
 			if (right != null)
@@ -247,7 +247,7 @@ public class BasicConditionImpl extends ConditionElementImpl implements BasicCon
 				setBincomp((BinaryComparisonOperation)newValue);
 				return;
 			case StandardGrammarPackage.BASIC_CONDITION__RIGHT:
-				setRight((ConditionLiteral)newValue);
+				setRight((ConditionExpr)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -268,7 +268,7 @@ public class BasicConditionImpl extends ConditionElementImpl implements BasicCon
 				setBincomp(BINCOMP_EDEFAULT);
 				return;
 			case StandardGrammarPackage.BASIC_CONDITION__RIGHT:
-				setRight((ConditionLiteral)null);
+				setRight((ConditionExpr)null);
 				return;
 		}
 		super.eUnset(featureID);

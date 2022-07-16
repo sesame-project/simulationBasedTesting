@@ -27,7 +27,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.St
  *
  * @generated
  */
-public class ConditionVariableImpl extends ConditionLiteralImpl implements ConditionVariable {
+public class ConditionVariableImpl extends ConditionExprImpl implements ConditionVariable {
 	/**
 	 * The cached value of the '{@link #getMetric() <em>Metric</em>}' reference.
 	 * <!-- begin-user-doc -->
