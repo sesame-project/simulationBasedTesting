@@ -68,23 +68,9 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		this.maxIterations = maxIterations;
 		this.orchestratorBasePath = orchestratorBasePath;
 		this.conditionBased = conditionBased;
-//		this.timingMutProb = timingMutProb;
-//		this.participantsMutProb = participantsMutProb;
-//		this.paramMutProb = paramMutProb;
-//		this.etype = etype;
-//		this.scenarioStr = scenarioStr;
-//		readProperties();
 	}
 	
 	public void runExperiment() {
-
-//		List<Metric> allMetrics = new ArrayList<Metric>(mission.getAllMetrics());
-//		String tagDated = tag + (new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-//
-//		for (OfflineMetric m : specialMetrics) {
-//			metrics.add(m);
-//		}
-//
 		Random problemRNG = new Random();
 		Random crossoverRNG = new Random();
 		Random mutationRNG = new Random();
@@ -92,14 +78,9 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		SESAMEEvaluationProblem problem;
 
 		try {
-			//FuzzingEngine fuzzEngine = GeneratedFuzzingSpec.createFuzzingEngine(mission, false);
-			//Grammar<String> g = Grammar.fromFile(new File(GRAMMAR_FILE));
-			Grammar g = null;
-						
-			
-			
 			problem = new SESAMEEvaluationProblem(orchestratorBasePath, spaceModelFileName, campaignName, codeGenerationDirectory, conditionBased);
 			TestCampaign selectedCampaign = problem.getCampaign();
+			ConditionGenerator cg = problem.getCondGenerator();
 
 			Algorithm<List<SESAMETestSolution>> algorithm;
 			
@@ -109,10 +90,10 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			SelectionOperator<List<SESAMETestSolution>, SESAMETestSolution> selection;
 			SolutionListEvaluator<SESAMETestSolution> evaluator;
 			Comparator<SESAMETestSolution> dominanceComparator;
-
+					
 			// TODO: Crossover, mutation and selection operations should be configurable in the model?
 			crossover = new SESAMESwapAttacksFromTestsCrossover(crossoverRNG, crossoverProb, crossoverLogFile);
-			mutation = new SESAMESimpleMutation(g, mutationRNG, mutationLogFile, timingMutProb, paramMutProb);
+			mutation = new SESAMESimpleMutation(mutationRNG, mutationLogFile, timingMutProb, paramMutProb, cg);
 			
  			selection = new TournamentSelection<SESAMETestSolution>(5);
 			dominanceComparator = new DominanceComparator<>();

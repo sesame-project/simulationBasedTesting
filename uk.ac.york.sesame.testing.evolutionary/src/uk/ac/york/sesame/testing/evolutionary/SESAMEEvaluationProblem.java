@@ -7,26 +7,16 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.Random;
 
-import org.apache.flink.streaming.api.datastream.DataStream;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.LongDeserializer;
-import org.apache.kafka.common.serialization.LongSerializer;
-import org.apache.kafka.common.serialization.StringDeserializer;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.uma.jmetal.problem.Problem;
-import org.awaitility.Awaitility;
-import org.awaitility.Awaitility.*;
 
-import java.time.Duration.*;
-import java.util.concurrent.TimeUnit;
-
-import akka.remote.serialization.StringSerializer;
+import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
@@ -35,7 +25,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigge
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl;
 
 public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long serialVersionUID = 1L;
@@ -120,7 +109,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		if (tc_o.isPresent()) {
 			selectedCampaign = tc_o.get();
 			setupMetricListener(selectedCampaign);
-			ConditionGenerator condGenerator = new ConditionGenerator(selectedCampaign);
+			condGenerator = new ConditionGenerator(selectedCampaign);
 		} else {
 			throw new InvalidTestCampaign(campaignName);
 		}
@@ -128,6 +117,10 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	
 	public TestCampaign getCampaign() {
 		return selectedCampaign;
+	}
+	
+	public ConditionGenerator getCondGenerator() {
+		return condGenerator;
 	}
 
 	public int getNumberOfVariables() {
@@ -299,8 +292,14 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				// FuzzingOperations produced as a "subset" of each of the selected FuzzingOperations
 				// TODO: this should be configurable somehow
 				if (conditionBased) {
-					SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a, condGenerator);
-					sol.addContents(i++, sta);
+					SESAMEFuzzingOperationWrapper sta;
+					try {
+						sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a, condGenerator);
+						sol.addContents(i++, sta);
+					} catch (ConversionFailed e) {
+						e.printStackTrace();
+					}
+					
 				} else {
 					SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a);
 					sol.addContents(i++, sta);
@@ -313,8 +312,14 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		if (sol.getNumberOfVariables() == 0 && FuzzingOperationsInCampaign.size() > 0) {
 			FuzzingOperation baseFuzzingOperation = getRandomFuzzingOperation(FuzzingOperationsInCampaign);
 			if (conditionBased) {
-				SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, baseFuzzingOperation, condGenerator);
-				sol.addContents(i++, sta);
+				SESAMEFuzzingOperationWrapper sta;
+				try {
+					sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, baseFuzzingOperation, condGenerator);
+					sol.addContents(i++, sta);
+				} catch (ConversionFailed e) {
+					e.printStackTrace();
+				}
+				
 			} else {
 				SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, baseFuzzingOperation);
 				sol.addContents(i++, sta);
