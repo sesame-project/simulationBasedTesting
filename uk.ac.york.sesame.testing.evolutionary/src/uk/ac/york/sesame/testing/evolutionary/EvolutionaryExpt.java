@@ -71,7 +71,6 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	}
 	
 	public void runExperiment() {
-		Random problemRNG = new Random();
 		Random crossoverRNG = new Random();
 		Random mutationRNG = new Random();
 

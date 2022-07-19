@@ -40,19 +40,18 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 		boolean res = false;
 		try {
 			///// GENERATED CUSTOM CONDITION CODE START - STARTCOND
-			[% var varList = extractVarsForCond(startCond); %]
+			[% var varList = extractVarsForCond(fuzzOp, startCond); %]
 			[% for (v in varList) { %]
 				Double [%= v %] = (Double) varState.get("[%= v %]");
 			[% } %]
-			[* this should check all the generated Doubles for all metrics *]
+			[* this should check all the generated Doubles for all metrics are not null *]
 			boolean shouldEval = true;
 			[% for (v in varList) { %]
 				shouldEval = shouldEval && ([%= v %] != null);
 			[% } %]
 						
 			if (shouldEval) {
-			[* get all the doubles for the variable and check they are not null *]
-			res = [%= generateCondBoolean(startCond) %];	
+				res = [%= generateCondBoolean(startCond) %];	
 			}
 			///// GENERATED CUSTOM CONDITION CODE END - STARTCOND
 		} catch (Exception e) {
@@ -66,7 +65,7 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 		boolean res = false;
 		try {
 			///// GENERATED CUSTOM CONDITION CODE START - ENDCOND
-			[% var varList = extractVarsForCond(startCond); %]
+			[% var varList = extractVarsForCond(fuzzOp, endCond); %]
 			[% for (v in varList) { %] 
 				Double [%= v %] = (Double) varState.get("[%= v %]");
 			[% } %]		
@@ -77,7 +76,7 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 			[% } %]
 						
 			if (shouldEval) {
-			res = [%= generateCondBoolean(endCond) %];
+				res = [%= generateCondBoolean(endCond) %];
 			}
 			///// GENERATED CUSTOM CONDITION CODE END - ENDCOND
 		} catch (Exception e) {
@@ -177,8 +176,15 @@ operation generateCondBoolean(cond) {
 	return generateCondElement(cond.c);
 }
 
-operation extractVarsForCond(cond) {
-	return new List;
+operation extractVarsForCond(fuzzOp, cond) {
+	// For now, generate variable references from all selected metric variables for the campaign
+	var campaign = fuzzOp.containingTest.parentCampaign;
+	var metrics = campaign.conditionMetrics;
+	var metricNames = new List;
+	for (m in metrics) {
+		metricNames.add(m.name);
+	}
+	return metricNames;
 }
 
 %]

@@ -98,21 +98,27 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		aft.setEndTime(endTime);
 	}
 
-	private void mutateConditionBased(SESAMEFuzzingOperationWrapper sfow, ConditionBasedActivation aa, ConditionMutationSelection s) throws MutationFailed  {
+	private void mutateConditionBased(SESAMEFuzzingOperationWrapper sfow, ConditionBasedActivation aa,
+			ConditionMutationSelection s) throws MutationFailed, IOException {
 		try {
 			if (s == ConditionMutationSelection.SELECT_START) {
 				Tree<String> t = sfow.getStoredStartTree();
+				mutationLog.write("Mutating start condition: original is " + t + "\n");
 				Tree<String> tNew = condGenerator.mutate(t, rng);
-				Condition cNew;
-				cNew = condGenerator.convert(tNew);
+				mutationLog.write("Mutating start condition: mutated to " + tNew + "\n");
+				Condition cNew = condGenerator.convert(tNew);
+				mutationLog.write("Mutation condition = " + condGenerator.conditionToString(cNew) + "\n");
 				aa.setStarting(cNew);
 				sfow.setStoredStartTree(tNew);
 			}
 
 			if (s == ConditionMutationSelection.SELECT_END) {
 				Tree<String> t = sfow.getStoredEndTree();
+				mutationLog.write("Mutating end condition: original is " + t + "\n");
 				Tree<String> tNew = condGenerator.mutate(t, rng);
+				mutationLog.write("Mutating end condition: mutated to " + tNew + "\n");
 				Condition cNew = condGenerator.convert(tNew);
+				mutationLog.write("Mutation condition = " + condGenerator.conditionToString(cNew) + "\n");
 				aa.setEnding(cNew);
 				sfow.setStoredEndTree(tNew);
 			}
@@ -123,7 +129,8 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 
 	}
 
-	private void mutateIndividualActivation(SESAMEFuzzingOperationWrapper sfow, Activation aa, Activation aaSpace) throws MutationFailed {
+	private void mutateIndividualActivation(SESAMEFuzzingOperationWrapper sfow, Activation aa, Activation aaSpace)
+			throws MutationFailed, IOException {
 		if ((aa instanceof FixedTimeActivation) && (aaSpace instanceof FixedTimeActivation)) {
 			mutateFixedTimeSpec((FixedTimeActivation) aa, (FixedTimeActivation) aaSpace);
 		}
@@ -155,7 +162,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 
 	}
 
-	private void mutateActivations(SESAMEFuzzingOperationWrapper sfow) throws MutationFailed {
+	private void mutateActivations(SESAMEFuzzingOperationWrapper sfow) throws MutationFailed, IOException {
 		Activation aa = sfow.getAttack().getActivation();
 		Optional<Activation> aaSpace = getActivation(sfow.getAttack().getFromTemplate());
 		if (aaSpace.isPresent()) {
@@ -191,7 +198,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		}
 	}
 
-	public void modifyGivenRecord(SESAMEFuzzingOperationWrapper sta) {
+	public void modifyGivenRecord(SESAMEFuzzingOperationWrapper sta) throws IOException {
 		if (rng.nextDouble() < probTemporalMutation) {
 			logWithoutError("Performing temporal mutation on " + sta.getName());
 			try {
@@ -217,21 +224,15 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 	}
 
 	public SESAMETestSolution execute(SESAMETestSolution sol) {
-		// PRE-MUTATION DEBUGGING
 		try {
+			// Pre-mutation debugging
 			mutationLog.write(sol.toString() + "\n");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		for (int i = 0; i < sol.getNumberOfVariables(); i++) {
-			SESAMEFuzzingOperationWrapper sta = sol.getVariable(i);
-			System.out.println("Before modification SESAMETestAttack=" + sta);
-			modifyGivenRecord(sta);
-		}
-
-		// POST-MUTATION DEBUGGING
-		try {
+			for (int i = 0; i < sol.getNumberOfVariables(); i++) {
+				SESAMEFuzzingOperationWrapper sta = sol.getVariable(i);
+				System.out.println("Before modification SESAMETestAttack=" + sta);
+				modifyGivenRecord(sta);
+			}
+			// Post-mutation debugging
 			mutationLog.write(sol.toString() + "\n");
 			mutationLog.flush();
 		} catch (IOException e) {

@@ -97,6 +97,8 @@ public class SESAMEFuzzingOperationWrapper {
 		Tree<String> startTree = cg.generateOne();
 		Tree<String> endTree = cg.generateOne();
 		// Store the starting and ending trees with this individual
+		System.out.println("startTree = " + startTree);
+		System.out.println("endTree = " + endTree);
 		
 		Condition start = cg.convert(startTree);
 		Condition end = cg.convert(endTree);
@@ -152,7 +154,10 @@ public class SESAMEFuzzingOperationWrapper {
 	}
 
 	public SESAMEFuzzingOperationWrapper dup() {
-		return new SESAMEFuzzingOperationWrapper(this.parentTest, this.t);
+		SESAMEFuzzingOperationWrapper newSFOW = new SESAMEFuzzingOperationWrapper(this.parentTest, this.t);
+		newSFOW.setStoredStartTree(Tree.copyOf(storedStartTree));
+		newSFOW.setStoredEndTree(Tree.copyOf(storedEndTree));
+		return newSFOW;
 	}
 
 	public void checkConstraints() {
