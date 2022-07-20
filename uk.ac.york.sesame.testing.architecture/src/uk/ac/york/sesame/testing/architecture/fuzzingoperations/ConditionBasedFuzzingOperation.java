@@ -20,6 +20,9 @@ public abstract class ConditionBasedFuzzingOperation extends FuzzingOperation {
 	protected MapState<String,Object> varState;
 	protected ValueState<Boolean> isActive;
 	protected ValueState<Boolean> isTimerSetState;
+	protected ValueState<Integer> activationCount;
+	
+	protected int maxActivations = 1;
 
 	public boolean isReadyNow() {
 		boolean res = false;
@@ -37,6 +40,7 @@ public abstract class ConditionBasedFuzzingOperation extends FuzzingOperation {
     	varState = getRuntimeContext().getMapState(new MapStateDescriptor<>("varState", String.class, Object.class));
     	isActive = getRuntimeContext().getState(new ValueStateDescriptor<>("isActive", Boolean.class));
     	isTimerSetState = getRuntimeContext().getState(new ValueStateDescriptor<>("isTimerSetState", Boolean.class));
+    	activationCount = getRuntimeContext().getState(new ValueStateDescriptor<>("activationCount", Integer.class));
     }
       
 	protected void updateStateFrom(MetricMessage value) {
@@ -66,13 +70,19 @@ public abstract class ConditionBasedFuzzingOperation extends FuzzingOperation {
 			
 			if (!isActive.value()) {
 				if (evalStartCondition()) {
-					isActive.update(true);
-					// Start up timer to track how long the fuzzing lasts
-					setupTimer(ctx);
+					if (shouldActivateByCount()) {
+						isActive.update(true);
+						activationCount.update(activationCount.value() + 1);
+						// Start up timer to track how long the fuzzing lasts
+						setupTimer(ctx);
+						// activationTime = ctx.timestamp();
+					}
 				}
 			} else {
 				if (evalEndCondition()) {
 					isActive.update(false);
+					//long activationLength = ctx.timestamp() - activationTime;
+					//SimCore.registerFuzingLength(activationLength);
 				}
 			}
 			
@@ -83,6 +93,14 @@ public abstract class ConditionBasedFuzzingOperation extends FuzzingOperation {
 		}
 	}	
 	
+	private boolean shouldActivateByCount() throws IOException {
+		if (activationCount.value() == null) {
+			activationCount.update(0);
+		}
+		
+		return (activationCount.value() < maxActivations);
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	public String getTopic() {

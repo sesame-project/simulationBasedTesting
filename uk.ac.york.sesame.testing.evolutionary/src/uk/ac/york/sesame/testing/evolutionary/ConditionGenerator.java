@@ -23,6 +23,7 @@ public class ConditionGenerator {
 	private GrammarConverter gc;
 	
 	private boolean DEBUG_MUTATION = true;
+	private int MAX_MUTATION_TRY_COUNT = 5;
 	
 	// TODO: how does this parameter work?
 	private int MUTATION_MAX_DEPTH = 1;
@@ -61,10 +62,19 @@ public class ConditionGenerator {
 	}
 
 	public Tree<String> mutate(Tree<String> t, Random rng) {
-		if (DEBUG_MUTATION) {
-			System.out.println("Tree before mutation = " + t);
+		int count = 0;
+		boolean changed = false;
+		Tree<String> tNew = t;
+		while ((count++ < MAX_MUTATION_TRY_COUNT) && !changed) {
+			if (DEBUG_MUTATION) {
+				System.out.println("Try " + count + " tree before mutation = " + t);
+			}
+			tNew = mutator.mutate(t, rng);
+			if (!tNew.equals(t)) {
+				changed = true;
+			}
 		}
-		return mutator.mutate(t, rng);
+		return tNew;
 	}
 	
 	public Tree<String> mutate(Tree<String> t) {
@@ -77,17 +87,46 @@ public class ConditionGenerator {
 	}
 
 	public String conditionToString(Condition c) {
-		return "CONDITION: [" + c.getName() + ":" + conditionElementToString(c.getC()) + "]";
+		try {
+			return "CONDITION: [" + c.getName() + ":" + conditionElementToString(c.getC()) + "]";
+		} catch (InvalidElementConversion e) {
+			e.printStackTrace();
+			return "CONDITION: [" + c.getName() + ": INVALID]";
+		}
 	}
 	
-	public String conditionElementToString(ConditionElement cElt) {
+	public String binOpToString(BinaryLogicalOperation binop) throws InvalidElementConversion {
+		if (binop == BinaryLogicalOperation.AND) {
+			return "AND";
+		}
+		if (binop == BinaryLogicalOperation.OR) {
+			return "OR";
+		}
+		throw new InvalidElementConversion("binop", binop.toString());
+	}
+	
+	public String binCompToString(BinaryComparisonOperation bincomp) throws InvalidElementConversion {
+		if (bincomp == BinaryComparisonOperation.LESS_THAN) {
+			return "<";
+		}
+		if (bincomp == BinaryComparisonOperation.GREATER_THAN) {
+			return ">";
+		}
+		if (bincomp == BinaryComparisonOperation.EQUALS) {
+			return "==";
+		}
+		throw new InvalidElementConversion("binop", bincomp.toString());
+	}
+
+
+	public String conditionElementToString(ConditionElement cElt) throws InvalidElementConversion {
 		if (cElt instanceof CompositeCondition) {
 			CompositeCondition cComp = (CompositeCondition)cElt;
-			return conditionElementToString(cComp.getLeft()) + cComp.getBinop().toString() + conditionElementToString(cComp.getRight());
+			return conditionElementToString(cComp.getLeft()) + " " + binOpToString(cComp.getBinop()) + " " + conditionElementToString(cComp.getRight());
 		} else {
 			// cElt is BasicCondition
 			BasicCondition cBasic = (BasicCondition)cElt;
-			return conditionVariableToString(cBasic.getLeft()) + cBasic.getBincomp().toString() + conditionExprToString(cBasic.getRight());
+			return conditionVariableToString(cBasic.getLeft()) + " " + binCompToString(cBasic.getBincomp()) + " " + conditionExprToString(cBasic.getRight());
 		}
 	}
 

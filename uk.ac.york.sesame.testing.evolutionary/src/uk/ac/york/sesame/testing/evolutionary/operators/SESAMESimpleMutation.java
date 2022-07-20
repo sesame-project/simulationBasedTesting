@@ -96,8 +96,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		aft.setEndTime(endTime);
 	}
 
-	private void mutateConditionBased(SESAMEFuzzingOperationWrapper sfow, ConditionBasedActivation aa,
-			ConditionMutationSelection s) throws MutationFailed, IOException {
+	private void mutateConditionBased(SESAMEFuzzingOperationWrapper sfow, ConditionBasedActivation aa, ConditionMutationSelection s) throws MutationFailed, IOException {
 		try {
 			if (s == ConditionMutationSelection.SELECT_START) {
 				Tree<String> t = sfow.getStoredStartTree();
@@ -124,7 +123,6 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 			e.printStackTrace();
 			throw new MutationFailed(e);
 		}
-
 	}
 
 	private void mutateIndividualActivation(SESAMEFuzzingOperationWrapper sfow, Activation aa, Activation aaSpace)

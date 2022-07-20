@@ -31,6 +31,7 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 		var startCond = fuzzOp.activation.starting;
 		var endCond = fuzzOp.activation.ending;
 	%]
+	
 	public [%=fuzzOp.name%]FlatMap_[%= classNameExt %](String topic, long seed) {
 		super(topic);
 		this.rng = new Random(seed);
