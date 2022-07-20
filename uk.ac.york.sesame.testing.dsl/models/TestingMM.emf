@@ -25,11 +25,10 @@ class TestCampaign {
 	ref Metrics.Metric[*] metrics;
 	ref Metrics.Metric[*] conditionMetrics;
 	ref FuzzingOperations.FuzzingOperation[*] includedOperations;
-	//val GrammarSpec.GrammarConstraint[*] constraints;
 	val TestGenerationApproach[1] approach;
 	val Test[*]#parentCampaign performedTests;
 	val CampaignResultSet[*] resultSets;
-	val ExecutionEndTrigger[1] defaultEndTrigger;
+	val ExecutionEndTrigger[1] endTrigger;
 }
 
 // This is analagous to a fuzzing CSV file in SAFEMUV - multiple attacks
@@ -37,7 +36,6 @@ class Test {
 	attr String name;
 	val FuzzingOperations.FuzzingOperation[*]#containingTest operations;
 	val Metrics.MetricInstance[*] metrics;
-	val ExecutionEndTrigger[1] endTrigger;
 	// developedFrom can contain e.g. the evolutionary history of this Test,
 	// which other tests it was developed from
 	ref Test[*] developedFrom; 

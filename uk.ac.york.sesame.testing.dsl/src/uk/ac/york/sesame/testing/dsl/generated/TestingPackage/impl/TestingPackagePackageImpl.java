@@ -344,7 +344,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_DefaultEndTrigger() {
+	public EReference getTestCampaign_EndTrigger() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -389,7 +389,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTest_EndTrigger() {
+	public EReference getTest_DevelopedFrom() {
 		return (EReference)testEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -398,17 +398,8 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTest_DevelopedFrom() {
-		return (EReference)testEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getTest_ParentCampaign() {
-		return (EReference)testEClass.getEStructuralFeatures().get(5);
+		return (EReference)testEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -580,13 +571,12 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__APPROACH);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__PERFORMED_TESTS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__RESULT_SETS);
-		createEReference(testCampaignEClass, TEST_CAMPAIGN__DEFAULT_END_TRIGGER);
+		createEReference(testCampaignEClass, TEST_CAMPAIGN__END_TRIGGER);
 
 		testEClass = createEClass(TEST);
 		createEAttribute(testEClass, TEST__NAME);
 		createEReference(testEClass, TEST__OPERATIONS);
 		createEReference(testEClass, TEST__METRICS);
-		createEReference(testEClass, TEST__END_TRIGGER);
 		createEReference(testEClass, TEST__DEVELOPED_FROM);
 		createEReference(testEClass, TEST__PARENT_CAMPAIGN);
 
@@ -677,13 +667,12 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEReference(getTestCampaign_Approach(), this.getTestGenerationApproach(), null, "approach", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_PerformedTests(), this.getTest(), this.getTest_ParentCampaign(), "performedTests", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_ResultSets(), this.getCampaignResultSet(), null, "resultSets", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestCampaign_DefaultEndTrigger(), this.getExecutionEndTrigger(), null, "defaultEndTrigger", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestCampaign_EndTrigger(), this.getExecutionEndTrigger(), null, "endTrigger", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testEClass, Test.class, "Test", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTest_Name(), ecorePackage.getEString(), "name", null, 0, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_Operations(), theFuzzingOperationsPackage.getFuzzingOperation(), theFuzzingOperationsPackage.getFuzzingOperation_ContainingTest(), "operations", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_Metrics(), theMetricsPackage.getMetricInstance(), null, "metrics", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTest_EndTrigger(), this.getExecutionEndTrigger(), null, "endTrigger", null, 1, 1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_DevelopedFrom(), this.getTest(), null, "developedFrom", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_ParentCampaign(), this.getTestCampaign(), this.getTestCampaign_PerformedTests(), "parentCampaign", null, 1, 1, Test.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

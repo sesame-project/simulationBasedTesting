@@ -26,7 +26,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getPerformedTests <em>Performed Tests</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getResultSets <em>Result Sets</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger <em>Default End Trigger</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getEndTrigger <em>End Trigger</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign()
@@ -141,25 +141,25 @@ public interface TestCampaign extends EObject {
 	EList<CampaignResultSet> getResultSets();
 
 	/**
-	 * Returns the value of the '<em><b>Default End Trigger</b></em>' containment reference.
+	 * Returns the value of the '<em><b>End Trigger</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default End Trigger</em>' containment reference.
-	 * @see #setDefaultEndTrigger(ExecutionEndTrigger)
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_DefaultEndTrigger()
+	 * @return the value of the '<em>End Trigger</em>' containment reference.
+	 * @see #setEndTrigger(ExecutionEndTrigger)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_EndTrigger()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ExecutionEndTrigger getDefaultEndTrigger();
+	ExecutionEndTrigger getEndTrigger();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger <em>Default End Trigger</em>}' containment reference.
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getEndTrigger <em>End Trigger</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default End Trigger</em>' containment reference.
-	 * @see #getDefaultEndTrigger()
+	 * @param value the new value of the '<em>End Trigger</em>' containment reference.
+	 * @see #getEndTrigger()
 	 * @generated
 	 */
-	void setDefaultEndTrigger(ExecutionEndTrigger value);
+	void setEndTrigger(ExecutionEndTrigger value);
 
 } // TestCampaign

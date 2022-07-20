@@ -26,7 +26,7 @@
         eType="#//Test" containment="true" eOpposite="#//Test/parentCampaign"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultSets" upperBound="-1"
         eType="#//CampaignResultSet" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultEndTrigger" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endTrigger" lowerBound="1"
         eType="#//ExecutionEndTrigger" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Test">
@@ -35,8 +35,6 @@
         eType="#//FuzzingOperations/FuzzingOperation" containment="true" eOpposite="#//FuzzingOperations/FuzzingOperation/containingTest"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metrics" upperBound="-1"
         eType="#//Metrics/MetricInstance" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="endTrigger" lowerBound="1"
-        eType="#//ExecutionEndTrigger" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="developedFrom" upperBound="-1"
         eType="#//Test"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentCampaign" lowerBound="1"

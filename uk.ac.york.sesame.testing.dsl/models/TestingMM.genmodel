@@ -26,13 +26,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/approach"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/performedTests"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/resultSets"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/defaultEndTrigger"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/endTrigger"/>
     </genClasses>
     <genClasses ecoreClass="TestingMM.ecore#//Test">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Test/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/operations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/metrics"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/endTrigger"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/developedFrom"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/parentCampaign"/>
     </genClasses>

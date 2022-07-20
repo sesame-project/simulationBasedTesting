@@ -44,8 +44,6 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 		checkSetupTestingFactory();
 		t = tFactory.createTest();
 		t.setName(createTestName());
-		// Set up the test with the default end trigger
-		t.setEndTrigger(selectedCampaign.getDefaultEndTrigger());
 	}
 	
 	public String getName() {

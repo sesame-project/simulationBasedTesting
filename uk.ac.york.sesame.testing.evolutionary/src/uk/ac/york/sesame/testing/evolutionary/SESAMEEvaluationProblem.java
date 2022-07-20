@@ -38,7 +38,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long DEFAULT_KILL_DELAY = 10;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
 
-	private static final boolean DUMMY_EVAL = true;
+	private static final boolean DUMMY_EVAL = false;
 	
 	private boolean conditionBased;
 
@@ -89,7 +89,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		t.start();
 	}
 
-	public SESAMEEvaluationProblem(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, boolean conditionBased)
+	public SESAMEEvaluationProblem(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, boolean conditionBased, int conditionDepth)
 			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
@@ -109,7 +109,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		if (tc_o.isPresent()) {
 			selectedCampaign = tc_o.get();
 			setupMetricListener(selectedCampaign);
-			condGenerator = new ConditionGenerator(selectedCampaign);
+			condGenerator = new ConditionGenerator(selectedCampaign, conditionDepth);
 		} else {
 			throw new InvalidTestCampaign(campaignName);
 		}
@@ -198,24 +198,20 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				// If no trigger specified specifically for this test, use the default for the
 				// campaign
 				ExecutionEndTrigger et;
-				et = solution.getInternalType().getEndTrigger();
-				if (et == null) {
-					System.out.println("Using default end trigger defined in testing campaign");
-					et = selectedCampaign.getDefaultEndTrigger();
-				}
+				long waitTimeSeconds = DEFAULT_HARDCODED_DELAY;
+				et = selectedCampaign.getEndTrigger();
 
 				// Wait for the time given in the model under the test
 				if (et instanceof TimeBasedEnd) {
-					long waitTimeSeconds = ((TimeBasedEnd) et).getTimeLimitSeconds();
-					if (waitTimeSeconds == 0) {
-						waitTimeSeconds = DEFAULT_HARDCODED_DELAY;
-					}
-					System.out.print("Waiting for completion of fixed time delay = " + waitTimeSeconds);
+					waitTimeSeconds = ((TimeBasedEnd)et).getTimeLimitSeconds();
+					System.out.print("Using selected fixed time delay...");		
 					System.out.flush();
 				} else {
-					System.out.println("Using hardcoded delay of " + DEFAULT_HARDCODED_DELAY);
-					TestRunnerUtils.waitForSeconds(DEFAULT_HARDCODED_DELAY);
+					System.out.print("Using hardcoded delay...");
 				}
+				
+				System.out.print("Waiting " + waitTimeSeconds + " seconds...");
+				TestRunnerUtils.waitForSeconds(waitTimeSeconds);
 				System.out.println("done");
 
 				// Ensure that the model is updated with the metric results

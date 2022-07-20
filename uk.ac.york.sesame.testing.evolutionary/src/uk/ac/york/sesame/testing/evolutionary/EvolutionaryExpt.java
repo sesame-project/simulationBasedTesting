@@ -58,8 +58,9 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	private String codeGenerationDirectory;
 	private String orchestratorBasePath;
 	private int maxIterations;
+	private int conditionDepth;
 
-	public EvolutionaryExpt(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, int maxIterations, int populationSize, int offspringPopSize, boolean conditionBased) {
+	public EvolutionaryExpt(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, int maxIterations, int populationSize, int offspringPopSize, boolean conditionBased, int conditionDepth) {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
 		this.codeGenerationDirectory = codeGenerationDirectory;
@@ -68,6 +69,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		this.maxIterations = maxIterations;
 		this.orchestratorBasePath = orchestratorBasePath;
 		this.conditionBased = conditionBased;
+		this.conditionDepth = conditionDepth;
 	}
 	
 	public void runExperiment() {
@@ -77,7 +79,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		SESAMEEvaluationProblem problem;
 
 		try {
-			problem = new SESAMEEvaluationProblem(orchestratorBasePath, spaceModelFileName, campaignName, codeGenerationDirectory, conditionBased);
+			problem = new SESAMEEvaluationProblem(orchestratorBasePath, spaceModelFileName, campaignName, codeGenerationDirectory, conditionBased, conditionDepth);
 			TestCampaign selectedCampaign = problem.getCampaign();
 			ConditionGenerator cg = problem.getCondGenerator();
 

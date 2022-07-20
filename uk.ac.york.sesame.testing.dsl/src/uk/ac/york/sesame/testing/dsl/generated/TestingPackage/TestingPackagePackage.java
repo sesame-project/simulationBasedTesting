@@ -204,13 +204,13 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_CAMPAIGN__RESULT_SETS = 6;
 
 	/**
-	 * The feature id for the '<em><b>Default End Trigger</b></em>' containment reference.
+	 * The feature id for the '<em><b>End Trigger</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__DEFAULT_END_TRIGGER = 7;
+	int TEST_CAMPAIGN__END_TRIGGER = 7;
 
 	/**
 	 * The number of structural features of the '<em>Test Campaign</em>' class.
@@ -268,22 +268,13 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST__METRICS = 2;
 
 	/**
-	 * The feature id for the '<em><b>End Trigger</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEST__END_TRIGGER = 3;
-
-	/**
 	 * The feature id for the '<em><b>Developed From</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST__DEVELOPED_FROM = 4;
+	int TEST__DEVELOPED_FROM = 3;
 
 	/**
 	 * The feature id for the '<em><b>Parent Campaign</b></em>' container reference.
@@ -292,7 +283,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST__PARENT_CAMPAIGN = 5;
+	int TEST__PARENT_CAMPAIGN = 4;
 
 	/**
 	 * The number of structural features of the '<em>Test</em>' class.
@@ -301,7 +292,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_FEATURE_COUNT = 6;
+	int TEST_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Test</em>' class.
@@ -726,15 +717,15 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestCampaign_ResultSets();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger <em>Default End Trigger</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getEndTrigger <em>End Trigger</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Default End Trigger</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger()
+	 * @return the meta object for the containment reference '<em>End Trigger</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getEndTrigger()
 	 * @see #getTestCampaign()
 	 * @generated
 	 */
-	EReference getTestCampaign_DefaultEndTrigger();
+	EReference getTestCampaign_EndTrigger();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test <em>Test</em>}'.
@@ -778,17 +769,6 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTest_Metrics();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getEndTrigger <em>End Trigger</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>End Trigger</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getEndTrigger()
-	 * @see #getTest()
-	 * @generated
-	 */
-	EReference getTest_EndTrigger();
 
 	/**
 	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getDevelopedFrom <em>Developed From</em>}'.
@@ -1098,12 +1078,12 @@ public interface TestingPackagePackage extends EPackage {
 		EReference TEST_CAMPAIGN__RESULT_SETS = eINSTANCE.getTestCampaign_ResultSets();
 
 		/**
-		 * The meta object literal for the '<em><b>Default End Trigger</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>End Trigger</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_CAMPAIGN__DEFAULT_END_TRIGGER = eINSTANCE.getTestCampaign_DefaultEndTrigger();
+		EReference TEST_CAMPAIGN__END_TRIGGER = eINSTANCE.getTestCampaign_EndTrigger();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl <em>Test</em>}' class.
@@ -1138,14 +1118,6 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST__METRICS = eINSTANCE.getTest_Metrics();
-
-		/**
-		 * The meta object literal for the '<em><b>End Trigger</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEST__END_TRIGGER = eINSTANCE.getTest_EndTrigger();
 
 		/**
 		 * The meta object literal for the '<em><b>Developed From</b></em>' reference list feature.

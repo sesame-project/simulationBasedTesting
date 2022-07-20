@@ -42,8 +42,6 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 
 	private final double PROB_OF_TIMESPEC_CHANGE_END = 0.5;
 
-	protected final int MUTATION_DEPTH = 1;
-
 	private static final long serialVersionUID = 1L;
 	private static final double PROB_SELECT_START_OR_END = 0.5;
 

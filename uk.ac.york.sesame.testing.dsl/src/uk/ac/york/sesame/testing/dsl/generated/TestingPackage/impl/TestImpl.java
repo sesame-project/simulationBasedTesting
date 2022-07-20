@@ -19,9 +19,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
-
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 
@@ -42,7 +39,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getMetrics <em>Metrics</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getEndTrigger <em>End Trigger</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getDevelopedFrom <em>Developed From</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getParentCampaign <em>Parent Campaign</em>}</li>
  * </ul>
@@ -89,16 +85,6 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * @ordered
 	 */
 	protected EList<MetricInstance> metrics;
-
-	/**
-	 * The cached value of the '{@link #getEndTrigger() <em>End Trigger</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndTrigger()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExecutionEndTrigger endTrigger;
 
 	/**
 	 * The cached value of the '{@link #getDevelopedFrom() <em>Developed From</em>}' reference list.
@@ -179,49 +165,6 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutionEndTrigger getEndTrigger() {
-		return endTrigger;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEndTrigger(ExecutionEndTrigger newEndTrigger, NotificationChain msgs) {
-		ExecutionEndTrigger oldEndTrigger = endTrigger;
-		endTrigger = newEndTrigger;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST__END_TRIGGER, oldEndTrigger, newEndTrigger);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndTrigger(ExecutionEndTrigger newEndTrigger) {
-		if (newEndTrigger != endTrigger) {
-			NotificationChain msgs = null;
-			if (endTrigger != null)
-				msgs = ((InternalEObject)endTrigger).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST__END_TRIGGER, null, msgs);
-			if (newEndTrigger != null)
-				msgs = ((InternalEObject)newEndTrigger).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST__END_TRIGGER, null, msgs);
-			msgs = basicSetEndTrigger(newEndTrigger, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST__END_TRIGGER, newEndTrigger, newEndTrigger));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Test> getDevelopedFrom() {
 		if (developedFrom == null) {
 			developedFrom = new EObjectResolvingEList<Test>(Test.class, this, TestingPackagePackage.TEST__DEVELOPED_FROM);
@@ -270,8 +213,6 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return ((InternalEList<?>)getOperations()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TEST__METRICS:
 				return ((InternalEList<?>)getMetrics()).basicRemove(otherEnd, msgs);
-			case TestingPackagePackage.TEST__END_TRIGGER:
-				return basicSetEndTrigger(null, msgs);
 			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
 				return eBasicSetContainer(null, TestingPackagePackage.TEST__PARENT_CAMPAIGN, msgs);
 		}
@@ -306,8 +247,6 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return getOperations();
 			case TestingPackagePackage.TEST__METRICS:
 				return getMetrics();
-			case TestingPackagePackage.TEST__END_TRIGGER:
-				return getEndTrigger();
 			case TestingPackagePackage.TEST__DEVELOPED_FROM:
 				return getDevelopedFrom();
 			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
@@ -336,9 +275,6 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				getMetrics().clear();
 				getMetrics().addAll((Collection<? extends MetricInstance>)newValue);
 				return;
-			case TestingPackagePackage.TEST__END_TRIGGER:
-				setEndTrigger((ExecutionEndTrigger)newValue);
-				return;
 			case TestingPackagePackage.TEST__DEVELOPED_FROM:
 				getDevelopedFrom().clear();
 				getDevelopedFrom().addAll((Collection<? extends Test>)newValue);
@@ -364,9 +300,6 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 			case TestingPackagePackage.TEST__METRICS:
 				getMetrics().clear();
 				return;
-			case TestingPackagePackage.TEST__END_TRIGGER:
-				setEndTrigger((ExecutionEndTrigger)null);
-				return;
 			case TestingPackagePackage.TEST__DEVELOPED_FROM:
 				getDevelopedFrom().clear();
 				return;
@@ -388,8 +321,6 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return operations != null && !operations.isEmpty();
 			case TestingPackagePackage.TEST__METRICS:
 				return metrics != null && !metrics.isEmpty();
-			case TestingPackagePackage.TEST__END_TRIGGER:
-				return endTrigger != null;
 			case TestingPackagePackage.TEST__DEVELOPED_FROM:
 				return developedFrom != null && !developedFrom.isEmpty();
 			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:

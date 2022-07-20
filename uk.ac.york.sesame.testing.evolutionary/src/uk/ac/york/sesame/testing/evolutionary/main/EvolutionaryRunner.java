@@ -18,7 +18,7 @@ public class EvolutionaryRunner {
 		double participantProbMut = 0.333;
 		double paramProbMut = 0.333;
 				
-		int maxIterations = 24;
+		int maxIterations = 16;
 		int populationSize = 4;
 		int offspringSize = 4;
 		//ExperimentType etype = ExperimentType.FIXED_TIME_FUZZING;
@@ -34,9 +34,11 @@ public class EvolutionaryRunner {
 		String campaignToRun = "firstExperiment";
 		// Mention in documentation that pkill is required by default
 			
+		// TODO: this should be stored in the model
 		final boolean conditionBased = true;
+		final int maxConditionDepth = 6;
 		
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased);
+		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, maxConditionDepth);
 		jmetalExpt.runExperiment();
 	}
 }

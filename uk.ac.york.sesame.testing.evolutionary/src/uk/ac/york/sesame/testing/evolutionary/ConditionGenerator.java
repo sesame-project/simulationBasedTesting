@@ -18,7 +18,7 @@ public class ConditionGenerator {
 	private Random rng;
 	
 	// TODO: maxGrammarHeight should be configurable
-	private int maxGrammarHeight = 4;
+	private int maxGrammarHeight;
 	private Grammar<String> grammar;
 	private GrammarConverter gc;
 	
@@ -29,7 +29,8 @@ public class ConditionGenerator {
 	
 	protected GrammarBasedSubtreeMutation<String> mutator;
 	
-	public ConditionGenerator(TestCampaign selectedCampaign) {
+	public ConditionGenerator(TestCampaign selectedCampaign, int maxGrammarHeight) {
+		this.maxGrammarHeight = maxGrammarHeight;
 		String GRAMMAR_FILE = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/files/grammar/sesame-standardgrammar-firstExperiment.bnf";
 		gc = new GrammarConverter(selectedCampaign);
 		rng = new Random();
