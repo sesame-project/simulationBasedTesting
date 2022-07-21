@@ -51,7 +51,11 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 	}
 	
 	public String toString() {
-		return t.getName() + "-[" + contents.size() + " operations]";
+		String output = t.getName() + "-[" + contents.size() + " operations]:\n";
+		for (SESAMEFuzzingOperationWrapper sfow : contents) {
+			output = output + sfow.toString() + "\n";
+		}
+		return output;
 	}
 	
 	public SESAMETestSolution(TestCampaign selectedCampaign) {

@@ -204,8 +204,10 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dir" eType="#//Metrics/MetricOptimisationDirection"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="relatedVariables" upperBound="-1"
           eType="#//MRSPackage/Variable"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="default" eType="#//Metrics/MetricDefault"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueIfNotReceived" eType="#//Metrics/MetricDefault"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="initValue" lowerBound="1"
+          eType="#//Metrics/MetricDefault" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MetricDefault">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultVal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>

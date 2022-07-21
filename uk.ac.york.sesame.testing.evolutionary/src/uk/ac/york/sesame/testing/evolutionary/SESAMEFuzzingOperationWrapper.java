@@ -152,6 +152,24 @@ public class SESAMEFuzzingOperationWrapper {
 	public String generateDebugInfo() {
 		return this.toString();
 	}
+	
+	public String activationToString(Activation a) {
+		String output = "";
+		if (a instanceof FixedTimeActivation) {
+			FixedTimeActivation fta = (FixedTimeActivation)a;
+			output = "FixedTimeActivation: " + fta.getStartTime() + " - " + fta.getEndTime();
+		} else {
+			ConditionBasedActivation ca = (ConditionBasedActivation)a;
+			output = "ConditionBased: activation count " + ca.getMaximumActivations() + " STARTING:" + getStoredStartTree() + " - " + " ENDING: " + getStoredEndTree();  
+		}
+		return output;
+	}
+	
+	public String toString() {
+		String output = this.getAttack().getClass().getCanonicalName() + " - ";
+		output = output + activationToString(getAttack().getActivation()) + "\n";
+		return output;
+	}
 
 	public SESAMEFuzzingOperationWrapper dup() {
 		SESAMEFuzzingOperationWrapper newSFOW = new SESAMEFuzzingOperationWrapper(this.parentTest, this.t);

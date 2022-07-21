@@ -283,7 +283,10 @@ abstract class Metric {
 	attr String name;
 	attr MetricOptimisationDirection dir;
 	ref MRSPackage.Variable[*] relatedVariables;
-	val MetricDefault[0..1] default;	
+	// valueIfNotReceived - this is if no metric message is ever received - this is applied for the optimisation algorithm
+	val MetricDefault[0..1] valueIfNotReceived;	
+	// initValue is used as an intialisation value in computing the conditions
+	val MetricDefault[1] initValue;
 }
 
 class MetricDefault {

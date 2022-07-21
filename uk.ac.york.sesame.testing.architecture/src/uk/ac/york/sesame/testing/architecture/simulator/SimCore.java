@@ -26,12 +26,11 @@ public final class SimCore {
 		this.time = time;
 	}
 
-	public synchronized void registerFuzzingActive(long timestamp, ConditionBasedFuzzingOperation conditionBasedFuzzingOperation) {
-		fuzzingSecondCount++;
+	public void registerFuzzingActivation(long timeDelay, String fuzzOpClassName) {
+		fuzzingSecondCount += timeDelay;
 	}
 
-	public long getTotalFuzzingSeconds() {
+	public double getTotalFuzzingSeconds() {
 		return fuzzingSecondCount;
 	}
-	
 }

@@ -20,7 +20,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variabl
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDir <em>Dir</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedVariables <em>Related Variables</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDefault <em>Default</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getValueIfNotReceived <em>Value If Not Received</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getInitValue <em>Init Value</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getMetric()
@@ -88,25 +89,47 @@ public interface Metric extends EObject {
 	EList<Variable> getRelatedVariables();
 
 	/**
-	 * Returns the value of the '<em><b>Default</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Value If Not Received</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default</em>' containment reference.
-	 * @see #setDefault(MetricDefault)
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getMetric_Default()
+	 * @return the value of the '<em>Value If Not Received</em>' containment reference.
+	 * @see #setValueIfNotReceived(MetricDefault)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getMetric_ValueIfNotReceived()
 	 * @model containment="true"
 	 * @generated
 	 */
-	MetricDefault getDefault();
+	MetricDefault getValueIfNotReceived();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDefault <em>Default</em>}' containment reference.
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getValueIfNotReceived <em>Value If Not Received</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default</em>' containment reference.
-	 * @see #getDefault()
+	 * @param value the new value of the '<em>Value If Not Received</em>' containment reference.
+	 * @see #getValueIfNotReceived()
 	 * @generated
 	 */
-	void setDefault(MetricDefault value);
+	void setValueIfNotReceived(MetricDefault value);
+
+	/**
+	 * Returns the value of the '<em><b>Init Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Init Value</em>' containment reference.
+	 * @see #setInitValue(MetricDefault)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getMetric_InitValue()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	MetricDefault getInitValue();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getInitValue <em>Init Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Init Value</em>' containment reference.
+	 * @see #getInitValue()
+	 * @generated
+	 */
+	void setInitValue(MetricDefault value);
 
 } // Metric

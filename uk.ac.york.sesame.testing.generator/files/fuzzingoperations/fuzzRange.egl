@@ -1,5 +1,4 @@
 [% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase(); 
-  
 %]
 import java.util.Map;
 import java.util.HashMap;
@@ -16,6 +15,8 @@ import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
 
 // TODO: EGL generators need to generate based on fuzzOp activation
 public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassName() %] {
+
+	[% var varNames = new Set; %]
 
 	private static final long serialVersionUID = 1L;
 	Random rng;
@@ -41,19 +42,20 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 		boolean res = false;
 		try {
 			///// GENERATED CUSTOM CONDITION CODE START - STARTCOND
-			[% var varList = extractVarsForCond(fuzzOp, startCond); %]
+			[% var startCondString = generateCondBoolean(startCond);
+			   var varList = getVarsForCond(fuzzOp, startCond); %]
 			[% for (v in varList) { %]
 				Double [%= v %] = (Double) varState.get("[%= v %]");
+				if ([%= v %] == null) {
+					[%= v %] = [%= getInitValue(v) %];
+				}
 			[% } %]
 			[* this should check all the generated Doubles for all metrics are not null *]
 			boolean shouldEval = true;
 			[% for (v in varList) { %]
 				shouldEval = shouldEval && ([%= v %] != null);
 			[% } %]
-						
-			if (shouldEval) {
-				res = [%= generateCondBoolean(startCond) %];	
-			}
+			res = [%= startCondString %];	
 			///// GENERATED CUSTOM CONDITION CODE END - STARTCOND
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -66,19 +68,17 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 		boolean res = false;
 		try {
 			///// GENERATED CUSTOM CONDITION CODE START - ENDCOND
-			[% var varList = extractVarsForCond(fuzzOp, endCond); %]
+			[* need to clear varNames for the end condition *]
+			[%  varNames = new Set();
+				var endCondString = generateCondBoolean(endCond); 
+			    var varList = getVarsForCond(fuzzOp, endCond); %]
 			[% for (v in varList) { %] 
-				Double [%= v %] = (Double) varState.get("[%= v %]");
-			[% } %]		
-
-			boolean shouldEval = true;
-			[% for (v in varList) { %]
-				shouldEval = shouldEval && ([%= v %] != null);
-			[% } %]
-						
-			if (shouldEval) {
-				res = [%= generateCondBoolean(endCond) %];
-			}
+				Double [%= v %] = (Double)varState.get("[%= v %]");
+				if ([%= v %] == null) {
+					[%= v %] = [%= getInitValue(v) %];
+				}
+			[% } %]	
+			res = [%= generateCondBoolean(endCond) %];
 			///// GENERATED CUSTOM CONDITION CODE END - ENDCOND
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -165,7 +165,10 @@ operation generateCondElement(c) {
 	}
 	
 	if (c.isTypeOf(ConditionVariable)) {
-		return c.metric.name;
+		var vn = c.metric.name;
+		// Put named variable into global list
+		varNames.add(vn);
+		return vn;
 	}
 	
 	if (c.isTypeOf(ConditionInteger)) {
@@ -177,15 +180,20 @@ operation generateCondBoolean(cond) {
 	return generateCondElement(cond.c);
 }
 
-operation extractVarsForCond(fuzzOp, cond) {
-	// For now, generate variable references from all selected metric variables for the campaign
+operation getVarsForCond(fuzzOp, cond) {
+	return varNames;
+}
+
+operation getInitValue(varName) {
 	var campaign = fuzzOp.containingTest.parentCampaign;
-	var metrics = campaign.conditionMetrics;
-	var metricNames = new List;
-	for (m in metrics) {
-		metricNames.add(m.name);
-	}
-	return metricNames;
+    var metrics = campaign.conditionMetrics;
+    var initVal = 0.0;
+    for (m in metrics) {
+        if (m.name == varName) {
+        	initVal = m.initValue.defaultVal;
+        }
+    }
+    return initVal;
 }
 
 %]

@@ -179,13 +179,22 @@ public interface MetricsPackage extends EPackage {
 	int METRIC__RELATED_VARIABLES = 2;
 
 	/**
-	 * The feature id for the '<em><b>Default</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value If Not Received</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC__DEFAULT = 3;
+	int METRIC__VALUE_IF_NOT_RECEIVED = 3;
+
+	/**
+	 * The feature id for the '<em><b>Init Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METRIC__INIT_VALUE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Metric</em>' class.
@@ -194,7 +203,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC_FEATURE_COUNT = 4;
+	int METRIC_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Metric</em>' class.
@@ -280,13 +289,22 @@ public interface MetricsPackage extends EPackage {
 	int VARIABLE_METRIC__RELATED_VARIABLES = METRIC__RELATED_VARIABLES;
 
 	/**
-	 * The feature id for the '<em><b>Default</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value If Not Received</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_METRIC__DEFAULT = METRIC__DEFAULT;
+	int VARIABLE_METRIC__VALUE_IF_NOT_RECEIVED = METRIC__VALUE_IF_NOT_RECEIVED;
+
+	/**
+	 * The feature id for the '<em><b>Init Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_METRIC__INIT_VALUE = METRIC__INIT_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Chosen Variables</b></em>' reference.
@@ -399,13 +417,22 @@ public interface MetricsPackage extends EPackage {
 	int PROPERTY_METRIC__RELATED_VARIABLES = METRIC__RELATED_VARIABLES;
 
 	/**
-	 * The feature id for the '<em><b>Default</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value If Not Received</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_METRIC__DEFAULT = METRIC__DEFAULT;
+	int PROPERTY_METRIC__VALUE_IF_NOT_RECEIVED = METRIC__VALUE_IF_NOT_RECEIVED;
+
+	/**
+	 * The feature id for the '<em><b>Init Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_METRIC__INIT_VALUE = METRIC__INIT_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
@@ -472,13 +499,22 @@ public interface MetricsPackage extends EPackage {
 	int CONDITIONAL_PROPERTY_METRIC__RELATED_VARIABLES = PROPERTY_METRIC__RELATED_VARIABLES;
 
 	/**
-	 * The feature id for the '<em><b>Default</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value If Not Received</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_PROPERTY_METRIC__DEFAULT = PROPERTY_METRIC__DEFAULT;
+	int CONDITIONAL_PROPERTY_METRIC__VALUE_IF_NOT_RECEIVED = PROPERTY_METRIC__VALUE_IF_NOT_RECEIVED;
+
+	/**
+	 * The feature id for the '<em><b>Init Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_PROPERTY_METRIC__INIT_VALUE = PROPERTY_METRIC__INIT_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
@@ -554,13 +590,22 @@ public interface MetricsPackage extends EPackage {
 	int STREAM_METRIC__RELATED_VARIABLES = METRIC__RELATED_VARIABLES;
 
 	/**
-	 * The feature id for the '<em><b>Default</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value If Not Received</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STREAM_METRIC__DEFAULT = METRIC__DEFAULT;
+	int STREAM_METRIC__VALUE_IF_NOT_RECEIVED = METRIC__VALUE_IF_NOT_RECEIVED;
+
+	/**
+	 * The feature id for the '<em><b>Init Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STREAM_METRIC__INIT_VALUE = METRIC__INIT_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
@@ -636,13 +681,22 @@ public interface MetricsPackage extends EPackage {
 	int FUZZING_OPERATION_TIMES_METRIC__RELATED_VARIABLES = STREAM_METRIC__RELATED_VARIABLES;
 
 	/**
-	 * The feature id for the '<em><b>Default</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value If Not Received</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_TIMES_METRIC__DEFAULT = STREAM_METRIC__DEFAULT;
+	int FUZZING_OPERATION_TIMES_METRIC__VALUE_IF_NOT_RECEIVED = STREAM_METRIC__VALUE_IF_NOT_RECEIVED;
+
+	/**
+	 * The feature id for the '<em><b>Init Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION_TIMES_METRIC__INIT_VALUE = STREAM_METRIC__INIT_VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
@@ -830,15 +884,26 @@ public interface MetricsPackage extends EPackage {
 	EReference getMetric_RelatedVariables();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDefault <em>Default</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getValueIfNotReceived <em>Value If Not Received</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Default</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getDefault()
+	 * @return the meta object for the containment reference '<em>Value If Not Received</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getValueIfNotReceived()
 	 * @see #getMetric()
 	 * @generated
 	 */
-	EReference getMetric_Default();
+	EReference getMetric_ValueIfNotReceived();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getInitValue <em>Init Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Init Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getInitValue()
+	 * @see #getMetric()
+	 * @generated
+	 */
+	EReference getMetric_InitValue();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault <em>Metric Default</em>}'.
@@ -1127,12 +1192,20 @@ public interface MetricsPackage extends EPackage {
 		EReference METRIC__RELATED_VARIABLES = eINSTANCE.getMetric_RelatedVariables();
 
 		/**
-		 * The meta object literal for the '<em><b>Default</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Value If Not Received</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference METRIC__DEFAULT = eINSTANCE.getMetric_Default();
+		EReference METRIC__VALUE_IF_NOT_RECEIVED = eINSTANCE.getMetric_ValueIfNotReceived();
+
+		/**
+		 * The meta object literal for the '<em><b>Init Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METRIC__INIT_VALUE = eINSTANCE.getMetric_InitValue();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricDefaultImpl <em>Metric Default</em>}' class.

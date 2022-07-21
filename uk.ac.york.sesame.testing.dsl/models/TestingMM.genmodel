@@ -183,7 +183,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/Metric/dir"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/relatedVariables"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/default"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/valueIfNotReceived"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/initValue"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//Metrics/MetricDefault">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/MetricDefault/defaultVal"/>

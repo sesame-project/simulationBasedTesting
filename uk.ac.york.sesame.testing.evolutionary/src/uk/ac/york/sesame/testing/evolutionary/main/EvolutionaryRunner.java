@@ -18,9 +18,9 @@ public class EvolutionaryRunner {
 		double participantProbMut = 0.333;
 		double paramProbMut = 0.333;
 				
-		int maxIterations = 16;
-		int populationSize = 4;
-		int offspringSize = 4;
+		int maxIterations = 32;
+		int populationSize = 8;
+		int offspringSize = 8;
 		//ExperimentType etype = ExperimentType.FIXED_TIME_FUZZING;
 		
 		// Sets the space model file and the campaign to run here

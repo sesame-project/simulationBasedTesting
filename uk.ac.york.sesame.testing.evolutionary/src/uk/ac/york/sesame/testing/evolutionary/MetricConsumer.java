@@ -275,8 +275,8 @@ public class MetricConsumer implements Runnable {
 				}
 			} else {
 				// Metric is not defined.. use a default if it exists
-				if (m.getDefault() != null) {
-					MetricDefault mDef = m.getDefault();
+				if (m.getValueIfNotReceived() != null) {
+					MetricDefault mDef = m.getValueIfNotReceived();
 					Double val = mDef.getDefaultVal();
 					try {
 						updateMetricsInModel(metricName, val);
@@ -287,7 +287,7 @@ public class MetricConsumer implements Runnable {
 						e.printStackTrace();
 					}
 				} else {
-					System.out.println("No metric default available for " + m.getDefault());
+					System.out.println("No metric valueIfNotReceived set for " + m.getName());
 				}
 			}
 		}
