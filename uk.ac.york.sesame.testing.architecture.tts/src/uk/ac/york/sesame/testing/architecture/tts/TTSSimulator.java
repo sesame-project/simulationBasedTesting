@@ -12,9 +12,6 @@ import org.eclipse.epsilon.emc.plainxml.PlainXmlModel;
 import org.eclipse.epsilon.eol.launch.EolRunConfiguration;
 import org.eclipse.epsilon.eol.models.IModel;
 
-import edu.wpi.rail.jrosbridge.Topic;
-import edu.wpi.rail.jrosbridge.callback.TopicCallback;
-import edu.wpi.rail.jrosbridge.messages.Message;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
@@ -31,14 +28,6 @@ import uk.ac.york.sesame.testing.architecture.simulator.ICommandInvoker;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertyGetter;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertySetter;
 import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
-import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
-
-import io.grpc.stub.StreamObserver;
-import edu.wpi.rail.jrosbridge.messages.Message;
-import io.grpc.Status;
-import simlog.server.*;
-import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
-import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
 public class TTSSimulator implements ISimulator {
 
@@ -75,9 +64,9 @@ public class TTSSimulator implements ISimulator {
 		
 		blockingStub = SimlogAPIGrpc.newBlockingStub(channel);
 		asyncStub = SimlogAPIGrpc.newStub(channel);
-		System.out.println("TTSimulator: connection made");
 		try {
 			Thread.sleep(500);
+			System.out.println("TTSimulator: connection made");			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -182,8 +171,8 @@ public class TTSSimulator implements ISimulator {
                 }
             });
         }
-        TopicDescriptor td = TopicDescriptor.newBuilder().setMsgType("double").setPath(path).build();
-        ROSMessage m = ROSMessage.newBuilder().setType("double").setValue(String.valueOf(value)).build();
+        TopicDescriptor td = TopicDescriptor.newBuilder().setMsgType(topicType).setPath(path).build();
+        ROSMessage m = ROSMessage.newBuilder().setType(topicType).setValue(String.valueOf(value)).build();
         PubRequest pr = PubRequest.newBuilder().setTopic(td).setData(m).build();
         publisher.onNext(pr);
 	}

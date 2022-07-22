@@ -25,6 +25,8 @@ public class SimMain {
 //		//DataStreamManager.getInstance().consume("/turtle1/cmd_vel");
 //		while(true) {}
 
+
+
 		ExSceModel model = new ExSceModel();
 //		ROSSimulator sim = new ROSSimulator();
 		// System.out.println("Topics: " + model.getTopics());
