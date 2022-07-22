@@ -20,6 +20,7 @@ import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
+import uk.ac.york.sesame.testing.architecture.data.ControlMessage;
 import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
@@ -36,6 +37,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	
 	private static final long DEFAULT_COMPILE_DELAY = 10;
 	private static final long DEFAULT_KILL_DELAY = 10;
+	private static final long DEFAULT_WAIT_FOR_FINALISE_DELAY = 5;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
 
 	private static final boolean DUMMY_EVAL = true;
@@ -62,6 +64,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	private SESAMEModelLoader loader;
 	private MetricConsumer metricConsumer;
+	private ControlProducer controlProducer;
 
 	// TODO: how to model the grammar
 	// Grammar<String> grammar;
@@ -72,6 +75,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	// Sets up a metric queue to listen for the given campaign
 	private void setupMetricListener(TestCampaign campaign) throws StreamSetupFailed, InvalidTestCampaign {
 //		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+		
+		// TODO: move these properties - except for the bootstrap.servers: into the Consumer
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
@@ -109,12 +114,18 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		if (tc_o.isPresent()) {
 			selectedCampaign = tc_o.get();
 			setupMetricListener(selectedCampaign);
+			setupControlProducer();
 			condGenerator = new ConditionGenerator(selectedCampaign, conditionDepth);
 		} else {
 			throw new InvalidTestCampaign(campaignName);
 		}
 	}
 	
+	private void setupControlProducer() {
+		controlProducer = new ControlProducer();
+		
+	}
+
 	public TestCampaign getCampaign() {
 		return selectedCampaign;
 	}
@@ -210,12 +221,23 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					System.out.print("Using hardcoded delay...");
 				}
 				
+				waitTimeSeconds = waitTimeSeconds - DEFAULT_WAIT_FOR_FINALISE_DELAY;
+				
 				System.out.print("Waiting " + waitTimeSeconds + " seconds...");
 				TestRunnerUtils.waitForSeconds(waitTimeSeconds);
 				System.out.println("done");
 
+				// Send the end of simulation message
+				controlProducer.send(ControlMessage.CONTROL_COMMAND.END_SIMULATION);
+				metricConsumer.notifyFinalise();
+				System.out.print("Finalising: Waiting for metrics to come back from test runner " + waitTimeSeconds + " seconds...");
+				TestRunnerUtils.waitForSeconds(waitTimeSeconds);
+				System.out.println("done");
+				
 				// Ensure that the model is updated with the metric results
 				metricConsumer.finaliseUpdates();
+				
+				
 
 				TestRunnerUtils.killProcesses();
 				TestRunnerUtils.clearKafka();

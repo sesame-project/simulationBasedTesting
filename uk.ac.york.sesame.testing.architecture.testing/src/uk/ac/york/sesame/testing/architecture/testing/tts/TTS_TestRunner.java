@@ -22,7 +22,6 @@ import org.apache.flink.util.Collector;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
-import uk.ac.york.sesame.testing.architecture.attacks.*;
 import uk.ac.york.sesame.testing.architecture.tts.TTSSimulator;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;

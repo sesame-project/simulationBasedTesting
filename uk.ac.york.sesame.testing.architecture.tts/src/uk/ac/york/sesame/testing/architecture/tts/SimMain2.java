@@ -13,7 +13,7 @@ import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.data.EventMessageSchema;
 
-public class SimMain {
+public class SimMain2 {
 
 	public static void main(String[] args) {
 		TTSSimulator ttsSim = new TTSSimulator();
@@ -38,6 +38,10 @@ public class SimMain {
 		
 		DataStream<EventMessage> stream = env
 				.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
+		
+		DataStream<EventMessage> streamOut = env
+				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
+				.returns(EventMessage.class);
 
 		ttsSim.connect(cp);
 		
@@ -81,6 +85,9 @@ public class SimMain {
 
 		// Just print the contents from the simulator
 		DataStream<String> logStream = stream.map(m -> m.toString());
+		
+		//stream.process(new attackPos_TTS_Temp("joints/R3200/Link1/R/position", 0.0, 1.0, 3422323216L));
+		
 		logStream.print();
 		
 		try {

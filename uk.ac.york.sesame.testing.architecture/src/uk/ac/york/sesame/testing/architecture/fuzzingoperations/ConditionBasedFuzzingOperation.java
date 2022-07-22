@@ -75,15 +75,17 @@ public abstract class ConditionBasedFuzzingOperation extends FuzzingOperation {
 					if (shouldActivateByCount()) {
 						isActive.update(true);
 						activationCount.update(activationCount.value() + 1);
-						lastActivationTime.update(ctx.timestamp());
+						long timeNow = ctx.timestamp();
+						String opName = this.toString();
+						SimCore.getInstance().registerFuzzingStart(timeNow, opName);
 					}
 				}
 			} else {
 				if (evalEndCondition()) {
 					isActive.update(false);
-					// lastActivationTime cannot be null here, if we have reached here, it must have been set already
-					long timeDelay = ctx.timestamp() - lastActivationTime.value();
-					SimCore.getInstance().registerFuzzingActivation(timeDelay, this.getClass().getCanonicalName());
+					long timeNow = ctx.timestamp();
+					String opName = this.toString();
+					SimCore.getInstance().registerFuzzingEnd(timeNow, opName);
 				}
 			}
 

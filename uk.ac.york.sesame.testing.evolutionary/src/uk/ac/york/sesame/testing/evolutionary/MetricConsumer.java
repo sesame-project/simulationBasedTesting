@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -293,5 +292,10 @@ public class MetricConsumer implements Runnable {
 		}
 		
 		metricMessages.clear();
+	}
+
+	public void notifyFinalise() {
+		// TODO: this should ignore all metrics other than the FuzzingOperationTimes?
+		
 	}
 }
