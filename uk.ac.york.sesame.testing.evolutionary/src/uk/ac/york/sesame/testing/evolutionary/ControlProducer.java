@@ -6,6 +6,7 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.LongDeserializer;
+import org.apache.kafka.common.serialization.LongSerializer;
 
 import uk.ac.york.sesame.testing.architecture.data.ControlMessage;
 
@@ -17,10 +18,7 @@ public class ControlProducer {
 	public ControlProducer() {
 		props.put("bootstrap.servers", "localhost:9092");
 		props.put("linger.ms", 1);
-		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-		
-		props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
+		props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
 		props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ControlMessage.class.getName());
 		
 		producer = new KafkaProducer<>(props);

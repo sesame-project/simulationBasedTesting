@@ -58,6 +58,9 @@ public class [%= testNameString %]_TestRunner {
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
 		
+		DataStream<ControlMessage> controlStream = env
+					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
+		
 		
 		DataStream<EventMessage> stream = env
 			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
@@ -146,6 +149,10 @@ public class [%= testNameString %]_TestRunner {
 		KeyedStream<EventMessage, String> testKeyedIn = stream.keyBy(value -> "[%= test.name %]");
 		KeyedStream<EventMessage, String> testKeyedOut = streamOut.keyBy(value -> "[%= test.name %]");;
 		
+		final String TESTNAME = "[%= testNameString %]";
+		ConnectedStreams<EventMessage,ControlMessage> eventsAndControlIn = testKeyedIn.connect(controlStream).keyBy(e -> TESTNAME,m -> TESTNAME);
+		ConnectedStreams<EventMessage,ControlMessage> eventsAndControlOut = testKeyedOut.connect(controlStream).keyBy(e -> TESTNAME,m -> TESTNAME);
+		
 		[* For attack times metric *]
 		List<Double> fuzzOpTimes = new ArrayList<Double>(); 
 		
@@ -215,8 +222,6 @@ public class [%= testNameString %]_TestRunner {
 		[% } %];
 		
 		allMetrics.addSink(metricsProducer);
-				
-		final String TESTNAME = "[%= testNameString %]";
 		
 		ConnectedStreams<EventMessage,MetricMessage> streamFO0 = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
 		
@@ -253,11 +258,11 @@ public class [%= testNameString %]_TestRunner {
 
 operation streamJavaName(sMetric, stream) {
 		if (stream.isTypeOf(Testing!InputStream)) {
-			return "testKeyedIn";
+			return "eventsAndControlIn";
 		}
 	
 		if (stream.isTypeOf(Testing!OutputStream)) {
-			return "testKeyedOut";
+			return "eventsAndControlOut";
 		}
 }
 

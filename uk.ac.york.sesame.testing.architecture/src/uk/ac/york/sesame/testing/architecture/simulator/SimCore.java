@@ -33,20 +33,25 @@ public final class SimCore {
 		this.time = time;
 	}
 
-	public synchronized void registerFuzzingStart(double timeStart, String fuzzOpClassName) {
+	public synchronized void registerFuzzingStart(double flinkTimeStart, String fuzzOpClassName) {
+		// Using the simCore time rather than the Flink time
+		double timeStart = Double.parseDouble(getTime());
 		fuzzingStartTimes.put(fuzzOpClassName, timeStart);
 	}
 	
-	public synchronized void registerFuzzingEnd(long timeEnd, String fuzzOpClassName) {
+	public synchronized void registerFuzzingEnd(long flinkTimeEnd, String fuzzOpClassName) {
+		// Using the simCore time rather than the Flink time
+		double timeEnd = Double.parseDouble(getTime());
 		double fuzzingStart = fuzzingStartTimes.get(fuzzOpClassName);
 		double timeLength = timeEnd - fuzzingStart;
 		totalFuzzingSecondCount += timeLength;
 		fuzzingStartTimes.remove(fuzzOpClassName);
 	}
 	
-	public void finaliseFuzzingTimes(long currentTime) {
+	public void finaliseFuzzingTimes(long flinkFinaliseTime) {
+		// Using the simCore time rather than the Flink time
 		for (Map.Entry<String, Double> me : fuzzingStartTimes.entrySet()) {
-			registerFuzzingEnd(currentTime, me.getKey());
+			registerFuzzingEnd(flinkFinaliseTime, me.getKey());
 		}
 	}
 

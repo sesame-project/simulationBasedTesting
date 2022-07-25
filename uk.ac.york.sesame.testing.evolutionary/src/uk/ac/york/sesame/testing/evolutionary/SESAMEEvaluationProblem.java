@@ -40,7 +40,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long DEFAULT_WAIT_FOR_FINALISE_DELAY = 5;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
 
-	private static final boolean DUMMY_EVAL = true;
+	private static final boolean DUMMY_EVAL = false;
 	
 	private boolean conditionBased;
 
@@ -231,13 +231,11 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				controlProducer.send(ControlMessage.CONTROL_COMMAND.END_SIMULATION);
 				metricConsumer.notifyFinalise();
 				System.out.print("Finalising: Waiting for metrics to come back from test runner " + waitTimeSeconds + " seconds...");
-				TestRunnerUtils.waitForSeconds(waitTimeSeconds);
+				TestRunnerUtils.waitForSeconds(DEFAULT_WAIT_FOR_FINALISE_DELAY);
 				System.out.println("done");
 				
 				// Ensure that the model is updated with the metric results
-				metricConsumer.finaliseUpdates();
-				
-				
+				metricConsumer.finaliseUpdates();				
 
 				TestRunnerUtils.killProcesses();
 				TestRunnerUtils.clearKafka();

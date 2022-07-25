@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ControlMessage implements IData, Serializer, Deserializer {
 	
+	private static long testIDCounter = 0;
 	private static ObjectMapper objectMapper = new ObjectMapper();
 	
 	public enum CONTROL_COMMAND {
@@ -22,7 +23,7 @@ public class ControlMessage implements IData, Serializer, Deserializer {
 		}
 	}
 	
-	Long id;
+	Long id = testIDCounter++;
 	String testID;
 	long timestamp;
 	private CONTROL_COMMAND command;

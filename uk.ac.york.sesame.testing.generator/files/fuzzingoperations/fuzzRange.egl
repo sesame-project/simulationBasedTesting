@@ -78,7 +78,9 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 					[%= v %] = [%= getInitValue(v) %];
 				}
 			[% } %]	
-			res = [%= generateCondBoolean(endCond) %];
+			//res = [%= generateCondBoolean(endCond) %];
+			res = false;
+			
 			///// GENERATED CUSTOM CONDITION CODE END - ENDCOND
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
