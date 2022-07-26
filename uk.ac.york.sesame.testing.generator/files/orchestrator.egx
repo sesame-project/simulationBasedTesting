@@ -1,5 +1,12 @@
-rule test2Class transform test: Testing!Test {
+rule test2ClassROS transform test: Testing!Test {
+	guard : Testing!ROSSimulator.all().notEmpty()
 	template : "ros/rosMain.egl"
+	target : "src/" + test.name.firstToUpperCase() + "_TestRunner.java"
+}
+
+rule test2ClassTTS transform test: Testing!Test {
+	
+	template : "tts/ttsMain.egl"
 	target : "src/" + test.name.firstToUpperCase() + "_TestRunner.java"
 }
 

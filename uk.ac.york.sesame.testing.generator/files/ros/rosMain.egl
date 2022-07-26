@@ -47,6 +47,8 @@ import metrics.fixed.*;
 
 public class [%= testNameString %]_TestRunner {
 	public static void main(String[] args) {
+	
+		final String TESTNAME = "[%= testNameString %]";
 		
 		// JRH: needed to increase the number of buffers used
 		Configuration cfg = new Configuration();
@@ -149,7 +151,7 @@ public class [%= testNameString %]_TestRunner {
 		KeyedStream<EventMessage, String> testKeyedIn = stream.keyBy(value -> "[%= test.name %]");
 		KeyedStream<EventMessage, String> testKeyedOut = streamOut.keyBy(value -> "[%= test.name %]");;
 		
-		final String TESTNAME = "[%= testNameString %]";
+		
 		ConnectedStreams<EventMessage,ControlMessage> eventsAndControlIn = testKeyedIn.connect(controlStream).keyBy(e -> TESTNAME,m -> TESTNAME);
 		ConnectedStreams<EventMessage,ControlMessage> eventsAndControlOut = testKeyedOut.connect(controlStream).keyBy(e -> TESTNAME,m -> TESTNAME);
 		
@@ -179,6 +181,7 @@ public class [%= testNameString %]_TestRunner {
 		[* TODO: Add the topic metrics here *]
 		
 		SimCore simcore = SimCore.getInstance();
+		simcore.setTestName(TESTNAME);
 		[* StreamMetrics *]
 		
 		[%  var parentCampaign = test.parentCampaign;

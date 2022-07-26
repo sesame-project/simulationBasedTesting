@@ -1,261 +1,322 @@
+[%
+	var mrs = Testing!TestingSpace.all().first().mrs;
+	var launchFileLocation = mrs.launchFileLocation;
+	var simulator = mrs.simulator;
+	var topicsNodesPublish = Node.all().publisher.flatten();
+	var topicsMetricsNeed = Metric.all().relatedVariables.flatten();
+	topicsNodesPublish.println();
+	topicsMetricsNeed.println();
+	var testNameString = test.name.firstToUpperCase();
+%]
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import com.google.protobuf.Empty;
+import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.api.common.serialization.SimpleStringEncoder;
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
+import org.apache.flink.api.common.typeinfo.Types;
+import org.apache.flink.connector.file.sink.FileSink; 
 
-import simlog.server.PubRequest;
-import simlog.server.ROSMessage;
-import simlog.server.SimlogAPIGrpc;
-import simlog.server.TopicDescriptor;
+import org.apache.flink.configuration.Configuration;
 
-import io.grpc.Channel;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-import io.grpc.Status;
-import io.grpc.StatusRuntimeException;
-import io.grpc.stub.StreamObserver;
+import org.apache.flink.core.fs.Path;
+import org.apache.flink.streaming.api.datastream.*;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.sink.filesystem.rollingpolicies.DefaultRollingPolicy;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
+import org.apache.flink.util.Collector;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
 
-public class [%=test.name.firstToUpperCase()%]_TestRunner_TTS {
+import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
+import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
+import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
+import uk.ac.york.sesame.testing.architecture.data.*;
 
-	private static SimlogAPIGrpc.SimlogAPIStub asyncStub;
-	private static SimlogAPIGrpc.SimlogAPIBlockingStub blockingStub;
+import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
+
+import metrics.custom.*;
+import metrics.fixed.*;
+
+public class [%= testNameString %]_TestRunner {
+	public static void main(String[] args) {
 	
-	private static StreamObserver<PubRequest> publisher;
-	
-	private static final Logger logger = Logger.getLogger(GrpcClient.class.getName());
-	
-    private static void warning(String msg, Object... params) {
-        logger.log(Level.WARNING, msg, params);
-    }
-	
-	public static void main(String[] args) throws InterruptedException {
-
-		//https://www.xolstice.org/protobuf-maven-plugin/
+		final String TESTNAME = "[%= testNameString %]";
 		
-//		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-//		Properties properties = new Properties();
-//		properties.setProperty("bootstrap.servers", "localhost:9092");
-//		properties.setProperty("group.id", "test");
-//
-//		DataStream<EventMessage> stream = env
-//				.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties))
-//				.returns(EventMessage.class);
-//
-//		DataStream<EventMessage> streamOut = env
-//				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
-//				.returns(EventMessage.class);
-//
-//		// Kafka Sink to OUT
-//		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
-//				new EventMessageSchema(), properties);
-//
-//		stream.flatMap(new PacketLossFlatMap("/tb3_0/cmd_velIN", "0.0", "1000.0", 0.1))
-//				.flatMap(new cmdVelRandomErrorFlatMap("/tb3_1/cmd_velIN", "0.0", "1000.0", 3434232L))
-//				.addSink(myProducer);
-
-//		ROSSimulator rosSim = new ROSSimulator();
-//		ConnectionProperties cp = new ConnectionProperties();
-//		HashMap<String, Object> propsMap = new HashMap<String, Object>();
-//		propsMap.put(ConnectionProperties.HOSTNAME, "0.0.0.0");
-//		propsMap.put(ConnectionProperties.PORT, 9090);
-//		cp.setProperties(propsMap);
-
-		//////////////////////// TEST GRPC SUBSCRIPTION CALL
-		//////////////////////// //////////////////////////////
+		// JRH: needed to increase the number of buffers used
+		Configuration cfg = new Configuration();
+		int defaultLocalParallelism = 1;
+		cfg.setString("taskmanager.network.numberOfBuffers", "4096");
+		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(defaultLocalParallelism, cfg);
 		
-		// This will fail if it is interrupted before the loop is completed and the channel shut down
-		// Cancelling it may also cause an exception on the remote TTS simulator...
+		Properties properties = new Properties();
+		properties.setProperty("bootstrap.servers", "localhost:9092");
+		properties.setProperty("group.id", "test");
 		
-		//[io.grpc.internal.SerializingExecutor] 2022-05-12 03:02:16.722 SEVERE Exception while executing runnable io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1MessagesAvailable@7c50e1f2 
-		//io.grpc.StatusRuntimeException: CANCELLED: call already cancelled. Use ServerCallStreamObserver.setOnCancelHandler() to disable this exception
-		//	at io.grpc.Status.asRuntimeException(Status.java:526)
-		//	at io.grpc.stub.ServerCalls$ServerCallStreamObserverImpl.onNext(ServerCalls.java:366)
-		//	at com.ttsnetwork.topic.JointTopic.lambda$jointVariableValueChanged$0(JointTopic.java:38)
-		//	at java.util.ArrayList.forEach(ArrayList.java:1259)
-		//	at com.ttsnetwork.topic.JointTopic.jointVariableValueChanged(JointTopic.java:38)
-		//	at com.ttsnetwork.core.AWJointVariable.notifyJointVariableChanged(SourceFile:125)
-		// ...
+		DataStream<ControlMessage> controlStream = env
+					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
 		
-		String target = "localhost:8089";
-		ManagedChannel channel = ManagedChannelBuilder.forTarget(target).usePlaintext().build();
-
-		System.out.println("Creating client");
-		try {
-			blockingStub = SimlogAPIGrpc.newBlockingStub(channel);
-			asyncStub = SimlogAPIGrpc.newStub(channel);
-			// 	Looking for a valid feature
-			System.out.println("Subscribing");
-			Thread.sleep(500);
-			
-			String path = "joints/R3200/Link1/R/position";
-	        TopicDescriptor request = TopicDescriptor.newBuilder().setPath(path).build();
-	        ROSObserver ro = new ROSObserver(path);
-	        asyncStub.subscribe(request, ro);
-			
-			Thread.sleep(1000);
 		
-            for (int i = 0; i < 90 * 50; i++) {
-            	System.out.println("i = " + i);
-                double v = Math.toRadians(i * 0.1);
-                publish("joints/R3200/Link1/R/position", v);
-                try {
-                    Thread.sleep(20);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(GrpcClient.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-			
-		} catch (InterruptedException ex) {
-          //getLogger(GrpcClient.class.getName()).log(Level.SEVERE, null, ex);
-          System.out.println("InterruptedException in thread");
-		} finally {
-			channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
-		}  
-
-		//////////////////////// TEST GRPC SUBSCRIPTION END
-		//////////////////////// //////////////////////////////
-
+		DataStream<EventMessage> stream = env
+			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
+		
+		DataStream<EventMessage> streamOut = env
+				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
+				.returns(EventMessage.class);
+		
+		// Kafka Sink to OUT
+		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
+				new EventMessageSchema(), properties);
+				
+		// This connects the metrics via Kafka to the metrics monitoring on the SESAME tool
+		FlinkKafkaProducer<MetricMessage> metricsProducer = new FlinkKafkaProducer<MetricMessage>(
+		        "metricMessages",             // target topic
+		        new MetricMessageSchema(),    // serialization schema
+		        properties             // producer config
+		      );
+					
+		[%
+		if (simulator.isTypeOf(TTSSimulator)) { %]
+		
+		TTSSimulator ttsSim = new TTSSimulator();
+		ConnectionProperties cp = new ConnectionProperties();
+		HashMap<String, Object> propsMap = new HashMap<String, Object>();
+		propsMap.put(ConnectionProperties.HOSTNAME, "[%=simulator.hostname%]");
+		propsMap.put(ConnectionProperties.PORT, [%=simulator.port%]);
+		cp.setProperties(propsMap);
+		
 		// JRH: moved the simulation launcher outside of the thread to the main code
-//		HashMap<String, String> params = new HashMap<String, String>();
-//		params.put("launchPath",
-//				"/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_healthcare.sh");
-//		System.out.println("Simulator Starts");
-//		rosSim.run(params);
-//		rosSim.connect(cp);
-//
-//		Thread subscriber_thread__tb3_0_amcl_pose = new Thread() {
-//			public void run() {
-//				System.out.println("Subscriber _tb3_0_amcl_pose Starts");
-//				rosSim.consumeFromTopic("/tb3_0/amcl_pose", "geometry_msgs/PoseWithCovarianceStamped", true, "IN");
-//			}
-//		};
-//		subscriber_thread__tb3_0_amcl_pose.start();
-//
-//		Thread subscriber_thread__tb3_1_amcl_pose = new Thread() {
-//			public void run() {
-//				System.out.println("Subscriber _tb3_1_amcl_pose Starts");
-//				rosSim.consumeFromTopic("/tb3_1/amcl_pose", "geometry_msgs/PoseWithCovarianceStamped", true, "IN");
-//			}
-//		};
-//		subscriber_thread__tb3_1_amcl_pose.start();
-//
-//		Thread subscriber_thread__tb3_2_amcl_pose = new Thread() {
-//			public void run() {
-//				System.out.println("Subscriber _tb3_2_amcl_pose Starts");
-//				rosSim.consumeFromTopic("/tb3_2/amcl_pose", "geometry_msgs/PoseWithCovarianceStamped", true, "IN");
-//			}
-//		};
-//		subscriber_thread__tb3_2_amcl_pose.start();
-//
-//		Thread subscriber_thread__tb3_0_cmd_velIN = new Thread() {
-//			public void run() {
-//				System.out.println("Subscriber _tb3_0_cmd_velIN Starts");
-//				rosSim.consumeFromTopic("/tb3_0/cmd_velIN", "geometry_msgs/Twist", true, "IN");
-//			}
-//		};
-//		subscriber_thread__tb3_0_cmd_velIN.start();
-//
-//		Thread subscriber_thread__tb3_1_cmd_velIN = new Thread() {
-//			public void run() {
-//				System.out.println("Subscriber _tb3_1_cmd_velIN Starts");
-//				rosSim.consumeFromTopic("/tb3_1/cmd_velIN", "geometry_msgs/Twist", true, "IN");
-//			}
-//		};
-//		subscriber_thread__tb3_1_cmd_velIN.start();
-//
-//		Thread subscriber_thread__tb3_2_cmd_velIN = new Thread() {
-//			public void run() {
-//				System.out.println("Subscriber _tb3_2_cmd_velIN Starts");
-//				rosSim.consumeFromTopic("/tb3_2/cmd_velIN", "geometry_msgs/Twist", true, "IN");
-//			}
-//		};
-//		subscriber_thread__tb3_2_cmd_velIN.start();
-//
-//		Thread time_subscriber = new Thread() {
-//			public void run() {
-//				System.out.println("updateTime starting");
-//				rosSim.updateTime();
-//			}
-//		};
-//		time_subscriber.start();
-//
-//		Thread from_out_to_sim = new Thread() {
-//			public void run() {
-//				System.out.println("From out to sim starts");
-//				while (true) {
-//					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
-//					for (ConsumerRecord<Long, EventMessage> record : cr) {
-//						System.out.println("Topic: " + record.value().getTopic().toString());
-//						rosSim.publishToTopic(record.value().getTopic().toString().replace(".", "/") + "OUT",
-//								record.value().getType(), record.value().getValue().toString());
-//					}
-//				}
-//			}
-//		};
-//		from_out_to_sim.start();
+		HashMap<String, String> params = new HashMap<String,String>();
+		params.put("launchPath", "[%=launchFileLocation%]");
+		System.out.println("Simulator Starts");
+		rosSim.run(params);
+		rosSim.connect(cp);
+		
+		[% for (aTopic in topicsNodesPublish) { %]
+		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
+			public void run() {
+				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
+				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
+			}
+		};
+		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
+		[% } %]
+		
+		[% for (aTopic in topicsMetricsNeed) { %]
+		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
+			public void run() {
+				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
+				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
+			}
+		};
+		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
+		[% } %]
 
+		Thread time_subscriber = new Thread() {
+			public void run() {
+				System.out.println("updateTime starting");
+				rosSim.updateTime();
+			}
+		};
+		time_subscriber.start();
+
+		
+		Thread from_out_to_sim = new Thread() {
+			public void run() {
+				System.out.println("From out to sim starts");
+				while (true) {
+					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance()
+							.consume("OUT");
+					for (ConsumerRecord<Long, EventMessage> record : cr) {
+						String inTopic = record.value().getTopic().toString();
+						String outTopic = rosSim.translateTopicNameForOutput(inTopic);
+						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
+						rosSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
+					}
+				}
+			}
+		}; 
+		
+		from_out_to_sim.start();
+		
 		// Generate keyed streams
-//		KeyedStream<EventMessage, String> topicKeyedIn = stream.keyBy(value -> value.getTopic());
-//		KeyedStream<EventMessage, String> topicKeyedOut = streamOut.keyBy(value -> value.getTopic());
-//
-//		// Stream metrics here
-//		ConnectedStreams<EventMessage, EventMessage> TrackPacketLossRatiocombinedStream = topicKeyedIn
-//				.connect(topicKeyedOut);
-//		DataStream<Double> TrackPacketLossRatioresStream = TrackPacketLossRatiocombinedStream
-//				.process(new TrackPacketLossRatioMetric());
-//
-//		final FileSink<String> TrackPacketLossRatiostreamFileSink = FileSink
-//				.forRowFormat(new Path("/home/jharbin/academic/sesame/WP6/temp-stream-res/packetlossratio"),
-//						new SimpleStringEncoder<String>("UTF-8"))
-//				.withRollingPolicy(DefaultRollingPolicy.builder().withRolloverInterval(TimeUnit.MINUTES.toMillis(150))
-//						.withInactivityInterval(TimeUnit.MINUTES.toMillis(50)).withMaxPartSize(1024 * 1024 * 1024)
-//						.build())
-//				.build();
-//		TrackPacketLossRatioresStream.map(e -> e.toString()).sinkTo(TrackPacketLossRatiostreamFileSink);
-//
-//		DataStream<Double> DistanceToPointresStream = topicKeyedIn.process(new DistanceToPointMetric());
-//
-//		final FileSink<String> DistanceToPointstreamFileSink = FileSink
-//				.forRowFormat(new Path("/home/jharbin/academic/sesame/WP6/temp-stream-res/distancetopoint"),
-//						new SimpleStringEncoder<String>("UTF-8"))
-//				.withRollingPolicy(DefaultRollingPolicy.builder().withRolloverInterval(TimeUnit.MINUTES.toMillis(150))
-//						.withInactivityInterval(TimeUnit.MINUTES.toMillis(50)).withMaxPartSize(1024 * 1024 * 1024)
-//						.build())
-//				.build();
-//		DistanceToPointresStream.map(e -> e.toString()).sinkTo(DistanceToPointstreamFileSink);
-//
-//		try {
-//			env.execute();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		KeyedStream<EventMessage, String> topicKeyedIn = stream.keyBy(value -> value.getTopic());
+		KeyedStream<EventMessage, String> topicKeyedOut = streamOut.keyBy(value -> value.getTopic());
+		KeyedStream<EventMessage, String> testKeyedIn = stream.keyBy(value -> "[%= test.name %]");
+		KeyedStream<EventMessage, String> testKeyedOut = streamOut.keyBy(value -> "[%= test.name %]");;
+		
+		
+		ConnectedStreams<EventMessage,ControlMessage> eventsAndControlIn = testKeyedIn.connect(controlStream).keyBy(e -> TESTNAME,m -> TESTNAME);
+		ConnectedStreams<EventMessage,ControlMessage> eventsAndControlOut = testKeyedOut.connect(controlStream).keyBy(e -> TESTNAME,m -> TESTNAME);
+		
+		[* For attack times metric *]
+		List<Double> fuzzOpTimes = new ArrayList<Double>(); 
+		
+		[% for (fuzzOp in test.operations) { %]
+			[%= produceTimeString(fuzzOp) %]
+		[% } %]
+		
+		
+		[* Stream metrics here *]
+		[% for (sMetric in Testing!StreamMetric.all()) { %]
+			[% if (sMetric.streams.size() == 2) {
+				var stream1 = sMetric.streams.get(0);
+				var stream2 = sMetric.streams.get(1); %]
+				ConnectedStreams<EventMessage, EventMessage> [%= sMetric.name %]combinedStream = [%= streamJavaName(sMetric,stream1) %].connect([%= streamJavaName(sMetric,stream2) %]);
+				DataStream<Double> [%= sMetric.name %]resStream = [%= sMetric.name %]combinedStream.process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
+			[% } %]
+			
+			[% if (sMetric.streams.size() == 1) { 
+				var stream = sMetric.streams.get(0); %]
+				DataStream<Double> [%= sMetric.name %]resStream = [%= streamJavaName(sMetric,stream) %].process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
+			[% } %]
+		[% } %]
+		
+		[* TODO: Add the topic metrics here *]
+		
+		SimCore simcore = SimCore.getInstance();
+		simcore.setTestName(TESTNAME);
+		[* StreamMetrics *]
+		
+		[%  var parentCampaign = test.parentCampaign;
+			var allMetrics = parentCampaign.metrics.clone();
+		    for (sMetric in allMetrics.selectByKind(StreamMetric)) { %] 
+			// Generate a message stream for all metrics
+			DataStream<MetricMessage> metricMsg[%= sMetric.name %] = [%= sMetric.name %]resStream.map(d -> new MetricMessage("[%=test.name.firstToUpperCase() %]", "[%= sMetric.name %]", d));
+		[% } %]
+		
+		[% for (sMetric in allMetrics.selectByKind(StreamMetric)) { %]
+			[* If the stream has a FileStreamResult, log it to a file *]
+			[% if (sMetric.res.isTypeOf(Testing!FileStreamResult)) { 
+				var filename = sMetric.res.filename; %] 
+
+				final FileSink<String> [%= sMetric.name %]streamFileSink = FileSink
+				    .forRowFormat(new Path("[%= filename %]-[%= testNameString %]"), new SimpleStringEncoder<String>("UTF-8"))
+			    	.withRollingPolicy(
+				        DefaultRollingPolicy.builder()
+			            	.withRolloverInterval(TimeUnit.MINUTES.toMillis(150))
+			            	.withInactivityInterval(TimeUnit.MINUTES.toMillis(50))
+			            	.withMaxPartSize(1024 * 1024 * 1024)
+				            .build())
+					.build();
+				metricMsg[%= sMetric.name %].map(msg -> msg.timeStampedValString()).sinkTo([%= sMetric.name %]streamFileSink);
+			[% } %]
+		[% } %]
+		
+		DataStream<MetricMessage> allMetrics = 		
+		[* Create the unioned metric stream and link to the producer *]
+		[% 	if (allMetrics.size() > 0) {
+		
+			var firstMetric = allMetrics.removeAt(0); %]
+		metricMsg[%= firstMetric.name%]
+		
+		[* One element has been removed from allMetrics - so compare against zero, not one! *]
+		[% if (allMetrics.size() > 0) {
+				for (metric in allMetrics) { %]
+		.union(metricMsg[%= metric.name %])
+				[% }
+		} %]	
+		[% } %];
+		
+		allMetrics.addSink(metricsProducer);
+		
+		ConnectedStreams<EventMessage,MetricMessage> streamFO0 = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
+		
+		[% var foStreamCount = 0;
+		   var foLen = test.operations.size();
+		   for (fo in test.operations) {
+		   	  var inputStream = "streamFO" + foStreamCount;
+		      var outputStream = "streamFO" + (foStreamCount + 1);
+		      foStreamCount++; 
+		      if (foStreamCount < foLen) { %]
+		      	[* For the first stream, we require to produce an output with an EventStream only *]
+			   	ConnectedStreams<EventMessage,MetricMessage> [%= outputStream %] = [%= inputStream %].
+					process([%= produceFOGenerationSignature(fo) %]).connect(allMetrics).keyBy(e -> TESTNAME, m -> TESTNAME);
+ 			[% } else { %]
+				[* For the final stream, we require to produce an output with an EventStream only *]
+		   		DataStream<EventMessage> [%= outputStream %] = [%= inputStream %].
+				process([%= produceFOGenerationSignature(fo)%]);
+				[% }
+		   } %]
+				
+		streamFO[%= foLen %].addSink(myProducer);
+		
+		try {
+			env.execute();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		[% } %]
+	}
+}
+
+[%
+
+operation streamJavaName(sMetric, stream) {
+		if (stream.isTypeOf(Testing!InputStream)) {
+			return "eventsAndControlIn";
+		}
+	
+		if (stream.isTypeOf(Testing!OutputStream)) {
+			return "eventsAndControlOut";
+		}
+}
+
+// TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap and RandomValueFromSetAttack are supported
+operation produceFOGenerationSignature(fo) {
+	var flatmap = "";
+	var aa = fo.activation;
+	
+	if (aa.isKindOf(Testing!FixedTimeActivation)) {
+		var startTime = aa.startTime;
+		var endTime = aa.endTime;
+		
+		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
+			flatmap = "new PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.frequency + ")";
+		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
+			flatmap = "new BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + ")";
+		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
+			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
+		}
 	}
 	
-    private static class ROSObserver implements StreamObserver<ROSMessage> {
-
-        private String path;
-
-        public ROSObserver(String p) {
-            this.path = p;
-        }
-
-        @Override
-        public void onNext(ROSMessage m) {
-            System.out.println(path + ":message received value=" + m.getValue());
-        }
-
-        @Override
-        public void onError(Throwable t) {
-            System.err.println(path + ":failed: " + Status.fromThrowable(t));
-        }
-
-        @Override
-        public void onCompleted() {
-            System.out.println(path + ":finished");
-        }
-    }
+	if (aa.isKindOf(Testing!ConditionBasedActivation)) {
+		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
+			flatmap = "new PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "," + fo.frequency + ")";
+		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
+			flatmap = "new BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + ")";
+		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
+			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + ")";
+		}
+	}
+	
+	return flatmap;
 }
+
+operation produceTimeString(fuzzOp) {
+	var aaList = fuzzOp.activation;
+	var str="";
+	for (aa in aaList) {
+		if (aa.isKindOf(FixedTimeActivation)) {
+			str = "fuzzOpTimes.add(Double.valueOf(" + (aa.endTime - aa.startTime) + "));\n";
+		}
+	}
+	return str;
+}
+
+operation additionalInfo(sMetric) {
+	if (sMetric.isTypeOf(FuzzingOperationTimesMetric)) {
+		return "fuzzOpTimes";
+	} else {
+		return "";
+	}
+}
+%]

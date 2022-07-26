@@ -50,11 +50,6 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 					[%= v %] = [%= getInitValue(v) %];
 				}
 			[% } %]
-			[* this should check all the generated Doubles for all metrics are not null *]
-			boolean shouldEval = true;
-			[% for (v in varList) { %]
-				shouldEval = shouldEval && ([%= v %] != null);
-			[% } %]
 			res = [%= startCondString %];	
 			///// GENERATED CUSTOM CONDITION CODE END - STARTCOND
 		} catch (Exception e) {
@@ -78,9 +73,7 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 					[%= v %] = [%= getInitValue(v) %];
 				}
 			[% } %]	
-			//res = [%= generateCondBoolean(endCond) %];
-			res = false;
-			
+			res = [%= endCondString %];
 			///// GENERATED CUSTOM CONDITION CODE END - ENDCOND
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -30,6 +30,9 @@ import org.eclipse.ui.internal.ide.dialogs.FileFolderSelectionDialog;
 public class SesameWizardPage extends WizardPage {
 
 	private Text testingModelLocation;
+	private Text codeGenerationDirectory;
+	private Text orchestratorBasePath;
+	
 	//mrsModelLocation;
 	private Composite container;
 
@@ -37,6 +40,13 @@ public class SesameWizardPage extends WizardPage {
 		super("Provide model locations");
 		setTitle("Provide model locations");
 		setControl(testingModelLocation);
+	}
+	
+	private boolean isWizardComplete() {
+		boolean isComplete = (testingModelLocation.getText().length() > 0);
+		isComplete = isComplete && (codeGenerationDirectory.getText().length() > 0);
+		isComplete = isComplete && (orchestratorBasePath.getText().length() > 0);
+		return isComplete; 
 	}
 
 	@Override
@@ -58,7 +68,6 @@ public class SesameWizardPage extends WizardPage {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				//if (!testingModelLocation.getText().isEmpty() && !mrsModelLocation.getText().isEmpty())
 				if (!testingModelLocation.getText().isEmpty())
 					setPageComplete(true);
 				else
@@ -75,41 +84,52 @@ public class SesameWizardPage extends WizardPage {
 			}
 		});
 
-//		Label label2 = new Label(container, SWT.NONE);
-//		label2.setText("MRS Model:");
-//		mrsModelLocation = new Text(container, SWT.BORDER | SWT.SINGLE);
-//		mrsModelLocation.addKeyListener(new KeyListener() {
-//
-//			@Override
-//			public void keyPressed(KeyEvent e) {
-//				// TODO Auto-generated method stub
-//			}
-//
-//			@Override
-//			public void keyReleased(KeyEvent e) {
-//				if (!testingModelLocation.getText().isEmpty() && !mrsModelLocation.getText().isEmpty())
-//					setPageComplete(true);
-//				else
-//					setPageComplete(false);
-//			}
-//
-//		});
-//		Button button = new Button(container, SWT.PUSH);
-//		button.setText("Browse...");
-//		button.addSelectionListener(new SelectionAdapter() {
-//			@Override
-//			public void widgetSelected(SelectionEvent e) {
-//				handleBrowse(mrsModelLocation);
-//			}
-//		});
-		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-		testingModelLocation.setLayoutData(gd);
-		//mrsModelLocation.setLayoutData(gd);
-		// required to avoid an error in the system
-		setControl(container);
-		//
-		//setPageComplete(testingModelLocation.getText().length() > 0 && mrsModelLocation.getText().length() > 0);
-		setPageComplete(testingModelLocation.getText().length() > 0);
+		//////////////////////////////////////////////////////////////////////////////////
+		// Code generation directory
+		Label label2 = new Label(container, SWT.NONE);
+		label2.setText("Code Generation Directory:");
+		codeGenerationDirectory = new Text(container, SWT.BORDER | SWT.SINGLE);
+		codeGenerationDirectory.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO: are all these ready
+				if (isWizardComplete())
+					setPageComplete(true);
+				else
+					setPageComplete(false);
+			}
+
+		});
+		
+		//////////////////////////////////////////////////////////////////////////////////
+		// orchestratorBasePath
+		Label label3 = new Label(container, SWT.NONE);
+		label3.setText("Orchestrator Base Path:");
+		orchestratorBasePath = new Text(container, SWT.BORDER | SWT.SINGLE);
+		codeGenerationDirectory.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO: are all these ready
+				if (isWizardComplete())
+					setPageComplete(true);
+				else
+					setPageComplete(false);
+			}
+		});	
+
+		setPageComplete(isWizardComplete());
 	}
 
 	public String getTestModelLocation() {
@@ -132,5 +152,4 @@ public class SesameWizardPage extends WizardPage {
 				setPageComplete(testingModelLocation.getText().length() > 0);
 		}
 	}
-
 }
