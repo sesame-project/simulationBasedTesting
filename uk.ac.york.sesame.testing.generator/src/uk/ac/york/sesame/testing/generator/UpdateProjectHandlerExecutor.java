@@ -49,6 +49,8 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 	private String testingModelPath;
 	private String mrsModelPath;
 	private String orchestratorPath;
+	private String orchestratorBasePath;
+	private String codeGenerationDirectory;
 
 	public UpdateProjectHandlerExecutor(IProject theIProject, String theIProjectPath, ExecutionEvent event) {
 		this.event = event;
@@ -85,7 +87,19 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 			EglFileGeneratingTemplateFactory factory = new EglFileGeneratingTemplateFactory();
 			EgxModule egxModule = new EgxModule(factory);
 
+			String selectedGenerationDirectory = theIProjectPath;
+			if (codeGenerationDirectory.length() > 0) {
+				selectedGenerationDirectory = codeGenerationDirectory;
+			}
+			
+			System.out.println("theIProjectPath = " + theIProjectPath);
+			System.out.println("codeGenerationDirectory = " + codeGenerationDirectory);
+			System.out.println("selectedGenerationDirectory = " + selectedGenerationDirectory);
+			
 			egxModule.getContext().getFrameStack().put(new Variable("path", theIProjectPath, new EolAnyType()));
+			egxModule.getContext().getFrameStack().put((Variable.createReadOnlyVariable("testingModelPath", this.testingModelPath)));
+			egxModule.getContext().getFrameStack().put((Variable.createReadOnlyVariable("codeGenerationDirectory", selectedGenerationDirectory)));
+			egxModule.getContext().getFrameStack().put((Variable.createReadOnlyVariable("orchestratorBasePath", orchestratorBasePath)));
 
 			System.out.println("theIProjectPath: " + theIProjectPath);
 			
@@ -208,5 +222,14 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 
 	public void setOrchestratorPath(String egxPath) {
 		this.orchestratorPath = egxPath;	
+	}
+
+	public void setCodeGenerationDirectory(String codeGenerationDirectory) {
+		this.codeGenerationDirectory = codeGenerationDirectory;
+		
+	}
+
+	public void setOrchestratorBasePath(String orchestratorBasePath) {
+		this.orchestratorBasePath = orchestratorBasePath;
 	}
 }

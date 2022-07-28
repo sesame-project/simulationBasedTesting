@@ -11,6 +11,12 @@ rule metricAsSingleStream transform metric: Testing!StreamMetric {
 }
 
 rule generateRunners transform campaign: Testing!TestCampaign {
+	parameters : Map {
+		"path" = path,
+		"testingModelPath" = testingModelPath,
+		"codeGenerationDirectory" = codeGenerationDirectory,
+		"orchestratorBasePath" = orchestratorBasePath
+	}
 	template : "exptrunner/exptrunner.egl"
 	target : "src/main/ExptRunner_" + campaign.name + ".java"
 }
