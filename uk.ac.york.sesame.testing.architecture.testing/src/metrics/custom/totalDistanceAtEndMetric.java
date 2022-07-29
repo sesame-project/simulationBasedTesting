@@ -3,7 +3,6 @@ package metrics.custom;
 import java.util.Map;
 
 import org.apache.flink.api.common.state.*;
-import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.*;
 import org.apache.flink.util.Collector;
@@ -12,9 +11,10 @@ import org.json.simple.JSONValue;
 
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.data.Point;
+import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 
-public class totalDistanceAtEndMetric extends ProcessFunction<EventMessage, Double> {
+public class totalDistanceAtEndMetric extends Metric {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -46,7 +46,7 @@ public class totalDistanceAtEndMetric extends ProcessFunction<EventMessage, Doub
 		return distTotal;
     }
       
-    public void processElement(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
+    public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
     	String topic = msg.getTopic();
     	if (msg.getTopic().contains("amcl_pose")) {
     		Object value = msg.getValue();

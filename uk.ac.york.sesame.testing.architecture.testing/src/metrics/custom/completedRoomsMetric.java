@@ -6,8 +6,9 @@ import org.apache.flink.streaming.api.functions.*;
 import org.apache.flink.util.Collector;
 
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
+import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 
-public class completedRoomsMetric extends ProcessFunction<EventMessage, Double> {
+public class completedRoomsMetric extends Metric {
 
 	private static final long serialVersionUID = 1L;
 	private ValueState<Long> totalRoomsCompleted;
@@ -16,7 +17,7 @@ public class completedRoomsMetric extends ProcessFunction<EventMessage, Double> 
     	totalRoomsCompleted = getRuntimeContext().getState(new ValueStateDescriptor<>("totalRoomsCompleted", Long.class));
     }
       
-    public void processElement(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
+    public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
     	// There is one topic per robot that contains a room completed notification
     	String completionTopicName = "roomCompleted";
     	if (msg.getTopic().contains(completionTopicName)) {
