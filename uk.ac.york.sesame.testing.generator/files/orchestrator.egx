@@ -5,7 +5,7 @@ rule test2ClassROS transform test: Testing!Test {
 }
 
 rule test2ClassTTS transform test: Testing!Test {
-	
+	guard : Testing!TTSSimulator.all().notEmpty()
 	template : "tts/ttsMain.egl"
 	target : "src/" + test.name.firstToUpperCase() + "_TestRunner.java"
 }

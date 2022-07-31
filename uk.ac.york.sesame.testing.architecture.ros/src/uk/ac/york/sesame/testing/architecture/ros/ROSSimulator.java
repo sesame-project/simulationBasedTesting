@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -87,7 +89,10 @@ public class ROSSimulator implements ISimulator {
 	public void run(HashMap<String, String> params) {
 		//boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 		String launchFilePath = params.get("launchPath");
-		String workingDir = "/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts";
+		Path launchFileP = Paths.get(launchFilePath);
+		Path containingDir = launchFileP.getParent();
+		String workingDir = containingDir.toString();
+		
 		System.out.println("workingDir = " + workingDir + ",launchFilePath = " + launchFilePath);
 		String args = "";
 		ExptHelper.runScriptNewWithBash(workingDir, launchFilePath);

@@ -5,8 +5,15 @@ import java.io.IOException;
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
 
 public class TestRunnerUtils {
-	// TODO: pull out path to some central place
-	static final String ABS_SCRIPT_DIR = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.evolutionary/scripts/";
+    static String ABS_SCRIPT_DIR;
+    
+    static {
+    	try {
+    		ABS_SCRIPT_DIR = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
+		} catch (UnknownPath e) {
+			e.printStackTrace();
+		}
+    }
 
 	public static void exec(String mainClass, String codeGenerationDir) throws IOException {
 		//ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./execute_testrunner_xterm.sh", mainClass);
