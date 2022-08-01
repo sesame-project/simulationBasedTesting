@@ -5,11 +5,12 @@ public class PathDefinitions {
 		MODEL_PATH,
 		REPO_BASE_PATH,
 		AUTO_RUNNER_SCRIPTS,
+		STANDARD_GRAMMAR_PATH_BASE
 	}
 	
-	private static String REPO_BASE_PATH = "/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/";
+	private static String REPO_BASE_PATH = "/home/jharbin/academic/sesame/WP6/";
 	
-	public static String getPath(PathSpec ps) throws UnknownPath {
+	public static String getPath(PathSpec ps) {
 		if (ps == PathSpec.MODEL_PATH) {
 			return REPO_BASE_PATH + "/uk.ac.york.sesame.testing.dsl/models/";
 		}
@@ -21,7 +22,13 @@ public class PathDefinitions {
 		if (ps == PathSpec.AUTO_RUNNER_SCRIPTS) {
 		    return REPO_BASE_PATH + "/uk.ac.york.sesame.testing.evolutionary/scripts/";
 		}
+		
+		if (ps == PathSpec.STANDARD_GRAMMAR_PATH_BASE) {
+		    return REPO_BASE_PATH + "/uk.ac.york.sesame.testing.generator/files/grammar/sesame-standardgrammar-";
+		}
 		    
-		throw new UnknownPath(ps);
+		// Should really raise "UnknownPath" exception here, but when it is accessed by
+		// the generator, gets uk.ac.york.sesame.testing.evolutionary.utilities.UnknownPath cannot be found by uk.ac.york.sesame.testing.generator_
+		return "";
 	}
 }

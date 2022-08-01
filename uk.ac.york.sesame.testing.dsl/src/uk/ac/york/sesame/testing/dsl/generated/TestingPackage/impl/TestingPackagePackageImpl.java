@@ -10,7 +10,9 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ActivationGenerationMethod;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.EvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 
@@ -44,6 +46,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationAppr
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedActivationGenerationMethod;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd;
 
 /**
@@ -73,6 +76,27 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * @generated
 	 */
 	private EClass testEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass activationGenerationMethodEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass timeBasedActivationGenerationMethodEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conditionBasedActivationGenerationMethodEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -308,7 +332,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_IncludedOperations() {
+	public EReference getTestCampaign_ActivationGeneration() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -317,7 +341,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_Approach() {
+	public EReference getTestCampaign_IncludedOperations() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -326,7 +350,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_PerformedTests() {
+	public EReference getTestCampaign_Approach() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -335,7 +359,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_ResultSets() {
+	public EReference getTestCampaign_PerformedTests() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -344,8 +368,17 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestCampaign_EndTrigger() {
+	public EReference getTestCampaign_ResultSets() {
 		return (EReference)testCampaignEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestCampaign_EndTrigger() {
+		return (EReference)testCampaignEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -400,6 +433,42 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 */
 	public EReference getTest_ParentCampaign() {
 		return (EReference)testEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getActivationGenerationMethod() {
+		return activationGenerationMethodEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTimeBasedActivationGenerationMethod() {
+		return timeBasedActivationGenerationMethodEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConditionBasedActivationGenerationMethod() {
+		return conditionBasedActivationGenerationMethodEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConditionBasedActivationGenerationMethod_ConditionDepth() {
+		return (EAttribute)conditionBasedActivationGenerationMethodEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -567,6 +636,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEAttribute(testCampaignEClass, TEST_CAMPAIGN__NAME);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__METRICS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__CONDITION_METRICS);
+		createEReference(testCampaignEClass, TEST_CAMPAIGN__ACTIVATION_GENERATION);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__INCLUDED_OPERATIONS);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__APPROACH);
 		createEReference(testCampaignEClass, TEST_CAMPAIGN__PERFORMED_TESTS);
@@ -579,6 +649,13 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEReference(testEClass, TEST__METRICS);
 		createEReference(testEClass, TEST__DEVELOPED_FROM);
 		createEReference(testEClass, TEST__PARENT_CAMPAIGN);
+
+		activationGenerationMethodEClass = createEClass(ACTIVATION_GENERATION_METHOD);
+
+		timeBasedActivationGenerationMethodEClass = createEClass(TIME_BASED_ACTIVATION_GENERATION_METHOD);
+
+		conditionBasedActivationGenerationMethodEClass = createEClass(CONDITION_BASED_ACTIVATION_GENERATION_METHOD);
+		createEAttribute(conditionBasedActivationGenerationMethodEClass, CONDITION_BASED_ACTIVATION_GENERATION_METHOD__CONDITION_DEPTH);
 
 		campaignResultSetEClass = createEClass(CAMPAIGN_RESULT_SET);
 		createEAttribute(campaignResultSetEClass, CAMPAIGN_RESULT_SET__NAME);
@@ -646,6 +723,8 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		timeBasedActivationGenerationMethodEClass.getESuperTypes().add(this.getActivationGenerationMethod());
+		conditionBasedActivationGenerationMethodEClass.getESuperTypes().add(this.getActivationGenerationMethod());
 		timeBasedEndEClass.getESuperTypes().add(this.getExecutionEndTrigger());
 		randomTestGenerationEClass.getESuperTypes().add(this.getTestGenerationApproach());
 		evolutionaryAlgorithmEClass.getESuperTypes().add(this.getTestGenerationApproach());
@@ -663,6 +742,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEAttribute(getTestCampaign_Name(), ecorePackage.getEString(), "name", null, 0, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Metrics(), theMetricsPackage.getMetric(), null, "metrics", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_ConditionMetrics(), theMetricsPackage.getMetric(), null, "conditionMetrics", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestCampaign_ActivationGeneration(), this.getActivationGenerationMethod(), null, "activationGeneration", null, 0, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_IncludedOperations(), theFuzzingOperationsPackage.getFuzzingOperation(), null, "includedOperations", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_Approach(), this.getTestGenerationApproach(), null, "approach", null, 1, 1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestCampaign_PerformedTests(), this.getTest(), this.getTest_ParentCampaign(), "performedTests", null, 0, -1, TestCampaign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -675,6 +755,13 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEReference(getTest_Metrics(), theMetricsPackage.getMetricInstance(), null, "metrics", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_DevelopedFrom(), this.getTest(), null, "developedFrom", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_ParentCampaign(), this.getTestCampaign(), this.getTestCampaign_PerformedTests(), "parentCampaign", null, 1, 1, Test.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(activationGenerationMethodEClass, ActivationGenerationMethod.class, "ActivationGenerationMethod", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(timeBasedActivationGenerationMethodEClass, TimeBasedActivationGenerationMethod.class, "TimeBasedActivationGenerationMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(conditionBasedActivationGenerationMethodEClass, ConditionBasedActivationGenerationMethod.class, "ConditionBasedActivationGenerationMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConditionBasedActivationGenerationMethod_ConditionDepth(), ecorePackage.getEInt(), "conditionDepth", null, 0, 1, ConditionBasedActivationGenerationMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(campaignResultSetEClass, CampaignResultSet.class, "CampaignResultSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCampaignResultSet_Name(), ecorePackage.getEString(), "name", null, 0, 1, CampaignResultSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

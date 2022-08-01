@@ -30,9 +30,7 @@ public class EvolutionaryRunner {
 		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/eclipse-workspace/localAutoGen";
 		final String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
 
-		// uk.ac.york.sesame.testing.evolutionary/scripts/execute_testrunner.sh needs the CODE_GENERATION_DIRECTORY as the classpath
 		String campaignToRun = "firstExperiment";
-		// Mention in documentation that pkill is required by default
 
 		// TODO: this should be stored in the model
 		final boolean conditionBased = true;

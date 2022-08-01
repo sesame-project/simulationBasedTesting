@@ -18,6 +18,8 @@
         eType="#//Metrics/Metric"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionMetrics" upperBound="-1"
         eType="#//Metrics/Metric"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activationGeneration" eType="#//ActivationGenerationMethod"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="includedOperations" upperBound="-1"
         eType="#//FuzzingOperations/FuzzingOperation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="approach" lowerBound="1"
@@ -39,6 +41,13 @@
         eType="#//Test"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentCampaign" lowerBound="1"
         eType="#//TestCampaign" changeable="false" transient="true" eOpposite="#//TestCampaign/performedTests"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivationGenerationMethod" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeBasedActivationGenerationMethod"
+      eSuperTypes="#//ActivationGenerationMethod"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionBasedActivationGenerationMethod"
+      eSuperTypes="#//ActivationGenerationMethod">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conditionDepth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ResultSetStatus">
     <eLiterals name="FINAL" value="1"/>
@@ -247,7 +256,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="Conditions" nsURI="Conditions" nsPrefix=""/>
   <eSubpackages name="StandardGrammar" nsURI="StandardGrammar" nsPrefix="">
     <eClassifiers xsi:type="ecore:EClass" name="ConditionElement" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="CompositeCondition" eSuperTypes="#//StandardGrammar/ConditionElement">

@@ -49,6 +49,24 @@ public interface TestingPackageFactory extends EFactory {
 	Test createTest();
 
 	/**
+	 * Returns a new object of class '<em>Time Based Activation Generation Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Time Based Activation Generation Method</em>'.
+	 * @generated
+	 */
+	TimeBasedActivationGenerationMethod createTimeBasedActivationGenerationMethod();
+
+	/**
+	 * Returns a new object of class '<em>Condition Based Activation Generation Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Condition Based Activation Generation Method</em>'.
+	 * @generated
+	 */
+	ConditionBasedActivationGenerationMethod createConditionBasedActivationGenerationMethod();
+
+	/**
 	 * Returns a new object of class '<em>Campaign Result Set</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

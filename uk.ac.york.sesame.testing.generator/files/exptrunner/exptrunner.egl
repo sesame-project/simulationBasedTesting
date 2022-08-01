@@ -16,10 +16,9 @@ public class ExptRunner_[%= campaign.name %] {
 		int populationSize = [%= nsgainfo.populationSize %];
 		int offspringSize = [%= nsgainfo.populationSize %];
 		//ExperimentType etype = ExperimentType.FIXED_TIME_FUZZING;
-		// Sets the space model file and the campaign to run here
+		// Sets the space model file and the campaign to run here 
 		
 		// Setting paths
-		
 		// The paths are now supplied from the Wizard - nothing needs to be configured here!
 		
 		// IProjectPath = [%= path %]
@@ -30,7 +29,17 @@ public class ExptRunner_[%= campaign.name %] {
 		
 		String campaignToRun = "[%= campaign.name %]";
 			
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize);
+		[% if (campaign.activationChoice.isTypeOf(ConditionBasedActivationGenerationMethod)) { %]
+		final boolean conditionBased = true;
+		final int conditionDepth = [%= campaign.activationChoice.conditionDepth %];
+		[% } %]
+		
+		[% if (campaign.activationChoice.isTypeOf(TimeBasedActivationGenerationMethod)) { %]
+		final boolean conditionBased = false;
+		final int conditionDepth = 0;
+		[% } %] 	 	
+			
+		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, conditionDepth);
 		jmetalExpt.runExperiment();
 		[% } %]
 	}
