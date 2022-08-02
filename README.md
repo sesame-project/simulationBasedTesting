@@ -11,7 +11,12 @@ SESAME deliverable documents
 This online guide complements D6.3 in reference to providing
 installation instructions for the platform.
 
-# Installation
+# Installation Video
+
+An installation instructions video for the platform is presented below:
+This uses the "development-release-aug2022" branch:
+
+[Installation video](https://drive.google.com/file/d/1O_F2LPpgkkYIkHfmnHXhXkFeUero5v6l/view?usp=sharing)
 
 ## Installing dependencies of the platform:
 
