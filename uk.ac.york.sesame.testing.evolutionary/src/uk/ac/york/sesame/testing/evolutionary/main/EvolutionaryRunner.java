@@ -35,7 +35,7 @@ public class EvolutionaryRunner {
 		// TODO: this should be stored in the model
 		final boolean conditionBased = true;
 		final int maxConditionDepth = 4;
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, maxConditionDepth);
+		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, maxConditionDepth, "");
 		jmetalExpt.runExperiment();
 	}
 }

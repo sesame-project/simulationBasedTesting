@@ -94,7 +94,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		t.start();
 	}
 
-	public SESAMEEvaluationProblem(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, boolean conditionBased, int conditionDepth)
+	public SESAMEEvaluationProblem(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
 			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
@@ -115,7 +115,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			selectedCampaign = tc_o.get();
 			setupMetricListener(selectedCampaign);
 			setupControlProducer();
-			condGenerator = new ConditionGenerator(selectedCampaign, conditionDepth);
+			condGenerator = new ConditionGenerator(grammarPath, selectedCampaign, conditionDepth);
 		} else {
 			throw new InvalidTestCampaign(campaignName);
 		}

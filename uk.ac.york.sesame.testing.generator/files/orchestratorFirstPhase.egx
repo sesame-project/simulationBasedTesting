@@ -21,8 +21,7 @@ rule generateRunners transform campaign: Testing!TestCampaign {
 	target : "src/main/ExptRunner_" + campaign.name + ".java"
 }
 
-/* Other metrics here */
-/* Attack templates? */
-
-// First phase should also produce the EvolutionaryRunner.java - as the entry point?
-// Should also contain the properties?
+rule genGrammar transform testCampaign: Testing!TestCampaign {
+	template : "grammar/generateGrammar.egl"
+	target : "grammar/sesame-standardgrammar-" + testCampaign.name + ".bnf"
+}
