@@ -26,6 +26,8 @@ public class SimMain {
 		propsMap.put(ConnectionProperties.PORT, 8089);
 		cp.setProperties(propsMap);
 		
+		HashMap<String, String> params = new HashMap<String,String>();
+		
 		// JRH: needed to increase the number of buffers used
 		Configuration cfg = new Configuration();
 		int defaultLocalParallelism = 1;
@@ -39,9 +41,14 @@ public class SimMain {
 		DataStream<EventMessage> stream = env
 				.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
 
-		ttsSim.connect(cp);
+		params.put("TTSProjectDir", "/mnt/resources/dl-temp/sesame/SesamePoc/");
+		params.put("launchDelayMsec", "20000");
+		System.out.print("TTS Simulator Starting...");
+		ttsSim.run(params);
+		System.out.println("TTS Simulator Started");
+		// This will add a delay before the simulator is started
 		
-		HashMap<String, String> params = new HashMap<String,String>();
+		ttsSim.connect(cp);
 		
 		Thread subscriber_thread__joints_R3200 = new Thread() {
 			public void run() {
@@ -54,7 +61,6 @@ public class SimMain {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -72,12 +78,8 @@ public class SimMain {
 				}
 			}
 		};
-		sender_thread.start();
 		
-		// TODO: launch simulator here from Diego's notes
-		//params.put("launchPath", "");
-		System.out.println("Simulator Starts");
-		ttsSim.run(params);
+		sender_thread.start();
 
 		// Just print the contents from the simulator
 		DataStream<String> logStream = stream.map(m -> m.toString());
