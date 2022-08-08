@@ -3,8 +3,11 @@ package uk.ac.york.sesame.testing.architecture.simulator;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class SimCore {
 	
@@ -13,7 +16,7 @@ public final class SimCore {
     private String testName;
 
     // This records any outstanding times for any operation
-    private HashMap<String,Double> fuzzingStartTimes = new LinkedHashMap<String,Double>();
+    private ConcurrentHashMap<String, Double> fuzzingStartTimes = new ConcurrentHashMap<String,Double>();
     private double totalFuzzingSecondCount;
     
     private FileWriter outputTimingLog;
@@ -84,11 +87,12 @@ public final class SimCore {
 		}
 	}
 	
-	public void finaliseFuzzingTimes(long flinkFinaliseTime) {
-		// Using the simCore time rather than the Flink time
-		for (Map.Entry<String, Double> me : fuzzingStartTimes.entrySet()) {
+	public synchronized void finaliseFuzzingTimes(long flinkFinaliseTime) {
+		// Using the SimCore time rather than the Flink time
+		Set<String> toProcess = new HashSet<String>(fuzzingStartTimes.keySet());
+		for (String key : toProcess) {
 			// The flinkFinaliseTime is not used here
-			registerFuzzingEnd(flinkFinaliseTime, me.getKey());
+			registerFuzzingEnd(flinkFinaliseTime, key);
 		}
 		try {
 			outputTimingLog.flush();
