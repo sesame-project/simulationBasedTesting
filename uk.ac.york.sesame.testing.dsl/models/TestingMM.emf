@@ -19,11 +19,17 @@ class TestingSpace {
 // (evolutionary process, selected metrics/attacks, and any constraints upon the grammar for this run)
 
 // Generally there should be probabilities of including each attack in the model - for the testCampaign
-
 class TestCampaign {
 	attr String name;
 	ref Metrics.Metric[*] metrics;
 	ref Metrics.Metric[*] conditionMetrics;
+	
+	// TODO: for some reason, elements under TestCampaign tend to be lost when the model is saved?
+	val ActivationGenerationMethod activationGeneration;
+	
+	//attr boolean useConditionBasedFuzzing;
+	//attr int conditionBasedFuzzingDepth;
+	
 	ref FuzzingOperations.FuzzingOperation[*] includedOperations;
 	val TestGenerationApproach[1] approach;
 	val Test[*]#parentCampaign performedTests;
@@ -40,6 +46,20 @@ class Test {
 	// which other tests it was developed from
 	ref Test[*] developedFrom; 
 	readonly transient ref TestCampaign[1]#performedTests parentCampaign;
+}
+
+// This selects either condition-based or time-based fuzzing for this test,
+// and its parameters
+abstract class ActivationGenerationMethod {
+		
+}
+
+class TimeBasedActivationGenerationMethod extends ActivationGenerationMethod {
+	
+}
+
+class ConditionBasedActivationGenerationMethod extends ActivationGenerationMethod {
+	attr int conditionDepth; 
 }
 
 enum ResultSetStatus {
@@ -333,10 +353,6 @@ package Results {
 		attr String name;
 		attr double value;
 	}
-}
-
-package Conditions {
-
 }
 
 // This is the defined standard grammar - supports basic and composite

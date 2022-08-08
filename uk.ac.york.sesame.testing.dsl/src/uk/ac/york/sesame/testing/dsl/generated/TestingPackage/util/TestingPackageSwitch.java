@@ -84,6 +84,26 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TestingPackagePackage.ACTIVATION_GENERATION_METHOD: {
+				ActivationGenerationMethod activationGenerationMethod = (ActivationGenerationMethod)theEObject;
+				T result = caseActivationGenerationMethod(activationGenerationMethod);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.TIME_BASED_ACTIVATION_GENERATION_METHOD: {
+				TimeBasedActivationGenerationMethod timeBasedActivationGenerationMethod = (TimeBasedActivationGenerationMethod)theEObject;
+				T result = caseTimeBasedActivationGenerationMethod(timeBasedActivationGenerationMethod);
+				if (result == null) result = caseActivationGenerationMethod(timeBasedActivationGenerationMethod);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.CONDITION_BASED_ACTIVATION_GENERATION_METHOD: {
+				ConditionBasedActivationGenerationMethod conditionBasedActivationGenerationMethod = (ConditionBasedActivationGenerationMethod)theEObject;
+				T result = caseConditionBasedActivationGenerationMethod(conditionBasedActivationGenerationMethod);
+				if (result == null) result = caseActivationGenerationMethod(conditionBasedActivationGenerationMethod);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case TestingPackagePackage.CAMPAIGN_RESULT_SET: {
 				CampaignResultSet campaignResultSet = (CampaignResultSet)theEObject;
 				T result = caseCampaignResultSet(campaignResultSet);
@@ -177,6 +197,51 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTest(Test object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Activation Generation Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Activation Generation Method</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActivationGenerationMethod(ActivationGenerationMethod object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Time Based Activation Generation Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Time Based Activation Generation Method</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTimeBasedActivationGenerationMethod(TimeBasedActivationGenerationMethod object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Based Activation Generation Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Based Activation Generation Method</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionBasedActivationGenerationMethod(ConditionBasedActivationGenerationMethod object) {
 		return null;
 	}
 

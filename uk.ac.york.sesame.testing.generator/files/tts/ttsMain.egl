@@ -45,10 +45,37 @@ import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import metrics.custom.*;
 import metrics.fixed.*;
 
+package uk.ac.york.sesame.testing.architecture.tts;
+
+import java.util.HashMap;
+import java.util.Properties;
+import java.util.Random;
+
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+
+import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
+import uk.ac.york.sesame.testing.architecture.data.EventMessage;
+import uk.ac.york.sesame.testing.architecture.data.EventMessageSchema;
+
 public class [%= testNameString %]_TestRunner {
 	public static void main(String[] args) {
 	
 		final String TESTNAME = "[%= testNameString %]";
+	
+		TTSSimulator ttsSim = new TTSSimulator();
+		ConnectionProperties cp = new ConnectionProperties();
+		
+		Random rng = new Random();
+		
+		HashMap<String, Object> propsMap = new HashMap<String, Object>();
+		propsMap.put(ConnectionProperties.HOSTNAME, "localhost");
+		propsMap.put(ConnectionProperties.PORT, 8089);
+		cp.setProperties(propsMap);
+		
+		HashMap<String, String> params = new HashMap<String,String>();
 		
 		// JRH: needed to increase the number of buffers used
 		Configuration cfg = new Configuration();
@@ -60,73 +87,43 @@ public class [%= testNameString %]_TestRunner {
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
 		
-		DataStream<ControlMessage> controlStream = env
-					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
-		
-		
 		DataStream<EventMessage> stream = env
-			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
-		
+				.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
+				
+		DataStream<ControlMessage> controlStream = env
+					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);				
+				
 		DataStream<EventMessage> streamOut = env
 				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
 				.returns(EventMessage.class);
 		
-		// Kafka Sink to OUT
-		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
-				new EventMessageSchema(), properties);
-				
-		// This connects the metrics via Kafka to the metrics monitoring on the SESAME tool
-		FlinkKafkaProducer<MetricMessage> metricsProducer = new FlinkKafkaProducer<MetricMessage>(
-		        "metricMessages",             // target topic
-		        new MetricMessageSchema(),    // serialization schema
-		        properties             // producer config
-		      );
-					
-		[%
-		if (simulator.isTypeOf(TTSSimulator)) { %]
+		params.put("TTSProjectDir", "[%= launchFileLocation %]");
+		params.put("launchDelayMsec", "20000");
+		System.out.print("TTS Simulator Starting...");
+		ttsSim.run(params);
+		System.out.println("TTS Simulator Started");
 		
-		TTSSimulator ttsSim = new TTSSimulator();
-		ConnectionProperties cp = new ConnectionProperties();
-		HashMap<String, Object> propsMap = new HashMap<String, Object>();
-		propsMap.put(ConnectionProperties.HOSTNAME, "[%=simulator.hostname%]");
-		propsMap.put(ConnectionProperties.PORT, [%=simulator.port%]);
-		cp.setProperties(propsMap);
+		// There will be a delay before the simulator starts
 		
-		// JRH: moved the simulation launcher outside of the thread to the main code
-		HashMap<String, String> params = new HashMap<String,String>();
-		params.put("launchPath", "[%=launchFileLocation%]");
-		System.out.println("Simulator Starts");
-		rosSim.run(params);
-		rosSim.connect(cp);
+		ttsSim.connect(cp);
 		
 		[% for (aTopic in topicsNodesPublish) { %]
 		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
 			public void run() {
 				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
-				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
+				ttsSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
 			}
 		};
 		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
 		[% } %]
 		
-		[% for (aTopic in topicsMetricsNeed) { %]
-		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
-			public void run() {
-				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
-				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
-			}
-		};
-		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
-		[% } %]
-
 		Thread time_subscriber = new Thread() {
 			public void run() {
 				System.out.println("updateTime starting");
-				rosSim.updateTime();
+				ttsSim.updateTime();
 			}
 		};
 		time_subscriber.start();
-
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
@@ -138,7 +135,7 @@ public class [%= testNameString %]_TestRunner {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = rosSim.translateTopicNameForOutput(inTopic);
 						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
-						rosSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
+						ttsSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
 					}
 				}
 			}
@@ -152,7 +149,6 @@ public class [%= testNameString %]_TestRunner {
 		KeyedStream<EventMessage, String> testKeyedIn = stream.keyBy(value -> "[%= test.name %]");
 		KeyedStream<EventMessage, String> testKeyedOut = streamOut.keyBy(value -> "[%= test.name %]");;
 		
-		
 		ConnectedStreams<EventMessage,ControlMessage> eventsAndControlIn = testKeyedIn.connect(controlStream).keyBy(e -> TESTNAME,m -> TESTNAME);
 		ConnectedStreams<EventMessage,ControlMessage> eventsAndControlOut = testKeyedOut.connect(controlStream).keyBy(e -> TESTNAME,m -> TESTNAME);
 		
@@ -162,7 +158,6 @@ public class [%= testNameString %]_TestRunner {
 		[% for (fuzzOp in test.operations) { %]
 			[%= produceTimeString(fuzzOp) %]
 		[% } %]
-		
 		
 		[* Stream metrics here *]
 		[% for (sMetric in Testing!StreamMetric.all()) { %]
@@ -213,7 +208,6 @@ public class [%= testNameString %]_TestRunner {
 		DataStream<MetricMessage> allMetrics = 		
 		[* Create the unioned metric stream and link to the producer *]
 		[% 	if (allMetrics.size() > 0) {
-		
 			var firstMetric = allMetrics.removeAt(0); %]
 		metricMsg[%= firstMetric.name%]
 		
@@ -247,6 +241,7 @@ public class [%= testNameString %]_TestRunner {
 		   } %]
 				
 		streamFO[%= foLen %].addSink(myProducer);
+
 		
 		try {
 			env.execute();
@@ -254,7 +249,6 @@ public class [%= testNameString %]_TestRunner {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		[% } %]
 	}
 }
 

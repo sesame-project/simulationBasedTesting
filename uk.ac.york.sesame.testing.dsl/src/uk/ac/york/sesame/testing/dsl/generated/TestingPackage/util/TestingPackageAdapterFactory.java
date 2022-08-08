@@ -80,6 +80,18 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 				return createTestAdapter();
 			}
 			@Override
+			public Adapter caseActivationGenerationMethod(ActivationGenerationMethod object) {
+				return createActivationGenerationMethodAdapter();
+			}
+			@Override
+			public Adapter caseTimeBasedActivationGenerationMethod(TimeBasedActivationGenerationMethod object) {
+				return createTimeBasedActivationGenerationMethodAdapter();
+			}
+			@Override
+			public Adapter caseConditionBasedActivationGenerationMethod(ConditionBasedActivationGenerationMethod object) {
+				return createConditionBasedActivationGenerationMethodAdapter();
+			}
+			@Override
 			public Adapter caseCampaignResultSet(CampaignResultSet object) {
 				return createCampaignResultSetAdapter();
 			}
@@ -166,6 +178,48 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTestAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ActivationGenerationMethod <em>Activation Generation Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ActivationGenerationMethod
+	 * @generated
+	 */
+	public Adapter createActivationGenerationMethodAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedActivationGenerationMethod <em>Time Based Activation Generation Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedActivationGenerationMethod
+	 * @generated
+	 */
+	public Adapter createTimeBasedActivationGenerationMethodAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod <em>Condition Based Activation Generation Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod
+	 * @generated
+	 */
+	public Adapter createConditionBasedActivationGenerationMethodAdapter() {
 		return null;
 	}
 

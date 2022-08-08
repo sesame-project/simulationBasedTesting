@@ -22,6 +22,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//TestCampaign/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/metrics"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/conditionMetrics"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/activationGeneration"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/includedOperations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/approach"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestCampaign/performedTests"/>
@@ -34,6 +35,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/metrics"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/developedFrom"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference TestingMM.ecore#//Test/parentCampaign"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="TestingMM.ecore#//ActivationGenerationMethod"/>
+    <genClasses ecoreClass="TestingMM.ecore#//TimeBasedActivationGenerationMethod"/>
+    <genClasses ecoreClass="TestingMM.ecore#//ConditionBasedActivationGenerationMethod">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//ConditionBasedActivationGenerationMethod/conditionDepth"/>
     </genClasses>
     <genClasses ecoreClass="TestingMM.ecore#//CampaignResultSet">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//CampaignResultSet/name"/>
@@ -221,7 +227,6 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Results/Result/value"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Conditions" disposableProviderFactory="true" ecorePackage="TestingMM.ecore#//Conditions"/>
     <nestedGenPackages prefix="StandardGrammar" disposableProviderFactory="true" ecorePackage="TestingMM.ecore#//StandardGrammar">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="TestingMM.ecore#//StandardGrammar/BinaryComparisonOperation">
         <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//StandardGrammar/BinaryComparisonOperation/LESS_THAN"/>

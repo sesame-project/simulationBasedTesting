@@ -168,13 +168,22 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_CAMPAIGN__CONDITION_METRICS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Activation Generation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_CAMPAIGN__ACTIVATION_GENERATION = 3;
+
+	/**
 	 * The feature id for the '<em><b>Included Operations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__INCLUDED_OPERATIONS = 3;
+	int TEST_CAMPAIGN__INCLUDED_OPERATIONS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Approach</b></em>' containment reference.
@@ -183,7 +192,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__APPROACH = 4;
+	int TEST_CAMPAIGN__APPROACH = 5;
 
 	/**
 	 * The feature id for the '<em><b>Performed Tests</b></em>' containment reference list.
@@ -192,7 +201,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__PERFORMED_TESTS = 5;
+	int TEST_CAMPAIGN__PERFORMED_TESTS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Result Sets</b></em>' containment reference list.
@@ -201,7 +210,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__RESULT_SETS = 6;
+	int TEST_CAMPAIGN__RESULT_SETS = 7;
 
 	/**
 	 * The feature id for the '<em><b>End Trigger</b></em>' containment reference.
@@ -210,7 +219,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__END_TRIGGER = 7;
+	int TEST_CAMPAIGN__END_TRIGGER = 8;
 
 	/**
 	 * The number of structural features of the '<em>Test Campaign</em>' class.
@@ -219,7 +228,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN_FEATURE_COUNT = 8;
+	int TEST_CAMPAIGN_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>Test Campaign</em>' class.
@@ -304,6 +313,99 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ActivationGenerationMethodImpl <em>Activation Generation Method</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ActivationGenerationMethodImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getActivationGenerationMethod()
+	 * @generated
+	 */
+	int ACTIVATION_GENERATION_METHOD = 3;
+
+	/**
+	 * The number of structural features of the '<em>Activation Generation Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVATION_GENERATION_METHOD_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Activation Generation Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVATION_GENERATION_METHOD_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TimeBasedActivationGenerationMethodImpl <em>Time Based Activation Generation Method</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TimeBasedActivationGenerationMethodImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTimeBasedActivationGenerationMethod()
+	 * @generated
+	 */
+	int TIME_BASED_ACTIVATION_GENERATION_METHOD = 4;
+
+	/**
+	 * The number of structural features of the '<em>Time Based Activation Generation Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_BASED_ACTIVATION_GENERATION_METHOD_FEATURE_COUNT = ACTIVATION_GENERATION_METHOD_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Time Based Activation Generation Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_BASED_ACTIVATION_GENERATION_METHOD_OPERATION_COUNT = ACTIVATION_GENERATION_METHOD_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ConditionBasedActivationGenerationMethodImpl <em>Condition Based Activation Generation Method</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ConditionBasedActivationGenerationMethodImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getConditionBasedActivationGenerationMethod()
+	 * @generated
+	 */
+	int CONDITION_BASED_ACTIVATION_GENERATION_METHOD = 5;
+
+	/**
+	 * The feature id for the '<em><b>Condition Depth</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED_ACTIVATION_GENERATION_METHOD__CONDITION_DEPTH = ACTIVATION_GENERATION_METHOD_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Condition Based Activation Generation Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED_ACTIVATION_GENERATION_METHOD_FEATURE_COUNT = ACTIVATION_GENERATION_METHOD_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Condition Based Activation Generation Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED_ACTIVATION_GENERATION_METHOD_OPERATION_COUNT = ACTIVATION_GENERATION_METHOD_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.CampaignResultSetImpl <em>Campaign Result Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -311,7 +413,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getCampaignResultSet()
 	 * @generated
 	 */
-	int CAMPAIGN_RESULT_SET = 3;
+	int CAMPAIGN_RESULT_SET = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -366,7 +468,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getExecutionEndTrigger()
 	 * @generated
 	 */
-	int EXECUTION_END_TRIGGER = 4;
+	int EXECUTION_END_TRIGGER = 7;
 
 	/**
 	 * The number of structural features of the '<em>Execution End Trigger</em>' class.
@@ -394,7 +496,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTimeBasedEnd()
 	 * @generated
 	 */
-	int TIME_BASED_END = 5;
+	int TIME_BASED_END = 8;
 
 	/**
 	 * The feature id for the '<em><b>Time Limit Seconds</b></em>' attribute.
@@ -431,7 +533,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTestGenerationApproach()
 	 * @generated
 	 */
-	int TEST_GENERATION_APPROACH = 6;
+	int TEST_GENERATION_APPROACH = 9;
 
 	/**
 	 * The number of structural features of the '<em>Test Generation Approach</em>' class.
@@ -459,7 +561,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRandomTestGeneration()
 	 * @generated
 	 */
-	int RANDOM_TEST_GENERATION = 7;
+	int RANDOM_TEST_GENERATION = 10;
 
 	/**
 	 * The number of structural features of the '<em>Random Test Generation</em>' class.
@@ -487,7 +589,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getEvolutionaryAlgorithm()
 	 * @generated
 	 */
-	int EVOLUTIONARY_ALGORITHM = 8;
+	int EVOLUTIONARY_ALGORITHM = 11;
 
 	/**
 	 * The number of structural features of the '<em>Evolutionary Algorithm</em>' class.
@@ -515,7 +617,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getNSGAEvolutionaryAlgorithm()
 	 * @generated
 	 */
-	int NSGA_EVOLUTIONARY_ALGORITHM = 9;
+	int NSGA_EVOLUTIONARY_ALGORITHM = 12;
 
 	/**
 	 * The feature id for the '<em><b>Population Size</b></em>' attribute.
@@ -561,7 +663,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getResultSetStatus()
 	 * @generated
 	 */
-	int RESULT_SET_STATUS = 10;
+	int RESULT_SET_STATUS = 13;
 
 
 	/**
@@ -671,6 +773,17 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTestCampaign_ConditionMetrics();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getActivationGeneration <em>Activation Generation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Activation Generation</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getActivationGeneration()
+	 * @see #getTestCampaign()
+	 * @generated
+	 */
+	EReference getTestCampaign_ActivationGeneration();
 
 	/**
 	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedOperations <em>Included Operations</em>}'.
@@ -791,6 +904,47 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTest_ParentCampaign();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ActivationGenerationMethod <em>Activation Generation Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Activation Generation Method</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ActivationGenerationMethod
+	 * @generated
+	 */
+	EClass getActivationGenerationMethod();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedActivationGenerationMethod <em>Time Based Activation Generation Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Time Based Activation Generation Method</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedActivationGenerationMethod
+	 * @generated
+	 */
+	EClass getTimeBasedActivationGenerationMethod();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod <em>Condition Based Activation Generation Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Condition Based Activation Generation Method</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod
+	 * @generated
+	 */
+	EClass getConditionBasedActivationGenerationMethod();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod#getConditionDepth <em>Condition Depth</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Condition Depth</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod#getConditionDepth()
+	 * @see #getConditionBasedActivationGenerationMethod()
+	 * @generated
+	 */
+	EAttribute getConditionBasedActivationGenerationMethod_ConditionDepth();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet <em>Campaign Result Set</em>}'.
@@ -1046,6 +1200,14 @@ public interface TestingPackagePackage extends EPackage {
 		EReference TEST_CAMPAIGN__CONDITION_METRICS = eINSTANCE.getTestCampaign_ConditionMetrics();
 
 		/**
+		 * The meta object literal for the '<em><b>Activation Generation</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_CAMPAIGN__ACTIVATION_GENERATION = eINSTANCE.getTestCampaign_ActivationGeneration();
+
+		/**
 		 * The meta object literal for the '<em><b>Included Operations</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1134,6 +1296,44 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST__PARENT_CAMPAIGN = eINSTANCE.getTest_ParentCampaign();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ActivationGenerationMethodImpl <em>Activation Generation Method</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ActivationGenerationMethodImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getActivationGenerationMethod()
+		 * @generated
+		 */
+		EClass ACTIVATION_GENERATION_METHOD = eINSTANCE.getActivationGenerationMethod();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TimeBasedActivationGenerationMethodImpl <em>Time Based Activation Generation Method</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TimeBasedActivationGenerationMethodImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTimeBasedActivationGenerationMethod()
+		 * @generated
+		 */
+		EClass TIME_BASED_ACTIVATION_GENERATION_METHOD = eINSTANCE.getTimeBasedActivationGenerationMethod();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ConditionBasedActivationGenerationMethodImpl <em>Condition Based Activation Generation Method</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ConditionBasedActivationGenerationMethodImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getConditionBasedActivationGenerationMethod()
+		 * @generated
+		 */
+		EClass CONDITION_BASED_ACTIVATION_GENERATION_METHOD = eINSTANCE.getConditionBasedActivationGenerationMethod();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition Depth</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONDITION_BASED_ACTIVATION_GENERATION_METHOD__CONDITION_DEPTH = eINSTANCE.getConditionBasedActivationGenerationMethod_ConditionDepth();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.CampaignResultSetImpl <em>Campaign Result Set</em>}' class.

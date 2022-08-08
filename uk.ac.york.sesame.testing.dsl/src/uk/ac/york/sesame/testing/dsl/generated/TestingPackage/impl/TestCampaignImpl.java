@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ActivationGenerationMethod;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 
@@ -43,6 +43,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getMetrics <em>Metrics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getConditionMetrics <em>Condition Metrics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getActivationGeneration <em>Activation Generation</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getIncludedOperations <em>Included Operations</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getPerformedTests <em>Performed Tests</em>}</li>
@@ -92,6 +93,16 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * @ordered
 	 */
 	protected EList<Metric> conditionMetrics;
+
+	/**
+	 * The cached value of the '{@link #getActivationGeneration() <em>Activation Generation</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivationGeneration()
+	 * @generated
+	 * @ordered
+	 */
+	protected ActivationGenerationMethod activationGeneration;
 
 	/**
 	 * The cached value of the '{@link #getIncludedOperations() <em>Included Operations</em>}' reference list.
@@ -205,6 +216,49 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			conditionMetrics = new EObjectResolvingEList<Metric>(Metric.class, this, TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS);
 		}
 		return conditionMetrics;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActivationGenerationMethod getActivationGeneration() {
+		return activationGeneration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetActivationGeneration(ActivationGenerationMethod newActivationGeneration, NotificationChain msgs) {
+		ActivationGenerationMethod oldActivationGeneration = activationGeneration;
+		activationGeneration = newActivationGeneration;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION, oldActivationGeneration, newActivationGeneration);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setActivationGeneration(ActivationGenerationMethod newActivationGeneration) {
+		if (newActivationGeneration != activationGeneration) {
+			NotificationChain msgs = null;
+			if (activationGeneration != null)
+				msgs = ((InternalEObject)activationGeneration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION, null, msgs);
+			if (newActivationGeneration != null)
+				msgs = ((InternalEObject)newActivationGeneration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION, null, msgs);
+			msgs = basicSetActivationGeneration(newActivationGeneration, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION, newActivationGeneration, newActivationGeneration));
 	}
 
 	/**
@@ -352,6 +406,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION:
+				return basicSetActivationGeneration(null, msgs);
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				return basicSetApproach(null, msgs);
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
@@ -378,6 +434,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return getMetrics();
 			case TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS:
 				return getConditionMetrics();
+			case TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION:
+				return getActivationGeneration();
 			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
 				return getIncludedOperations();
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
@@ -411,6 +469,9 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS:
 				getConditionMetrics().clear();
 				getConditionMetrics().addAll((Collection<? extends Metric>)newValue);
+				return;
+			case TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION:
+				setActivationGeneration((ActivationGenerationMethod)newValue);
 				return;
 			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
 				getIncludedOperations().clear();
@@ -451,6 +512,9 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS:
 				getConditionMetrics().clear();
 				return;
+			case TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION:
+				setActivationGeneration((ActivationGenerationMethod)null);
+				return;
 			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
 				getIncludedOperations().clear();
 				return;
@@ -484,6 +548,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return metrics != null && !metrics.isEmpty();
 			case TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS:
 				return conditionMetrics != null && !conditionMetrics.isEmpty();
+			case TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION:
+				return activationGeneration != null;
 			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
 				return includedOperations != null && !includedOperations.isEmpty();
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:

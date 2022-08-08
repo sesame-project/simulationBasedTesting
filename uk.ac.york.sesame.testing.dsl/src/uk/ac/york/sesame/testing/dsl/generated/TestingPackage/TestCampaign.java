@@ -22,6 +22,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getMetrics <em>Metrics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConditionMetrics <em>Condition Metrics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getActivationGeneration <em>Activation Generation</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedOperations <em>Included Operations</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getPerformedTests <em>Performed Tests</em>}</li>
@@ -79,6 +80,28 @@ public interface TestCampaign extends EObject {
 	 * @generated
 	 */
 	EList<Metric> getConditionMetrics();
+
+	/**
+	 * Returns the value of the '<em><b>Activation Generation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Activation Generation</em>' containment reference.
+	 * @see #setActivationGeneration(ActivationGenerationMethod)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_ActivationGeneration()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ActivationGenerationMethod getActivationGeneration();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getActivationGeneration <em>Activation Generation</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Activation Generation</em>' containment reference.
+	 * @see #getActivationGeneration()
+	 * @generated
+	 */
+	void setActivationGeneration(ActivationGenerationMethod value);
 
 	/**
 	 * Returns the value of the '<em><b>Included Operations</b></em>' reference list.
