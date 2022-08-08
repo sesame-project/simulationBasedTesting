@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
+import it.units.malelab.jgea.representation.tree.SameRootSubtreeCrossover;
 import it.units.malelab.jgea.representation.tree.Tree;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.*;
@@ -29,6 +30,7 @@ public class ConditionGenerator {
 	private int MUTATION_MAX_DEPTH = 1;
 	
 	protected GrammarBasedSubtreeMutation<String> mutator;
+	protected SameRootSubtreeCrossover<String> crossover;
 	
 	public ConditionGenerator(TestCampaign selectedCampaign, int maxGrammarHeight) {
 		this.maxGrammarHeight = maxGrammarHeight;
@@ -75,6 +77,10 @@ public class ConditionGenerator {
 			}
 		}
 		return tNew;
+	}
+	
+	public Tree<String> crossover(Tree<String> t1, Tree<String> t2, Random rng) {
+		return crossover.recombine(t1,t2,rng);
 	}
 	
 	public Tree<String> mutate(Tree<String> t) {
