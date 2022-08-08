@@ -29,17 +29,20 @@ public class ExptRunner_[%= campaign.name %] {
 		
 		String campaignToRun = "[%= campaign.name %]";
 			
-		[% if (campaign.activationChoice.isTypeOf(ConditionBasedActivationGenerationMethod)) { %]
+		[% if (campaign.activationGeneration.isTypeOf(ConditionBasedActivationGenerationMethod)) { %]
 		final boolean conditionBased = true;
-		final int conditionDepth = [%= campaign.activationChoice.conditionDepth %];
+		final int conditionDepth = [%= campaign.activationGeneration.conditionDepth %];
 		[% } %]
 		
-		[% if (campaign.activationChoice.isTypeOf(TimeBasedActivationGenerationMethod)) { %]
+		[% if (campaign.activationGeneration.isTypeOf(TimeBasedActivationGenerationMethod)) { %]
 		final boolean conditionBased = false;
 		final int conditionDepth = 0;
+		
 		[% } %] 	 	
+				
+		final String grammarPath = "[%= codeGenerationDirectory %]/grammar/sesame-standardgrammar-[%= campaign.name %].bnf";
 			
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, conditionDepth);
+		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, conditionDepth, grammarPath);
 		jmetalExpt.runExperiment();
 		[% } %]
 	}

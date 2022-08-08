@@ -6,8 +6,9 @@ import org.apache.flink.streaming.api.functions.*;
 import org.apache.flink.util.Collector;
 
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
+import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 
-public class [%= metric.name %]Metric extends ProcessFunction<EventMessage, Double> {
+public class [%= metric.name %]Metric extends Metric {
 
 	private static final long serialVersionUID = 1L;
 	   
@@ -19,7 +20,7 @@ public class [%= metric.name %]Metric extends ProcessFunction<EventMessage, Doub
 
     }
       
-    public void processElement(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
+    public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
 
     }
 }

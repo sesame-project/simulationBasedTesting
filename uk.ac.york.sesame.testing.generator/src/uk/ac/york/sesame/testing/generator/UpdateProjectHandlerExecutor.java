@@ -167,10 +167,12 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 		ArrayList<String> mmURIs = new ArrayList<String>();
 		Resource.Factory xmiFactory = new XMIResourceFactoryImpl();
 
-		File f = new File(generatorProjectPath);
-		File repoRoot = f.getParentFile();
-		String ecoreMetamodelDir = repoRoot.toString() + "/uk.ac.york.sesame.testing.dsl/models/";
-		//ecoreModelPath = ModelPathDefinition.getModelPath();
+//		if (!generatorProjectPath.isEmpty()) {
+//		File f = new File(generatorProjectPath);
+//		File repoRoot = f.getParentFile();
+//		String ecoreMetamodelDir = repoRoot.toString() + "/uk.ac.york.sesame.testing.dsl/models/";
+//      }
+		String ecoreMetamodelDir = ModelPathDefinitions.getModelPath();
 
 		Resource testingMM = xmiFactory.createResource(URI.createFileURI(ecoreMetamodelDir + "TestingMM.ecore"));
 		testingMM.load(null);

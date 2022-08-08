@@ -32,14 +32,13 @@ public class ConditionGenerator {
 	protected GrammarBasedSubtreeMutation<String> mutator;
 	protected SameRootSubtreeCrossover<String> crossover;
 	
-	public ConditionGenerator(TestCampaign selectedCampaign, int maxGrammarHeight) {
+	public ConditionGenerator(String grammarPath, TestCampaign selectedCampaign, int maxGrammarHeight) {
 		this.maxGrammarHeight = maxGrammarHeight;
-		String GRAMMAR_FILE = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/files/grammar/sesame-standardgrammar-firstExperiment.bnf";
 		gc = new GrammarConverter(selectedCampaign);
 		rng = new Random();
 		
 		try {
-			grammar = Grammar.fromFile(GRAMMAR_FILE);
+			grammar = Grammar.fromFile(grammarPath);
 			mutator = new GrammarBasedSubtreeMutation<String>(MUTATION_MAX_DEPTH, grammar);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
