@@ -40,7 +40,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long DEFAULT_WAIT_FOR_FINALISE_DELAY = 5;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
 
-	private static final boolean DUMMY_EVAL = false;
+	private static final boolean DUMMY_EVAL = true;
 	
 	private boolean conditionBased;
 
@@ -95,7 +95,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	}
 
 	public SESAMEEvaluationProblem(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
-			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException {
+			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException, MissingGrammarFile {
 		this.spaceModelFileName = spaceModelFileName;
 		this.campaignName = campaignName;
 		this.codeGenerationDirectory = codeGenerationDirectory;

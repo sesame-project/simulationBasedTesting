@@ -2,7 +2,7 @@ package uk.ac.york.sesame.testing.evolutionary.main;
 
 import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
 
-public class EvolutionaryRunner {
+public class EvolutionaryRunnerTTS {
 	//	JMetal manages a population of Test models - containing a single test
 	//	These models are referenced by TestModelSolution - which references a particular model
 	//
@@ -26,17 +26,17 @@ public class EvolutionaryRunner {
 		// Sets the space model file and the campaign to run here
 		
 		// PATHS HERE
-		final String spaceModelFileName = "/home/jharbin/eclipse-workspace/localAutoGen/models/testingHealthcareSpace.model";
+		final String spaceModelFileName = "/home/jharbin/eclipse-workspace/localAutoGen/models/testingTTS_SesamePoc.model";
 		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/eclipse-workspace/localAutoGen";
 		final String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
 
-		String campaignToRun = "firstExperiment";
+		String grammarPath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.evolutionary/grammar/sesame-standard-grammar.bnf";
 		
-		String grammarFile = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.evolutionary/grammar/sesame-standard-grammar.bnf";
+		String campaignToRun = "firstExperiment";
 
 		final boolean conditionBased = true;
 		final int maxConditionDepth = 6;
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, maxConditionDepth, grammarFile);
+		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, maxConditionDepth, grammarPath);
 		jmetalExpt.runExperiment();
 	}
 }

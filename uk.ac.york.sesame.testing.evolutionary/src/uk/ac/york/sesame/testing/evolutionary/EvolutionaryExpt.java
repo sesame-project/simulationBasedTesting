@@ -18,6 +18,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
 
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverOperation;
+import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEConditionsCrossover;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEMutationOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESimpleMutation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESwapAttacksFromTestsCrossover;
@@ -95,7 +96,8 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			Comparator<SESAMETestSolution> dominanceComparator;
 					
 			// TODO: Crossover, mutation and selection operations should be configurable in the model?
-			crossover = new SESAMESwapAttacksFromTestsCrossover(crossoverRNG, crossoverProb, crossoverLogFile);
+			//crossover = new SESAMESwapAttacksFromTestsCrossover(crossoverRNG, crossoverProb, crossoverLogFile);
+			crossover = new SESAMEConditionsCrossover(crossoverRNG, crossoverLogFile, cg);
 			mutation = new SESAMESimpleMutation(mutationRNG, mutationLogFile, timingMutProb, paramMutProb, cg);
 			
  			selection = new TournamentSelection<SESAMETestSolution>(5);
@@ -149,6 +151,8 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			System.out.println("Stream setup failed - " + e.toString());
 			e.printStackTrace();
 		} catch (EolModelLoadingException e) {
+			e.printStackTrace();
+		} catch (MissingGrammarFile e) {
 			e.printStackTrace();
 		}
 	}

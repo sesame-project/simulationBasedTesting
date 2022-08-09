@@ -1,5 +1,6 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
@@ -26,24 +27,33 @@ public class ConditionGenerator {
 	private boolean DEBUG_MUTATION = true;
 	private int MAX_MUTATION_TRY_COUNT = 5;
 	
-	// TODO: how does this parameter work?
+	// TODO: how does these parameters work?
 	private int MUTATION_MAX_DEPTH = 1;
+	private int CROSSOVER_MAX_HEIGHT = 1;
 	
 	protected GrammarBasedSubtreeMutation<String> mutator;
 	protected SameRootSubtreeCrossover<String> crossover;
 	
-	public ConditionGenerator(String grammarPath, TestCampaign selectedCampaign, int maxGrammarHeight) {
+	public ConditionGenerator(String grammarPath, TestCampaign selectedCampaign, int maxGrammarHeight) throws MissingGrammarFile {
 		this.maxGrammarHeight = maxGrammarHeight;
 		gc = new GrammarConverter(selectedCampaign);
 		rng = new Random();
 		
 		try {
 			grammar = Grammar.fromFile(grammarPath);
+			if (grammar == null) {
+				throw new MissingGrammarFile("Grammar not loaded successfully from path " + grammarPath);
+			}
+			
 			mutator = new GrammarBasedSubtreeMutation<String>(MUTATION_MAX_DEPTH, grammar);
+			crossover = new SameRootSubtreeCrossover<String>(CROSSOVER_MAX_HEIGHT);
+			
+		} catch (FileNotFoundException e) {
+			throw new MissingGrammarFile("Grammar not loaded successfully from path " + grammarPath);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}			
+		}
 	}
 	
 	public Tree<String> generateOne(int depth) throws ConversionFailed {

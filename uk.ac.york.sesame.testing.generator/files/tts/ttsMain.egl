@@ -36,7 +36,9 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
 import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
-import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
+
+import uk.ac.york.sesame.testing.architecture.tts.TTSSimulator;
+
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.*;
 
@@ -44,8 +46,6 @@ import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 
 import metrics.custom.*;
 import metrics.fixed.*;
-
-package uk.ac.york.sesame.testing.architecture.tts;
 
 import java.util.HashMap;
 import java.util.Properties;
@@ -96,6 +96,17 @@ public class [%= testNameString %]_TestRunner {
 		DataStream<EventMessage> streamOut = env
 				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
 				.returns(EventMessage.class);
+				
+		// This connects the metrics via Kafka to the metrics monitoring on the SESAME tool
+		FlinkKafkaProducer<MetricMessage> metricsProducer = new FlinkKafkaProducer<MetricMessage>(
+		        "metricMessages",             // target topic
+		        new MetricMessageSchema(),    // serialization schema
+		        properties             // producer config
+		      );
+		      
+		// Kafka Sink to OUT
+		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
+				new EventMessageSchema(), properties);
 		
 		params.put("TTSProjectDir", "[%= launchFileLocation %]");
 		params.put("launchDelayMsec", "20000");
@@ -133,7 +144,7 @@ public class [%= testNameString %]_TestRunner {
 							.consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
-						String outTopic = rosSim.translateTopicNameForOutput(inTopic);
+						String outTopic = ttsSim.translateTopicNameForOutput(inTopic);
 						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
 						ttsSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
 					}

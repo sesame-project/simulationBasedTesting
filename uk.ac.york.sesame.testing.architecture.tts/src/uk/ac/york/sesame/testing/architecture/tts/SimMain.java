@@ -42,7 +42,7 @@ public class SimMain {
 				.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
 
 		params.put("TTSProjectDir", "/mnt/resources/dl-temp/sesame/SesamePoc/");
-		params.put("launchDelayMsec", "20000");
+		params.put("launchDelayMsec", "10000");
 		System.out.print("TTS Simulator Starting...");
 		ttsSim.run(params);
 		System.out.println("TTS Simulator Started");
