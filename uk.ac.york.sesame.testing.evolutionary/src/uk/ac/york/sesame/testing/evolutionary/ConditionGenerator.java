@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import it.units.malelab.jgea.representation.tree.SameRootSubtreeCrossover;
+import it.units.malelab.jgea.representation.tree.SubtreeCrossover;
 import it.units.malelab.jgea.representation.tree.Tree;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.*;
@@ -17,19 +18,23 @@ import uk.ac.york.sesame.testing.evolutionary.grammar.GrowGrammarTreeFactory;
 
 public class ConditionGenerator {
 	
-	private Random rng;
 	
-	// TODO: maxGrammarHeight should be configurable
+
+	private Random rng;
 	private int maxGrammarHeight;
 	private Grammar<String> grammar;
 	private GrammarConverter gc;
 	
 	private boolean DEBUG_MUTATION = true;
-	private int MAX_MUTATION_TRY_COUNT = 5;
+	private boolean DEBUG_CROSSOVER = true;
 	
-	// TODO: how does these parameters work?
+	private final int MAX_MUTATION_TRY_COUNT = 5;
+	private final int MAX_CROSSOVER_TRY_COUNT = 5;
+	
+	// TODO: how do these parameters work? MUTATION_MAX_DEPTH is ignored by operator?
 	private int MUTATION_MAX_DEPTH = 1;
-	private int CROSSOVER_MAX_HEIGHT = 1;
+	
+	private int CROSSOVER_MAX_HEIGHT = 6;
 	
 	protected GrammarBasedSubtreeMutation<String> mutator;
 	protected SameRootSubtreeCrossover<String> crossover;
@@ -89,7 +94,20 @@ public class ConditionGenerator {
 	}
 	
 	public Tree<String> crossover(Tree<String> t1, Tree<String> t2, Random rng) {
-		return crossover.recombine(t1,t2,rng);
+		int count = 0;
+		boolean changed = false;
+		Tree<String> tNew = t1;
+		while ((count++ < MAX_CROSSOVER_TRY_COUNT) && !changed) {
+			if (DEBUG_CROSSOVER) {
+				System.out.println("Try " + count + " tree left before crossover = " + t1);
+				System.out.println("Try " + count + " tree right before crossover = " + t2);
+			}
+			tNew = crossover.recombine(t1,t2,rng);
+			if (!(tNew.equals(t1) || tNew.equals(t2))) {
+				changed = true;
+			}
+		}
+		return tNew;
 	}
 	
 	public Tree<String> mutate(Tree<String> t) {

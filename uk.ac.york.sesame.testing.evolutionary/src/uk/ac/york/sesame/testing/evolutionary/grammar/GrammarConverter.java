@@ -12,7 +12,7 @@ public class GrammarConverter {
 	private StandardGrammarFactory factory = StandardGrammarFactory.eINSTANCE;
 	private TestCampaign testCampaign;
 	
-	protected final boolean DEBUG_GRAMMER_CONVERT = false; 
+	protected final boolean DEBUG_GRAMMER_CONVERT = true; 
 	
 	public GrammarConverter(TestCampaign tc) { 
 		this.testCampaign = tc;

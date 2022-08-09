@@ -60,9 +60,20 @@ public class SESAMEConditionsCrossover extends SESAMECrossoverOperation {
 			Tree<String> s2 = r.getStoredStartTree();
 			Tree<String> e1 = l.getStoredEndTree();
 			Tree<String> e2 = r.getStoredEndTree();
-			
+					
 			Tree<String> outputStart = condGenerator.crossover(s1, s2, rng);
 			Tree<String> outputEnd = condGenerator.crossover(e1, e2, rng);
+			
+			try {
+				crossoverLog.write("Crossover incoming start 1 = " + s1.toString() + "\n");
+				crossoverLog.write("Crossover incoming start 2 = " + s2.toString() + "\n");
+				crossoverLog.write("Crossover generated start  = " + outputStart.toString() + "\n\n");
+				crossoverLog.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			Condition start = condGenerator.convert(outputStart);
 			Condition end = condGenerator.convert(outputEnd);
 			
@@ -76,6 +87,8 @@ public class SESAMEConditionsCrossover extends SESAMECrossoverOperation {
 			newOp.getAttack().setActivation(ca);
 			outputSol.addContents(i, newOp);
 		}
+		
+		output.add(outputSol);
 		
 		return output;
 	}
