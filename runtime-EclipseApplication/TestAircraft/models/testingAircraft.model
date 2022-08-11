@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.FuzzingOperations="FuzzingOperations" xmlns:TestingMM.MRSPackage="MRSPackage" xmlns:TestingMM.Metrics="Metrics" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_TiizQN04EeyAL51MCA53dw" name="innerRegion" relatedVariables="_Br6_YBkiEe2WW_2jHFiR_w _FBd-4BkiEe2WW_2jHFiR_w">
+    <valueIfNotReceived xmi:id="_w22pAPeeEeylIplG5t0blg"/>
+    <initValue xmi:id="_TirEoAiyEe2PgNfDdRvGSA"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_TdUpsOd4Eeym1vCwkNoiAw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_PURDYPb_EeyPjPxeigDHmw" filename="/home/jharbin/academic/sesame/WP6/metric-results/innerRegion"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_Vo1xYN04EeyAL51MCA53dw" name="outerRegion" relatedVariables="_qknFkBkhEe2WW_2jHFiR_w _tu1l4BkhEe2WW_2jHFiR_w">
+    <valueIfNotReceived xmi:id="_JWrkAPUlEeyXNMijK69yfA"/>
+    <initValue xmi:id="_VSYHsAiyEe2PgNfDdRvGSA"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_UBH6UOd4Eeym1vCwkNoiAw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_QmNzcPb_EeyPjPxeigDHmw" filename="/home/jharbin/academic/sesame/WP6/metric-results/outerRegion"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_sg3LkBiMEe2s8f_vFy3jOw" name="vehicleAvoidance" relatedVariables="_qknFkBkhEe2WW_2jHFiR_w _tu1l4BkhEe2WW_2jHFiR_w">
+    <valueIfNotReceived xmi:id="_sg3LkRiMEe2s8f_vFy3jOw"/>
+    <initValue xmi:id="_sg3LkhiMEe2s8f_vFy3jOw"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_sg3LkxiMEe2s8f_vFy3jOw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_sg3LlBiMEe2s8f_vFy3jOw" filename="/home/jharbin/academic/sesame/WP6/metric-results/vehicleAvoidance"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_g8Hi0N1AEeyWQcgNPk0koQ" name="overSpeed" relatedVariables="_Zxi7kBkiEe2WW_2jHFiR_w _dTR88BkiEe2WW_2jHFiR_w">
+    <valueIfNotReceived xmi:id="_1PD_YPeeEeylIplG5t0blg"/>
+    <initValue xmi:id="_WlcSEAiyEe2PgNfDdRvGSA"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_Uav7QOd4Eeym1vCwkNoiAw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_RIG_kPb_EeyPjPxeigDHmw" filename="/home/jharbin/academic/sesame/WP6/metric-results/overSpeed"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_bJdhUN04EeyAL51MCA53dw" startTime="50.0" endTime="150.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IPLIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IfLIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1KcUQBj_Ee2WW_2jHFiR_w" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-1.0" upperBound="1.0"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_mIrOcN0YEeyv8LH3vdSfnw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_ciaRQN04EeyAL51MCA53dw" startTime="50.0" endTime="150.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IvLIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2I_LIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_5v3nQBj_Ee2WW_2jHFiR_w" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-1.0" upperBound="1.0"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_Vo1xYN04EeyAL51MCA53dw _g8Hi0N1AEeyWQcgNPk0koQ _hrtGEPZBEeypkdw9q4st1A" conditionMetrics="_Vo1xYN04EeyAL51MCA53dw _g8Hi0N1AEeyWQcgNPk0koQ" includedOperations="_lc6UoN0YEeyv8LH3vdSfnw _mIrOcN0YEeyv8LH3vdSfnw">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="30"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="300"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/atlas/atlas-middleware/expt-working/ros/auto_launch_safemuv.sh">
+    <variables xmi:id="_OFeM4BicEe2s8f_vFy3jOw" name="/uav_1/ual/set_velocityIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <variables xmi:id="_OxQuMOIdEeynuZg3j0KLEQ" name="/uav_2/ual/set_velocityIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <variables xmi:id="_qknFkBkhEe2WW_2jHFiR_w" name="/uav_1/ground_truth/state" type="_y6B4YBkhEe2WW_2jHFiR_w"/>
+    <variables xmi:id="_tu1l4BkhEe2WW_2jHFiR_w" name="/uav_2/ground_truth/state" type="_y6B4YBkhEe2WW_2jHFiR_w"/>
+    <variables xmi:id="_Br6_YBkiEe2WW_2jHFiR_w" name="/uav_1/airframe_clearance" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+    <variables xmi:id="_FBd-4BkiEe2WW_2jHFiR_w" name="/uav_2/airframe_clearance" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+    <variables xmi:id="_Zxi7kBkiEe2WW_2jHFiR_w" name="/uav_1/ual/velocity" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <variables xmi:id="_dTR88BkiEe2WW_2jHFiR_w" name="/uav_2/ual/velocity" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="/uav_1/trajectory_tracking_controller" publisher="_OFeM4BicEe2s8f_vFy3jOw"/>
+    <nodes xmi:id="_56Y20BifEe2s8f_vFy3jOw" name="/uav_2/trajectory_tracking_controller" publisher="_OxQuMOIdEeynuZg3j0KLEQ"/>
+    <simulator xsi:type="TestingMM.MRSPackage:ROSSimulator" xmi:id="_JmUQcOMnEeylpr6FvsbTLQ" hostname="0.0.0.0" port="9090"/>
+    <propertyType xmi:id="_fSym0OIdEeynuZg3j0KLEQ" name="geometry_msgs/TwistStamped">
+      <parameters xmi:id="_iUwjAOIdEeynuZg3j0KLEQ" name="linear">
+        <subparameters xmi:id="_k6FmgOIdEeynuZg3j0KLEQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_mT1nsOIdEeynuZg3j0KLEQ" name="Y" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_nVtUYOIdEeynuZg3j0KLEQ" name="Z" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      </parameters>
+      <parameters xmi:id="_3ajbkOIeEeypgch9ckSMJQ" name="angular">
+        <subparameters xmi:id="_3ajbkeIeEeypgch9ckSMJQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_3ajbkuIeEeypgch9ckSMJQ" name="Y" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_3ajbk-IeEeypgch9ckSMJQ" name="Z" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      </parameters>
+    </propertyType>
+    <propertyType xmi:id="_xq0RkOIeEeypgch9ckSMJQ" name="float64"/>
+    <propertyType xmi:id="_SSj1kOMsEeylpr6FvsbTLQ" name="geometry_msgs/PoseWithCovarianceStamped">
+      <parameters xmi:id="_fiW3sOMsEeylpr6FvsbTLQ" name="pose">
+        <subparameters xmi:id="_iRjo4OMsEeylpr6FvsbTLQ" name="position" type="_l5jqUOMsEeylpr6FvsbTLQ"/>
+      </parameters>
+    </propertyType>
+    <propertyType xmi:id="_l5jqUOMsEeylpr6FvsbTLQ" name="geometry_msgs/Point">
+      <parameters xmi:id="_oT1UYOMsEeylpr6FvsbTLQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      <parameters xmi:id="_qCfOkOMsEeylpr6FvsbTLQ" name="Y" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      <parameters xmi:id="_sJRU4OMsEeylpr6FvsbTLQ" name="Z" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+    </propertyType>
+    <propertyType xmi:id="_QJhQgOuzEeye997npOVsNQ" name="std_msgs/Int32"/>
+    <propertyType xmi:id="_y6B4YBkhEe2WW_2jHFiR_w" name="nav_msgs/Odometry"/>
+  </mrs>
+</TestingMM:TestingSpace>
