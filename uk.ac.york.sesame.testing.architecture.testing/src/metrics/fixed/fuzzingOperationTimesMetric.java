@@ -28,20 +28,14 @@ public class fuzzingOperationTimesMetric extends Metric {
     }
       
     public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
-	//    	double total = 0.0;
-	//    	for (Double d : attackTimes) {
-	//    		total += d;
-	//    	}
-	//    	
-	//    	total = total + SimCore.getInstance().getTotalFuzzingSeconds();
-	//    	out.collect(total);
+
     }
     
-	public void processElement2(ControlMessage controlMsg, CoProcessFunction<EventMessage, ControlMessage, Double>.Context ctx, Collector<Double> arg2) throws Exception {
+	public void processElement2(ControlMessage controlMsg, CoProcessFunction<EventMessage, ControlMessage, Double>.Context ctx, Collector<Double> out) throws Exception {
 		long timeNow = ctx.timestamp();
 		SimCore.getInstance().finaliseFuzzingTimes(timeNow);
 
-	    	double total = 0.0;
+	    double total = 0.0;
 		for (Double d : attackTimes) {
 		    total += d;
 		}

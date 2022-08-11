@@ -95,7 +95,8 @@ public class ROSSimulator implements ISimulator {
 		
 		System.out.println("workingDir = " + workingDir + ",launchFilePath = " + launchFilePath);
 		String args = "";
-		ExptHelper.runScriptNewWithBash(workingDir, launchFilePath);
+		//ExptHelper.runScriptNewWithBash(workingDir, launchFilePath);
+		ExptHelper.runScriptNewThread(workingDir, launchFilePath);
 	}
 
 	@Override

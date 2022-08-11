@@ -24,10 +24,11 @@ public class ParsingUtils {
 	
 	public static JSONObject updateJSONObject(JSONObject obj, String parameterName, Object newValue) {
 		String[] split = parameterName.split("\\.");
-		JSONObject obj2 = null;
+		JSONObject obj2 = obj;
 		for (int i = 1; i < split.length; i++) {
 			if (i != split.length - 1) {
-				obj2 = (JSONObject) obj.get(split[i].toLowerCase());
+				// obj2 is null, then there will be an invalid value
+				obj2 = (JSONObject) obj2.get(split[i].toLowerCase());
 			} else {
 				obj2.put(split[i].toLowerCase(), newValue);
 				return obj;

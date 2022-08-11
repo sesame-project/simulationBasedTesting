@@ -283,7 +283,8 @@ operation produceFOGenerationSignature(fo) {
 		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
 			flatmap = "new BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + ")";
 		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
-			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
+			flatmap = "new " + fo.name;
+			flatmap = flatmap + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
 		}
 	}
 	
