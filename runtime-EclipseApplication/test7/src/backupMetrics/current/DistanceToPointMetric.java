@@ -52,7 +52,7 @@ public class DistanceToPointMetric extends ProcessFunction<EventMessage, Double>
     	        Double firstApproachTime = firstApproachState.value();
     	        if (firstApproachTime == null) {
     	        	System.out.println("FIRST APPROACH");
-    	        	firstApproachTime = Double.parseDouble(SimCore.getInstance().getTime());
+    	        	firstApproachTime = SimCore.getInstance().getTime();
     	        	firstApproachState.update(firstApproachTime);
     	        	out.collect(firstApproachTime);
     	        }

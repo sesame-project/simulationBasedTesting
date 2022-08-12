@@ -20,6 +20,14 @@ public class TestRunnerUtils {
 		ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./terminate_sim.sh");
 	}
 	
+	public static void runCustomTerminateScript(String terminateScript) {
+		try {
+			ExptHelper.runScriptNew(ABS_SCRIPT_DIR, terminateScript);
+		} catch (org.buildobjects.process.ExternalProcessFailureException e) {
+			System.out.println("Ignoring failure of the termination script");
+		}
+	}
+	
 	public static void clearKafka() {
 		ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./clear_kafka.sh");
 	}

@@ -11,21 +11,27 @@ import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 
-public class outerRegionMetric extends Metric {
+public class outerRegionMetric extends BatchedRateMetric {
 
+	private static final double TIME_BATCH_THRESHOLD = 1.0;
+	
 	private static final long serialVersionUID = 1L;
 	private ValueState<Long> outerRegionViolations;
 	
-	// TODO: set actual values
-	private final double MIN_X = -1.0;
-	private final double MIN_Y = -1.0;
+	private final double MIN_X = -100.0;
+	private final double MIN_Y = -50.0;
 	private final double MIN_Z = 0;
 	
-	private final double MAX_X = 10.0;
-	private final double MAX_Y = 10.0;
+	private final double MAX_X = 12.0;
+	private final double MAX_Y = 50.0;
 	private final double MAX_Z = 23.0;
+	
+	public outerRegionMetric() {
+		super(TIME_BATCH_THRESHOLD);
+	}
 	   
     public void open(Configuration parameters) throws Exception {
+    	super.open(parameters);
     	outerRegionViolations = getRuntimeContext().getState(new ValueStateDescriptor<>("outerRegionViolations", Long.class));
     }
     
@@ -45,7 +51,7 @@ public class outerRegionMetric extends Metric {
     		Double y = (Double)ParsingUtils.getField(jo, "pose.pose.position.y");
     		Double z = (Double)ParsingUtils.getField(jo, "pose.pose.position.z");
     		
-    		if (isOutsideRegion(x,y,z)) {
+    		if (isOutsideRegion(x,y,z) && isReadyToLogNow()) {
     			// Set initial value if not set
     			if (outerRegionViolations.value() == null) {
     				outerRegionViolations.update(0L);

@@ -11,7 +11,9 @@ import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 
-public class overSpeedMetric extends Metric {
+public class overSpeedMetric extends BatchedRateMetric {
+
+	private static final double TIME_BATCH_THRESHOLD = 1.0;
 
 	private static final long serialVersionUID = 1L;
 	
@@ -21,7 +23,12 @@ public class overSpeedMetric extends Metric {
 	
 	private ValueState<Long> overspeedCount;
 	   
+	public overSpeedMetric() {
+		super(TIME_BATCH_THRESHOLD);
+	}
+	
     public void open(Configuration parameters) throws Exception {
+    	super.open(parameters);
     	overspeedCount = getRuntimeContext().getState(new ValueStateDescriptor<>("overspeedCount", Long.class));
     }
       
@@ -38,11 +45,11 @@ public class overSpeedMetric extends Metric {
 			Object obj = JSONValue.parse(value.toString());
       		JSONObject jo = (JSONObject)obj;
       		System.out.println("Output is: " + value.toString());
-    		Double x = (Double)ParsingUtils.getField(jo, "geometry_msgs/TwistStamped.twist.linear.x");
-    		Double y = (Double)ParsingUtils.getField(jo, "geometry_msgs/TwistStamped.twist.linear.y");
-    		Double z = (Double)ParsingUtils.getField(jo, "geometry_msgs/TwistStamped.twist.linear.z");
+    		Double x = (Double)ParsingUtils.getField(jo, "twist.linear.x");
+    		Double y = (Double)ParsingUtils.getField(jo, "twist.linear.y");
+    		Double z = (Double)ParsingUtils.getField(jo, "twist.linear.z");
     		
-    		if (isOverspeed(x,y,z)) {
+    		if (isOverspeed(x,y,z) && isReadyToLogNow()) {
     			// Set initial value if not set
     			if (overspeedCount.value() == null) {
     				overspeedCount.update(0L);

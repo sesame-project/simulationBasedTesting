@@ -211,8 +211,9 @@ public class ROSSimulator implements ISimulator {
 		topic.subscribe(new TopicCallback() {
 			@Override
 			public void handleMessage(Message message) {
-				String seconds = message.toString().split("secs\":")[1].split(",")[0];
-				SimCore.getInstance().setTime(seconds);
+				String secondsStr = message.toString().split("secs\":")[1].split(",")[0];
+				Double time = Double.parseDouble(secondsStr);
+				SimCore.getInstance().setTime(time);
 			}
 		});
 		while(true) {}

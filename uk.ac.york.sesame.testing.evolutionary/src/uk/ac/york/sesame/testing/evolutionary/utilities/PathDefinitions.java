@@ -8,7 +8,7 @@ public class PathDefinitions {
 		STANDARD_GRAMMAR_PATH_BASE
 	}
 	
-	private static String REPO_BASE_PATH = "/home/sesametest/sesame/simulationBasedTesting";
+	private static String REPO_BASE_PATH = "/home/jharbin/academic/sesame/WP6";
 	
 	public static String getPath(PathSpec ps) {
 		if (ps == PathSpec.MODEL_PATH) {

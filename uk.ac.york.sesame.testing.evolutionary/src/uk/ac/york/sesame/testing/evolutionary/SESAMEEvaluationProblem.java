@@ -24,8 +24,10 @@ import uk.ac.york.sesame.testing.architecture.data.ControlMessage;
 import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 
 public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long serialVersionUID = 1L;
@@ -37,6 +39,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	
 	private static final long DEFAULT_COMPILE_DELAY = 10;
 	private static final long DEFAULT_KILL_DELAY = 10;
+	private static final long DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS = 10;
 	private static final long DEFAULT_WAIT_FOR_FINALISE_DELAY = 5;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
 
@@ -58,6 +61,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	//private DataStream<MetricMessage> metricStream;
 	private Resource testSpaceModel;
 	private TestCampaign selectedCampaign;
+	private TestingSpace testingSpace;
+	private MRS mrs;
 
 	private SESAMEEGLExecutor eglEx;
 	private String codeGenerationDirectory;
@@ -103,13 +108,16 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		this.conditionBased = conditionBased;
 		loader = new SESAMEModelLoader(spaceModelFileName);
 		testSpaceModel = loader.loadTestingSpace();
-		Optional<TestCampaign> tc_o = loader.getTestCampaign(testSpaceModel, campaignName);
 		
-	
+		Optional<TestCampaign> tc_o = loader.getTestCampaign(testSpaceModel, campaignName);
+			
 		// TODO: mrsModelFile is not currently used - until the bug is fixed and there
 		// is a seperate model again
 		//String __mrsModelFile = "testingMRS.model";
 		//eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
+		
+		testingSpace = loader.getTestingSpace(testSpaceModel);
+		mrs = testingSpace.getMrs();
 
 		if (tc_o.isPresent()) {
 			selectedCampaign = tc_o.get();
@@ -237,7 +245,13 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				// Ensure that the model is updated with the metric results
 				metricConsumer.finaliseUpdates();				
 
+				String customTerminateScript = mrs.getCustomTerminateFileLocation();
+				System.out.println("Running custom termination script " + customTerminateScript);
+				TestRunnerUtils.runCustomTerminateScript(customTerminateScript);
+				TestRunnerUtils.waitForSeconds(DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS);
+				System.out.println("Running standard termination script");
 				TestRunnerUtils.killProcesses();
+				
 				TestRunnerUtils.clearKafka();
 				System.out.print("Waiting for simulation processes to be killed...");
 				System.out.flush();

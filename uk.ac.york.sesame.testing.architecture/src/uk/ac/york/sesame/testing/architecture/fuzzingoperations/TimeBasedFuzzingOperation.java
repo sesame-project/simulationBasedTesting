@@ -45,7 +45,7 @@ public abstract class TimeBasedFuzzingOperation extends FuzzingOperation {
 	}
 	
 	public boolean isReadyNow() {
-		double time = Double.parseDouble(SimCore.getInstance().getTime());
+		double time = SimCore.getInstance().getTime();
 		System.out.println("time=" + time + ",start=" + start + ",end=" + end);
 		return (time >= start) && (time <= end);
 	}

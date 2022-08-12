@@ -114,4 +114,9 @@ public class SESAMEModelLoader {
 		}
 		return tc_o;
 	}
+	
+	public TestingSpace getTestingSpace(Resource testingSpaceModel) {
+		TestingSpace ts = (TestingSpace) testingSpaceModel.getContents().get(0);
+		return ts;
+	}
 }

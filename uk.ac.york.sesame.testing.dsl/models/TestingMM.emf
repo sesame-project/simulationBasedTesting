@@ -411,6 +411,8 @@ package MRSPackage {
 	class MRS {
 	    val Variable[*] variables;
 		attr String launchFileLocation;
+		attr int launchDelaySeconds = 40;
+		attr String customTerminateFileLocation;
 		val Node[*] nodes;
 		val Simulator[1] simulator;
 		val Type[*] propertyType;

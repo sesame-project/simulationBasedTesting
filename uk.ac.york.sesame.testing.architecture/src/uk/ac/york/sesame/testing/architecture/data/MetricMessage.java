@@ -31,7 +31,7 @@ public class MetricMessage implements IData, Serializer<MetricMessage>, Deserial
 		this.metricName = name;
 		this.value = v;
 		this.type = "Double";
-		this.timestamp = Double.parseDouble(SimCore.getInstance().getTime());
+		this.timestamp = SimCore.getInstance().getTime();
 	}
 	
 	public String timeStampedValString() {

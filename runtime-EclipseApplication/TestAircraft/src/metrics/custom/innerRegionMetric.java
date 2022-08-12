@@ -7,7 +7,13 @@ import org.apache.flink.util.Collector;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 
-public class innerRegionMetric extends Metric {
+public class innerRegionMetric extends BatchedRateMetric {
+	
+	private static final double TIME_BATCH_THRESHOLD = 1.0;
+
+	public innerRegionMetric() {
+		super(TIME_BATCH_THRESHOLD);
+	}
 
 	private static final long serialVersionUID = 1L;
 	private ValueState<Long> violationCount;
@@ -17,6 +23,7 @@ public class innerRegionMetric extends Metric {
 	// TODO: need some sort of timing grouping - only one output per interval
 	   
     public void open(Configuration parameters) throws Exception {
+    	super.open(parameters);
     	violationCount = getRuntimeContext().getState(new ValueStateDescriptor<>("violationCount", Long.class));
     }
       
@@ -27,7 +34,7 @@ public class innerRegionMetric extends Metric {
     		Object v = msg.getValue();
     		Double dist = Double.valueOf((String)v);
     		
-    		if (dist < distanceThreshold) {
+    		if ((dist < distanceThreshold) && isReadyToLogNow()) {
         		System.out.println("airframe_clearance: detected inner region violation " + msg.getTopic());
         		
         		// Set initial value if not set

@@ -4,6 +4,7 @@
 	var simulator = mrs.simulator;
 	var topicsNodesPublish = Node.all().publisher.flatten();
 	var topicsMetricsNeed = Metric.all().relatedVariables.flatten();
+	var allTopics = topicsNodesPublish.includingAll(topicsMetricsNeed).asSet();
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
@@ -41,6 +42,7 @@ import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.*;
 
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
+import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 
 import metrics.custom.*;
 import metrics.fixed.*;
@@ -96,19 +98,13 @@ public class [%= testNameString %]_TestRunner {
 		params.put("launchPath", "[%=launchFileLocation%]");
 		System.out.println("Simulator Starts");
 		rosSim.run(params);
+		// TODO: this delay needs to be configurable
+		waitForSeconds([%= mrs.launchDelaySeconds %]);
+		
+		System.out.println("Simulator run period completed - connecting to topics");
 		rosSim.connect(cp);
 		
-		[% for (aTopic in topicsNodesPublish) { %]
-		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
-			public void run() {
-				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
-				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
-			}
-		};
-		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
-		[% } %]
-		
-		[% for (aTopic in topicsMetricsNeed) { %]
+		[% for (aTopic in allTopics) { %]
 		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
 			public void run() {
 				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
@@ -254,6 +250,17 @@ public class [%= testNameString %]_TestRunner {
 			e.printStackTrace();
 		}
 		[% } %]
+	}
+	
+	public static void waitForSeconds(long timeDelaySeconds) {
+		long endTimeMillis = System.currentTimeMillis() + timeDelaySeconds * 1000;
+		while (System.currentTimeMillis() < endTimeMillis) {
+			try {
+				Thread.sleep(endTimeMillis - System.currentTimeMillis());
+			} catch (InterruptedException e) {
+				
+			}
+		}
 	}
 }
 

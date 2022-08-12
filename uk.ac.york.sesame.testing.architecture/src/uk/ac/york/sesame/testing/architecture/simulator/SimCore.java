@@ -21,7 +21,7 @@ public final class SimCore {
     
     private FileWriter outputTimingLog;
     
-    String time = "0.0";
+    double time = 0.0;
 	
     private SimCore() {}
     
@@ -43,11 +43,11 @@ public final class SimCore {
 		}
     }
 
-	public String getTime() {
+	public double getTime() {
 		return time;
 	}
 
-	public void setTime(String time) {
+	public void setTime(double time) {
 		this.time = time;
 	}
 	
@@ -62,7 +62,7 @@ public final class SimCore {
 
 	public synchronized void registerFuzzingStart(double flinkTimeStart, String fuzzOpClassName) {
 		// Using the simCore time rather than the Flink time
-		double timeStart = Double.parseDouble(getTime());
+		double timeStart = time;
 		fuzzingStartTimes.put(fuzzOpClassName, timeStart);
 		outputTimingLog(timeStart + " : Fuzzing operation " + fuzzOpClassName + " STARTED dynamic timing\n");
 		try {
@@ -74,7 +74,7 @@ public final class SimCore {
 	
 	public synchronized void registerFuzzingEnd(long flinkTimeEnd, String fuzzOpClassName) {
 		// Using the simCore time rather than the Flink time
-		double timeEnd = Double.parseDouble(getTime());
+		double timeEnd = time;
 		double fuzzingStart = fuzzingStartTimes.get(fuzzOpClassName);
 		double timeLength = timeEnd - fuzzingStart;
 		totalFuzzingSecondCount += timeLength;

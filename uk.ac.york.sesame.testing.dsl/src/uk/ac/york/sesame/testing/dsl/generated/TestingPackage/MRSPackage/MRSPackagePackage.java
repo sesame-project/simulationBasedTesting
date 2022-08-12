@@ -86,13 +86,31 @@ public interface MRSPackagePackage extends EPackage {
 	int MRS__LAUNCH_FILE_LOCATION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Launch Delay Seconds</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MRS__LAUNCH_DELAY_SECONDS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Custom Terminate File Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MRS__CUSTOM_TERMINATE_FILE_LOCATION = 3;
+
+	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MRS__NODES = 2;
+	int MRS__NODES = 4;
 
 	/**
 	 * The feature id for the '<em><b>Simulator</b></em>' containment reference.
@@ -101,7 +119,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MRS__SIMULATOR = 3;
+	int MRS__SIMULATOR = 5;
 
 	/**
 	 * The feature id for the '<em><b>Property Type</b></em>' containment reference list.
@@ -110,7 +128,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MRS__PROPERTY_TYPE = 4;
+	int MRS__PROPERTY_TYPE = 6;
 
 	/**
 	 * The number of structural features of the '<em>MRS</em>' class.
@@ -119,7 +137,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MRS_FEATURE_COUNT = 5;
+	int MRS_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>MRS</em>' class.
@@ -606,6 +624,28 @@ public interface MRSPackagePackage extends EPackage {
 	EAttribute getMRS_LaunchFileLocation();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getLaunchDelaySeconds <em>Launch Delay Seconds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Launch Delay Seconds</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getLaunchDelaySeconds()
+	 * @see #getMRS()
+	 * @generated
+	 */
+	EAttribute getMRS_LaunchDelaySeconds();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getCustomTerminateFileLocation <em>Custom Terminate File Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Custom Terminate File Location</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getCustomTerminateFileLocation()
+	 * @see #getMRS()
+	 * @generated
+	 */
+	EAttribute getMRS_CustomTerminateFileLocation();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getNodes <em>Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1006,6 +1046,22 @@ public interface MRSPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MRS__LAUNCH_FILE_LOCATION = eINSTANCE.getMRS_LaunchFileLocation();
+
+		/**
+		 * The meta object literal for the '<em><b>Launch Delay Seconds</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MRS__LAUNCH_DELAY_SECONDS = eINSTANCE.getMRS_LaunchDelaySeconds();
+
+		/**
+		 * The meta object literal for the '<em><b>Custom Terminate File Location</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MRS__CUSTOM_TERMINATE_FILE_LOCATION = eINSTANCE.getMRS_CustomTerminateFileLocation();
 
 		/**
 		 * The meta object literal for the '<em><b>Nodes</b></em>' containment reference list feature.

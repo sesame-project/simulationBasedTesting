@@ -242,8 +242,26 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMRS_LaunchDelaySeconds() {
+		return (EAttribute)mrsEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMRS_CustomTerminateFileLocation() {
+		return (EAttribute)mrsEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getMRS_Nodes() {
-		return (EReference)mrsEClass.getEStructuralFeatures().get(2);
+		return (EReference)mrsEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -252,7 +270,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * @generated
 	 */
 	public EReference getMRS_Simulator() {
-		return (EReference)mrsEClass.getEStructuralFeatures().get(3);
+		return (EReference)mrsEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -261,7 +279,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * @generated
 	 */
 	public EReference getMRS_PropertyType() {
-		return (EReference)mrsEClass.getEStructuralFeatures().get(4);
+		return (EReference)mrsEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -565,6 +583,8 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		mrsEClass = createEClass(MRS);
 		createEReference(mrsEClass, MRS__VARIABLES);
 		createEAttribute(mrsEClass, MRS__LAUNCH_FILE_LOCATION);
+		createEAttribute(mrsEClass, MRS__LAUNCH_DELAY_SECONDS);
+		createEAttribute(mrsEClass, MRS__CUSTOM_TERMINATE_FILE_LOCATION);
 		createEReference(mrsEClass, MRS__NODES);
 		createEReference(mrsEClass, MRS__SIMULATOR);
 		createEReference(mrsEClass, MRS__PROPERTY_TYPE);
@@ -647,6 +667,8 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		initEClass(mrsEClass, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, "MRS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMRS_Variables(), this.getVariable(), null, "variables", null, 0, -1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMRS_LaunchFileLocation(), ecorePackage.getEString(), "launchFileLocation", null, 0, 1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMRS_LaunchDelaySeconds(), ecorePackage.getEInt(), "launchDelaySeconds", "40", 0, 1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMRS_CustomTerminateFileLocation(), ecorePackage.getEString(), "customTerminateFileLocation", null, 0, 1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMRS_Nodes(), this.getNode(), null, "nodes", null, 0, -1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMRS_Simulator(), this.getSimulator(), null, "simulator", null, 1, 1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMRS_PropertyType(), this.getType(), null, "propertyType", null, 0, -1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
