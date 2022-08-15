@@ -17,15 +17,16 @@ public abstract class BatchedRateMetric extends Metric {
 		this.timeBatchThreshold = timeBatchThreshold;
 	}
 	
-    public void open(Configuration parameters) throws Exception {
-    	lastTime = getRuntimeContext().getState(new ValueStateDescriptor<>("lastTime", Double.class));
+    public void open(Configuration parameters, String extraNameTag) throws Exception {
+    	lastTime = getRuntimeContext().getState(new ValueStateDescriptor<>("lastTime-" + extraNameTag, Double.class));
+    	System.out.println("lastTime = " + lastTime.toString());
     }
 	
 	protected boolean isReadyToLogNow() {
 		try {
 			if (lastTime.value() != null) {
 				double currentTime = SimCore.getInstance().getTime();
-				double diff = lastTime.value() - currentTime;
+				double diff = currentTime - lastTime.value();
 				boolean shouldLog = diff > timeBatchThreshold;
 				if (shouldLog) {
 					setLastTimeNow();

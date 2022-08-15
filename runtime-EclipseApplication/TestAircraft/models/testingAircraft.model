@@ -27,23 +27,41 @@
   <metrics xsi:type="TestingMM.Metrics:FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
     <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
   </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_oAi2ABxFEe2eFeVPwwu8uw" name="AirframeClearance_UAV1">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_sdilwBxFEe2eFeVPwwu8uw"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_tVqgkBxFEe2eFeVPwwu8uw" name="AirframeClearance_UAV2">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_tVqgkRxFEe2eFeVPwwu8uw"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_u1LLgBxFEe2eFeVPwwu8uw" name="DistanceToLeftWingBase_UAV1">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_u1LLgRxFEe2eFeVPwwu8uw"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_xMtDkBxFEe2eFeVPwwu8uw" name="DistanceToLeftWingBase_UAV2">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_xMtDkRxFEe2eFeVPwwu8uw"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_z1iuEBxFEe2eFeVPwwu8uw" name="DistanceToRightWingBase_UAV1">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_z1iuERxFEe2eFeVPwwu8uw"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_z1iuEhxFEe2eFeVPwwu8uw" name="DistanceToRightWingBase_UAV2">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_z1iuExxFEe2eFeVPwwu8uw"/>
+  </metrics>
   <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_bJdhUN04EeyAL51MCA53dw" startTime="50.0" endTime="150.0"/>
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_bJdhUN04EeyAL51MCA53dw" startTime="50.0" endTime="500.0"/>
     <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IPLIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
     <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IfLIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
     <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1KcUQBj_Ee2WW_2jHFiR_w" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-1.0" upperBound="1.0"/>
   </possibleFuzzingOperations>
   <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_mIrOcN0YEeyv8LH3vdSfnw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_ciaRQN04EeyAL51MCA53dw" startTime="50.0" endTime="150.0"/>
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_ciaRQN04EeyAL51MCA53dw" startTime="50.0" endTime="500.0"/>
     <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IvLIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
     <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2I_LIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
     <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_5v3nQBj_Ee2WW_2jHFiR_w" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-1.0" upperBound="1.0"/>
   </possibleFuzzingOperations>
-  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_Vo1xYN04EeyAL51MCA53dw _g8Hi0N1AEeyWQcgNPk0koQ _hrtGEPZBEeypkdw9q4st1A" conditionMetrics="_Vo1xYN04EeyAL51MCA53dw _g8Hi0N1AEeyWQcgNPk0koQ" includedOperations="_lc6UoN0YEeyv8LH3vdSfnw _mIrOcN0YEeyv8LH3vdSfnw">
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_Vo1xYN04EeyAL51MCA53dw _g8Hi0N1AEeyWQcgNPk0koQ _hrtGEPZBEeypkdw9q4st1A _TiizQN04EeyAL51MCA53dw _sg3LkBiMEe2s8f_vFy3jOw" conditionMetrics="_oAi2ABxFEe2eFeVPwwu8uw _tVqgkBxFEe2eFeVPwwu8uw _u1LLgBxFEe2eFeVPwwu8uw _xMtDkBxFEe2eFeVPwwu8uw _z1iuEBxFEe2eFeVPwwu8uw _z1iuEhxFEe2eFeVPwwu8uw" includedOperations="_lc6UoN0YEeyv8LH3vdSfnw _mIrOcN0YEeyv8LH3vdSfnw">
     <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="30"/>
-    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="300"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="525"/>
   </campaigns>
-  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/atlas/atlas-middleware/expt-working/ros/auto_launch_safemuv.sh">
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/atlas/atlas-middleware/expt-working/ros/auto_launch_safemuv.sh" customTerminateFileLocation="/home/jharbin/academic/atlas/atlas-middleware/expt-working/ros/terminate.sh">
     <variables xmi:id="_OFeM4BicEe2s8f_vFy3jOw" name="/uav_1/ual/set_velocityIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
     <variables xmi:id="_OxQuMOIdEeynuZg3j0KLEQ" name="/uav_2/ual/set_velocityIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
     <variables xmi:id="_qknFkBkhEe2WW_2jHFiR_w" name="/uav_1/ground_truth/state" type="_y6B4YBkhEe2WW_2jHFiR_w"/>

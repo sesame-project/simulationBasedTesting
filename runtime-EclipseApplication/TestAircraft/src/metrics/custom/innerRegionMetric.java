@@ -23,7 +23,7 @@ public class innerRegionMetric extends BatchedRateMetric {
 	// TODO: need some sort of timing grouping - only one output per interval
 	   
     public void open(Configuration parameters) throws Exception {
-    	super.open(parameters);
+    	super.open(parameters, "innerRegionMetric");
     	violationCount = getRuntimeContext().getState(new ValueStateDescriptor<>("violationCount", Long.class));
     }
       
@@ -35,7 +35,7 @@ public class innerRegionMetric extends BatchedRateMetric {
     		Double dist = Double.valueOf((String)v);
     		
     		if ((dist < distanceThreshold) && isReadyToLogNow()) {
-        		System.out.println("airframe_clearance: detected inner region violation " + msg.getTopic());
+    			System.out.println("VIOLATION: inner region " + msg);
         		
         		// Set initial value if not set
         		if (violationCount.value() == null) {
@@ -44,7 +44,6 @@ public class innerRegionMetric extends BatchedRateMetric {
         		
         		// Increment the value
         		violationCount.update(violationCount.value() + 1);
-        		
         		out.collect(Double.valueOf(violationCount.value()));
     		}
     	}

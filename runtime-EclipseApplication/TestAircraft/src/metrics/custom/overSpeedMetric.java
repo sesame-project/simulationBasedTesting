@@ -28,7 +28,7 @@ public class overSpeedMetric extends BatchedRateMetric {
 	}
 	
     public void open(Configuration parameters) throws Exception {
-    	super.open(parameters);
+    	super.open(parameters, "overSpeed");
     	overspeedCount = getRuntimeContext().getState(new ValueStateDescriptor<>("overspeedCount", Long.class));
     }
       
@@ -44,12 +44,12 @@ public class overSpeedMetric extends BatchedRateMetric {
   			// get x and y coordinates
 			Object obj = JSONValue.parse(value.toString());
       		JSONObject jo = (JSONObject)obj;
-      		System.out.println("Output is: " + value.toString());
     		Double x = (Double)ParsingUtils.getField(jo, "twist.linear.x");
     		Double y = (Double)ParsingUtils.getField(jo, "twist.linear.y");
     		Double z = (Double)ParsingUtils.getField(jo, "twist.linear.z");
     		
     		if (isOverspeed(x,y,z) && isReadyToLogNow()) {
+    			System.out.println("VIOLATION: overspeed: " + msg);
     			// Set initial value if not set
     			if (overspeedCount.value() == null) {
     				overspeedCount.update(0L);

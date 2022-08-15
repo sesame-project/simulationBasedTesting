@@ -23,7 +23,7 @@ import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 public class vehicleAvoidanceMetric extends BatchedRateMetric {
 
 	private static final double TIME_BATCH_THRESHOLD = 1.0;
-	
+
 	public vehicleAvoidanceMetric() {
 		super(TIME_BATCH_THRESHOLD);
 	}
@@ -36,74 +36,73 @@ public class vehicleAvoidanceMetric extends BatchedRateMetric {
 	private ValueState<Point3D> uav1Loc;
 	private ValueState<Point3D> uav2Loc;
 	private ValueState<Long> totalOverspeedCount;
-		   
-    public void open(Configuration parameters) throws Exception {
-    	super.open(parameters);
-    	uav1Loc = getRuntimeContext().getState(new ValueStateDescriptor<>("uav1Loc", Point3D.class));
-    	uav2Loc = getRuntimeContext().getState(new ValueStateDescriptor<>("uav2Loc", Point3D.class));
-    	totalOverspeedCount = getRuntimeContext().getState(new ValueStateDescriptor<>("totalRoomsCompleted", Long.class));
-    }
-    
-    private void storePosBasedOnName(String topic, double x, double y, double z) {
-    	ValueState<Point3D> locHolder = null;
-    	if (topic.contains("uav_1")) {
-    		locHolder = uav1Loc;
-    	}
-    	if (topic.contains("uav_2")) {
-    		locHolder = uav2Loc;
-    	}
-    	
-    	if (locHolder != null) {
-    		try {
-				locHolder.update(new Point3D(x,y,z));
+
+	public void open(Configuration parameters) throws Exception {
+		super.open(parameters, "vehicleAvoidanceMetric");
+		uav1Loc = getRuntimeContext().getState(new ValueStateDescriptor<>("uav1Loc", Point3D.class));
+		uav2Loc = getRuntimeContext().getState(new ValueStateDescriptor<>("uav2Loc", Point3D.class));
+		totalOverspeedCount = getRuntimeContext()
+				.getState(new ValueStateDescriptor<>("totalRoomsCompleted", Long.class));
+	}
+
+	private void storePosBasedOnName(String topic, double x, double y, double z) {
+		ValueState<Point3D> locHolder = null;
+		if (topic.contains("uav_1")) {
+			locHolder = uav1Loc;
+		}
+		if (topic.contains("uav_2")) {
+			locHolder = uav2Loc;
+		}
+
+		if (locHolder != null) {
+			try {
+				locHolder.update(new Point3D(x, y, z));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-    }
-    
-    private Optional<Double> getInterRobotDistance() throws IOException {
-    	if (uav1Loc.value() != null && uav2Loc.value() != null) {
-    		Point3D uav1Pos = uav1Loc.value();
-    		Point3D uav2Pos = uav2Loc.value();
-    		return Optional.of(uav1Pos.distanceToOther(uav2Pos));
-    	} else {
-    		return Optional.empty();
-    	}
-    }
-    
-    public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
-    	String positionTopicName = "ground_truth/state";
-    	String topic = msg.getTopic();
-    	
-    	if (msg.getTopic().contains(positionTopicName)) {
-    		Object value = msg.getValue();
-  			// get x and y coordinates
-			Object obj = JSONValue.parse(value.toString());
-      		JSONObject jo = (JSONObject)obj;
-      		System.out.println("Output is: " + value.toString());
-      		
-      		System.out.println("JSONObject jo = " + jo);
-    		Double x = (Double)ParsingUtils.getField(jo, "pose.pose.position.x");
-    		Double y = (Double)ParsingUtils.getField(jo, "pose.pose.position.y");
-    		Double z = (Double)ParsingUtils.getField(jo, "pose.pose.position.z");
-    		
-    		storePosBasedOnName(topic,x,y,z);
-    		Optional<Double> interRobotDist_o = getInterRobotDistance();
+	}
 
-    		if (interRobotDist_o.isPresent()) {
-    			double interRobotDist = interRobotDist_o.get();
-    			if ((interRobotDist < INTER_ROBOT_DISTANCE_THRESHOLD) && isReadyToLogNow()) {
-        		// Set initial value if not set
-        		if (totalOverspeedCount.value() == null) {
-        			totalOverspeedCount.update(0L);
-        		}
-        		
-        		// Increment the value
-        		totalOverspeedCount.update(totalOverspeedCount.value() + 1);
-        		out.collect(Double.valueOf(totalOverspeedCount.value()));
-    		}
-    	}
-    }
-}
+	private Optional<Double> getInterRobotDistance() throws IOException {
+		if (uav1Loc.value() != null && uav2Loc.value() != null) {
+			Point3D uav1Pos = uav1Loc.value();
+			Point3D uav2Pos = uav2Loc.value();
+			return Optional.of(uav1Pos.distanceToOther(uav2Pos));
+		} else {
+			return Optional.empty();
+		}
+	}
+
+	public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
+		String positionTopicName = "ground_truth/state";
+		String topic = msg.getTopic();
+
+		if (msg.getTopic().contains(positionTopicName)) {
+			Object value = msg.getValue();
+			// get x and y coordinates
+			Object obj = JSONValue.parse(value.toString());
+			JSONObject jo = (JSONObject) obj;
+			Double x = (Double) ParsingUtils.getField(jo, "pose.pose.position.x");
+			Double y = (Double) ParsingUtils.getField(jo, "pose.pose.position.y");
+			Double z = (Double) ParsingUtils.getField(jo, "pose.pose.position.z");
+
+			storePosBasedOnName(topic, x, y, z);
+			Optional<Double> interRobotDist_o = getInterRobotDistance();
+
+			if (interRobotDist_o.isPresent()) {
+				double interRobotDist = interRobotDist_o.get();
+				if ((interRobotDist < INTER_ROBOT_DISTANCE_THRESHOLD) && isReadyToLogNow()) {
+					System.out.println("VIOLATION: vehicle avoidance " + msg);
+					// Set initial value if not set
+					if (totalOverspeedCount.value() == null) {
+						totalOverspeedCount.update(0L);
+					}
+
+					// Increment the value
+					totalOverspeedCount.update(totalOverspeedCount.value() + 1);
+					out.collect(Double.valueOf(totalOverspeedCount.value()));
+				}
+			}
+		}
+	}
 }

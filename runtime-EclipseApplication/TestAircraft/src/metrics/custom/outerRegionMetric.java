@@ -31,7 +31,7 @@ public class outerRegionMetric extends BatchedRateMetric {
 	}
 	   
     public void open(Configuration parameters) throws Exception {
-    	super.open(parameters);
+    	super.open(parameters, "outerRegionMetric");
     	outerRegionViolations = getRuntimeContext().getState(new ValueStateDescriptor<>("outerRegionViolations", Long.class));
     }
     
@@ -46,12 +46,12 @@ public class outerRegionMetric extends BatchedRateMetric {
   			// get x and y coordinates
 			Object obj = JSONValue.parse(value.toString());
       		JSONObject jo = (JSONObject)obj;
-      		System.out.println("Output is: " + value.toString());
     		Double x = (Double)ParsingUtils.getField(jo, "pose.pose.position.x");
     		Double y = (Double)ParsingUtils.getField(jo, "pose.pose.position.y");
     		Double z = (Double)ParsingUtils.getField(jo, "pose.pose.position.z");
     		
     		if (isOutsideRegion(x,y,z) && isReadyToLogNow()) {
+    			System.out.println("VIOLATION: detected OuterRegion " + msg);
     			// Set initial value if not set
     			if (outerRegionViolations.value() == null) {
     				outerRegionViolations.update(0L);
