@@ -50,6 +50,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getSubscribingVars <em>Subscribing Vars</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getFromTemplate <em>From Template</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getContainingTest <em>Containing Test</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getSeed <em>Seed</em>}</li>
  * </ul>
  *
  * @generated
@@ -254,6 +255,26 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected FuzzingOperation fromTemplate;
+
+	/**
+	 * The default value of the '{@link #getSeed() <em>Seed</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSeed()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int SEED_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getSeed() <em>Seed</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSeed()
+	 * @generated
+	 * @ordered
+	 */
+	protected int seed = SEED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -620,6 +641,27 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getSeed() {
+		return seed;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSeed(int newSeed) {
+		int oldSeed = seed;
+		seed = newSeed;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__SEED, oldSeed, seed));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -702,6 +744,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return basicGetFromTemplate();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST:
 				return getContainingTest();
+			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
+				return getSeed();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -761,6 +805,9 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__FROM_TEMPLATE:
 				setFromTemplate((FuzzingOperation)newValue);
 				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
+				setSeed((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -815,6 +862,9 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__FROM_TEMPLATE:
 				setFromTemplate((FuzzingOperation)null);
 				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
+				setSeed(SEED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -857,6 +907,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return fromTemplate != null;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST:
 				return getContainingTest() != null;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
+				return seed != SEED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -883,6 +935,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 		result.append(allPublishingVars);
 		result.append(", allSubscribingVars: ");
 		result.append(allSubscribingVars);
+		result.append(", seed: ");
+		result.append(seed);
 		result.append(')');
 		return result.toString();
 	}

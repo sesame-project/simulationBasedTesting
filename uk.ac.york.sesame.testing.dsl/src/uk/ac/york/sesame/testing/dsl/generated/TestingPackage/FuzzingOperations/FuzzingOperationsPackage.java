@@ -203,13 +203,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int FUZZING_OPERATION__CONTAINING_TEST = 14;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION__SEED = 15;
+
+	/**
 	 * The number of structural features of the '<em>Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_FEATURE_COUNT = 15;
+	int FUZZING_OPERATION_FEATURE_COUNT = 16;
 
 	/**
 	 * The number of operations of the '<em>Fuzzing Operation</em>' class.
@@ -364,6 +373,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int OFFLINE_FUZZING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
+
+	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_FUZZING_OPERATION__SEED = FUZZING_OPERATION__SEED;
 
 	/**
 	 * The feature id for the '<em><b>Operation Time</b></em>' attribute.
@@ -538,13 +556,31 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int CUSTOM_FUZZING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__SEED = FUZZING_OPERATION__SEED;
+
+	/**
+	 * The feature id for the '<em><b>Params</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__PARAMS = FUZZING_OPERATION_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Custom Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CUSTOM_FUZZING_OPERATION_FEATURE_COUNT = FUZZING_OPERATION_FEATURE_COUNT + 0;
+	int CUSTOM_FUZZING_OPERATION_FEATURE_COUNT = FUZZING_OPERATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Custom Fuzzing Operation</em>' class.
@@ -699,6 +735,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_OFFLINE_FUZZING_OPERATION__CONTAINING_TEST = OFFLINE_FUZZING_OPERATION__CONTAINING_TEST;
+
+	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_FUZZING_OPERATION__SEED = OFFLINE_FUZZING_OPERATION__SEED;
 
 	/**
 	 * The feature id for the '<em><b>Operation Time</b></em>' attribute.
@@ -1002,6 +1047,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int FUZZ_TESTING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_OPERATION__SEED = FUZZING_OPERATION__SEED;
+
+	/**
 	 * The number of structural features of the '<em>Fuzz Testing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1165,6 +1219,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int COMPONENT_OPERATION__CONTAINING_TEST = FUZZ_TESTING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_OPERATION__SEED = FUZZ_TESTING_OPERATION__SEED;
+
+	/**
 	 * The number of structural features of the '<em>Component Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1326,6 +1389,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_PROPERTY_OPERATION__CONTAINING_TEST = FUZZ_TESTING_OPERATION__CONTAINING_TEST;
+
+	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_OPERATION__SEED = FUZZ_TESTING_OPERATION__SEED;
 
 	/**
 	 * The feature id for the '<em><b>Property To Affect</b></em>' reference.
@@ -1498,6 +1570,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_SUB_PROPERTY_OPERATION__CONTAINING_TEST = FUZZ_TESTING_OPERATION__CONTAINING_TEST;
+
+	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_OPERATION__SEED = FUZZ_TESTING_OPERATION__SEED;
 
 	/**
 	 * The feature id for the '<em><b>Property To Affect</b></em>' reference.
@@ -1681,6 +1762,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int VARIABLE_OPERATION__CONTAINING_TEST = FUZZ_TESTING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_OPERATION__SEED = FUZZ_TESTING_OPERATION__SEED;
+
+	/**
 	 * The feature id for the '<em><b>Sub Parameters</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1859,7 +1949,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_VALUE_FUZZING_OPERATION__SEED = COMPONENT_OPERATION_FEATURE_COUNT + 0;
+	int RANDOM_VALUE_FUZZING_OPERATION__SEED = COMPONENT_OPERATION__SEED;
 
 	/**
 	 * The number of structural features of the '<em>Random Value Fuzzing Operation</em>' class.
@@ -1868,7 +1958,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_VALUE_FUZZING_OPERATION_FEATURE_COUNT = COMPONENT_OPERATION_FEATURE_COUNT + 1;
+	int RANDOM_VALUE_FUZZING_OPERATION_FEATURE_COUNT = COMPONENT_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Random Value Fuzzing Operation</em>' class.
@@ -2071,13 +2161,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int VALUE_SET = 14;
 
 	/**
+	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SET__PROPERTY_NAME = 0;
+
+	/**
 	 * The number of structural features of the '<em>Value Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SET_FEATURE_COUNT = 0;
+	int VALUE_SET_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Value Set</em>' class.
@@ -2105,7 +2204,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_RANGE__PROPERTY_NAME = VALUE_SET_FEATURE_COUNT + 0;
+	int VALUE_RANGE__PROPERTY_NAME = VALUE_SET__PROPERTY_NAME;
 
 	/**
 	 * The number of structural features of the '<em>Value Range</em>' class.
@@ -2114,7 +2213,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_RANGE_FEATURE_COUNT = VALUE_SET_FEATURE_COUNT + 1;
+	int VALUE_RANGE_FEATURE_COUNT = VALUE_SET_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Value Range</em>' class.
@@ -2236,14 +2335,69 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int DOUBLE_RANGE_OPERATION_COUNT = VALUE_RANGE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringRangeImpl <em>String Range</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.PointImpl <em>Point</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringRangeImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getStringRange()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.PointImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getPoint()
 	 * @generated
 	 */
-	int STRING_RANGE = 18;
+	int POINT = 18;
+
+	/**
+	 * The feature id for the '<em><b>X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POINT__X = 0;
+
+	/**
+	 * The feature id for the '<em><b>Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POINT__Y = 1;
+
+	/**
+	 * The feature id for the '<em><b>Z</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POINT__Z = 2;
+
+	/**
+	 * The number of structural features of the '<em>Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POINT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.PointRangeImpl <em>Point Range</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.PointRangeImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getPointRange()
+	 * @generated
+	 */
+	int POINT_RANGE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
@@ -2252,25 +2406,71 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_RANGE__PROPERTY_NAME = VALUE_RANGE__PROPERTY_NAME;
+	int POINT_RANGE__PROPERTY_NAME = VALUE_RANGE__PROPERTY_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
+	 * The feature id for the '<em><b>Min Point</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_RANGE__LOWER_BOUND = VALUE_RANGE_FEATURE_COUNT + 0;
+	int POINT_RANGE__MIN_POINT = VALUE_RANGE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
+	 * The feature id for the '<em><b>Max Point</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_RANGE__UPPER_BOUND = VALUE_RANGE_FEATURE_COUNT + 1;
+	int POINT_RANGE__MAX_POINT = VALUE_RANGE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Point Range</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POINT_RANGE_FEATURE_COUNT = VALUE_RANGE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Point Range</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POINT_RANGE_OPERATION_COUNT = VALUE_RANGE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringRangeImpl <em>String Range</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringRangeImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getStringRange()
+	 * @generated
+	 */
+	int STRING_RANGE = 20;
+
+	/**
+	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_RANGE__PROPERTY_NAME = VALUE_SET__PROPERTY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Choices</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_RANGE__CHOICES = VALUE_SET_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>String Range</em>' class.
@@ -2279,7 +2479,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_RANGE_FEATURE_COUNT = VALUE_RANGE_FEATURE_COUNT + 2;
+	int STRING_RANGE_FEATURE_COUNT = VALUE_SET_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>String Range</em>' class.
@@ -2288,7 +2488,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_RANGE_OPERATION_COUNT = VALUE_RANGE_OPERATION_COUNT + 0;
+	int STRING_RANGE_OPERATION_COUNT = VALUE_SET_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ExternalResourceSetImpl <em>External Resource Set</em>}' class.
@@ -2298,7 +2498,16 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getExternalResourceSet()
 	 * @generated
 	 */
-	int EXTERNAL_RESOURCE_SET = 19;
+	int EXTERNAL_RESOURCE_SET = 21;
+
+	/**
+	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_RESOURCE_SET__PROPERTY_NAME = VALUE_SET__PROPERTY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -2335,7 +2544,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getResourceFuzzingOperation()
 	 * @generated
 	 */
-	int RESOURCE_FUZZING_OPERATION = 20;
+	int RESOURCE_FUZZING_OPERATION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2473,6 +2682,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int RESOURCE_FUZZING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_FUZZING_OPERATION__SEED = FUZZING_OPERATION__SEED;
+
+	/**
 	 * The number of structural features of the '<em>Resource Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2498,7 +2716,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getStateFuzzingOperation()
 	 * @generated
 	 */
-	int STATE_FUZZING_OPERATION = 21;
+	int STATE_FUZZING_OPERATION = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2636,6 +2854,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int STATE_FUZZING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_FUZZING_OPERATION__SEED = FUZZING_OPERATION__SEED;
+
+	/**
 	 * The number of structural features of the '<em>State Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2661,7 +2888,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getNetworkFuzzingOperation()
 	 * @generated
 	 */
-	int NETWORK_FUZZING_OPERATION = 22;
+	int NETWORK_FUZZING_OPERATION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2799,6 +3026,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int NETWORK_FUZZING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_FUZZING_OPERATION__SEED = FUZZING_OPERATION__SEED;
+
+	/**
 	 * The number of structural features of the '<em>Network Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2824,7 +3060,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getLoadResourceOperation()
 	 * @generated
 	 */
-	int LOAD_RESOURCE_OPERATION = 23;
+	int LOAD_RESOURCE_OPERATION = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2962,6 +3198,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int LOAD_RESOURCE_OPERATION__CONTAINING_TEST = RESOURCE_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOAD_RESOURCE_OPERATION__SEED = RESOURCE_FUZZING_OPERATION__SEED;
+
+	/**
 	 * The feature id for the '<em><b>Load Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2996,7 +3241,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getLoadType()
 	 * @generated
 	 */
-	int LOAD_TYPE = 24;
+	int LOAD_TYPE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -3042,7 +3287,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getCPULoadType()
 	 * @generated
 	 */
-	int CPU_LOAD_TYPE = 25;
+	int CPU_LOAD_TYPE = 27;
 
 	/**
 	 * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -3088,7 +3333,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getMemoryLoadType()
 	 * @generated
 	 */
-	int MEMORY_LOAD_TYPE = 26;
+	int MEMORY_LOAD_TYPE = 28;
 
 	/**
 	 * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -3134,7 +3379,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getIOLoadType()
 	 * @generated
 	 */
-	int IO_LOAD_TYPE = 27;
+	int IO_LOAD_TYPE = 29;
 
 	/**
 	 * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -3180,7 +3425,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getDiskLoadType()
 	 * @generated
 	 */
-	int DISK_LOAD_TYPE = 28;
+	int DISK_LOAD_TYPE = 30;
 
 	/**
 	 * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -3226,7 +3471,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getShutdownStateOperaton()
 	 * @generated
 	 */
-	int SHUTDOWN_STATE_OPERATON = 29;
+	int SHUTDOWN_STATE_OPERATON = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3364,6 +3609,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int SHUTDOWN_STATE_OPERATON__CONTAINING_TEST = STATE_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHUTDOWN_STATE_OPERATON__SEED = STATE_FUZZING_OPERATION__SEED;
+
+	/**
 	 * The number of structural features of the '<em>Shutdown State Operaton</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3389,7 +3643,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getTimeTravelStateOperaton()
 	 * @generated
 	 */
-	int TIME_TRAVEL_STATE_OPERATON = 30;
+	int TIME_TRAVEL_STATE_OPERATON = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3527,6 +3781,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int TIME_TRAVEL_STATE_OPERATON__CONTAINING_TEST = STATE_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_TRAVEL_STATE_OPERATON__SEED = STATE_FUZZING_OPERATION__SEED;
+
+	/**
 	 * The feature id for the '<em><b>Time Travel Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3561,7 +3824,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getProcessKillerStateOperaton()
 	 * @generated
 	 */
-	int PROCESS_KILLER_STATE_OPERATON = 31;
+	int PROCESS_KILLER_STATE_OPERATON = 33;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3699,6 +3962,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int PROCESS_KILLER_STATE_OPERATON__CONTAINING_TEST = STATE_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_KILLER_STATE_OPERATON__SEED = STATE_FUZZING_OPERATION__SEED;
+
+	/**
 	 * The feature id for the '<em><b>Process Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3733,7 +4005,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getBlackholeNetworkOperation()
 	 * @generated
 	 */
-	int BLACKHOLE_NETWORK_OPERATION = 32;
+	int BLACKHOLE_NETWORK_OPERATION = 34;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3871,6 +4143,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int BLACKHOLE_NETWORK_OPERATION__CONTAINING_TEST = NETWORK_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_OPERATION__SEED = NETWORK_FUZZING_OPERATION__SEED;
+
+	/**
 	 * The number of structural features of the '<em>Blackhole Network Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3896,7 +4177,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getLatencyNetworkOperation()
 	 * @generated
 	 */
-	int LATENCY_NETWORK_OPERATION = 33;
+	int LATENCY_NETWORK_OPERATION = 35;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4034,6 +4315,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int LATENCY_NETWORK_OPERATION__CONTAINING_TEST = NETWORK_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_OPERATION__SEED = NETWORK_FUZZING_OPERATION__SEED;
+
+	/**
 	 * The feature id for the '<em><b>Latency</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4068,7 +4358,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getPacketLossNetworkOperation()
 	 * @generated
 	 */
-	int PACKET_LOSS_NETWORK_OPERATION = 34;
+	int PACKET_LOSS_NETWORK_OPERATION = 36;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4206,6 +4496,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int PACKET_LOSS_NETWORK_OPERATION__CONTAINING_TEST = NETWORK_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_OPERATION__SEED = NETWORK_FUZZING_OPERATION__SEED;
+
+	/**
 	 * The feature id for the '<em><b>Frequency</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4240,7 +4539,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getMultipleMessagesNetworkOperation()
 	 * @generated
 	 */
-	int MULTIPLE_MESSAGES_NETWORK_OPERATION = 35;
+	int MULTIPLE_MESSAGES_NETWORK_OPERATION = 37;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4378,6 +4677,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int MULTIPLE_MESSAGES_NETWORK_OPERATION__CONTAINING_TEST = NETWORK_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_MESSAGES_NETWORK_OPERATION__SEED = NETWORK_FUZZING_OPERATION__SEED;
+
+	/**
 	 * The feature id for the '<em><b>How Many Clones</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4412,7 +4720,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getOfflineOperationTime()
 	 * @generated
 	 */
-	int OFFLINE_OPERATION_TIME = 36;
+	int OFFLINE_OPERATION_TIME = 38;
 
 
 	/**
@@ -4591,6 +4899,17 @@ public interface FuzzingOperationsPackage extends EPackage {
 	EReference getFuzzingOperation_ContainingTest();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getSeed <em>Seed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Seed</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getSeed()
+	 * @see #getFuzzingOperation()
+	 * @generated
+	 */
+	EAttribute getFuzzingOperation_Seed();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineFuzzingOperation <em>Offline Fuzzing Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4620,6 +4939,17 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getCustomFuzzingOperation();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation#getParams <em>Params</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Params</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation#getParams()
+	 * @see #getCustomFuzzingOperation()
+	 * @generated
+	 */
+	EReference getCustomFuzzingOperation_Params();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomOfflineFuzzingOperation <em>Custom Offline Fuzzing Operation</em>}'.
@@ -4821,17 +5151,6 @@ public interface FuzzingOperationsPackage extends EPackage {
 	EClass getRandomValueFuzzingOperation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFuzzingOperation#getSeed <em>Seed</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Seed</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFuzzingOperation#getSeed()
-	 * @see #getRandomValueFuzzingOperation()
-	 * @generated
-	 */
-	EAttribute getRandomValueFuzzingOperation_Seed();
-
-	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation <em>Random Value From Set Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4863,6 +5182,17 @@ public interface FuzzingOperationsPackage extends EPackage {
 	EClass getValueSet();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet#getPropertyName <em>Property Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Property Name</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet#getPropertyName()
+	 * @see #getValueSet()
+	 * @generated
+	 */
+	EAttribute getValueSet_PropertyName();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueRange <em>Value Range</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4871,17 +5201,6 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getValueRange();
-
-	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueRange#getPropertyName <em>Property Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Property Name</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueRange#getPropertyName()
-	 * @see #getValueRange()
-	 * @generated
-	 */
-	EAttribute getValueRange_PropertyName();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.IntRange <em>Int Range</em>}'.
@@ -4948,6 +5267,81 @@ public interface FuzzingOperationsPackage extends EPackage {
 	EAttribute getDoubleRange_UpperBound();
 
 	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point <em>Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Point</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point
+	 * @generated
+	 */
+	EClass getPoint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point#getX <em>X</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>X</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point#getX()
+	 * @see #getPoint()
+	 * @generated
+	 */
+	EAttribute getPoint_X();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point#getY <em>Y</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Y</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point#getY()
+	 * @see #getPoint()
+	 * @generated
+	 */
+	EAttribute getPoint_Y();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point#getZ <em>Z</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Z</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point#getZ()
+	 * @see #getPoint()
+	 * @generated
+	 */
+	EAttribute getPoint_Z();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PointRange <em>Point Range</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Point Range</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PointRange
+	 * @generated
+	 */
+	EClass getPointRange();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PointRange#getMinPoint <em>Min Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Min Point</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PointRange#getMinPoint()
+	 * @see #getPointRange()
+	 * @generated
+	 */
+	EReference getPointRange_MinPoint();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PointRange#getMaxPoint <em>Max Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Max Point</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PointRange#getMaxPoint()
+	 * @see #getPointRange()
+	 * @generated
+	 */
+	EReference getPointRange_MaxPoint();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange <em>String Range</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4958,26 +5352,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	EClass getStringRange();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange#getLowerBound <em>Lower Bound</em>}'.
+	 * Returns the meta object for the attribute list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange#getChoices <em>Choices</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Lower Bound</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange#getLowerBound()
+	 * @return the meta object for the attribute list '<em>Choices</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange#getChoices()
 	 * @see #getStringRange()
 	 * @generated
 	 */
-	EAttribute getStringRange_LowerBound();
-
-	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange#getUpperBound <em>Upper Bound</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Upper Bound</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange#getUpperBound()
-	 * @see #getStringRange()
-	 * @generated
-	 */
-	EAttribute getStringRange_UpperBound();
+	EAttribute getStringRange_Choices();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ExternalResourceSet <em>External Resource Set</em>}'.
@@ -5412,6 +5795,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		EReference FUZZING_OPERATION__CONTAINING_TEST = eINSTANCE.getFuzzingOperation_ContainingTest();
 
 		/**
+		 * The meta object literal for the '<em><b>Seed</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUZZING_OPERATION__SEED = eINSTANCE.getFuzzingOperation_Seed();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.OfflineFuzzingOperationImpl <em>Offline Fuzzing Operation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5438,6 +5829,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CUSTOM_FUZZING_OPERATION = eINSTANCE.getCustomFuzzingOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CUSTOM_FUZZING_OPERATION__PARAMS = eINSTANCE.getCustomFuzzingOperation_Params();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.CustomOfflineFuzzingOperationImpl <em>Custom Offline Fuzzing Operation</em>}' class.
@@ -5612,14 +6011,6 @@ public interface FuzzingOperationsPackage extends EPackage {
 		EClass RANDOM_VALUE_FUZZING_OPERATION = eINSTANCE.getRandomValueFuzzingOperation();
 
 		/**
-		 * The meta object literal for the '<em><b>Seed</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute RANDOM_VALUE_FUZZING_OPERATION__SEED = eINSTANCE.getRandomValueFuzzingOperation_Seed();
-
-		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.RandomValueFromSetOperationImpl <em>Random Value From Set Operation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5648,6 +6039,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		EClass VALUE_SET = eINSTANCE.getValueSet();
 
 		/**
+		 * The meta object literal for the '<em><b>Property Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALUE_SET__PROPERTY_NAME = eINSTANCE.getValueSet_PropertyName();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ValueRangeImpl <em>Value Range</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5656,14 +6055,6 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass VALUE_RANGE = eINSTANCE.getValueRange();
-
-		/**
-		 * The meta object literal for the '<em><b>Property Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VALUE_RANGE__PROPERTY_NAME = eINSTANCE.getValueRange_PropertyName();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.IntRangeImpl <em>Int Range</em>}' class.
@@ -5718,6 +6109,66 @@ public interface FuzzingOperationsPackage extends EPackage {
 		EAttribute DOUBLE_RANGE__UPPER_BOUND = eINSTANCE.getDoubleRange_UpperBound();
 
 		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.PointImpl <em>Point</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.PointImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getPoint()
+		 * @generated
+		 */
+		EClass POINT = eINSTANCE.getPoint();
+
+		/**
+		 * The meta object literal for the '<em><b>X</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute POINT__X = eINSTANCE.getPoint_X();
+
+		/**
+		 * The meta object literal for the '<em><b>Y</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute POINT__Y = eINSTANCE.getPoint_Y();
+
+		/**
+		 * The meta object literal for the '<em><b>Z</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute POINT__Z = eINSTANCE.getPoint_Z();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.PointRangeImpl <em>Point Range</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.PointRangeImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getPointRange()
+		 * @generated
+		 */
+		EClass POINT_RANGE = eINSTANCE.getPointRange();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Point</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference POINT_RANGE__MIN_POINT = eINSTANCE.getPointRange_MinPoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Point</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference POINT_RANGE__MAX_POINT = eINSTANCE.getPointRange_MaxPoint();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringRangeImpl <em>String Range</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5728,20 +6179,12 @@ public interface FuzzingOperationsPackage extends EPackage {
 		EClass STRING_RANGE = eINSTANCE.getStringRange();
 
 		/**
-		 * The meta object literal for the '<em><b>Lower Bound</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Choices</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STRING_RANGE__LOWER_BOUND = eINSTANCE.getStringRange_LowerBound();
-
-		/**
-		 * The meta object literal for the '<em><b>Upper Bound</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STRING_RANGE__UPPER_BOUND = eINSTANCE.getStringRange_UpperBound();
+		EAttribute STRING_RANGE__CHOICES = eINSTANCE.getStringRange_Choices();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ExternalResourceSetImpl <em>External Resource Set</em>}' class.

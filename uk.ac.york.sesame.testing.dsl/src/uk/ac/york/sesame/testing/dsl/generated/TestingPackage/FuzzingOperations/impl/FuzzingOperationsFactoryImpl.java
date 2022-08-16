@@ -73,6 +73,8 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 			case FuzzingOperationsPackage.VALUE_RANGE: return createValueRange();
 			case FuzzingOperationsPackage.INT_RANGE: return createIntRange();
 			case FuzzingOperationsPackage.DOUBLE_RANGE: return createDoubleRange();
+			case FuzzingOperationsPackage.POINT: return createPoint();
+			case FuzzingOperationsPackage.POINT_RANGE: return createPointRange();
 			case FuzzingOperationsPackage.STRING_RANGE: return createStringRange();
 			case FuzzingOperationsPackage.EXTERNAL_RESOURCE_SET: return createExternalResourceSet();
 			case FuzzingOperationsPackage.RESOURCE_FUZZING_OPERATION: return createResourceFuzzingOperation();
@@ -284,6 +286,26 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	public DoubleRange createDoubleRange() {
 		DoubleRangeImpl doubleRange = new DoubleRangeImpl();
 		return doubleRange;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Point createPoint() {
+		PointImpl point = new PointImpl();
+		return point;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PointRange createPointRange() {
+		PointRangeImpl pointRange = new PointRangeImpl();
+		return pointRange;
 	}
 
 	/**

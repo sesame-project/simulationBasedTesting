@@ -166,6 +166,24 @@ public interface FuzzingOperationsFactory extends EFactory {
 	DoubleRange createDoubleRange();
 
 	/**
+	 * Returns a new object of class '<em>Point</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Point</em>'.
+	 * @generated
+	 */
+	Point createPoint();
+
+	/**
+	 * Returns a new object of class '<em>Point Range</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Point Range</em>'.
+	 * @generated
+	 */
+	PointRange createPointRange();
+
+	/**
 	 * Returns a new object of class '<em>String Range</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

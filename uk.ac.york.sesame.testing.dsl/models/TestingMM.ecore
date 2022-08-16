@@ -100,6 +100,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="fromTemplate" eType="#//FuzzingOperations/FuzzingOperation"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="containingTest" eType="#//Test"
           changeable="false" transient="true" eOpposite="#//Test/operations"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="seed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OfflineFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationTime" eType="#//FuzzingOperations/OfflineOperationTime"/>
@@ -108,7 +109,10 @@
       <eLiterals name="PRE"/>
       <eLiterals name="POST" value="1"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CustomFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CustomFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
+          eType="#//FuzzingOperations/ValueSet" containment="true"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CustomOfflineFuzzingOperation" eSuperTypes="#//FuzzingOperations/OfflineFuzzingOperation"/>
     <eClassifiers xsi:type="ecore:EClass" name="Activation" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="FixedTimeActivation" eSuperTypes="#//FuzzingOperations/Activation">
@@ -136,17 +140,15 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="subParameters" upperBound="-1"
           eType="#//MRSPackage/Parameter"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="RandomValueFuzzingOperation" eSuperTypes="#//FuzzingOperations/ComponentOperation">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="seed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RandomValueFuzzingOperation" eSuperTypes="#//FuzzingOperations/ComponentOperation"/>
     <eClassifiers xsi:type="ecore:EClass" name="RandomValueFromSetOperation" eSuperTypes="#//FuzzingOperations/RandomValueFuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueSet" upperBound="-1"
           eType="#//FuzzingOperations/ValueSet" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ValueSet"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ValueRange" eSuperTypes="#//FuzzingOperations/ValueSet">
+    <eClassifiers xsi:type="ecore:EClass" name="ValueSet">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueRange" eSuperTypes="#//FuzzingOperations/ValueSet"/>
     <eClassifiers xsi:type="ecore:EClass" name="IntRange" eSuperTypes="#//FuzzingOperations/ValueRange">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -155,9 +157,20 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="StringRange" eSuperTypes="#//FuzzingOperations/ValueRange">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Point">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="z" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PointRange" eSuperTypes="#//FuzzingOperations/ValueRange">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="minPoint" lowerBound="1"
+          eType="#//FuzzingOperations/Point" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="maxPoint" lowerBound="1"
+          eType="#//FuzzingOperations/Point" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StringRange" eSuperTypes="#//FuzzingOperations/ValueSet">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="choices" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalResourceSet" eSuperTypes="#//FuzzingOperations/ValueSet">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

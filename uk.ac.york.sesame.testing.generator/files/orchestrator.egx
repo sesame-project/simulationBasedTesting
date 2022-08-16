@@ -28,6 +28,12 @@ rule fuzzRange2FlatMap transform fuzzOp: Testing!RandomValueFromSetOperation {
 	target : "src/"+ fuzzOp.name + "FlatMap_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 }
 
+rule customOp2FlatMap transform fuzzOp: Testing!CustomFuzzingOperation {
+	guard : fuzzOp.containingTest != null
+	template : "fuzzingoperations/customOp.egl"	
+	target : "src/"+ fuzzOp.name + "CustomOp_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
+}
+
 rule rangeClass transform testCampaign: Testing!TestCampaign {
 	guard : Testing!DoubleRange.all().notEmpty()
 	template : "datatypes/doubleRange.egl"

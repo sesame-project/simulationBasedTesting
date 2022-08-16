@@ -1,5 +1,8 @@
-[% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase(); 
-%]
+[* TODO: factor out commmon content for operations *]
+
+[% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase();
+   var fuzzOpClassName = fuzzOp.name;
+    %]
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
@@ -8,23 +11,29 @@ import datatypes.DoubleRange;
 import org.apache.flink.util.Collector;
 import org.json.simple.*;
 
+import fuzzingoperations.custom.*;
+
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
 import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
 
 // TODO: EGL generators need to generate based on fuzzOp activation
-public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassName() %] {
+
+public class [%=fuzzOp.name%]CustomOp_[%= classNameExt %] extends [%= superClassName() %] {
 
 	[% var varNames = new Set; %]
 
 	private static final long serialVersionUID = 1L;
+	private final CustomFuzzingOperation op;
 	Random rng;
+	[%= fuzzOpClassName %] fuzzOpInternal; 
 
 	[% if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { %]
-	public [%=fuzzOp.name%]FlatMap_[%= classNameExt %](String topic, double start, double end, long seed) {
+	public [%=fuzzOp.name%]CustomOp_[%= classNameExp %](String topic, double start, double end, long seed) {
 		super(topic,start,end);
 		this.rng = new Random(seed);
+		op = new [%= fuzzOpClassName %];
 	}
 	[% } %]
 	
@@ -33,7 +42,7 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 		var endCond = fuzzOp.activation.ending;
 	%]
 	
-	public [%=fuzzOp.name%]FlatMap_[%= classNameExt %](String topic, long seed) {
+	public [%=fuzzOp.name%]CustomOp_[%= classNameExp %](String topic, long seed) {
 		super(topic);
 		this.rng = new Random(seed);
 	}
@@ -91,36 +100,25 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 	}
 	[% } %]
 	
-	@Override
-	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception { 
-	[%
-		var parsingMethod = fuzzOp.variableToAffect.type.parsingMethod.name;
-		if (parsingMethod.equalsIgnoreCase("JSON")) { 
-	%]
-			if (value.getTopic().equals(topic) && isReadyNow()) {
-				Object obj = JSONValue.parse(value.getValue().toString());
-	      		JSONObject jo = (JSONObject)obj;
-	      	[% for (aParameter in fuzzOp.valueSet) { %]
-	      		jo = ParsingUtils.updateJSONObject(jo, "[%= aParameter.propertyName %]", new DoubleRange([%= aParameter.lowerBound %], [%=aParameter.upperBound %]).generateInRange(rng));
-	      	[% } %]
-	      		EventMessage valueOut = new EventMessage(value);
-	      		valueOut.setValue(jo.toString());
-				out.collect(valueOut);
-			} else {
-				out.collect(value);
-			}
-				
-	      	[%
-		} else if (parsingMethod.equalsIgnoreCase("CSV")) {
-			%]
-			raise Unimplemented("Parsing method CSV is not yet implemented");
-			[%
-		}
-		%]	
-	}	
+	public void open(Configuration parameters) throws Exception {
+		[%= fuzzOpClasName %] = new [%= fuzzOpClasName %]();
+	}
 	
-	[% %]
+	private void getParameters() {
+		Map<String,Object> map = new HashMap<String,Object>();
+		[* Need to set the parameters for the ValueSet *]		
+		return map;
+	}
 	
+	public void setParameters() {
+	
+	}
+	
+	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
+	[* customProcess is in the superclass *]
+		HashMap<Params> params = getParameters();
+		[%= fuzzOpClassName %].customProcess(params, value, ctx, out);
+	}
 }
 
 [% 

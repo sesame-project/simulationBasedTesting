@@ -117,6 +117,7 @@ abstract class FuzzingOperation {
 	ref MRSPackage.Variable[*] subscribingVars;
 	ref FuzzingOperation[0..1] fromTemplate;
 	readonly transient ref Test[0..1]#operations containingTest;
+	attr int seed;
 }
 
 class OfflineFuzzingOperation extends FuzzingOperation {
@@ -128,10 +129,9 @@ enum OfflineOperationTime {
 	POST;
 }
 
-// I envision this as an instance where just the infrastructure (Flink flatmap) will be created and 
-// added to the orchestrator and users will need to write their own code. Extensibility point...
 class CustomFuzzingOperation extends FuzzingOperation {
-	
+	// These parameters will be used for the fuzzing operation
+	val ValueSet[*] params;
 }
 
 class CustomOfflineFuzzingOperation extends OfflineFuzzingOperation {
@@ -174,7 +174,7 @@ class VariableOperation extends FuzzTestingOperation {
 }
 
 class RandomValueFuzzingOperation extends ComponentOperation {
-	attr int seed;
+
 }
 
 class RandomValueFromSetOperation extends RandomValueFuzzingOperation {
@@ -183,12 +183,11 @@ class RandomValueFromSetOperation extends RandomValueFuzzingOperation {
 
 // Value Sets
 class ValueSet {
-	
+	// This might be a ref to the MRSPackage.ComponentProperty?
+	attr String propertyName;	
 }
 
 class ValueRange extends ValueSet {
-	// This might be a ref to the MRSPackage.ComponentProperty
-	attr String propertyName;
 	
 }
 
@@ -202,9 +201,19 @@ class DoubleRange extends ValueRange {
 	attr double upperBound;
 }
 
-class StringRange extends ValueRange {
-	attr String lowerBound;
-	attr String upperBound;
+class Point {
+	attr double x;
+	attr double y;
+	attr double z;
+}
+
+class PointRange extends ValueRange {
+	val Point[1] minPoint;
+	val Point[1] maxPoint;
+}
+
+class StringRange extends ValueSet {
+	attr String[*] choices;
 }
 
 class ExternalResourceSet extends ValueSet {

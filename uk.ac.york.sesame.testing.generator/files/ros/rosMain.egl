@@ -181,7 +181,9 @@ public class [%= testNameString %]_TestRunner {
 		[* StreamMetrics *]
 		
 		[%  var parentCampaign = test.parentCampaign;
-			var allMetrics = parentCampaign.metrics.clone();
+			var campaignMetrics = parentCampaign.metrics.clone();
+			// allMetrics has to include all the metrics, both those  used in the fuzzing experiment and the condition metrics
+			var allMetrics = campaignMetrics.includingAll(parentCampaign.conditionMetrics).asSet();
 		    for (sMetric in allMetrics.selectByKind(StreamMetric)) { %] 
 			// Generate a message stream for all metrics
 			DataStream<MetricMessage> metricMsg[%= sMetric.name %] = [%= sMetric.name %]resStream.map(d -> new MetricMessage("[%=test.name.firstToUpperCase() %]", "[%= sMetric.name %]", d));
@@ -266,6 +268,8 @@ public class [%= testNameString %]_TestRunner {
 
 [%
 
+// TODO: this operation should be factored out into template for ROS/TTS interface etc
+
 operation streamJavaName(sMetric, stream) {
 		if (stream.isTypeOf(Testing!InputStream)) {
 			return "eventsAndControlIn";
@@ -276,7 +280,7 @@ operation streamJavaName(sMetric, stream) {
 		}
 }
 
-// TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap and RandomValueFromSetAttack are supported
+// TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap, RandomValueFromSetAttack and CustomFuzzingOperation are supported
 operation produceFOGenerationSignature(fo) {
 	var flatmap = "";
 	var aa = fo.activation;
@@ -292,6 +296,12 @@ operation produceFOGenerationSignature(fo) {
 		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
 			flatmap = "new " + fo.name;
 			flatmap = flatmap + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
+		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
+			var varName = null;
+			if (fo.variableToAffect != null) {
+			 	varName = fo.variableToAffect.name;
+			}
+			flatmap = "new " + fo.name + "(\"" + varName + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
 		}
 	}
 	
@@ -302,6 +312,12 @@ operation produceFOGenerationSignature(fo) {
 			flatmap = "new BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + ")";
 		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
 			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + ")";
+		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
+			var varName = null;
+			if (fo.variableToAffect != null) {
+			 	varName = fo.variableToAffect.name;
+			}			 
+			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + fo.seed + ")";
 		}
 	}
 	

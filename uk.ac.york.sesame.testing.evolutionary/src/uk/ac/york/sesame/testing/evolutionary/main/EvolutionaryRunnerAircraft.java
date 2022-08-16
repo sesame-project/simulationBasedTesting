@@ -18,7 +18,7 @@ public class EvolutionaryRunnerAircraft {
 		double participantProbMut = 0.333;
 		double paramProbMut = 0.333;
 				
-		int maxIterations = 1000;
+		int maxIterations = 30;
 		int populationSize = 10;
 		int offspringSize = 10;
 		//ExperimentType etype = ExperimentType.FIXED_TIME_FUZZING;
@@ -32,10 +32,10 @@ public class EvolutionaryRunnerAircraft {
 
 		String campaignToRun = "firstExperiment";
 		
-		String grammarFile = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.evolutionary/grammar/sesame-standard-grammar.bnf";
+		String grammarFile = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.evolutionary/grammar/sesame-standard-grammar-aircraft.bnf";
 
-		final boolean conditionBased = false;
-		final int maxConditionDepth = 0;
+		final boolean conditionBased = true;
+		final int maxConditionDepth = 4;
 		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, maxConditionDepth, grammarFile);
 		jmetalExpt.runExperiment();
 	}

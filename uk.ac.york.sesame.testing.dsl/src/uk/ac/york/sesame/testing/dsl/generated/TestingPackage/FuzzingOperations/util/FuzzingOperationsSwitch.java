@@ -201,10 +201,23 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case FuzzingOperationsPackage.POINT: {
+				Point point = (Point)theEObject;
+				T result = casePoint(point);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FuzzingOperationsPackage.POINT_RANGE: {
+				PointRange pointRange = (PointRange)theEObject;
+				T result = casePointRange(pointRange);
+				if (result == null) result = caseValueRange(pointRange);
+				if (result == null) result = caseValueSet(pointRange);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case FuzzingOperationsPackage.STRING_RANGE: {
 				StringRange stringRange = (StringRange)theEObject;
 				T result = caseStringRange(stringRange);
-				if (result == null) result = caseValueRange(stringRange);
 				if (result == null) result = caseValueSet(stringRange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -606,6 +619,36 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDoubleRange(DoubleRange object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Point</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Point</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePoint(Point object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Point Range</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Point Range</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePointRange(PointRange object) {
 		return null;
 	}
 

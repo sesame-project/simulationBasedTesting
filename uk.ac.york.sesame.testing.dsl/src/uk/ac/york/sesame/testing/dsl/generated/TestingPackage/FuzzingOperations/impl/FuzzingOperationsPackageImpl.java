@@ -38,6 +38,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineOperationTime;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PacketLossNetworkOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PointRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ProcessKillerStateOperaton;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFuzzingOperation;
@@ -202,6 +204,20 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	private EClass doubleRangeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pointEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pointRangeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -568,6 +584,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFuzzingOperation_Seed() {
+		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOfflineFuzzingOperation() {
 		return offlineFuzzingOperationEClass;
 	}
@@ -588,6 +613,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 */
 	public EClass getCustomFuzzingOperation() {
 		return customFuzzingOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCustomFuzzingOperation_Params() {
+		return (EReference)customFuzzingOperationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -766,15 +800,6 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRandomValueFuzzingOperation_Seed() {
-		return (EAttribute)randomValueFuzzingOperationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getRandomValueFromSetOperation() {
 		return randomValueFromSetOperationEClass;
 	}
@@ -802,8 +827,8 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getValueRange() {
-		return valueRangeEClass;
+	public EAttribute getValueSet_PropertyName() {
+		return (EAttribute)valueSetEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -811,8 +836,8 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getValueRange_PropertyName() {
-		return (EAttribute)valueRangeEClass.getEStructuralFeatures().get(0);
+	public EClass getValueRange() {
+		return valueRangeEClass;
 	}
 
 	/**
@@ -874,6 +899,69 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPoint() {
+		return pointEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPoint_X() {
+		return (EAttribute)pointEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPoint_Y() {
+		return (EAttribute)pointEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPoint_Z() {
+		return (EAttribute)pointEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPointRange() {
+		return pointRangeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPointRange_MinPoint() {
+		return (EReference)pointRangeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPointRange_MaxPoint() {
+		return (EReference)pointRangeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStringRange() {
 		return stringRangeEClass;
 	}
@@ -883,17 +971,8 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStringRange_LowerBound() {
+	public EAttribute getStringRange_Choices() {
 		return (EAttribute)stringRangeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getStringRange_UpperBound() {
-		return (EAttribute)stringRangeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1183,11 +1262,13 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__SUBSCRIBING_VARS);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__FROM_TEMPLATE);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__CONTAINING_TEST);
+		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__SEED);
 
 		offlineFuzzingOperationEClass = createEClass(OFFLINE_FUZZING_OPERATION);
 		createEAttribute(offlineFuzzingOperationEClass, OFFLINE_FUZZING_OPERATION__OPERATION_TIME);
 
 		customFuzzingOperationEClass = createEClass(CUSTOM_FUZZING_OPERATION);
+		createEReference(customFuzzingOperationEClass, CUSTOM_FUZZING_OPERATION__PARAMS);
 
 		customOfflineFuzzingOperationEClass = createEClass(CUSTOM_OFFLINE_FUZZING_OPERATION);
 
@@ -1217,15 +1298,14 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEReference(variableOperationEClass, VARIABLE_OPERATION__SUB_PARAMETERS);
 
 		randomValueFuzzingOperationEClass = createEClass(RANDOM_VALUE_FUZZING_OPERATION);
-		createEAttribute(randomValueFuzzingOperationEClass, RANDOM_VALUE_FUZZING_OPERATION__SEED);
 
 		randomValueFromSetOperationEClass = createEClass(RANDOM_VALUE_FROM_SET_OPERATION);
 		createEReference(randomValueFromSetOperationEClass, RANDOM_VALUE_FROM_SET_OPERATION__VALUE_SET);
 
 		valueSetEClass = createEClass(VALUE_SET);
+		createEAttribute(valueSetEClass, VALUE_SET__PROPERTY_NAME);
 
 		valueRangeEClass = createEClass(VALUE_RANGE);
-		createEAttribute(valueRangeEClass, VALUE_RANGE__PROPERTY_NAME);
 
 		intRangeEClass = createEClass(INT_RANGE);
 		createEAttribute(intRangeEClass, INT_RANGE__LOWER_BOUND);
@@ -1235,9 +1315,17 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEAttribute(doubleRangeEClass, DOUBLE_RANGE__LOWER_BOUND);
 		createEAttribute(doubleRangeEClass, DOUBLE_RANGE__UPPER_BOUND);
 
+		pointEClass = createEClass(POINT);
+		createEAttribute(pointEClass, POINT__X);
+		createEAttribute(pointEClass, POINT__Y);
+		createEAttribute(pointEClass, POINT__Z);
+
+		pointRangeEClass = createEClass(POINT_RANGE);
+		createEReference(pointRangeEClass, POINT_RANGE__MIN_POINT);
+		createEReference(pointRangeEClass, POINT_RANGE__MAX_POINT);
+
 		stringRangeEClass = createEClass(STRING_RANGE);
-		createEAttribute(stringRangeEClass, STRING_RANGE__LOWER_BOUND);
-		createEAttribute(stringRangeEClass, STRING_RANGE__UPPER_BOUND);
+		createEAttribute(stringRangeEClass, STRING_RANGE__CHOICES);
 
 		externalResourceSetEClass = createEClass(EXTERNAL_RESOURCE_SET);
 		createEAttribute(externalResourceSetEClass, EXTERNAL_RESOURCE_SET__LOCATION);
@@ -1334,7 +1422,8 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		valueRangeEClass.getESuperTypes().add(this.getValueSet());
 		intRangeEClass.getESuperTypes().add(this.getValueRange());
 		doubleRangeEClass.getESuperTypes().add(this.getValueRange());
-		stringRangeEClass.getESuperTypes().add(this.getValueRange());
+		pointRangeEClass.getESuperTypes().add(this.getValueRange());
+		stringRangeEClass.getESuperTypes().add(this.getValueSet());
 		externalResourceSetEClass.getESuperTypes().add(this.getValueSet());
 		resourceFuzzingOperationEClass.getESuperTypes().add(this.getFuzzingOperation());
 		stateFuzzingOperationEClass.getESuperTypes().add(this.getFuzzingOperation());
@@ -1369,11 +1458,13 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEReference(getFuzzingOperation_SubscribingVars(), theMRSPackagePackage.getVariable(), null, "subscribingVars", null, 0, -1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_FromTemplate(), this.getFuzzingOperation(), null, "fromTemplate", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_ContainingTest(), theTestingPackagePackage.getTest(), theTestingPackagePackage.getTest_Operations(), "containingTest", null, 0, 1, FuzzingOperation.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFuzzingOperation_Seed(), ecorePackage.getEInt(), "seed", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(offlineFuzzingOperationEClass, OfflineFuzzingOperation.class, "OfflineFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOfflineFuzzingOperation_OperationTime(), this.getOfflineOperationTime(), "operationTime", null, 0, 1, OfflineFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(customFuzzingOperationEClass, CustomFuzzingOperation.class, "CustomFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCustomFuzzingOperation_Params(), this.getValueSet(), null, "params", null, 0, -1, CustomFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(customOfflineFuzzingOperationEClass, CustomOfflineFuzzingOperation.class, "CustomOfflineFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1403,15 +1494,14 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEReference(getVariableOperation_SubParameters(), theMRSPackagePackage.getParameter(), null, "subParameters", null, 0, -1, VariableOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(randomValueFuzzingOperationEClass, RandomValueFuzzingOperation.class, "RandomValueFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRandomValueFuzzingOperation_Seed(), ecorePackage.getEInt(), "seed", null, 0, 1, RandomValueFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(randomValueFromSetOperationEClass, RandomValueFromSetOperation.class, "RandomValueFromSetOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRandomValueFromSetOperation_ValueSet(), this.getValueSet(), null, "valueSet", null, 0, -1, RandomValueFromSetOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valueSetEClass, ValueSet.class, "ValueSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getValueSet_PropertyName(), ecorePackage.getEString(), "propertyName", null, 0, 1, ValueSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valueRangeEClass, ValueRange.class, "ValueRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getValueRange_PropertyName(), ecorePackage.getEString(), "propertyName", null, 0, 1, ValueRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(intRangeEClass, IntRange.class, "IntRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIntRange_LowerBound(), ecorePackage.getEInt(), "lowerBound", null, 0, 1, IntRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1421,9 +1511,17 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEAttribute(getDoubleRange_LowerBound(), ecorePackage.getEDouble(), "lowerBound", null, 0, 1, DoubleRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDoubleRange_UpperBound(), ecorePackage.getEDouble(), "upperBound", null, 0, 1, DoubleRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(pointEClass, Point.class, "Point", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPoint_X(), ecorePackage.getEDouble(), "x", null, 0, 1, Point.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPoint_Y(), ecorePackage.getEDouble(), "y", null, 0, 1, Point.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPoint_Z(), ecorePackage.getEDouble(), "z", null, 0, 1, Point.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pointRangeEClass, PointRange.class, "PointRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPointRange_MinPoint(), this.getPoint(), null, "minPoint", null, 1, 1, PointRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPointRange_MaxPoint(), this.getPoint(), null, "maxPoint", null, 1, 1, PointRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(stringRangeEClass, StringRange.class, "StringRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStringRange_LowerBound(), ecorePackage.getEString(), "lowerBound", null, 0, 1, StringRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getStringRange_UpperBound(), ecorePackage.getEString(), "upperBound", null, 0, 1, StringRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStringRange_Choices(), ecorePackage.getEString(), "choices", null, 0, -1, StringRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(externalResourceSetEClass, ExternalResourceSet.class, "ExternalResourceSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExternalResourceSet_Location(), ecorePackage.getEString(), "location", null, 0, 1, ExternalResourceSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

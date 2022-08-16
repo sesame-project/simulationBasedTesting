@@ -213,7 +213,7 @@ public class ROSSimulator implements ISimulator {
 		topic.subscribe(new TopicCallback() {
 			@Override
 			public void handleMessage(Message message) {
-				System.out.println("Time message = " + message.toString());
+				//System.out.println("Time message = " + message.toString());
 				String timeMsg = message.toString();
 				String secondsStr = timeMsg.split("secs\":")[1].split(",")[0];
 				Double time = Double.parseDouble(secondsStr);
@@ -221,7 +221,7 @@ public class ROSSimulator implements ISimulator {
 					String nsecondsStr = timeMsg.split("nsecs\":")[1].split("}")[0];
 					time = time + (Double.parseDouble(nsecondsStr) / 1e9);
 				}
-				System.out.println("time = " + time);
+				//System.out.println("time = " + time);
 				SimCore.getInstance().setTime(time);
 			}
 		});
