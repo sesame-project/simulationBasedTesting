@@ -26,5 +26,9 @@ public abstract class FuzzingOperation extends CoProcessFunction<EventMessage, M
 	abstract public boolean isReadyNow();
 
 	public abstract void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception;
-	public abstract void processElement2(MetricMessage value, Context ctx, Collector<EventMessage> out) throws Exception; 
+	public abstract void processElement2(MetricMessage value, Context ctx, Collector<EventMessage> out) throws Exception;
+	
+	public void preprocessing() {
+		System.out.println("FuzzingOperation: empty preprocessing phase");
+	}
 }

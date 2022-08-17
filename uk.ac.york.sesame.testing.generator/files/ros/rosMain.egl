@@ -21,7 +21,7 @@ import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringEncoder;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.common.typeinfo.Types;
-import org.apache.flink.connector.file.sink.FileSink; 
+import org.apache.flink.connector.file.sink.FileSink;
 
 import org.apache.flink.configuration.Configuration;
 
@@ -57,6 +57,17 @@ public class [%= testNameString %]_TestRunner {
 		int defaultLocalParallelism = 1;
 		cfg.setString("taskmanager.network.numberOfBuffers", "4096");
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(defaultLocalParallelism, cfg);
+		
+		[%
+		// Build up map of all fuzzOps by name
+		// Generate all the objects and add them to a Java list to preprocess 
+		var allFuzzOps = new Map;
+		var fuzzOpCount = 0;
+		for (fuzzOp in test.operations) {
+			var fuzzOpName = "fuzzOp" + fuzzOpCount;
+			fuzzOpCount++;
+			allFuzzOps.put(fuzzOpName, fuzzOp); %]
+		[% } %]
 		
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
@@ -96,6 +107,16 @@ public class [%= testNameString %]_TestRunner {
 		// JRH: moved the simulation launcher outside of the thread to the main code
 		HashMap<String, String> params = new HashMap<String,String>();
 		params.put("launchPath", "[%=launchFileLocation%]");
+		
+		// Preprocessing before simulation starts
+		System.out.println("Preprocessing Phase");
+		
+		[% for (fOName in allFuzzOps.keySet()) {
+		var fuzzOp = allFuzzOps.get(fOName); %]
+		FuzzingOperation [%= fOName %] = [%= produceFOGenerationSignature(fuzzOp) %]; 
+		[%= fOName %].preprocessing();
+		[% } %]
+				
 		System.out.println("Simulator Starts");
 		rosSim.run(params);
 		// TODO: this delay needs to be configurable
@@ -223,23 +244,21 @@ public class [%= testNameString %]_TestRunner {
 		[% } %];
 		
 		allMetrics.addSink(metricsProducer);
-		
 		ConnectedStreams<EventMessage,MetricMessage> streamFO0 = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
 		
 		[% var foStreamCount = 0;
-		   var foLen = test.operations.size();
-		   for (fo in test.operations) {
-		   	  var inputStream = "streamFO" + foStreamCount;
+		   var foLen = allFuzzOps.size();
+		   for (fuzzOpName in allFuzzOps.keySet()) {
+		      var inputStream = "streamFO" + foStreamCount;
 		      var outputStream = "streamFO" + (foStreamCount + 1);
-		      foStreamCount++; 
+		      foStreamCount++;
 		      if (foStreamCount < foLen) { %]
 		      	[* For the first stream, we require to produce an output with an EventStream only *]
 			   	ConnectedStreams<EventMessage,MetricMessage> [%= outputStream %] = [%= inputStream %].
-					process([%= produceFOGenerationSignature(fo) %]).connect(allMetrics).keyBy(e -> TESTNAME, m -> TESTNAME);
+					process([%= fuzzOpName %]).connect(allMetrics).keyBy(e -> TESTNAME, m -> TESTNAME);
  			[% } else { %]
 				[* For the final stream, we require to produce an output with an EventStream only *]
-		   		DataStream<EventMessage> [%= outputStream %] = [%= inputStream %].
-				process([%= produceFOGenerationSignature(fo)%]);
+		   		DataStream<EventMessage> [%= outputStream %] = [%= inputStream %].process([%= fuzzOpName %]);
 				[% }
 		   } %]
 				
