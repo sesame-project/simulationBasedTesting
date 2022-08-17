@@ -18,6 +18,8 @@ This uses the "development-release-aug2022" branch:
 
 [Installation video](https://drive.google.com/file/d/1O_F2LPpgkkYIkHfmnHXhXkFeUero5v6l/view?usp=sharing)
 
-Please use the video instructions rather than the previous install instructions,
-since several steps e.g. setting paths, have been altered
+Please use the video instructions rather than the previous install
+instructions, since several steps e.g. setting paths, have been
+altered.
+
 The previous installation instructions are presented [here](./INSTALL-old.md)
