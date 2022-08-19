@@ -4,6 +4,7 @@
 	var simulator = mrs.simulator;
 	var topicsNodesPublish = Node.all().publisher.flatten();
 	var topicsMetricsNeed = Metric.all().relatedVariables.flatten();
+	var allTopics = topicsNodesPublish.includingAll(topicsMetricsNeed).asSet();
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
@@ -98,17 +99,7 @@ public class [%= testNameString %]_TestRunner {
 		rosSim.run(params);
 		rosSim.connect(cp);
 		
-		[% for (aTopic in topicsNodesPublish) { %]
-		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
-			public void run() {
-				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
-				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
-			}
-		};
-		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
-		[% } %]
-		
-		[% for (aTopic in topicsMetricsNeed) { %]
+		[% for (aTopic in allTopics) { %]
 		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
 			public void run() {
 				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");

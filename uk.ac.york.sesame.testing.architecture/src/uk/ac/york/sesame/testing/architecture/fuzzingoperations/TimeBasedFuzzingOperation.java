@@ -9,9 +9,9 @@ import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 
 public abstract class TimeBasedFuzzingOperation extends FuzzingOperation {
+	
 	private static final long serialVersionUID = 1L;
 	
-	protected String topic;
 	protected double start;
 	protected double end;
 

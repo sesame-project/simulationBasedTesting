@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="FuzzingOperations" xmlns:_2="MRSPackage" xmi:id="_4fur8B_MEe21C7qa_wiDIg">
+  <metrics xsi:type="StreamMetric" xmi:id="_-tKekB_MEe21C7qa_wiDIg" name="DistanceToPoint" relatedVariables="_W6nroB_OEe21C7qa_wiDIg">
+    <streams xsi:type="InputStream" xmi:id="_s8lcEB_QEe21C7qa_wiDIg"/>
+    <res xsi:type="FileStreamResult" xmi:id="_tti-8B_QEe21C7qa_wiDIg" filename="/tmp/metric-results/distanceToPoint"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_C4gdoB_NEe21C7qa_wiDIg" name="randomiseVelocity" variableToAffect="_U465oB_OEe21C7qa_wiDIg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_K0gD0B_NEe21C7qa_wiDIg" endTime="100.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_20Hy0B_ZEe21C7qa_wiDIg" propertyName="geometry_msgs/Twist.linear.x" lowerBound="-3.0" upperBound="3.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_BY1uwB_aEe21C7qa_wiDIg" propertyName="geometry_msgs/Twist.linear.y" lowerBound="-3.0" upperBound="3.0"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_Ppfc0B_NEe21C7qa_wiDIg" name="velPacketLoss" variableToAffect="_U465oB_OEe21C7qa_wiDIg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_SZm0AB_NEe21C7qa_wiDIg" endTime="100.0"/>
+    <frequency xmi:id="_VDXEgB_NEe21C7qa_wiDIg" upperBound="0.5"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_aRTwEB_NEe21C7qa_wiDIg" name="firstExperiment" metrics="_-tKekB_MEe21C7qa_wiDIg" includedOperations="_C4gdoB_NEe21C7qa_wiDIg">
+    <activationGeneration xsi:type="TestingMM:TimeBasedActivationGenerationMethod" xmi:id="_wR4SAB_SEe21C7qa_wiDIg"/>
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_NW2vAB_REe21C7qa_wiDIg" populationSize="10" iterations="30"/>
+    <performedTests name="Test_001_19_08_2022_19_53_24">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="randomiseVelocity" variableToAffect="_U465oB_OEe21C7qa_wiDIg" fromTemplate="_C4gdoB_NEe21C7qa_wiDIg">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="56.519949448251914" endTime="98.01043945915768"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/Twist.linear.x" lowerBound="2.171431381822517" upperBound="2.941264628281109"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="geometry_msgs/Twist.linear.y" lowerBound="0.6498775837395003" upperBound="1.9924847455682608"/>
+      </operations>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_E96cMB_TEe21C7qa_wiDIg" timeLimitSeconds="150"/>
+  </campaigns>
+  <mrs xmi:id="_g3eLwB_NEe21C7qa_wiDIg" launchFileLocation="/home/sesametest/sesame/simulationBasedTesting/temp-launch-scripts/launch-scripts/auto_launch_turtlesim.sh">
+    <variables xmi:id="_U465oB_OEe21C7qa_wiDIg" name="/turtle1/cmd_vel" type="_aBxp0B_OEe21C7qa_wiDIg"/>
+    <variables xmi:id="_W6nroB_OEe21C7qa_wiDIg" name="/turtle1/pose" type="_EnZWcB_PEe21C7qa_wiDIg"/>
+    <nodes xmi:id="_jUShkB_PEe21C7qa_wiDIg" name="Turtle1" subscriber="_U465oB_OEe21C7qa_wiDIg" publisher="_W6nroB_OEe21C7qa_wiDIg"/>
+    <nodes xmi:id="_ubk_EB_PEe21C7qa_wiDIg" name="teleop_key" publisher="_U465oB_OEe21C7qa_wiDIg"/>
+    <simulator xsi:type="_2:ROSSimulator" xmi:id="_QimZoB_OEe21C7qa_wiDIg" hostname="0.0.0.0" port="9090"/>
+    <propertyType xmi:id="_aBxp0B_OEe21C7qa_wiDIg" name="geometry_msgs/Twist">
+      <parameters xmi:id="_iAUNsB_OEe21C7qa_wiDIg" name="linear" type="_QertgB_PEe21C7qa_wiDIg">
+        <subparameters xmi:id="_jKjMMB_OEe21C7qa_wiDIg" name="X" type="_tJgvsB_OEe21C7qa_wiDIg"/>
+        <subparameters xmi:id="_lv2agB_OEe21C7qa_wiDIg" name="Y" type="_tJgvsB_OEe21C7qa_wiDIg"/>
+        <subparameters xmi:id="_mqp14B_OEe21C7qa_wiDIg" name="Z" type="_tJgvsB_OEe21C7qa_wiDIg"/>
+      </parameters>
+      <parameters xmi:id="_yrfKgB_OEe21C7qa_wiDIg" name="angular" type="_QertgB_PEe21C7qa_wiDIg">
+        <subparameters xmi:id="_zriSQB_OEe21C7qa_wiDIg" name="X" type="_tJgvsB_OEe21C7qa_wiDIg"/>
+        <subparameters xmi:id="_1Ac2wB_OEe21C7qa_wiDIg" name="Y" type="_tJgvsB_OEe21C7qa_wiDIg"/>
+        <subparameters xmi:id="_1jPawB_OEe21C7qa_wiDIg" name="Z" type="_tJgvsB_OEe21C7qa_wiDIg"/>
+      </parameters>
+    </propertyType>
+    <propertyType xmi:id="_tJgvsB_OEe21C7qa_wiDIg" name="float64"/>
+    <propertyType xmi:id="_EnZWcB_PEe21C7qa_wiDIg" name="turtlesim/Pose">
+      <parameters xmi:id="_HGBVAB_PEe21C7qa_wiDIg" name="X" type="_JIrwUB_PEe21C7qa_wiDIg"/>
+      <parameters xmi:id="_LuYnQB_PEe21C7qa_wiDIg" name="Y" type="_JIrwUB_PEe21C7qa_wiDIg"/>
+      <parameters xmi:id="_WsNmwB_PEe21C7qa_wiDIg" name="theta" type="_JIrwUB_PEe21C7qa_wiDIg"/>
+      <parameters xmi:id="_YPn6QB_PEe21C7qa_wiDIg" name="linear_velocity" type="_JIrwUB_PEe21C7qa_wiDIg"/>
+      <parameters xmi:id="_ZZP0wB_PEe21C7qa_wiDIg" name="angular_velocity" type="_JIrwUB_PEe21C7qa_wiDIg"/>
+    </propertyType>
+    <propertyType xmi:id="_JIrwUB_PEe21C7qa_wiDIg" name="float32"/>
+    <propertyType xmi:id="_QertgB_PEe21C7qa_wiDIg" name="Vector3"/>
+  </mrs>
+</TestingMM:TestingSpace>
