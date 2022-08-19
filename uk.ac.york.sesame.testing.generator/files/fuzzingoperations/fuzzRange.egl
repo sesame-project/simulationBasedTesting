@@ -100,6 +100,7 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 			if (value.getTopic().equals(topic) && isReadyNow()) {
 				Object obj = JSONValue.parse(value.getValue().toString());
 	      		JSONObject jo = (JSONObject)obj;
+	      		[* TODO: other ValueSets here *]
 	      	[% for (aParameter in fuzzOp.valueSet) { %]
 	      		jo = ParsingUtils.updateJSONObject(jo, "[%= aParameter.propertyName %]", new DoubleRange([%= aParameter.lowerBound %], [%=aParameter.upperBound %]).generateInRange(rng));
 	      	[% } %]

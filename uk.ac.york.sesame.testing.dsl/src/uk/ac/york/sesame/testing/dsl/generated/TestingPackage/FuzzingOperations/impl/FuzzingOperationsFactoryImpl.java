@@ -70,12 +70,11 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 			case FuzzingOperationsPackage.RANDOM_VALUE_FUZZING_OPERATION: return createRandomValueFuzzingOperation();
 			case FuzzingOperationsPackage.RANDOM_VALUE_FROM_SET_OPERATION: return createRandomValueFromSetOperation();
 			case FuzzingOperationsPackage.VALUE_SET: return createValueSet();
-			case FuzzingOperationsPackage.VALUE_RANGE: return createValueRange();
 			case FuzzingOperationsPackage.INT_RANGE: return createIntRange();
 			case FuzzingOperationsPackage.DOUBLE_RANGE: return createDoubleRange();
 			case FuzzingOperationsPackage.POINT: return createPoint();
 			case FuzzingOperationsPackage.POINT_RANGE: return createPointRange();
-			case FuzzingOperationsPackage.STRING_RANGE: return createStringRange();
+			case FuzzingOperationsPackage.STRING_SET: return createStringSet();
 			case FuzzingOperationsPackage.EXTERNAL_RESOURCE_SET: return createExternalResourceSet();
 			case FuzzingOperationsPackage.RESOURCE_FUZZING_OPERATION: return createResourceFuzzingOperation();
 			case FuzzingOperationsPackage.STATE_FUZZING_OPERATION: return createStateFuzzingOperation();
@@ -263,16 +262,6 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueRange createValueRange() {
-		ValueRangeImpl valueRange = new ValueRangeImpl();
-		return valueRange;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IntRange createIntRange() {
 		IntRangeImpl intRange = new IntRangeImpl();
 		return intRange;
@@ -313,9 +302,9 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StringRange createStringRange() {
-		StringRangeImpl stringRange = new StringRangeImpl();
-		return stringRange;
+	public StringSet createStringSet() {
+		StringSetImpl stringSet = new StringSetImpl();
+		return stringSet;
 	}
 
 	/**

@@ -139,15 +139,6 @@ public interface FuzzingOperationsFactory extends EFactory {
 	ValueSet createValueSet();
 
 	/**
-	 * Returns a new object of class '<em>Value Range</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value Range</em>'.
-	 * @generated
-	 */
-	ValueRange createValueRange();
-
-	/**
 	 * Returns a new object of class '<em>Int Range</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -184,13 +175,13 @@ public interface FuzzingOperationsFactory extends EFactory {
 	PointRange createPointRange();
 
 	/**
-	 * Returns a new object of class '<em>String Range</em>'.
+	 * Returns a new object of class '<em>String Set</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>String Range</em>'.
+	 * @return a new object of class '<em>String Set</em>'.
 	 * @generated
 	 */
-	StringRange createStringRange();
+	StringSet createStringSet();
 
 	/**
 	 * Returns a new object of class '<em>External Resource Set</em>'.

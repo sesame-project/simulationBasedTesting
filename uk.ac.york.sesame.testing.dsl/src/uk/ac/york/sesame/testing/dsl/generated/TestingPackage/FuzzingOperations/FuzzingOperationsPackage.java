@@ -2445,14 +2445,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int POINT_RANGE_OPERATION_COUNT = VALUE_RANGE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringRangeImpl <em>String Range</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringSetImpl <em>String Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringRangeImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getStringRange()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringSetImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getStringSet()
 	 * @generated
 	 */
-	int STRING_RANGE = 20;
+	int STRING_SET = 20;
 
 	/**
 	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
@@ -2461,7 +2461,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_RANGE__PROPERTY_NAME = VALUE_SET__PROPERTY_NAME;
+	int STRING_SET__PROPERTY_NAME = VALUE_SET__PROPERTY_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Choices</b></em>' attribute list.
@@ -2470,25 +2470,25 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_RANGE__CHOICES = VALUE_SET_FEATURE_COUNT + 0;
+	int STRING_SET__CHOICES = VALUE_SET_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>String Range</em>' class.
+	 * The number of structural features of the '<em>String Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_RANGE_FEATURE_COUNT = VALUE_SET_FEATURE_COUNT + 1;
+	int STRING_SET_FEATURE_COUNT = VALUE_SET_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>String Range</em>' class.
+	 * The number of operations of the '<em>String Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_RANGE_OPERATION_COUNT = VALUE_SET_OPERATION_COUNT + 0;
+	int STRING_SET_OPERATION_COUNT = VALUE_SET_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ExternalResourceSetImpl <em>External Resource Set</em>}' class.
@@ -5342,25 +5342,25 @@ public interface FuzzingOperationsPackage extends EPackage {
 	EReference getPointRange_MaxPoint();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange <em>String Range</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringSet <em>String Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>String Range</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange
+	 * @return the meta object for class '<em>String Set</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringSet
 	 * @generated
 	 */
-	EClass getStringRange();
+	EClass getStringSet();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange#getChoices <em>Choices</em>}'.
+	 * Returns the meta object for the attribute list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringSet#getChoices <em>Choices</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Choices</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange#getChoices()
-	 * @see #getStringRange()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringSet#getChoices()
+	 * @see #getStringSet()
 	 * @generated
 	 */
-	EAttribute getStringRange_Choices();
+	EAttribute getStringSet_Choices();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ExternalResourceSet <em>External Resource Set</em>}'.
@@ -6169,14 +6169,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		EReference POINT_RANGE__MAX_POINT = eINSTANCE.getPointRange_MaxPoint();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringRangeImpl <em>String Range</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringSetImpl <em>String Set</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringRangeImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getStringRange()
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.StringSetImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getStringSet()
 		 * @generated
 		 */
-		EClass STRING_RANGE = eINSTANCE.getStringRange();
+		EClass STRING_SET = eINSTANCE.getStringSet();
 
 		/**
 		 * The meta object literal for the '<em><b>Choices</b></em>' attribute list feature.
@@ -6184,7 +6184,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STRING_RANGE__CHOICES = eINSTANCE.getStringRange_Choices();
+		EAttribute STRING_SET__CHOICES = eINSTANCE.getStringSet_Choices();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ExternalResourceSetImpl <em>External Resource Set</em>}' class.
