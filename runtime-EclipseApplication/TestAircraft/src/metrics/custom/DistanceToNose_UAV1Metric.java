@@ -2,7 +2,7 @@ package metrics.custom;
 
 import datatypes.Point3D;
 
-public class DistanceToNose_UAV1 extends DistanceToGivenPoint {
+public class DistanceToNose_UAV1Metric extends DistanceToGivenPoint {
 
 	private static final long serialVersionUID = 1L;
 	
