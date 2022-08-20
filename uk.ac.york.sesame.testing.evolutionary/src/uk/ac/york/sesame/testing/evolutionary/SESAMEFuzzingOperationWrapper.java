@@ -135,9 +135,9 @@ public class SESAMEFuzzingOperationWrapper {
 					throw new ParamError("Missing minpoint and maxpoint in PointRange");
 				} else {
 					Point lb = RandomFunctions.randomPointInRange(rng, origLB, origUB);
-					Point ub = lb;
+					Point ub = EcoreUtil.copy(lb);
 					PointRange vs = af.createPointRange();
-				// 	Property name must be set
+					// Property name must be set
 					vs.setPropertyName(((PointRange) vsOrig).getPropertyName());
 					vs.setMinPoint(lb);
 					vs.setMaxPoint(ub);
