@@ -155,12 +155,17 @@ public class SESAMEFuzzingOperationWrapper {
 	
 	public String activationToString(Activation a) {
 		String output = "";
-		if (a instanceof FixedTimeActivation) {
-			FixedTimeActivation fta = (FixedTimeActivation)a;
-			output = "FixedTimeActivation: " + fta.getStartTime() + " - " + fta.getEndTime();
+		
+		if (a != null) {
+			if (a instanceof FixedTimeActivation) {
+				FixedTimeActivation fta = (FixedTimeActivation)a;
+				output = "FixedTimeActivation: " + fta.getStartTime() + " - " + fta.getEndTime();
+			} else {
+				ConditionBasedActivation ca = (ConditionBasedActivation)a;
+				output = "ConditionBased: activation count " + ca.getMaximumActivations() + " STARTING:" + getStoredStartTree() + " - " + " ENDING: " + getStoredEndTree();  
+			}
 		} else {
-			ConditionBasedActivation ca = (ConditionBasedActivation)a;
-			output = "ConditionBased: activation count " + ca.getMaximumActivations() + " STARTING:" + getStoredStartTree() + " - " + " ENDING: " + getStoredEndTree();  
+			output = "<Null activation - error>";
 		}
 		return output;
 	}
