@@ -10,5 +10,5 @@ import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 public interface CustomFuzzingOperation {	
 	public void customProcess(Map<String,Object> params, EventMessage value, Context ctx, Collector<EventMessage> out);
 	
-	public void customPreprocessing();
+	public void customPreprocessing(Map<String,Object> params);
 }

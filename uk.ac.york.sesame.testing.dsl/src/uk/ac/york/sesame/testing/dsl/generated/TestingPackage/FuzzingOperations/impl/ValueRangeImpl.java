@@ -13,7 +13,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
  *
  * @generated
  */
-public class ValueRangeImpl extends ValueSetImpl implements ValueRange {
+public abstract class ValueRangeImpl extends ValueSetImpl implements ValueRange {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -215,10 +215,10 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FuzzingOperationsPackage.STRING_RANGE: {
-				StringRange stringRange = (StringRange)theEObject;
-				T result = caseStringRange(stringRange);
-				if (result == null) result = caseValueSet(stringRange);
+			case FuzzingOperationsPackage.STRING_SET: {
+				StringSet stringSet = (StringSet)theEObject;
+				T result = caseStringSet(stringSet);
+				if (result == null) result = caseValueSet(stringSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -653,17 +653,17 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>String Range</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>String Set</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>String Range</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>String Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStringRange(StringRange object) {
+	public T caseStringSet(StringSet object) {
 		return null;
 	}
 

@@ -328,6 +328,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 						sol.addContents(i++, sta);
 					} catch (ConversionFailed e) {
 						e.printStackTrace();
+					} catch (ParamError e) {
+						e.printStackTrace();
 					}
 					
 				} else {
@@ -347,6 +349,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, baseFuzzingOperation, condGenerator);
 					sol.addContents(i++, sta);
 				} catch (ConversionFailed e) {
+					e.printStackTrace();
+				} catch (ParamError e) {
 					e.printStackTrace();
 				}
 				

@@ -148,8 +148,8 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 				return createPointRangeAdapter();
 			}
 			@Override
-			public Adapter caseStringRange(StringRange object) {
-				return createStringRangeAdapter();
+			public Adapter caseStringSet(StringSet object) {
+				return createStringSetAdapter();
 			}
 			@Override
 			public Adapter caseExternalResourceSet(ExternalResourceSet object) {
@@ -520,16 +520,16 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange <em>String Range</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringSet <em>String Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringRange
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringSet
 	 * @generated
 	 */
-	public Adapter createStringRangeAdapter() {
+	public Adapter createStringSetAdapter() {
 		return null;
 	}
 

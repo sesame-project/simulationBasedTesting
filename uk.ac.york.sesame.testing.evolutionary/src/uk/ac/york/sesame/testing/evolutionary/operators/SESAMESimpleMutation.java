@@ -90,8 +90,8 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		double limitStartTime = aftSpace.getStartTime();
 		double limitEndTime = aftSpace.getEndTime();
 
-		startTime = RandomFunctions.randomInRange(rng, limitStartTime, limitEndTime);
-		endTime = RandomFunctions.randomInRange(rng, startTime, limitEndTime);
+		startTime = RandomFunctions.randomDoubleInRange(rng, limitStartTime, limitEndTime);
+		endTime = RandomFunctions.randomDoubleInRange(rng, startTime, limitEndTime);
 		aft.setStartTime(startTime);
 		aft.setEndTime(endTime);
 	}

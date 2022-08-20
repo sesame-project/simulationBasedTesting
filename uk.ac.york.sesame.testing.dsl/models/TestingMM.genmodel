@@ -146,8 +146,8 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/PointRange/minPoint"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/PointRange/maxPoint"/>
       </genClasses>
-      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/StringRange">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/StringRange/choices"/>
+      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/StringSet">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/StringSet/choices"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/ExternalResourceSet">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/ExternalResourceSet/location"/>

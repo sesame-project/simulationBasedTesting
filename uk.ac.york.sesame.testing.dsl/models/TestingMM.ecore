@@ -148,7 +148,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="ValueSet">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ValueRange" eSuperTypes="#//FuzzingOperations/ValueSet"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueRange" abstract="true" eSuperTypes="#//FuzzingOperations/ValueSet"/>
     <eClassifiers xsi:type="ecore:EClass" name="IntRange" eSuperTypes="#//FuzzingOperations/ValueRange">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -168,7 +168,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="maxPoint" lowerBound="1"
           eType="#//FuzzingOperations/Point" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="StringRange" eSuperTypes="#//FuzzingOperations/ValueSet">
+    <eClassifiers xsi:type="ecore:EClass" name="StringSet" eSuperTypes="#//FuzzingOperations/ValueSet">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="choices" upperBound="-1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
