@@ -14,7 +14,7 @@ import org.apache.flink.util.Collector;
 import org.json.simple.*;
 
 import datatypes.DoubleRange;
-import datatypes.Point3D;
+import datatypes.custom.Point3D;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.fuzzingoperations.CustomFuzzingOperation;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
@@ -124,7 +124,7 @@ public abstract class desiredPathFuzzing implements CustomFuzzingOperation, Seri
 	
 	public abstract String getUAVName();
 	
-	public void customPreprocessing() {
+	public void customPreprocessing(Map<String, Object> params) {
 		System.out.println("desiredPathFuzzing: preprocessing phase");
 	}
 }
