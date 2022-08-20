@@ -243,7 +243,22 @@ public class [%= testNameString %]_TestRunner {
 		} %]	
 		[% } %];
 		
-		allMetrics.addSink(metricsProducer);
+		
+		[% if (campaignMetrics.size() > 0) { %]
+		DataStream<MetricMessage> campaignMetrics =
+		[% var firstM = campaignMetrics.removeAt(0); %]
+		metricMsg[%= firstM.name %]
+		
+		[% if (campaignMetrics.size() > 0) {
+				for (metric in campaignMetrics) { %]
+		.union(metricMsg[%= metric.name %])
+				[% }
+		} %]	
+		[% } %];
+		
+		campaignMetrics.addSink(metricsProducer);
+		
+		
 		ConnectedStreams<EventMessage,MetricMessage> streamFO0 = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
 		
 		[% var foStreamCount = 0;
