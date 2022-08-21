@@ -2,6 +2,7 @@ package fuzzingoperations.custom;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -22,7 +23,9 @@ import datatypes.custom.Point3D;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.fuzzingoperations.CustomFuzzingOperation;
 
-public class calibrationPointFuzzing implements CustomFuzzingOperation {
+public class calibrationPointFuzzing implements CustomFuzzingOperation, Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private class TransformFailure extends Exception {
 		private static final long serialVersionUID = 1L;
@@ -103,7 +106,7 @@ public class calibrationPointFuzzing implements CustomFuzzingOperation {
 
 			String filename = (String)params.get("calibrationFilename");
 			String specStr = (String)params.get("chosenCalibPointToAlter");
-			Point3D offsetPoint = (Point3D)params.get("pointModification");
+			Point3D offsetPoint = (Point3D)params.get("pointShift");
 
 			System.out.println("Calibration point fuzzing: processing calibration file " + filename);
 			File f = new File(filename);

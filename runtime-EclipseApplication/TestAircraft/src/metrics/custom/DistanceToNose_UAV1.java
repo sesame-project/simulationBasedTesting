@@ -1,6 +1,6 @@
 package metrics.custom;
 
-import datatypes.Point3D;
+import datatypes.custom.Point3D;
 
 public class DistanceToNose_UAV1 extends DistanceToGivenPoint {
 

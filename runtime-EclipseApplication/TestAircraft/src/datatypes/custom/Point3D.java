@@ -1,4 +1,4 @@
-package datatypes;
+package datatypes.custom;
 
 import java.util.Objects;
 

@@ -53,8 +53,9 @@ public abstract class desiredPathFuzzing implements CustomFuzzingOperation, Seri
 			}
 
 			// Get the point from the params
-			Point3D maxPoint = (Point3D) params.get("pointOffset");
-			JSONObject joNew = transformPathMessage(jo, maxPoint);
+			Point3D maxPoint = (Point3D) params.get("pointShift");
+			Integer pointCount = (Integer) params.get("numberOfPoints");
+			JSONObject joNew = transformPathMessage(jo, pointCount, maxPoint);
 			EventMessage valueOut = new EventMessage(value);
 			valueOut.setValue(joNew.toString());
 			
@@ -68,43 +69,22 @@ public abstract class desiredPathFuzzing implements CustomFuzzingOperation, Seri
 		}
 	}
 
-	private JSONObject transformPathMessage(JSONObject jo, Point3D maxPoint) {
+	private JSONObject transformPathMessage(JSONObject jo, int pointsToFuzz, Point3D maxPoint) {
 		//Navigate to the poses element - this is a JSONArray
 
 		JSONArray ja = (JSONArray)jo.get("poses");
-		fuzzPathArray(ja, maxPoint);
+		fuzzPathArray(ja, pointsToFuzz, maxPoint);
 		return jo;
 	}
 	
-	private JSONArray fuzzPathArray(JSONArray j, Point3D maxPoint) {
+	private JSONArray fuzzPathArray(JSONArray j, int pointsToFuzz, Point3D maxPoint) {
 		// pick a given number of elements from the given array
 		//then  modify the "position", x,y, and z elements of these
 		
 		// Find a single array and change points elements from it
-		int pointCount = j.size();
-
-		if (pointCount > 0) {
-
-			// Generate some random indices to fuzz
-
-			// This array specifies if we should fuzz the given elements
-			List<Boolean> shouldFuzz = new ArrayList<Boolean>(pointCount);
-			
-			for (int i = 0; i < pointCount; i++) {
-				shouldFuzz.add(false);
-			}
-			
-			if (pointCount > 5) {
-				shouldFuzz.set(1,true);
-				shouldFuzz.set(2,true);
-				shouldFuzz.set(3,true);
-			}
-
-			for (int i = 0; i < pointCount; i++) {
-				if (shouldFuzz.get(i)) {
-					modifyPoseStamped(maxPoint, (JSONObject)j.get(i));
-				}
-			}
+		// based upon the selected number of points
+		for (int i = 0; (i < pointsToFuzz && i < j.size()); i++) {
+			modifyPoseStamped(maxPoint, (JSONObject)j.get(i));
 		}
 		return j;
 	}

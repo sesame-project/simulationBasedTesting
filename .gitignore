@@ -1,3 +1,10 @@
+metric-results/*
+uk.ac.york.sesame.testing.evolutionary/scripts/Test*.err
+uk.ac.york.sesame.testing.evolutionary/scripts/Test*.log
+runtime-EclipseApplication/TestAircraft/src/*.java
+
+uk.ac.york.sesame.testing.evolutionary/*.log
+
 ##############################
 ## OS X
 ##############################

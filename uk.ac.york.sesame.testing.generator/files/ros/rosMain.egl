@@ -335,7 +335,7 @@ operation produceFOGenerationSignature(fo) {
 			if (fo.variableToAffect != null) {
 			 	varName = fo.variableToAffect.name;
 			}
-			flatmap = "new " + fo.name + "(\"" + varName + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
+			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
 		}
 	}
 	

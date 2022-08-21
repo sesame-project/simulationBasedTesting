@@ -16,8 +16,7 @@ import org.apache.flink.util.Collector;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import datatypes.Point3D;
-
+import datatypes.custom.Point3D;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 

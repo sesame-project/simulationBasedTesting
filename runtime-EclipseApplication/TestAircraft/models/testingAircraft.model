@@ -1,64 +1,66 @@
 <?xml version="1.0" encoding="ASCII"?>
-<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.FuzzingOperations="FuzzingOperations" xmlns:TestingMM.MRSPackage="MRSPackage" xmlns:TestingMM.Metrics="Metrics" xmlns:TestingMM.StandardGrammar="StandardGrammar" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_TiizQN04EeyAL51MCA53dw" name="innerRegion" relatedVariables="_Br6_YBkiEe2WW_2jHFiR_w _FBd-4BkiEe2WW_2jHFiR_w">
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="FuzzingOperations" xmlns:_2="MRSPackage" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="StreamMetric" xmi:id="_TiizQN04EeyAL51MCA53dw" name="innerRegion" relatedVariables="_Br6_YBkiEe2WW_2jHFiR_w _FBd-4BkiEe2WW_2jHFiR_w">
     <valueIfNotReceived xmi:id="_w22pAPeeEeylIplG5t0blg"/>
     <initValue xmi:id="_TirEoAiyEe2PgNfDdRvGSA"/>
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_TdUpsOd4Eeym1vCwkNoiAw"/>
-    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_PURDYPb_EeyPjPxeigDHmw" filename="/home/jharbin/academic/sesame/WP6/metric-results/innerRegion"/>
+    <streams xsi:type="InputStream" xmi:id="_TdUpsOd4Eeym1vCwkNoiAw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_PURDYPb_EeyPjPxeigDHmw" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/innerRegion"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_Vo1xYN04EeyAL51MCA53dw" name="outerRegion" relatedVariables="_qknFkBkhEe2WW_2jHFiR_w _tu1l4BkhEe2WW_2jHFiR_w">
+  <metrics xsi:type="StreamMetric" xmi:id="_Vo1xYN04EeyAL51MCA53dw" name="outerRegion" relatedVariables="_qknFkBkhEe2WW_2jHFiR_w _tu1l4BkhEe2WW_2jHFiR_w">
     <valueIfNotReceived xmi:id="_JWrkAPUlEeyXNMijK69yfA"/>
     <initValue xmi:id="_VSYHsAiyEe2PgNfDdRvGSA"/>
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_UBH6UOd4Eeym1vCwkNoiAw"/>
-    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_QmNzcPb_EeyPjPxeigDHmw" filename="/home/jharbin/academic/sesame/WP6/metric-results/outerRegion"/>
+    <streams xsi:type="InputStream" xmi:id="_UBH6UOd4Eeym1vCwkNoiAw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_QmNzcPb_EeyPjPxeigDHmw" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/outerRegion"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_sg3LkBiMEe2s8f_vFy3jOw" name="vehicleAvoidance" relatedVariables="_qknFkBkhEe2WW_2jHFiR_w _tu1l4BkhEe2WW_2jHFiR_w">
+  <metrics xsi:type="StreamMetric" xmi:id="_sg3LkBiMEe2s8f_vFy3jOw" name="vehicleAvoidance" relatedVariables="_qknFkBkhEe2WW_2jHFiR_w _tu1l4BkhEe2WW_2jHFiR_w">
     <valueIfNotReceived xmi:id="_sg3LkRiMEe2s8f_vFy3jOw"/>
     <initValue xmi:id="_sg3LkhiMEe2s8f_vFy3jOw"/>
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_sg3LkxiMEe2s8f_vFy3jOw"/>
-    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_sg3LlBiMEe2s8f_vFy3jOw" filename="/home/jharbin/academic/sesame/WP6/metric-results/vehicleAvoidance"/>
+    <streams xsi:type="InputStream" xmi:id="_sg3LkxiMEe2s8f_vFy3jOw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_sg3LlBiMEe2s8f_vFy3jOw" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/vehicleAvoidance"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_g8Hi0N1AEeyWQcgNPk0koQ" name="overSpeed" relatedVariables="_Zxi7kBkiEe2WW_2jHFiR_w _dTR88BkiEe2WW_2jHFiR_w">
+  <metrics xsi:type="StreamMetric" xmi:id="_g8Hi0N1AEeyWQcgNPk0koQ" name="overSpeed" relatedVariables="_Zxi7kBkiEe2WW_2jHFiR_w _dTR88BkiEe2WW_2jHFiR_w">
     <valueIfNotReceived xmi:id="_1PD_YPeeEeylIplG5t0blg"/>
     <initValue xmi:id="_WlcSEAiyEe2PgNfDdRvGSA"/>
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_Uav7QOd4Eeym1vCwkNoiAw"/>
-    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_RIG_kPb_EeyPjPxeigDHmw" filename="/home/jharbin/academic/sesame/WP6/metric-results/overSpeed"/>
+    <streams xsi:type="InputStream" xmi:id="_Uav7QOd4Eeym1vCwkNoiAw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_RIG_kPb_EeyPjPxeigDHmw" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/overSpeed"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+  <metrics xsi:type="FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_10orgCB4Ee2IeLS-D-QAmA" defaultVal="1000000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_oAi2ABxFEe2eFeVPwwu8uw" name="AirframeClearance_UAV1">
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_sdilwBxFEe2eFeVPwwu8uw"/>
+  <metrics xsi:type="StreamMetric" xmi:id="_oAi2ABxFEe2eFeVPwwu8uw" name="AirframeClearance_UAV1">
+    <streams xsi:type="InputStream" xmi:id="_sdilwBxFEe2eFeVPwwu8uw"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_tVqgkBxFEe2eFeVPwwu8uw" name="AirframeClearance_UAV2">
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_tVqgkRxFEe2eFeVPwwu8uw"/>
+  <metrics xsi:type="StreamMetric" xmi:id="_tVqgkBxFEe2eFeVPwwu8uw" name="AirframeClearance_UAV2">
+    <streams xsi:type="InputStream" xmi:id="_tVqgkRxFEe2eFeVPwwu8uw"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_u1LLgBxFEe2eFeVPwwu8uw" name="DistanceToLeftWingBase_UAV1">
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_u1LLgRxFEe2eFeVPwwu8uw"/>
+  <metrics xsi:type="StreamMetric" xmi:id="_u1LLgBxFEe2eFeVPwwu8uw" name="DistanceToLeftWingBase_UAV1">
+    <streams xsi:type="InputStream" xmi:id="_u1LLgRxFEe2eFeVPwwu8uw"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_xMtDkBxFEe2eFeVPwwu8uw" name="DistanceToLeftWingBase_UAV2">
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_xMtDkRxFEe2eFeVPwwu8uw"/>
+  <metrics xsi:type="StreamMetric" xmi:id="_xMtDkBxFEe2eFeVPwwu8uw" name="DistanceToLeftWingBase_UAV2">
+    <streams xsi:type="InputStream" xmi:id="_xMtDkRxFEe2eFeVPwwu8uw"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_z1iuEBxFEe2eFeVPwwu8uw" name="DistanceToRightWingBase_UAV1">
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_z1iuERxFEe2eFeVPwwu8uw"/>
+  <metrics xsi:type="StreamMetric" xmi:id="_z1iuEBxFEe2eFeVPwwu8uw" name="DistanceToRightWingBase_UAV1">
+    <streams xsi:type="InputStream" xmi:id="_z1iuERxFEe2eFeVPwwu8uw"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_z1iuEhxFEe2eFeVPwwu8uw" name="DistanceToRightWingBase_UAV2">
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_z1iuExxFEe2eFeVPwwu8uw"/>
+  <metrics xsi:type="StreamMetric" xmi:id="_z1iuEhxFEe2eFeVPwwu8uw" name="DistanceToRightWingBase_UAV2">
+    <streams xsi:type="InputStream" xmi:id="_z1iuExxFEe2eFeVPwwu8uw"/>
   </metrics>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_bJdhUN04EeyAL51MCA53dw" startTime="50.0" endTime="500.0"/>
-    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IPLIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
-    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IfLIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
-    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1KcUQBj_Ee2WW_2jHFiR_w" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-1.0" upperBound="1.0"/>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_bJdhUN04EeyAL51MCA53dw" startTime="50.0" endTime="525.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_SlE2IPLIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_SlE2IfLIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_1KcUQBj_Ee2WW_2jHFiR_w" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-1.0" upperBound="1.0"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_mIrOcN0YEeyv8LH3vdSfnw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_ciaRQN04EeyAL51MCA53dw" startTime="50.0" endTime="500.0"/>
-    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IvLIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
-    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2I_LIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
-    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_5v3nQBj_Ee2WW_2jHFiR_w" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-1.0" upperBound="1.0"/>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_mIrOcN0YEeyv8LH3vdSfnw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_ciaRQN04EeyAL51MCA53dw" startTime="50.0" endTime="525.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_SlE2IvLIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_SlE2I_LIEeyyicYP_3f6ng" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_5v3nQBj_Ee2WW_2jHFiR_w" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-1.0" upperBound="1.0"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_ZSCjgBzwEe2iqo34YTW9pg" name="calibrationPointFuzzing">
-    <params xsi:type="TestingMM.FuzzingOperations:StringSet" xmi:id="__iE1UB90Ee2JZJB3Tnmbng" propertyName="chosenCalibPointToAlter">
+  <possibleFuzzingOperations xsi:type="_1:CustomFuzzingOperation" xmi:id="_ZSCjgBzwEe2iqo34YTW9pg" name="calibrationPointFuzzing">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_c2KJYCD0Ee2ktdAGz5FyzA"/>
+    <params xsi:type="_1:StringSet" xmi:id="__iE1UB90Ee2JZJB3Tnmbng" propertyName="chosenCalibPointToAlter">
       <choices>frameB_0</choices>
       <choices>frameB_1</choices>
       <choices>frameB_2</choices>
@@ -66,54 +68,1419 @@
       <choices>frameB_4</choices>
       <choices>frameB_5</choices>
     </params>
-    <params xsi:type="TestingMM.FuzzingOperations:StringSet" xmi:id="_2dknkB93Ee2JZJB3Tnmbng" propertyName="calibrationFilename">
-      <choices>/home/jharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+    <params xsi:type="_1:StringSet" xmi:id="_2dknkB93Ee2JZJB3Tnmbng" propertyName="calibrationFilename">
+      <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
     </params>
-    <params xsi:type="TestingMM.FuzzingOperations:PointRange" xmi:id="_Qra_cB_DEe2CgYHhBR_VFg" propertyName="pointModification">
+    <params xsi:type="_1:PointRange" xmi:id="_Qra_cB_DEe2CgYHhBR_VFg" propertyName="pointShift">
       <minPoint xmi:id="_SUen8B_DEe2CgYHhBR_VFg" x="-2.0" y="-2.0" z="-2.0"/>
       <maxPoint xmi:id="_UVs40B_DEe2CgYHhBR_VFg" x="2.0" y="2.0" z="2.0"/>
     </params>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_VdwcwBz0Ee2iqo34YTW9pg" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg">
-    <params xsi:type="TestingMM.FuzzingOperations:IntRange" xmi:id="_aHSaYBz5Ee2iqo34YTW9pg" propertyName="numberOfPoints" lowerBound="20" upperBound="3"/>
-    <params xsi:type="TestingMM.FuzzingOperations:PointRange" xmi:id="_c65KcBz5Ee2iqo34YTW9pg" propertyName="pointShift">
+  <possibleFuzzingOperations xsi:type="_1:CustomFuzzingOperation" xmi:id="_VdwcwBz0Ee2iqo34YTW9pg" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_gv-TkCD0Ee2ktdAGz5FyzA" startTime="50.0" endTime="525.0"/>
+    <params xsi:type="_1:IntRange" xmi:id="_aHSaYBz5Ee2iqo34YTW9pg" propertyName="numberOfPoints" lowerBound="20" upperBound="3"/>
+    <params xsi:type="_1:PointRange" xmi:id="_c65KcBz5Ee2iqo34YTW9pg" propertyName="pointShift">
       <minPoint xmi:id="_eNYtEBz5Ee2iqo34YTW9pg" x="-2.0" y="-2.0" z="-2.0"/>
       <maxPoint xmi:id="_f1-bgBz5Ee2iqo34YTW9pg" x="2.0" y="2.0" z="2.0"/>
     </params>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_iDDXEBz5Ee2iqo34YTW9pg" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg">
-    <params xsi:type="TestingMM.FuzzingOperations:IntRange" xmi:id="_iDDXERz5Ee2iqo34YTW9pg" propertyName="numberOfPoints" lowerBound="20" upperBound="3"/>
-    <params xsi:type="TestingMM.FuzzingOperations:PointRange" xmi:id="_iDDXEhz5Ee2iqo34YTW9pg" propertyName="pointShift">
+  <possibleFuzzingOperations xsi:type="_1:CustomFuzzingOperation" xmi:id="_iDDXEBz5Ee2iqo34YTW9pg" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_nJmIECD0Ee2ktdAGz5FyzA" startTime="50.0" endTime="525.0"/>
+    <params xsi:type="_1:IntRange" xmi:id="_iDDXERz5Ee2iqo34YTW9pg" propertyName="numberOfPoints" lowerBound="20" upperBound="3"/>
+    <params xsi:type="_1:PointRange" xmi:id="_iDDXEhz5Ee2iqo34YTW9pg" propertyName="pointShift">
       <minPoint xmi:id="_iDDXExz5Ee2iqo34YTW9pg" x="-2.0" y="-2.0" z="-2.0"/>
       <maxPoint xmi:id="_iDDXFBz5Ee2iqo34YTW9pg" x="2.0" y="2.0" z="2.0"/>
     </params>
   </possibleFuzzingOperations>
   <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_Vo1xYN04EeyAL51MCA53dw _g8Hi0N1AEeyWQcgNPk0koQ _hrtGEPZBEeypkdw9q4st1A _TiizQN04EeyAL51MCA53dw _sg3LkBiMEe2s8f_vFy3jOw" conditionMetrics="_oAi2ABxFEe2eFeVPwwu8uw _tVqgkBxFEe2eFeVPwwu8uw _u1LLgBxFEe2eFeVPwwu8uw _xMtDkBxFEe2eFeVPwwu8uw _z1iuEBxFEe2eFeVPwwu8uw _z1iuEhxFEe2eFeVPwwu8uw" includedOperations="_ZSCjgBzwEe2iqo34YTW9pg _VdwcwBz0Ee2iqo34YTW9pg _iDDXEBz5Ee2iqo34YTW9pg _lc6UoN0YEeyv8LH3vdSfnw _mIrOcN0YEeyv8LH3vdSfnw">
+    <activationGeneration xsi:type="TestingMM:TimeBasedActivationGenerationMethod" xmi:id="_nBzQQCDvEe2ktdAGz5FyzA"/>
     <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="30"/>
-    <performedTests xmi:id="_YpeFYCAWEe2QfLIxTIXiLQ" name="Test_001_20_08_2022_01_25_19">
-      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_YpeFYSAWEe2QfLIxTIXiLQ" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
-        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation" xmi:id="_YpescCAWEe2QfLIxTIXiLQ">
-          <starting xmi:id="_YpescSAWEe2QfLIxTIXiLQ">
-            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" xmi:id="_YpesciAWEe2QfLIxTIXiLQ">
-              <left xmi:id="_YpescyAWEe2QfLIxTIXiLQ" metric="_u1LLgBxFEe2eFeVPwwu8uw"/>
-              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" xmi:id="_YpesdCAWEe2QfLIxTIXiLQ" metric="_z1iuEBxFEe2eFeVPwwu8uw"/>
-            </c>
-          </starting>
-          <ending xmi:id="_YpesdSAWEe2QfLIxTIXiLQ">
-            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" xmi:id="_YpesdiAWEe2QfLIxTIXiLQ" bincomp="GREATER_THAN">
-              <left xmi:id="_YpesdyAWEe2QfLIxTIXiLQ" metric="_oAi2ABxFEe2eFeVPwwu8uw"/>
-              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" xmi:id="_YpfTgCAWEe2QfLIxTIXiLQ" metric="_u1LLgBxFEe2eFeVPwwu8uw"/>
-            </c>
-          </ending>
-        </activation>
-        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_YpfTgSAWEe2QfLIxTIXiLQ" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.1449264740603613" upperBound="0.766610858440335"/>
-        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_YpfTgiAWEe2QfLIxTIXiLQ" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.6273814167737508" upperBound="0.21966143147829376"/>
-        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_YpfTgyAWEe2QfLIxTIXiLQ" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.5421849967066916" upperBound="0.7115528860701836"/>
+    <performedTests xmi:id="_cWHEByF7Ee2IjM_xjrLuYw" name="Test_001_21_08_2022_14_24_26">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWHrECF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWHrESF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cWHrEiF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_1</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cWHrEyF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cWHrFCF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWHrFSF7Ee2IjM_xjrLuYw" x="-0.2936923697479905" y="0.32078402708985765" z="-0.4929213282221827"/>
+          <maxPoint xmi:id="_cWHrFiF7Ee2IjM_xjrLuYw" x="-0.2936923697479905" y="0.32078402708985765" z="-0.4929213282221827"/>
+        </params>
       </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWISICF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWISISF7Ee2IjM_xjrLuYw" startTime="230.1611572564107" endTime="326.38618578130706"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWISIiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-589314089" upperBound="-173605781"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWISIyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWISJCF7Ee2IjM_xjrLuYw" x="-0.11518262574942373" y="-1.535350543278497" z="0.6249179144486154"/>
+          <maxPoint xmi:id="_cWISJSF7Ee2IjM_xjrLuYw" x="-0.11518262574942373" y="-1.535350543278497" z="0.6249179144486154"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWISJiF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWISJyF7Ee2IjM_xjrLuYw" startTime="235.3873972978675" endTime="299.67830869714106"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWI5MCF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="250788680" upperBound="467083596"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWI5MSF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWI5MiF7Ee2IjM_xjrLuYw" x="-0.21677547448656842" y="1.7394188893492375" z="1.2228787989633951"/>
+          <maxPoint xmi:id="_cWI5MyF7Ee2IjM_xjrLuYw" x="-0.21677547448656842" y="1.7394188893492375" z="1.2228787989633951"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWI5NCF7Ee2IjM_xjrLuYw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWI5NSF7Ee2IjM_xjrLuYw" startTime="519.3921564744694" endTime="522.6611699753387"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWI5NiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-0.8896017801056932" upperBound="0.3868279870597229"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWJgQCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.5385640977181656" upperBound="0.6415960469768045"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWJgQSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="0.9036418988120243" upperBound="0.9315926869875327"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWJgQiF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWJgQyF7Ee2IjM_xjrLuYw" startTime="524.1999549695217" endTime="524.6553044788628"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWJgRCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-0.4039380286486527" upperBound="0.32312025063558936"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWJgRSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.3223780990902885" upperBound="0.7968450893013597"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWJgRiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.6189306062617976" upperBound="-0.4133310210268888"/>
+      </operations>
+      <metrics xmi:id="_cWJgRyF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWKHUCF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWKHUSF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWKHUiF7Ee2IjM_xjrLuYw" name="overSpeed" value="23.0"/>
+      </metrics>
+      <metrics xmi:id="_cWKHUyF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWKHVCF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWKHVSF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWKHViF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWKHVyF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWKHWCF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
     </performedTests>
+    <performedTests xmi:id="_cWKHWSF7Ee2IjM_xjrLuYw" name="Test_002_21_08_2022_14_24_26">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWKuYCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWKuYSF7Ee2IjM_xjrLuYw" startTime="152.7326177710176" endTime="163.23233559795102"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWKuYiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-496517918" upperBound="780435833"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWKuYyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWKuZCF7Ee2IjM_xjrLuYw" x="1.9042426017988516" y="0.3758415328673017" z="-1.5831949046924612"/>
+          <maxPoint xmi:id="_cWKuZSF7Ee2IjM_xjrLuYw" x="1.9042426017988516" y="0.3758415328673017" z="-1.5831949046924612"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWKuZiF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWLVcCF7Ee2IjM_xjrLuYw" startTime="511.0750962810337" endTime="511.162853385657"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWLVcSF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="172711288" upperBound="-519916"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWLVciF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWLVcyF7Ee2IjM_xjrLuYw" x="1.8314902788219878" y="0.6154278451117019" z="1.6078433879697496"/>
+          <maxPoint xmi:id="_cWLVdCF7Ee2IjM_xjrLuYw" x="1.8314902788219878" y="0.6154278451117019" z="1.6078433879697496"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cWLVdSF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWLVdiF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWLVdyF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWLVeCF7Ee2IjM_xjrLuYw" name="overSpeed" value="22.0"/>
+      </metrics>
+      <metrics xmi:id="_cWLVeSF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWLVeiF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWLVeyF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWLVfCF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWL8gCF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWL8gSF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWL8giF7Ee2IjM_xjrLuYw" name="Test_003_21_08_2022_14_24_26">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWL8gyF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWL8hCF7Ee2IjM_xjrLuYw" startTime="160.29389268918703" endTime="417.88885180142773"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWL8hSF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="1443034678" upperBound="1830202864"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWL8hiF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWMjkCF7Ee2IjM_xjrLuYw" x="-0.6651595074676759" y="0.4776346345559417" z="-1.6700741842441347"/>
+          <maxPoint xmi:id="_cWMjkSF7Ee2IjM_xjrLuYw" x="-0.6651595074676759" y="0.4776346345559417" z="-1.6700741842441347"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWMjkiF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWMjkyF7Ee2IjM_xjrLuYw" startTime="145.4661873805324" endTime="156.50709698409003"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWMjlCF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="1651118491" upperBound="-818269909"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWMjlSF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWMjliF7Ee2IjM_xjrLuYw" x="-0.6602727912986088" y="-1.0433246354114964" z="0.09687521859960224"/>
+          <maxPoint xmi:id="_cWNKoCF7Ee2IjM_xjrLuYw" x="-0.6602727912986088" y="-1.0433246354114964" z="0.09687521859960224"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWNKoSF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWNKoiF7Ee2IjM_xjrLuYw" startTime="312.15385875269914" endTime="328.3460273305223"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWNKoyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.179291696999476" upperBound="0.4605073430044382"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWNKpCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.3658611752072085" upperBound="0.4041877124874633"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWNKpSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.6221425380736727" upperBound="0.22158230718894312"/>
+      </operations>
+      <metrics xmi:id="_cWNKpiF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWNKpyF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWNxsCF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWNxsSF7Ee2IjM_xjrLuYw" name="overSpeed" value="12.0"/>
+      </metrics>
+      <metrics xmi:id="_cWNxsiF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWNxsyF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWNxtCF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWNxtSF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWNxtiF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWNxtyF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWNxuCF7Ee2IjM_xjrLuYw" name="Test_004_21_08_2022_14_24_26">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWNxuSF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWNxuiF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cWOYwCF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_3</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cWOYwSF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cWOYwiF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWOYwyF7Ee2IjM_xjrLuYw" x="1.6482943801919392" y="-1.8104635123292518" z="-1.5616324773532617"/>
+          <maxPoint xmi:id="_cWOYxCF7Ee2IjM_xjrLuYw" x="1.6482943801919392" y="-1.8104635123292518" z="-1.5616324773532617"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWOYxSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWOYxiF7Ee2IjM_xjrLuYw" startTime="366.7172881263874" endTime="521.3432629750301"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWO_0CF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1510242855" upperBound="-1388616105"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWO_0SF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWO_0iF7Ee2IjM_xjrLuYw" x="-0.3347598878653586" y="-1.9955901823547872" z="-1.0876490906954657"/>
+          <maxPoint xmi:id="_cWO_0yF7Ee2IjM_xjrLuYw" x="-0.3347598878653586" y="-1.9955901823547872" z="-1.0876490906954657"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWO_1CF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWO_1SF7Ee2IjM_xjrLuYw" startTime="518.3353122079858" endTime="521.6045807942786"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWO_1iF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1534032094" upperBound="-760185546"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWO_1yF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWPm4CF7Ee2IjM_xjrLuYw" x="0.43625918304945177" y="-0.7749303699087995" z="-0.13237723823128622"/>
+          <maxPoint xmi:id="_cWPm4SF7Ee2IjM_xjrLuYw" x="0.43625918304945177" y="-0.7749303699087995" z="-0.13237723823128622"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWPm4iF7Ee2IjM_xjrLuYw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWPm4yF7Ee2IjM_xjrLuYw" startTime="363.1686406733707" endTime="521.2144722787144"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWPm5CF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.3536346497161622" upperBound="0.500655336256668"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWPm5SF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.7239124212997234" upperBound="0.5605310868815314"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWPm5iF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.42886818618722433" upperBound="0.4274955388655458"/>
+      </operations>
+      <metrics xmi:id="_cWQN8CF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWQN8SF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWQN8iF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWQN8yF7Ee2IjM_xjrLuYw" name="overSpeed" value="26.0"/>
+      </metrics>
+      <metrics xmi:id="_cWQN9CF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWQN9SF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWQN9iF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWQN9yF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWQN-CF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWQN-SF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWQN-iF7Ee2IjM_xjrLuYw" name="Test_005_21_08_2022_14_24_26">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWQ1ACF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWQ1ASF7Ee2IjM_xjrLuYw" startTime="291.23452577138767" endTime="295.22514756878036"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWQ1AiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1694338992" upperBound="1029331574"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWQ1AyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWQ1BCF7Ee2IjM_xjrLuYw" x="-1.3723519074721073" y="0.7868335598113241" z="1.9699300652844727"/>
+          <maxPoint xmi:id="_cWQ1BSF7Ee2IjM_xjrLuYw" x="-1.3723519074721073" y="0.7868335598113241" z="1.9699300652844727"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWRcECF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWRcESF7Ee2IjM_xjrLuYw" startTime="264.7269312172492" endTime="294.44784203120827"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWRcEiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="71017841" upperBound="-1631203273"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWRcEyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWRcFCF7Ee2IjM_xjrLuYw" x="-0.7519387253426939" y="1.3724711277780406" z="-1.0582607717865753"/>
+          <maxPoint xmi:id="_cWRcFSF7Ee2IjM_xjrLuYw" x="-0.7519387253426939" y="1.3724711277780406" z="-1.0582607717865753"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cWRcFiF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWSDICF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWSDISF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWSDIiF7Ee2IjM_xjrLuYw" name="overSpeed" value="23.0"/>
+      </metrics>
+      <metrics xmi:id="_cWSDIyF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWSDJCF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWSDJSF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWSDJiF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWSDJyF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWSDKCF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWSDKSF7Ee2IjM_xjrLuYw" name="Test_006_21_08_2022_14_24_26">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWSqMCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWSqMSF7Ee2IjM_xjrLuYw" startTime="471.0861585025654" endTime="485.2072388227604"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWSqMiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1703790638" upperBound="-1337144011"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWSqMyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWT4UCF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+          <maxPoint xmi:id="_cWT4USF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWUfYCF7Ee2IjM_xjrLuYw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWUfYSF7Ee2IjM_xjrLuYw" startTime="376.6368119758616" endTime="501.212065920433"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWUfYiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-0.7685165146758597" upperBound="0.2794340791044847"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWUfYyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.5545478223976796" upperBound="-0.11766941961037314"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWUfZCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.510910140649949" upperBound="0.5895294034825045"/>
+      </operations>
+      <metrics xmi:id="_cWUfZSF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWUfZiF7Ee2IjM_xjrLuYw" name="outerRegion" value="91.0"/>
+      </metrics>
+      <metrics xmi:id="_cWUfZyF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWUfaCF7Ee2IjM_xjrLuYw" name="overSpeed" value="18.0"/>
+      </metrics>
+      <metrics xmi:id="_cWVGcCF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWVGcSF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWVGciF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWVGcyF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWVGdCF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWVGdSF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWVGdiF7Ee2IjM_xjrLuYw" name="Test_007_21_08_2022_14_24_26">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWVGdyF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWVGeCF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cWVtgCF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_4</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cWVtgSF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cWVtgiF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWVtgyF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+          <maxPoint xmi:id="_cWVthCF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWVthSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWWUkCF7Ee2IjM_xjrLuYw" startTime="270.0500998680726" endTime="413.4863178122947"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWWUkSF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="127374812" upperBound="1645854596"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWWUkiF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWWUkyF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+          <maxPoint xmi:id="_cWWUlCF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWW7oCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWW7oSF7Ee2IjM_xjrLuYw" startTime="424.40768222301307" endTime="424.69279759497533"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWW7oiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWW7oyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWW7pCF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cWXisCF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWXisSF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWXisiF7Ee2IjM_xjrLuYw" startTime="250.82902836173452" endTime="370.51047624814953"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWYJwCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWYJwSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWYJwiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <metrics xmi:id="_cWYJwyF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWYJxCF7Ee2IjM_xjrLuYw" name="outerRegion" value="154.0"/>
+      </metrics>
+      <metrics xmi:id="_cWYJxSF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWYJxiF7Ee2IjM_xjrLuYw" name="overSpeed" value="65.0"/>
+      </metrics>
+      <metrics xmi:id="_cWYJxyF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWYw0CF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWYw0SF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWYw0iF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWYw0yF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWYw1CF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWYw1SF7Ee2IjM_xjrLuYw" name="Test_008_21_08_2022_14_24_26">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWYw1iF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWZX4CF7Ee2IjM_xjrLuYw" startTime="141.6510038082768" endTime="238.92629585334186"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWZX4SF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-695334586" upperBound="373843547"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWZX4iF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWZX4yF7Ee2IjM_xjrLuYw" x="0.0413970354887363" y="-0.7262866144094033" z="-1.7252873340040833"/>
+          <maxPoint xmi:id="_cWZX5CF7Ee2IjM_xjrLuYw" x="0.0413970354887363" y="-0.7262866144094033" z="-1.7252873340040833"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWZX5SF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWZX5iF7Ee2IjM_xjrLuYw" startTime="485.7733015397033" endTime="499.0925151195364"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWZX5yF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="37008878" upperBound="1406859085"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWZ-8CF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWZ-8SF7Ee2IjM_xjrLuYw" x="-0.9653338857252445" y="1.9295169932091465" z="0.4921388776278479"/>
+          <maxPoint xmi:id="_cWZ-8iF7Ee2IjM_xjrLuYw" x="-0.9653338857252445" y="1.9295169932091465" z="0.4921388776278479"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWZ-8yF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWZ-9CF7Ee2IjM_xjrLuYw" startTime="318.91150546056963" endTime="350.2833230174845"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWZ-9SF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-0.5686724043929476" upperBound="0.890936571395643"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWZ-9iF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.9660500823138976" upperBound="0.899904552390195"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWZ-9yF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="0.2905371996069932" upperBound="0.3437811161980962"/>
+      </operations>
+      <metrics xmi:id="_cWZ--CF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWamACF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWamASF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWamAiF7Ee2IjM_xjrLuYw" name="overSpeed" value="46.0"/>
+      </metrics>
+      <metrics xmi:id="_cWamAyF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWamBCF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWamBSF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWamBiF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWamByF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWamCCF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWamCSF7Ee2IjM_xjrLuYw" name="Test_009_21_08_2022_14_24_26">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWamCiF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWamCyF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cWamDCF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_2</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cWbNECF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cWbNESF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWbNEiF7Ee2IjM_xjrLuYw" x="0.8414820647468328" y="-1.825109600509394" z="-1.8992717796241076"/>
+          <maxPoint xmi:id="_cWbNEyF7Ee2IjM_xjrLuYw" x="0.8414820647468328" y="-1.825109600509394" z="-1.8992717796241076"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWbNFCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWbNFSF7Ee2IjM_xjrLuYw" startTime="357.2438217590206" endTime="438.1494561959276"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWb0ICF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1248208051" upperBound="490253909"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWb0ISF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWb0IiF7Ee2IjM_xjrLuYw" x="0.16164251199139912" y="-1.966735743437936" z="0.21149232746630542"/>
+          <maxPoint xmi:id="_cWb0IyF7Ee2IjM_xjrLuYw" x="0.16164251199139912" y="-1.966735743437936" z="0.21149232746630542"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cWb0JCF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWb0JSF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWb0JiF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWb0JyF7Ee2IjM_xjrLuYw" name="overSpeed" value="22.0"/>
+      </metrics>
+      <metrics xmi:id="_cWb0KCF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWb0KSF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWb0KiF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWb0KyF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWb0LCF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWb0LSF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWcbMCF7Ee2IjM_xjrLuYw" name="Test_010_21_08_2022_14_24_26">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWcbMSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWcbMiF7Ee2IjM_xjrLuYw" startTime="483.02597182900774" endTime="503.8959796440926"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWcbMyF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="1961249894" upperBound="713860756"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWcbNCF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWcbNSF7Ee2IjM_xjrLuYw" x="1.9293328562280854" y="0.11363523863417457" z="1.9136093829937089"/>
+          <maxPoint xmi:id="_cWcbNiF7Ee2IjM_xjrLuYw" x="1.9293328562280854" y="0.11363523863417457" z="1.9136093829937089"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWdCQCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWdCQSF7Ee2IjM_xjrLuYw" startTime="433.4507897000062" endTime="487.96682284017504"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWdCQiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="1677873729" upperBound="1053517191"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWdCQyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWdCRCF7Ee2IjM_xjrLuYw" x="-0.03480829338347391" y="-1.4204330587458882" z="1.5804488442584383"/>
+          <maxPoint xmi:id="_cWdCRSF7Ee2IjM_xjrLuYw" x="-0.03480829338347391" y="-1.4204330587458882" z="1.5804488442584383"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWdpUCF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWdpUSF7Ee2IjM_xjrLuYw" startTime="466.6963790368393" endTime="511.8792946371982"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWdpUiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.3805746134971608" upperBound="0.8660745628269808"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWdpUyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.8936512679370081" upperBound="-0.07101074109647487"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWdpVCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.6998783956377301" upperBound="0.2589412587223531"/>
+      </operations>
+      <metrics xmi:id="_cWdpVSF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWdpViF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWdpVyF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWdpWCF7Ee2IjM_xjrLuYw" name="overSpeed" value="36.0"/>
+      </metrics>
+      <metrics xmi:id="_cWdpWSF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWeQYCF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWeQYSF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWeQYiF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWeQYyF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWeQZCF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWeQZSF7Ee2IjM_xjrLuYw" name="Test_011_21_08_2022_15_59_29" developedFrom="_cWNxuCF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWeQZiF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWeQZyF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cWeQaCF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_3</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cWeQaSF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cWe3cCF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWe3cSF7Ee2IjM_xjrLuYw" x="1.6482943801919392" y="-1.8104635123292518" z="-1.5616324773532617"/>
+          <maxPoint xmi:id="_cWe3ciF7Ee2IjM_xjrLuYw" x="1.6482943801919392" y="-1.8104635123292518" z="-1.5616324773532617"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWe3cyF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWe3dCF7Ee2IjM_xjrLuYw" startTime="194.63157360438257" endTime="410.8677507916831"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWe3dSF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1510242855" upperBound="-1388616105"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWe3diF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWe3dyF7Ee2IjM_xjrLuYw" x="-0.3347598878653586" y="-1.9955901823547872" z="-1.0876490906954657"/>
+          <maxPoint xmi:id="_cWfegCF7Ee2IjM_xjrLuYw" x="-0.3347598878653586" y="-1.9955901823547872" z="-1.0876490906954657"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWfegSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWfegiF7Ee2IjM_xjrLuYw" startTime="123.78830867570713" endTime="511.72977533130404"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWfegyF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1534032094" upperBound="-760185546"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWfehCF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWfehSF7Ee2IjM_xjrLuYw" x="0.43625918304945177" y="-0.7749303699087995" z="-0.13237723823128622"/>
+          <maxPoint xmi:id="_cWfehiF7Ee2IjM_xjrLuYw" x="0.43625918304945177" y="-0.7749303699087995" z="-0.13237723823128622"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWgFkCF7Ee2IjM_xjrLuYw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWgFkSF7Ee2IjM_xjrLuYw" startTime="253.881398361062" endTime="299.6916963584556"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWgFkiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.3536346497161622" upperBound="0.500655336256668"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWgFkyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.7239124212997234" upperBound="0.5605310868815314"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWgFlCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.42886818618722433" upperBound="0.4274955388655458"/>
+      </operations>
+      <metrics xmi:id="_cWgFlSF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWgFliF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWgFlyF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWgFmCF7Ee2IjM_xjrLuYw" name="overSpeed" value="22.0"/>
+      </metrics>
+      <metrics xmi:id="_cWgFmSF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWgFmiF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWgsoCF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWgsoSF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWgsoiF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWgsoyF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWgspCF7Ee2IjM_xjrLuYw" name="Test_012_21_08_2022_15_59_29" developedFrom="_cWNxuCF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWgspSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWgspiF7Ee2IjM_xjrLuYw" startTime="423.39797298740956" endTime="481.8921320613798"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWhTsCF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1510242855" upperBound="-1388616105"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWhTsSF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWhTsiF7Ee2IjM_xjrLuYw" x="-0.3347598878653586" y="-1.9955901823547872" z="-1.0876490906954657"/>
+          <maxPoint xmi:id="_cWhTsyF7Ee2IjM_xjrLuYw" x="-0.3347598878653586" y="-1.9955901823547872" z="-1.0876490906954657"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWhTtCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWhTtSF7Ee2IjM_xjrLuYw" startTime="166.86824921048407" endTime="346.42572756403695"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWhTtiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1534032094" upperBound="-760185546"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWh6wCF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWh6wSF7Ee2IjM_xjrLuYw" x="0.43625918304945177" y="-0.7749303699087995" z="-0.13237723823128622"/>
+          <maxPoint xmi:id="_cWh6wiF7Ee2IjM_xjrLuYw" x="0.43625918304945177" y="-0.7749303699087995" z="-0.13237723823128622"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWh6wyF7Ee2IjM_xjrLuYw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWh6xCF7Ee2IjM_xjrLuYw" startTime="212.93895023691832" endTime="268.21178898481696"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWh6xSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.3536346497161622" upperBound="0.500655336256668"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWh6xiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.7239124212997234" upperBound="0.5605310868815314"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWh6xyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.42886818618722433" upperBound="0.4274955388655458"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWh6yCF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWih0CF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cWih0SF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_3</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cWih0iF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cWih0yF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWih1CF7Ee2IjM_xjrLuYw" x="1.6482943801919392" y="-1.8104635123292518" z="-1.5616324773532617"/>
+          <maxPoint xmi:id="_cWih1SF7Ee2IjM_xjrLuYw" x="1.6482943801919392" y="-1.8104635123292518" z="-1.5616324773532617"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cWih1iF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWih1yF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWih2CF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWih2SF7Ee2IjM_xjrLuYw" name="overSpeed" value="27.0"/>
+      </metrics>
+      <metrics xmi:id="_cWih2iF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWih2yF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWjI4CF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWjI4SF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWjI4iF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWjI4yF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWjI5CF7Ee2IjM_xjrLuYw" name="Test_013_21_08_2022_15_59_29" developedFrom="_cWVGdiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWjI5SF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWjI5iF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cWjI5yF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_4</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cWjI6CF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cWjI6SF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWjv8CF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+          <maxPoint xmi:id="_cWjv8SF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWjv8iF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWjv8yF7Ee2IjM_xjrLuYw" startTime="478.99641651859343" endTime="479.2771541001501"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWjv9CF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="127374812" upperBound="1645854596"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWjv9SF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWkXACF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+          <maxPoint xmi:id="_cWkXASF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWkXAiF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWkXAyF7Ee2IjM_xjrLuYw" startTime="56.98074022873124" endTime="331.9533000892539"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWkXBCF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWkXBSF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWkXBiF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cWk-ECF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cWk-ESF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWk-EiF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWk-EyF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWk-FCF7Ee2IjM_xjrLuYw" name="overSpeed" value="1.0"/>
+      </metrics>
+      <metrics xmi:id="_cWk-FSF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWk-FiF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWk-FyF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWk-GCF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWk-GSF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWk-GiF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWk-GyF7Ee2IjM_xjrLuYw" name="Test_014_21_08_2022_15_59_29" developedFrom="_cWVGdiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWllICF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWllISF7Ee2IjM_xjrLuYw" startTime="226.59982947695784" endTime="372.248619633169"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWllIiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWllIyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWllJCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWllJSF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWllJiF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cWmMMCF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_4</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cWmMMSF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cWmMMiF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWmMMyF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+          <maxPoint xmi:id="_cWmMNCF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWmMNSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWmzQCF7Ee2IjM_xjrLuYw" startTime="262.428486640557" endTime="277.1780077020599"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWmzQSF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="127374812" upperBound="1645854596"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWmzQiF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWmzQyF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+          <maxPoint xmi:id="_cWmzRCF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWmzRSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWmzRiF7Ee2IjM_xjrLuYw" startTime="285.6074941782414" endTime="311.4397470035523"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWnaUCF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWnaUSF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWnaUiF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cWnaUyF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWnaVCF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWnaVSF7Ee2IjM_xjrLuYw" startTime="221.49427855625765" endTime="410.280014170511"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWnaViF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWnaVyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWnaWCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <metrics xmi:id="_cWoBYCF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWoBYSF7Ee2IjM_xjrLuYw" name="outerRegion" value="253.0"/>
+      </metrics>
+      <metrics xmi:id="_cWoBYiF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWoBYyF7Ee2IjM_xjrLuYw" name="overSpeed" value="107.0"/>
+      </metrics>
+      <metrics xmi:id="_cWoBZCF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWoBZSF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWoBZiF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWoBZyF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWoBaCF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWoBaSF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWoBaiF7Ee2IjM_xjrLuYw" name="Test_015_21_08_2022_15_59_29" developedFrom="_cWYw1SF7Ee2IjM_xjrLuYw _cWVGdiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWoocCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWoocSF7Ee2IjM_xjrLuYw" startTime="361.1811903845757" endTime="431.81338466075334"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWoociF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-695334586" upperBound="373843547"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWoocyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWoodCF7Ee2IjM_xjrLuYw" x="0.0413970354887363" y="-0.7262866144094033" z="-1.7252873340040833"/>
+          <maxPoint xmi:id="_cWoodSF7Ee2IjM_xjrLuYw" x="0.0413970354887363" y="-0.7262866144094033" z="-1.7252873340040833"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWpPgCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWpPgSF7Ee2IjM_xjrLuYw" startTime="73.56560628877347" endTime="514.2267606382569"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWpPgiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWpPgyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWpPhCF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cWpPhSF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWpPhiF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWpPhyF7Ee2IjM_xjrLuYw" startTime="485.45656361996214" endTime="487.5289535764206"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWpPiCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWp2kCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWp2kSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <metrics xmi:id="_cWp2kiF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWp2kyF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWp2lCF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWp2lSF7Ee2IjM_xjrLuYw" name="overSpeed" value="29.0"/>
+      </metrics>
+      <metrics xmi:id="_cWp2liF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWp2lyF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWp2mCF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWp2mSF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWp2miF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWp2myF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWp2nCF7Ee2IjM_xjrLuYw" name="Test_016_21_08_2022_15_59_29" developedFrom="_cWYw1SF7Ee2IjM_xjrLuYw _cWVGdiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWqdoCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWqdoSF7Ee2IjM_xjrLuYw" startTime="228.35147661052167" endTime="503.13363723930325"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWqdoiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="37008878" upperBound="1406859085"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWqdoyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWqdpCF7Ee2IjM_xjrLuYw" x="-0.9653338857252445" y="1.9295169932091465" z="0.4921388776278479"/>
+          <maxPoint xmi:id="_cWqdpSF7Ee2IjM_xjrLuYw" x="-0.9653338857252445" y="1.9295169932091465" z="0.4921388776278479"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWrEsCF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWrEsSF7Ee2IjM_xjrLuYw" startTime="251.1984987642758" endTime="361.324695085066"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWrEsiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-0.5686724043929476" upperBound="0.890936571395643"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWrEsyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.9660500823138976" upperBound="0.899904552390195"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWrEtCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="0.2905371996069932" upperBound="0.3437811161980962"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWrEtSF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWrEtiF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cWrEtyF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_4</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cWrrwCF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cWrrwSF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWrrwiF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+          <maxPoint xmi:id="_cWrrwyF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWrrxCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWrrxSF7Ee2IjM_xjrLuYw" startTime="512.9254859885968" endTime="521.760570975996"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWsS0CF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="127374812" upperBound="1645854596"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWsS0SF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWsS0iF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+          <maxPoint xmi:id="_cWsS0yF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cWsS1CF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWsS1SF7Ee2IjM_xjrLuYw" name="outerRegion" value="93.0"/>
+      </metrics>
+      <metrics xmi:id="_cWsS1iF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWsS1yF7Ee2IjM_xjrLuYw" name="overSpeed" value="25.0"/>
+      </metrics>
+      <metrics xmi:id="_cWsS2CF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWsS2SF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWsS2iF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWsS2yF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWsS3CF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWsS3SF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWs54CF7Ee2IjM_xjrLuYw" name="Test_017_21_08_2022_15_59_29" developedFrom="_cWcbMCF7Ee2IjM_xjrLuYw _cWVGdiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWs54SF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWs54iF7Ee2IjM_xjrLuYw" startTime="300.91766740426647" endTime="483.891086659979"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWs54yF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="1961249894" upperBound="713860756"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWs55CF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWs55SF7Ee2IjM_xjrLuYw" x="1.9293328562280854" y="0.11363523863417457" z="1.9136093829937089"/>
+          <maxPoint xmi:id="_cWs55iF7Ee2IjM_xjrLuYw" x="1.9293328562280854" y="0.11363523863417457" z="1.9136093829937089"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWtg8CF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWtg8SF7Ee2IjM_xjrLuYw" startTime="514.3128740080906" endTime="517.8705312355343"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWtg8iF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="1677873729" upperBound="1053517191"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWtg8yF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWtg9CF7Ee2IjM_xjrLuYw" x="-0.03480829338347391" y="-1.4204330587458882" z="1.5804488442584383"/>
+          <maxPoint xmi:id="_cWtg9SF7Ee2IjM_xjrLuYw" x="-0.03480829338347391" y="-1.4204330587458882" z="1.5804488442584383"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWuIACF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWuIASF7Ee2IjM_xjrLuYw" startTime="354.49912215550285" endTime="442.36085614731496"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWuIAiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.3805746134971608" upperBound="0.8660745628269808"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWuIAyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.8936512679370081" upperBound="-0.07101074109647487"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWuIBCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.6998783956377301" upperBound="0.2589412587223531"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWuIBSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWuvECF7Ee2IjM_xjrLuYw" startTime="168.60968604234003" endTime="481.26735978716795"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWuvESF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="127374812" upperBound="1645854596"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWuvEiF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWuvEyF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+          <maxPoint xmi:id="_cWuvFCF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWuvFSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWuvFiF7Ee2IjM_xjrLuYw" startTime="283.4410624277142" endTime="480.18521004100836"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWvWICF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWvWISF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWvWIiF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cWvWIyF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWvWJCF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWvWJSF7Ee2IjM_xjrLuYw" startTime="227.90895595198006" endTime="261.0325432307621"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWvWJiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWvWJyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWvWKCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <metrics xmi:id="_cWv9MCF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWv9MSF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWv9MiF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWv9MyF7Ee2IjM_xjrLuYw" name="overSpeed" value="90.0"/>
+      </metrics>
+      <metrics xmi:id="_cWv9NCF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWv9NSF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWv9NiF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWv9NyF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWv9OCF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWv9OSF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWv9OiF7Ee2IjM_xjrLuYw" name="Test_018_21_08_2022_15_59_29" developedFrom="_cWcbMCF7Ee2IjM_xjrLuYw _cWVGdiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWv9OyF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWwkQCF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cWwkQSF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_4</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cWwkQiF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cWwkQyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWwkRCF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+          <maxPoint xmi:id="_cWwkRSF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cWwkRiF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWwkRyF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWwkSCF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWwkSSF7Ee2IjM_xjrLuYw" name="overSpeed" value="1.0"/>
+      </metrics>
+      <metrics xmi:id="_cWwkSiF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWwkSyF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWwkTCF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWxLUCF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWxLUSF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWxLUiF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWxLUyF7Ee2IjM_xjrLuYw" name="Test_019_21_08_2022_15_59_29" developedFrom="_cWVGdiF7Ee2IjM_xjrLuYw _cWSDKSF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWxLVCF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWxLVSF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cWxLViF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_4</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cWxLVyF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cWxLWCF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWxLWSF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+          <maxPoint xmi:id="_cWxyYCF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWxyYSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWxyYiF7Ee2IjM_xjrLuYw" startTime="175.8078623454241" endTime="229.13582273439067"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWxyYyF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="127374812" upperBound="1645854596"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWxyZCF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWxyZSF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+          <maxPoint xmi:id="_cWxyZiF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cWyZcCF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cWyZcSF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWyZciF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cWyZcyF7Ee2IjM_xjrLuYw" name="overSpeed" value="1.0"/>
+      </metrics>
+      <metrics xmi:id="_cWyZdCF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cWyZdSF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cWyZdiF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cWyZdyF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cWyZeCF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cWyZeSF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cWyZeiF7Ee2IjM_xjrLuYw" name="Test_020_21_08_2022_15_59_29" developedFrom="_cWVGdiF7Ee2IjM_xjrLuYw _cWSDKSF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWzAgCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWzAgSF7Ee2IjM_xjrLuYw" startTime="182.17162934076052" endTime="469.1982638058464"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cWzAgiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cWzAgyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cWzAhCF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cWzAhSF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cWznkCF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cWznkSF7Ee2IjM_xjrLuYw" startTime="206.34692504268548" endTime="311.6849590207198"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWznkiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWznkyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cWznlCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cWznlSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW0OoCF7Ee2IjM_xjrLuYw" startTime="490.9689921675721" endTime="523.8625106227412"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cW0OoSF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1703790638" upperBound="-1337144011"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cW0OoiF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cW0OoyF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+          <maxPoint xmi:id="_cW0OpCF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cW0OpSF7Ee2IjM_xjrLuYw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW0OpiF7Ee2IjM_xjrLuYw" startTime="107.17430254800271" endTime="456.7989304129518"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW0OpyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-0.7685165146758597" upperBound="0.2794340791044847"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW01sCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.5545478223976796" upperBound="-0.11766941961037314"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW01sSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.510910140649949" upperBound="0.5895294034825045"/>
+      </operations>
+      <metrics xmi:id="_cW01siF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cW01syF7Ee2IjM_xjrLuYw" name="outerRegion" value="350.0"/>
+      </metrics>
+      <metrics xmi:id="_cW01tCF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cW01tSF7Ee2IjM_xjrLuYw" name="overSpeed" value="114.0"/>
+      </metrics>
+      <metrics xmi:id="_cW01tiF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cW01tyF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cW01uCF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cW01uSF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cW01uiF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cW01uyF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cW01vCF7Ee2IjM_xjrLuYw" name="Test_021_21_08_2022_17_34_31" developedFrom="_cWyZeiF7Ee2IjM_xjrLuYw _cWVGdiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cW1cwCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW1cwSF7Ee2IjM_xjrLuYw" startTime="328.88899696589266" endTime="380.27963891169156"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cW1cwiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cW1cwyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cW1cxCF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cW1cxSF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cW2D0CF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW2D0SF7Ee2IjM_xjrLuYw" startTime="196.9913904557502" endTime="310.8566714451154"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW2D0iF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW2D0yF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW2D1CF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cW2q4CF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW2q4SF7Ee2IjM_xjrLuYw" startTime="262.459112259065" endTime="510.18320488341874"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cW2q4iF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1703790638" upperBound="-1337144011"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cW2q4yF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cW2q5CF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+          <maxPoint xmi:id="_cW2q5SF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cW2q5iF7Ee2IjM_xjrLuYw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW3R8CF7Ee2IjM_xjrLuYw" startTime="155.59476881422796" endTime="400.863906681232"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW3R8SF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-0.7685165146758597" upperBound="0.2794340791044847"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW3R8iF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.5545478223976796" upperBound="-0.11766941961037314"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW3R8yF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.510910140649949" upperBound="0.5895294034825045"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cW3R9CF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW3R9SF7Ee2IjM_xjrLuYw" startTime="223.12639548623318" endTime="468.98686835043816"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW3R9iF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW3R9yF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW35ACF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <metrics xmi:id="_cW35ASF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cW35AiF7Ee2IjM_xjrLuYw" name="outerRegion" value="237.0"/>
+      </metrics>
+      <metrics xmi:id="_cW35AyF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cW35BCF7Ee2IjM_xjrLuYw" name="overSpeed" value="138.0"/>
+      </metrics>
+      <metrics xmi:id="_cW35BSF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cW35BiF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cW35ByF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cW35CCF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cW35CSF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cW35CiF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cW35CyF7Ee2IjM_xjrLuYw" name="Test_022_21_08_2022_17_34_31" developedFrom="_cWyZeiF7Ee2IjM_xjrLuYw _cWVGdiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cW4gECF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW4gESF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cW4gEiF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_4</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cW4gEyF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cW4gFCF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cW4gFSF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+          <maxPoint xmi:id="_cW4gFiF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cW5HICF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW5HISF7Ee2IjM_xjrLuYw" startTime="477.0176201482954" endTime="483.0659628617401"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cW5HIiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="127374812" upperBound="1645854596"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cW5HIyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cW5HJCF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+          <maxPoint xmi:id="_cW5HJSF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cW5uMCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW5uMSF7Ee2IjM_xjrLuYw" startTime="251.1460715592313" endTime="442.6780728687379"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cW5uMiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cW5uMyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cW5uNCF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cW5uNSF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cW5uNiF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cW5uNyF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cW6VQCF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cW6VQSF7Ee2IjM_xjrLuYw" name="overSpeed" value="2.0"/>
+      </metrics>
+      <metrics xmi:id="_cW6VQiF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cW6VQyF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cW6VRCF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cW6VRSF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cW6VRiF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cW6VRyF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cW6VSCF7Ee2IjM_xjrLuYw" name="Test_023_21_08_2022_17_34_31" developedFrom="_cWyZeiF7Ee2IjM_xjrLuYw _cWVGdiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cW68UCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW68USF7Ee2IjM_xjrLuYw" startTime="320.27156364154996" endTime="464.67866592941607"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cW68UiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cW68UyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cW68VCF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cW68VSF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cW7jYCF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW7jYSF7Ee2IjM_xjrLuYw" startTime="164.5054411249456" endTime="231.70669055597446"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW7jYiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW7jYyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW7jZCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cW7jZSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW7jZiF7Ee2IjM_xjrLuYw" startTime="179.5333796271417" endTime="467.6054763140888"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cW7jZyF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1703790638" upperBound="-1337144011"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cW8KcCF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cW8KcSF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+          <maxPoint xmi:id="_cW8KciF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cW8KcyF7Ee2IjM_xjrLuYw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW8KdCF7Ee2IjM_xjrLuYw" startTime="400.0477194125781" endTime="488.6414072809788"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW8KdSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-0.7685165146758597" upperBound="0.2794340791044847"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW8KdiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.5545478223976796" upperBound="-0.11766941961037314"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW8KdyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.510910140649949" upperBound="0.5895294034825045"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cW8xgCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW8xgSF7Ee2IjM_xjrLuYw" startTime="90.95083191484562" endTime="358.3395506901795"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cW8xgiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="127374812" upperBound="1645854596"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cW8xgyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cW8xhCF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+          <maxPoint xmi:id="_cW8xhSF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cW9YkCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW9YkSF7Ee2IjM_xjrLuYw" startTime="152.78850924852296" endTime="445.6956335536197"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cW9YkiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cW9YkyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cW9YlCF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cW9YlSF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cW9YliF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW9YlyF7Ee2IjM_xjrLuYw" startTime="474.762352638578" endTime="516.2384529112055"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW9_oCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW9_oSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cW9_oiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <metrics xmi:id="_cW9_oyF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cW9_pCF7Ee2IjM_xjrLuYw" name="outerRegion" value="74.0"/>
+      </metrics>
+      <metrics xmi:id="_cW9_pSF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cW9_piF7Ee2IjM_xjrLuYw" name="overSpeed" value="73.0"/>
+      </metrics>
+      <metrics xmi:id="_cW9_pyF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cW9_qCF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cW9_qSF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cW9_qiF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cW9_qyF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cW9_rCF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cW9_rSF7Ee2IjM_xjrLuYw" name="Test_024_21_08_2022_17_34_31" developedFrom="_cWyZeiF7Ee2IjM_xjrLuYw _cWVGdiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cW-msCF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW-msSF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cW-msiF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_4</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cW-msyF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cW-mtCF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cW-mtSF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+          <maxPoint xmi:id="_cW-mtiF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cW-mtyF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cW-muCF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cW-muSF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cW-muiF7Ee2IjM_xjrLuYw" name="overSpeed" value="1.0"/>
+      </metrics>
+      <metrics xmi:id="_cW_NwCF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cW_NwSF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cW_NwiF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cW_NwyF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cW_NxCF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cW_NxSF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cW_NxiF7Ee2IjM_xjrLuYw" name="Test_025_21_08_2022_17_34_31" developedFrom="_cWyZeiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cW_00CF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cW_00SF7Ee2IjM_xjrLuYw" startTime="316.31649289965145" endTime="413.974740870076"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cW_00iF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cW_00yF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cW_01CF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cW_01SF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cW_01iF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXAb4CF7Ee2IjM_xjrLuYw" startTime="198.95020519745782" endTime="406.56420315905194"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXAb4SF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXAb4iF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXAb4yF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXAb5CF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXAb5SF7Ee2IjM_xjrLuYw" startTime="333.11303655040683" endTime="438.0916499171544"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cXAb5iF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1703790638" upperBound="-1337144011"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cXBC8CF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXBC8SF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+          <maxPoint xmi:id="_cXBC8iF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cXBC8yF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXBC9CF7Ee2IjM_xjrLuYw" startTime="105.18853640814328" endTime="321.7894986258058"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXBC9SF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXBC9iF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXBC9yF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXBqACF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXBqASF7Ee2IjM_xjrLuYw" startTime="301.20516480392376" endTime="474.62184196772694"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cXBqAiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1703790638" upperBound="-1337144011"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cXBqAyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXBqBCF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+          <maxPoint xmi:id="_cXBqBSF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cXCRECF7Ee2IjM_xjrLuYw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXCRESF7Ee2IjM_xjrLuYw" startTime="111.33723153612826" endTime="144.90053490096375"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXCREiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-0.7685165146758597" upperBound="0.2794340791044847"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXCREyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.5545478223976796" upperBound="-0.11766941961037314"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXCRFCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.510910140649949" upperBound="0.5895294034825045"/>
+      </operations>
+      <metrics xmi:id="_cXCRFSF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cXCRFiF7Ee2IjM_xjrLuYw" name="outerRegion" value="255.0"/>
+      </metrics>
+      <metrics xmi:id="_cXCRFyF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cXCRGCF7Ee2IjM_xjrLuYw" name="overSpeed" value="141.0"/>
+      </metrics>
+      <metrics xmi:id="_cXCRGSF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cXCRGiF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cXC4ICF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cXC4ISF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cXC4IiF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cXC4IyF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cXC4JCF7Ee2IjM_xjrLuYw" name="Test_026_21_08_2022_17_34_31" developedFrom="_cWyZeiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cXC4JSF7Ee2IjM_xjrLuYw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXC4JiF7Ee2IjM_xjrLuYw" startTime="258.05288925705577" endTime="314.607750706504"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXDfMCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-0.7685165146758597" upperBound="0.2794340791044847"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXDfMSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.5545478223976796" upperBound="-0.11766941961037314"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXDfMiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.510910140649949" upperBound="0.5895294034825045"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXDfMyF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXDfNCF7Ee2IjM_xjrLuYw" startTime="390.6087193379113" endTime="477.2582992707513"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cXDfNSF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cXDfNiF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXDfNyF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cXEGQCF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cXEGQSF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cXEGQiF7Ee2IjM_xjrLuYw" name="outerRegion" value="42.0"/>
+      </metrics>
+      <metrics xmi:id="_cXEGQyF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cXEGRCF7Ee2IjM_xjrLuYw" name="overSpeed" value="35.0"/>
+      </metrics>
+      <metrics xmi:id="_cXEGRSF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cXEGRiF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cXEGRyF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cXEGSCF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cXEGSSF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cXEGSiF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cXEGSyF7Ee2IjM_xjrLuYw" name="Test_027_21_08_2022_17_34_31" developedFrom="_cWk-GyF7Ee2IjM_xjrLuYw _cWyZeiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cXEtUCF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXEtUSF7Ee2IjM_xjrLuYw" startTime="217.66733565890985" endTime="241.24021134851148"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXEtUiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXEtUyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXEtVCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXEtVSF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXEtViF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cXEtVyF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_4</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cXFUYCF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cXFUYSF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXFUYiF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+          <maxPoint xmi:id="_cXFUYyF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXFUZCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXFUZSF7Ee2IjM_xjrLuYw" startTime="277.63590136559856" endTime="330.48602077986567"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cXFUZiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="127374812" upperBound="1645854596"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cXFUZyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXF7cCF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+          <maxPoint xmi:id="_cXF7cSF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXF7ciF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXF7cyF7Ee2IjM_xjrLuYw" startTime="132.95461723639545" endTime="515.594119976296"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cXF7dCF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cXF7dSF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXF7diF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cXF7dyF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cXGigCF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXGigSF7Ee2IjM_xjrLuYw" startTime="266.36798560123543" endTime="513.5009765105737"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXGigiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXGigyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXGihCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cXHJkCF7Ee2IjM_xjrLuYw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXHJkSF7Ee2IjM_xjrLuYw" startTime="56.16128582334768" endTime="487.72220202457504"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXHJkiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-0.7685165146758597" upperBound="0.2794340791044847"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXHJkyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.5545478223976796" upperBound="-0.11766941961037314"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXHJlCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.510910140649949" upperBound="0.5895294034825045"/>
+      </operations>
+      <metrics xmi:id="_cXHJlSF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cXHJliF7Ee2IjM_xjrLuYw" name="outerRegion" value="283.0"/>
+      </metrics>
+      <metrics xmi:id="_cXHJlyF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cXHJmCF7Ee2IjM_xjrLuYw" name="overSpeed" value="83.0"/>
+      </metrics>
+      <metrics xmi:id="_cXHJmSF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cXHJmiF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cXHwoCF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cXHwoSF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cXHwoiF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cXHwoyF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cXHwpCF7Ee2IjM_xjrLuYw" name="Test_028_21_08_2022_17_34_31" developedFrom="_cWk-GyF7Ee2IjM_xjrLuYw _cWyZeiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXHwpSF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXIXsCF7Ee2IjM_xjrLuYw" startTime="97.65124822451111" endTime="256.1782948732987"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cXIXsSF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cXIXsiF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXIXsyF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cXIXtCF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cXIXtSF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXIXtiF7Ee2IjM_xjrLuYw" startTime="65.82769133688616" endTime="419.85631025388966"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXIXtyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXI-wCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXI-wSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXI-wiF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXI-wyF7Ee2IjM_xjrLuYw" startTime="218.3582199867243" endTime="259.3914339263074"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cXI-xCF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1703790638" upperBound="-1337144011"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cXI-xSF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXI-xiF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+          <maxPoint xmi:id="_cXI-xyF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cXJl0CF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cXJl0SF7Ee2IjM_xjrLuYw" name="outerRegion" value="195.0"/>
+      </metrics>
+      <metrics xmi:id="_cXJl0iF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cXJl0yF7Ee2IjM_xjrLuYw" name="overSpeed" value="153.0"/>
+      </metrics>
+      <metrics xmi:id="_cXJl1CF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cXJl1SF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cXJl1iF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cXJl1yF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cXJl2CF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cXJl2SF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cXJl2iF7Ee2IjM_xjrLuYw" name="Test_029_21_08_2022_17_34_31" developedFrom="_cWVGdiF7Ee2IjM_xjrLuYw _cWyZeiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXKM4CF7Ee2IjM_xjrLuYw" name="calibrationPointFuzzing" fromTemplate="_ZSCjgBzwEe2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXKM4SF7Ee2IjM_xjrLuYw"/>
+        <params xsi:type="_1:StringSet" xmi:id="_cXKM4iF7Ee2IjM_xjrLuYw" propertyName="chosenCalibPointToAlter">
+          <choices>frameB_4</choices>
+        </params>
+        <params xsi:type="_1:StringSet" xmi:id="_cXKM4yF7Ee2IjM_xjrLuYw" propertyName="calibrationFilename">
+          <choices>/home/jamesharbin/catkin_ws/src/safemuv_ros/safemuv_situational_awareness/config/calibration_points.yaml</choices>
+        </params>
+        <params xsi:type="_1:PointRange" xmi:id="_cXKM5CF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXKM5SF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+          <maxPoint xmi:id="_cXKz8CF7Ee2IjM_xjrLuYw" x="1.346211057701142" y="-0.267879530506991" z="0.013120734486762764"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXKz8SF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXKz8iF7Ee2IjM_xjrLuYw" startTime="228.89301117808407" endTime="378.0004946365834"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cXKz8yF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="127374812" upperBound="1645854596"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cXLbACF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXLbASF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+          <maxPoint xmi:id="_cXLbAiF7Ee2IjM_xjrLuYw" x="0.7731800221967764" y="-0.21052592298774186" z="1.4819814204470028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXLbAyF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXLbBCF7Ee2IjM_xjrLuYw" startTime="59.6120642404653" endTime="379.63133308653863"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cXLbBSF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cXLbBiF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXLbByF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cXMCECF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <metrics xmi:id="_cXMCESF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cXMCEiF7Ee2IjM_xjrLuYw" name="outerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cXMCEyF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cXMCFCF7Ee2IjM_xjrLuYw" name="overSpeed" value="1.0"/>
+      </metrics>
+      <metrics xmi:id="_cXMCFSF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cXMCFiF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cXMCFyF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cXMCGCF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cXMCGSF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cXMCGiF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_cXMCGyF7Ee2IjM_xjrLuYw" name="Test_030_21_08_2022_17_34_31" developedFrom="_cWVGdiF7Ee2IjM_xjrLuYw _cWyZeiF7Ee2IjM_xjrLuYw">
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cXMpICF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXMpISF7Ee2IjM_xjrLuYw" startTime="524.7181362945739" endTime="524.7616275911457"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXMpIiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXMpIyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXMpJCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXNQMCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV2" variableToAffect="_YJHY4B16Ee2cg6RgHYg5mg" fromTemplate="_iDDXEBz5Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXNQMSF7Ee2IjM_xjrLuYw" startTime="179.01916959121345" endTime="227.39680833016078"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cXNQMiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-2035273907" upperBound="41644173"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cXNQMyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXNQNCF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+          <maxPoint xmi:id="_cXNQNSF7Ee2IjM_xjrLuYw" x="0.26326574438034145" y="-1.821407412468536" z="-1.7223636683727839"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cXNQNiF7Ee2IjM_xjrLuYw" name="attackVel_uav2" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXN3QCF7Ee2IjM_xjrLuYw" startTime="51.051063600190055" endTime="449.7262369152148"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXN3QSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="0.4319716580540065" upperBound="0.5107573141826793"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXN3QiF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="0.261371926678972" upperBound="0.5112963757174872"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXN3QyF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.536446363998837" upperBound="0.7178956134317707"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_cXN3RCF7Ee2IjM_xjrLuYw" name="desiredPathFuzzing_UAV1" variableToAffect="_HD_D8B16Ee2cg6RgHYg5mg" fromTemplate="_VdwcwBz0Ee2iqo34YTW9pg">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXN3RSF7Ee2IjM_xjrLuYw" startTime="167.56754615489047" endTime="493.73696002733857"/>
+        <params xsi:type="_1:IntRange" xmi:id="_cXN3RiF7Ee2IjM_xjrLuYw" propertyName="numberOfPoints" lowerBound="-1703790638" upperBound="-1337144011"/>
+        <params xsi:type="_1:PointRange" xmi:id="_cXN3RyF7Ee2IjM_xjrLuYw" propertyName="pointShift">
+          <minPoint xmi:id="_cXOeUCF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+          <maxPoint xmi:id="_cXOeUSF7Ee2IjM_xjrLuYw" x="-1.8361486489227938" y="-1.9588380547389241" z="-0.22673766420753028"/>
+        </params>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_cXOeUiF7Ee2IjM_xjrLuYw" name="attackVel_uav1" variableToAffect="_OFeM4BicEe2s8f_vFy3jOw" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_cXOeUyF7Ee2IjM_xjrLuYw" startTime="481.57064523885026" endTime="487.7479016110111"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXOeVCF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.x" lowerBound="-0.7685165146758597" upperBound="0.2794340791044847"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXOeVSF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.y" lowerBound="-0.5545478223976796" upperBound="-0.11766941961037314"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_cXOeViF7Ee2IjM_xjrLuYw" propertyName="geometry_msgs/TwistStamped.twist.linear.z" lowerBound="-0.510910140649949" upperBound="0.5895294034825045"/>
+      </operations>
+      <metrics xmi:id="_cXOeVyF7Ee2IjM_xjrLuYw" metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result xmi:id="_cXOeWCF7Ee2IjM_xjrLuYw" name="outerRegion" value="203.0"/>
+      </metrics>
+      <metrics xmi:id="_cXPFYCF7Ee2IjM_xjrLuYw" metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result xmi:id="_cXPFYSF7Ee2IjM_xjrLuYw" name="overSpeed" value="133.0"/>
+      </metrics>
+      <metrics xmi:id="_cXPFYiF7Ee2IjM_xjrLuYw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_cXPFYyF7Ee2IjM_xjrLuYw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_cXPFZCF7Ee2IjM_xjrLuYw" metric="_TiizQN04EeyAL51MCA53dw">
+        <result xmi:id="_cXPFZSF7Ee2IjM_xjrLuYw" name="innerRegion"/>
+      </metrics>
+      <metrics xmi:id="_cXPFZiF7Ee2IjM_xjrLuYw" metric="_sg3LkBiMEe2s8f_vFy3jOw">
+        <result xmi:id="_cXPFZyF7Ee2IjM_xjrLuYw" name="vehicleAvoidance"/>
+      </metrics>
+    </performedTests>
+    <resultSets xmi:id="_cXPFaCF7Ee2IjM_xjrLuYw" name="FULL-21_08_2022_13_45_21-intermediate-20" status="INTERMEDIATE"/>
+    <resultSets xmi:id="_cXPFaSF7Ee2IjM_xjrLuYw" name="NONDOM-21_08_2022_13_45_21-intermediate-20" status="INTERMEDIATE"/>
+    <resultSets xmi:id="_cXPFaiF7Ee2IjM_xjrLuYw" name="FULL-21_08_2022_13_45_31-intermediate-30" status="INTERMEDIATE"/>
+    <resultSets xmi:id="_cXPFayF7Ee2IjM_xjrLuYw" name="NONDOM-21_08_2022_13_45_31-intermediate-30" status="INTERMEDIATE"/>
+    <resultSets xmi:id="_cXPFbCF7Ee2IjM_xjrLuYw" name="FULL-21_08_2022_13_45_31-final"/>
+    <resultSets xmi:id="_cXPscCF7Ee2IjM_xjrLuYw" name="NONDOM-21_08_2022_13_45_31-final"/>
+    <resultSets xmi:id="_cXPscSF7Ee2IjM_xjrLuYw" name="FULL-21_08_2022_17_34_31-intermediate-20" status="INTERMEDIATE" results="_cWyZeiF7Ee2IjM_xjrLuYw _cWk-GyF7Ee2IjM_xjrLuYw _cWVGdiF7Ee2IjM_xjrLuYw _cWs54CF7Ee2IjM_xjrLuYw _cWp2nCF7Ee2IjM_xjrLuYw _cWYw1SF7Ee2IjM_xjrLuYw _cWSDKSF7Ee2IjM_xjrLuYw _cWcbMCF7Ee2IjM_xjrLuYw _cWoBaiF7Ee2IjM_xjrLuYw _cWgspCF7Ee2IjM_xjrLuYw"/>
+    <resultSets xmi:id="_cXPsciF7Ee2IjM_xjrLuYw" name="NONDOM-21_08_2022_17_34_31-intermediate-20" status="INTERMEDIATE" results="_cWyZeiF7Ee2IjM_xjrLuYw"/>
+    <resultSets xmi:id="_cXPscyF7Ee2IjM_xjrLuYw" name="FULL-21_08_2022_19_09_34-intermediate-30" status="INTERMEDIATE" results="_cWyZeiF7Ee2IjM_xjrLuYw _cW_NxiF7Ee2IjM_xjrLuYw _cXHwpCF7Ee2IjM_xjrLuYw _cXEGSyF7Ee2IjM_xjrLuYw _cWk-GyF7Ee2IjM_xjrLuYw _cW01vCF7Ee2IjM_xjrLuYw _cXMCGyF7Ee2IjM_xjrLuYw _cWVGdiF7Ee2IjM_xjrLuYw _cWs54CF7Ee2IjM_xjrLuYw _cW6VSCF7Ee2IjM_xjrLuYw"/>
+    <resultSets xmi:id="_cXPsdCF7Ee2IjM_xjrLuYw" name="NONDOM-21_08_2022_19_09_34-intermediate-30" status="INTERMEDIATE" results="_cWyZeiF7Ee2IjM_xjrLuYw _cW_NxiF7Ee2IjM_xjrLuYw _cXHwpCF7Ee2IjM_xjrLuYw"/>
+    <resultSets xmi:id="_cXPsdSF7Ee2IjM_xjrLuYw" name="FULL-21_08_2022_19_09_34-final" results="_cWyZeiF7Ee2IjM_xjrLuYw _cW_NxiF7Ee2IjM_xjrLuYw _cXHwpCF7Ee2IjM_xjrLuYw _cXEGSyF7Ee2IjM_xjrLuYw _cWk-GyF7Ee2IjM_xjrLuYw _cW01vCF7Ee2IjM_xjrLuYw _cXMCGyF7Ee2IjM_xjrLuYw _cWVGdiF7Ee2IjM_xjrLuYw _cWs54CF7Ee2IjM_xjrLuYw _cW6VSCF7Ee2IjM_xjrLuYw"/>
+    <resultSets xmi:id="_cXPsdiF7Ee2IjM_xjrLuYw" name="NONDOM-21_08_2022_19_09_34-final" results="_cWyZeiF7Ee2IjM_xjrLuYw _cW_NxiF7Ee2IjM_xjrLuYw _cXHwpCF7Ee2IjM_xjrLuYw"/>
     <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="525"/>
   </campaigns>
-  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/atlas/atlas-middleware/expt-working/ros/auto_launch_safemuv.sh" customTerminateFileLocation="/home/jharbin/academic/atlas/atlas-middleware/expt-working/ros/terminate.sh">
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jamesharbin/academic/atlas/atlas-middleware/expt-working/ros/auto_launch_safemuv.sh" customTerminateFileLocation="/home/jamesharbin/academic/atlas/atlas-middleware/expt-working/ros/terminate.sh">
     <variables xmi:id="_OFeM4BicEe2s8f_vFy3jOw" name="/uav_1/ual/set_velocityIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
     <variables xmi:id="_OxQuMOIdEeynuZg3j0KLEQ" name="/uav_2/ual/set_velocityIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
     <variables xmi:id="_qknFkBkhEe2WW_2jHFiR_w" name="/uav_1/ground_truth/state" type="_y6B4YBkhEe2WW_2jHFiR_w"/>
@@ -128,7 +1495,7 @@
     <nodes xmi:id="_56Y20BifEe2s8f_vFy3jOw" name="/uav_2/trajectory_tracking_controller" publisher="_OxQuMOIdEeynuZg3j0KLEQ"/>
     <nodes xmi:id="_41phsB2UEe2cg6RgHYg5mg" name="/uav_1/path_generator" publisher="_HD_D8B16Ee2cg6RgHYg5mg"/>
     <nodes xmi:id="_8QBW0B2UEe2cg6RgHYg5mg" name="/uav_2/path_generator" publisher="_YJHY4B16Ee2cg6RgHYg5mg"/>
-    <simulator xsi:type="TestingMM.MRSPackage:ROSSimulator" xmi:id="_JmUQcOMnEeylpr6FvsbTLQ" hostname="0.0.0.0" port="9090"/>
+    <simulator xsi:type="_2:ROSSimulator" xmi:id="_JmUQcOMnEeylpr6FvsbTLQ" hostname="0.0.0.0" port="9090"/>
     <propertyType xmi:id="_fSym0OIdEeynuZg3j0KLEQ" name="geometry_msgs/TwistStamped">
       <parameters xmi:id="_iUwjAOIdEeynuZg3j0KLEQ" name="linear">
         <subparameters xmi:id="_k6FmgOIdEeynuZg3j0KLEQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>

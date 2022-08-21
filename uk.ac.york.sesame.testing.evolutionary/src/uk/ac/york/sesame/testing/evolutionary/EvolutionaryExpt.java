@@ -95,9 +95,13 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			SolutionListEvaluator<SESAMETestSolution> evaluator;
 			Comparator<SESAMETestSolution> dominanceComparator;
 					
-			// TODO: Crossover, mutation and selection operations should be configurable in the model?
-			//crossover = new SESAMESwapAttacksFromTestsCrossover(crossoverRNG, crossoverProb, crossoverLogFile);
-			crossover = new SESAMEConditionsCrossover(crossoverRNG, crossoverLogFile, cg);
+			// TODO: Crossover, mutation and selection operations should be configurable in the model
+			if (conditionBased) {
+				crossover = new SESAMEConditionsCrossover(crossoverRNG, crossoverLogFile, cg);
+			} else {
+				crossover = new SESAMESwapAttacksFromTestsCrossover(crossoverRNG, crossoverProb, crossoverLogFile);
+			}
+			
 			mutation = new SESAMESimpleMutation(mutationRNG, mutationLogFile, timingMutProb, paramMutProb, cg);
 			
  			selection = new TournamentSelection<SESAMETestSolution>(5);

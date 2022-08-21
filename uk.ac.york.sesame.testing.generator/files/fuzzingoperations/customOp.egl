@@ -32,7 +32,7 @@ public class [%=fuzzOp.name%]CustomOp_[%= classNameExt %] extends [%= superClass
 	public [%=fuzzOp.name%]CustomOp_[%= classNameExt %](String topic, double start, double end, long seed) {
 		super(topic,start,end);
 		this.rng = new Random(seed);
-		op = new [%= fuzzOpClassName %];
+		this.fuzzOpInternal = new [%= fuzzOpClassName %]();
 	}
 	[% } %]
 	

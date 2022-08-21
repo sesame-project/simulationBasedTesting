@@ -260,8 +260,12 @@ public class SESAMEFuzzingOperationWrapper {
 
 	public SESAMEFuzzingOperationWrapper dup() {
 		SESAMEFuzzingOperationWrapper newSFOW = new SESAMEFuzzingOperationWrapper(this.parentTest, this.t);
-		newSFOW.setStoredStartTree(Tree.copyOf(storedStartTree));
-		newSFOW.setStoredEndTree(Tree.copyOf(storedEndTree));
+		if (this.storedStartTree != null) {
+			newSFOW.setStoredStartTree(Tree.copyOf(storedStartTree));
+		}
+		if (this.storedEndTree != null) {
+			newSFOW.setStoredEndTree(Tree.copyOf(storedEndTree));
+		}
 		return newSFOW;
 	}
 

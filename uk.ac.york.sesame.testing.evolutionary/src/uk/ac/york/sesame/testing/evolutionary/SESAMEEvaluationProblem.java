@@ -94,7 +94,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		rng = new Random();
 		List<TopicPartition> parts = new ArrayList<TopicPartition>();
 		metricConsumer = new MetricConsumer(campaign, properties, parts);
-
 		Thread t = new Thread(metricConsumer);
 		t.start();
 	}
@@ -333,6 +332,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					}
 					
 				} else {
+					// Time-based fuzzing
 					SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a);
 					sol.addContents(i++, sta);
 				}
