@@ -1,6 +1,5 @@
 package metrics.custom;
 
-
 import org.apache.flink.api.common.state.*;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.util.Collector;
@@ -31,10 +30,12 @@ public class innerRegionMetric extends BatchedRateMetric {
     public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
     	// There is one topic per robot that contains a room completed notification
     	String completionTopicName = "airframe_clearance";
-    	if (msg.getTopic().contains(completionTopicName)) {
-    		Object v = msg.getValue();
-    		Double dist = Double.valueOf((String)v);
-    		
+    	String topic = msg.getTopic();
+    	if (topic.contains(completionTopicName)) {
+			String v = (String)msg.getValue();
+			String distStr = v.split("data\":")[1].split("}")[0];
+			Double dist = Double.valueOf((String)distStr);
+    		System.out.println("dist for " + topic + " = " + dist);
     		if ((dist < distanceThreshold) && isReadyToLogNow()) {
     			System.out.println("VIOLATION: inner region " + msg);
         		

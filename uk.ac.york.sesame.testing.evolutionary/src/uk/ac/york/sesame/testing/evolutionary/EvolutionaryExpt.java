@@ -44,9 +44,8 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	static private String referenceParetoFront = "";
 
 	// TODO: mutation parameters, put into the model
-	private double timingMutProb = 1.0;
-	private double participantsMutProb;
-	private double paramMutProb = 1.0;
+	private double timingMutProb = 0.666;
+	private double paramMutProb = 0.666;
 	
 	private double crossoverProb = 1.0; 
 	
