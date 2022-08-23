@@ -119,7 +119,6 @@ public class TTSSimulator implements ISimulator {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override

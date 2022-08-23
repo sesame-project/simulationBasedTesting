@@ -220,10 +220,6 @@ public class SESAMEFuzzingOperationWrapper {
 		return new SESAMEFuzzingOperationWrapper(sol, newA);
 	}
 
-	private static void createNewConditionActivation(FuzzingOperation newA, ConditionGenerator cg) throws ConversionFailed {
-
-	}
-
 	public FuzzingOperation getAttack() {
 		return t;
 	}

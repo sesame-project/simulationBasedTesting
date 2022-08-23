@@ -131,23 +131,26 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 			egxModule.execute();
 
 			// EGX END
+			System.out.println("project pom updated, please run an update in maven if needed.");
+			
+			// JRH: POM file generation is handled by the EGL in pom/pomXML.egl now
 
-			File pomfile = new File(theIProjectPath + "/pom.xml");
-			if (!pomfile.exists()) {
-				pomfile.createNewFile();
-				// System.out.println(pomfile.getAbsolutePath());
-				FileWriter fw2 = new FileWriter(pomfile);
-				fw2.write(DefaultPOM.contents());
-				fw2.close();
-
-				try {
-					UtilityMethods.refresh(theIProject);
-				} catch (CoreException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				System.out.println("project pom updated, please run an update in maven if needed.");
-			}
+			//			File pomfile = new File(theIProjectPath + "/pom.xml");
+//			if (!pomfile.exists()) {
+//				pomfile.createNewFile();
+//				// System.out.println(pomfile.getAbsolutePath());
+//				FileWriter fw2 = new FileWriter(pomfile);
+//				fw2.write(DefaultPOM.contents());
+//				fw2.close();
+//
+//				try {
+//					UtilityMethods.refresh(theIProject);
+//				} catch (CoreException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				
+//			}
 
 		} catch (EolModelLoadingException e) {
 			e.printStackTrace();
@@ -166,7 +169,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 		System.out.println("CURRENT USER.DIR = " + System.getProperty("user.dir"));
 		ArrayList<String> mmURIs = new ArrayList<String>();
 		Resource.Factory xmiFactory = new XMIResourceFactoryImpl();
-
+  
 //		if (!generatorProjectPath.isEmpty()) {
 //		File f = new File(generatorProjectPath);
 //		File repoRoot = f.getParentFile();
