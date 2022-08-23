@@ -34,6 +34,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = true;
 	private static final boolean DEBUG_ACTUALLY_RUN = true;
+	
+	private static final boolean FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE = true;
 
 	private static final long DEFAULT_HARDCODED_DELAY = 100;
 	
@@ -349,9 +351,18 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, baseFuzzingOperation, condGenerator);
 					sol.addContents(i++, sta);
 				} catch (ConversionFailed e) {
-					e.printStackTrace();
+					if (FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE) {
+						throw new SolutionCreationFailed(e);
+					} else {
+						e.printStackTrace();
+					}
+					
 				} catch (ParamError e) {
-					e.printStackTrace();
+					if (FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE) {
+						throw new SolutionCreationFailed(e);
+					} else {
+						e.printStackTrace();
+					}
 				}
 				
 			} else {
