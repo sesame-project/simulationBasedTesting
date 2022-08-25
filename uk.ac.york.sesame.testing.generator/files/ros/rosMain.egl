@@ -125,6 +125,8 @@ public class [%= testNameString %]_TestRunner {
 		System.out.println("Simulator run period completed - connecting to topics");
 		rosSim.connect(cp);
 		
+		[* rosSim.recordSimState("[%=  testNameString %]"); - handed in SESAMEEvaluationProblem *]
+		
 		[% for (aTopic in allTopics) { %]
 		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
 			public void run() {

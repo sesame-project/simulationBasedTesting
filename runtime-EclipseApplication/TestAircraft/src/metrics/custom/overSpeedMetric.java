@@ -13,7 +13,7 @@ import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 
-public class overSpeedMetric extends BatchedRateMetric {
+public class overSpeedMetric extends BatchedRateMetricIndependent {
 
 	private static final double TIME_BATCH_THRESHOLD = 1.0;
 
@@ -43,7 +43,8 @@ public class overSpeedMetric extends BatchedRateMetric {
     
     public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
     	String positionTopicName = "ual/velocity";
-    	if (msg.getTopic().contains(positionTopicName)) {
+    	String topic = msg.getTopic();
+    	if (topic.contains(positionTopicName)) {
     		Object value = msg.getValue();
   			// get x and y coordinates
 			Object obj = JSONValue.parse(value.toString());
@@ -52,7 +53,7 @@ public class overSpeedMetric extends BatchedRateMetric {
     		Double y = (Double)ParsingUtils.getField(jo, "twist.linear.y");
     		Double z = (Double)ParsingUtils.getField(jo, "twist.linear.z");
     		
-    		if (isOverspeed(x,y,z) && isReadyToLogNow()) {
+    		if (isOverspeed(x,y,z) && isReadyToLogNow(topic)) {
     			if (SimCore.getInstance().getTime() > MISSION_START_TIME) {
     			System.out.println("VIOLATION: overspeed: " + msg);
     			// Set initial value if not set

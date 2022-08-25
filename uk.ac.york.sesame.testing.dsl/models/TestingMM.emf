@@ -422,6 +422,7 @@ package MRSPackage {
 		attr String launchFileLocation;
 		attr int launchDelaySeconds = 40;
 		attr String customTerminateFileLocation;
+		attr String recordFileLocation;
 		val Node[*] nodes;
 		val Simulator[1] simulator;
 		val Type[*] propertyType;

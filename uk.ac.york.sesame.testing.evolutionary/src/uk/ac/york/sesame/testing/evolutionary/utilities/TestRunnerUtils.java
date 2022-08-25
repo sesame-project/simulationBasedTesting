@@ -1,6 +1,8 @@
 package uk.ac.york.sesame.testing.evolutionary.utilities;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
 
@@ -45,5 +47,11 @@ public class TestRunnerUtils {
 				
 			}
 		}
+	}
+
+	public static void recordSim(String recordLauncher, String fileIDName) {
+		Path p = Paths.get(recordLauncher);
+		String parentDir = p.getParent().toString();
+		ExptHelper.runScriptNewThread(parentDir, recordLauncher + " " + fileIDName);
 	}
 }

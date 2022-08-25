@@ -319,6 +319,7 @@
           defaultValueLiteral="40"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="customTerminateFileLocation"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="recordFileLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
           eType="#//MRSPackage/Node" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="simulator" lowerBound="1"

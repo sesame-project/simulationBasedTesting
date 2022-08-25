@@ -36,6 +36,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final boolean DEBUG_ACTUALLY_RUN = true;
 	
 	private static final boolean FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE = true;
+	
+	private static final boolean RECORD_ROSBAG = true;
 
 	private static final long DEFAULT_HARDCODED_DELAY = 100;
 	
@@ -210,9 +212,23 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				System.out.print("Launching test runner for " + mainClassName + "... (classpath " + codeGenerationDirectory + ")");
 				System.out.flush();
 				TestRunnerUtils.exec(mainClassName, codeGenerationDirectory);
-						
-				System.out.println("done");
+				System.out.println("Testrunner launched");		
 				System.out.flush();
+										
+				if (RECORD_ROSBAG) {
+					Optional<String> recordLauncherFile_o = getRecordLocationForMRS();
+					if (recordLauncherFile_o.isPresent()) {
+						String recordLauncherFile = recordLauncherFile_o.get();				
+						// TODO: this should be generalised so it is either specified in the
+						// 	model or the recording is based on the simulation type
+						System.out.println("Rosbag recording started via " + recordLauncherFile + "...");
+						TestRunnerUtils.recordSim(recordLauncherFile, solution.getName());
+						System.out.flush();
+					}
+				}
+				
+				System.out.flush();
+				
 
 				// Need to wait for simulation completion here...
 				// If no trigger specified specifically for this test, use the default for the
@@ -268,6 +284,14 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		} catch (NumberFormatException e) {
 			System.out.println("Probably a metric returned something non-numeric");
 			e.printStackTrace();
+		}
+	}
+
+	private Optional<String> getRecordLocationForMRS() {
+		if (mrs != null) {
+			return Optional.of(mrs.getRecordFileLocation());
+		} else {
+			return Optional.empty();
 		}
 	}
 

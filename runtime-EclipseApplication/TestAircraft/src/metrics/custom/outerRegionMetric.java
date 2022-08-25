@@ -12,7 +12,7 @@ import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 
-public class outerRegionMetric extends BatchedRateMetric {
+public class outerRegionMetric extends BatchedRateMetricIndependent {
 
 	private static final double TIME_BATCH_THRESHOLD = 1.0;
 	
@@ -42,7 +42,8 @@ public class outerRegionMetric extends BatchedRateMetric {
       
     public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
     	String positionTopicName = "ground_truth/state";
-    	if (msg.getTopic().contains(positionTopicName)) {
+    	String topic = msg.getTopic();
+    	if (topic.contains(positionTopicName)) {
     		Object value = msg.getValue();
   			// get x and y coordinates
 			Object obj = JSONValue.parse(value.toString());
@@ -51,7 +52,7 @@ public class outerRegionMetric extends BatchedRateMetric {
     		Double y = (Double)ParsingUtils.getField(jo, "pose.pose.position.y");
     		Double z = (Double)ParsingUtils.getField(jo, "pose.pose.position.z");
     		
-    		if (isOutsideRegion(x,y,z) && isReadyToLogNow()) {
+    		if (isOutsideRegion(x,y,z) && isReadyToLogNow(topic)) {
     			System.out.println("VIOLATION: detected OuterRegion " + msg);
     			// Set initial value if not set
     			if (outerRegionViolations.value() == null) {

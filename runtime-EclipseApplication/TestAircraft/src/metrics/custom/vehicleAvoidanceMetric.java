@@ -1,17 +1,11 @@
 package metrics.custom;
 
-
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.flink.api.common.state.*;
 import org.apache.flink.configuration.Configuration;
-import org.apache.flink.statefun.sdk.java.TypeName;
-import org.apache.flink.statefun.sdk.java.ValueSpec;
-import org.apache.flink.statefun.sdk.java.types.Type;
-import org.apache.flink.streaming.api.functions.*;
-import org.apache.flink.streaming.api.functions.co.CoProcessFunction.Context;
+
 import org.apache.flink.util.Collector;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -20,6 +14,9 @@ import datatypes.custom.Point3D;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 
+// vehicleAvoidanceMetric still used BatchedRateMetric, not BatchedRateMetricIndependent.
+// Why? because distance comparison of uav_1 -> uav_2 is symmetric so we should
+// avoid duplicates for comparing them in reverse order
 public class vehicleAvoidanceMetric extends BatchedRateMetric {
 
 	private static final double TIME_BATCH_THRESHOLD = 1.0;

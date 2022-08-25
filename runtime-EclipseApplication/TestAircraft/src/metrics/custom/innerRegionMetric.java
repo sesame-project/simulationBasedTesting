@@ -7,7 +7,7 @@ import org.apache.flink.util.Collector;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 
-public class innerRegionMetric extends BatchedRateMetric {
+public class innerRegionMetric extends BatchedRateMetricIndependent {
 	
 	private static final double TIME_BATCH_THRESHOLD = 1.0;
 
@@ -36,7 +36,7 @@ public class innerRegionMetric extends BatchedRateMetric {
 			String distStr = v.split("data\":")[1].split("}")[0];
 			Double dist = Double.valueOf((String)distStr);
     		System.out.println("dist for " + topic + " = " + dist);
-    		if ((dist < distanceThreshold) && isReadyToLogNow()) {
+    		if ((dist < distanceThreshold) && isReadyToLogNow(topic)) {
     			System.out.println("VIOLATION: inner region " + msg);
         		
         		// Set initial value if not set
