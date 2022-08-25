@@ -90,7 +90,8 @@ public class SESAMEFuzzingOperationWrapper {
 		}
 	}
 
-	private static void reduceCustomParameters(EList<ValueSet> newParams, EList<ValueSet> origParams) throws ParamError {
+	private static void reduceCustomParameters(EList<ValueSet> newParams, EList<ValueSet> origParams ) throws ParamError {
+		boolean reduceRangeToSingle = true;
 		FuzzingOperationsFactory af = FuzzingOperationsFactory.eINSTANCE;
 		newParams.clear();
 
@@ -114,10 +115,16 @@ public class SESAMEFuzzingOperationWrapper {
 			if (vsOrig instanceof IntRange) {
 				int lb;
 				int ub;
+			
 				int origLB = ((IntRange) vsOrig).getLowerBound();
 				int origUB = ((IntRange) vsOrig).getUpperBound();
-				lb = RandomFunctions.randomIntInRange(rng, origLB, origUB);
-				ub = RandomFunctions.randomIntInRange(rng, lb, origUB);
+				if (!reduceRangeToSingle) {
+					lb = RandomFunctions.randomIntInRange(rng, origLB, origUB);
+					ub = RandomFunctions.randomIntInRange(rng, lb, origUB);
+				} else {
+					lb = RandomFunctions.randomIntInRange(rng, origLB, origUB);
+					ub = lb;
+				}
 				IntRange vs = af.createIntRange();
 				// Property name must be set
 				vs.setPropertyName(((IntRange)vsOrig).getPropertyName());

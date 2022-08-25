@@ -104,13 +104,22 @@ public interface MRSPackagePackage extends EPackage {
 	int MRS__CUSTOM_TERMINATE_FILE_LOCATION = 3;
 
 	/**
+	 * The feature id for the '<em><b>Record File Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MRS__RECORD_FILE_LOCATION = 4;
+
+	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MRS__NODES = 4;
+	int MRS__NODES = 5;
 
 	/**
 	 * The feature id for the '<em><b>Simulator</b></em>' containment reference.
@@ -119,7 +128,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MRS__SIMULATOR = 5;
+	int MRS__SIMULATOR = 6;
 
 	/**
 	 * The feature id for the '<em><b>Property Type</b></em>' containment reference list.
@@ -128,7 +137,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MRS__PROPERTY_TYPE = 6;
+	int MRS__PROPERTY_TYPE = 7;
 
 	/**
 	 * The number of structural features of the '<em>MRS</em>' class.
@@ -137,7 +146,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MRS_FEATURE_COUNT = 7;
+	int MRS_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>MRS</em>' class.
@@ -646,6 +655,17 @@ public interface MRSPackagePackage extends EPackage {
 	EAttribute getMRS_CustomTerminateFileLocation();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getRecordFileLocation <em>Record File Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Record File Location</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getRecordFileLocation()
+	 * @see #getMRS()
+	 * @generated
+	 */
+	EAttribute getMRS_RecordFileLocation();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getNodes <em>Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1062,6 +1082,14 @@ public interface MRSPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MRS__CUSTOM_TERMINATE_FILE_LOCATION = eINSTANCE.getMRS_CustomTerminateFileLocation();
+
+		/**
+		 * The meta object literal for the '<em><b>Record File Location</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MRS__RECORD_FILE_LOCATION = eINSTANCE.getMRS_RecordFileLocation();
 
 		/**
 		 * The meta object literal for the '<em><b>Nodes</b></em>' containment reference list feature.

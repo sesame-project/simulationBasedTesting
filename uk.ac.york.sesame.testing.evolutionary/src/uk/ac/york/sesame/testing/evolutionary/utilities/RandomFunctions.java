@@ -14,7 +14,9 @@ public class RandomFunctions {
 	}
 	
 	public static int randomIntInRange(Random rng, int s, int e) {
-		return s + rng.nextInt() * (e-s);
+		int max = Math.max(s, e);
+		int min = Math.min(s, e);
+		return rng.nextInt((max - min) + 1) + min;		
 	}
 
 	public static Point randomPointInRange(Random rng, Point origLB, Point origUB) {

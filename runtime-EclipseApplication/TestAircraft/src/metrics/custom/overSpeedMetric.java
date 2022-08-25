@@ -10,9 +10,10 @@ import org.json.simple.JSONValue;
 
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.metrics.Metric;
+import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 
-public class overSpeedMetric extends BatchedRateMetric {
+public class overSpeedMetric extends BatchedRateMetricIndependent {
 
 	private static final double TIME_BATCH_THRESHOLD = 1.0;
 
@@ -21,6 +22,8 @@ public class overSpeedMetric extends BatchedRateMetric {
 	private static final double MAX_SPEED = 1.0;
 	
 	private static final double MAX_SPEED_SQR = MAX_SPEED*MAX_SPEED;
+
+	private static final double MISSION_START_TIME = 60.0;
 	
 	private ValueState<Long> overspeedCount;
 	   
@@ -40,7 +43,8 @@ public class overSpeedMetric extends BatchedRateMetric {
     
     public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
     	String positionTopicName = "ual/velocity";
-    	if (msg.getTopic().contains(positionTopicName)) {
+    	String topic = msg.getTopic();
+    	if (topic.contains(positionTopicName)) {
     		Object value = msg.getValue();
   			// get x and y coordinates
 			Object obj = JSONValue.parse(value.toString());
@@ -49,7 +53,8 @@ public class overSpeedMetric extends BatchedRateMetric {
     		Double y = (Double)ParsingUtils.getField(jo, "twist.linear.y");
     		Double z = (Double)ParsingUtils.getField(jo, "twist.linear.z");
     		
-    		if (isOverspeed(x,y,z) && isReadyToLogNow()) {
+    		if (isOverspeed(x,y,z) && isReadyToLogNow(topic)) {
+    			if (SimCore.getInstance().getTime() > MISSION_START_TIME) {
     			System.out.println("VIOLATION: overspeed: " + msg);
     			// Set initial value if not set
     			if (overspeedCount.value() == null) {
@@ -59,6 +64,7 @@ public class overSpeedMetric extends BatchedRateMetric {
     			// Increment the value
     			overspeedCount.update(overspeedCount.value() + 1);
     			out.collect(Double.valueOf(overspeedCount.value()));
+    			}
     		}
     	}
     }
