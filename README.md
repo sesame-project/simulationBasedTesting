@@ -22,9 +22,9 @@ Please use the video instructions rather than the previous install
 instructions, since several steps e.g. setting paths, have been
 altered.
 
-# TurtleBot Case Study
+# TurtleSim Case Study
 
-The TurtleBot case study provides a simple ROS-based test for the
+The TurtleSim case study provides a simple ROS-based test for the
 Simulation-based Testing platform.
 
 Dependencies
@@ -34,18 +34,22 @@ apt-get install ros-melodic-turtlebot3-*
 apt-get install ros-melodic-turtlesim-*
 ```
 
+- Ensure the Turtlesim example itself runs properly as described
+  [here](http://wiki.ros.org/turtlesim):
+
 - Pull the latest from the "development-release-aug2022" branch
 
 - In the parent Eclipse:
 
-- Ensure the variable REPO_BASE_PATH in the project
+- Ensure the variable **REPO_BASE_PATH** in the project
 uk.ac.york.testing.evolutionary.utilities file, PathDefinitions.java
-is set to the root of the directory where you checked out this
-repository
+is set to the absolute path of the root directory in which you checked
+out this repository
 
-- The same for REPO_BASE_PATH in uk.ac.york.testing.generator, file
-ModelPathDefinitions.java (again, this should be the root directory
-where you checked out the repository)
+- The same for **REPO_BASE_PATH** in the project
+uk.ac.york.testing.generator, file ModelPathDefinitions.java (again,
+this should be set to the absolute path of the root directory in which
+you checked out this repository)
 
 - Then for all the listed SESAME projects (except for
 uk.ac.york.sesame.testing.generator), right-click on each of them,
