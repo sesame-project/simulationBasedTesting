@@ -58,10 +58,13 @@ uk.ac.york.sesame.testing.generator project, and selecting
 - Create a new "testTurtle" Java project and copy the models and code
 files for the development branch from:
 [runtime-EclipseApplication/testTurtle](https://github.com/sesame-project/simulationBasedTesting/tree/development-release-aug2022/runtime-EclipseApplication/testTurtle)
-into this project, including "src", "models" and "pom.xml"
+into this project, including "src", "models" and "pom.xml". If you
+checked out the development-release-aug2022 branch, this can be found
+under your local system on
+$REPO_BASE_PATH/runtime-EclipseApplication/testTurtle.
 
 - Copy the ROS launch file
-(test.launch)[https://github.com/sesame-project/simulationBasedTesting/blob/development-release-aug2022/temp-launch-scripts/launch-scripts/test.launch]
+[test.launch](https://github.com/sesame-project/simulationBasedTesting/blob/development-release-aug2022/temp-launch-scripts/launch-scripts/test.launch)
 into: $HOME/catkin_ws/src/turtle_custom_launch/launch/test.launch
 
 - Change the MRS launch file path path to your filesystem in
