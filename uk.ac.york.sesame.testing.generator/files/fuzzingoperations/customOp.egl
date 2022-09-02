@@ -2,6 +2,8 @@
 
 [% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase();
    var fuzzOpClassName = fuzzOp.name;
+   
+   var sanitiseInfinities = true;
     %]
 import java.util.Map;
 import java.util.HashMap;
@@ -27,12 +29,14 @@ public class [%=fuzzOp.name%]CustomOp_[%= classNameExt %] extends [%= superClass
 	private static final long serialVersionUID = 1L;
 	Random rng;
 	private [%= fuzzOpClassName %] fuzzOpInternal;
+	private SanitiseFuzzingValues sanitiseFuzzingValues;
 
 	[% if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { %]
 	public [%=fuzzOp.name%]CustomOp_[%= classNameExt %](String topic, double start, double end, long seed) {
 		super(topic,start,end);
 		this.rng = new Random(seed);
 		this.fuzzOpInternal = new [%= fuzzOpClassName %]();
+		this.sanitiseFuzzingValues = new SanitiseFuzzingValues();
 	}
 	[% } %]
 	
@@ -119,7 +123,11 @@ public class [%=fuzzOp.name%]CustomOp_[%= classNameExt %] extends [%= superClass
 			Map<String,Object> params = getParameters();
 			fuzzOpInternal.customProcess(params, value, ctx, out);
 		} else {
+			[% if (not sanitiseInfinities) { %]
 			out.collect(value);
+			[% } else { %]
+			sanitiseFuzzingValues.customProcess(new HashMap<String,Object>(), value, ctx, out);
+			[% } %]
 		}
 	}
 	

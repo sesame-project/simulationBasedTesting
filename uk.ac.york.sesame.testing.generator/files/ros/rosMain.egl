@@ -326,7 +326,8 @@ operation produceFOGenerationSignature(fo) {
 		var endTime = aa.endTime;
 		
 		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
-			flatmap = "new PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.frequency + ")";
+			var frequencyVal = fo.frequency.lowerBound;
+			flatmap = "new PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + "," + frequencyVal + ")";
 		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
 			flatmap = "new BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + ")";
 		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
@@ -343,7 +344,8 @@ operation produceFOGenerationSignature(fo) {
 	
 	if (aa.isKindOf(Testing!ConditionBasedActivation)) {
 		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
-			flatmap = "new PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "," + fo.frequency + ")";
+			var frequencyVal = fo.frequency.lowerBound;
+			flatmap = "new PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "," + fo.seed + "," + fo.frequency + ")";
 		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
 			flatmap = "new BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + ")";
 		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {

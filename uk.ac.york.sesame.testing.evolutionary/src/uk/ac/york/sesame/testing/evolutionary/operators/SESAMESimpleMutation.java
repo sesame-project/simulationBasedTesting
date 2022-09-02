@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import it.units.malelab.jgea.representation.tree.Tree;
 import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 //import it.units.malelab.jgea.representation.tree.Tree;
-import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
 import uk.ac.york.sesame.testing.evolutionary.utilities.RandomFunctions;
 
 // TODO: check mutation logic against the changes that I made with Simos on github last year

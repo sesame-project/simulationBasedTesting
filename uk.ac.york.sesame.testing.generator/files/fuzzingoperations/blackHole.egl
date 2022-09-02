@@ -1,21 +1,9 @@
 [% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase();
    var fuzzOpCommon : Template = TemplateFactory.load("fuzzingoperations/fuzzOpCommon.egl");
+   var opClassName = fuzzOp.name + "BlackHoleFlatMap_" + classNameExt;
  %]
-
-import org.apache.flink.util.Collector;
-import uk.ac.york.sesame.testing.architecture.data.EventMessage;
-import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
-
-// TODO: EGL generators need to generate based on attack activation
-
-public class BlackHoleFlatMap_[%= classNameExt %] extends [%= fuzzOpCommon.superClassName() %] {
-
-	private static final long serialVersionUID = 1L;
-
-	public BlackHoleFlatMap_[%= classNameExt %](String topic, double start, double end) {
-		super(topic,start,end);
-	}
 	
+[%= fuzzOpCommon.process() %]
 	@Override 
 	public void processElement(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
 		if (value.getTopic().equalsIgnoreCase(topic) && isReadyNow()) {

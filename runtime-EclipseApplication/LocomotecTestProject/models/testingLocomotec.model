@@ -7,23 +7,18 @@
     <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_pUyAkCKREe2LYMDzNfHpOQ"/>
   </metrics>
   <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_u2BukCkTEe2rWIgPkXJ7Hg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_sQ_XQCkZEe2rWIgPkXJ7Hg" endTime="100.0"/>
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_sQ_XQCkZEe2rWIgPkXJ7Hg" endTime="120.0"/>
+    <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_NnsC4CnuEe2CPLNHTC0Tug" propertyName="rangeFactor" lowerBound="0.2" upperBound="0.25"/>
   </possibleFuzzingOperations>
   <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_EQvMICmiEe2HELjiSIEHlA" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_dND-0Cn6Ee2U6tODQsyjgg" endTime="120.0"/>
     <frequency xmi:id="_GF7MICmiEe2HELjiSIEHlA" upperBound="0.5"/>
   </possibleFuzzingOperations>
   <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A" conditionMetrics="_IbT50BSTEe2NuvfcagGJYw" includedOperations="_u2BukCkTEe2rWIgPkXJ7Hg">
     <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="200"/>
-    <performedTests xmi:id="_i3C3QCkXEe2rWIgPkXJ7Hg" name="Test_001_31_08_2022_12_27_13"/>
-    <performedTests xmi:id="_0PcbkCkZEe2rWIgPkXJ7Hg" name="Test_001_31_08_2022_12_43_44"/>
-    <performedTests xmi:id="_xdYHICkaEe2rWIgPkXJ7Hg" name="Test_001_31_08_2022_12_48_04">
-      <operations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_xdYHISkaEe2rWIgPkXJ7Hg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
-        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_xdYHIikaEe2rWIgPkXJ7Hg" startTime="10.702366893809845" endTime="33.33102010498353"/>
-      </operations>
-    </performedTests>
-    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="1000"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="120"/>
   </campaigns>
-  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch_script/auto_launch_locomotec.sh" launchDelaySeconds="10">
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_locomotec.sh" launchDelaySeconds="10">
     <variables xmi:id="_BIPJ4Az1Ee2dUZBawpc2Eg" name="move_base_simple/goal" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
     <variables xmi:id="_NzG5gCkOEe2rWIgPkXJ7Hg" name="/base_scan" type="_DwpnoCjCEe26Ivhf6XyfHA"/>
     <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="controller" publisher="_BIPJ4Az1Ee2dUZBawpc2Eg"/>

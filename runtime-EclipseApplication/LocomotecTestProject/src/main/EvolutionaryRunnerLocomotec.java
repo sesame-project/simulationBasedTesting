@@ -26,8 +26,8 @@ public class EvolutionaryRunnerLocomotec {
 		// Sets the space model file and the campaign to run here
 		
 		// PATHS HERE
-		final String spaceModelFileName = "/home/jharbin/eclipse-workspace/LocomotecTestProject/models/testingLocomotec.model";
-		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/eclipse-workspace/LocomotecTestProject";
+		final String spaceModelFileName = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/LocomotecTestProject/models/testingLocomotec.model";
+		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/LocomotecTestProject";
 		final String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
 
 		String grammarPath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.evolutionary/grammar/sesame-standard-grammar.bnf";
