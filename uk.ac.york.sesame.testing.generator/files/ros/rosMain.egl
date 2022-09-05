@@ -8,6 +8,8 @@
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
+	
+	var sanitiseVariables = true;
 %]
 
 import java.util.ArrayList;
@@ -77,8 +79,13 @@ public class [%= testNameString %]_TestRunner {
 					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
 		
 		
-		DataStream<EventMessage> stream = env
+		DataStream<EventMessage> streamOrig = env
 			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
+			
+		[% if (sanitiseVariables) { %]
+			DataStream<EventMessage> stream = streamOrig.flatMap(new SanitiseFuzzingValues());
+		[% } %]
+			
 		
 		DataStream<EventMessage> streamOut = env
 				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
@@ -339,6 +346,9 @@ operation produceFOGenerationSignature(fo) {
 			 	varName = fo.variableToAffect.name;
 			}
 			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
+		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
+			var delay = fo.latency.lowerBound;
+			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + delay + "," + fo.seed + ")";
 		}
 	}
 	
@@ -356,6 +366,9 @@ operation produceFOGenerationSignature(fo) {
 			 	varName = fo.variableToAffect.name;
 			}			 
 			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + fo.seed + ")";
+		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
+			var delay = fo.latency.lowerBound;
+			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + delay + "," + fo.seed + ")";
 		}
 	}
 	
