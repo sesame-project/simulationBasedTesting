@@ -78,8 +78,8 @@ public class SESAMEConditionsCrossover extends SESAMECrossoverOperation {
 			Condition end = condGenerator.convert(outputEnd);
 			
 			SESAMEFuzzingOperationWrapper newOp = l.dup();
-			l.setStoredStartTree(outputStart);
-			l.setStoredEndTree(outputEnd);
+			newOp.setStoredStartTree(outputStart);
+			newOp.setStoredEndTree(outputEnd);
 			
 			ConditionBasedActivation ca = factory.createConditionBasedActivation();
 			ca.setStarting(start);
@@ -98,7 +98,6 @@ public class SESAMEConditionsCrossover extends SESAMECrossoverOperation {
 			return doCrossover(solutions);
 		} catch (ConversionFailed e) {
 			e.printStackTrace();
-			// Just return empty if the conversion fails
 			return new ArrayList<SESAMETestSolution>();
 		}
 	}

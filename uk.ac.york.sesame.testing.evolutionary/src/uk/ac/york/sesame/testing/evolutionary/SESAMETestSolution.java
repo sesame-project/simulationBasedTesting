@@ -173,6 +173,10 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 	public void addContents(int index, SESAMEFuzzingOperationWrapper fi) {
 		contents.add(index, fi);
 	}
+	
+	public void addToContents(SESAMEFuzzingOperationWrapper fi) {
+		contents.add(fi);
+	}
 
 	public int numberOfFuzzingSelections() {
 		return contents.size();

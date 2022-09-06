@@ -265,7 +265,9 @@ public class [%= testNameString %]_TestRunner {
 		
 		[% var foStreamCount = 0;
 		   var foLen = allFuzzOps.size();
-		   for (fuzzOpName in allFuzzOps.keySet()) {
+		   
+			if (foLen > 0) {    
+		   	   for (fuzzOpName in allFuzzOps.keySet()) {
 		      var inputStream = "streamFO" + foStreamCount;
 		      var outputStream = "streamFO" + (foStreamCount + 1);
 		      foStreamCount++;
@@ -277,9 +279,12 @@ public class [%= testNameString %]_TestRunner {
 				[* For the final stream, we require to produce an output with an EventStream only *]
 		   		DataStream<EventMessage> [%= outputStream %] = [%= inputStream %].process([%= fuzzOpName %]);
 				[% }
-		   } %]
-				
-		streamFO[%= foLen %].addSink(myProducer);
+		   		} %]
+			streamFO[%= foLen %].addSink(myProducer);
+		   [% } else { %]
+		   // Case with empty fuzzing operations
+		   stream.addSink(myProducer);
+		   [% } %]
 		
 		try {
 			env.execute();

@@ -19,6 +19,7 @@ import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
 
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEConditionsCrossover;
+import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEConditionsCrossoverRandomised;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEMutationOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESimpleMutation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESwapAttacksFromTestsCrossover;
@@ -96,7 +97,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 					
 			// TODO: Crossover, mutation and selection operations should be configurable in the model
 			if (conditionBased) {
-				crossover = new SESAMEConditionsCrossover(crossoverRNG, crossoverLogFile, cg);
+				crossover = new SESAMEConditionsCrossoverRandomised(crossoverRNG, crossoverLogFile, cg);
 			} else {
 				crossover = new SESAMESwapAttacksFromTestsCrossover(crossoverRNG, crossoverProb, crossoverLogFile);
 			}
@@ -107,7 +108,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			dominanceComparator = new DominanceComparator<>();
 			evaluator = new SequentialSolutionListEvaluator<SESAMETestSolution>();
 
-			int matingPoolSize = offspringPopulationSize;
+			int matingPoolSize = populationSize;
 			
 			// TODO: the algorithm - here NSGA should be selectable from the TestCampaign model
 			algorithm = new NSGAII_ResultLogging(selectedCampaign, scenarioStr, problem, maxIterations, populationSize, matingPoolSize,
