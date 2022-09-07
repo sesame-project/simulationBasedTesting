@@ -17,7 +17,7 @@ import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 public class SanitiseFuzzingValues implements FlatMapFunction<EventMessage, EventMessage> {
 
 	private static final long serialVersionUID = 1L;
-	private static final boolean DEBUG_JSON_PATH_FUZZING = true;
+	private static final boolean DEBUG_MESSAGE_CLEANING = false;
 	private static final Object RANGE_MAX_VALUE = 10000.0;
 	
 	public SanitiseFuzzingValues() {
@@ -31,7 +31,7 @@ public class SanitiseFuzzingValues implements FlatMapFunction<EventMessage, Even
 			Object obj = JSONValue.parse(value.getValue().toString());
       		JSONObject jo = (JSONObject)obj;
       		
-			if (DEBUG_JSON_PATH_FUZZING) {
+			if (DEBUG_MESSAGE_CLEANING) {
 				System.out.println(this.getClass().getName() + ": JSONFuzzingOperation.fuzzTransformString received message JSON " + jo.toString());
 			}
 			
@@ -39,7 +39,7 @@ public class SanitiseFuzzingValues implements FlatMapFunction<EventMessage, Even
 			EventMessage valueOut = new EventMessage(value);
 			valueOut.setValue(joNew.toString());
 			
-			if (DEBUG_JSON_PATH_FUZZING) {
+			if (DEBUG_MESSAGE_CLEANING) {
 				System.out.println(this.getClass().getName() +  ": JSONFuzzingOperation.fuzzTransformMessage modified it to " + joNew.toString());
 			}
 			

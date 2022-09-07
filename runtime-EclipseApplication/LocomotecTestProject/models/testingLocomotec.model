@@ -20,45 +20,10 @@
   </possibleFuzzingOperations>
   <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A" conditionMetrics="_IbT50BSTEe2NuvfcagGJYw" includedOperations="_Bjxj0C0JEe22IeLGRwtkQg">
     <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="200"/>
-    <performedTests name="Test_001_05_09_2022_15_24_53">
+    <performedTests xmi:id="_7BM4cC6ZEe2mSYWXK6Qk_g" name="Test_001_07_09_2022_12_29_20"/>
+    <performedTests name="Test_001_07_09_2022_12_44_25">
       <operations xsi:type="_1:LatencyNetworkOperation" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
-        <activation xsi:type="_1:FixedTimeActivation" startTime="11.088322428052455" endTime="76.99222095505813"/>
-        <latency lowerBound="1.0" upperBound="1.0"/>
-      </operations>
-    </performedTests>
-    <performedTests name="Test_001_05_09_2022_15_28_15">
-      <operations xsi:type="_1:LatencyNetworkOperation" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
-        <activation xsi:type="_1:FixedTimeActivation" startTime="12.923675577380378" endTime="40.33091022560292"/>
-        <latency lowerBound="1.0" upperBound="1.0"/>
-      </operations>
-    </performedTests>
-    <performedTests name="Test_001_05_09_2022_15_29_10">
-      <operations xsi:type="_1:LatencyNetworkOperation" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
-        <activation xsi:type="_1:FixedTimeActivation" startTime="25.32771437311717" endTime="66.68216308666979"/>
-        <latency lowerBound="1.0" upperBound="1.0"/>
-      </operations>
-    </performedTests>
-    <performedTests name="Test_001_05_09_2022_15_58_57">
-      <operations xsi:type="_1:LatencyNetworkOperation" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
-        <activation xsi:type="_1:FixedTimeActivation" startTime="79.17062714037596" endTime="83.25833737002614"/>
-        <latency lowerBound="1.0" upperBound="1.0"/>
-      </operations>
-    </performedTests>
-    <performedTests name="Test_001_05_09_2022_16_22_01">
-      <operations xsi:type="_1:LatencyNetworkOperation" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
-        <activation xsi:type="_1:FixedTimeActivation" startTime="4.037288123363513" endTime="89.6312211544276"/>
-        <latency lowerBound="1.0" upperBound="1.0"/>
-      </operations>
-    </performedTests>
-    <performedTests name="Test_001_05_09_2022_16_23_32">
-      <operations xsi:type="_1:LatencyNetworkOperation" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
-        <activation xsi:type="_1:FixedTimeActivation" startTime="82.94525953141168" endTime="87.37958223187144"/>
-        <latency lowerBound="1.0" upperBound="1.0"/>
-      </operations>
-    </performedTests>
-    <performedTests name="Test_001_05_09_2022_16_26_59">
-      <operations xsi:type="_1:LatencyNetworkOperation" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
-        <activation xsi:type="_1:FixedTimeActivation" startTime="20.025470132676524" endTime="55.20042424424148"/>
+        <activation xsi:type="_1:FixedTimeActivation" startTime="85.68024551764073" endTime="92.67150648604888"/>
         <latency lowerBound="1.0" upperBound="1.0"/>
       </operations>
     </performedTests>

@@ -43,12 +43,8 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 	public [%=fuzzOp.name%]Delay_[%= classNameExt %](String topic, double start, double end, double time, long seed) {
 		super(topic,start,end);
 		this.rng = new Random(seed);
-		this.delayTime = (long)(delayTime * 1000);
-		// TODO: need to change this queue name
-		String queueName = "queue-";
-		this.queue = getRuntimeContext().getMapState(new MapStateDescriptor<>(queueName, 
-				TypeInformation.of(Long.class),
-				TypeInformation.of(new TypeHint<List<EventMessage>>() {})));
+		this.delayTime = Math.round(time * 10000.0); 
+		System.out.println("Creating new latency delay operation, time seconds = " + time + ",delayTime = " + delayTime);
 	}
 	[% } %]
 	
@@ -118,21 +114,31 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 	
 	public void open(Configuration parameters) throws Exception {
 		super.open(parameters);
+		// TODO: need to change this queue name
+		String queueName = "queue-";
+		this.queue = getRuntimeContext().getMapState(new MapStateDescriptor<>(queueName, 
+				TypeInformation.of(Long.class),
+				TypeInformation.of(new TypeHint<List<EventMessage>>() {})));
 	}
 	
 	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
-		long currentTime = ((TimerService)ctx).currentProcessingTime();
+		long currentTime = ctx.timestamp();
 		long scheduledTime = currentTime + delayTime;
+		double simTime = SimCore.getInstance().getTime();
 		
 		List<EventMessage> currentPending = queue.get(scheduledTime);
+		
+		if (currentPending == null) {
+			currentPending = new ArrayList<EventMessage>();
+		}
 		currentPending.add(value);
-		// TODO: is this necessary for Flink flatmap
 		queue.put(scheduledTime, currentPending);
-		ctx.timerService().registerEventTimeTimer(scheduledTime);
+		System.out.println("currentTime = " + currentTime + ",sim time=" + simTime + ", scheduling new timer at " + scheduledTime);
+		ctx.timerService().registerProcessingTimeTimer(scheduledTime);
 	}
 	
 	public void onTimer(long timestamp, OnTimerContext ctx, Collector<EventMessage> out) {
-		long currentTime = ((TimerService) ctx).currentProcessingTime();
+		long currentTime = ctx.timestamp();
 
 		try {
 			for (Iterator<Entry<Long, List<EventMessage>>> it = queue.entries().iterator(); it.hasNext();) {
