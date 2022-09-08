@@ -62,7 +62,7 @@ sudo cp protocol.py protocol.py.orig
 sudo patch < python_protocol_patch.py
 ```
 
-To restore everything to its previous state, please use the following
+To restore everything  its previous state, please use the following
 commands:
 
 ```
