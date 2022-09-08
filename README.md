@@ -44,9 +44,7 @@ This applies when using the ROS interface for the testing platform.
 
 Because of a problem with jrosbridge (that is used for connecting the
 ROS interface to the testing platform), it is necessary to patch a
-certain system package for jrosbridge to work on recent Ubuntu version.
-Here it is tested 
-
+certain system package for jrosbridge to work on recent Ubuntu versions.
 For more information on why this is necessary, please see
 [here](https://github.com/RobotWebTools/rosbridge_suite/issues/488)
 
