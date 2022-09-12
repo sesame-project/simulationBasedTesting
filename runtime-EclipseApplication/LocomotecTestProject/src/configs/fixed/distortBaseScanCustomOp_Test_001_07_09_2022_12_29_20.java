@@ -19,7 +19,6 @@ import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
 
 public class distortBaseScanCustomOp_Test_001_07_09_2022_12_29_20 extends TimeBasedFuzzingOperation {
 
-
 	private static final long serialVersionUID = 1L;
 	Random rng;
 	private distortBaseScan fuzzOpInternal;
@@ -29,7 +28,6 @@ public class distortBaseScanCustomOp_Test_001_07_09_2022_12_29_20 extends TimeBa
 		this.rng = new Random(seed);
 		this.fuzzOpInternal = new distortBaseScan();
 	}
-	
 	
 	public void open(Configuration parameters) throws Exception {
 		super.open(parameters);

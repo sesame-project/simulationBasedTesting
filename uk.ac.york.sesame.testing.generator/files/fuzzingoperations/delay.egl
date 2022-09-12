@@ -2,6 +2,7 @@
 
 [% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase();%]
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.Map.Entry;
 import java.util.Iterator;
 
@@ -28,6 +29,7 @@ import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
 import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
+import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 
 public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassName() %] {
 
@@ -43,7 +45,7 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 	public [%=fuzzOp.name%]Delay_[%= classNameExt %](String topic, double start, double end, double time, long seed) {
 		super(topic,start,end);
 		this.rng = new Random(seed);
-		this.delayTime = Math.round(time * 10000.0); 
+		this.delayTime = Math.round(time * 1000.0); 
 		System.out.println("Creating new latency delay operation, time seconds = " + time + ",delayTime = " + delayTime);
 	}
 	[% } %]
@@ -123,7 +125,8 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 	
 	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
 		long currentTime = ctx.timestamp();
-		long scheduledTime = currentTime + delayTime;
+		//long scheduledTime = currentTime + delayTime;
+		long scheduledTime = currentTime + Math.round(rng.nextDouble() * delayTime);
 		double simTime = SimCore.getInstance().getTime();
 		
 		List<EventMessage> currentPending = queue.get(scheduledTime);

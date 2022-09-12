@@ -37,16 +37,17 @@ import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 import metrics.custom.*;
 import metrics.fixed.*;
 
-public class Test_Delay_3Seconds {
+public class Test_Packet_Loss {
 	public static void main(String[] args) {
 	
-		final String TESTNAME = "Test_001_07_09_2022_12_44_25";
+		final String TESTNAME = "Test_001_08_09_2022_12_56_49";
 		
 		// JRH: needed to increase the number of buffers used
 		Configuration cfg = new Configuration();
 		int defaultLocalParallelism = 1;
 		cfg.setString("taskmanager.network.numberOfBuffers", "4096");
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(defaultLocalParallelism, cfg);
+		
 		
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
@@ -91,7 +92,7 @@ public class Test_Delay_3Seconds {
 		// Preprocessing before simulation starts
 		System.out.println("Preprocessing Phase");
 		
-		FuzzingOperation fuzzOp0 = new Delay_Test_001_07_09_2022_12_44_25("/base_scan",25.68024551764073,92.67150648604888,4.0,0); 
+		FuzzingOperation fuzzOp0 = new PacketLossFlatMap_Test_001_08_09_2022_12_56_49("/base_scan",0.10497071919099,118.24941994655249,0,0.2); 
 		fuzzOp0.preprocessing();
 				
 		System.out.println("Simulator Starts");
@@ -103,13 +104,6 @@ public class Test_Delay_3Seconds {
 		rosSim.connect(cp);
 		
 		
-		Thread subscriber_thread__base_scan = new Thread() {
-			public void run() {
-				System.out.println("Subscriber _base_scan Starts");
-				rosSim.consumeFromTopic("/base_scan", "sensor_msgs/LaserScan", true, "IN");
-			}
-		};
-		subscriber_thread__base_scan.start();
 		Thread subscriber_thread__move_base_simple_goal = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _move_base_simple_goal Starts");
@@ -117,6 +111,13 @@ public class Test_Delay_3Seconds {
 			}
 		};
 		subscriber_thread__move_base_simple_goal.start();
+		Thread subscriber_thread__base_scan = new Thread() {
+			public void run() {
+				System.out.println("Subscriber _base_scan Starts");
+				rosSim.consumeFromTopic("/base_scan", "sensor_msgs/LaserScan", true, "IN");
+			}
+		};
+		subscriber_thread__base_scan.start();
 
 		Thread time_subscriber = new Thread() {
 			public void run() {
@@ -148,8 +149,8 @@ public class Test_Delay_3Seconds {
 		// Generate keyed streams
 		KeyedStream<EventMessage, String> topicKeyedIn = stream.keyBy(value -> value.getTopic());
 		KeyedStream<EventMessage, String> topicKeyedOut = streamOut.keyBy(value -> value.getTopic());
-		KeyedStream<EventMessage, String> testKeyedIn = stream.keyBy(value -> "Test_001_07_09_2022_12_44_25");
-		KeyedStream<EventMessage, String> testKeyedOut = streamOut.keyBy(value -> "Test_001_07_09_2022_12_44_25");;
+		KeyedStream<EventMessage, String> testKeyedIn = stream.keyBy(value -> "Test_001_08_09_2022_12_56_49");
+		KeyedStream<EventMessage, String> testKeyedOut = streamOut.keyBy(value -> "Test_001_08_09_2022_12_56_49");;
 		
 		
 		ConnectedStreams<EventMessage,ControlMessage> eventsAndControlIn = testKeyedIn.connect(controlStream).keyBy(e -> TESTNAME,m -> TESTNAME);
@@ -157,7 +158,7 @@ public class Test_Delay_3Seconds {
 		
 		List<Double> fuzzOpTimes = new ArrayList<Double>(); 
 		
-			fuzzOpTimes.add(Double.valueOf(6.991260968408156));
+			fuzzOpTimes.add(Double.valueOf(17.144449227361505));
 		
 		
 			
@@ -171,10 +172,10 @@ public class Test_Delay_3Seconds {
 		
  
 			// Generate a message stream for all metrics
-			DataStream<MetricMessage> metricMsgfuzzingOperationTimes = fuzzingOperationTimesresStream.map(d -> new MetricMessage("Test_001_07_09_2022_12_44_25", "fuzzingOperationTimes", d));
+			DataStream<MetricMessage> metricMsgfuzzingOperationTimes = fuzzingOperationTimesresStream.map(d -> new MetricMessage("Test_001_08_09_2022_12_56_49", "fuzzingOperationTimes", d));
  
 			// Generate a message stream for all metrics
-			DataStream<MetricMessage> metricMsguvExposureForHuman = uvExposureForHumanresStream.map(d -> new MetricMessage("Test_001_07_09_2022_12_44_25", "uvExposureForHuman", d));
+			DataStream<MetricMessage> metricMsguvExposureForHuman = uvExposureForHumanresStream.map(d -> new MetricMessage("Test_001_08_09_2022_12_56_49", "uvExposureForHuman", d));
 		
 		
 		DataStream<MetricMessage> allMetrics = 		
