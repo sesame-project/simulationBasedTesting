@@ -262,9 +262,12 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				metricConsumer.finaliseUpdates();				
 
 				String customTerminateScript = mrs.getCustomTerminateFileLocation();
-				System.out.println("Running custom termination script " + customTerminateScript);
-				TestRunnerUtils.runCustomTerminateScript(customTerminateScript);
-				TestRunnerUtils.waitForSeconds(DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS);
+				if (customTerminateScript != null) {
+					System.out.println("Running custom termination script " + customTerminateScript);
+					TestRunnerUtils.runCustomTerminateScript(customTerminateScript);
+					TestRunnerUtils.waitForSeconds(DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS);
+				}
+				
 				System.out.println("Running standard termination script");
 				TestRunnerUtils.killProcesses();
 				
@@ -287,7 +290,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	}
 
 	private Optional<String> getRecordLocationForMRS() {
-		if (mrs != null) {
+		if (mrs != null && mrs.getRecordFileLocation() != null) {
 			return Optional.of(mrs.getRecordFileLocation());
 		} else {
 			return Optional.empty();

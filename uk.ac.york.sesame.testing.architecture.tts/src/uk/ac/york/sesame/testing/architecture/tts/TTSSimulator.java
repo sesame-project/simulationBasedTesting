@@ -34,7 +34,7 @@ public class TTSSimulator implements ISimulator {
 
 	private static final long DEFAULT_TTS_LAUNCH_DELAY_MS = 20000;
 
-	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = false;
+	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	static DataStreamManager dsm = DataStreamManager.getInstance();
 
 	private static StreamObserver<PubRequest> publisher;
@@ -111,7 +111,8 @@ public class TTSSimulator implements ISimulator {
 		// Using Diego's custom launch script
 		// TODO: this needs to specify a custom JVM here
 		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
-		ExptHelper.runScriptNewWithBash(workingDir, cmd);
+		//ExptHelper.runScriptNewWithBash(workingDir, cmd);
+		ExptHelper.runScriptNewThread(workingDir, cmd);
 		
 		// Need to wait the delay
 		try {

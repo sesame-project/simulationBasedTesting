@@ -176,8 +176,7 @@ public class ROSSimulator implements ISimulator {
 
 	@Override
 	public void disconnect() {
-		ros.disconnect();
-		
+		ros.disconnect();	
 	}
 
 	@Override

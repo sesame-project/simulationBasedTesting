@@ -1,16 +1,25 @@
 [* TODO: factor out commmon content for operations *]
 
-[% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase();
-   var fuzzOpClassName = fuzzOp.name;
-%]
+[% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase();%]
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Iterator;
+
+import java.util.List;
 import java.util.HashMap;
 import java.util.Random;
 import datatypes.*;
 import datatypes.custom.*;
 
+import org.apache.flink.api.common.state.MapState;
+import org.apache.flink.api.common.state.MapStateDescriptor;
+import org.apache.flink.api.common.typeinfo.TypeHint;
+import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.configuration.Configuration;
+import org.apache.flink.streaming.api.TimerService;
+
 import org.apache.flink.util.Collector;
+
 import org.json.simple.*;
 
 import fuzzingoperations.custom.*;
@@ -20,19 +29,22 @@ import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
 import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
 
-public class [%=fuzzOp.name%]CustomOp_[%= classNameExt %] extends [%= superClassName() %] {
+public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassName() %] {
 
 	[% var varNames = new Set; %]
 
 	private static final long serialVersionUID = 1L;
+	private long delayTime;
 	Random rng;
-	private [%= fuzzOpClassName %] fuzzOpInternal;
+	
+	private MapState<Long,List<EventMessage>> queue;
 
 	[% if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { %]
-	public [%=fuzzOp.name%]CustomOp_[%= classNameExt %](String topic, double start, double end, long seed) {
+	public [%=fuzzOp.name%]Delay_[%= classNameExt %](String topic, double start, double end, double time, long seed) {
 		super(topic,start,end);
 		this.rng = new Random(seed);
-		this.fuzzOpInternal = new [%= fuzzOpClassName %]();
+		this.delayTime = Math.round(time * 10000.0); 
+		System.out.println("Creating new latency delay operation, time seconds = " + time + ",delayTime = " + delayTime);
 	}
 	[% } %]
 	
@@ -41,7 +53,7 @@ public class [%=fuzzOp.name%]CustomOp_[%= classNameExt %] extends [%= superClass
 		var endCond = fuzzOp.activation.ending;
 	%]
 	
-	public [%=fuzzOp.name%]CustomOp_[%= classNameExt %](String topic, long seed) {
+	public [%=fuzzOp.name%]Delay_[%= classNameExt %](String topic, double time, long seed) {
 		super(topic);
 		this.rng = new Random(seed);
 		this.fuzzOpInternal = new [%= fuzzOpClassName %]();
@@ -102,30 +114,52 @@ public class [%=fuzzOp.name%]CustomOp_[%= classNameExt %] extends [%= superClass
 	
 	public void open(Configuration parameters) throws Exception {
 		super.open(parameters);
-	}
-	
-	private Map<String,Object> getParameters() {
-		Map<String,Object> map = new HashMap<String,Object>();
-		[* Set the parameters for the ValueSet *]
-		[%  var params = fuzzOp.params;
-			for (p in params) { %]
-			 map.put("[%= p.propertyName %]", [%= generateProperty(p) %]);
-			[% } %]	
-		return map;
+		// TODO: need to change this queue name
+		String queueName = "queue-";
+		this.queue = getRuntimeContext().getMapState(new MapStateDescriptor<>(queueName, 
+				TypeInformation.of(Long.class),
+				TypeInformation.of(new TypeHint<List<EventMessage>>() {})));
 	}
 	
 	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
-		if (isReadyNow()) {
-			Map<String,Object> params = getParameters();
-			fuzzOpInternal.customProcess(params, value, ctx, out);
-		} else {
-			out.collect(value);
+		long currentTime = ctx.timestamp();
+		long scheduledTime = currentTime + delayTime;
+		double simTime = SimCore.getInstance().getTime();
+		
+		List<EventMessage> currentPending = queue.get(scheduledTime);
+		
+		if (currentPending == null) {
+			currentPending = new ArrayList<EventMessage>();
+		}
+		currentPending.add(value);
+		queue.put(scheduledTime, currentPending);
+		System.out.println("currentTime = " + currentTime + ",sim time=" + simTime + ", scheduling new timer at " + scheduledTime);
+		ctx.timerService().registerProcessingTimeTimer(scheduledTime);
+	}
+	
+	public void onTimer(long timestamp, OnTimerContext ctx, Collector<EventMessage> out) {
+		long currentTime = ctx.timestamp();
+
+		try {
+			for (Iterator<Entry<Long, List<EventMessage>>> it = queue.entries().iterator(); it.hasNext();) {
+				Entry<Long, List<EventMessage>> entry = it.next();
+				long schedTime = entry.getKey();
+				if (schedTime >= currentTime) {
+					List<EventMessage> queuedMsgs = entry.getValue();
+					for (EventMessage m : queuedMsgs) {
+						out.collect(m);
+					}
+					it.remove();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
 	public void preprocessing() {
-		fuzzOpInternal.customPreprocessing(getParameters());
-	}
+
+	}	
 }
 
 [% 
