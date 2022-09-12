@@ -62,7 +62,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	
 	private ConditionGenerator condGenerator;
 
-	//private DataStream<MetricMessage> metricStream;
 	private Resource testSpaceModel;
 	private TestCampaign selectedCampaign;
 	private TestingSpace testingSpace;

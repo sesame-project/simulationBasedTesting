@@ -46,17 +46,17 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMECrossoverOperatio
 		Condition end = condGenerator.convert(e1);
 
 		SESAMEFuzzingOperationWrapper newOp = l.dup();
-		l.setStoredStartTree(s1);
-		l.setStoredEndTree(e1);
+		newOp.setStoredStartTree(s1);
+		newOp.setStoredEndTree(e1);
 
 		ConditionBasedActivation ca = factory.createConditionBasedActivation();
 		ca.setStarting(start);
 		ca.setEnding(end);
 		newOp.getAttack().setActivation(ca);
-		outputSol.addContents(i, newOp);
+		outputSol.addToContents(newOp);
 	}
 	
-	public void randomisedChoiceForCrossover(SESAMETestSolution left, SESAMETestSolution right, int i, SESAMETestSolution outputSol) throws ConversionFailed {
+	public void crossoverLeftRight(SESAMETestSolution left, SESAMETestSolution right, int i, SESAMETestSolution outputSol) throws ConversionFailed {
 		SESAMEFuzzingOperationWrapper l = left.getVariable(i);
 		SESAMEFuzzingOperationWrapper r = right.getVariable(i);
 		Tree<String> s1 = l.getStoredStartTree();
@@ -80,14 +80,14 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMECrossoverOperatio
 		Condition end = condGenerator.convert(outputEnd);
 
 		SESAMEFuzzingOperationWrapper newOp = l.dup();
-		l.setStoredStartTree(outputStart);
-		l.setStoredEndTree(outputEnd);
+		newOp.setStoredStartTree(outputStart);
+		newOp.setStoredEndTree(outputEnd);
 
 		ConditionBasedActivation ca = factory.createConditionBasedActivation();
 		ca.setStarting(start);
 		ca.setEnding(end);
 		newOp.getAttack().setActivation(ca);
-		outputSol.addContents(i, newOp);
+		outputSol.addToContents(newOp);
 	}
 
 	public List<SESAMETestSolution> doCrossover(List<SESAMETestSolution> solutions) throws ConversionFailed {
@@ -108,7 +108,6 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMECrossoverOperatio
 		SESAMETestSolution outputSol = SESAMETestSolution.empty(left);
 
 		for (int i = 0; i < n; i++) {
-
 			RANDOMISED_CHOICE_FOR_CROSSOVER choiceForElement = chooseValidCrossoverChoice(nl,nr,i);
 
 			if (choiceForElement == RANDOMISED_CHOICE_FOR_CROSSOVER.CHOOSE_LEFT) {
@@ -120,7 +119,7 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMECrossoverOperatio
 			}
 			
 			if (choiceForElement == RANDOMISED_CHOICE_FOR_CROSSOVER.CROSSOVER_LEFT_RIGHT) {
-				randomisedChoiceForCrossover(left,right,i,outputSol);
+				crossoverLeftRight(left,right,i,outputSol);
 			}
 			
 			if (choiceForElement == RANDOMISED_CHOICE_FOR_CROSSOVER.IGNORE_ELEMENT) {
@@ -129,7 +128,6 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMECrossoverOperatio
 		}
 
 		output.add(outputSol);
-
 		return output;
 	}
 	
@@ -142,14 +140,14 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMECrossoverOperatio
 		List<RANDOMISED_CHOICE_FOR_CROSSOVER> validChoices = new ArrayList<RANDOMISED_CHOICE_FOR_CROSSOVER>();
 		
 		validChoices.add(RANDOMISED_CHOICE_FOR_CROSSOVER.IGNORE_ELEMENT);
-		if (i <= nr) {
+		if (i < nr) {
 			validChoices.add(RANDOMISED_CHOICE_FOR_CROSSOVER.CHOOSE_RIGHT);
 		}
 		
-		if (i <= nl) {
+		if (i < nl) {
 			validChoices.add(RANDOMISED_CHOICE_FOR_CROSSOVER.CHOOSE_LEFT);
 		}		
-		if (i <= nl && i <= nr) {
+		if (i < nl && i < nr) {
 			validChoices.add(RANDOMISED_CHOICE_FOR_CROSSOVER.CROSSOVER_LEFT_RIGHT);
 		}
 		
