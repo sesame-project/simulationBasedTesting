@@ -339,12 +339,11 @@ operation produceFOGenerationSignature(fo) {
 		
 		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
 			var frequencyVal = fo.frequency.lowerBound;
-			flatmap = "new PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + "," + frequencyVal + ")";
+			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + "," + frequencyVal + ")";
 		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
-			flatmap = "new BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + ")";
+			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + ")";
 		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
-			flatmap = "new " + fo.name;
-			flatmap = flatmap + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
+			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
 		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
 			var varName = null;
 			if (fo.variableToAffect != null) {
@@ -360,9 +359,9 @@ operation produceFOGenerationSignature(fo) {
 	if (aa.isKindOf(Testing!ConditionBasedActivation)) {
 		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
 			var frequencyVal = fo.frequency.lowerBound;
-			flatmap = "new PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "," + fo.seed + "," + fo.frequency + ")";
+			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "," + fo.seed + "," + fo.frequency + ")";
 		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
-			flatmap = "new BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + ")";
+			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + ")";
 		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
 			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + ")";
 		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {

@@ -116,8 +116,7 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 	
 	public void open(Configuration parameters) throws Exception {
 		super.open(parameters);
-		// TODO: need to change this queue name
-		String queueName = "queue-";
+		String queueName = "queue-[%= classNameExt %]";
 		this.queue = getRuntimeContext().getMapState(new MapStateDescriptor<>(queueName, 
 				TypeInformation.of(Long.class),
 				TypeInformation.of(new TypeHint<List<EventMessage>>() {})));
@@ -147,7 +146,7 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 			for (Iterator<Entry<Long, List<EventMessage>>> it = queue.entries().iterator(); it.hasNext();) {
 				Entry<Long, List<EventMessage>> entry = it.next();
 				long schedTime = entry.getKey();
-				if (schedTime >= currentTime) {
+				if (currentTime >= schedTime) {
 					List<EventMessage> queuedMsgs = entry.getValue();
 					for (EventMessage m : queuedMsgs) {
 						out.collect(m);

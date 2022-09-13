@@ -11,7 +11,7 @@ import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 
-public abstract class DistanceToGivenPoint extends Metric {
+public abstract class distanceToGivenPoint extends Metric {
 
 	private static final long serialVersionUID = 1L;
 	

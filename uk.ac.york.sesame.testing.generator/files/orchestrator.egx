@@ -13,13 +13,13 @@ rule test2ClassTTS transform test: Testing!Test {
 rule packetLoss2FlatMap transform fuzzOp: Testing!PacketLossNetworkOperation {
 	guard : fuzzOp.containingTest != null
 	template : "fuzzingoperations/packetLoss.egl"
-	target : "src/PacketLossFlatMap_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"	
+	target : "src/" + fuzzOp.name + "PacketLossFlatMap_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"	
 }
 
 rule blackHole2FlatMap transform fuzzOp: Testing!BlackholeNetworkOperation {
 	guard : fuzzOp.containingTest != null
 	template : "fuzzingoperations/blackHole.egl"
-	target : "src/BlackHoleFlatMap_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"	
+	target : "src/" + fuzzOp.name + "BlackHoleFlatMap_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"	
 }
 
 rule fuzzRange2FlatMap transform fuzzOp: Testing!RandomValueFromSetOperation {
