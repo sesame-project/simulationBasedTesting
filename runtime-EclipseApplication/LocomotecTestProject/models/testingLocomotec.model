@@ -24,8 +24,8 @@
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_DTrbMC0JEe22IeLGRwtkQg" endTime="100.0"/>
     <latency xmi:id="_EsMGQC0JEe22IeLGRwtkQg" upperBound="5.0"/>
   </possibleFuzzingOperations>
-  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _HeP5sDNVEe2BrK8BAi5Xqg" conditionMetrics="_IbT50BSTEe2NuvfcagGJYw" includedOperations="_EQvMICmiEe2HELjiSIEHlA">
-    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="200"/>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _HeP5sDNVEe2BrK8BAi5Xqg" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg" includedOperations="_u2BukCkTEe2rWIgPkXJ7Hg _Bjxj0C0JEe22IeLGRwtkQg _EQvMICmiEe2HELjiSIEHlA">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="6" iterations="32"/>
     <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="120"/>
   </campaigns>
   <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_locomotec.sh" launchDelaySeconds="10">
