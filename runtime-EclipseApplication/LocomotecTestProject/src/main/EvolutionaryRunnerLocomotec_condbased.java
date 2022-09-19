@@ -30,7 +30,7 @@ public class EvolutionaryRunnerLocomotec_condbased {
 		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/LocomotecTestProject";
 		final String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
 
-		String grammarPath = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/LocomotecTestProject/grammar/sesame-standard-grammar.bnf";
+		String grammarPath = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/LocomotecTestProject/grammar/sesame-standardgrammar-firstExperiment.bnf";
 		
 		String campaignToRun = "firstExperiment";
 

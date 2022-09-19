@@ -1,40 +1,794 @@
 <?xml version="1.0" encoding="ASCII"?>
-<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.FuzzingOperations="FuzzingOperations" xmlns:TestingMM.MRSPackage="MRSPackage" xmlns:TestingMM.Metrics="Metrics" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
-  <metrics xsi:type="TestingMM.Metrics:FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="FuzzingOperations" xmlns:_2="StandardGrammar" xmlns:_3="MRSPackage" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_Ay798DR2Ee2fbo-0GeUOEw" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+    <res xsi:type="FileStreamResult" xmi:id="_f6_EgDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/fuzzingOpTimes"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_IbT50BSTEe2NuvfcagGJYw" name="uvExposureForHuman">
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_pUyAkCKREe2LYMDzNfHpOQ"/>
+  <metrics xsi:type="StreamMetric" xmi:id="_IbT50BSTEe2NuvfcagGJYw" name="uvExposureForHuman">
+    <valueIfNotReceived xmi:id="_44TpsDR1Ee2fbo-0GeUOEw"/>
+    <streams xsi:type="InputStream" xmi:id="_pUyAkCKREe2LYMDzNfHpOQ"/>
+    <res xsi:type="FileStreamResult" xmi:id="_uAnicDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/uvExposureForHuman"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_KG4H8C9nEe2WLcT3ce_NEw" name="wallCollisions">
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_KG4H8S9nEe2WLcT3ce_NEw"/>
+  <metrics xsi:type="StreamMetric" xmi:id="_KG4H8C9nEe2WLcT3ce_NEw" name="wallCollisions">
+    <valueIfNotReceived xmi:id="_6-WJIDR1Ee2fbo-0GeUOEw"/>
+    <streams xsi:type="InputStream" xmi:id="_KG4H8S9nEe2WLcT3ce_NEw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_wqXy8DT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/wallCollisions"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_HeP5sDNVEe2BrK8BAi5Xqg" name="distanceFromStartPoint" dir="LOWEST">
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_SER4sDNfEe2BrK8BAi5Xqg"/>
+  <metrics xsi:type="StreamMetric" xmi:id="_HeP5sDNVEe2BrK8BAi5Xqg" name="distanceFromStartPoint" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_9HcjoDR1Ee2fbo-0GeUOEw" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_SER4sDNfEe2BrK8BAi5Xqg"/>
+    <res xsi:type="FileStreamResult" xmi:id="_0KTdgDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/distanceFromStartPoint"/>
   </metrics>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_u2BukCkTEe2rWIgPkXJ7Hg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_sQ_XQCkZEe2rWIgPkXJ7Hg" endTime="120.0"/>
-    <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_NnsC4CnuEe2CPLNHTC0Tug" propertyName="rangeFactor" upperBound="0.1"/>
+  <possibleFuzzingOperations xsi:type="_1:CustomFuzzingOperation" xmi:id="_u2BukCkTEe2rWIgPkXJ7Hg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_sQ_XQCkZEe2rWIgPkXJ7Hg" endTime="120.0"/>
+    <params xsi:type="_1:DoubleRange" xmi:id="_NnsC4CnuEe2CPLNHTC0Tug" propertyName="rangeFactor" upperBound="0.1"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_EQvMICmiEe2HELjiSIEHlA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_dND-0Cn6Ee2U6tODQsyjgg" endTime="120.0"/>
+  <possibleFuzzingOperations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_EQvMICmiEe2HELjiSIEHlA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_dND-0Cn6Ee2U6tODQsyjgg" endTime="120.0"/>
     <frequency xmi:id="_GF7MICmiEe2HELjiSIEHlA" upperBound="1.0"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_Bjxj0C0JEe22IeLGRwtkQg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_DTrbMC0JEe22IeLGRwtkQg" endTime="100.0"/>
+  <possibleFuzzingOperations xsi:type="_1:LatencyNetworkOperation" xmi:id="_Bjxj0C0JEe22IeLGRwtkQg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_DTrbMC0JEe22IeLGRwtkQg" endTime="100.0"/>
     <latency xmi:id="_EsMGQC0JEe22IeLGRwtkQg" upperBound="5.0"/>
   </possibleFuzzingOperations>
   <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _HeP5sDNVEe2BrK8BAi5Xqg" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg" includedOperations="_u2BukCkTEe2rWIgPkXJ7Hg _Bjxj0C0JEe22IeLGRwtkQg _EQvMICmiEe2HELjiSIEHlA">
     <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="6" iterations="32"/>
+    <performedTests xmi:id="_y1Ea0DT3Ee2Mes87OmSvXg" name="Test_001_14_09_2022_23_42_03">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1FB4DT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1FB4TT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1FB4jT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1FB4zT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1FB5DT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1FB5TT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1FB5jT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1FB5zT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1FB6DT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1FB6TT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1FB6jT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_y1FB6zT3Ee2Mes87OmSvXg" name="Test_001_14_09_2022_23_42_39">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_y1FB7DT3Ee2Mes87OmSvXg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1FB7TT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1FB7jT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1FB7zT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1FB8DT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1FB8TT3Ee2Mes87OmSvXg" value="9"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1FB8jT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1FB8zT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1FB9DT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1FB9TT3Ee2Mes87OmSvXg" value="19"/>
+            </c>
+          </ending>
+        </activation>
+        <params xsi:type="_1:DoubleRange" xmi:id="_y1FB9jT3Ee2Mes87OmSvXg" propertyName="rangeFactor" lowerBound="0.007222520159344371" upperBound="0.09604277614480902"/>
+      </operations>
+      <metrics xmi:id="_y1FB9zT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1Fo8DT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes" value="60.925000000000004"/>
+      </metrics>
+      <metrics xmi:id="_y1Fo8TT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1Fo8jT3Ee2Mes87OmSvXg" name="distanceFromStartPoint" value="10.981806404592241"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1Fo8zT3Ee2Mes87OmSvXg" name="Test_002_14_09_2022_23_42_39">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_y1Fo9DT3Ee2Mes87OmSvXg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1Fo9TT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1Fo9jT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1Fo9zT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1Fo-DT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1Fo-TT3Ee2Mes87OmSvXg" value="8"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1Fo-jT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1Fo-zT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1Fo_DT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1Fo_TT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <params xsi:type="_1:DoubleRange" xmi:id="_y1Fo_jT3Ee2Mes87OmSvXg" propertyName="rangeFactor" lowerBound="0.08601012008270406" upperBound="0.08682837767199553"/>
+      </operations>
+      <metrics xmi:id="_y1Fo_zT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1FpADT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes" value="100.494"/>
+      </metrics>
+      <metrics xmi:id="_y1FpATT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1FpAjT3Ee2Mes87OmSvXg" name="distanceFromStartPoint" value="10.797161326659007"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1FpAzT3Ee2Mes87OmSvXg" name="Test_003_14_09_2022_23_42_39">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_y1FpBDT3Ee2Mes87OmSvXg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1FpBTT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1FpBjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1FpBzT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1FpCDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1FpCTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1FpCjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1FpCzT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1FpDDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1FpDTT3Ee2Mes87OmSvXg" value="2"/>
+            </c>
+          </ending>
+        </activation>
+        <params xsi:type="_1:DoubleRange" xmi:id="_y1FpDjT3Ee2Mes87OmSvXg" propertyName="rangeFactor" lowerBound="0.0971100937038209" upperBound="0.09911475776617185"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" xmi:id="_y1GQADT3Ee2Mes87OmSvXg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1GQATT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1GQAjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1GQAzT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1GQBDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1GQBTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1GQBjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1GQBzT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1GQCDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1GQCTT3Ee2Mes87OmSvXg" value="20"/>
+            </c>
+          </ending>
+        </activation>
+        <latency xmi:id="_y1GQCjT3Ee2Mes87OmSvXg" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1GQCzT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1GQDDT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1GQDTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1GQDjT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1GQDzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1GQEDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1GQETT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1GQEjT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1GQEzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1GQFDT3Ee2Mes87OmSvXg" value="7"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1GQFTT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1GQFjT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1GQFzT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_y1GQGDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1GQGTT3Ee2Mes87OmSvXg" name="distanceFromStartPoint" value="10.8338238229267"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1GQGjT3Ee2Mes87OmSvXg" name="Test_004_14_09_2022_23_42_39">
+      <operations xsi:type="_1:LatencyNetworkOperation" xmi:id="_y1GQGzT3Ee2Mes87OmSvXg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1GQHDT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1GQHTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1GQHjT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1GQHzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1GQIDT3Ee2Mes87OmSvXg" value="19"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1GQITT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1GQIjT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1GQIzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1GQJDT3Ee2Mes87OmSvXg" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <latency xmi:id="_y1GQJTT3Ee2Mes87OmSvXg" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1G3EDT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1G3ETT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1G3EjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1G3EzT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1G3FDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1G3FTT3Ee2Mes87OmSvXg" value="11"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1G3FjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1G3FzT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1G3GDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1G3GTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1G3GjT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1G3GzT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1G3HDT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes" value="100.607"/>
+      </metrics>
+      <metrics xmi:id="_y1G3HTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1G3HjT3Ee2Mes87OmSvXg" name="distanceFromStartPoint"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1G3HzT3Ee2Mes87OmSvXg" name="Test_005_14_09_2022_23_42_39">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_y1G3IDT3Ee2Mes87OmSvXg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1G3ITT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1G3IjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1G3IzT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1G3JDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1G3JTT3Ee2Mes87OmSvXg" value="1"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1G3JjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1G3JzT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1G3KDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1G3KTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <params xsi:type="_1:DoubleRange" xmi:id="_y1G3KjT3Ee2Mes87OmSvXg" propertyName="rangeFactor" lowerBound="0.09463916048073501" upperBound="0.09740240008150744"/>
+      </operations>
+      <metrics xmi:id="_y1G3KzT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1G3LDT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_y1G3LTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1G3LjT3Ee2Mes87OmSvXg" name="distanceFromStartPoint" value="100000.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1G3LzT3Ee2Mes87OmSvXg" name="Test_006_14_09_2022_23_42_39">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1G3MDT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1HeIDT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1HeITT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1HeIjT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1HeIzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1HeJDT3Ee2Mes87OmSvXg" value="12"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1HeJTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1HeJjT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1HeJzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1HeKDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1HeKTT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1HeKjT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1HeKzT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes" value="100.481"/>
+      </metrics>
+      <metrics xmi:id="_y1HeLDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1HeLTT3Ee2Mes87OmSvXg" name="distanceFromStartPoint"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1HeLjT3Ee2Mes87OmSvXg" name="Test_007_14_09_2022_23_42_39">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1HeLzT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1HeMDT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1HeMTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1HeMjT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1HeMzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1HeNDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1HeNTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1HeNjT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1HeNzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1HeODT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1HeOTT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1HeOjT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1HeOzT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_y1HePDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1HePTT3Ee2Mes87OmSvXg" name="distanceFromStartPoint" value="10.890558293868455"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1HePjT3Ee2Mes87OmSvXg" name="Test_008_14_09_2022_23_42_39">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1HePzT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1HeQDT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1HeQTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1HeQjT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1HeQzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1HeRDT3Ee2Mes87OmSvXg" value="10"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1HeRTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1HeRjT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1HeRzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1IFMDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1IFMTT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1IFMjT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1IFMzT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes" value="100.627"/>
+      </metrics>
+      <metrics xmi:id="_y1IFNDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1IFNTT3Ee2Mes87OmSvXg" name="distanceFromStartPoint"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1IFNjT3Ee2Mes87OmSvXg" name="Test_009_15_09_2022_00_01_58">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1IFNzT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1IFODT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1IFOTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IFOjT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1IFOzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1IFPDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1IFPTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IFPjT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1IFPzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1IFQDT3Ee2Mes87OmSvXg" value="18"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1IFQTT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1IFQjT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1IFQzT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_y1IFRDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1IFRTT3Ee2Mes87OmSvXg" name="distanceFromStartPoint" value="10.826648879983004"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1IFRjT3Ee2Mes87OmSvXg" name="Test_010_15_09_2022_00_01_58">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_y1IFRzT3Ee2Mes87OmSvXg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1IFSDT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1IFSTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IFSjT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1IFSzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1IFTDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1IFTTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IFTjT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1IFTzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1IFUDT3Ee2Mes87OmSvXg" value="12"/>
+            </c>
+          </ending>
+        </activation>
+        <params xsi:type="_1:DoubleRange" xmi:id="_y1IFUTT3Ee2Mes87OmSvXg" propertyName="rangeFactor" lowerBound="0.0971100937038209" upperBound="0.09911475776617185"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" xmi:id="_y1IFUjT3Ee2Mes87OmSvXg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1IFUzT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1IFVDT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IFVTT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1IFVjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1IFVzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1IFWDT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IFWTT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1IFWjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1IFWzT3Ee2Mes87OmSvXg" value="20"/>
+            </c>
+          </ending>
+        </activation>
+        <latency xmi:id="_y1IsQDT3Ee2Mes87OmSvXg" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_y1IsQTT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1IsQjT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_y1IsQzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1IsRDT3Ee2Mes87OmSvXg" name="distanceFromStartPoint" value="10.860074752632654"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1IsRTT3Ee2Mes87OmSvXg" name="Test_011_15_09_2022_00_01_58">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_y1IsRjT3Ee2Mes87OmSvXg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1IsRzT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1IsSDT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IsSTT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1IsSjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1IsSzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1IsTDT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IsTTT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1IsTjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1IsTzT3Ee2Mes87OmSvXg" value="7"/>
+            </c>
+          </ending>
+        </activation>
+        <params xsi:type="_1:DoubleRange" xmi:id="_y1IsUDT3Ee2Mes87OmSvXg" propertyName="rangeFactor" lowerBound="0.0971100937038209" upperBound="0.09911475776617185"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1IsUTT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1IsUjT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1IsUzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IsVDT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1IsVTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1IsVjT3Ee2Mes87OmSvXg" value="11"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1IsVzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IsWDT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1IsWTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1IsWjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1IsWzT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1IsXDT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1IsXTT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1IsXjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IsXzT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1IsYDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1IsYTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1IsYjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IsYzT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1IsZDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1IsZTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1IsZjT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1IsZzT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1IsaDT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_y1IsaTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1IsajT3Ee2Mes87OmSvXg" name="distanceFromStartPoint" value="10.863520212952833"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1IsazT3Ee2Mes87OmSvXg" name="Test_012_15_09_2022_00_01_58">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1IsbDT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1IsbTT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1IsbjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1IsbzT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1IscDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1IscTT3Ee2Mes87OmSvXg" value="13"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1IscjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1JTUDT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1JTUTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1JTUjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1JTUzT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" xmi:id="_y1JTVDT3Ee2Mes87OmSvXg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1JTVTT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1JTVjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1JTVzT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1JTWDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1JTWTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1JTWjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1JTWzT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1JTXDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1JTXTT3Ee2Mes87OmSvXg" value="20"/>
+            </c>
+          </ending>
+        </activation>
+        <latency xmi:id="_y1JTXjT3Ee2Mes87OmSvXg" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1JTXzT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1JTYDT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1JTYTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1JTYjT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1JTYzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1JTZDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1JTZTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1JTZjT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1JTZzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1JTaDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1JTaTT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1JTajT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1JTazT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_y1JTbDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1JTbTT3Ee2Mes87OmSvXg" name="distanceFromStartPoint" value="10.89531540499015"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1JTbjT3Ee2Mes87OmSvXg" name="Test_013_15_09_2022_00_11_36">
+      <operations xsi:type="_1:CustomFuzzingOperation" xmi:id="_y1JTbzT3Ee2Mes87OmSvXg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1JTcDT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1JTcTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1JTcjT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1JTczT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1JTdDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1JTdTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1JTdjT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1JTdzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1JTeDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <params xsi:type="_1:DoubleRange" xmi:id="_y1JTeTT3Ee2Mes87OmSvXg" propertyName="rangeFactor" lowerBound="0.0720968988887431" upperBound="0.07705030836919685"/>
+      </operations>
+      <metrics xmi:id="_y1JTejT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1JTezT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_y1JTfDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1JTfTT3Ee2Mes87OmSvXg" name="distanceFromStartPoint" value="10.861873645507677"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1JTfjT3Ee2Mes87OmSvXg" name="Test_014_15_09_2022_00_11_36">
+      <operations xsi:type="_1:LatencyNetworkOperation" xmi:id="_y1JTfzT3Ee2Mes87OmSvXg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1JTgDT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1JTgTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1JTgjT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1JTgzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1JThDT3Ee2Mes87OmSvXg" value="19"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1JThTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1JThjT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1JThzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1JTiDT3Ee2Mes87OmSvXg" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <latency xmi:id="_y1J6YDT3Ee2Mes87OmSvXg" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1J6YTT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1J6YjT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1J6YzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1J6ZDT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1J6ZTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1J6ZjT3Ee2Mes87OmSvXg" value="11"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1J6ZzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1J6aDT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1J6aTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1J6ajT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1J6azT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1J6bDT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1J6bTT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes" value="100.41"/>
+      </metrics>
+      <metrics xmi:id="_y1J6bjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1J6bzT3Ee2Mes87OmSvXg" name="distanceFromStartPoint"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1J6cDT3Ee2Mes87OmSvXg" name="Test_015_15_09_2022_00_11_36">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1J6cTT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1J6cjT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1J6czT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1J6dDT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1J6dTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1J6djT3Ee2Mes87OmSvXg" value="12"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1J6dzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1J6eDT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1J6eTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1J6ejT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1J6ezT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1J6fDT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1J6fTT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes" value="100.605"/>
+      </metrics>
+      <metrics xmi:id="_y1J6fjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1J6fzT3Ee2Mes87OmSvXg" name="distanceFromStartPoint"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1J6gDT3Ee2Mes87OmSvXg" name="Test_016_15_09_2022_00_11_36">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1J6gTT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1J6gjT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1J6gzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1J6hDT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1J6hTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1J6hjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1J6hzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1J6iDT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1J6iTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1J6ijT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1J6izT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1J6jDT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1J6jTT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1J6jjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1J6jzT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1J6kDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1J6kTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1J6kjT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1J6kzT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1J6lDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1J6lTT3Ee2Mes87OmSvXg" value="7"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1J6ljT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1J6lzT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1J6mDT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_y1J6mTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1J6mjT3Ee2Mes87OmSvXg" name="distanceFromStartPoint" value="10.891962904576136"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1J6mzT3Ee2Mes87OmSvXg" name="Test_017_15_09_2022_00_21_15">
+      <operations xsi:type="_1:LatencyNetworkOperation" xmi:id="_y1J6nDT3Ee2Mes87OmSvXg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1J6nTT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1KhcDT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1KhcTT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1KhcjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1KhczT3Ee2Mes87OmSvXg" value="20"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1KhdDT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1KhdTT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1KhdjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1KhdzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <latency xmi:id="_y1KheDT3Ee2Mes87OmSvXg" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1KheTT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1KhejT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1KhezT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1KhfDT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1KhfTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1KhfjT3Ee2Mes87OmSvXg" value="1"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1KhfzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1KhgDT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1KhgTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1KhgjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1KhgzT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1KhhDT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1KhhTT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes" value="186.235"/>
+      </metrics>
+      <metrics xmi:id="_y1KhhjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1KhhzT3Ee2Mes87OmSvXg" name="distanceFromStartPoint" value="1.0122843813511444"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1KhiDT3Ee2Mes87OmSvXg" name="Test_018_15_09_2022_00_21_15">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1KhiTT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1KhijT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1KhizT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1KhjDT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1KhjTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1KhjjT3Ee2Mes87OmSvXg" value="11"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1KhjzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1KhkDT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1KhkTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1KhkjT3Ee2Mes87OmSvXg" value="4"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1KhkzT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1KhlDT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1KhlTT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes" value="100.318"/>
+      </metrics>
+      <metrics xmi:id="_y1KhljT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1KhlzT3Ee2Mes87OmSvXg" name="distanceFromStartPoint"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1KhmDT3Ee2Mes87OmSvXg" name="Test_019_15_09_2022_00_21_15">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1KhmTT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1KhmjT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1KhmzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1KhnDT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1KhnTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1KhnjT3Ee2Mes87OmSvXg" value="12"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1KhnzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1KhoDT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1KhoTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1KhojT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1KhozT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1KhpDT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1KhpTT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes" value="100.42500000000001"/>
+      </metrics>
+      <metrics xmi:id="_y1KhpjT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1KhpzT3Ee2Mes87OmSvXg" name="distanceFromStartPoint"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_y1KhqDT3Ee2Mes87OmSvXg" name="Test_020_15_09_2022_00_21_15">
+      <operations xsi:type="_1:LatencyNetworkOperation" xmi:id="_y1KhqTT3Ee2Mes87OmSvXg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1KhqjT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1KhqzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1KhrDT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1KhrTT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1KhrjT3Ee2Mes87OmSvXg" value="19"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1KhrzT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1KhsDT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1LIgDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1LIgTT3Ee2Mes87OmSvXg" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <latency xmi:id="_y1LIgjT3Ee2Mes87OmSvXg" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_y1LIgzT3Ee2Mes87OmSvXg" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_y1LIhDT3Ee2Mes87OmSvXg">
+          <starting xmi:id="_y1LIhTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1LIhjT3Ee2Mes87OmSvXg">
+              <left xmi:id="_y1LIhzT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionInteger" xmi:id="_y1LIiDT3Ee2Mes87OmSvXg" value="11"/>
+            </c>
+          </starting>
+          <ending xmi:id="_y1LIiTT3Ee2Mes87OmSvXg">
+            <c xsi:type="_2:BasicCondition" xmi:id="_y1LIijT3Ee2Mes87OmSvXg" bincomp="GREATER_THAN">
+              <left xmi:id="_y1LIizT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              <right xsi:type="_2:ConditionVariable" xmi:id="_y1LIjDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_y1LIjTT3Ee2Mes87OmSvXg" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_y1LIjjT3Ee2Mes87OmSvXg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_y1LIjzT3Ee2Mes87OmSvXg" name="fuzzingOperationTimes" value="201.084"/>
+      </metrics>
+      <metrics xmi:id="_y1LIkDT3Ee2Mes87OmSvXg" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_y1LIkTT3Ee2Mes87OmSvXg" name="distanceFromStartPoint"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_001_16_09_2022_12_03_52">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="98.99704793440299" endTime="99.96060950449167"/>
+        <latency upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="25.664585590406162" endTime="40.26574569504612"/>
+        <frequency upperBound="1.0"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_16_09_2022_12_50_23">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="84.72999629730728" endTime="88.30730304649597"/>
+        <latency upperBound="5.0"/>
+      </operations>
+    </performedTests>
+    <resultSets xmi:id="_y1LIkjT3Ee2Mes87OmSvXg" name="FULL-15_09_2022_00_11_36-intermediate-16" status="INTERMEDIATE" results="_y1G3LzT3Ee2Mes87OmSvXg _y1IFNjT3Ee2Mes87OmSvXg _y1Fo8zT3Ee2Mes87OmSvXg _y1GQGjT3Ee2Mes87OmSvXg _y1FpAzT3Ee2Mes87OmSvXg _y1HePjT3Ee2Mes87OmSvXg _y1IFRjT3Ee2Mes87OmSvXg _y1IsRTT3Ee2Mes87OmSvXg"/>
+    <resultSets xmi:id="_y1LIkzT3Ee2Mes87OmSvXg" name="NONDOM-15_09_2022_00_11_36-intermediate-16" status="INTERMEDIATE" results="_y1G3LzT3Ee2Mes87OmSvXg _y1IFNjT3Ee2Mes87OmSvXg"/>
+    <resultSets xmi:id="_y1LIlDT3Ee2Mes87OmSvXg" name="FULL-15_09_2022_00_21_15-intermediate-24" status="INTERMEDIATE" results="_y1IFNjT3Ee2Mes87OmSvXg _y1JTfjT3Ee2Mes87OmSvXg _y1FpAzT3Ee2Mes87OmSvXg _y1G3LzT3Ee2Mes87OmSvXg _y1IFRjT3Ee2Mes87OmSvXg _y1Fo8zT3Ee2Mes87OmSvXg _y1J6cDT3Ee2Mes87OmSvXg _y1JTbjT3Ee2Mes87OmSvXg"/>
+    <resultSets xmi:id="_y1LIlTT3Ee2Mes87OmSvXg" name="NONDOM-15_09_2022_00_21_15-intermediate-24" status="INTERMEDIATE" results="_y1IFNjT3Ee2Mes87OmSvXg _y1JTfjT3Ee2Mes87OmSvXg"/>
+    <resultSets xmi:id="_y1LIljT3Ee2Mes87OmSvXg" name="FULL-15_09_2022_00_30_55-intermediate-32" status="INTERMEDIATE" results="_y1IFNjT3Ee2Mes87OmSvXg _y1KhiDT3Ee2Mes87OmSvXg _y1FpAzT3Ee2Mes87OmSvXg _y1JTfjT3Ee2Mes87OmSvXg _y1IFRjT3Ee2Mes87OmSvXg _y1KhmDT3Ee2Mes87OmSvXg _y1JTbjT3Ee2Mes87OmSvXg _y1G3LzT3Ee2Mes87OmSvXg"/>
+    <resultSets xmi:id="_y1LIlzT3Ee2Mes87OmSvXg" name="NONDOM-15_09_2022_00_30_55-intermediate-32" status="INTERMEDIATE" results="_y1IFNjT3Ee2Mes87OmSvXg _y1KhiDT3Ee2Mes87OmSvXg"/>
+    <resultSets xmi:id="_y1LImDT3Ee2Mes87OmSvXg" name="FULL-15_09_2022_00_30_55-final" results="_y1IFNjT3Ee2Mes87OmSvXg _y1KhiDT3Ee2Mes87OmSvXg _y1FpAzT3Ee2Mes87OmSvXg _y1JTfjT3Ee2Mes87OmSvXg _y1IFRjT3Ee2Mes87OmSvXg _y1KhmDT3Ee2Mes87OmSvXg _y1JTbjT3Ee2Mes87OmSvXg _y1G3LzT3Ee2Mes87OmSvXg"/>
+    <resultSets xmi:id="_y1LImTT3Ee2Mes87OmSvXg" name="NONDOM-15_09_2022_00_30_55-final" results="_y1IFNjT3Ee2Mes87OmSvXg _y1KhiDT3Ee2Mes87OmSvXg"/>
     <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="120"/>
   </campaigns>
   <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_locomotec.sh" launchDelaySeconds="10">
     <variables xmi:id="_NzG5gCkOEe2rWIgPkXJ7Hg" name="/base_scan" type="_DwpnoCjCEe26Ivhf6XyfHA"/>
     <variables xmi:id="_OfgcsCxUEe2oWKgCvvsh2w" name="/amcl_pose" type="_4NIrMCxxEe2oWKgCvvsh2w"/>
-    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="controller" publisher="_OfgcsCxUEe2oWKgCvvsh2w"/>
-    <nodes xmi:id="_PTmb4CkOEe2rWIgPkXJ7Hg" name="laserScanner" publisher="_NzG5gCkOEe2rWIgPkXJ7Hg"/>
-    <simulator xsi:type="TestingMM.MRSPackage:ROSSimulator" xmi:id="_AoDfACjCEe26Ivhf6XyfHA" hostname="localhost" port="8089"/>
-    <propertyType xmi:id="_EYa9sAz0Ee2dUZBawpc2Eg" name="double"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="robot0_controller" publisher="_OfgcsCxUEe2oWKgCvvsh2w"/>
+    <nodes xmi:id="_PTmb4CkOEe2rWIgPkXJ7Hg" name="robot0_laserScanner" publisher="_NzG5gCkOEe2rWIgPkXJ7Hg"/>
+    <simulator xsi:type="_3:ROSSimulator" xmi:id="_AoDfACjCEe26Ivhf6XyfHA" hostname="localhost" port="8089"/>
     <propertyType xmi:id="_DwpnoCjCEe26Ivhf6XyfHA" name="sensor_msgs/LaserScan"/>
     <propertyType xmi:id="_4NIrMCxxEe2oWKgCvvsh2w" name="geometry_msgs/PoseWithCovarianceStamped"/>
   </mrs>

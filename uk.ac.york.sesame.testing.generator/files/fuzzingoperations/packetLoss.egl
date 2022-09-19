@@ -46,7 +46,7 @@ public class [%=fuzzOp.name%]PacketLossFlatMap_[%= classNameExt %] extends [%= s
 	public [%=fuzzOp.name%]PacketLossFlatMap_[%= classNameExt %](String topic, long seed, double frequency) {
 		super(topic);
 		this.rng = new Random(seed);
-		this.fuzzOpInternal = new [%= fuzzOpClassName %]();
+		this.frequency = frequency;
 	}
 	
 	protected boolean evalStartCondition() {

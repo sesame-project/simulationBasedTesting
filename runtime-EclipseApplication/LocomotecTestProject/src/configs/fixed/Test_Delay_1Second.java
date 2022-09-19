@@ -37,7 +37,7 @@ import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 import metrics.custom.*;
 import metrics.fixed.*;
 
-public class Test_Delay_4Seconds {
+public class Test_Delay_1Second {
 	public static void main(String[] args) {
 	
 		final String TESTNAME = "Test_001_07_09_2022_12_44_25";

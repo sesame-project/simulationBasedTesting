@@ -137,13 +137,11 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
-		[% if (mrs.isTypeOf(Testing!ROSSimulator)) { %]
 		<dependency>
 			<groupId>uk.ac.york.sesame.testing.architecture.ros</groupId>
 			<artifactId>uk.ac.york.sesame.testing.architecture.ros</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		[% } %]
 		
 		[% if (mrs.isTypeOf(Testing!TTSSimulator)) { %]
 		<dependency>

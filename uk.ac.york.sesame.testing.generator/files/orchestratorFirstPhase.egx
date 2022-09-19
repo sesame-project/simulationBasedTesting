@@ -29,4 +29,9 @@ rule genGrammar transform testCampaign: Testing!TestCampaign {
 rule generatePOM transform testingSpace: Testing!TestingSpace {
 	template : "pom/pomXML.egl"
 	target : "pom.xml"
-} 
+}
+
+rule customOpTemplate transform fuzzOp: Testing!CustomFuzzingOperation {
+	template : "fuzzingoperations/template/customOpTemplate.egl"	
+	target : "src/fuzzingoperations/template/" + fuzzOp.name + ".java"
+}

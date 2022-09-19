@@ -58,7 +58,7 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 	public [%=fuzzOp.name%]Delay_[%= classNameExt %](String topic, double time, long seed) {
 		super(topic);
 		this.rng = new Random(seed);
-		this.fuzzOpInternal = new [%= fuzzOpClassName %]();
+		this.delayTime = Math.round(time * 1000.0); 
 	}
 	
 	protected boolean evalStartCondition() {

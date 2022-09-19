@@ -359,9 +359,9 @@ operation produceFOGenerationSignature(fo) {
 	if (aa.isKindOf(Testing!ConditionBasedActivation)) {
 		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
 			var frequencyVal = fo.frequency.lowerBound;
-			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "," + fo.seed + "," + fo.frequency + ")";
+			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + "," + frequencyVal + ")";
 		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
-			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + ")";
+			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\")";
 		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
 			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + ")";
 		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
