@@ -146,26 +146,31 @@ public class TTSSimulator implements ISimulator {
 	@Override
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic,
 			boolean debugThisMessage) {
-		// example topicName = "joints/R3200/Link1/R/position";
-		TopicDescriptor request = TopicDescriptor.newBuilder().setPath(topicName).build();
+			String topicNameIn = topicName + "/in";
+			TopicDescriptor injTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
+			String shadowTopic = topicName + "/shadow";
+			InjectRequest requ = InjectRequest.newBuilder().setInjected(injTopic).build();
+			TopicDescriptor request = TopicDescriptor.newBuilder().setPath(topicName).build();
 
-		Optional<String> kTopic;
-		if (publishToKafka) {
-			kTopic = Optional.of(kafkaTopic);
-		} else {
-			kTopic = Optional.empty();
-		}
+		
+			Optional<String> kTopic;
+			if (publishToKafka) {
+				kTopic = Optional.of(kafkaTopic);
+			} else {
+				kTopic = Optional.empty();
+			}
 
-		try {
-			ROSObserver ro = new ROSObserver(topicName);
-			ro.setDebug(debugThisMessage);
-			ro.setTopic(kafkaTopic);
-			asyncStub.subscribe(request, ro);
-		} catch (StatusRuntimeException e) {
-			System.out.println("RPC failed: {0}" + e.getStatus());
-			return;
+			try {
+				ROSObserver ro = new ROSObserver(topicName);
+				ro.setDebug(debugThisMessage);
+				ro.setTopic(kafkaTopic);
+				asyncStub.subscribe(request, ro);
+				asyncStub.inject(requ, ro);
+			} catch (StatusRuntimeException e) {
+				System.out.println("RPC failed: {0}" + e.getStatus());
+				return;
+			}
 		}
-	}
 
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
 		consumeFromTopic(topicName, topicType, publishToKafka, kafkaTopic, false);
