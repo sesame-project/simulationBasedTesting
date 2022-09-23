@@ -136,7 +136,7 @@ public class TTSSimulator implements ISimulator {
 		if (subsTopicName.endsWith("IN")) {
 			return (subsTopicName.substring(0, subsTopicName.length() - 2));
 		} else {
-			return subsTopicName + "OUT";
+			return subsTopicName + "/shadow";
 		}
 	}
 
@@ -147,25 +147,32 @@ public class TTSSimulator implements ISimulator {
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic,
 			boolean debugThisMessage) {
 			String topicNameIn = topicName + "/in";
-			TopicDescriptor injTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-			String shadowTopic = topicName + "/shadow";
-			InjectRequest requ = InjectRequest.newBuilder().setInjected(injTopic).build();
-			TopicDescriptor request = TopicDescriptor.newBuilder().setPath(topicName).build();
+			String topicNameShadow = topicName + "/shadow";
+			String topicNameOut = topicName + "/out";
+			
+			TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
+			TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(topicNameShadow).build();
+			TopicDescriptor outTopic = TopicDescriptor.newBuilder().setPath(topicNameOut).build();
+			
+			InjectRequest requestInj = InjectRequest.newBuilder().setInjected(shadowTopic).build();
+			InjectRequest requ = InjectRequest.newBuilder().setInjected(shadowTopic).setTarget(inTopic).build();
+			TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
 
-		
-			Optional<String> kTopic;
+			Optional<String> kTopic = Optional.empty();
 			if (publishToKafka) {
 				kTopic = Optional.of(kafkaTopic);
-			} else {
-				kTopic = Optional.empty();
 			}
 
 			try {
 				ROSObserver ro = new ROSObserver(topicName);
+				ROSObserver roInject = new ROSObserver(topicName);
+				
 				ro.setDebug(debugThisMessage);
 				ro.setTopic(kafkaTopic);
-				asyncStub.subscribe(request, ro);
-				asyncStub.inject(requ, ro);
+				System.out.println("Subscribing to : " + outTopic);
+				asyncStub.subscribe(outTopic, ro);
+				asyncStub.inject(requestInj, roInject);
+				
 			} catch (StatusRuntimeException e) {
 				System.out.println("RPC failed: {0}" + e.getStatus());
 				return;
