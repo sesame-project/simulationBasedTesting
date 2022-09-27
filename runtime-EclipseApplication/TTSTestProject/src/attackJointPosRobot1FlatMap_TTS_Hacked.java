@@ -14,7 +14,6 @@ import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
 // TODO: EGL generators need to generate based on fuzzOp activation
 public class attackJointPosRobot1FlatMap_TTS_Hacked extends TimeBasedFuzzingOperation {
 
-
 	private static final long serialVersionUID = 1L;
 	Random rng;
 
@@ -23,21 +22,18 @@ public class attackJointPosRobot1FlatMap_TTS_Hacked extends TimeBasedFuzzingOper
 		this.rng = new Random(seed);
 	}
 	
-	
 	@Override
 	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception { 
 		System.out.println("value topic = " + value.getTopic());
 			if (value.getTopic().contains(topic)) {
 				System.out.println("GOT MATCH = " + value);
-				value.setValue(new Double(0.111));
+				Double origVal = Double.parseDouble((String)value.getValue());
+				double randJitter = (rng.nextDouble() * 0.2) - 0.1;
+				value.setValue(origVal + randJitter);
 				out.collect(value);
 			} else {
 				out.collect(value);
 			}
-				
-	
 	}	
-	
-	
 }
 

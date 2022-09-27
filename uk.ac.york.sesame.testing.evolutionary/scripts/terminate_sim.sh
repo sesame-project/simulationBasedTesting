@@ -32,6 +32,8 @@ killall -9 map_navigation_corridor_white.py
 killall -9 map_navigation_corridor_white*.py
 killall -9 map_navigation_corridor_white_autostart.py
 
+killall -9 scan_unifier_node
+
 pkill -f TestRunner
 
 exit 0

@@ -78,7 +78,7 @@ public class Test_001_TTS_Hacked_newinterface {
 		
 		// Preprocessing associated with fuzzing operations before simulation starts
 		System.out.println("Preprocessing Phase");
-		FuzzingOperation fuzzOp0 = new attackJointPosRobot1FlatMap_TTS_Hacked("joints/R270072/Link0/R/position",0.0,991.9274646477526,0); 
+		FuzzingOperation fuzzOp0 = new attackJointPosRobot1FlatMap_TTS_Hacked("joints/R3200ProductMove/Link1/R/position",0.0,991.9274646477526,0); 
 		fuzzOp0.preprocessing();
 		
 			
@@ -90,10 +90,10 @@ public class Test_001_TTS_Hacked_newinterface {
 		propsMap.put(ConnectionProperties.PORT, 8089);
 		cp.setProperties(propsMap);
 				
-		params.put("TTSProjectDir", "/mnt/resources/dl-temp/sesame/KukaDevelop");
+		params.put("TTSProjectDir", "/mnt/resources/dl-temp/sesame/KukaCell");
 		params.put("launchDelayMsec", "20000");
 		System.out.print("TTS Simulator Starting...");
-		//ttsSim.run(params);
+		ttsSim.run(params);
 		System.out.println("TTS Simulator Started");
 		ttsSim.connect(cp);	
 		
@@ -103,7 +103,9 @@ public class Test_001_TTS_Hacked_newinterface {
 		Thread subscriber_thread_joints = new Thread() {
 			public void run() {
 				System.out.println("Subscriber joints Starts");
-				ttsSim.consumeFromTopic("joints/R270072/Link0/R/position", "double", true, "IN");
+				//ttsSim.consumeFromTopic("joints/R270072/Link0/R/position", "double", true, "IN");
+				ttsSim.consumeFromTopic("joints/R3200ProductMove/Link1/R/position", "double", true, "IN");
+				//ttsSim.consumeFromTopic("joints/FeederProduct1/RootGroup/T/position", "double", true, "IN");
 			}
 		};
 		subscriber_thread_joints.start();

@@ -133,8 +133,8 @@ public class TTSSimulator implements ISimulator {
 	 **/
 	public String translateTopicNameForOutput(String origTopicName) {
 		String subsTopicName = origTopicName.replace(".", "/");
-		if (subsTopicName.endsWith("IN")) {
-			return (subsTopicName.substring(0, subsTopicName.length() - 2));
+		if (subsTopicName.endsWith("/in")) {
+			return (subsTopicName.substring(0, subsTopicName.length() - 3) + "/shadow");
 		} else {
 			return subsTopicName + "/shadow";
 		}
@@ -154,7 +154,7 @@ public class TTSSimulator implements ISimulator {
 			TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(topicNameShadow).build();
 			TopicDescriptor outTopic = TopicDescriptor.newBuilder().setPath(topicNameOut).build();
 			
-			InjectRequest requestInj = InjectRequest.newBuilder().setInjected(shadowTopic).build();
+			//InjectRequest requestInj = InjectRequest.newBuilder().setInjected(shadowTopic).build();
 			InjectRequest requ = InjectRequest.newBuilder().setInjected(shadowTopic).setTarget(inTopic).build();
 			TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
 
@@ -164,14 +164,14 @@ public class TTSSimulator implements ISimulator {
 			}
 
 			try {
-				ROSObserver ro = new ROSObserver(topicName);
-				ROSObserver roInject = new ROSObserver(topicName);
+				//ROSObserver ro = new ROSObserver(topicName);
+				ROSObserver roInject = new ROSObserver(topicNameIn);
 				
-				ro.setDebug(debugThisMessage);
-				ro.setTopic(kafkaTopic);
-				System.out.println("Subscribing to : " + outTopic);
-				asyncStub.subscribe(outTopic, ro);
-				asyncStub.inject(requestInj, roInject);
+				roInject.setDebug(debugThisMessage);
+				roInject.setTopic(kafkaTopic);
+				System.out.println("Setting up injection to : " + inTopic);
+				//asyncStub.subscribe(inTopic, ro);
+				asyncStub.inject(requ, roInject);
 				
 			} catch (StatusRuntimeException e) {
 				System.out.println("RPC failed: {0}" + e.getStatus());
@@ -186,6 +186,7 @@ public class TTSSimulator implements ISimulator {
 	@Override
 	public void publishToTopic(String topicName, String topicType, String message) {
 		String path = topicName;
+		System.out.println("PUBLISH TO: " + path);
 		String value = message;
 		if (publisher == null) {
 			publisher = asyncStub.publish(new StreamObserver<Empty>() {
