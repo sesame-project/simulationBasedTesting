@@ -144,6 +144,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="RandomValueFromSetOperation" eSuperTypes="#//FuzzingOperations/RandomValueFuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueSet" upperBound="-1"
           eType="#//FuzzingOperations/ValueSet" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRelative" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="false"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ValueSet">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -352,6 +354,7 @@
       <eLiterals name="JSON"/>
       <eLiterals name="CSV" value="1"/>
       <eLiterals name="CUSTOM" value="2"/>
+      <eLiterals name="STRING" value="3"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Parameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

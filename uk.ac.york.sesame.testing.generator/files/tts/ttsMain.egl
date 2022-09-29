@@ -8,6 +8,8 @@
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
+	
+	var sanitiseVariables = true;
 %]
 
 import java.util.ArrayList;
@@ -37,12 +39,13 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
 import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
-import uk.ac.york.sesame.testing.architecture.tts.TTSSimulator;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.*;
 
+import uk.ac.york.sesame.testing.architecture.tts.TTSSimulator;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
+
 
 import metrics.custom.*;
 import metrics.fixed.*;
@@ -53,7 +56,6 @@ public class [%= testNameString %]_TestRunner {
 		final String TESTNAME = "[%= testNameString %]";
 		
 		// JRH: needed to increase the number of buffers used
-		// Set the parallelism to 1
 		Configuration cfg = new Configuration();
 		int defaultLocalParallelism = 1;
 		cfg.setString("taskmanager.network.numberOfBuffers", "4096");
@@ -78,8 +80,15 @@ public class [%= testNameString %]_TestRunner {
 					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
 		
 		
-		DataStream<EventMessage> stream = env
+		DataStream<EventMessage> streamOrig = env
 			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
+			
+		[% if (sanitiseVariables) { %]
+			DataStream<EventMessage> stream = streamOrig.flatMap(new SanitiseFuzzingValues());
+		[% } else { %]
+			DataStream<EventMessage> stream = streamOrig;
+		[% } %]
+			
 		
 		DataStream<EventMessage> streamOut = env
 				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
@@ -95,16 +104,8 @@ public class [%= testNameString %]_TestRunner {
 		        new MetricMessageSchema(),    // serialization schema
 		        properties             // producer config
 		      );
-		
-		// Preprocessing associated with fuzzing operations before simulation starts
-		System.out.println("Preprocessing Phase");
-		[% for (fOName in allFuzzOps.keySet()) {
-		var fuzzOp = allFuzzOps.get(fOName); %]
-		FuzzingOperation [%= fOName %] = [%= produceFOGenerationSignature(fuzzOp) %]; 
-		[%= fOName %].preprocessing();
-		[% } %]
-		
-		[* CUSTOM TTS CODE - START *]			
+					
+		[* CUSTOM TTS CODE - START *]
 		[%
 		if (simulator.isTypeOf(TTSSimulator)) { %]
 			[% var launchDelayMsec = mrs.launchDelaySeconds * 1000; %]
@@ -118,14 +119,25 @@ public class [%= testNameString %]_TestRunner {
 				
 		params.put("TTSProjectDir", "[%= launchFileLocation %]");
 		params.put("launchDelayMsec", "[%= launchDelayMsec %]");
+		
+		// Preprocessing before simulation starts
+		System.out.println("Preprocessing Phase before Simulator Start");
+		
+		[% for (fOName in allFuzzOps.keySet()) {
+		var fuzzOp = allFuzzOps.get(fOName); %]
+		FuzzingOperation [%= fOName %] = [%= produceFOGenerationSignature(fuzzOp) %]; 
+		[%= fOName %].preprocessing();
+		[% } %]
+		
 		System.out.print("TTS Simulator Starting...");
 		ttsSim.run(params);
 		[* This incorporates a delay before the simulator starts *]
-		System.out.println("TTS Simulator Started");
+		[* waitForSeconds([%= mrs.launchDelaySeconds %]); *]
+		System.out.println("TTS Simulator Started... connecting");
 		ttsSim.connect(cp);	
 		[* CUSTOM TTS CODE - END *]
-		
-		System.out.println("Connecting to topics");					
+		[% } %]
+				
 		[% for (aTopic in allTopics) { %]
 		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
 			public void run() {
@@ -256,13 +268,17 @@ public class [%= testNameString %]_TestRunner {
 				[% }
 		} %]	
 		[% } %];
+		
 		campaignMetrics.addSink(metricsProducer);
-				
+		
+		
 		ConnectedStreams<EventMessage,MetricMessage> streamFO0 = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
 		
 		[% var foStreamCount = 0;
 		   var foLen = allFuzzOps.size();
-		   for (fuzzOpName in allFuzzOps.keySet()) {
+		   
+			if (foLen > 0) {    
+		   	   for (fuzzOpName in allFuzzOps.keySet()) {
 		      var inputStream = "streamFO" + foStreamCount;
 		      var outputStream = "streamFO" + (foStreamCount + 1);
 		      foStreamCount++;
@@ -274,9 +290,12 @@ public class [%= testNameString %]_TestRunner {
 				[* For the final stream, we require to produce an output with an EventStream only *]
 		   		DataStream<EventMessage> [%= outputStream %] = [%= inputStream %].process([%= fuzzOpName %]);
 				[% }
-		   } %]
-				
-		streamFO[%= foLen %].addSink(myProducer);
+		   		} %]
+			streamFO[%= foLen %].addSink(myProducer);
+		   [% } else { %]
+		   // Case with empty fuzzing operations
+		   stream.addSink(myProducer);
+		   [% } %]
 		
 		try {
 			env.execute();
@@ -284,7 +303,6 @@ public class [%= testNameString %]_TestRunner {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		[% } %]
 	}
 	
 	public static void waitForSeconds(long timeDelaySeconds) {
@@ -323,26 +341,30 @@ operation produceFOGenerationSignature(fo) {
 		var endTime = aa.endTime;
 		
 		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
-			flatmap = "new PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.frequency + ")";
+			var frequencyVal = fo.frequency.lowerBound;
+			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + "," + frequencyVal + ")";
 		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
-			flatmap = "new BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + ")";
+			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + ")";
 		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
-			flatmap = "new " + fo.name;
-			flatmap = flatmap + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
+			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
 		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
 			var varName = null;
 			if (fo.variableToAffect != null) {
 			 	varName = fo.variableToAffect.name;
 			}
 			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
+		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
+			var delay = fo.latency.lowerBound;
+			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + delay + "," + fo.seed + ")";
 		}
 	}
 	
 	if (aa.isKindOf(Testing!ConditionBasedActivation)) {
 		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
-			flatmap = "new PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "," + fo.frequency + ")";
+			var frequencyVal = fo.frequency.lowerBound;
+			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + "," + frequencyVal + ")";
 		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
-			flatmap = "new BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + ")";
+			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\")";
 		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
 			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + ")";
 		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
@@ -351,6 +373,9 @@ operation produceFOGenerationSignature(fo) {
 			 	varName = fo.variableToAffect.name;
 			}			 
 			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + fo.seed + ")";
+		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
+			var delay = fo.latency.lowerBound;
+			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + delay + "," + fo.seed + ")";
 		}
 	}
 	

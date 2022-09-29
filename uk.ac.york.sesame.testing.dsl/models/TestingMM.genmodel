@@ -124,6 +124,7 @@
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/RandomValueFuzzingOperation"/>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/RandomValueFromSetOperation">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/RandomValueFromSetOperation/valueSet"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/RandomValueFromSetOperation/isRelative"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/ValueSet">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/ValueSet/propertyName"/>
@@ -275,6 +276,7 @@
         <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//MRSPackage/ParsingMethod/JSON"/>
         <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//MRSPackage/ParsingMethod/CSV"/>
         <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//MRSPackage/ParsingMethod/CUSTOM"/>
+        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//MRSPackage/ParsingMethod/STRING"/>
       </genEnums>
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/MRS">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/MRS/variables"/>

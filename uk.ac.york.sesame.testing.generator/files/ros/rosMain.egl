@@ -84,6 +84,8 @@ public class [%= testNameString %]_TestRunner {
 			
 		[% if (sanitiseVariables) { %]
 			DataStream<EventMessage> stream = streamOrig.flatMap(new SanitiseFuzzingValues());
+		[% } else { %]
+			DataStream<EventMessage> stream = streamOrig;
 		[% } %]
 			
 		

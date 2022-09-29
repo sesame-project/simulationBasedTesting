@@ -818,6 +818,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getRandomValueFromSetOperation_IsRelative() {
+		return (EAttribute)randomValueFromSetOperationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getValueSet() {
 		return valueSetEClass;
 	}
@@ -1301,6 +1310,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		randomValueFromSetOperationEClass = createEClass(RANDOM_VALUE_FROM_SET_OPERATION);
 		createEReference(randomValueFromSetOperationEClass, RANDOM_VALUE_FROM_SET_OPERATION__VALUE_SET);
+		createEAttribute(randomValueFromSetOperationEClass, RANDOM_VALUE_FROM_SET_OPERATION__IS_RELATIVE);
 
 		valueSetEClass = createEClass(VALUE_SET);
 		createEAttribute(valueSetEClass, VALUE_SET__PROPERTY_NAME);
@@ -1497,6 +1507,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		initEClass(randomValueFromSetOperationEClass, RandomValueFromSetOperation.class, "RandomValueFromSetOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRandomValueFromSetOperation_ValueSet(), this.getValueSet(), null, "valueSet", null, 0, -1, RandomValueFromSetOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRandomValueFromSetOperation_IsRelative(), ecorePackage.getEBoolean(), "isRelative", "false", 0, 1, RandomValueFromSetOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valueSetEClass, ValueSet.class, "ValueSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getValueSet_PropertyName(), ecorePackage.getEString(), "propertyName", null, 0, 1, ValueSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation#getValueSet <em>Value Set</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation#isIsRelative <em>Is Relative</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getRandomValueFromSetOperation()
@@ -32,5 +33,28 @@ public interface RandomValueFromSetOperation extends RandomValueFuzzingOperation
 	 * @generated
 	 */
 	EList<ValueSet> getValueSet();
+
+	/**
+	 * Returns the value of the '<em><b>Is Relative</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Relative</em>' attribute.
+	 * @see #setIsRelative(boolean)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getRandomValueFromSetOperation_IsRelative()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isIsRelative();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation#isIsRelative <em>Is Relative</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Relative</em>' attribute.
+	 * @see #isIsRelative()
+	 * @generated
+	 */
+	void setIsRelative(boolean value);
 
 } // RandomValueFromSetOperation

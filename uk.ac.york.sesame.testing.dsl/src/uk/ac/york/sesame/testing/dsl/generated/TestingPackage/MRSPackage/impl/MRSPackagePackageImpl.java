@@ -727,6 +727,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		addEEnumLiteral(parsingMethodEEnum, ParsingMethod.JSON);
 		addEEnumLiteral(parsingMethodEEnum, ParsingMethod.CSV);
 		addEEnumLiteral(parsingMethodEEnum, ParsingMethod.CUSTOM);
+		addEEnumLiteral(parsingMethodEEnum, ParsingMethod.STRING);
 	}
 
 } //MRSPackagePackageImpl
