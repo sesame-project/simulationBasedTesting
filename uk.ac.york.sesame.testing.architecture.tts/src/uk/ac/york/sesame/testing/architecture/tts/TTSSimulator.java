@@ -28,6 +28,7 @@ import uk.ac.york.sesame.testing.architecture.simulator.ICommandInvoker;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertyGetter;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertySetter;
 import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
+import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
 
 public class TTSSimulator implements ISimulator {
@@ -35,6 +36,8 @@ public class TTSSimulator implements ISimulator {
 	private static final long DEFAULT_TTS_LAUNCH_DELAY_MS = 20000;
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
+	private static final boolean DEBUG_DISPLAY_CLOCK_MESSAGE = true;
+
 	static DataStreamManager dsm = DataStreamManager.getInstance();
 
 	private static StreamObserver<PubRequest> publisher;
@@ -107,13 +110,13 @@ public class TTSSimulator implements ISimulator {
 		}
 
 		// Do we need to run "com-ttsnetwork-ddd-grpc.jar" to start gRPC server?
-		
+
 		// Using Diego's custom launch script
 		// TODO: this needs to specify a custom JVM here
 		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
-		//ExptHelper.runScriptNewWithBash(workingDir, cmd);
+		// ExptHelper.runScriptNewWithBash(workingDir, cmd);
 		ExptHelper.runScriptNewThread(workingDir, cmd);
-		
+
 		// Need to wait the delay
 		try {
 			Thread.sleep(delayMsec);
@@ -146,38 +149,39 @@ public class TTSSimulator implements ISimulator {
 	@Override
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic,
 			boolean debugThisMessage) {
-			String topicNameIn = topicName + "/in";
-			String topicNameShadow = topicName + "/shadow";
-			String topicNameOut = topicName + "/out";
-			
-			TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-			TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(topicNameShadow).build();
-			TopicDescriptor outTopic = TopicDescriptor.newBuilder().setPath(topicNameOut).build();
-			
-			//InjectRequest requestInj = InjectRequest.newBuilder().setInjected(shadowTopic).build();
-			InjectRequest requ = InjectRequest.newBuilder().setInjected(shadowTopic).setTarget(inTopic).build();
-			TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
+		String topicNameIn = topicName + "/in";
+		String topicNameShadow = topicName + "/shadow";
+		String topicNameOut = topicName + "/out";
 
-			Optional<String> kTopic = Optional.empty();
-			if (publishToKafka) {
-				kTopic = Optional.of(kafkaTopic);
-			}
+		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
+		TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(topicNameShadow).build();
+		TopicDescriptor outTopic = TopicDescriptor.newBuilder().setPath(topicNameOut).build();
 
-			try {
-				//ROSObserver ro = new ROSObserver(topicName);
-				ROSObserver roInject = new ROSObserver(topicNameIn);
-				
-				roInject.setDebug(debugThisMessage);
-				roInject.setTopic(kafkaTopic);
-				System.out.println("Setting up injection to : " + inTopic);
-				//asyncStub.subscribe(inTopic, ro);
-				asyncStub.inject(requ, roInject);
-				
-			} catch (StatusRuntimeException e) {
-				System.out.println("RPC failed: {0}" + e.getStatus());
-				return;
-			}
+		// InjectRequest requestInj =
+		// InjectRequest.newBuilder().setInjected(shadowTopic).build();
+		InjectRequest requ = InjectRequest.newBuilder().setInjected(shadowTopic).setTarget(inTopic).build();
+		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
+
+		Optional<String> kTopic = Optional.empty();
+		if (publishToKafka) {
+			kTopic = Optional.of(kafkaTopic);
 		}
+
+		try {
+			// ROSObserver ro = new ROSObserver(topicName);
+			ROSObserver roInject = new ROSObserver(topicNameIn);
+
+			roInject.setDebug(debugThisMessage);
+			roInject.setTopic(kafkaTopic);
+			System.out.println("Setting up injection to : " + inTopic);
+			// asyncStub.subscribe(inTopic, ro);
+			asyncStub.inject(requ, roInject);
+
+		} catch (StatusRuntimeException e) {
+			System.out.println("RPC failed: {0}" + e.getStatus());
+			return;
+		}
+	}
 
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
 		consumeFromTopic(topicName, topicType, publishToKafka, kafkaTopic, false);
@@ -252,16 +256,33 @@ public class TTSSimulator implements ISimulator {
 
 	@Override
 	public void updateTime() {
-//		Topic topic = (Topic) createTopic("/clock", "rosgraph_msgs/Clock");
-//		topic.subscribe(new TopicCallback() {
-//			@Override
-//			public void handleMessage(Message message) {
-//				String seconds = message.toString().split("secs\":")[1].split(",")[0];
-//				SimCore.getInstance().setTime(seconds);
-//				//System.out.println("Seconds: " + seconds);
-//			}
-//		});
-//		while(true) {}
+		TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("/model/clock").build();
+		ClockObserver co = new ClockObserver();
+		asyncStub.subscribe(clockTopic, co);
+	}
+
+	private class ClockObserver implements StreamObserver<ROSMessage> {
+
+		public ClockObserver() {
+
+		}
+
+		@Override
+		public void onNext(ROSMessage m) {
+			System.out.println("ClockObserver received value=" + m.getValue());
+			Double time = Double.parseDouble(m.getValue());
+			SimCore.getInstance().setTime(time);
+		}
+
+		@Override
+		public void onError(Throwable t) {
+			System.err.println("ClockObserver failed: " + Status.fromThrowable(t));
+		}
+
+		@Override
+		public void onCompleted() {
+			System.out.println("ClockObserver finished");
+		}
 	}
 
 	private class ROSObserver implements StreamObserver<ROSMessage> {

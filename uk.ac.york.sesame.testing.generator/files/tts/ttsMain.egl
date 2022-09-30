@@ -269,9 +269,7 @@ public class [%= testNameString %]_TestRunner {
 		} %]	
 		[% } %];
 		
-		campaignMetrics.addSink(metricsProducer);
-		
-		
+		campaignMetrics.addSink(metricsProducer);		
 		ConnectedStreams<EventMessage,MetricMessage> streamFO0 = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
 		
 		[% var foStreamCount = 0;
