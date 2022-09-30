@@ -155,7 +155,6 @@ public class [%= testNameString %]_TestRunner {
 			}
 		};
 		time_subscriber.start();
-
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
