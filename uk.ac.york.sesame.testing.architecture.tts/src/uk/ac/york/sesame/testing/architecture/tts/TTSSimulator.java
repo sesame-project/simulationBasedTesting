@@ -37,6 +37,7 @@ public class TTSSimulator implements ISimulator {
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	private static final boolean DEBUG_DISPLAY_CLOCK_MESSAGE = true;
+	private static final boolean SUBSCRIBE_TO_CLOCK = false;
 
 	static DataStreamManager dsm = DataStreamManager.getInstance();
 
@@ -256,9 +257,11 @@ public class TTSSimulator implements ISimulator {
 
 	@Override
 	public void updateTime() {
-		TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("/model/clock").build();
-		ClockObserver co = new ClockObserver();
-		asyncStub.subscribe(clockTopic, co);
+		if (SUBSCRIBE_TO_CLOCK) {
+			TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("/model/clock").build();
+			ClockObserver co = new ClockObserver();
+			asyncStub.subscribe(clockTopic, co);
+		}
 	}
 
 	private class ClockObserver implements StreamObserver<ROSMessage> {
