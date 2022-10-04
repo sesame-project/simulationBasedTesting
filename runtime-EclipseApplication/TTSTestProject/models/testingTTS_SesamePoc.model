@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.FuzzingOperations="FuzzingOperations" xmlns:TestingMM.MRSPackage="MRSPackage" xmlns:TestingMM.Metrics="Metrics" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="TestingMM.Metrics:FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_IbT50BSTEe2NuvfcagGJYw" name="collisionOccurance" dir="LOWEST">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_pUyAkCKREe2LYMDzNfHpOQ"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="attackJointPosRobot1" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_bJdhUN04EeyAL51MCA53dw" endTime="1000.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IPLIEeyyicYP_3f6ng" propertyName="" upperBound="1.0"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A" conditionMetrics="_IbT50BSTEe2NuvfcagGJYw" includedOperations="_lc6UoN0YEeyv8LH3vdSfnw">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="200"/>
+    <performedTests xmi:id="_01QLUCg9Ee2avLmDFNIr6A" name="Test_001_26_08_2022_14_27_23">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_01QLUSg9Ee2avLmDFNIr6A" name="attackJointPosRobot1" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_01QLUig9Ee2avLmDFNIr6A" startTime="295.7825880871148" endTime="639.9700831496823"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_01QLUyg9Ee2avLmDFNIr6A" propertyName="" lowerBound="6.683798849406139" upperBound="7.001013975829811"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_01QLVCg9Ee2avLmDFNIr6A" name="Test_001_26_08_2022_14_27_39">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_01QLVSg9Ee2avLmDFNIr6A" name="attackJointPosRobot1" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_01QLVig9Ee2avLmDFNIr6A" startTime="370.3853799512951" endTime="380.59153652022746"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_01QLVyg9Ee2avLmDFNIr6A" propertyName="" lowerBound="6.274727289230072" upperBound="8.183533893936932"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_01QLWCg9Ee2avLmDFNIr6A" name="Test_001_26_08_2022_14_29_33">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_01QLWSg9Ee2avLmDFNIr6A" name="attackJointPosRobot1" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_01QLWig9Ee2avLmDFNIr6A" startTime="24.243218455402783" endTime="45.04960816782443"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_01QLWyg9Ee2avLmDFNIr6A" propertyName="" lowerBound="9.41937458949201" upperBound="9.802387431043492"/>
+      </operations>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="100"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/mnt/resources/dl-temp/sesame/SesamePoc" launchDelaySeconds="10">
+    <variables xmi:id="_BIPJ4Az1Ee2dUZBawpc2Eg" name="joints/R3200/Link1/R/positionIN" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="R3200" publisher="_BIPJ4Az1Ee2dUZBawpc2Eg"/>
+    <simulator xsi:type="TestingMM.MRSPackage:TTSSimulator" xmi:id="_G7808Az1Ee2dUZBawpc2Eg" hostname="localhost" port="8089"/>
+    <propertyType xmi:id="_EYa9sAz0Ee2dUZBawpc2Eg" name="double"/>
+  </mrs>
+</TestingMM:TestingSpace>
