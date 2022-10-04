@@ -2,7 +2,6 @@
 
 killall -9 roscore
 killall -9 rosrun
-killall -9 rostopic
 killall -9 turtlesim_node
 killall -9 roslaunch
 killall -9 python
@@ -31,9 +30,4 @@ killall -9 map_server
 killall -9 map_navigation_corridor_white.py
 killall -9 map_navigation_corridor_white*.py
 killall -9 map_navigation_corridor_white_autostart.py
-killall -9 scan_unifier_node
-killall -9 lamp_manager_node
 
-pkill -f TestRunner
-
-exit 0

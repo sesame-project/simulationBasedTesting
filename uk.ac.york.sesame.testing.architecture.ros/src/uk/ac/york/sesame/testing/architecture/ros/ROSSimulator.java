@@ -225,6 +225,6 @@ public class ROSSimulator implements ISimulator {
 			}
 		});
 		// TODO: can we take this loop out?
-		while(true) {}
+		//while(true) {}
 	}
 }    
