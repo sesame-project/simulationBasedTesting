@@ -179,6 +179,7 @@ class RandomValueFuzzingOperation extends ComponentOperation {
 
 class RandomValueFromSetOperation extends RandomValueFuzzingOperation {
 	val ValueSet[*] valueSet;
+	attr boolean isRelative = false;
 }
 
 // Value Sets
@@ -451,6 +452,7 @@ package MRSPackage {
 		JSON;
 		CSV;
 		CUSTOM;
+		STRING;
 	}
 
 	class Parameter {

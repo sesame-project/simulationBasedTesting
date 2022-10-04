@@ -2133,13 +2133,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int RANDOM_VALUE_FROM_SET_OPERATION__VALUE_SET = RANDOM_VALUE_FUZZING_OPERATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Is Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_OPERATION__IS_RELATIVE = RANDOM_VALUE_FUZZING_OPERATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Random Value From Set Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_VALUE_FROM_SET_OPERATION_FEATURE_COUNT = RANDOM_VALUE_FUZZING_OPERATION_FEATURE_COUNT + 1;
+	int RANDOM_VALUE_FROM_SET_OPERATION_FEATURE_COUNT = RANDOM_VALUE_FUZZING_OPERATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Random Value From Set Operation</em>' class.
@@ -5172,6 +5181,17 @@ public interface FuzzingOperationsPackage extends EPackage {
 	EReference getRandomValueFromSetOperation_ValueSet();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation#isIsRelative <em>Is Relative</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Relative</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation#isIsRelative()
+	 * @see #getRandomValueFromSetOperation()
+	 * @generated
+	 */
+	EAttribute getRandomValueFromSetOperation_IsRelative();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet <em>Value Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6027,6 +6047,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RANDOM_VALUE_FROM_SET_OPERATION__VALUE_SET = eINSTANCE.getRandomValueFromSetOperation_ValueSet();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Relative</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RANDOM_VALUE_FROM_SET_OPERATION__IS_RELATIVE = eINSTANCE.getRandomValueFromSetOperation_IsRelative();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ValueSetImpl <em>Value Set</em>}' class.

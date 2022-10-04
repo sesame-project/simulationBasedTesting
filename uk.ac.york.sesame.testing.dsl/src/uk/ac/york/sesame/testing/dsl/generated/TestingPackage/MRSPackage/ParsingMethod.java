@@ -46,7 +46,15 @@ public enum ParsingMethod implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CUSTOM(2, "CUSTOM", "CUSTOM");
+	CUSTOM(2, "CUSTOM", "CUSTOM"), /**
+	 * The '<em><b>STRING</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #STRING_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	STRING(3, "STRING", "STRING");
 
 	/**
 	 * The '<em><b>JSON</b></em>' literal value.
@@ -82,6 +90,17 @@ public enum ParsingMethod implements Enumerator {
 	public static final int CUSTOM_VALUE = 2;
 
 	/**
+	 * The '<em><b>STRING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #STRING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STRING_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Parsing Method</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,6 +111,7 @@ public enum ParsingMethod implements Enumerator {
 			JSON,
 			CSV,
 			CUSTOM,
+			STRING,
 		};
 
 	/**
@@ -151,6 +171,7 @@ public enum ParsingMethod implements Enumerator {
 			case JSON_VALUE: return JSON;
 			case CSV_VALUE: return CSV;
 			case CUSTOM_VALUE: return CUSTOM;
+			case STRING_VALUE: return STRING;
 		}
 		return null;
 	}
