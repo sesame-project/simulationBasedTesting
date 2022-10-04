@@ -12,8 +12,8 @@ import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 
 public class uvExposureForHumanMetric extends Metric {
 	
-
 	public uvExposureForHumanMetric() {
+		
 	}
 
 	private static final long serialVersionUID = 1L;
