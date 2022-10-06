@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.FuzzingOperations="FuzzingOperations" xmlns:TestingMM.MRSPackage="MRSPackage" xmlns:TestingMM.Metrics="Metrics" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="TestingMM.Metrics:FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_Ay798DR2Ee2fbo-0GeUOEw" defaultVal="100000.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_f6_EgDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/fuzzingOpTimes"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_IbT50BSTEe2NuvfcagGJYw" name="uvExposureForHuman" relatedVariables="_SOhUwEMAEe2m59gLLXjQ5g">
+    <valueIfNotReceived xmi:id="_44TpsDR1Ee2fbo-0GeUOEw"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_pUyAkCKREe2LYMDzNfHpOQ"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_uAnicDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/uvExposureForHuman"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_KG4H8C9nEe2WLcT3ce_NEw" name="wallCollisions">
+    <valueIfNotReceived xmi:id="_6-WJIDR1Ee2fbo-0GeUOEw"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_KG4H8S9nEe2WLcT3ce_NEw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_wqXy8DT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/wallCollisions"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_HeP5sDNVEe2BrK8BAi5Xqg" name="distanceFromStartPoint" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_9HcjoDR1Ee2fbo-0GeUOEw" defaultVal="100000.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_SER4sDNfEe2BrK8BAi5Xqg"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_0KTdgDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/distanceFromStartPoint"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_qYdz4ET7Ee21kZ_DgzCBrA" name="uvDisinfectionSurface" dir="LOWEST" relatedVariables="_2DLWQET1Ee21kZ_DgzCBrA">
+    <valueIfNotReceived xmi:id="_qYdz4UT7Ee21kZ_DgzCBrA" defaultVal="1000000.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_qYdz4kT7Ee21kZ_DgzCBrA"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_qYdz40T7Ee21kZ_DgzCBrA" filename="/home/jharbin/academic/sesame/WP6/metric-results/uvDisinfectionSurfaceMetric"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_u2BukCkTEe2rWIgPkXJ7Hg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_sQ_XQCkZEe2rWIgPkXJ7Hg" endTime="120.0"/>
+    <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_NnsC4CnuEe2CPLNHTC0Tug" propertyName="rangeFactor" lowerBound="0.15" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_EQvMICmiEe2HELjiSIEHlA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_dND-0Cn6Ee2U6tODQsyjgg" endTime="120.0"/>
+    <frequency xmi:id="_GF7MICmiEe2HELjiSIEHlA" lowerBound="0.4" upperBound="0.7"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_Bjxj0C0JEe22IeLGRwtkQg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_DTrbMC0JEe22IeLGRwtkQg" endTime="100.0"/>
+    <latency xmi:id="_EsMGQC0JEe22IeLGRwtkQg" lowerBound="1.0" upperBound="5.0"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_QKc88ET9Ee21kZ_DgzCBrA" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_QKc88UT9Ee21kZ_DgzCBrA" endTime="120.0"/>
+    <frequency xmi:id="_QKc88kT9Ee21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _HeP5sDNVEe2BrK8BAi5Xqg _IbT50BSTEe2NuvfcagGJYw" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg" includedOperations="_u2BukCkTEe2rWIgPkXJ7Hg _Bjxj0C0JEe22IeLGRwtkQg _EQvMICmiEe2HELjiSIEHlA">
+    <activationGeneration xsi:type="TestingMM:TimeBasedActivationGenerationMethod" xmi:id="_3bXdcDx_Ee2btv-8bZumyw"/>
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="6" iterations="32"/>
+    <performedTests xmi:id="_qAiMsEVWEe21kZ_DgzCBrA" name="Test_001_06_10_2022_03_54_07">
+      <operations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_qAiMsUVWEe21kZ_DgzCBrA" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAiMskVWEe21kZ_DgzCBrA" startTime="83.59943013551963" endTime="94.35878616621073"/>
+        <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_qAiMs0VWEe21kZ_DgzCBrA" propertyName="rangeFactor" lowerBound="0.26122843539805185" upperBound="0.27302370718483104"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAizwEVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAizwUVWEe21kZ_DgzCBrA" startTime="32.023897343072164" endTime="78.90315134323335"/>
+        <frequency xmi:id="_qAizwkVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_qAizw0VWEe21kZ_DgzCBrA" name="Test_001_06_10_2022_03_54_27">
+      <operations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_qAizxEVWEe21kZ_DgzCBrA" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAizxUVWEe21kZ_DgzCBrA" startTime="1.8424115886610304" endTime="107.1604989509067"/>
+        <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_qAizxkVWEe21kZ_DgzCBrA" propertyName="rangeFactor" lowerBound="0.23418086372919383" upperBound="0.27498247092667244"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAizx0VWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAizyEVWEe21kZ_DgzCBrA" startTime="0.9152108725944186" endTime="78.33931615821284"/>
+        <latency xmi:id="_qAizyUVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAizykVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAja0EVWEe21kZ_DgzCBrA" startTime="113.1032728785503" endTime="116.90161402579123"/>
+        <frequency xmi:id="_qAja0UVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_qAja0kVWEe21kZ_DgzCBrA" name="Test_001_06_10_2022_03_55_17">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAja00VWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAja1EVWEe21kZ_DgzCBrA" startTime="109.11311323590161" endTime="112.29659264687366"/>
+        <frequency xmi:id="_qAja1UVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_qAja1kVWEe21kZ_DgzCBrA" name="Test_001_06_10_2022_03_59_05">
+      <operations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_qAja10VWEe21kZ_DgzCBrA" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAja2EVWEe21kZ_DgzCBrA" startTime="81.31880834488457" endTime="91.60278363582098"/>
+        <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_qAja2UVWEe21kZ_DgzCBrA" propertyName="rangeFactor" lowerBound="0.2935096071181765" upperBound="0.29648291740368155"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAja2kVWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAkB4EVWEe21kZ_DgzCBrA" startTime="14.681161361743966" endTime="71.63328459422655"/>
+        <latency xmi:id="_qAkB4UVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAkB4kVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAkB40VWEe21kZ_DgzCBrA" startTime="97.30530347168964" endTime="116.96648007790967"/>
+        <frequency xmi:id="_qAkB5EVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAkB5UVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAkB5kVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="86.89727512963903"/>
+      </metrics>
+      <metrics xmi:id="_qAkB50VWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAkB6EVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="15.839270855084468"/>
+      </metrics>
+      <metrics xmi:id="_qAkB6UVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAkB6kVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="1.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAkB60VWEe21kZ_DgzCBrA" name="Test_002_06_10_2022_03_59_05">
+      <operations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_qAko8EVWEe21kZ_DgzCBrA" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAko8UVWEe21kZ_DgzCBrA" startTime="103.05290095910213" endTime="114.8248718947916"/>
+        <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_qAko8kVWEe21kZ_DgzCBrA" propertyName="rangeFactor" lowerBound="0.23789865196661397" upperBound="0.24271543706744303"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAko80VWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAko9EVWEe21kZ_DgzCBrA" startTime="88.53260501738328" endTime="94.96222907079776"/>
+        <latency xmi:id="_qAko9UVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_qAko9kVWEe21kZ_DgzCBrA" name="Test_001_06_10_2022_04_06_02">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAko90VWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAko-EVWEe21kZ_DgzCBrA" startTime="21.103758685142736" endTime="90.75615947886843"/>
+        <latency xmi:id="_qAko-UVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAlQAEVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAlQAUVWEe21kZ_DgzCBrA" startTime="94.83684834571321" endTime="114.66677628834142"/>
+        <frequency xmi:id="_qAlQAkVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAlQA0VWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAlQBEVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="89.4823287363539"/>
+      </metrics>
+      <metrics xmi:id="_qAlQBUVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAlQBkVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="13.343380543420217"/>
+      </metrics>
+      <metrics xmi:id="_qAlQB0VWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAlQCEVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="4.73293796510529"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAlQCUVWEe21kZ_DgzCBrA" name="Test_002_06_10_2022_04_06_02">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAlQCkVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAlQC0VWEe21kZ_DgzCBrA" startTime="45.40526961231705" endTime="83.27763598591429"/>
+        <frequency xmi:id="_qAlQDEVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAl3EEVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAl3EUVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="37.87236637359724"/>
+      </metrics>
+      <metrics xmi:id="_qAl3EkVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAl3E0VWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="12.5735686669469"/>
+      </metrics>
+      <metrics xmi:id="_qAl3FEVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAl3FUVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="4.73293796510529"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAl3FkVWEe21kZ_DgzCBrA" name="Test_003_06_10_2022_04_06_02">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAl3F0VWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAl3GEVWEe21kZ_DgzCBrA" startTime="45.85520521175115" endTime="96.86728119139727"/>
+        <latency xmi:id="_qAl3GUVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_qAl3GkVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAl3G0VWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="51.01207597964612"/>
+      </metrics>
+      <metrics xmi:id="_qAl3HEVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAl3HUVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="14.012775965241898"/>
+      </metrics>
+      <metrics xmi:id="_qAl3HkVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAmeIEVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="8.403322427757983"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAmeIUVWEe21kZ_DgzCBrA" name="Test_004_06_10_2022_04_06_02">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAmeIkVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAmeI0VWEe21kZ_DgzCBrA" startTime="65.87549299642767" endTime="119.1749164604984"/>
+        <frequency xmi:id="_qAmeJEVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAmeJUVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAmeJkVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="53.29942346407073"/>
+      </metrics>
+      <metrics xmi:id="_qAmeJ0VWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAmeKEVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="10.367312446660055"/>
+      </metrics>
+      <metrics xmi:id="_qAmeKUVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAmeKkVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="8.403322427757983"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAmeK0VWEe21kZ_DgzCBrA" name="Test_005_06_10_2022_04_06_02">
+      <operations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_qAnFMEVWEe21kZ_DgzCBrA" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAnFMUVWEe21kZ_DgzCBrA" startTime="108.66529247028053" endTime="119.76480476191708"/>
+        <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_qAnFMkVWEe21kZ_DgzCBrA" propertyName="rangeFactor" lowerBound="0.19895286804753456" upperBound="0.2074367078653059"/>
+      </operations>
+      <metrics xmi:id="_qAnFM0VWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAnFNEVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="11.099512291636543"/>
+      </metrics>
+      <metrics xmi:id="_qAnFNUVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAnFNkVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="10.137101921697768"/>
+      </metrics>
+      <metrics xmi:id="_qAnFN0VWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAnFOEVWEe21kZ_DgzCBrA" name="uvExposureForHuman"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAnFOUVWEe21kZ_DgzCBrA" name="Test_006_06_10_2022_04_06_02">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAnFOkVWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAnFO0VWEe21kZ_DgzCBrA" startTime="95.83586798151964" endTime="98.30417708752921"/>
+        <latency xmi:id="_qAnsQEVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAnsQUVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAnsQkVWEe21kZ_DgzCBrA" startTime="53.06786807164888" endTime="108.80375685607629"/>
+        <frequency xmi:id="_qAnsQ0VWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAnsREVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAnsRUVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="58.20419789043698"/>
+      </metrics>
+      <metrics xmi:id="_qAnsRkVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAnsR0VWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="17.3335351906864"/>
+      </metrics>
+      <metrics xmi:id="_qAnsSEVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAoTUEVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="4.865105363703725"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAoTUUVWEe21kZ_DgzCBrA" name="Test_007_06_10_2022_04_06_02">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAoTUkVWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAoTU0VWEe21kZ_DgzCBrA" startTime="76.22034512052423" endTime="86.7992019155854"/>
+        <latency xmi:id="_qAoTVEVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_qAoTVUVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAoTVkVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="10.57885679506117"/>
+      </metrics>
+      <metrics xmi:id="_qAoTV0VWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAoTWEVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="11.410323744253965"/>
+      </metrics>
+      <metrics xmi:id="_qAoTWUVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAoTWkVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="5.264883583030564"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAoTW0VWEe21kZ_DgzCBrA" name="Test_008_06_10_2022_04_06_02">
+      <operations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_qAo6YEVWEe21kZ_DgzCBrA" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAo6YUVWEe21kZ_DgzCBrA" startTime="115.43504071877072" endTime="117.64699858472237"/>
+        <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_qAo6YkVWEe21kZ_DgzCBrA" propertyName="rangeFactor" lowerBound="0.2998963464603134" upperBound="0.29996868154909323"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAo6Y0VWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAo6ZEVWEe21kZ_DgzCBrA" startTime="63.838533707500666" endTime="87.31580065281851"/>
+        <latency xmi:id="_qAo6ZUVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_qAo6ZkVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAo6Z0VWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="25.68922481126949"/>
+      </metrics>
+      <metrics xmi:id="_qAo6aEVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAo6aUVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="12.498012174225508"/>
+      </metrics>
+      <metrics xmi:id="_qAo6akVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAo6a0VWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="5.636683341580359"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAphcEVWEe21kZ_DgzCBrA" name="Test_009_06_10_2022_04_26_43" developedFrom="_qAlQCUVWEe21kZ_DgzCBrA _qAl3FkVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAphcUVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAphckVWEe21kZ_DgzCBrA" startTime="34.563338029277354" endTime="41.2656320544624"/>
+        <frequency xmi:id="_qAphc0VWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAphdEVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAphdUVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="6.702294025185047"/>
+      </metrics>
+      <metrics xmi:id="_qAphdkVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAphd0VWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="11.282586135108348"/>
+      </metrics>
+      <metrics xmi:id="_qApheEVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qApheUVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="5.636683341580359"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAqIgEVWEe21kZ_DgzCBrA" name="Test_010_06_10_2022_04_26_43" developedFrom="_qAlQCUVWEe21kZ_DgzCBrA _qAl3FkVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAqIgUVWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAqIgkVWEe21kZ_DgzCBrA" startTime="45.85520521175115" endTime="96.86728119139727"/>
+        <latency xmi:id="_qAqIg0VWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_qAqIhEVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAqIhUVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="51.01207597964612"/>
+      </metrics>
+      <metrics xmi:id="_qAqIhkVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAqIh0VWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="9.572721539194974"/>
+      </metrics>
+      <metrics xmi:id="_qAqIiEVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAqIiUVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="5.497358827233429"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAqvkEVWEe21kZ_DgzCBrA" name="Test_011_06_10_2022_04_26_43" developedFrom="_qAmeIUVWEe21kZ_DgzCBrA _qAmeK0VWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAqvkUVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAqvkkVWEe21kZ_DgzCBrA" startTime="77.86820725028166" endTime="117.93678641022089"/>
+        <frequency xmi:id="_qAqvk0VWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAqvlEVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAqvlUVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="40.06857915993923"/>
+      </metrics>
+      <metrics xmi:id="_qAqvlkVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAqvl0VWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="12.652169683672746"/>
+      </metrics>
+      <metrics xmi:id="_qAqvmEVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAqvmUVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="5.505631074788704"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAqvmkVWEe21kZ_DgzCBrA" name="Test_012_06_10_2022_04_26_43" developedFrom="_qAmeIUVWEe21kZ_DgzCBrA _qAmeK0VWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_qArWoEVWEe21kZ_DgzCBrA" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qArWoUVWEe21kZ_DgzCBrA" startTime="52.869564644875396" endTime="100.02300850431718"/>
+        <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_qArWokVWEe21kZ_DgzCBrA" propertyName="rangeFactor" lowerBound="0.18052455855558847" upperBound="0.19470342075083155"/>
+      </operations>
+      <metrics xmi:id="_qArWo0VWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qArWpEVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="47.15344385944178"/>
+      </metrics>
+      <metrics xmi:id="_qArWpUVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qArWpkVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="10.582785686672144"/>
+      </metrics>
+      <metrics xmi:id="_qArWp0VWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qArWqEVWEe21kZ_DgzCBrA" name="uvExposureForHuman"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qArWqUVWEe21kZ_DgzCBrA" name="Test_013_06_10_2022_04_26_43" developedFrom="_qAmeIUVWEe21kZ_DgzCBrA _qAmeK0VWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qArWqkVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qArWq0VWEe21kZ_DgzCBrA" startTime="65.87549299642767" endTime="119.1749164604984"/>
+        <frequency xmi:id="_qAr9sEVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAr9sUVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAr9skVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="53.29942346407073"/>
+      </metrics>
+      <metrics xmi:id="_qAr9s0VWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAr9tEVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="14.066921431257528"/>
+      </metrics>
+      <metrics xmi:id="_qAr9tUVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAr9tkVWEe21kZ_DgzCBrA" name="uvExposureForHuman"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAr9t0VWEe21kZ_DgzCBrA" name="Test_014_06_10_2022_04_26_43" developedFrom="_qAmeIUVWEe21kZ_DgzCBrA _qAmeK0VWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_qAr9uEVWEe21kZ_DgzCBrA" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAr9uUVWEe21kZ_DgzCBrA" startTime="108.66529247028053" endTime="119.76480476191708"/>
+        <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_qAr9ukVWEe21kZ_DgzCBrA" propertyName="rangeFactor" lowerBound="0.21417808934300936" upperBound="0.24783186575653826"/>
+      </operations>
+      <metrics xmi:id="_qAr9u0VWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAr9vEVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="11.099512291636543"/>
+      </metrics>
+      <metrics xmi:id="_qAskwEVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAskwUVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="12.240320564180523"/>
+      </metrics>
+      <metrics xmi:id="_qAskwkVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAskw0VWEe21kZ_DgzCBrA" name="uvExposureForHuman"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAskxEVWEe21kZ_DgzCBrA" name="Test_015_06_10_2022_04_26_43" developedFrom="_qAoTW0VWEe21kZ_DgzCBrA _qAoTUUVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_qAskxUVWEe21kZ_DgzCBrA" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_u2BukCkTEe2rWIgPkXJ7Hg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAskxkVWEe21kZ_DgzCBrA" startTime="115.43504071877072" endTime="117.64699858472237"/>
+        <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_qAskx0VWEe21kZ_DgzCBrA" propertyName="rangeFactor" lowerBound="0.1772447398274565" upperBound="0.18974485225565282"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAskyEVWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAskyUVWEe21kZ_DgzCBrA" startTime="56.7265758579259" endTime="83.03785765579879"/>
+        <latency xmi:id="_qAskykVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_qAtL0EVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAtL0UVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="28.523239663824533"/>
+      </metrics>
+      <metrics xmi:id="_qAtL0kVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAtL00VWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="12.312438219857759"/>
+      </metrics>
+      <metrics xmi:id="_qAtL1EVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAtL1UVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="5.5644181281784375"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAtL1kVWEe21kZ_DgzCBrA" name="Test_016_06_10_2022_04_26_43" developedFrom="_qAoTW0VWEe21kZ_DgzCBrA _qAoTUUVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAtL10VWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAtL2EVWEe21kZ_DgzCBrA" startTime="76.22034512052423" endTime="86.7992019155854"/>
+        <latency xmi:id="_qAtL2UVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_qAtL2kVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAtL20VWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="10.57885679506117"/>
+      </metrics>
+      <metrics xmi:id="_qAtL3EVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAtL3UVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="19.33226560573364"/>
+      </metrics>
+      <metrics xmi:id="_qAty4EVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAty4UVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="5.778648563797428"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAty4kVWEe21kZ_DgzCBrA" name="Test_017_06_10_2022_04_47_23" developedFrom="_qAphcEVWEe21kZ_DgzCBrA _qAtL1kVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAty40VWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAty5EVWEe21kZ_DgzCBrA" startTime="60.801226032059375" endTime="65.28663253844859"/>
+        <frequency xmi:id="_qAty5UVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAty5kVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAty50VWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="4.485406506389211"/>
+      </metrics>
+      <metrics xmi:id="_qAty6EVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAty6UVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="16.00353069712722"/>
+      </metrics>
+      <metrics xmi:id="_qAty6kVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAty60VWEe21kZ_DgzCBrA" name="uvExposureForHuman"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAuZ8EVWEe21kZ_DgzCBrA" name="Test_018_06_10_2022_04_47_23" developedFrom="_qAphcEVWEe21kZ_DgzCBrA _qAtL1kVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAuZ8UVWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAuZ8kVWEe21kZ_DgzCBrA" startTime="58.00696005964691" endTime="77.9721375761735"/>
+        <latency xmi:id="_qAuZ80VWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_qAuZ9EVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAuZ9UVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="19.965177516526587"/>
+      </metrics>
+      <metrics xmi:id="_qAuZ9kVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAuZ90VWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="11.44204510495724"/>
+      </metrics>
+      <metrics xmi:id="_qAuZ-EVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAuZ-UVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="6.1266035014978"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAuZ-kVWEe21kZ_DgzCBrA" name="Test_019_06_10_2022_04_47_23" developedFrom="_qAmeIUVWEe21kZ_DgzCBrA _qAphcEVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAuZ-0VWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAvBAEVWEe21kZ_DgzCBrA" startTime="1.5661566836822427" endTime="57.22187156483997"/>
+        <frequency xmi:id="_qAvBAUVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAvBAkVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAvBA0VWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="55.65571488115773"/>
+      </metrics>
+      <metrics xmi:id="_qAvBBEVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAvBBUVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="14.018113291321173"/>
+      </metrics>
+      <metrics xmi:id="_qAvBBkVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAvBB0VWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="6.130811064416766"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAvBCEVWEe21kZ_DgzCBrA" name="Test_020_06_10_2022_04_47_23" developedFrom="_qAmeIUVWEe21kZ_DgzCBrA _qAphcEVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAvBCUVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAvBCkVWEe21kZ_DgzCBrA" startTime="34.563338029277354" endTime="41.2656320544624"/>
+        <frequency xmi:id="_qAvBC0VWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAvoEEVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAvoEUVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="6.702294025185047"/>
+      </metrics>
+      <metrics xmi:id="_qAvoEkVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAvoE0VWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="12.546323519927912"/>
+      </metrics>
+      <metrics xmi:id="_qAvoFEVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAvoFUVWEe21kZ_DgzCBrA" name="uvExposureForHuman"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAvoFkVWEe21kZ_DgzCBrA" name="Test_021_06_10_2022_04_47_23" developedFrom="_qAmeIUVWEe21kZ_DgzCBrA _qAphcEVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAvoF0VWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAvoGEVWEe21kZ_DgzCBrA" startTime="65.87549299642767" endTime="119.1749164604984"/>
+        <frequency xmi:id="_qAvoGUVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAvoGkVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAvoG0VWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="53.29942346407073"/>
+      </metrics>
+      <metrics xmi:id="_qAvoHEVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAwPIEVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="11.385345705538748"/>
+      </metrics>
+      <metrics xmi:id="_qAwPIUVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAwPIkVWEe21kZ_DgzCBrA" name="uvExposureForHuman"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAwPI0VWEe21kZ_DgzCBrA" name="Test_022_06_10_2022_04_47_23" developedFrom="_qAmeIUVWEe21kZ_DgzCBrA _qAphcEVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAwPJEVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAwPJUVWEe21kZ_DgzCBrA" startTime="28.327089864958573" endTime="69.82100060032619"/>
+        <frequency xmi:id="_qAwPJkVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAwPJ0VWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAwPKEVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="41.49391073536761"/>
+      </metrics>
+      <metrics xmi:id="_qAwPKUVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAwPKkVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="8.69345063101101"/>
+      </metrics>
+      <metrics xmi:id="_qAwPK0VWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAwPLEVWEe21kZ_DgzCBrA" name="uvExposureForHuman"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAw2MEVWEe21kZ_DgzCBrA" name="Test_023_06_10_2022_04_47_23" developedFrom="_qAoTUUVWEe21kZ_DgzCBrA _qAphcEVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAw2MUVWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAw2MkVWEe21kZ_DgzCBrA" startTime="23.624893320436513" endTime="59.90800651090224"/>
+        <latency xmi:id="_qAw2M0VWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_qAw2NEVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAw2NUVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="36.28311319046573"/>
+      </metrics>
+      <metrics xmi:id="_qAw2NkVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAw2N0VWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="16.672536284772658"/>
+      </metrics>
+      <metrics xmi:id="_qAw2OEVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAw2OUVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="4.425478601810884"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAw2OkVWEe21kZ_DgzCBrA" name="Test_024_06_10_2022_04_47_23" developedFrom="_qAoTUUVWEe21kZ_DgzCBrA _qAphcEVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAxdQEVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAxdQUVWEe21kZ_DgzCBrA" startTime="46.994935656592254" endTime="92.81614949604257"/>
+        <frequency xmi:id="_qAxdQkVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAxdQ0VWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAxdREVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="45.821213839450316"/>
+      </metrics>
+      <metrics xmi:id="_qAxdRUVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAxdRkVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="10.598667448003885"/>
+      </metrics>
+      <metrics xmi:id="_qAxdR0VWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAxdSEVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="4.4283040009091685"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAxdSUVWEe21kZ_DgzCBrA" name="Test_025_06_10_2022_05_08_04" developedFrom="_qAtL1kVWEe21kZ_DgzCBrA _qAqIgEVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAxdSkVWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAyEUEVWEe21kZ_DgzCBrA" startTime="69.33050903051502" endTime="91.0672818782732"/>
+        <latency xmi:id="_qAyEUUVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_qAyEUkVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAyEU0VWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="21.73677284775819"/>
+      </metrics>
+      <metrics xmi:id="_qAyEVEVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAyEVUVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="16.799916642160046"/>
+      </metrics>
+      <metrics xmi:id="_qAyEVkVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAyEV0VWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="3.8136473829409363"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAyEWEVWEe21kZ_DgzCBrA" name="Test_026_06_10_2022_05_08_04" developedFrom="_qAtL1kVWEe21kZ_DgzCBrA _qAqIgEVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAyEWUVWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAyEWkVWEe21kZ_DgzCBrA" startTime="94.97195462472811" endTime="99.89842953113487"/>
+        <latency xmi:id="_qAyEW0VWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_qAyrYEVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAyrYUVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="4.926474906406753"/>
+      </metrics>
+      <metrics xmi:id="_qAyrYkVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAyrY0VWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="16.742930939375515"/>
+      </metrics>
+      <metrics xmi:id="_qAyrZEVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAyrZUVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="5.203356385424108"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAyrZkVWEe21kZ_DgzCBrA" name="Test_027_06_10_2022_05_08_04" developedFrom="_qAuZ8EVWEe21kZ_DgzCBrA _qAqIgEVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAyrZ0VWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAyraEVWEe21kZ_DgzCBrA" startTime="36.48952207339292" endTime="67.89171923944185"/>
+        <latency xmi:id="_qAyraUVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_qAyrakVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAyra0VWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="31.402197166048936"/>
+      </metrics>
+      <metrics xmi:id="_qAyrbEVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAzScEVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="12.287085576492375"/>
+      </metrics>
+      <metrics xmi:id="_qAzScUVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAzSckVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="5.221728510443935"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAzSc0VWEe21kZ_DgzCBrA" name="Test_028_06_10_2022_05_08_04" developedFrom="_qAuZ8EVWEe21kZ_DgzCBrA _qAqIgEVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_qAzSdEVWEe21kZ_DgzCBrA" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAzSdUVWEe21kZ_DgzCBrA" startTime="45.85520521175115" endTime="96.86728119139727"/>
+        <latency xmi:id="_qAzSdkVWEe21kZ_DgzCBrA" lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics xmi:id="_qAzSd0VWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAzSeEVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="51.01207597964612"/>
+      </metrics>
+      <metrics xmi:id="_qAzSeUVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAzSekVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="12.35050272775442"/>
+      </metrics>
+      <metrics xmi:id="_qAzSe0VWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAzSfEVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="5.26886128688707"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAz5gEVWEe21kZ_DgzCBrA" name="Test_029_06_10_2022_05_08_04" developedFrom="_qAwPI0VWEe21kZ_DgzCBrA _qAw2OkVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qAz5gUVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qAz5gkVWEe21kZ_DgzCBrA" startTime="28.327089864958573" endTime="69.82100060032619"/>
+        <frequency xmi:id="_qAz5g0VWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qAz5hEVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qAz5hUVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="41.49391073536761"/>
+      </metrics>
+      <metrics xmi:id="_qAz5hkVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qAz5h0VWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="12.376583935039767"/>
+      </metrics>
+      <metrics xmi:id="_qAz5iEVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qAz5iUVWEe21kZ_DgzCBrA" name="uvExposureForHuman" value="5.26886128688707"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qAz5ikVWEe21kZ_DgzCBrA" name="Test_030_06_10_2022_05_08_04" developedFrom="_qAwPI0VWEe21kZ_DgzCBrA _qAw2OkVWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qA0gkEVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qA0gkUVWEe21kZ_DgzCBrA" startTime="34.50149547548046" endTime="108.15195380230617"/>
+        <frequency xmi:id="_qA0gkkVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qA0gk0VWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qA0glEVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="73.65045832682571"/>
+      </metrics>
+      <metrics xmi:id="_qA0glUVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qA0glkVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="14.694778454044185"/>
+      </metrics>
+      <metrics xmi:id="_qA0gl0VWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qA0gmEVWEe21kZ_DgzCBrA" name="uvExposureForHuman"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qA0gmUVWEe21kZ_DgzCBrA" name="Test_031_06_10_2022_05_08_04" developedFrom="_qAw2OkVWEe21kZ_DgzCBrA _qAwPI0VWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qA0gmkVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qA1HoEVWEe21kZ_DgzCBrA" startTime="102.79379733546884" endTime="119.58834342733373"/>
+        <frequency xmi:id="_qA1HoUVWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qA1HokVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qA1Ho0VWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="16.794546091864888"/>
+      </metrics>
+      <metrics xmi:id="_qA1HpEVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qA1HpUVWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="11.478810701768328"/>
+      </metrics>
+      <metrics xmi:id="_qA1HpkVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qA1Hp0VWEe21kZ_DgzCBrA" name="uvExposureForHuman"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_qA1HqEVWEe21kZ_DgzCBrA" name="Test_032_06_10_2022_05_08_04" developedFrom="_qAw2OkVWEe21kZ_DgzCBrA _qAwPI0VWEe21kZ_DgzCBrA">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_qA1HqUVWEe21kZ_DgzCBrA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_qA1HqkVWEe21kZ_DgzCBrA" startTime="68.78526158588741" endTime="97.02222130668272"/>
+        <frequency xmi:id="_qA1Hq0VWEe21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics xmi:id="_qA1usEVWEe21kZ_DgzCBrA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_qA1usUVWEe21kZ_DgzCBrA" name="fuzzingOperationTimes" value="28.236959720795312"/>
+      </metrics>
+      <metrics xmi:id="_qA1uskVWEe21kZ_DgzCBrA" metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result xmi:id="_qA1us0VWEe21kZ_DgzCBrA" name="distanceFromStartPoint" value="14.764443166096155"/>
+      </metrics>
+      <metrics xmi:id="_qA1utEVWEe21kZ_DgzCBrA" metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result xmi:id="_qA1utUVWEe21kZ_DgzCBrA" name="uvExposureForHuman"/>
+      </metrics>
+    </performedTests>
+    <resultSets xmi:id="_qA1utkVWEe21kZ_DgzCBrA" name="FULL-06_10_2022_04_47_23-intermediate-16" status="INTERMEDIATE" results="_qAl3FkVWEe21kZ_DgzCBrA _qAmeIUVWEe21kZ_DgzCBrA _qAmeK0VWEe21kZ_DgzCBrA _qAphcEVWEe21kZ_DgzCBrA _qAqIgEVWEe21kZ_DgzCBrA _qAtL1kVWEe21kZ_DgzCBrA _qAqvmkVWEe21kZ_DgzCBrA _qAoTUUVWEe21kZ_DgzCBrA"/>
+    <resultSets xmi:id="_qA1ut0VWEe21kZ_DgzCBrA" name="NONDOM-06_10_2022_04_47_23-intermediate-16" status="INTERMEDIATE" results="_qAl3FkVWEe21kZ_DgzCBrA _qAmeIUVWEe21kZ_DgzCBrA _qAmeK0VWEe21kZ_DgzCBrA _qAphcEVWEe21kZ_DgzCBrA _qAqIgEVWEe21kZ_DgzCBrA _qAtL1kVWEe21kZ_DgzCBrA"/>
+    <resultSets xmi:id="_qA1uuEVWEe21kZ_DgzCBrA" name="FULL-06_10_2022_05_08_04-intermediate-24" status="INTERMEDIATE" results="_qAmeIUVWEe21kZ_DgzCBrA _qAtL1kVWEe21kZ_DgzCBrA _qAty4kVWEe21kZ_DgzCBrA _qAwPI0VWEe21kZ_DgzCBrA _qAuZ8EVWEe21kZ_DgzCBrA _qAw2OkVWEe21kZ_DgzCBrA _qAl3FkVWEe21kZ_DgzCBrA _qAqIgEVWEe21kZ_DgzCBrA"/>
+    <resultSets xmi:id="_qA1uuUVWEe21kZ_DgzCBrA" name="NONDOM-06_10_2022_05_08_04-intermediate-24" status="INTERMEDIATE" results="_qAmeIUVWEe21kZ_DgzCBrA _qAtL1kVWEe21kZ_DgzCBrA _qAty4kVWEe21kZ_DgzCBrA _qAwPI0VWEe21kZ_DgzCBrA _qAuZ8EVWEe21kZ_DgzCBrA _qAw2OkVWEe21kZ_DgzCBrA _qAl3FkVWEe21kZ_DgzCBrA _qAqIgEVWEe21kZ_DgzCBrA"/>
+    <resultSets xmi:id="_qA1uukVWEe21kZ_DgzCBrA" name="FULL-06_10_2022_05_28_44-intermediate-32" status="INTERMEDIATE" results="_qAmeIUVWEe21kZ_DgzCBrA _qAtL1kVWEe21kZ_DgzCBrA _qAty4kVWEe21kZ_DgzCBrA _qAwPI0VWEe21kZ_DgzCBrA _qAw2OkVWEe21kZ_DgzCBrA _qAuZ8EVWEe21kZ_DgzCBrA _qAl3FkVWEe21kZ_DgzCBrA _qAyEWEVWEe21kZ_DgzCBrA"/>
+    <resultSets xmi:id="_qA2VwEVWEe21kZ_DgzCBrA" name="NONDOM-06_10_2022_05_28_44-intermediate-32" status="INTERMEDIATE" results="_qAmeIUVWEe21kZ_DgzCBrA _qAtL1kVWEe21kZ_DgzCBrA _qAty4kVWEe21kZ_DgzCBrA _qAwPI0VWEe21kZ_DgzCBrA _qAw2OkVWEe21kZ_DgzCBrA _qAuZ8EVWEe21kZ_DgzCBrA _qAl3FkVWEe21kZ_DgzCBrA _qAyEWEVWEe21kZ_DgzCBrA"/>
+    <resultSets xmi:id="_qA2VwUVWEe21kZ_DgzCBrA" name="FULL-06_10_2022_05_28_44-final" results="_qAmeIUVWEe21kZ_DgzCBrA _qAtL1kVWEe21kZ_DgzCBrA _qAty4kVWEe21kZ_DgzCBrA _qAwPI0VWEe21kZ_DgzCBrA _qAw2OkVWEe21kZ_DgzCBrA _qAuZ8EVWEe21kZ_DgzCBrA _qAl3FkVWEe21kZ_DgzCBrA _qAyEWEVWEe21kZ_DgzCBrA"/>
+    <resultSets xmi:id="_qA2VwkVWEe21kZ_DgzCBrA" name="NONDOM-06_10_2022_05_28_44-final" results="_qAmeIUVWEe21kZ_DgzCBrA _qAtL1kVWEe21kZ_DgzCBrA _qAty4kVWEe21kZ_DgzCBrA _qAwPI0VWEe21kZ_DgzCBrA _qAw2OkVWEe21kZ_DgzCBrA _qAuZ8EVWEe21kZ_DgzCBrA _qAl3FkVWEe21kZ_DgzCBrA _qAyEWEVWEe21kZ_DgzCBrA"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="120"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_locomotec2.sh" launchDelaySeconds="10" customTerminateFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/terminate.sh">
+    <variables xmi:id="_NzG5gCkOEe2rWIgPkXJ7Hg" name="/base_scan" type="_DwpnoCjCEe26Ivhf6XyfHA"/>
+    <variables xmi:id="_OfgcsCxUEe2oWKgCvvsh2w" name="/amcl_pose" type="_4NIrMCxxEe2oWKgCvvsh2w"/>
+    <variables xmi:id="_SOhUwEMAEe2m59gLLXjQ5g" name="/virtual_uvc_meter_p1/measurements" type="_U_hcwEMAEe2m59gLLXjQ5g"/>
+    <variables xmi:id="_2DLWQET1Ee21kZ_DgzCBrA" name="/virtual_uvc_meter_s1/measurements" type="_U_hcwEMAEe2m59gLLXjQ5g"/>
+    <variables xmi:id="_TeAYYET9Ee21kZ_DgzCBrA" name="/person_detector/persons" type="_U_hcwEMAEe2m59gLLXjQ5g"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="robot0_controller" publisher="_OfgcsCxUEe2oWKgCvvsh2w"/>
+    <nodes xmi:id="_PTmb4CkOEe2rWIgPkXJ7Hg" name="robot0_laserScanner" publisher="_NzG5gCkOEe2rWIgPkXJ7Hg"/>
+    <simulator xsi:type="TestingMM.MRSPackage:ROSSimulator" xmi:id="_AoDfACjCEe26Ivhf6XyfHA" hostname="localhost" port="8089"/>
+    <propertyType xmi:id="_DwpnoCjCEe26Ivhf6XyfHA" name="sensor_msgs/LaserScan"/>
+    <propertyType xmi:id="_4NIrMCxxEe2oWKgCvvsh2w" name="geometry_msgs/PoseWithCovarianceStamped"/>
+    <propertyType xmi:id="_U_hcwEMAEe2m59gLLXjQ5g" name="std_msgs/Float64MultiArray"/>
+  </mrs>
+</TestingMM:TestingSpace>

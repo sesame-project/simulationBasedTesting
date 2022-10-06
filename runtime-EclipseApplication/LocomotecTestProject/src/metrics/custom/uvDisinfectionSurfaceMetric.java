@@ -10,9 +10,9 @@ import org.json.simple.JSONValue;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 
-public class uvExposureForHumanMetric extends Metric {
+public class uvDisinfectionSurfaceMetric extends Metric {
 	
-	public uvExposureForHumanMetric() {
+	public uvDisinfectionSurfaceMetric() {
 		
 	}
 
@@ -20,7 +20,9 @@ public class uvExposureForHumanMetric extends Metric {
 	//private ValueState<Long> maxDosageForPerson;
 	
 	private final int MSG_FIELD_FOR_BOOLEAN_KPI = 5;
-	private final int MSG_FIELD_FOR_PERSON_DOSE = 2;
+	private final int MSG_FIELD_FOR_SURFACE_DOSE = 2;
+	
+	// TODO: launch secondary UVC meter for these?
 	
 	// Structure of the /virtual_uvc_meter/measurements message: 
 //    uvc_measurements_msg.data = [stamp.to_time(), 			// timestamp of emitted message 
@@ -35,18 +37,16 @@ public class uvExposureForHumanMetric extends Metric {
     }
       
     public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
-    	String completionTopicName = "uvc_meter_p1/measurements";
+    	String completionTopicName = "uvc_meter_s1/measurements";
     	if (msg.getTopic().contains(completionTopicName)) {
     		String data = msg.getValue().toString();
     		JSONObject jData = (JSONObject)JSONValue.parse(data);
     		JSONArray a = (JSONArray)jData.get("data");
     		Double iskpiReached = (Double)a.get(MSG_FIELD_FOR_BOOLEAN_KPI);
-    		Double personDoseVal = (Double)a.get(MSG_FIELD_FOR_PERSON_DOSE);
-    		
-    		// The value received from virtual_uvc_meter is inverted... zero indicates that the person is
-    		// exposed to the critical level
-    		if (iskpiReached == 0.0) {
-    			out.collect(personDoseVal);
+    		Double surfaceDoseVal = (Double)a.get(MSG_FIELD_FOR_SURFACE_DOSE);
+    		//out.collect(isKpiReached);
+    		if (iskpiReached == 1.0) {
+    			out.collect(surfaceDoseVal);
     		}
     	}
     }

@@ -40,6 +40,25 @@ public class ParsingUtils {
 		return obj;
 	}
 	
+	public static JSONObject updateJSONObject(JSONObject obj, String parameterName, UpdateLambda updateFunc) throws JSONLookupFailed {
+		String[] split = parameterName.split("\\.");
+		JSONObject obj2 = obj;
+		for (int i = 1; i < split.length; i++) {
+			if (i != split.length - 1) {
+				// obj2 is null, then there will be an invalid value
+				obj2 = (JSONObject) obj2.get(split[i].toLowerCase());
+				if (obj2 == null) {
+					throw new JSONLookupFailed(obj, parameterName, "getField", obj2);
+				}
+			} else {
+				Object orig = obj2.get(split[i].toLowerCase());
+				obj2.put(split[i].toLowerCase(), updateFunc.op(orig));
+				return obj;
+			}
+		}
+		return obj;
+	}
+	
 	public static JSONObject convertJSONObjectPart(JSONObject obj, String parameterStr, ObjectConvertOperation conversionOp) throws JSONLookupFailed {
 		String[] split = parameterStr.split("\\.");
 		JSONObject obj2 = null;

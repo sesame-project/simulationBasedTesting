@@ -14,9 +14,6 @@ xterm -e /bin/bash -l -c "roslaunch person_detection person_detector_mockup.laun
 sleep 1
 # NOTE: starting directional lamp manager
 xterm -e /bin/bash -l -c "roslaunch lamp_management lamp_manager_with_vis.launch lamp_manager_type:=directional" &
-sleep 1
+sleep 10
 echo "Starting Locmotec activate script"
 xterm -e /bin/bash -l -c "$HOME/academic/sesame/WP6/temp-launch-scripts/launch-scripts/locomotec_activate.sh"
-#sleep 1
-# This will not be run???
-#xterm -e /bin/bash -l -c "xclock &"
