@@ -110,12 +110,8 @@ public class TTSSimulator implements ISimulator {
 			delayMsec = Long.parseLong(params.get("launchDelayMsec"));
 		}
 
-		// Do we need to run "com-ttsnetwork-ddd-grpc.jar" to start gRPC server?
-
-		// Using Diego's custom launch script
-		// TODO: this needs to specify a custom JVM here
+		// TODO: this needs an option for setting a custom JVM here?
 		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
-		// ExptHelper.runScriptNewWithBash(workingDir, cmd);
 		ExptHelper.runScriptNewThread(workingDir, cmd);
 
 		// Need to wait the delay
@@ -145,11 +141,9 @@ public class TTSSimulator implements ISimulator {
 	}
 
 	/*
-	 * This is for ROS Topics
+	 * This is for ROS Topics with fuzzing
 	 */
-	@Override
-	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic,
-			boolean debugThisMessage) {
+	public void consumeFromTopicForFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
 		String topicNameIn = topicName + "/in";
 		String topicNameShadow = topicName + "/shadow";
 		String topicNameOut = topicName + "/out";
@@ -169,10 +163,7 @@ public class TTSSimulator implements ISimulator {
 		}
 
 		try {
-			// ROSObserver ro = new ROSObserver(topicName);
 			ROSObserver roInject = new ROSObserver(topicNameIn);
-
-			roInject.setDebug(debugThisMessage);
 			roInject.setTopic(kafkaTopic);
 			System.out.println("Setting up injection to : " + inTopic);
 			// asyncStub.subscribe(inTopic, ro);
@@ -183,10 +174,43 @@ public class TTSSimulator implements ISimulator {
 			return;
 		}
 	}
+	
+	private void consumeFromTopicWithoutFuzzing(String topicName, String topicType, Boolean publishToKafka,	String kafkaTopic) {
+		String topicNameIn = topicName + "/in";
+		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
+		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
+
+		Optional<String> kTopic = Optional.empty();
+		if (publishToKafka) {
+			kTopic = Optional.of(kafkaTopic);
+		}
+
+		try {
+			ROSObserver ro = new ROSObserver(topicNameIn);
+			ro.setTopic(kafkaTopic);
+			System.out.println("Setting up subscription to : " + inTopic);
+			asyncStub.subscribe(inTopic, ro);
+
+		} catch (StatusRuntimeException e) {
+			System.out.println("RPC failed: {0}" + e.getStatus());
+			return;
+		}
+	}
 
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
+		// Assume that fuzzing is NOT selected when the argument is ommitted
 		consumeFromTopic(topicName, topicType, publishToKafka, kafkaTopic, false);
 	}
+	
+	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean shouldFuzz) {
+		if (shouldFuzz) {
+			consumeFromTopicForFuzzing(topicName, topicType, publishToKafka, kafkaTopic);
+		} else {
+			consumeFromTopicWithoutFuzzing(topicName, topicType, publishToKafka, kafkaTopic);
+		}
+	}
+
+
 
 	@Override
 	public void publishToTopic(String topicName, String topicType, String message) {

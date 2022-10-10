@@ -5,11 +5,12 @@
 	var topicsNodesPublish = Node.all().publisher.flatten();
 	var topicsMetricsNeed = Metric.all().relatedVariables.flatten();
 	var allTopics = topicsNodesPublish.includingAll(topicsMetricsNeed).asSet();
+	var fuzzingVars = new Set();
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
-	
 	var sanitiseVariables = true;
+	
 %]
 
 import java.util.ArrayList;
@@ -69,7 +70,13 @@ public class [%= testNameString %]_TestRunner {
 		for (fuzzOp in test.operations) {
 			var fuzzOpName = "fuzzOp" + fuzzOpCount;
 			fuzzOpCount++;
-			allFuzzOps.put(fuzzOpName, fuzzOp); %]
+			allFuzzOps.put(fuzzOpName, fuzzOp); 
+			
+			if (fuzzOp.variableToAffect != null) {
+				fuzzingVars.add(fuzzOp.variableToAffect);
+			}
+			
+		%]
 		[% } %]
 		
 		Properties properties = new Properties();
@@ -88,7 +95,6 @@ public class [%= testNameString %]_TestRunner {
 		[% } else { %]
 			DataStream<EventMessage> stream = streamOrig;
 		[% } %]
-			
 		
 		DataStream<EventMessage> streamOut = env
 				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
@@ -142,7 +148,11 @@ public class [%= testNameString %]_TestRunner {
 		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
 			public void run() {
 				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
-				ttsSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
+				[% if (fuzzingVars.contains(aTopic)) { %]
+				ttsSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN", true);
+				[% } else { %]
+				ttsSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN", false);
+				[% } %]
 			}
 		};
 		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
@@ -165,6 +175,7 @@ public class [%= testNameString %]_TestRunner {
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = ttsSim.translateTopicNameForOutput(inTopic);
+						[* TODO: only the fuzzingVars should be reflected back to the simulator! *]
 						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
 						ttsSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
 					}
@@ -396,5 +407,9 @@ operation additionalInfo(sMetric) {
 	} else {
 		return "";
 	}
+}
+
+operation getAllFuzzingVars() {
+
 }
 %]

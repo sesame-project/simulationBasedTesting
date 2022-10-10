@@ -13,7 +13,7 @@ public interface ISimulator {
 	public String translateTopicNameForOutput(String origTopicName);
 	
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic);
-	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean debugThisMessage);
+	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean forFuzzing);
 	
 	public void publishToTopic(String topicName, String topicType, String message);
 	public HashMap<String,?> getCreatedTopicsByTopicName();

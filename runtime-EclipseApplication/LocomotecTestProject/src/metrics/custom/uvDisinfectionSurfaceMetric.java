@@ -17,13 +17,13 @@ public class uvDisinfectionSurfaceMetric extends Metric {
 	}
 
 	private static final long serialVersionUID = 1L;
+	private static final boolean ALWAYS_PUBLISH_DOSE = true;
 	//private ValueState<Long> maxDosageForPerson;
 	
 	private final int MSG_FIELD_FOR_BOOLEAN_KPI = 5;
 	private final int MSG_FIELD_FOR_SURFACE_DOSE = 2;
 	
-	// TODO: launch secondary UVC meter for these?
-	
+	// Need to launch secondary UVC meter for these?
 	// Structure of the /virtual_uvc_meter/measurements message: 
 //    uvc_measurements_msg.data = [stamp.to_time(), 			// timestamp of emitted message 
 //                                 self._irradiance,			// current radiation
@@ -35,7 +35,7 @@ public class uvDisinfectionSurfaceMetric extends Metric {
     public void open(Configuration parameters) throws Exception {
 
     }
-      
+          
     public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
     	String completionTopicName = "uvc_meter_s1/measurements";
     	if (msg.getTopic().contains(completionTopicName)) {
@@ -45,7 +45,7 @@ public class uvDisinfectionSurfaceMetric extends Metric {
     		Double iskpiReached = (Double)a.get(MSG_FIELD_FOR_BOOLEAN_KPI);
     		Double surfaceDoseVal = (Double)a.get(MSG_FIELD_FOR_SURFACE_DOSE);
     		//out.collect(isKpiReached);
-    		if (iskpiReached == 1.0) {
+    		if ((iskpiReached == 1.0) || ALWAYS_PUBLISH_DOSE) {
     			out.collect(surfaceDoseVal);
     		}
     	}

@@ -17,6 +17,7 @@ public class uvExposureForHumanMetric extends Metric {
 	}
 
 	private static final long serialVersionUID = 1L;
+	private static final boolean ALWAYS_PUBLISH_DOSE = true;
 	//private ValueState<Long> maxDosageForPerson;
 	
 	private final int MSG_FIELD_FOR_BOOLEAN_KPI = 5;
@@ -45,7 +46,7 @@ public class uvExposureForHumanMetric extends Metric {
     		
     		// The value received from virtual_uvc_meter is inverted... zero indicates that the person is
     		// exposed to the critical level
-    		if (iskpiReached == 0.0) {
+    		if ((iskpiReached == 0.0) || ALWAYS_PUBLISH_DOSE) {
     			out.collect(personDoseVal);
     		}
     	}

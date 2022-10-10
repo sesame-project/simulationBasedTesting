@@ -121,7 +121,7 @@ public class ROSSimulator implements ISimulator {
 	 * This is for ROS Topics
 	 */
 	@Override
-	public synchronized void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean debugThisMessage) {
+	public synchronized void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean shouldFuzz) {
 		System.out.println("TopicName: " + topicName);
 
 		Topic topic;
@@ -130,10 +130,12 @@ public class ROSSimulator implements ISimulator {
 		} else {
 			topic = (Topic)createTopic(topicName, topicType);
 		}
+		
+		// shouldFuzz is ignored for ROS interface
 		topic.subscribe(new TopicCallback() {
 			@Override
 			public void handleMessage(Message message) {
-				if (DEBUG_DISPLAY_INBOUND_MESSAGES || debugThisMessage) {
+				if (DEBUG_DISPLAY_INBOUND_MESSAGES) {
 					System.out.println("message: " + message);
 				}
 				EventMessage em = new EventMessage();
@@ -141,7 +143,7 @@ public class ROSSimulator implements ISimulator {
 				em.setType(topicType);
 				em.setTopic(topicName);
 				if(publishToKafka) {
-					if (DEBUG_DISPLAY_INBOUND_MESSAGES || debugThisMessage) {
+					if (DEBUG_DISPLAY_INBOUND_MESSAGES) {
 						System.out.println(em);
 					}
 
@@ -149,7 +151,6 @@ public class ROSSimulator implements ISimulator {
 				}
 			}
 		});
-		//while(true) {}
 	}
 	
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
