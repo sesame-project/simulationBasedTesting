@@ -110,7 +110,7 @@ public class [%=fuzzOp.name%]PacketLossFlatMap_[%= classNameExt %] extends [%= s
 		Random rand = new Random();
 		String topic = value.getTopic();
 		System.out.println("frequency = " + frequency);
-		if (value.getTopic().equalsIgnoreCase(topic) && isReadyNow()) {
+		if (value.getTopic().contains(topic) && isReadyNow()) {
 			if (frequency <= rand.nextDouble()) {
 				System.out.println("DISCARDING: Message on " + topic + " discarded");
 			} else {

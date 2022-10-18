@@ -123,20 +123,23 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 	}
 	
 	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
-		long currentTime = ctx.timestamp();
-		//long scheduledTime = currentTime + delayTime;
-		long scheduledTime = currentTime + Math.round(rng.nextDouble() * delayTime);
-		double simTime = SimCore.getInstance().getTime();
+		if (value.getTopic().equals(topic) && isReadyNow()) {
+			long currentTime = ctx.timestamp();
+			long scheduledTime = currentTime + Math.round(rng.nextDouble() * delayTime);
+			double simTime = SimCore.getInstance().getTime();
 		
-		List<EventMessage> currentPending = queue.get(scheduledTime);
+			List<EventMessage> currentPending = queue.get(scheduledTime);
 		
-		if (currentPending == null) {
-			currentPending = new ArrayList<EventMessage>();
+			if (currentPending == null) {
+				currentPending = new ArrayList<EventMessage>();
+			}
+			currentPending.add(value);
+			queue.put(scheduledTime, currentPending);
+			System.out.println("currentTime = " + currentTime + ",sim time=" + simTime + ", scheduling new timer at " + scheduledTime);
+			ctx.timerService().registerProcessingTimeTimer(scheduledTime);
+		} else {
+			out.collect(value);
 		}
-		currentPending.add(value);
-		queue.put(scheduledTime, currentPending);
-		System.out.println("currentTime = " + currentTime + ",sim time=" + simTime + ", scheduling new timer at " + scheduledTime);
-		ctx.timerService().registerProcessingTimeTimer(scheduledTime);
 	}
 	
 	public void onTimer(long timestamp, OnTimerContext ctx, Collector<EventMessage> out) {
