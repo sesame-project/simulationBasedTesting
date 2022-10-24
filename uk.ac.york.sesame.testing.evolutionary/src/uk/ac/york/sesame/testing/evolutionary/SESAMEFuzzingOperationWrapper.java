@@ -90,7 +90,20 @@ public class SESAMEFuzzingOperationWrapper {
 		}
 	}
 
-	private static void reduceCustomParameters(EList<ValueSet> newParams, EList<ValueSet> origParams ) throws ParamError {
+	private static void reduceDoubleRange(DoubleRange drNew, DoubleRange drOrig) {
+		double lb;
+		double ub;
+		double origLB = ((DoubleRange) drOrig).getLowerBound();
+		double origUB = ((DoubleRange) drOrig).getUpperBound();
+		lb = RandomFunctions.randomDoubleInRange(rng, origLB, origUB);
+		ub = RandomFunctions.randomDoubleInRange(rng, lb, origUB);
+		drNew.setPropertyName(drOrig.getPropertyName());
+		drNew.setLowerBound(lb);
+		drNew.setUpperBound(ub);
+	}
+
+	private static void reduceCustomParameters(EList<ValueSet> newParams, EList<ValueSet> origParams)
+			throws ParamError {
 		boolean reduceRangeToSingle = true;
 		FuzzingOperationsFactory af = FuzzingOperationsFactory.eINSTANCE;
 		newParams.clear();
@@ -115,7 +128,7 @@ public class SESAMEFuzzingOperationWrapper {
 			if (vsOrig instanceof IntRange) {
 				int lb;
 				int ub;
-			
+
 				int origLB = ((IntRange) vsOrig).getLowerBound();
 				int origUB = ((IntRange) vsOrig).getUpperBound();
 				if (!reduceRangeToSingle) {
@@ -127,17 +140,17 @@ public class SESAMEFuzzingOperationWrapper {
 				}
 				IntRange vs = af.createIntRange();
 				// Property name must be set
-				vs.setPropertyName(((IntRange)vsOrig).getPropertyName());
+				vs.setPropertyName(((IntRange) vsOrig).getPropertyName());
 				vs.setLowerBound(lb);
 				vs.setUpperBound(ub);
 				newParams.add(vs);
 			}
-			
+
 			// Reduce the maximum and minimum point to a single point - ideally
 			// this should be configurable
 			if (vsOrig instanceof PointRange) {
-				Point origLB = ((PointRange)vsOrig).getMinPoint();
-				Point origUB = ((PointRange)vsOrig).getMaxPoint();
+				Point origLB = ((PointRange) vsOrig).getMinPoint();
+				Point origUB = ((PointRange) vsOrig).getMaxPoint();
 				if ((origLB == null) || (origUB == null)) {
 					throw new ParamError("Missing minpoint and maxpoint in PointRange");
 				} else {
@@ -151,20 +164,20 @@ public class SESAMEFuzzingOperationWrapper {
 					newParams.add(vs);
 				}
 			}
-			
+
 			// Choose a single element from the set
 			if (vsOrig instanceof StringSet) {
-				EList<String> origSet = ((StringSet)vsOrig).getChoices();
+				EList<String> origSet = ((StringSet) vsOrig).getChoices();
 				Optional<String> elt_o = RandomFunctions.randomElementInList(rng, origSet);
 				if (elt_o.isPresent()) {
 					String elt = elt_o.get();
 					StringSet vs = af.createStringSet();
-								
-				// Property name must be set
-				vs.setPropertyName(((StringSet)vsOrig).getPropertyName());
-				vs.getChoices().clear();
-				vs.getChoices().add(elt);
-				newParams.add(vs);
+
+					// Property name must be set
+					vs.setPropertyName(((StringSet) vsOrig).getPropertyName());
+					vs.getChoices().clear();
+					vs.getChoices().add(elt);
+					newParams.add(vs);
 				} else {
 					throw new ParamError("Zero-length string set");
 				}
@@ -184,6 +197,18 @@ public class SESAMEFuzzingOperationWrapper {
 			CustomFuzzingOperation cfoO = (CustomFuzzingOperation) original;
 			CustomFuzzingOperation cfoN = (CustomFuzzingOperation) newA;
 			reduceCustomParameters(cfoN.getParams(), cfoO.getParams());
+		}
+
+		if (original instanceof PacketLossNetworkOperation) {
+			PacketLossNetworkOperation cfoO = (PacketLossNetworkOperation) original;
+			PacketLossNetworkOperation cfoN = (PacketLossNetworkOperation) newA;
+			reduceDoubleRange(cfoN.getFrequency(), cfoO.getFrequency());
+		}
+		
+		if (original instanceof LatencyNetworkOperation) {
+			LatencyNetworkOperation cfoO = (LatencyNetworkOperation)original;
+			LatencyNetworkOperation cfoN = (LatencyNetworkOperation)newA;
+			reduceDoubleRange(cfoN.getLatency(), cfoO.getLatency());
 		}
 	}
 
@@ -213,12 +238,14 @@ public class SESAMEFuzzingOperationWrapper {
 		return new SESAMEFuzzingOperationWrapper(sol, newA, startTree, endTree);
 	}
 
-	// Generates a solution with a timing reduction of the original fuzzing operation
-	public static SESAMEFuzzingOperationWrapper reductionOfOperation(SESAMETestSolution sol, FuzzingOperation original) {
+	// Generates a solution with a timing reduction of the original fuzzing
+	// operation
+	public static SESAMEFuzzingOperationWrapper reductionOfOperation(SESAMETestSolution sol,
+			FuzzingOperation original) {
 		FuzzingOperation newA = EcoreUtil.copy(original);
 		newA.setFromTemplate(original);
 		reduceAttackActivationsTiming(newA, original.getActivation());
-		
+
 		try {
 			reduceOperationSpecific(newA, original);
 		} catch (ParamError e) {
@@ -243,11 +270,12 @@ public class SESAMEFuzzingOperationWrapper {
 		String output = "";
 		if (a != null) {
 			if (a instanceof FixedTimeActivation) {
-				FixedTimeActivation fta = (FixedTimeActivation)a;
+				FixedTimeActivation fta = (FixedTimeActivation) a;
 				output = "FixedTimeActivation: " + fta.getStartTime() + " - " + fta.getEndTime();
 			} else {
-				ConditionBasedActivation ca = (ConditionBasedActivation)a;
-				output = "ConditionBased: activation count " + ca.getMaximumActivations() + " STARTING:" + getStoredStartTree() + " - " + " ENDING: " + getStoredEndTree();  
+				ConditionBasedActivation ca = (ConditionBasedActivation) a;
+				output = "ConditionBased: activation count " + ca.getMaximumActivations() + " STARTING:"
+						+ getStoredStartTree() + " - " + " ENDING: " + getStoredEndTree();
 			}
 		} else {
 			output = "<Null activation - error>";
