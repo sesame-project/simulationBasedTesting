@@ -202,9 +202,13 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			if (DEBUG_ACTUALLY_RUN) {
 				// Invoke maven script to ensure that the project is rebuilt
 				TestRunnerUtils.compileProject(codeGenerationDirectory);
-				System.out.print("Waiting for project to recompile...");
-				System.out.flush();
-				TestRunnerUtils.waitForSeconds(DEFAULT_COMPILE_DELAY);
+				
+				// Now it will wait for compilation of the compileProject
+				
+				//System.out.print("Waiting for project to recompile...");
+				//System.out.flush();
+				//TestRunnerUtils.waitForSeconds(DEFAULT_COMPILE_DELAY);
+				
 				System.out.println("done");
 
 				// Invokes the main method for this code
