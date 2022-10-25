@@ -6,11 +6,7 @@ import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.flink.api.common.functions.FlatMapFunction;
-import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringEncoder;
-import org.apache.flink.api.common.serialization.SimpleStringSchema;
-import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.connector.file.sink.FileSink;
 
 import org.apache.flink.configuration.Configuration;
@@ -22,7 +18,6 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.filesystem.rollingpolicies.DefaultRollingPolicy;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
-import org.apache.flink.util.Collector;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
@@ -32,7 +27,6 @@ import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.*;
 
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
-import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 
 import metrics.custom.*;
 import metrics.fixed.*;
@@ -254,7 +248,7 @@ public class Test_Null_Fuzzing {
 		
 		campaignMetrics.addSink(metricsProducer);
 		
-		stream.addSink(myProducer);
+		streamOrig.addSink(myProducer);
 		
 		try {
 			env.execute();
