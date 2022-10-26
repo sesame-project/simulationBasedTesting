@@ -32,6 +32,12 @@
   </build>
   
   <dependencies>
+   		<dependency>
+			<groupId>uk.ac.york.sesame.testing.architecture</groupId>
+			<artifactId>uk.ac.york.sesame.testing.architecture</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+  
   		<dependency>
 			<groupId>org.eclipse.epsilon</groupId>
 			<artifactId>org.eclipse.epsilon.egl.engine</artifactId>

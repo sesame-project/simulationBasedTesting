@@ -5,6 +5,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -593,6 +594,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getFuzzingOperation__GenerateParameters__FuzzingOperation() {
+		return fuzzingOperationEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOfflineFuzzingOperation() {
 		return offlineFuzzingOperationEClass;
 	}
@@ -838,6 +848,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 */
 	public EAttribute getValueSet_PropertyName() {
 		return (EAttribute)valueSetEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getValueSet__Reduce__ReductionStrategy() {
+		return valueSetEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1272,6 +1291,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__FROM_TEMPLATE);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__CONTAINING_TEST);
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__SEED);
+		createEOperation(fuzzingOperationEClass, FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION);
 
 		offlineFuzzingOperationEClass = createEClass(OFFLINE_FUZZING_OPERATION);
 		createEAttribute(offlineFuzzingOperationEClass, OFFLINE_FUZZING_OPERATION__OPERATION_TIME);
@@ -1314,6 +1334,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		valueSetEClass = createEClass(VALUE_SET);
 		createEAttribute(valueSetEClass, VALUE_SET__PROPERTY_NAME);
+		createEOperation(valueSetEClass, VALUE_SET___REDUCE__REDUCTIONSTRATEGY);
 
 		valueRangeEClass = createEClass(VALUE_RANGE);
 
@@ -1470,6 +1491,9 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEReference(getFuzzingOperation_ContainingTest(), theTestingPackagePackage.getTest(), theTestingPackagePackage.getTest_Operations(), "containingTest", null, 0, 1, FuzzingOperation.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFuzzingOperation_Seed(), ecorePackage.getEInt(), "seed", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		EOperation op = initEOperation(getFuzzingOperation__GenerateParameters__FuzzingOperation(), null, "generateParameters", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getFuzzingOperation(), "original", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(offlineFuzzingOperationEClass, OfflineFuzzingOperation.class, "OfflineFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOfflineFuzzingOperation_OperationTime(), this.getOfflineOperationTime(), "operationTime", null, 0, 1, OfflineFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1511,6 +1535,9 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		initEClass(valueSetEClass, ValueSet.class, "ValueSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getValueSet_PropertyName(), ecorePackage.getEString(), "propertyName", null, 0, 1, ValueSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getValueSet__Reduce__ReductionStrategy(), this.getValueSet(), "reduce", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theTestingPackagePackage.getReductionStrategy(), "rs", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(valueRangeEClass, ValueRange.class, "ValueRange", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

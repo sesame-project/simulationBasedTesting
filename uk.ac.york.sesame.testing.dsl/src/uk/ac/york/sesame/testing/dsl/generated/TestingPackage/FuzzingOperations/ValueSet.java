@@ -2,7 +2,10 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations;
 
+import java.util.Random;
+
 import org.eclipse.emf.ecore.EObject;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,4 +46,12 @@ public interface ValueSet extends EObject {
 	 * @generated
 	 */
 	void setPropertyName(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	ValueSet reduce(Random rng, ReductionStrategy rs);
 } // ValueSet

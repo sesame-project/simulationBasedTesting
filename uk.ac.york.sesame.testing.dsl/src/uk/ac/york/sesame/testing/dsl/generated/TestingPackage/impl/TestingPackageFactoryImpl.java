@@ -81,6 +81,8 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 		switch (eDataType.getClassifierID()) {
 			case TestingPackagePackage.RESULT_SET_STATUS:
 				return createResultSetStatusFromString(eDataType, initialValue);
+			case TestingPackagePackage.REDUCTION_STRATEGY:
+				return createReductionStrategyFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -96,6 +98,8 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 		switch (eDataType.getClassifierID()) {
 			case TestingPackagePackage.RESULT_SET_STATUS:
 				return convertResultSetStatusToString(eDataType, instanceValue);
+			case TestingPackagePackage.REDUCTION_STRATEGY:
+				return convertReductionStrategyToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -208,6 +212,26 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	 * @generated
 	 */
 	public String convertResultSetStatusToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReductionStrategy createReductionStrategyFromString(EDataType eDataType, String initialValue) {
+		ReductionStrategy result = ReductionStrategy.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertReductionStrategyToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

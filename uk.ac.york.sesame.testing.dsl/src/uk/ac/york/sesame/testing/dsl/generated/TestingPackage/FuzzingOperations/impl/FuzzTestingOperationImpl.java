@@ -33,5 +33,8 @@ public class FuzzTestingOperationImpl extends FuzzingOperationImpl implements Fu
 	protected EClass eStaticClass() {
 		return FuzzingOperationsPackage.Literals.FUZZ_TESTING_OPERATION;
 	}
+	
+	
+	
 
 } //FuzzTestingOperationImpl

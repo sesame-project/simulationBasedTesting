@@ -11,6 +11,11 @@
       <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//ResultSetStatus/FINAL"/>
       <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//ResultSetStatus/INTERMEDIATE"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TestingMM.ecore#//ReductionStrategy">
+      <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//ReductionStrategy/NO_REDUCTION"/>
+      <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//ReductionStrategy/PARTIAL"/>
+      <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//ReductionStrategy/SINGLE_POINT"/>
+    </genEnums>
     <genClasses ecoreClass="TestingMM.ecore#//TestingSpace">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//TestingSpace/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestingSpace/metrics"/>
@@ -87,6 +92,9 @@
             ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/FuzzingOperation/fromTemplate"/>
         <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/FuzzingOperation/containingTest"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/seed"/>
+        <genOperations ecoreOperation="TestingMM.ecore#//FuzzingOperations/FuzzingOperation/generateParameters">
+          <genParameters ecoreParameter="TestingMM.ecore#//FuzzingOperations/FuzzingOperation/generateParameters/original"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation/operationTime"/>
@@ -128,6 +136,9 @@
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/ValueSet">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/ValueSet/propertyName"/>
+        <genOperations ecoreOperation="TestingMM.ecore#//FuzzingOperations/ValueSet/reduce">
+          <genParameters ecoreParameter="TestingMM.ecore#//FuzzingOperations/ValueSet/reduce/rs"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/ValueRange"/>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/IntRange">

@@ -350,4 +350,12 @@ public interface FuzzingOperation extends EObject {
 	 */
 	void setSeed(int value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void generateParameters(FuzzingOperation original);
+
 } // FuzzingOperation

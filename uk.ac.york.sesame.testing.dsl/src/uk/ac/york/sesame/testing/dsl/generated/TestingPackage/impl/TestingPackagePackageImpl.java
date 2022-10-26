@@ -30,6 +30,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.Metri
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RandomTestGeneration;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPackage;
@@ -153,6 +154,13 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * @generated
 	 */
 	private EEnum resultSetStatusEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum reductionStrategyEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -602,6 +610,15 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getReductionStrategy() {
+		return reductionStrategyEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TestingPackageFactory getTestingPackageFactory() {
 		return (TestingPackageFactory)getEFactoryInstance();
 	}
@@ -679,6 +696,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 
 		// Create enums
 		resultSetStatusEEnum = createEEnum(RESULT_SET_STATUS);
+		reductionStrategyEEnum = createEEnum(REDUCTION_STRATEGY);
 	}
 
 	/**
@@ -787,6 +805,11 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEEnum(resultSetStatusEEnum, ResultSetStatus.class, "ResultSetStatus");
 		addEEnumLiteral(resultSetStatusEEnum, ResultSetStatus.FINAL);
 		addEEnumLiteral(resultSetStatusEEnum, ResultSetStatus.INTERMEDIATE);
+
+		initEEnum(reductionStrategyEEnum, ReductionStrategy.class, "ReductionStrategy");
+		addEEnumLiteral(reductionStrategyEEnum, ReductionStrategy.NO_REDUCTION);
+		addEEnumLiteral(reductionStrategyEEnum, ReductionStrategy.PARTIAL);
+		addEEnumLiteral(reductionStrategyEEnum, ReductionStrategy.SINGLE_POINT);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -667,6 +667,17 @@ public interface TestingPackagePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy <em>Reduction Strategy</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getReductionStrategy()
+	 * @generated
+	 */
+	int REDUCTION_STRATEGY = 14;
+
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace <em>Testing Space</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1093,6 +1104,16 @@ public interface TestingPackagePackage extends EPackage {
 	EEnum getResultSetStatus();
 
 	/**
+	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy <em>Reduction Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Reduction Strategy</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy
+	 * @generated
+	 */
+	EEnum getReductionStrategy();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1462,6 +1483,16 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum RESULT_SET_STATUS = eINSTANCE.getResultSetStatus();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy <em>Reduction Strategy</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getReductionStrategy()
+		 * @generated
+		 */
+		EEnum REDUCTION_STRATEGY = eINSTANCE.getReductionStrategy();
 
 	}
 

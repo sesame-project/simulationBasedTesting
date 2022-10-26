@@ -3,6 +3,8 @@
 package TestingPackage;
 //import "http://ExSceMM";
 
+datatype Random : java.util.Random;
+
 // TestingSpace - which specifies the boundaries of the testing space
 // (the possible attacks), a grammar used for conditions,
 // and the metrics to be used. 
@@ -89,6 +91,12 @@ class RandomTestGeneration extends TestGenerationApproach {
 	
 }
 
+enum ReductionStrategy {
+	NO_REDUCTION = 1;
+	PARTIAL = 2;
+	SINGLE_POINT = 3;
+}
+
 abstract class EvolutionaryAlgorithm extends TestGenerationApproach {
 
 }
@@ -118,6 +126,8 @@ abstract class FuzzingOperation {
 	ref FuzzingOperation[0..1] fromTemplate;
 	readonly transient ref Test[0..1]#operations containingTest;
 	attr int seed;
+	
+	op void generateParameters(FuzzingOperation original);
 }
 
 class OfflineFuzzingOperation extends FuzzingOperation {
@@ -186,6 +196,7 @@ class RandomValueFromSetOperation extends RandomValueFuzzingOperation {
 class ValueSet {
 	// This might be a ref to the MRSPackage.ComponentProperty?
 	attr String propertyName;	
+	op ValueSet reduce(Random rng, ReductionStrategy rs);
 }
 
 abstract class ValueRange extends ValueSet {

@@ -65,6 +65,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TestGenerationApproach" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="RandomTestGeneration" eSuperTypes="#//TestGenerationApproach"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ReductionStrategy">
+    <eLiterals name="NO_REDUCTION" value="1"/>
+    <eLiterals name="PARTIAL" value="2"/>
+    <eLiterals name="SINGLE_POINT" value="3"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EvolutionaryAlgorithm" abstract="true"
       eSuperTypes="#//TestGenerationApproach"/>
   <eClassifiers xsi:type="ecore:EClass" name="NSGAEvolutionaryAlgorithm" eSuperTypes="#//EvolutionaryAlgorithm">
@@ -73,6 +78,9 @@
   </eClassifiers>
   <eSubpackages name="FuzzingOperations" nsURI="FuzzingOperations" nsPrefix="">
     <eClassifiers xsi:type="ecore:EClass" name="FuzzingOperation" abstract="true">
+      <eOperations name="generateParameters">
+        <eParameters name="original" eType="#//FuzzingOperations/FuzzingOperation"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="activation" lowerBound="1"
@@ -148,6 +156,9 @@
           defaultValueLiteral="false"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ValueSet">
+      <eOperations name="reduce" eType="#//FuzzingOperations/ValueSet">
+        <eParameters name="rs" eType="#//ReductionStrategy"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ValueRange" abstract="true" eSuperTypes="#//FuzzingOperations/ValueSet"/>

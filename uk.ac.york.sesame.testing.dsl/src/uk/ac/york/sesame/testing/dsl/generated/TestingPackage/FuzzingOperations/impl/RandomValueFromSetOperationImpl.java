@@ -3,6 +3,7 @@
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl;
 
 import java.util.Collection;
+import java.util.Random;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -16,9 +17,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -214,6 +217,26 @@ public class RandomValueFromSetOperationImpl extends RandomValueFuzzingOperation
 		result.append(isRelative);
 		result.append(')');
 		return result.toString();
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// CUSTOM CODE FOR FUZZING OPERATION RandomValueFromSetOperation
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public void reduceMultipleValueSets(RandomValueFromSetOperation original, ReductionStrategy rs) {
+		for (ValueSet vsOrig : original.getValueSet()) {
+			Random rng = new Random();
+			
+			ValueSet vsReduced = vsOrig.reduce(rng,rs);
+			this.getValueSet().add(vsReduced);
+		}
+			
+
+
+	}
+	
+	public void generateParameters(RandomValueFromSetOperation original, ReductionStrategy rs) {
+		reduceMultipleValueSets(original, rs);	
 	}
 
 } //RandomValueFromSetOperationImpl

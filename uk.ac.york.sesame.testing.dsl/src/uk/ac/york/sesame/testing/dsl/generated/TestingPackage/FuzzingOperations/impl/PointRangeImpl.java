@@ -2,6 +2,8 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl;
 
+import java.util.Random;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -9,10 +11,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import uk.ac.york.sesame.testing.architecture.utilities.RandomFunctions;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DoubleRange;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PointRange;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -236,6 +244,35 @@ public class PointRangeImpl extends ValueRangeImpl implements PointRange {
 				return maxPoint != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	// CUSTOM FOR PointRange
+	
+	public Point randomPointInRange(Random rng, Point origLB, Point origUB) {
+		FuzzingOperationsFactory af = FuzzingOperationsFactory.eINSTANCE;
+		Point newPoint = af.createPoint();
+		double x = RandomFunctions.randomDoubleInRange(rng, origLB.getX(), origUB.getX());
+		double y = RandomFunctions.randomDoubleInRange(rng, origLB.getY(), origUB.getY());
+		double z = RandomFunctions.randomDoubleInRange(rng, origLB.getZ(), origUB.getZ());
+		newPoint.setX(x);
+		newPoint.setY(y);
+		newPoint.setZ(z);
+		return newPoint;
+	}
+
+	@Override
+	public ValueSet reduce(Random rng, ReductionStrategy rs) {
+		// TODO: check the reduction strategy - this assumes it is 
+		// applied 
+		PointRange pr = new PointRangeImpl();
+		super.reduce(rng, rs);
+		Point origLB = this.getMinPoint();
+		Point origUB = this.getMaxPoint();
+		Point lp = randomPointInRange(rng, origLB, origUB);
+		Point up = EcoreUtil.copy(lp);	
+		pr.setMinPoint(lp);
+		pr.setMaxPoint(up);
+		return pr;
 	}
 
 } //PointRangeImpl

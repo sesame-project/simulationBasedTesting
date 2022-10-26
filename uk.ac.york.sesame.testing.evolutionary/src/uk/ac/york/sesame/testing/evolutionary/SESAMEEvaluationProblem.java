@@ -41,7 +41,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	private static final long DEFAULT_HARDCODED_DELAY = 100;
 	
-	private static final long DEFAULT_COMPILE_DELAY = 10;
 	private static final long DEFAULT_KILL_DELAY = 10;
 	private static final long DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS = 10;
 	private static final long DEFAULT_WAIT_FOR_FINALISE_DELAY = 5;

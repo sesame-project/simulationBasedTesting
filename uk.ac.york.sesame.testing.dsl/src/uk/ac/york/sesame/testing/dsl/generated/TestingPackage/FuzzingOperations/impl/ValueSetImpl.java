@@ -2,14 +2,20 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Random;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,6 +93,18 @@ public class ValueSetImpl extends MinimalEObjectImpl.Container implements ValueS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 */
+	public ValueSet reduce(Random rng, ReductionStrategy rs) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		ValueSet vs = EcoreUtil.copy(this);
+		vs.setPropertyName(this.getPropertyName());
+		return vs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -140,6 +158,20 @@ public class ValueSetImpl extends MinimalEObjectImpl.Container implements ValueS
 				return PROPERTY_NAME_EDEFAULT == null ? propertyName != null : !PROPERTY_NAME_EDEFAULT.equals(propertyName);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case FuzzingOperationsPackage.VALUE_SET___REDUCE__REDUCTIONSTRATEGY:
+				return reduce((Random)arguments.get(0), (ReductionStrategy)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

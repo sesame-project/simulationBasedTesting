@@ -5,6 +5,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -221,13 +222,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int FUZZING_OPERATION_FEATURE_COUNT = 16;
 
 	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = 0;
+
+	/**
 	 * The number of operations of the '<em>Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_OPERATION_COUNT = 0;
+	int FUZZING_OPERATION_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.OfflineFuzzingOperationImpl <em>Offline Fuzzing Operation</em>}' class.
@@ -400,6 +410,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int OFFLINE_FUZZING_OPERATION_FEATURE_COUNT = FUZZING_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
 
 	/**
 	 * The number of operations of the '<em>Offline Fuzzing Operation</em>' class.
@@ -583,6 +602,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int CUSTOM_FUZZING_OPERATION_FEATURE_COUNT = FUZZING_OPERATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
+
+	/**
 	 * The number of operations of the '<em>Custom Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -762,6 +790,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_OFFLINE_FUZZING_OPERATION_FEATURE_COUNT = OFFLINE_FUZZING_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = OFFLINE_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
 
 	/**
 	 * The number of operations of the '<em>Custom Offline Fuzzing Operation</em>' class.
@@ -1065,6 +1102,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int FUZZ_TESTING_OPERATION_FEATURE_COUNT = FUZZING_OPERATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
+
+	/**
 	 * The number of operations of the '<em>Fuzz Testing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1235,6 +1281,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_OPERATION_FEATURE_COUNT = FUZZ_TESTING_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = FUZZ_TESTING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
 
 	/**
 	 * The number of operations of the '<em>Component Operation</em>' class.
@@ -1416,6 +1471,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_PROPERTY_OPERATION_FEATURE_COUNT = FUZZ_TESTING_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = FUZZ_TESTING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
 
 	/**
 	 * The number of operations of the '<em>Component Property Operation</em>' class.
@@ -1608,6 +1672,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int COMPONENT_SUB_PROPERTY_OPERATION_FEATURE_COUNT = FUZZ_TESTING_OPERATION_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = FUZZ_TESTING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
+
+	/**
 	 * The number of operations of the '<em>Component Sub Property Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1789,6 +1862,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int VARIABLE_OPERATION_FEATURE_COUNT = FUZZ_TESTING_OPERATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = FUZZ_TESTING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
+
+	/**
 	 * The number of operations of the '<em>Variable Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1959,6 +2041,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_VALUE_FUZZING_OPERATION_FEATURE_COUNT = COMPONENT_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = COMPONENT_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
 
 	/**
 	 * The number of operations of the '<em>Random Value Fuzzing Operation</em>' class.
@@ -2151,6 +2242,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int RANDOM_VALUE_FROM_SET_OPERATION_FEATURE_COUNT = RANDOM_VALUE_FUZZING_OPERATION_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = RANDOM_VALUE_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
+
+	/**
 	 * The number of operations of the '<em>Random Value From Set Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2188,13 +2288,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int VALUE_SET_FEATURE_COUNT = 1;
 
 	/**
+	 * The operation id for the '<em>Reduce</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SET___REDUCE__REDUCTIONSTRATEGY = 0;
+
+	/**
 	 * The number of operations of the '<em>Value Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SET_OPERATION_COUNT = 0;
+	int VALUE_SET_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ValueRangeImpl <em>Value Range</em>}' class.
@@ -2223,6 +2332,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_RANGE_FEATURE_COUNT = VALUE_SET_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Reduce</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_RANGE___REDUCE__REDUCTIONSTRATEGY = VALUE_SET___REDUCE__REDUCTIONSTRATEGY;
 
 	/**
 	 * The number of operations of the '<em>Value Range</em>' class.
@@ -2280,6 +2398,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int INT_RANGE_FEATURE_COUNT = VALUE_RANGE_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Reduce</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INT_RANGE___REDUCE__REDUCTIONSTRATEGY = VALUE_RANGE___REDUCE__REDUCTIONSTRATEGY;
+
+	/**
 	 * The number of operations of the '<em>Int Range</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2333,6 +2460,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int DOUBLE_RANGE_FEATURE_COUNT = VALUE_RANGE_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Reduce</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOUBLE_RANGE___REDUCE__REDUCTIONSTRATEGY = VALUE_RANGE___REDUCE__REDUCTIONSTRATEGY;
 
 	/**
 	 * The number of operations of the '<em>Double Range</em>' class.
@@ -2445,6 +2581,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int POINT_RANGE_FEATURE_COUNT = VALUE_RANGE_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Reduce</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POINT_RANGE___REDUCE__REDUCTIONSTRATEGY = VALUE_RANGE___REDUCE__REDUCTIONSTRATEGY;
+
+	/**
 	 * The number of operations of the '<em>Point Range</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2491,6 +2636,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int STRING_SET_FEATURE_COUNT = VALUE_SET_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Reduce</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_SET___REDUCE__REDUCTIONSTRATEGY = VALUE_SET___REDUCE__REDUCTIONSTRATEGY;
+
+	/**
 	 * The number of operations of the '<em>String Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2535,6 +2689,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_RESOURCE_SET_FEATURE_COUNT = VALUE_SET_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Reduce</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_RESOURCE_SET___REDUCE__REDUCTIONSTRATEGY = VALUE_SET___REDUCE__REDUCTIONSTRATEGY;
 
 	/**
 	 * The number of operations of the '<em>External Resource Set</em>' class.
@@ -2709,6 +2872,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int RESOURCE_FUZZING_OPERATION_FEATURE_COUNT = FUZZING_OPERATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
+
+	/**
 	 * The number of operations of the '<em>Resource Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2881,6 +3053,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int STATE_FUZZING_OPERATION_FEATURE_COUNT = FUZZING_OPERATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
+
+	/**
 	 * The number of operations of the '<em>State Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3051,6 +3232,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int NETWORK_FUZZING_OPERATION_FEATURE_COUNT = FUZZING_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
 
 	/**
 	 * The number of operations of the '<em>Network Fuzzing Operation</em>' class.
@@ -3232,6 +3422,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int LOAD_RESOURCE_OPERATION_FEATURE_COUNT = RESOURCE_FUZZING_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOAD_RESOURCE_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = RESOURCE_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
 
 	/**
 	 * The number of operations of the '<em>Load Resource Operation</em>' class.
@@ -3636,6 +3835,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int SHUTDOWN_STATE_OPERATON_FEATURE_COUNT = STATE_FUZZING_OPERATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHUTDOWN_STATE_OPERATON___GENERATE_PARAMETERS__FUZZINGOPERATION = STATE_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
+
+	/**
 	 * The number of operations of the '<em>Shutdown State Operaton</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3815,6 +4023,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int TIME_TRAVEL_STATE_OPERATON_FEATURE_COUNT = STATE_FUZZING_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_TRAVEL_STATE_OPERATON___GENERATE_PARAMETERS__FUZZINGOPERATION = STATE_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
 
 	/**
 	 * The number of operations of the '<em>Time Travel State Operaton</em>' class.
@@ -3998,6 +4215,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int PROCESS_KILLER_STATE_OPERATON_FEATURE_COUNT = STATE_FUZZING_OPERATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_KILLER_STATE_OPERATON___GENERATE_PARAMETERS__FUZZINGOPERATION = STATE_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
+
+	/**
 	 * The number of operations of the '<em>Process Killer State Operaton</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4168,6 +4394,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int BLACKHOLE_NETWORK_OPERATION_FEATURE_COUNT = NETWORK_FUZZING_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = NETWORK_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
 
 	/**
 	 * The number of operations of the '<em>Blackhole Network Operation</em>' class.
@@ -4351,6 +4586,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int LATENCY_NETWORK_OPERATION_FEATURE_COUNT = NETWORK_FUZZING_OPERATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = NETWORK_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
+
+	/**
 	 * The number of operations of the '<em>Latency Network Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4532,6 +4776,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int PACKET_LOSS_NETWORK_OPERATION_FEATURE_COUNT = NETWORK_FUZZING_OPERATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = NETWORK_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
+
+	/**
 	 * The number of operations of the '<em>Packet Loss Network Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4711,6 +4964,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLE_MESSAGES_NETWORK_OPERATION_FEATURE_COUNT = NETWORK_FUZZING_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Generate Parameters</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_MESSAGES_NETWORK_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = NETWORK_FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION;
 
 	/**
 	 * The number of operations of the '<em>Multiple Messages Network Operation</em>' class.
@@ -4917,6 +5179,16 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFuzzingOperation_Seed();
+
+	/**
+	 * Returns the meta object for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#generateParameters(uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation) <em>Generate Parameters</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Generate Parameters</em>' operation.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#generateParameters(uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation)
+	 * @generated
+	 */
+	EOperation getFuzzingOperation__GenerateParameters__FuzzingOperation();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineFuzzingOperation <em>Offline Fuzzing Operation</em>}'.
@@ -5211,6 +5483,16 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getValueSet_PropertyName();
+
+	/**
+	 * Returns the meta object for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet#reduce(uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy) <em>Reduce</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Reduce</em>' operation.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet#reduce(uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy)
+	 * @generated
+	 */
+	EOperation getValueSet__Reduce__ReductionStrategy();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueRange <em>Value Range</em>}'.
@@ -5823,6 +6105,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		EAttribute FUZZING_OPERATION__SEED = eINSTANCE.getFuzzingOperation_Seed();
 
 		/**
+		 * The meta object literal for the '<em><b>Generate Parameters</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation FUZZING_OPERATION___GENERATE_PARAMETERS__FUZZINGOPERATION = eINSTANCE.getFuzzingOperation__GenerateParameters__FuzzingOperation();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.OfflineFuzzingOperationImpl <em>Offline Fuzzing Operation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6073,6 +6363,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VALUE_SET__PROPERTY_NAME = eINSTANCE.getValueSet_PropertyName();
+
+		/**
+		 * The meta object literal for the '<em><b>Reduce</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VALUE_SET___REDUCE__REDUCTIONSTRATEGY = eINSTANCE.getValueSet__Reduce__ReductionStrategy();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ValueRangeImpl <em>Value Range</em>}' class.

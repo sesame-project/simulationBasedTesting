@@ -2,14 +2,20 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl;
 
+import java.util.Random;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ReductionStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DoubleRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet;
+
+import uk.ac.york.sesame.testing.architecture.utilities.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -212,5 +218,20 @@ public class DoubleRangeImpl extends ValueRangeImpl implements DoubleRange {
 		result.append(')');
 		return result.toString();
 	}
-
+	
+	public ValueSet reduce(Random rng, ReductionStrategy rs) {
+		// TODO: check the reduction strategy - this assumes it is 
+		// applied 
+		DoubleRange dr = new DoubleRangeImpl();
+		super.reduce(rng, rs);
+		double lb, ub;
+		double origLB = getLowerBound();
+		double origUB = getUpperBound();
+		lb = RandomFunctions.randomDoubleInRange(rng, origLB, origUB);
+		ub = RandomFunctions.randomDoubleInRange(rng, lb, origUB);	
+		dr.setLowerBound(lb);
+		dr.setUpperBound(ub);
+		return dr;
+	}
+	
 } //DoubleRangeImpl
