@@ -26,7 +26,7 @@ public class EvolutionaryRunnerLocomotec_condbased {
 		// Sets the space model file and the campaign to run here
 		
 		// PATHS HERE
-		final String spaceModelFileName = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/LocomotecTestProject/models/testingLocomotec2.model";
+		final String spaceModelFileName = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/LocomotecTestProject/models/testingLocomotec3.model";
 		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/LocomotecTestProject";
 		final String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
 

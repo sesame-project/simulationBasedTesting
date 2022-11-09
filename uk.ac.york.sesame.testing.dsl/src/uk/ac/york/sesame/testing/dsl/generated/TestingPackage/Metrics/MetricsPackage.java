@@ -197,13 +197,22 @@ public interface MetricsPackage extends EPackage {
 	int METRIC__INIT_VALUE = 4;
 
 	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METRIC__USE_IN_OPTIMISATION = 5;
+
+	/**
 	 * The number of structural features of the '<em>Metric</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC_FEATURE_COUNT = 5;
+	int METRIC_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Metric</em>' class.
@@ -305,6 +314,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIABLE_METRIC__INIT_VALUE = METRIC__INIT_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_METRIC__USE_IN_OPTIMISATION = METRIC__USE_IN_OPTIMISATION;
 
 	/**
 	 * The feature id for the '<em><b>Chosen Variables</b></em>' reference.
@@ -435,6 +453,15 @@ public interface MetricsPackage extends EPackage {
 	int PROPERTY_METRIC__INIT_VALUE = METRIC__INIT_VALUE;
 
 	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_METRIC__USE_IN_OPTIMISATION = METRIC__USE_IN_OPTIMISATION;
+
+	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -515,6 +542,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONDITIONAL_PROPERTY_METRIC__INIT_VALUE = PROPERTY_METRIC__INIT_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_PROPERTY_METRIC__USE_IN_OPTIMISATION = PROPERTY_METRIC__USE_IN_OPTIMISATION;
 
 	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
@@ -608,6 +644,15 @@ public interface MetricsPackage extends EPackage {
 	int STREAM_METRIC__INIT_VALUE = METRIC__INIT_VALUE;
 
 	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STREAM_METRIC__USE_IN_OPTIMISATION = METRIC__USE_IN_OPTIMISATION;
+
+	/**
 	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -697,6 +742,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUZZING_OPERATION_TIMES_METRIC__INIT_VALUE = STREAM_METRIC__INIT_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION_TIMES_METRIC__USE_IN_OPTIMISATION = STREAM_METRIC__USE_IN_OPTIMISATION;
 
 	/**
 	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
@@ -904,6 +958,17 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMetric_InitValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#isUseInOptimisation <em>Use In Optimisation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Use In Optimisation</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#isUseInOptimisation()
+	 * @see #getMetric()
+	 * @generated
+	 */
+	EAttribute getMetric_UseInOptimisation();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault <em>Metric Default</em>}'.
@@ -1206,6 +1271,14 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference METRIC__INIT_VALUE = eINSTANCE.getMetric_InitValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Use In Optimisation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METRIC__USE_IN_OPTIMISATION = eINSTANCE.getMetric_UseInOptimisation();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricDefaultImpl <em>Metric Default</em>}' class.

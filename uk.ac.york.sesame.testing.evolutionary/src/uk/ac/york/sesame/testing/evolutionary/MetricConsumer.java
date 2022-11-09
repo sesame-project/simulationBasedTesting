@@ -266,7 +266,9 @@ public class MetricConsumer implements Runnable {
 				Object val = msg.getValue();
 				try {
 					updateMetricsInModel(metricName, val);
-					updateObjectivesJMetal(metricName, val);
+					if (m.isUseInOptimisation()) {
+						updateObjectivesJMetal(metricName, val);
+					}
 				} catch (InvalidName e1) {
 					e1.printStackTrace();
 				} catch (JMetalMetricSettingFailed e) {

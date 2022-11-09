@@ -317,6 +317,7 @@ abstract class Metric {
 	val MetricDefault[0..1] valueIfNotReceived;	
 	// initValue is used as an intialisation value in computing the conditions
 	val MetricDefault[1] initValue;
+	attr boolean useInOptimisation;
 }
 
 class MetricDefault {

@@ -232,6 +232,7 @@
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="initValue" lowerBound="1"
           eType="#//Metrics/MetricDefault" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="useInOptimisation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MetricDefault">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultVal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>

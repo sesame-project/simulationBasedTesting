@@ -5,32 +5,12 @@
 	var targetType = Testing!ResultSetStatus#INTERMEDIATE;
 	
 	// TODO: this should be a parameter name
-	var testSpace = Testing!TestingSpace.all().first();
+	var tests = Testing!Tests.all().first();
 
-	for (campaign in testSpace.campaigns) {
-		%]Campaign: [%= campaign.name %]
-		
+	for (test in tests) {
+	    for (test in resultSet.results) {
+		%]Test:[%= test.name + "\t\t" %][%= getAllMetrics(test, false) %] [%= getOperations(test.operations) %]
 		[%
-		
-		if (campaign.name.equals(campaignName)) {
-			for (resultSet in campaign.resultSets) {
-				if ((resultSet.status == targetType)) {
-					if (resultSet.name.contains(filterResultSetString1) and resultSet.name.contains(filterResultSetString2)) { 
-					// TODO: sort the tests by their fuzzing time?
-					%]ResultSet: [%= resultSet.name %]
-					
-					[%
-						var firstTest = resultSet.results.first();
-						%][%= "\t\t\t\t\t\t" + getAllMetrics(firstTest, true) %]
-					
-						[%
-						for (test in resultSet.results) {
-							%]Test:[%= test.name + "\t\t" %][%= getAllMetrics(test, false) %] [%= getOperations(test.operations) %]
-							[%
-						}
-					}
-				}
-			}
 		}
 	}
 	
@@ -212,8 +192,5 @@ operation generateProperty(prop) {
 		return "new String(\"" + loc + "\")";
 	}
 }
-
-
-
 
 %]

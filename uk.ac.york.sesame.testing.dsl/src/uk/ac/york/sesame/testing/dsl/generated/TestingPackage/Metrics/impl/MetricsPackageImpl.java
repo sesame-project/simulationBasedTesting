@@ -320,6 +320,15 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMetric_UseInOptimisation() {
+		return (EAttribute)metricEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMetricDefault() {
 		return metricDefaultEClass;
 	}
@@ -526,6 +535,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		createEReference(metricEClass, METRIC__RELATED_VARIABLES);
 		createEReference(metricEClass, METRIC__VALUE_IF_NOT_RECEIVED);
 		createEReference(metricEClass, METRIC__INIT_VALUE);
+		createEAttribute(metricEClass, METRIC__USE_IN_OPTIMISATION);
 
 		metricDefaultEClass = createEClass(METRIC_DEFAULT);
 		createEAttribute(metricDefaultEClass, METRIC_DEFAULT__DEFAULT_VAL);
@@ -612,6 +622,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		initEReference(getMetric_RelatedVariables(), theMRSPackagePackage.getVariable(), null, "relatedVariables", null, 0, -1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetric_ValueIfNotReceived(), this.getMetricDefault(), null, "valueIfNotReceived", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetric_InitValue(), this.getMetricDefault(), null, "initValue", null, 1, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMetric_UseInOptimisation(), ecorePackage.getEBoolean(), "useInOptimisation", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(metricDefaultEClass, MetricDefault.class, "MetricDefault", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMetricDefault_DefaultVal(), ecorePackage.getEDouble(), "defaultVal", null, 0, 1, MetricDefault.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

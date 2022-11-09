@@ -201,6 +201,7 @@
             ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/relatedVariables"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/valueIfNotReceived"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/Metric/initValue"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/Metric/useInOptimisation"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//Metrics/MetricDefault">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Metrics/MetricDefault/defaultVal"/>
