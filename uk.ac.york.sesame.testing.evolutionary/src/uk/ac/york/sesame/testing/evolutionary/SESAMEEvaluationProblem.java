@@ -41,9 +41,9 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	private static final long DEFAULT_HARDCODED_DELAY = 100;
 	
-	private static final long DEFAULT_COMPILE_DELAY = 10;
-	private static final long DEFAULT_KILL_DELAY = 10;
-	private static final long DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS = 10;
+	//private static final long DEFAULT_COMPILE_DELAY = 10;
+	private static final long DEFAULT_KILL_DELAY = 5;
+	private static final long DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS = 5;
 	private static final long DEFAULT_WAIT_FOR_FINALISE_DELAY = 5;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
 
@@ -151,7 +151,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	// TODO: this should be a method upon TestCampaign when it is figured out how
 	// to create them with the genmodel
 	public int getNumberOfMetricsInTestCampaign(TestCampaign tc) {
-		return tc.getMetrics().size();
+		return (int)tc.getMetrics().stream().filter(m -> m.isUseInOptimisation()).count();
 	}
 
 	public int getNumberOfObjectives() {

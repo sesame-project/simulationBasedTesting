@@ -2,11 +2,13 @@ package uk.ac.york.sesame.testing.evolutionary;
 
 import org.eclipse.emf.common.util.EList;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -69,9 +71,11 @@ public class MetricConsumer implements Runnable {
 		for (Metric m : metrics) {
 			String name = m.getName();
 			metricLookup.put(name, m);
-			metricIDLookupByPlace.put(name, id);
-			System.out.println("metricIDLookup - metric " + name + " ID = " + id);
-			id++;
+			if (m.isUseInOptimisation()) {
+				metricIDLookupByPlace.put(name, id);
+				id++;
+				System.out.println("metricIDLookup - metric " + name + " ID = " + id);
+			}
 		}
 	}
 
@@ -213,11 +217,14 @@ public class MetricConsumer implements Runnable {
 	public void updateObjectivesJMetal(String metricName, Object val) throws JMetalMetricSettingFailed {
 		try {
 			if (currentSolution.isPresent()) {
+				String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 				SESAMETestSolution sol = currentSolution.get();
 				int num = getMetricIDForCampaign(metricName);
 				Metric m = getMetricForCampaign(metricName);
 				Double d = Double.parseDouble(val.toString());
 				
+				System.out.println("updateObjectivesJMetal - at timestamp " + timeStamp + " - setting metric " + metricName + " (num " + num + ") to value " + val);
+								
 				sol.setObjectiveMetric(num, m);
 				
 				if (m.getDir() == MetricOptimisationDirection.HIGHEST) {
@@ -261,6 +268,7 @@ public class MetricConsumer implements Runnable {
 			String metricName = me.getKey();
 			Metric m = me.getValue();
 			
+			
 			if (metricMessages.containsKey(metricName)) {
 				MetricMessage msg = metricMessages.get(metricName);
 				Object val = msg.getValue();
@@ -281,7 +289,9 @@ public class MetricConsumer implements Runnable {
 					Double val = mDef.getDefaultVal();
 					try {
 						updateMetricsInModel(metricName, val);
-						updateObjectivesJMetal(metricName, val);
+						if (m.isUseInOptimisation()) {
+							updateObjectivesJMetal(metricName, val);
+						}
 					} catch (InvalidName e1) {
 						e1.printStackTrace();
 					} catch (JMetalMetricSettingFailed e) {
