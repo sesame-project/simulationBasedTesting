@@ -54,7 +54,7 @@
     <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_qf-oIEVeEe21kZ_DgzCBrA" propertyName="perception_msgs/DetectedObjectList.object.sector.center_angle" lowerBound="-0.2" upperBound="0.2"/>
     <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_q9g4sEVeEe21kZ_DgzCBrA" propertyName="perception_msgs/DetectedObjectList.object.sector.opening_angle" lowerBound="-0.01" upperBound="0.01"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_yJqqcGK3Ee2BjPek2mKnzA" name="personDetectionDelay">
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_yJqqcGK3Ee2BjPek2mKnzA" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA">
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_2CCDIGK3Ee2BjPek2mKnzA" endTime="160.0"/>
     <latency xmi:id="_3c9wEGK3Ee2BjPek2mKnzA" lowerBound="1.0" upperBound="5.0"/>
   </possibleFuzzingOperations>
