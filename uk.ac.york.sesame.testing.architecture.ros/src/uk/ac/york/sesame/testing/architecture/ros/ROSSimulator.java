@@ -24,6 +24,7 @@ import edu.wpi.rail.jrosbridge.Ros;
 import edu.wpi.rail.jrosbridge.Topic;
 import edu.wpi.rail.jrosbridge.callback.TopicCallback;
 import edu.wpi.rail.jrosbridge.messages.Message;
+import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
@@ -121,7 +122,7 @@ public class ROSSimulator implements ISimulator {
 	 * This is for ROS Topics
 	 */
 	@Override
-	public synchronized void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean shouldFuzz) {
+	public synchronized void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean shouldFuzz) throws SubscriptionFailure {
 		System.out.println("TopicName: " + topicName);
 
 		Topic topic;
@@ -130,6 +131,8 @@ public class ROSSimulator implements ISimulator {
 		} else {
 			topic = (Topic)createTopic(topicName, topicType);
 		}
+		
+		try {
 		
 		// shouldFuzz is ignored for ROS interface
 		topic.subscribe(new TopicCallback() {
@@ -151,9 +154,13 @@ public class ROSSimulator implements ISimulator {
 				}
 			}
 		});
+		} catch (NullPointerException e) {
+			System.out.println("ROS subscription failed - exiting middleware");
+			throw new SubscriptionFailure();
+		}
 	}
 	
-	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
+	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) throws SubscriptionFailure {
 		consumeFromTopic(topicName, topicType, publishToKafka, kafkaTopic, false);
 	}
 	
