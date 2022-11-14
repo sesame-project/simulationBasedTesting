@@ -37,7 +37,7 @@ public class TTSSimulator implements ISimulator {
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	private static final boolean DEBUG_DISPLAY_CLOCK_MESSAGE = true;
-	private static final boolean SUBSCRIBE_TO_CLOCK = false;
+	private static final boolean SUBSCRIBE_TO_CLOCK = true;
 
 	static DataStreamManager dsm = DataStreamManager.getInstance();
 
@@ -176,7 +176,13 @@ public class TTSSimulator implements ISimulator {
 	}
 	
 	private void consumeFromTopicWithoutFuzzing(String topicName, String topicType, Boolean publishToKafka,	String kafkaTopic) {
-		String topicNameIn = topicName + "/in";
+		String topicNameIn;
+		if (topicName.contains("safetyzone")) {
+			topicNameIn = topicName;
+		} else {
+			topicNameIn = topicName + "/in";
+		}
+		
 		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
 		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
 
@@ -282,7 +288,7 @@ public class TTSSimulator implements ISimulator {
 	@Override
 	public void updateTime() {
 		if (SUBSCRIBE_TO_CLOCK) {
-			TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("/model/clock").build();
+			TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("model/clock").build();
 			ClockObserver co = new ClockObserver();
 			asyncStub.subscribe(clockTopic, co);
 		}
@@ -296,8 +302,11 @@ public class TTSSimulator implements ISimulator {
 
 		@Override
 		public void onNext(ROSMessage m) {
-			System.out.println("ClockObserver received value=" + m.getValue());
-			Double time = Double.parseDouble(m.getValue());
+			System.out.println("ClockObserver received value with header timestamp " + m.getTimeStamp());
+			Header h = m.getTimeStamp();
+			time t = h.getStamp();
+			double time = t.getSec() + t.getNsec() / 1000000000;
+			System.out.println("Timestamp recovered from message = " + time);
 			SimCore.getInstance().setTime(time);
 		}
 
