@@ -19,6 +19,7 @@ import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 import simlog.server.*;
 
+import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.Empty;
 
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
@@ -177,6 +178,7 @@ public class TTSSimulator implements ISimulator {
 	
 	private void consumeFromTopicWithoutFuzzing(String topicName, String topicType, Boolean publishToKafka,	String kafkaTopic) {
 		String topicNameIn;
+		// TODO: think of better way to handle this - variable specific information
 		if (topicName.contains("safetyzone")) {
 			topicNameIn = topicName;
 		} else {
@@ -196,7 +198,6 @@ public class TTSSimulator implements ISimulator {
 			ro.setTopic(kafkaTopic);
 			System.out.println("Setting up subscription to : " + inTopic);
 			asyncStub.subscribe(inTopic, ro);
-
 		} catch (StatusRuntimeException e) {
 			System.out.println("RPC failed: {0}" + e.getStatus());
 			return;
@@ -305,7 +306,7 @@ public class TTSSimulator implements ISimulator {
 			System.out.println("ClockObserver received value with header timestamp " + m.getTimeStamp());
 			Header h = m.getTimeStamp();
 			time t = h.getStamp();
-			double time = t.getSec() + t.getNsec() / 1000000000;
+			double time = ((double)t.getNsec()) / 1e9;
 			System.out.println("Timestamp recovered from message = " + time);
 			SimCore.getInstance().setTime(time);
 		}
@@ -345,13 +346,36 @@ public class TTSSimulator implements ISimulator {
 				System.out.println("message: " + m);
 			}
 			EventMessage em = new EventMessage();
+			
 			String type = m.getType();
 			String topic = path;
-			String val = m.getValue();
-
-			em.setValue(val);
 			em.setType(type);
 			em.setTopic(topic);
+			
+			// If there is an empty ROSMessage text value, as in the 
+			// safetyzone messages, the EventMessage value is set from the
+			// underlying ROS message field map
+			String val = m.getValue();
+			if (val == null || val.isEmpty()) {
+				// Convert to string... the metrics responsibility is to 
+				// convert the content to a JSON object here
+				
+				// TODO: this is hardcoded, need to somehow encode this under the type information in the DSL
+				if (m.getType().equals("SafetyZone")) {
+					FieldDescriptor fieldDescriptorType = m.getDescriptorForType().findFieldByName("simulation.server.ROSMessage.type");
+					FieldDescriptor fieldDescriptorSZVal = m.getDescriptorForType().findFieldByName("simulation.server.ROSMessage.safety_zone");
+					if (m.getField(fieldDescriptorType).equals("SafetyZone")) {
+						Object jsonVal = m.getField(fieldDescriptorSZVal);
+						em.setValue(jsonVal.toString());
+					}
+					
+					em.setValue(m.getAllFields().toString());
+				} else {
+					em.setValue(m.getAllFields().toString());
+				}
+			} else {				
+				em.setValue(val);			
+			}
 
 			if (kafkaTopic.isPresent()) {
 				String kTopicName = kafkaTopic.get();
