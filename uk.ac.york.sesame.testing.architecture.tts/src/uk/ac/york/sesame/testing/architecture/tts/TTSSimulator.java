@@ -19,8 +19,10 @@ import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 import simlog.server.*;
 
+import com.google.protobuf.ByteString;
 import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.Empty;
+import com.googlecode.protobuf.format.JsonFormat;
 
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
@@ -353,28 +355,15 @@ public class TTSSimulator implements ISimulator {
 			em.setTopic(topic);
 			
 			// If there is an empty ROSMessage text value, as in the 
-			// safetyzone messages, the EventMessage value is set from the
-			// underlying ROS message field map
+			// safetyzone messages, the EventMessage value is set to
+			// the JSON representation of the protobuf ROS message
 			String val = m.getValue();
 			if (val == null || val.isEmpty()) {
-				// Convert to string... the metrics responsibility is to 
-				// convert the content to a JSON object here
-				
-				// TODO: this is hardcoded, need to somehow encode this under the type information in the DSL
-				if (m.getType().equals("SafetyZone")) {
-					FieldDescriptor fieldDescriptorType = m.getDescriptorForType().findFieldByName("simulation.server.ROSMessage.type");
-					FieldDescriptor fieldDescriptorSZVal = m.getDescriptorForType().findFieldByName("simulation.server.ROSMessage.safety_zone");
-					if (m.getField(fieldDescriptorType).equals("SafetyZone")) {
-						Object jsonVal = m.getField(fieldDescriptorSZVal);
-						em.setValue(jsonVal.toString());
-					}
-					
-					em.setValue(m.getAllFields().toString());
-				} else {
-					em.setValue(m.getAllFields().toString());
-				}
-			} else {				
-				em.setValue(val);			
+				JsonFormat jsf = new JsonFormat();
+				String jsonString = jsf.printToString(m);
+				em.setValue(jsonString);
+			} else {
+				em.setValue(val);
 			}
 
 			if (kafkaTopic.isPresent()) {
