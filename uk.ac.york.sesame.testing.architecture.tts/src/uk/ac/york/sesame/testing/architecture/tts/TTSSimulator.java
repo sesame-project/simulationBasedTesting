@@ -19,8 +19,6 @@ import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 import simlog.server.*;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.Empty;
 import com.googlecode.protobuf.format.JsonFormat;
 
@@ -114,7 +112,7 @@ public class TTSSimulator implements ISimulator {
 		}
 
 		// TODO: this needs an option for setting a custom JVM here?
-		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags /tmp/runargs.ini";
 		ExptHelper.runScriptNewThread(workingDir, cmd);
 
 		// Need to wait the delay
@@ -152,18 +150,18 @@ public class TTSSimulator implements ISimulator {
 		String topicNameOut = topicName + "/out";
 
 		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-		TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(topicNameShadow).build();
-		TopicDescriptor outTopic = TopicDescriptor.newBuilder().setPath(topicNameOut).build();
+		TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(topicNameShadow).build();	
+//		TopicDescriptor outTopic = TopicDescriptor.newBuilder().setPath(topicNameOut).build();
 
 		// InjectRequest requestInj =
 		// InjectRequest.newBuilder().setInjected(shadowTopic).build();
 		InjectRequest requ = InjectRequest.newBuilder().setInjected(shadowTopic).setTarget(inTopic).build();
-		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-
-		Optional<String> kTopic = Optional.empty();
-		if (publishToKafka) {
-			kTopic = Optional.of(kafkaTopic);
-		}
+//		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
+//
+//		Optional<String> kTopic = Optional.empty();
+//		if (publishToKafka) {
+//			kTopic = Optional.of(kafkaTopic);
+//		}
 
 		try {
 			ROSObserver roInject = new ROSObserver(topicNameIn);
@@ -188,12 +186,12 @@ public class TTSSimulator implements ISimulator {
 		}
 		
 		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
+//		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
 
-		Optional<String> kTopic = Optional.empty();
-		if (publishToKafka) {
-			kTopic = Optional.of(kafkaTopic);
-		}
+//		Optional<String> kTopic = Optional.empty();
+//		if (publishToKafka) {
+//			kTopic = Optional.of(kafkaTopic);
+//		}
 
 		try {
 			ROSObserver ro = new ROSObserver(topicNameIn);
