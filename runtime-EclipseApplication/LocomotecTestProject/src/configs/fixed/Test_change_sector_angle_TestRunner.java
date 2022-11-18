@@ -32,6 +32,7 @@ import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.*;
 
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
+import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 
 import metrics.custom.*;
@@ -107,35 +108,60 @@ public class Test_change_sector_angle_TestRunner {
 		Thread subscriber_thread__base_scan = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _base_scan Starts");
-				rosSim.consumeFromTopic("/base_scan", "sensor_msgs/LaserScan", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/base_scan", "sensor_msgs/LaserScan", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		subscriber_thread__base_scan.start();
 		Thread subscriber_thread__person_detector_persons = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _person_detector_persons Starts");
-				rosSim.consumeFromTopic("/person_detector/persons", "perception_msgs/DetectedObjectList", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/person_detector/persons", "perception_msgs/DetectedObjectList", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		subscriber_thread__person_detector_persons.start();
 		Thread subscriber_thread__virtual_uvc_meter_s1_measurements = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _virtual_uvc_meter_s1_measurements Starts");
-				rosSim.consumeFromTopic("/virtual_uvc_meter_s1/measurements", "std_msgs/Float64MultiArray", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/virtual_uvc_meter_s1/measurements", "std_msgs/Float64MultiArray", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		subscriber_thread__virtual_uvc_meter_s1_measurements.start();
 		Thread subscriber_thread__amcl_pose = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _amcl_pose Starts");
-				rosSim.consumeFromTopic("/amcl_pose", "geometry_msgs/PoseWithCovarianceStamped", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/amcl_pose", "geometry_msgs/PoseWithCovarianceStamped", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		subscriber_thread__amcl_pose.start();
 		Thread subscriber_thread__virtual_uvc_meter_p1_measurements = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _virtual_uvc_meter_p1_measurements Starts");
-				rosSim.consumeFromTopic("/virtual_uvc_meter_p1/measurements", "std_msgs/Float64MultiArray", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/virtual_uvc_meter_p1/measurements", "std_msgs/Float64MultiArray", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		subscriber_thread__virtual_uvc_meter_p1_measurements.start();

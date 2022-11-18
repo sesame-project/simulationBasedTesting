@@ -32,6 +32,7 @@ import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.*;
 
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
+import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 
 import metrics.custom.*;
@@ -107,14 +108,24 @@ public class Test_Delay_1Second {
 		Thread subscriber_thread__base_scan = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _base_scan Starts");
-				rosSim.consumeFromTopic("/base_scan", "sensor_msgs/LaserScan", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/base_scan", "sensor_msgs/LaserScan", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		subscriber_thread__base_scan.start();
 		Thread subscriber_thread__move_base_simple_goal = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _move_base_simple_goal Starts");
-				rosSim.consumeFromTopic("/move_base_simple/goal", "double", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/move_base_simple/goal", "double", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		subscriber_thread__move_base_simple_goal.start();

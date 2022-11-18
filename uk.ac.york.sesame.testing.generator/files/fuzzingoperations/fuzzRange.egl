@@ -122,7 +122,7 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 			}
 			
 		[% } else if (parsingMethod.equalsIgnoreCase("STRING")) { %]
-			if (value.getTopic().contains(topic)) {
+			if (value.getTopic().contains(topic) && isReadyNow()) {
 				[* TODO: this will apply them sequentially? should it? *]
 				[% for (aParameter in fuzzOp.valueSet) { %]
 				double newValue = new DoubleRange([%= aParameter.lowerBound %], [%=aParameter.upperBound %]).generateInRange(rng);
