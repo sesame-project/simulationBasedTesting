@@ -215,8 +215,9 @@ public class ROSSimulator implements ISimulator {
 	}
 
 	@Override
-	public void updateTime() {
+	public void updateTime() throws SubscriptionFailure {
 		Topic topic = (Topic) createTopic("/clock", "rosgraph_msgs/Clock");
+		try {
 		topic.subscribe(new TopicCallback() {
 			@Override
 			public void handleMessage(Message message) {
@@ -232,7 +233,9 @@ public class ROSSimulator implements ISimulator {
 				SimCore.getInstance().setTime(time);
 			}
 		});
-		// TODO: can we take this loop out?
-		//while(true) {}
+		} catch (NullPointerException e) {
+			System.out.println("ROS subscription failed - exiting middleware");
+			throw new SubscriptionFailure();
+		}
 	}
 }    

@@ -34,7 +34,7 @@ public class SimMain {
 //			ArrayList<Topic> topicsList = new ArrayList<Topic>();
 //			topicsList.add(topic);
 //			sim.redirectTopics(topicsList);
-			rosSim.updateTime();
+			//rosSim.updateTime();
 	}
 
 }

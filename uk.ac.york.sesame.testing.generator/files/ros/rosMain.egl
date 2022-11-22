@@ -159,7 +159,16 @@ public class [%= testNameString %]_TestRunner {
 		Thread time_subscriber = new Thread() {
 			public void run() {
 				System.out.println("updateTime starting");
-				rosSim.updateTime();
+				try {
+					rosSim.updateTime();
+				} catch (SubscriptionFailure e) {
+					if (QUIT_MIDDLEWARE_ON_TOPIC_SUBSCRIPTION_FAILURE) {
+						System.out.println("Subscription to time failed - Exiting Middleware");
+						System.exit(1);
+					} else {
+						System.out.println("Subscription to time failed - Continuing");
+					}
+				}
 			}
 		};
 		time_subscriber.start();
