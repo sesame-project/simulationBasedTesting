@@ -9,6 +9,7 @@ import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
+import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 
 public class TestMain {
 
@@ -24,7 +25,12 @@ public class TestMain {
 		Thread subscriber_thread = new Thread() {
 			public void run() {
 				System.out.println("Subscriber Starts");
-				rosSim.consumeFromTopic("/turtle1/cmd_vel", "geometry_msgs/Twist", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/turtle1/cmd_vel", "geometry_msgs/Twist", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		

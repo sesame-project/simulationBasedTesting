@@ -173,6 +173,8 @@ message SafetyZone{
     Header header = 1;
     string zone = 2;
     float level = 3;
+    string object1 = 4;
+    string object2 = 5;
 }
 
 

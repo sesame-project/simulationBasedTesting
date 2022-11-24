@@ -71,6 +71,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="populationSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="iterations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RepeatedExecution" eSuperTypes="#//TestGenerationApproach">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testToRepeat" lowerBound="1"
+        eType="#//Test"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repeatCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
   <eSubpackages name="FuzzingOperations" nsURI="FuzzingOperations" nsPrefix="">
     <eClassifiers xsi:type="ecore:EClass" name="FuzzingOperation" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

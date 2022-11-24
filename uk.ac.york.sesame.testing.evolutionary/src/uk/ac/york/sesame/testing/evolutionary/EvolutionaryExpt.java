@@ -3,8 +3,10 @@ package uk.ac.york.sesame.testing.evolutionary;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.operator.selection.SelectionOperator;
@@ -14,15 +16,22 @@ import org.uma.jmetal.util.comparator.DominanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationApproach;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
 import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
-
+import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging;
+import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.RepeatedRun;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEConditionsCrossover;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEConditionsCrossoverRandomised;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEMutationOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESimpleMutation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESwapAttacksFromTestsCrossover;
+import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
 public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
@@ -51,20 +60,23 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	private double crossoverProb = 1.0; 
 	
 	private String logPath;
+	
+	private TestingSpace testingSpace;
 
 	private String scenarioStr;
 	
-	private String spaceModelFileName;
-	private String campaignName;
 	private String codeGenerationDirectory;
 	private String orchestratorBasePath;
 	private int maxIterations;
 	private int conditionDepth;
 	private String grammarPath;
+	
+	private Optional<TestCampaign> testCampaign_o; 
+	
+	private SESAMEModelLoader loader;
+	private Resource testSpaceModel;
 
-	public EvolutionaryExpt(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, int maxIterations, int populationSize, int offspringPopSize, boolean conditionBased, int conditionDepth, String grammarPath) {
-		this.spaceModelFileName = spaceModelFileName;
-		this.campaignName = campaignName;
+	public EvolutionaryExpt(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, int maxIterations, int populationSize, int offspringPopSize, boolean conditionBased, int conditionDepth, String grammarPath) throws EolModelLoadingException {
 		this.codeGenerationDirectory = codeGenerationDirectory;
 		this.populationSize = populationSize;
 		this.offspringPopulationSize = offspringPopSize;
@@ -73,20 +85,25 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		this.conditionBased = conditionBased;
 		this.conditionDepth = conditionDepth;
 		this.grammarPath = grammarPath;
+		
+		loader = new SESAMEModelLoader(spaceModelFileName);
+		testSpaceModel = loader.loadTestingSpace();
+		testingSpace = loader.getTestingSpace(testSpaceModel);
+		testCampaign_o = loader.getTestCampaign(testSpaceModel, campaignName);
 	}
 	
 	public void runExperiment() {
 		Random crossoverRNG = new Random();
 		Random mutationRNG = new Random();
-
+		
 		SESAMEEvaluationProblem problem;
 
 		try {
-			problem = new SESAMEEvaluationProblem(orchestratorBasePath, spaceModelFileName, campaignName, codeGenerationDirectory, conditionBased, conditionDepth, grammarPath);
+			problem = new SESAMEEvaluationProblem(orchestratorBasePath, loader, testSpaceModel, testingSpace, testCampaign_o, codeGenerationDirectory, conditionBased, conditionDepth, grammarPath);
 			TestCampaign selectedCampaign = problem.getCampaign();
 			ConditionGenerator cg = problem.getCondGenerator();
 
-			Algorithm<List<SESAMETestSolution>> algorithm;
+			Algorithm<List<SESAMETestSolution>> algorithm = null;
 			
 			SESAMECrossoverOperation crossover;
 			SESAMEMutationOperation mutation;
@@ -111,11 +128,25 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			int matingPoolSize = populationSize;
 			
 			// TODO: the algorithm - here NSGA should be selectable from the TestCampaign model
-			algorithm = new NSGAII_ResultLogging(selectedCampaign, scenarioStr, problem, maxIterations, populationSize, matingPoolSize,
+			
+			TestGenerationApproach app = selectedCampaign.getApproach();
+			if (app instanceof NSGAEvolutionaryAlgorithm) { 
+				// TODO: read relevant parameters from the TestGenerationApproach here 
+				algorithm = new NSGAII_ResultLogging(selectedCampaign, scenarioStr, problem, maxIterations, populationSize, matingPoolSize,
 					offspringPopulationSize, crossover, mutation, selection, dominanceComparator, evaluator);
+			}
+			
+			if (app instanceof RepeatedExecution) {
+				RepeatedExecution repeatedEx = (RepeatedExecution)app;
+				Test fixedTest = repeatedEx.getTestToRepeat();
+				int repeatCount = repeatedEx.getRepeatCount();
+				algorithm = new RepeatedRun(fixedTest, repeatCount, evaluator, problem);
+			}
 
-			long startTime = System.currentTimeMillis();
-			algorithm.run();
+			if (algorithm != null) {
+				long startTime = System.currentTimeMillis();
+				algorithm.run();
+			
 			
 			// This is necessary to ensure the final test results are properly reflected in the model
 			problem.ensureFinalModelSaved();
@@ -144,6 +175,9 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			}
 			
 			System.out.println("Done!");
+			} else {
+				System.out.println("No valid test generation selected");
+			}
 		} catch (IOException e) {
 			
 			e.printStackTrace();

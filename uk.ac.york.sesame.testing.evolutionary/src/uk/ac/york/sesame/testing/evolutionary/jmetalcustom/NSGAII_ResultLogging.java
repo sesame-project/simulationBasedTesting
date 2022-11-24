@@ -1,4 +1,4 @@
-package uk.ac.york.sesame.testing.evolutionary;
+package uk.ac.york.sesame.testing.evolutionary.jmetalcustom;
 
 import org.eclipse.emf.common.util.EList;
 import org.uma.jmetal.algorithm.impl.AbstractGeneticAlgorithm;
@@ -20,6 +20,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
+import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 
 import java.io.FileWriter;

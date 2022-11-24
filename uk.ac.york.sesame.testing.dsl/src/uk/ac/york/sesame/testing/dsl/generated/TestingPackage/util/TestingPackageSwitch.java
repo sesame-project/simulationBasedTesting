@@ -151,6 +151,13 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TestingPackagePackage.REPEATED_EXECUTION: {
+				RepeatedExecution repeatedExecution = (RepeatedExecution)theEObject;
+				T result = caseRepeatedExecution(repeatedExecution);
+				if (result == null) result = caseTestGenerationApproach(repeatedExecution);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -347,6 +354,21 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNSGAEvolutionaryAlgorithm(NSGAEvolutionaryAlgorithm object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Repeated Execution</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Repeated Execution</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRepeatedExecution(RepeatedExecution object) {
 		return null;
 	}
 

@@ -57,6 +57,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGAEvolutionaryAlgorithm/populationSize"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGAEvolutionaryAlgorithm/iterations"/>
     </genClasses>
+    <genClasses ecoreClass="TestingMM.ecore#//RepeatedExecution">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//RepeatedExecution/testToRepeat"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//RepeatedExecution/repeatCount"/>
+    </genClasses>
     <nestedGenPackages prefix="FuzzingOperations" disposableProviderFactory="true"
         ecorePackage="TestingMM.ecore#//FuzzingOperations">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="TestingMM.ecore#//FuzzingOperations/OfflineOperationTime">

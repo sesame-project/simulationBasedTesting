@@ -112,7 +112,7 @@ public class TTSSimulator implements ISimulator {
 		}
 
 		// TODO: this needs an option for setting a custom JVM here?
-		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags /tmp/runargs.ini";
+		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
 		ExptHelper.runScriptNewThread(workingDir, cmd);
 
 		// Need to wait the delay

@@ -98,6 +98,11 @@ class NSGAEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 	attr int iterations;
 }
 
+class RepeatedExecution extends TestGenerationApproach {
+	ref Test[1] testToRepeat;
+	attr int repeatCount;
+}
+
 package FuzzingOperations {
 
 abstract class FuzzingOperation {

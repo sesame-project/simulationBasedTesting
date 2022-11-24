@@ -66,6 +66,7 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 			case TestingPackagePackage.TIME_BASED_END: return createTimeBasedEnd();
 			case TestingPackagePackage.RANDOM_TEST_GENERATION: return createRandomTestGeneration();
 			case TestingPackagePackage.NSGA_EVOLUTIONARY_ALGORITHM: return createNSGAEvolutionaryAlgorithm();
+			case TestingPackagePackage.REPEATED_EXECUTION: return createRepeatedExecution();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -189,6 +190,16 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	public NSGAEvolutionaryAlgorithm createNSGAEvolutionaryAlgorithm() {
 		NSGAEvolutionaryAlgorithmImpl nsgaEvolutionaryAlgorithm = new NSGAEvolutionaryAlgorithmImpl();
 		return nsgaEvolutionaryAlgorithm;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RepeatedExecution createRepeatedExecution() {
+		RepeatedExecutionImpl repeatedExecution = new RepeatedExecutionImpl();
+		return repeatedExecution;
 	}
 
 	/**

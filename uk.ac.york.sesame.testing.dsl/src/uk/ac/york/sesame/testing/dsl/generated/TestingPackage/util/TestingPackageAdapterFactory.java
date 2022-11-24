@@ -120,6 +120,10 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 				return createNSGAEvolutionaryAlgorithmAdapter();
 			}
 			@Override
+			public Adapter caseRepeatedExecution(RepeatedExecution object) {
+				return createRepeatedExecutionAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -318,6 +322,20 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNSGAEvolutionaryAlgorithmAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution <em>Repeated Execution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution
+	 * @generated
+	 */
+	public Adapter createRepeatedExecutionAdapter() {
 		return null;
 	}
 

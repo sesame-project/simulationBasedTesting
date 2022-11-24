@@ -656,6 +656,52 @@ public interface TestingPackagePackage extends EPackage {
 	int NSGA_EVOLUTIONARY_ALGORITHM_OPERATION_COUNT = EVOLUTIONARY_ALGORITHM_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl <em>Repeated Execution</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRepeatedExecution()
+	 * @generated
+	 */
+	int REPEATED_EXECUTION = 13;
+
+	/**
+	 * The feature id for the '<em><b>Test To Repeat</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATED_EXECUTION__TEST_TO_REPEAT = TEST_GENERATION_APPROACH_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Repeat Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATED_EXECUTION__REPEAT_COUNT = TEST_GENERATION_APPROACH_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Repeated Execution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATED_EXECUTION_FEATURE_COUNT = TEST_GENERATION_APPROACH_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Repeated Execution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATED_EXECUTION_OPERATION_COUNT = TEST_GENERATION_APPROACH_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus <em>Result Set Status</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -663,7 +709,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getResultSetStatus()
 	 * @generated
 	 */
-	int RESULT_SET_STATUS = 13;
+	int RESULT_SET_STATUS = 14;
 
 
 	/**
@@ -1083,6 +1129,38 @@ public interface TestingPackagePackage extends EPackage {
 	EAttribute getNSGAEvolutionaryAlgorithm_Iterations();
 
 	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution <em>Repeated Execution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Repeated Execution</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution
+	 * @generated
+	 */
+	EClass getRepeatedExecution();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution#getTestToRepeat <em>Test To Repeat</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Test To Repeat</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution#getTestToRepeat()
+	 * @see #getRepeatedExecution()
+	 * @generated
+	 */
+	EReference getRepeatedExecution_TestToRepeat();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution#getRepeatCount <em>Repeat Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Repeat Count</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution#getRepeatCount()
+	 * @see #getRepeatedExecution()
+	 * @generated
+	 */
+	EAttribute getRepeatedExecution_RepeatCount();
+
+	/**
 	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus <em>Result Set Status</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1452,6 +1530,32 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NSGA_EVOLUTIONARY_ALGORITHM__ITERATIONS = eINSTANCE.getNSGAEvolutionaryAlgorithm_Iterations();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl <em>Repeated Execution</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRepeatedExecution()
+		 * @generated
+		 */
+		EClass REPEATED_EXECUTION = eINSTANCE.getRepeatedExecution();
+
+		/**
+		 * The meta object literal for the '<em><b>Test To Repeat</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPEATED_EXECUTION__TEST_TO_REPEAT = eINSTANCE.getRepeatedExecution_TestToRepeat();
+
+		/**
+		 * The meta object literal for the '<em><b>Repeat Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REPEATED_EXECUTION__REPEAT_COUNT = eINSTANCE.getRepeatedExecution_RepeatCount();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus <em>Result Set Status</em>}' enum.

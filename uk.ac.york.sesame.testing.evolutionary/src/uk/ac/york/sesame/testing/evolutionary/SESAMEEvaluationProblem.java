@@ -62,7 +62,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	
 	private ConditionGenerator condGenerator;
 
-	private Resource testSpaceModel;
+	private SESAMEModelLoader loader;
 	private TestCampaign selectedCampaign;
 	private TestingSpace testingSpace;
 	private MRS mrs;
@@ -70,7 +70,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private SESAMEEGLExecutor eglEx;
 	private String codeGenerationDirectory;
 
-	private SESAMEModelLoader loader;
 	private MetricConsumer metricConsumer;
 	private ControlProducer controlProducer;
 
@@ -101,25 +100,19 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		t.start();
 	}
 
-	public SESAMEEvaluationProblem(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
+	public SESAMEEvaluationProblem(String orchestratorBasePath, SESAMEModelLoader loader, Resource testingSpaceModel, TestingSpace testingSpace, Optional<TestCampaign> tc_o, String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
 			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException, MissingGrammarFile {
-		this.spaceModelFileName = spaceModelFileName;
-		this.campaignName = campaignName;
 		this.codeGenerationDirectory = codeGenerationDirectory;
 		this.orchestratorBasePath = orchestratorBasePath;
 		this.conditionBased = conditionBased;
-		loader = new SESAMEModelLoader(spaceModelFileName);
-		testSpaceModel = loader.loadTestingSpace();
-		
-		Optional<TestCampaign> tc_o = loader.getTestCampaign(testSpaceModel, campaignName);
-			
+		this.loader = loader;
+
 		// TODO: mrsModelFile is not currently used - until the bug is fixed and there
 		// is a seperate model again
 		//String __mrsModelFile = "testingMRS.model";
 		//eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
-		
-		testingSpace = loader.getTestingSpace(testSpaceModel);
 		mrs = testingSpace.getMrs();
+		
 
 		if (tc_o.isPresent()) {
 			selectedCampaign = tc_o.get();

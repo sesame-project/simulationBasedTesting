@@ -1,7 +1,7 @@
 [%
 	var campaignName = "firstExperiment";
 	var filterResultSetString1 = "NONDOM";
-	var filterResultSetString2 = "intermediate-1000";
+	var filterResultSetString2 = "intermediate-100";
 	var targetType = Testing!ResultSetStatus#INTERMEDIATE;
 	
 	// TODO: this should be a parameter name

@@ -103,6 +103,15 @@ public interface TestingPackageFactory extends EFactory {
 	NSGAEvolutionaryAlgorithm createNSGAEvolutionaryAlgorithm();
 
 	/**
+	 * Returns a new object of class '<em>Repeated Execution</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Repeated Execution</em>'.
+	 * @generated
+	 */
+	RepeatedExecution createRepeatedExecution();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

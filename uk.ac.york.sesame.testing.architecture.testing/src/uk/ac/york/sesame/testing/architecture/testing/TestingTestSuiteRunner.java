@@ -16,6 +16,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
 import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
+import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
@@ -76,7 +77,12 @@ public class TestingTestSuiteRunner {
 		Thread subscriber_thread__turtle1_cmd_vel = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _turtle1_cmd_vel Starts");
-				rosSim.consumeFromTopic("/turtle1/cmd_vel", "geometry_msgs/Twist", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/turtle1/cmd_vel", "geometry_msgs/Twist", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		subscriber_thread__turtle1_cmd_vel.start();

@@ -30,6 +30,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.Metri
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RandomTestGeneration;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPackage;
@@ -146,6 +147,13 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * @generated
 	 */
 	private EClass nsgaEvolutionaryAlgorithmEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass repeatedExecutionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -593,6 +601,33 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRepeatedExecution() {
+		return repeatedExecutionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRepeatedExecution_TestToRepeat() {
+		return (EReference)repeatedExecutionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepeatedExecution_RepeatCount() {
+		return (EAttribute)repeatedExecutionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getResultSetStatus() {
 		return resultSetStatusEEnum;
 	}
@@ -677,6 +712,10 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEAttribute(nsgaEvolutionaryAlgorithmEClass, NSGA_EVOLUTIONARY_ALGORITHM__POPULATION_SIZE);
 		createEAttribute(nsgaEvolutionaryAlgorithmEClass, NSGA_EVOLUTIONARY_ALGORITHM__ITERATIONS);
 
+		repeatedExecutionEClass = createEClass(REPEATED_EXECUTION);
+		createEReference(repeatedExecutionEClass, REPEATED_EXECUTION__TEST_TO_REPEAT);
+		createEAttribute(repeatedExecutionEClass, REPEATED_EXECUTION__REPEAT_COUNT);
+
 		// Create enums
 		resultSetStatusEEnum = createEEnum(RESULT_SET_STATUS);
 	}
@@ -729,6 +768,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		randomTestGenerationEClass.getESuperTypes().add(this.getTestGenerationApproach());
 		evolutionaryAlgorithmEClass.getESuperTypes().add(this.getTestGenerationApproach());
 		nsgaEvolutionaryAlgorithmEClass.getESuperTypes().add(this.getEvolutionaryAlgorithm());
+		repeatedExecutionEClass.getESuperTypes().add(this.getTestGenerationApproach());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(testingSpaceEClass, TestingSpace.class, "TestingSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -782,6 +822,10 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEClass(nsgaEvolutionaryAlgorithmEClass, NSGAEvolutionaryAlgorithm.class, "NSGAEvolutionaryAlgorithm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNSGAEvolutionaryAlgorithm_PopulationSize(), ecorePackage.getEInt(), "populationSize", null, 0, 1, NSGAEvolutionaryAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNSGAEvolutionaryAlgorithm_Iterations(), ecorePackage.getEInt(), "iterations", null, 0, 1, NSGAEvolutionaryAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(repeatedExecutionEClass, RepeatedExecution.class, "RepeatedExecution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRepeatedExecution_TestToRepeat(), this.getTest(), null, "testToRepeat", null, 1, 1, RepeatedExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRepeatedExecution_RepeatCount(), ecorePackage.getEInt(), "repeatCount", null, 0, 1, RepeatedExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(resultSetStatusEEnum, ResultSetStatus.class, "ResultSetStatus");

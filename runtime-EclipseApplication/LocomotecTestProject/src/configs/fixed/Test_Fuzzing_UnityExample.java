@@ -125,7 +125,12 @@ public class Test_Fuzzing_UnityExample {
 		Thread time_subscriber = new Thread() {
 			public void run() {
 				System.out.println("updateTime starting");
-				rosSim.updateTime();
+				try {
+					rosSim.updateTime();
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		time_subscriber.start();

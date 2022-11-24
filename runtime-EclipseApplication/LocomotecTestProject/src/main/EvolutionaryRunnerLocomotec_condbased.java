@@ -1,5 +1,7 @@
 package main;
 
+import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
+
 import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
 
 public class EvolutionaryRunnerLocomotec_condbased {
@@ -37,7 +39,13 @@ public class EvolutionaryRunnerLocomotec_condbased {
 		final boolean conditionBased = true;
 		final int maxConditionDepth = 4;
 		
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, maxConditionDepth, grammarPath);
-		jmetalExpt.runExperiment();
+		EvolutionaryExpt jmetalExpt;
+		try {
+			jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, maxConditionDepth, grammarPath);
+			jmetalExpt.runExperiment();
+		} catch (EolModelLoadingException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
