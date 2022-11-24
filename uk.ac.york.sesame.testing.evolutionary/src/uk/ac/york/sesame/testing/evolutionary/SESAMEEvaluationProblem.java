@@ -100,11 +100,12 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		t.start();
 	}
 
-	public SESAMEEvaluationProblem(String orchestratorBasePath, SESAMEModelLoader loader, Resource testingSpaceModel, TestingSpace testingSpace, Optional<TestCampaign> tc_o, String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
+	public SESAMEEvaluationProblem(String orchestratorBasePath, SESAMEModelLoader loader, String spaceModelFileName, Resource testingSpaceModel, TestingSpace testingSpace, Optional<TestCampaign> tc_o, String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
 			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException, MissingGrammarFile {
 		this.codeGenerationDirectory = codeGenerationDirectory;
 		this.orchestratorBasePath = orchestratorBasePath;
 		this.conditionBased = conditionBased;
+		this.spaceModelFileName = spaceModelFileName;
 		this.loader = loader;
 
 		// TODO: mrsModelFile is not currently used - until the bug is fixed and there
