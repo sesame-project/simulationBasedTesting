@@ -1,0 +1,924 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="FuzzingOperations" xmlns:_2="StandardGrammar" xmlns:_3="MRSPackage" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_Ay798DR2Ee2fbo-0GeUOEw" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+    <res xsi:type="FileStreamResult" xmi:id="_f6_EgDT5Ee2Mes87OmSvXg" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/fuzzingOpTimes"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_KG4H8C9nEe2WLcT3ce_NEw" name="wallCollisions">
+    <valueIfNotReceived xmi:id="_6-WJIDR1Ee2fbo-0GeUOEw"/>
+    <streams xsi:type="InputStream" xmi:id="_KG4H8S9nEe2WLcT3ce_NEw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_wqXy8DT5Ee2Mes87OmSvXg" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/wallCollisions"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_HeP5sDNVEe2BrK8BAi5Xqg" name="distanceFromStartPoint" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_9HcjoDR1Ee2fbo-0GeUOEw" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_SER4sDNfEe2BrK8BAi5Xqg"/>
+    <res xsi:type="FileStreamResult" xmi:id="_0KTdgDT5Ee2Mes87OmSvXg" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/distanceFromStartPoint"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_qYdz4ET7Ee21kZ_DgzCBrA" name="uvDisinfectionSurface" relatedVariables="_2DLWQET1Ee21kZ_DgzCBrA _RiXWoF_OEe2iJNiHhmRZ1Q _S58NkF_OEe2iJNiHhmRZ1Q" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_qYdz4UT7Ee21kZ_DgzCBrA"/>
+    <streams xsi:type="InputStream" xmi:id="_qYdz4kT7Ee21kZ_DgzCBrA"/>
+    <res xsi:type="FileStreamResult" xmi:id="_qYdz40T7Ee21kZ_DgzCBrA" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/uvDisinfectionSurfaceMetric"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_69xA8F_QEe2iJNiHhmRZ1Q" name="uvExposureForHuman" relatedVariables="_SOhUwEMAEe2m59gLLXjQ5g" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_69xA8V_QEe2iJNiHhmRZ1Q"/>
+    <streams xsi:type="InputStream" xmi:id="_69xA8l_QEe2iJNiHhmRZ1Q"/>
+    <res xsi:type="FileStreamResult" xmi:id="_69xA81_QEe2iJNiHhmRZ1Q" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/uvExposureForHuman"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_VMrwoF_sEe2ZeaxTRixTeQ" name="uvDisinfectionSurface_s1" dir="LOWEST" relatedVariables="_2DLWQET1Ee21kZ_DgzCBrA _RiXWoF_OEe2iJNiHhmRZ1Q _S58NkF_OEe2iJNiHhmRZ1Q">
+    <valueIfNotReceived xmi:id="_VMrwoV_sEe2ZeaxTRixTeQ" defaultVal="1000000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_VMrwol_sEe2ZeaxTRixTeQ"/>
+    <res xsi:type="FileStreamResult" xmi:id="_VMrwo1_sEe2ZeaxTRixTeQ" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/uvDisinfectionSurfaceMetric"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_VlBYIF_sEe2ZeaxTRixTeQ" name="uvDisinfectionSurface_s2" dir="LOWEST" relatedVariables="_2DLWQET1Ee21kZ_DgzCBrA _RiXWoF_OEe2iJNiHhmRZ1Q _S58NkF_OEe2iJNiHhmRZ1Q">
+    <valueIfNotReceived xmi:id="_VlBYIV_sEe2ZeaxTRixTeQ" defaultVal="1000000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_VlBYIl_sEe2ZeaxTRixTeQ"/>
+    <res xsi:type="FileStreamResult" xmi:id="_VlBYI1_sEe2ZeaxTRixTeQ" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/uvDisinfectionSurfaceMetric"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_VuBjIF_sEe2ZeaxTRixTeQ" name="uvDisinfectionSurface_s3" dir="LOWEST" relatedVariables="_2DLWQET1Ee21kZ_DgzCBrA _RiXWoF_OEe2iJNiHhmRZ1Q _S58NkF_OEe2iJNiHhmRZ1Q">
+    <valueIfNotReceived xmi:id="_VuBjIV_sEe2ZeaxTRixTeQ" defaultVal="1000000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_VuBjIl_sEe2ZeaxTRixTeQ"/>
+    <res xsi:type="FileStreamResult" xmi:id="_VuBjI1_sEe2ZeaxTRixTeQ" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/uvDisinfectionSurfaceMetric"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_aDH7IF_sEe2ZeaxTRixTeQ" name="uvExposureForHuman_p1" relatedVariables="_SOhUwEMAEe2m59gLLXjQ5g">
+    <valueIfNotReceived xmi:id="_aDH7IV_sEe2ZeaxTRixTeQ"/>
+    <streams xsi:type="InputStream" xmi:id="_aDH7Il_sEe2ZeaxTRixTeQ"/>
+    <res xsi:type="FileStreamResult" xmi:id="_aDH7I1_sEe2ZeaxTRixTeQ" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/uvExposureForHuman"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_pEhtMGYgEe2od_Dlf1P00w" name="distanceFromSurfaceS1Point" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_pEhtMWYgEe2od_Dlf1P00w" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_pEhtMmYgEe2od_Dlf1P00w"/>
+    <res xsi:type="FileStreamResult" xmi:id="_pEhtM2YgEe2od_Dlf1P00w" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/distanceFromSurfaceS1Point"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_rhNLAGYgEe2od_Dlf1P00w" name="distanceFromSurfaceS2Point" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_rhNLAWYgEe2od_Dlf1P00w" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_rhNLAmYgEe2od_Dlf1P00w"/>
+    <res xsi:type="FileStreamResult" xmi:id="_rhNLA2YgEe2od_Dlf1P00w" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/distanceFromSurfaceS2Point"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_vLlLAGYgEe2od_Dlf1P00w" name="distanceFromSurfaceS3Point" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_vLlLAWYgEe2od_Dlf1P00w" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_vLlLAmYgEe2od_Dlf1P00w"/>
+    <res xsi:type="FileStreamResult" xmi:id="_vLlLA2YgEe2od_Dlf1P00w" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/distanceFromSurfaceS3Point"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_3780cGYgEe2od_Dlf1P00w" name="distanceFromPerson" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_3780cWYgEe2od_Dlf1P00w" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_3780cmYgEe2od_Dlf1P00w"/>
+    <res xsi:type="FileStreamResult" xmi:id="_3780c2YgEe2od_Dlf1P00w" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/distanceFromPerson"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_QKc88ET9Ee21kZ_DgzCBrA" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_QKc88UT9Ee21kZ_DgzCBrA" endTime="160.0"/>
+    <frequency xmi:id="_QKc88kT9Ee21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_EpCRIEVeEe21kZ_DgzCBrA" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" isRelative="true">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_Vs7N8EV0Ee2tmpoSRkgLMw" endTime="160.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_qf-oIEVeEe21kZ_DgzCBrA" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-1.5" upperBound="1.5"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:LatencyNetworkOperation" xmi:id="_yJqqcGK3Ee2BjPek2mKnzA" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_2CCDIGK3Ee2BjPek2mKnzA" endTime="160.0"/>
+    <latency xmi:id="_3c9wEGK3Ee2BjPek2mKnzA" lowerBound="1.0" upperBound="5.0"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_FQcuEGK4Ee2BjPek2mKnzA" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_FQcuEWK4Ee2BjPek2mKnzA" endTime="160.0"/>
+    <frequency xmi:id="_FQcuEmK4Ee2BjPek2mKnzA"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_qYdz4ET7Ee21kZ_DgzCBrA _VMrwoF_sEe2ZeaxTRixTeQ _VlBYIF_sEe2ZeaxTRixTeQ _VuBjIF_sEe2ZeaxTRixTeQ _aDH7IF_sEe2ZeaxTRixTeQ _69xA8F_QEe2iJNiHhmRZ1Q _hrtGEPZBEeypkdw9q4st1A" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg _pEhtMGYgEe2od_Dlf1P00w _rhNLAGYgEe2od_Dlf1P00w _vLlLAGYgEe2od_Dlf1P00w _3780cGYgEe2od_Dlf1P00w" includedOperations="_yJqqcGK3Ee2BjPek2mKnzA _QKc88ET9Ee21kZ_DgzCBrA _FQcuEGK4Ee2BjPek2mKnzA _EpCRIEVeEe21kZ_DgzCBrA">
+    <activationGeneration xsi:type="TestingMM:ConditionBasedActivationGenerationMethod" xmi:id="_9-cFMGwcEe2DLOeuyv9A5Q" conditionDepth="6"/>
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="6" iterations="32"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="160"/>
+  </campaigns>
+  <campaigns xmi:id="_ztGQ4GwfEe2DLOeuyv9A5Q" name="repeat-864-condfuzz" metrics="_qYdz4ET7Ee21kZ_DgzCBrA _VMrwoF_sEe2ZeaxTRixTeQ _VlBYIF_sEe2ZeaxTRixTeQ _VuBjIF_sEe2ZeaxTRixTeQ _aDH7IF_sEe2ZeaxTRixTeQ _69xA8F_QEe2iJNiHhmRZ1Q _hrtGEPZBEeypkdw9q4st1A" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg _pEhtMGYgEe2od_Dlf1P00w _rhNLAGYgEe2od_Dlf1P00w _vLlLAGYgEe2od_Dlf1P00w _3780cGYgEe2od_Dlf1P00w" includedOperations="_yJqqcGK3Ee2BjPek2mKnzA _QKc88ET9Ee21kZ_DgzCBrA _FQcuEGK4Ee2BjPek2mKnzA _EpCRIEVeEe21kZ_DgzCBrA">
+    <approach xsi:type="TestingMM:RepeatedExecution" xmi:id="_SaWBUGwgEe2DLOeuyv9A5Q" testToRepeat="_d0I0AGw0Ee2DLOeuyv9A5Q" repeatCount="10"/>
+    <performedTests name="Test_864_20_11_2022_17_45_55_condbased_orig_repeat0">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionVariable" metric="_rhNLAGYgEe2od_Dlf1P00w"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="15"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="4"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+                <right xsi:type="_2:ConditionVariable" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <frequency/>
+      </operations>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="3.06502879445358"/>
+      </metrics>
+      <metrics metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s1" value="20.73166059918717"/>
+      </metrics>
+      <metrics metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s2" value="0.6349712055464201"/>
+      </metrics>
+      <metrics metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s3" value="12.886820418903937"/>
+      </metrics>
+      <metrics metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result name="uvExposureForHuman_p1" value="0.1391074538605929"/>
+      </metrics>
+      <metrics metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="20.11499999999998"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_864_20_11_2022_17_45_55_condbased_orig_repeat1">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionVariable" metric="_rhNLAGYgEe2od_Dlf1P00w"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="15"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="4"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+                <right xsi:type="_2:ConditionVariable" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <frequency/>
+      </operations>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="3.070503090887886"/>
+      </metrics>
+      <metrics metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s1" value="20.68356881712996"/>
+      </metrics>
+      <metrics metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s2" value="0.629496909112114"/>
+      </metrics>
+      <metrics metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s3" value="12.876383378263949"/>
+      </metrics>
+      <metrics metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result name="uvExposureForHuman_p1" value="0.13489894067074942"/>
+      </metrics>
+      <metrics metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="20.340000000000003"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_864_20_11_2022_17_45_55_condbased_orig_repeat2">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionVariable" metric="_rhNLAGYgEe2od_Dlf1P00w"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="15"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="4"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+                <right xsi:type="_2:ConditionVariable" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <frequency/>
+      </operations>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="3.070503090887886"/>
+      </metrics>
+      <metrics metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s1" value="20.68356881712996"/>
+      </metrics>
+      <metrics metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s2" value="0.629496909112114"/>
+      </metrics>
+      <metrics metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s3" value="12.876383378263949"/>
+      </metrics>
+      <metrics metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result name="uvExposureForHuman_p1" value="0.13489894067074942"/>
+      </metrics>
+      <metrics metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="100000.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_864_20_11_2022_17_45_55_condbased_orig_repeat3">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionVariable" metric="_rhNLAGYgEe2od_Dlf1P00w"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="15"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="4"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+                <right xsi:type="_2:ConditionVariable" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <frequency/>
+      </operations>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="3.0522781037474447"/>
+      </metrics>
+      <metrics metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s1" value="21.043991627378265"/>
+      </metrics>
+      <metrics metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s2" value="0.6477218962525556"/>
+      </metrics>
+      <metrics metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s3" value="13.00322397816312"/>
+      </metrics>
+      <metrics metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result name="uvExposureForHuman_p1" value="0.13429201897807413"/>
+      </metrics>
+      <metrics metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="20.052999999999997"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_864_20_11_2022_17_45_55_condbased_orig_repeat4">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionVariable" metric="_rhNLAGYgEe2od_Dlf1P00w"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="15"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="4"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+                <right xsi:type="_2:ConditionVariable" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <frequency/>
+      </operations>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="3.047169810882345"/>
+      </metrics>
+      <metrics metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s1" value="20.58476528725839"/>
+      </metrics>
+      <metrics metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s2" value="0.652830189117655"/>
+      </metrics>
+      <metrics metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s3" value="12.871744880209723"/>
+      </metrics>
+      <metrics metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result name="uvExposureForHuman_p1" value="0.16855461084352977"/>
+      </metrics>
+      <metrics metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="20.14800000000001"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_864_20_11_2022_17_45_55_condbased_orig_repeat5">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionVariable" metric="_rhNLAGYgEe2od_Dlf1P00w"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="15"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="4"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+                <right xsi:type="_2:ConditionVariable" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <frequency/>
+      </operations>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="3.074457019835669"/>
+      </metrics>
+      <metrics metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s1" value="20.434913175719466"/>
+      </metrics>
+      <metrics metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s2" value="0.6255429801643311"/>
+      </metrics>
+      <metrics metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s3" value="13.025988515562814"/>
+      </metrics>
+      <metrics metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result name="uvExposureForHuman_p1" value="0.1512313347962211"/>
+      </metrics>
+      <metrics metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="20.432999999999993"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_864_20_11_2022_17_45_55_condbased_orig_repeat6">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionVariable" metric="_rhNLAGYgEe2od_Dlf1P00w"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="15"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="4"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+                <right xsi:type="_2:ConditionVariable" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <frequency/>
+      </operations>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="3.056756367905148"/>
+      </metrics>
+      <metrics metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s1" value="20.000605848656576"/>
+      </metrics>
+      <metrics metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s2" value="0.6432436320948519"/>
+      </metrics>
+      <metrics metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s3" value="12.90277350265998"/>
+      </metrics>
+      <metrics metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result name="uvExposureForHuman_p1" value="0.1588527156479808"/>
+      </metrics>
+      <metrics metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="21.350999999999985"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_864_20_11_2022_17_45_55_condbased_orig_repeat7">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionVariable" metric="_rhNLAGYgEe2od_Dlf1P00w"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="15"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="4"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+                <right xsi:type="_2:ConditionVariable" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <frequency/>
+      </operations>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="3.0588504013904467"/>
+      </metrics>
+      <metrics metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s1" value="20.394820599320216"/>
+      </metrics>
+      <metrics metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s2" value="0.6411495986095532"/>
+      </metrics>
+      <metrics metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s3" value="12.970226004742015"/>
+      </metrics>
+      <metrics metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result name="uvExposureForHuman_p1" value="0.12645423601733033"/>
+      </metrics>
+      <metrics metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="20.141000000000005"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_864_20_11_2022_17_45_55_condbased_orig_repeat8">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionVariable" metric="_rhNLAGYgEe2od_Dlf1P00w"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="15"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="4"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+                <right xsi:type="_2:ConditionVariable" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <frequency/>
+      </operations>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="3.070023204813461"/>
+      </metrics>
+      <metrics metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s1" value="20.422045010190928"/>
+      </metrics>
+      <metrics metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s2" value="0.6299767951865393"/>
+      </metrics>
+      <metrics metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s3" value="12.805940879322131"/>
+      </metrics>
+      <metrics metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result name="uvExposureForHuman_p1" value="0.1644326145625515"/>
+      </metrics>
+      <metrics metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="20.320000000000007"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_864_20_11_2022_17_45_55_condbased_orig_repeat9">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionVariable" metric="_rhNLAGYgEe2od_Dlf1P00w"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="15"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" value="4"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+                <right xsi:type="_2:ConditionVariable" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <frequency/>
+      </operations>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="3.061322455763933"/>
+      </metrics>
+      <metrics metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s1" value="20.710182448882122"/>
+      </metrics>
+      <metrics metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s2" value="0.6386775442360672"/>
+      </metrics>
+      <metrics metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result name="uvDisinfectionSurface_s3" value="12.717224007630408"/>
+      </metrics>
+      <metrics metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result name="uvExposureForHuman_p1" value="0.17232284949104223"/>
+      </metrics>
+      <metrics metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="20.561999999999983"/>
+      </metrics>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_ztbsCmwfEe2DLOeuyv9A5Q" timeLimitSeconds="160"/>
+  </campaigns>
+  <campaigns xmi:id="_oAWl0GwzEe2DLOeuyv9A5Q" name="selected-timecopied" metrics="_qYdz4ET7Ee21kZ_DgzCBrA _VMrwoF_sEe2ZeaxTRixTeQ _VlBYIF_sEe2ZeaxTRixTeQ _VuBjIF_sEe2ZeaxTRixTeQ _aDH7IF_sEe2ZeaxTRixTeQ _69xA8F_QEe2iJNiHhmRZ1Q _hrtGEPZBEeypkdw9q4st1A" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg _pEhtMGYgEe2od_Dlf1P00w _rhNLAGYgEe2od_Dlf1P00w _vLlLAGYgEe2od_Dlf1P00w _3780cGYgEe2od_Dlf1P00w" includedOperations="_yJqqcGK3Ee2BjPek2mKnzA _QKc88ET9Ee21kZ_DgzCBrA _FQcuEGK4Ee2BjPek2mKnzA _EpCRIEVeEe21kZ_DgzCBrA">
+    <activationGeneration xsi:type="TestingMM:ConditionBasedActivationGenerationMethod" xmi:id="_oAWl0WwzEe2DLOeuyv9A5Q" conditionDepth="6"/>
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_oAWl0mwzEe2DLOeuyv9A5Q" populationSize="6" iterations="32"/>
+    <performedTests xmi:id="_d0I0AGw0Ee2DLOeuyv9A5Q" name="Test_864_20_11_2022_17_45_55_condbased_orig">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_d0I0AWw0Ee2DLOeuyv9A5Q" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:ConditionBasedActivation" xmi:id="_d0I0Amw0Ee2DLOeuyv9A5Q">
+          <starting xmi:id="_d0I0A2w0Ee2DLOeuyv9A5Q">
+            <c xsi:type="_2:CompositeCondition" xmi:id="_d0I0BGw0Ee2DLOeuyv9A5Q">
+              <left xsi:type="_2:BasicCondition" xmi:id="_d0I0BWw0Ee2DLOeuyv9A5Q" bincomp="GREATER_THAN">
+                <left xmi:id="_d0I0Bmw0Ee2DLOeuyv9A5Q" metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionVariable" xmi:id="_d0I0B2w0Ee2DLOeuyv9A5Q" metric="_rhNLAGYgEe2od_Dlf1P00w"/>
+              </left>
+              <right xsi:type="_2:BasicCondition" xmi:id="_d0I0CGw0Ee2DLOeuyv9A5Q">
+                <left xmi:id="_d0I0CWw0Ee2DLOeuyv9A5Q" metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" xmi:id="_d0I0Cmw0Ee2DLOeuyv9A5Q" value="15"/>
+              </right>
+            </c>
+          </starting>
+          <ending xmi:id="_d0I0C2w0Ee2DLOeuyv9A5Q">
+            <c xsi:type="_2:CompositeCondition" xmi:id="_d0I0DGw0Ee2DLOeuyv9A5Q">
+              <left xsi:type="_2:BasicCondition" xmi:id="_d0I0DWw0Ee2DLOeuyv9A5Q">
+                <left xmi:id="_d0I0Dmw0Ee2DLOeuyv9A5Q" metric="_vLlLAGYgEe2od_Dlf1P00w"/>
+                <right xsi:type="_2:ConditionInteger" xmi:id="_d0I0D2w0Ee2DLOeuyv9A5Q" value="4"/>
+              </left>
+              <right xsi:type="_2:BasicCondition" xmi:id="_d0I0EGw0Ee2DLOeuyv9A5Q">
+                <left xmi:id="_d0I0EWw0Ee2DLOeuyv9A5Q" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+                <right xsi:type="_2:ConditionVariable" xmi:id="_d0I0Emw0Ee2DLOeuyv9A5Q" metric="_HeP5sDNVEe2BrK8BAi5Xqg"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <frequency xmi:id="_d0I0E2w0Ee2DLOeuyv9A5Q"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_edkykGw0Ee2DLOeuyv9A5Q" name="Test_864_20_11_2022_17_45_55_timebased_copy">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_edkykWw0Ee2DLOeuyv9A5Q" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_HMMhUGw1Ee2DLOeuyv9A5Q" startTime="125.0" endTime="146.0"/>
+        <frequency xmi:id="_edkyo2w0Ee2DLOeuyv9A5Q"/>
+      </operations>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_oAi4HmwzEe2DLOeuyv9A5Q" timeLimitSeconds="160"/>
+  </campaigns>
+  <campaigns xmi:id="_cEAdsGw1Ee2DLOeuyv9A5Q" name="repeat-864-timebased" metrics="_qYdz4ET7Ee21kZ_DgzCBrA _VMrwoF_sEe2ZeaxTRixTeQ _VlBYIF_sEe2ZeaxTRixTeQ _VuBjIF_sEe2ZeaxTRixTeQ _aDH7IF_sEe2ZeaxTRixTeQ _69xA8F_QEe2iJNiHhmRZ1Q _hrtGEPZBEeypkdw9q4st1A" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg _pEhtMGYgEe2od_Dlf1P00w _rhNLAGYgEe2od_Dlf1P00w _vLlLAGYgEe2od_Dlf1P00w _3780cGYgEe2od_Dlf1P00w" includedOperations="_yJqqcGK3Ee2BjPek2mKnzA _QKc88ET9Ee21kZ_DgzCBrA _FQcuEGK4Ee2BjPek2mKnzA _EpCRIEVeEe21kZ_DgzCBrA">
+    <approach xsi:type="TestingMM:RepeatedExecution" xmi:id="_cEAdsWw1Ee2DLOeuyv9A5Q" testToRepeat="_edkykGw0Ee2DLOeuyv9A5Q" repeatCount="10"/>
+    <performedTests xmi:id="_HkSAoGx2Ee2v94RbZ07Jdg" name="Test_864_20_11_2022_17_45_55_timebased_copy_repeat0">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_HkSAoWx2Ee2v94RbZ07Jdg" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_HkSAomx2Ee2v94RbZ07Jdg" startTime="125.0" endTime="146.0"/>
+        <frequency xmi:id="_HkSAo2x2Ee2v94RbZ07Jdg"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_HkSApGx2Ee2v94RbZ07Jdg" name="Test_864_20_11_2022_17_45_55_timebased_copy_repeat1">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_HkSApWx2Ee2v94RbZ07Jdg" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_HkSnsGx2Ee2v94RbZ07Jdg" startTime="125.0" endTime="146.0"/>
+        <frequency xmi:id="_HkSnsWx2Ee2v94RbZ07Jdg"/>
+      </operations>
+      <metrics xmi:id="_HkSnsmx2Ee2v94RbZ07Jdg" metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result xmi:id="_HkSns2x2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface" value="0.9086586053608152"/>
+      </metrics>
+      <metrics xmi:id="_HkSntGx2Ee2v94RbZ07Jdg" metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkSntWx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s1" value="20.50507344022111"/>
+      </metrics>
+      <metrics xmi:id="_HkSntmx2Ee2v94RbZ07Jdg" metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkSnt2x2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s2" value="2.8450518726114575"/>
+      </metrics>
+      <metrics xmi:id="_HkSnuGx2Ee2v94RbZ07Jdg" metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkSnuWx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s3" value="12.948197147355712"/>
+      </metrics>
+      <metrics xmi:id="_HkSnumx2Ee2v94RbZ07Jdg" metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkSnu2x2Ee2v94RbZ07Jdg" name="uvExposureForHuman_p1" value="0.22702462072169946"/>
+      </metrics>
+      <metrics xmi:id="_HkTOwGx2Ee2v94RbZ07Jdg" metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result xmi:id="_HkTOwWx2Ee2v94RbZ07Jdg" name="uvExposureForHuman"/>
+      </metrics>
+      <metrics xmi:id="_HkTOwmx2Ee2v94RbZ07Jdg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_HkTOw2x2Ee2v94RbZ07Jdg" name="fuzzingOperationTimes" value="21.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_HkTOxGx2Ee2v94RbZ07Jdg" name="Test_864_20_11_2022_17_45_55_timebased_copy_repeat2">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_HkTOxWx2Ee2v94RbZ07Jdg" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_HkTOxmx2Ee2v94RbZ07Jdg" startTime="125.0" endTime="146.0"/>
+        <frequency xmi:id="_HkTOx2x2Ee2v94RbZ07Jdg"/>
+      </operations>
+      <metrics xmi:id="_HkTOyGx2Ee2v94RbZ07Jdg" metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result xmi:id="_HkTOyWx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface" value="0.6725645889440064"/>
+      </metrics>
+      <metrics xmi:id="_HkTOymx2Ee2v94RbZ07Jdg" metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkTOy2x2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s1" value="20.32455051881489"/>
+      </metrics>
+      <metrics xmi:id="_HkT10Gx2Ee2v94RbZ07Jdg" metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkT10Wx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s2" value="3.027435411055994"/>
+      </metrics>
+      <metrics xmi:id="_HkT10mx2Ee2v94RbZ07Jdg" metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkT102x2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s3" value="13.00256690108972"/>
+      </metrics>
+      <metrics xmi:id="_HkT11Gx2Ee2v94RbZ07Jdg" metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkT11Wx2Ee2v94RbZ07Jdg" name="uvExposureForHuman_p1" value="0.27832271822790483"/>
+      </metrics>
+      <metrics xmi:id="_HkT11mx2Ee2v94RbZ07Jdg" metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result xmi:id="_HkT112x2Ee2v94RbZ07Jdg" name="uvExposureForHuman"/>
+      </metrics>
+      <metrics xmi:id="_HkT12Gx2Ee2v94RbZ07Jdg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_HkT12Wx2Ee2v94RbZ07Jdg" name="fuzzingOperationTimes" value="21.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_HkT12mx2Ee2v94RbZ07Jdg" name="Test_864_20_11_2022_17_45_55_timebased_copy_repeat3">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_HkT122x2Ee2v94RbZ07Jdg" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_HkUc4Gx2Ee2v94RbZ07Jdg" startTime="125.0" endTime="146.0"/>
+        <frequency xmi:id="_HkUc4Wx2Ee2v94RbZ07Jdg"/>
+      </operations>
+      <metrics xmi:id="_HkUc4mx2Ee2v94RbZ07Jdg" metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result xmi:id="_HkUc42x2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface" value="0.7123273273334885"/>
+      </metrics>
+      <metrics xmi:id="_HkUc5Gx2Ee2v94RbZ07Jdg" metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkUc5Wx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s1" value="20.149640576193608"/>
+      </metrics>
+      <metrics xmi:id="_HkUc5mx2Ee2v94RbZ07Jdg" metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkUc52x2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s2" value="2.9344095892257718"/>
+      </metrics>
+      <metrics xmi:id="_HkUc6Gx2Ee2v94RbZ07Jdg" metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkUc6Wx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s3" value="12.908388040922167"/>
+      </metrics>
+      <metrics xmi:id="_HkUc6mx2Ee2v94RbZ07Jdg" metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkUc62x2Ee2v94RbZ07Jdg" name="uvExposureForHuman_p1" value="0.1768146062995561"/>
+      </metrics>
+      <metrics xmi:id="_HkVD8Gx2Ee2v94RbZ07Jdg" metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result xmi:id="_HkVD8Wx2Ee2v94RbZ07Jdg" name="uvExposureForHuman"/>
+      </metrics>
+      <metrics xmi:id="_HkVD8mx2Ee2v94RbZ07Jdg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_HkVD82x2Ee2v94RbZ07Jdg" name="fuzzingOperationTimes" value="21.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_HkVD9Gx2Ee2v94RbZ07Jdg" name="Test_864_20_11_2022_17_45_55_timebased_copy_repeat4">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_HkVD9Wx2Ee2v94RbZ07Jdg" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_HkVD9mx2Ee2v94RbZ07Jdg" startTime="125.0" endTime="146.0"/>
+        <frequency xmi:id="_HkVD92x2Ee2v94RbZ07Jdg"/>
+      </operations>
+      <metrics xmi:id="_HkVD-Gx2Ee2v94RbZ07Jdg" metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result xmi:id="_HkVD-Wx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface" value="0.5785332453666889"/>
+      </metrics>
+      <metrics xmi:id="_HkVrAGx2Ee2v94RbZ07Jdg" metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkVrAWx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s1" value="19.960375389270236"/>
+      </metrics>
+      <metrics xmi:id="_HkVrAmx2Ee2v94RbZ07Jdg" metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkVrA2x2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s2" value="3.1214667546333112"/>
+      </metrics>
+      <metrics xmi:id="_HkVrBGx2Ee2v94RbZ07Jdg" metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkVrBWx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s3" value="12.911407880452472"/>
+      </metrics>
+      <metrics xmi:id="_HkVrBmx2Ee2v94RbZ07Jdg" metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkVrB2x2Ee2v94RbZ07Jdg" name="uvExposureForHuman_p1" value="0.18939331928087372"/>
+      </metrics>
+      <metrics xmi:id="_HkVrCGx2Ee2v94RbZ07Jdg" metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result xmi:id="_HkVrCWx2Ee2v94RbZ07Jdg" name="uvExposureForHuman"/>
+      </metrics>
+      <metrics xmi:id="_HkVrCmx2Ee2v94RbZ07Jdg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_HkVrC2x2Ee2v94RbZ07Jdg" name="fuzzingOperationTimes" value="21.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_HkVrDGx2Ee2v94RbZ07Jdg" name="Test_864_20_11_2022_17_45_55_timebased_copy_repeat5">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_HkWSEGx2Ee2v94RbZ07Jdg" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_HkWSEWx2Ee2v94RbZ07Jdg" startTime="125.0" endTime="146.0"/>
+        <frequency xmi:id="_HkWSEmx2Ee2v94RbZ07Jdg"/>
+      </operations>
+      <metrics xmi:id="_HkWSE2x2Ee2v94RbZ07Jdg" metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result xmi:id="_HkWSFGx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface" value="0.9102300637882492"/>
+      </metrics>
+      <metrics xmi:id="_HkWSFWx2Ee2v94RbZ07Jdg" metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkWSFmx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s1" value="20.55477469860779"/>
+      </metrics>
+      <metrics xmi:id="_HkWSF2x2Ee2v94RbZ07Jdg" metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkWSGGx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s2" value="2.789769936211751"/>
+      </metrics>
+      <metrics xmi:id="_HkWSGWx2Ee2v94RbZ07Jdg" metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkWSGmx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s3" value="12.933314823181208"/>
+      </metrics>
+      <metrics xmi:id="_HkW5IGx2Ee2v94RbZ07Jdg" metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkW5IWx2Ee2v94RbZ07Jdg" name="uvExposureForHuman_p1" value="0.23311815124478857"/>
+      </metrics>
+      <metrics xmi:id="_HkW5Imx2Ee2v94RbZ07Jdg" metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result xmi:id="_HkW5I2x2Ee2v94RbZ07Jdg" name="uvExposureForHuman"/>
+      </metrics>
+      <metrics xmi:id="_HkW5JGx2Ee2v94RbZ07Jdg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_HkW5JWx2Ee2v94RbZ07Jdg" name="fuzzingOperationTimes" value="21.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_HkW5Jmx2Ee2v94RbZ07Jdg" name="Test_864_20_11_2022_17_45_55_timebased_copy_repeat6">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_HkW5J2x2Ee2v94RbZ07Jdg" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_HkW5KGx2Ee2v94RbZ07Jdg" startTime="125.0" endTime="146.0"/>
+        <frequency xmi:id="_HkW5KWx2Ee2v94RbZ07Jdg"/>
+      </operations>
+      <metrics xmi:id="_HkW5Kmx2Ee2v94RbZ07Jdg" metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result xmi:id="_HkXgMGx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface" value="0.7356566869625745"/>
+      </metrics>
+      <metrics xmi:id="_HkXgMWx2Ee2v94RbZ07Jdg" metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkXgMmx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s1" value="20.55041926805016"/>
+      </metrics>
+      <metrics xmi:id="_HkXgM2x2Ee2v94RbZ07Jdg" metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkXgNGx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s2" value="2.9643433130374257"/>
+      </metrics>
+      <metrics xmi:id="_HkXgNWx2Ee2v94RbZ07Jdg" metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkXgNmx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s3" value="12.875010126743973"/>
+      </metrics>
+      <metrics xmi:id="_HkXgN2x2Ee2v94RbZ07Jdg" metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkXgOGx2Ee2v94RbZ07Jdg" name="uvExposureForHuman_p1" value="0.21233022054956296"/>
+      </metrics>
+      <metrics xmi:id="_HkXgOWx2Ee2v94RbZ07Jdg" metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result xmi:id="_HkXgOmx2Ee2v94RbZ07Jdg" name="uvExposureForHuman"/>
+      </metrics>
+      <metrics xmi:id="_HkXgO2x2Ee2v94RbZ07Jdg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_HkXgPGx2Ee2v94RbZ07Jdg" name="fuzzingOperationTimes" value="21.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_HkYHQGx2Ee2v94RbZ07Jdg" name="Test_864_20_11_2022_17_45_55_timebased_copy_repeat7">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_HkYHQWx2Ee2v94RbZ07Jdg" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_HkYHQmx2Ee2v94RbZ07Jdg" startTime="125.0" endTime="146.0"/>
+        <frequency xmi:id="_HkYHQ2x2Ee2v94RbZ07Jdg"/>
+      </operations>
+      <metrics xmi:id="_HkYHRGx2Ee2v94RbZ07Jdg" metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result xmi:id="_HkYHRWx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface" value="0.7827993831505307"/>
+      </metrics>
+      <metrics xmi:id="_HkYHRmx2Ee2v94RbZ07Jdg" metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkYHR2x2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s1" value="20.394089023597097"/>
+      </metrics>
+      <metrics xmi:id="_HkYHSGx2Ee2v94RbZ07Jdg" metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkYHSWx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s2" value="2.9172006168494695"/>
+      </metrics>
+      <metrics xmi:id="_HkYHSmx2Ee2v94RbZ07Jdg" metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkYuUGx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s3" value="12.991877690180084"/>
+      </metrics>
+      <metrics xmi:id="_HkYuUWx2Ee2v94RbZ07Jdg" metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkYuUmx2Ee2v94RbZ07Jdg" name="uvExposureForHuman_p1" value="0.15156792966362637"/>
+      </metrics>
+      <metrics xmi:id="_HkYuU2x2Ee2v94RbZ07Jdg" metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result xmi:id="_HkYuVGx2Ee2v94RbZ07Jdg" name="uvExposureForHuman"/>
+      </metrics>
+      <metrics xmi:id="_HkYuVWx2Ee2v94RbZ07Jdg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_HkYuVmx2Ee2v94RbZ07Jdg" name="fuzzingOperationTimes" value="21.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_HkYuV2x2Ee2v94RbZ07Jdg" name="Test_864_20_11_2022_17_45_55_timebased_copy_repeat8">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_HkYuWGx2Ee2v94RbZ07Jdg" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_HkYuWWx2Ee2v94RbZ07Jdg" startTime="125.0" endTime="146.0"/>
+        <frequency xmi:id="_HkYuWmx2Ee2v94RbZ07Jdg"/>
+      </operations>
+      <metrics xmi:id="_HkZVYGx2Ee2v94RbZ07Jdg" metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result xmi:id="_HkZVYWx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface" value="0.8332168581856263"/>
+      </metrics>
+      <metrics xmi:id="_HkZVYmx2Ee2v94RbZ07Jdg" metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkZVY2x2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s1" value="20.632452163609607"/>
+      </metrics>
+      <metrics xmi:id="_HkZVZGx2Ee2v94RbZ07Jdg" metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkZVZWx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s2" value="2.866783141814374"/>
+      </metrics>
+      <metrics xmi:id="_HkZVZmx2Ee2v94RbZ07Jdg" metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkZVZ2x2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s3" value="13.047689025723036"/>
+      </metrics>
+      <metrics xmi:id="_HkZVaGx2Ee2v94RbZ07Jdg" metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkZVaWx2Ee2v94RbZ07Jdg" name="uvExposureForHuman_p1" value="0.17227445773781"/>
+      </metrics>
+      <metrics xmi:id="_HkZVamx2Ee2v94RbZ07Jdg" metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result xmi:id="_HkZVa2x2Ee2v94RbZ07Jdg" name="uvExposureForHuman"/>
+      </metrics>
+      <metrics xmi:id="_HkZVbGx2Ee2v94RbZ07Jdg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_HkZVbWx2Ee2v94RbZ07Jdg" name="fuzzingOperationTimes" value="21.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_HkZ8cGx2Ee2v94RbZ07Jdg" name="Test_864_20_11_2022_17_45_55_timebased_copy_repeat9">
+      <operations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_HkZ8cWx2Ee2v94RbZ07Jdg" name="personDetectionPacketLossAll" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_FQcuEGK4Ee2BjPek2mKnzA">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_HkZ8cmx2Ee2v94RbZ07Jdg" startTime="125.0" endTime="146.0"/>
+        <frequency xmi:id="_HkZ8c2x2Ee2v94RbZ07Jdg"/>
+      </operations>
+      <metrics xmi:id="_HkZ8dGx2Ee2v94RbZ07Jdg" metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result xmi:id="_HkZ8dWx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface" value="0.7732993378850304"/>
+      </metrics>
+      <metrics xmi:id="_HkZ8dmx2Ee2v94RbZ07Jdg" metric="_VMrwoF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkZ8d2x2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s1" value="20.76755872828201"/>
+      </metrics>
+      <metrics xmi:id="_HkZ8eGx2Ee2v94RbZ07Jdg" metric="_VlBYIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkZ8eWx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s2" value="2.92670066211497"/>
+      </metrics>
+      <metrics xmi:id="_HkajgGx2Ee2v94RbZ07Jdg" metric="_VuBjIF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_HkajgWx2Ee2v94RbZ07Jdg" name="uvDisinfectionSurface_s3" value="12.856650975571032"/>
+      </metrics>
+      <metrics xmi:id="_Hkajgmx2Ee2v94RbZ07Jdg" metric="_aDH7IF_sEe2ZeaxTRixTeQ">
+        <result xmi:id="_Hkajg2x2Ee2v94RbZ07Jdg" name="uvExposureForHuman_p1" value="0.20897293671503372"/>
+      </metrics>
+      <metrics xmi:id="_HkajhGx2Ee2v94RbZ07Jdg" metric="_69xA8F_QEe2iJNiHhmRZ1Q">
+        <result xmi:id="_HkajhWx2Ee2v94RbZ07Jdg" name="uvExposureForHuman"/>
+      </metrics>
+      <metrics xmi:id="_Hkajhmx2Ee2v94RbZ07Jdg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_Hkajh2x2Ee2v94RbZ07Jdg" name="fuzzingOperationTimes" value="21.0"/>
+      </metrics>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_cEBE2Gw1Ee2DLOeuyv9A5Q" timeLimitSeconds="160"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/temp-launch-scripts/launch-scripts/auto_launch_locomotec3.sh" launchDelaySeconds="10" customTerminateFileLocation="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/temp-launch-scripts/launch-scripts/terminate.sh">
+    <variables xmi:id="_OfgcsCxUEe2oWKgCvvsh2w" name="/amcl_pose" type="_4NIrMCxxEe2oWKgCvvsh2w"/>
+    <variables xmi:id="_SOhUwEMAEe2m59gLLXjQ5g" name="/virtual_uvc_meter_p1/measurements" type="_U_hcwEMAEe2m59gLLXjQ5g"/>
+    <variables xmi:id="_2DLWQET1Ee21kZ_DgzCBrA" name="/virtual_uvc_meter_s1/measurements" type="_U_hcwEMAEe2m59gLLXjQ5g"/>
+    <variables xmi:id="_RiXWoF_OEe2iJNiHhmRZ1Q" name="/virtual_uvc_meter_s2/measurements" type="_U_hcwEMAEe2m59gLLXjQ5g"/>
+    <variables xmi:id="_S58NkF_OEe2iJNiHhmRZ1Q" name="/virtual_uvc_meter_s3/measurements" type="_U_hcwEMAEe2m59gLLXjQ5g"/>
+    <variables xmi:id="_TeAYYET9Ee21kZ_DgzCBrA" name="/person_detector/persons" type="_0B7tQEVjEe21kZ_DgzCBrA"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="robot0_controller" publisher="_OfgcsCxUEe2oWKgCvvsh2w"/>
+    <nodes xmi:id="_sWsYgEVmEe21kZ_DgzCBrA" name="person_detector" publisher="_TeAYYET9Ee21kZ_DgzCBrA"/>
+    <nodes xmi:id="_PTmb4CkOEe2rWIgPkXJ7Hg" name="robot0_laserScanner"/>
+    <simulator xsi:type="_3:ROSSimulator" xmi:id="_AoDfACjCEe26Ivhf6XyfHA" hostname="localhost" port="8089"/>
+    <propertyType xmi:id="_DwpnoCjCEe26Ivhf6XyfHA" name="sensor_msgs/LaserScan"/>
+    <propertyType xmi:id="_4NIrMCxxEe2oWKgCvvsh2w" name="geometry_msgs/PoseWithCovarianceStamped"/>
+    <propertyType xmi:id="_U_hcwEMAEe2m59gLLXjQ5g" name="std_msgs/Float64MultiArray"/>
+    <propertyType xmi:id="_0B7tQEVjEe21kZ_DgzCBrA" name="perception_msgs/DetectedObjectList"/>
+  </mrs>
+</TestingMM:TestingSpace>
