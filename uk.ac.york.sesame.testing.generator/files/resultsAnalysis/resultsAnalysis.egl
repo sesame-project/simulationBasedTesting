@@ -1,8 +1,8 @@
 [%
 	var campaignName = "firstExperiment";
 	var filterResultSetString1 = "NONDOM";
-	var filterResultSetString2 = "intermediate-100";
-	var targetType = Testing!ResultSetStatus#INTERMEDIATE;
+	var filterResultSetString2 = "final";
+	var targetType = Testing!ResultSetStatus#FINAL;
 	
 	// TODO: this should be a parameter name
 	var testSpace = Testing!TestingSpace.all().first();

@@ -1,17 +1,15 @@
 [%
-	var campaignName = "firstExperiment";
+	var campaignName = "repeat-805-timebased";
 	var filterResultSetString1 = "NONDOM";
 	var filterResultSetString2 = "intermediate-1000";
 	var targetType = Testing!ResultSetStatus#INTERMEDIATE;
 	
 	// TODO: this should be a parameter name
-	var tests = Testing!Tests.all().first();
+	var tests = Testing!Test.all().first();
 
 	for (test in tests) {
-	    for (test in resultSet.results) {
 		%]Test:[%= test.name + "\t\t" %][%= getAllMetrics(test, false) %] [%= getOperations(test.operations) %]
 		[%
-		}
 	}
 	
 operation getAllMetrics(test, header) {

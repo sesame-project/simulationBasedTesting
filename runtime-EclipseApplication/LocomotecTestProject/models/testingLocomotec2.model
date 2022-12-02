@@ -1,74 +1,59 @@
 <?xml version="1.0" encoding="ASCII"?>
-<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.FuzzingOperations="FuzzingOperations" xmlns:TestingMM.MRSPackage="MRSPackage" xmlns:TestingMM.Metrics="Metrics" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
-  <metrics xsi:type="TestingMM.Metrics:FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="FuzzingOperations" xmlns:_2="MRSPackage" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
     <valueIfNotReceived xmi:id="_Ay798DR2Ee2fbo-0GeUOEw" defaultVal="100000.0"/>
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
-    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_f6_EgDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/fuzzingOpTimes"/>
+    <streams xsi:type="InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+    <res xsi:type="FileStreamResult" xmi:id="_f6_EgDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/fuzzingOpTimes"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_IbT50BSTEe2NuvfcagGJYw" name="uvExposureForHuman" relatedVariables="_SOhUwEMAEe2m59gLLXjQ5g">
+  <metrics xsi:type="StreamMetric" xmi:id="_IbT50BSTEe2NuvfcagGJYw" name="uvExposureForHuman" relatedVariables="_SOhUwEMAEe2m59gLLXjQ5g">
     <valueIfNotReceived xmi:id="_44TpsDR1Ee2fbo-0GeUOEw"/>
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_pUyAkCKREe2LYMDzNfHpOQ"/>
-    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_uAnicDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/uvExposureForHuman"/>
+    <streams xsi:type="InputStream" xmi:id="_pUyAkCKREe2LYMDzNfHpOQ"/>
+    <res xsi:type="FileStreamResult" xmi:id="_uAnicDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/uvExposureForHuman"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_KG4H8C9nEe2WLcT3ce_NEw" name="wallCollisions">
+  <metrics xsi:type="StreamMetric" xmi:id="_KG4H8C9nEe2WLcT3ce_NEw" name="wallCollisions">
     <valueIfNotReceived xmi:id="_6-WJIDR1Ee2fbo-0GeUOEw"/>
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_KG4H8S9nEe2WLcT3ce_NEw"/>
-    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_wqXy8DT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/wallCollisions"/>
+    <streams xsi:type="InputStream" xmi:id="_KG4H8S9nEe2WLcT3ce_NEw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_wqXy8DT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/wallCollisions"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_HeP5sDNVEe2BrK8BAi5Xqg" name="distanceFromStartPoint" dir="LOWEST">
+  <metrics xsi:type="StreamMetric" xmi:id="_HeP5sDNVEe2BrK8BAi5Xqg" name="distanceFromStartPoint" dir="LOWEST">
     <valueIfNotReceived xmi:id="_9HcjoDR1Ee2fbo-0GeUOEw" defaultVal="100000.0"/>
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_SER4sDNfEe2BrK8BAi5Xqg"/>
-    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_0KTdgDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/distanceFromStartPoint"/>
+    <streams xsi:type="InputStream" xmi:id="_SER4sDNfEe2BrK8BAi5Xqg"/>
+    <res xsi:type="FileStreamResult" xmi:id="_0KTdgDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/distanceFromStartPoint"/>
   </metrics>
-  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_qYdz4ET7Ee21kZ_DgzCBrA" name="uvDisinfectionSurface" dir="LOWEST" relatedVariables="_2DLWQET1Ee21kZ_DgzCBrA">
+  <metrics xsi:type="StreamMetric" xmi:id="_qYdz4ET7Ee21kZ_DgzCBrA" name="uvDisinfectionSurface" dir="LOWEST" relatedVariables="_2DLWQET1Ee21kZ_DgzCBrA">
     <valueIfNotReceived xmi:id="_qYdz4UT7Ee21kZ_DgzCBrA" defaultVal="1000000.0"/>
-    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_qYdz4kT7Ee21kZ_DgzCBrA"/>
-    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_qYdz40T7Ee21kZ_DgzCBrA" filename="/home/jharbin/academic/sesame/WP6/metric-results/uvDisinfectionSurfaceMetric"/>
+    <streams xsi:type="InputStream" xmi:id="_qYdz4kT7Ee21kZ_DgzCBrA"/>
+    <res xsi:type="FileStreamResult" xmi:id="_qYdz40T7Ee21kZ_DgzCBrA" filename="/home/jharbin/academic/sesame/WP6/metric-results/uvDisinfectionSurfaceMetric"/>
   </metrics>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_u2BukCkTEe2rWIgPkXJ7Hg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_sQ_XQCkZEe2rWIgPkXJ7Hg" endTime="120.0"/>
-    <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_NnsC4CnuEe2CPLNHTC0Tug" propertyName="rangeFactor" lowerBound="0.15" upperBound="0.3"/>
+  <possibleFuzzingOperations xsi:type="_1:CustomFuzzingOperation" xmi:id="_u2BukCkTEe2rWIgPkXJ7Hg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_sQ_XQCkZEe2rWIgPkXJ7Hg" endTime="120.0"/>
+    <params xsi:type="_1:DoubleRange" xmi:id="_NnsC4CnuEe2CPLNHTC0Tug" propertyName="rangeFactor" lowerBound="0.15" upperBound="0.3"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_EQvMICmiEe2HELjiSIEHlA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_dND-0Cn6Ee2U6tODQsyjgg" endTime="120.0"/>
+  <possibleFuzzingOperations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_EQvMICmiEe2HELjiSIEHlA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_dND-0Cn6Ee2U6tODQsyjgg" endTime="120.0"/>
     <frequency xmi:id="_GF7MICmiEe2HELjiSIEHlA" lowerBound="0.4" upperBound="0.7"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_Bjxj0C0JEe22IeLGRwtkQg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_DTrbMC0JEe22IeLGRwtkQg" endTime="100.0"/>
+  <possibleFuzzingOperations xsi:type="_1:LatencyNetworkOperation" xmi:id="_Bjxj0C0JEe22IeLGRwtkQg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_DTrbMC0JEe22IeLGRwtkQg" endTime="100.0"/>
     <latency xmi:id="_EsMGQC0JEe22IeLGRwtkQg" lowerBound="1.0" upperBound="5.0"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_QKc88ET9Ee21kZ_DgzCBrA" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_QKc88UT9Ee21kZ_DgzCBrA" endTime="120.0"/>
+  <possibleFuzzingOperations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_QKc88ET9Ee21kZ_DgzCBrA" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_QKc88UT9Ee21kZ_DgzCBrA" endTime="120.0"/>
     <frequency xmi:id="_QKc88kT9Ee21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_EpCRIEVeEe21kZ_DgzCBrA" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" isRelative="true">
-    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_Vs7N8EV0Ee2tmpoSRkgLMw" endTime="150.0"/>
-    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_qf-oIEVeEe21kZ_DgzCBrA" propertyName="perception_msgs/DetectedObjectList.object.sector.center_angle" lowerBound="-0.2" upperBound="0.2"/>
-    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_q9g4sEVeEe21kZ_DgzCBrA" propertyName="perception_msgs/DetectedObjectList.object.sector.opening_angle" lowerBound="-0.01" upperBound="0.01"/>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_EpCRIEVeEe21kZ_DgzCBrA" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" isRelative="true">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_Vs7N8EV0Ee2tmpoSRkgLMw" endTime="150.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_qf-oIEVeEe21kZ_DgzCBrA" propertyName="perception_msgs/DetectedObjectList.object.sector.center_angle" lowerBound="-0.2" upperBound="0.2"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_q9g4sEVeEe21kZ_DgzCBrA" propertyName="perception_msgs/DetectedObjectList.object.sector.opening_angle" lowerBound="-0.01" upperBound="0.01"/>
   </possibleFuzzingOperations>
-  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _IbT50BSTEe2NuvfcagGJYw _qYdz4ET7Ee21kZ_DgzCBrA" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg" includedOperations="_EpCRIEVeEe21kZ_DgzCBrA _QKc88ET9Ee21kZ_DgzCBrA">
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _IbT50BSTEe2NuvfcagGJYw _qYdz4ET7Ee21kZ_DgzCBrA" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg">
     <activationGeneration xsi:type="TestingMM:TimeBasedActivationGenerationMethod" xmi:id="_3bXdcDx_Ee2btv-8bZumyw"/>
     <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="6" iterations="32"/>
-    <performedTests xmi:id="_4BzkYElOEe2gd6o3OOp2pw" name="Test_change_sector_angle">
-      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_4BzkYUlOEe2gd6o3OOp2pw" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
-        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_4B0LcElOEe2gd6o3OOp2pw" endTime="1000.0"/>
-        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_4B0LcUlOEe2gd6o3OOp2pw" propertyName="perception_msgs/DetectedObjectList/object/sector/center_angle" lowerBound="0.5" upperBound="0.6"/>
-        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_4B0LcklOEe2gd6o3OOp2pw" propertyName="perception_msgs/DetectedObjectList/object/sector/opening_angle" lowerBound="-7.27069275226002E-4" upperBound="0.007847721301729954"/>
-      </operations>
-    </performedTests>
-    <performedTests xmi:id="_skmxkEmsEe2d4oxCIpFMdg" name="Test_001_11_10_2022_12_26_14">
-      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_skmxkUmsEe2d4oxCIpFMdg" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
-        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_skmxkkmsEe2d4oxCIpFMdg" startTime="77.46273178807131" endTime="118.676155172894"/>
-        <frequency xmi:id="_skmxk0msEe2d4oxCIpFMdg" lowerBound="0.4" upperBound="0.7"/>
-      </operations>
-    </performedTests>
-    <performedTests xmi:id="_skmxlEmsEe2d4oxCIpFMdg" name="Test_001_11_10_2022_12_26_28">
-      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_skmxlUmsEe2d4oxCIpFMdg" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
-        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_skmxlkmsEe2d4oxCIpFMdg" startTime="114.36785346784337" endTime="117.56099056229135"/>
-        <frequency xmi:id="_skmxl0msEe2d4oxCIpFMdg" lowerBound="0.4" upperBound="0.7"/>
-      </operations>
-    </performedTests>
-    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="180"/>
+    <performedTests name="Test_001_07_11_2022_11_23_35"/>
+    <performedTests name="Test_001_08_11_2022_06_18_38"/>
+    <performedTests name="Test_001_08_11_2022_06_55_23"/>
+    <performedTests name="Test_001_08_11_2022_07_02_12"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="500"/>
   </campaigns>
   <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_locomotec2.sh" launchDelaySeconds="10" customTerminateFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/terminate.sh">
     <variables xmi:id="_NzG5gCkOEe2rWIgPkXJ7Hg" name="/base_scan" type="_DwpnoCjCEe26Ivhf6XyfHA"/>
@@ -79,7 +64,7 @@
     <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="robot0_controller" publisher="_OfgcsCxUEe2oWKgCvvsh2w"/>
     <nodes xmi:id="_sWsYgEVmEe21kZ_DgzCBrA" name="person_detector" publisher="_TeAYYET9Ee21kZ_DgzCBrA"/>
     <nodes xmi:id="_PTmb4CkOEe2rWIgPkXJ7Hg" name="robot0_laserScanner" publisher="_NzG5gCkOEe2rWIgPkXJ7Hg"/>
-    <simulator xsi:type="TestingMM.MRSPackage:ROSSimulator" xmi:id="_AoDfACjCEe26Ivhf6XyfHA" hostname="localhost" port="8089"/>
+    <simulator xsi:type="_2:ROSSimulator" xmi:id="_AoDfACjCEe26Ivhf6XyfHA" hostname="localhost" port="8089"/>
     <propertyType xmi:id="_DwpnoCjCEe26Ivhf6XyfHA" name="sensor_msgs/LaserScan"/>
     <propertyType xmi:id="_4NIrMCxxEe2oWKgCvvsh2w" name="geometry_msgs/PoseWithCovarianceStamped"/>
     <propertyType xmi:id="_U_hcwEMAEe2m59gLLXjQ5g" name="std_msgs/Float64MultiArray"/>

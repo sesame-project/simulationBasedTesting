@@ -48,6 +48,7 @@ public abstract class ConditionBasedFuzzingOperation extends FuzzingOperation {
 		try {
 			String k = value.getMetricName();
 			Object v = value.getValue();
+			System.out.println("updateStateFrom k=" + k + "," + v);
 			varState.put(k, v);
 
 		} catch (Exception e) {
