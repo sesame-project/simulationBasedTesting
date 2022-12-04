@@ -22,7 +22,6 @@ public class ExptRunner_[%= campaign.name %] {
 		
 		// Setting paths
 		// The paths are now supplied from the Wizard - nothing needs to be configured here!
-		
 		// IProjectPath = [%= path %]
 
 		final String spaceModelFileName = "[%= testingModelPath %]";
@@ -43,9 +42,13 @@ public class ExptRunner_[%= campaign.name %] {
 		[% } %] 	 	
 				
 		final String grammarPath = "[%= codeGenerationDirectory %]/grammar/sesame-standardgrammar-[%= campaign.name %].bnf";
-			
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, conditionDepth, grammarPath);
-		jmetalExpt.runExperiment();
+		EvolutionaryExpt jmetalExpt;
+		try {
+			jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, conditionDepth, grammarPath);
+			jmetalExpt.runExperiment();
+		} catch (EolModelLoadingException e) {
+			e.printStackTrace();
+		}
 		[% } %]
 	}
 }
