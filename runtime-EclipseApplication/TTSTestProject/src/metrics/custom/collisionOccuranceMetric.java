@@ -30,15 +30,14 @@ public class collisionOccuranceMetric extends Metric {
 		violationCount = getRuntimeContext().getState(new ValueStateDescriptor<>("violationCount", Long.class));
 	}
 	
-	private String getExtraString() {
-		return "";
+	private boolean topicMatches(String topic) {
+		return topic.contains("Z1") || topic.contains("Z2") || topic.contains("Z3");
 	}
 
 	public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
 		String completionTopicName = "safetyzone";
 		String topic = msg.getTopic();
-		String extraString = getExtraString();
-		if (topic.contains(completionTopicName) && topic.contains(extraString)) {
+		if (topic.contains(completionTopicName) && topicMatches(topic)) {
 
 			if (msg.getValue() instanceof String) {
 				String s = (String) msg.getValue();
