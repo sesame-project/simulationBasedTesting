@@ -9,13 +9,15 @@ import org.apache.flink.util.Collector;
 import simlog.server.ROSMessage;
 import simlog.server.SafetyZone;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
-import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 import uk.ac.york.sesame.testing.architecture.tts.ROSMessageConversion;
 
-public class collisionOccuranceMetric extends Metric {
+// Using BatchedRateMetric for one per second interval
+public class collisionOccuranceMetric extends BatchedRateMetric {
+
+	private static final double TIME_BATCH_THRESHOLD = 1.0;
 
 	public collisionOccuranceMetric() {
-
+		super(TIME_BATCH_THRESHOLD);
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -25,8 +27,8 @@ public class collisionOccuranceMetric extends Metric {
 		return 300;
 	}
 
-	// TODO: need some sort of timing grouping - only one output per interval
 	public void open(Configuration parameters) throws Exception {
+		super.open(parameters, "collisionOccuranceMetric");
 		violationCount = getRuntimeContext().getState(new ValueStateDescriptor<>("violationCount", Long.class));
 	}
 	
@@ -55,7 +57,7 @@ public class collisionOccuranceMetric extends Metric {
 						violationCount.update(0L);
 					}
 
-					if (level < getLevelThreshold()) {
+					if (level < getLevelThreshold() && isReadyToLogNow()) {
 						violationCount.update(violationCount.value() + 1);
 						System.out.println("violationCount output = " + violationCount);
 						out.collect(Double.valueOf(violationCount.value()));
