@@ -200,16 +200,11 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			System.out.println("code generation done");
 
 			if (DEBUG_ACTUALLY_RUN) {
+				System.out.println("Starting compilation");
 				// Invoke maven script to ensure that the project is rebuilt
 				TestRunnerUtils.compileProject(codeGenerationDirectory);
-				
-				// Now it will wait for compilation of the compileProject
-				
-				//System.out.print("Waiting for project to recompile...");
-				//System.out.flush();
-				//TestRunnerUtils.waitForSeconds(DEFAULT_COMPILE_DELAY);
-				
-				System.out.println("done");
+				// It will wait for compilation of the compileProject automatically
+				System.out.println("Compilation done");
 
 				// Invokes the main method for this code
 				System.out.print("Launching test runner for " + mainClassName + "... (classpath " + codeGenerationDirectory + ")");

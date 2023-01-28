@@ -2,7 +2,7 @@ package uk.ac.york.sesame.testing.architecture.config;
 
 public class PathDefinitions {
 	public static enum PathSpec {
-		MODEL_PATH
+		MODEL_PATH, AUTO_RUNNER_SCRIPTS
 	}
 	
 	public static String getPath(PathSpec ps) throws UnknownPath {
@@ -11,4 +11,6 @@ public class PathDefinitions {
 		}
 		throw new UnknownPath(ps);
 	}
+	
+	
 }

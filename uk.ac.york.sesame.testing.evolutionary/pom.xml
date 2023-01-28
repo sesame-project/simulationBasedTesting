@@ -17,13 +17,29 @@
 	</build>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+	    	<artifactId>aether-util</artifactId>
+	    	<version>1.1.0</version>	    	
+		</dependency>
+		
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+	    	<artifactId>aether-api</artifactId>
+	    	<version>1.1.0</version>	    	
+		</dependency>
+	
+	    <dependency>
+	    	<groupId>org.sonatype.sisu</groupId>
+	    	<artifactId>sisu-inject-plexus</artifactId>
+	    	<version>2.6.0</version>	    
+	    </dependency>
 
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>connect-api</artifactId>
 			<version>3.2.0</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.awaitility</groupId>
@@ -51,11 +67,6 @@
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-connector-filesystem_2.12</artifactId>
 			<version>1.11.6</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.flink</groupId>
-			<artifactId>flink-connector-files</artifactId>
-			<version>1.13.0</version>
 		</dependency>
 
 		<dependency>
@@ -102,12 +113,6 @@
 
 		<dependency>
 			<groupId>org.eclipse.epsilon</groupId>
-			<artifactId>org.eclipse.epsilon.egl.engine</artifactId>
-			<version>2.2.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.eclipse.epsilon</groupId>
 			<artifactId>org.eclipse.epsilon.emc.emf</artifactId>
 			<version>2.2.0</version>
 		</dependency>
@@ -135,6 +140,27 @@
 			<artifactId>uk.ac.york.sesame.testing.architecture</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+<!--
+		<dependency>
+			<groupId>org.apache.maven.shared</groupId>
+			<artifactId>maven-invoker</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		-->
+		
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-embedder</artifactId>
+			<version>3.8.7</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-compat</artifactId>
+			<version>3.8.7</version>
+		</dependency>
+		
 
 	</dependencies>
 

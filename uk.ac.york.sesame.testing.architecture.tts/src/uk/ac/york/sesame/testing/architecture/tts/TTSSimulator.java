@@ -14,8 +14,8 @@ import org.eclipse.epsilon.eol.models.IModel;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import simlog.server.*;
 
@@ -30,6 +30,7 @@ import uk.ac.york.sesame.testing.architecture.simulator.IPropertySetter;
 import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
+import uk.ac.york.sesame.testing.architecture.utilities.ExptHelperWindows;
 
 public class TTSSimulator implements ISimulator {
 
@@ -98,21 +99,35 @@ public class TTSSimulator implements ISimulator {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	private void runWindows(HashMap<String, String> params, String workingDir, long delayMsec) {
+		// TODO: should the model contain an option for setting a custom JVM here?
+		String cmdLine = "/usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		ExptHelperWindows.runViaCygwinBash(cmdLine, workingDir, "");
+	
+	}
+	private void runLinux(HashMap<String, String> params, String workingDir, long delayMsec) {
+		// TODO: should the model contain an option for setting a custom JVM here?
+		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		ExptHelper.runScriptNewThread(workingDir, cmd);
+	}
 
 	@Override
 	public void run(HashMap<String, String> params) {
-		// For run, we need to use the TTS simulator path and the
-		// "dist" directory
+		// For run, we need to use the TTS simulator path and the "dist" directory
 		String workingDir = params.get("TTSProjectDir") + "/dist/";
 
 		long delayMsec = DEFAULT_TTS_LAUNCH_DELAY_MS;
 		if (params.containsKey("launchDelayMsec")) {
 			delayMsec = Long.parseLong(params.get("launchDelayMsec"));
 		}
-
-		// TODO: this needs an option for setting a custom JVM here?
-		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
-		ExptHelper.runScriptNewThread(workingDir, cmd);
+	
+		String osName = System.getProperty("os.name");
+		if (osName.contains("Windows")) {
+			runWindows(params, workingDir, delayMsec);
+		} else {
+			runLinux(params, workingDir, delayMsec);
+		}
 
 		// Need to wait the delay
 		try {

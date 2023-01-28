@@ -4,31 +4,98 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
+import org.apache.maven.cli.*;
 
 import org.buildobjects.process.ProcResult;
 
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
+import uk.ac.york.sesame.testing.architecture.utilities.ExptHelperWindows;
 
 public class TestRunnerUtils {
-    static String ABS_SCRIPT_DIR = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
+    public static String ABS_SCRIPT_DIR = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
+    public static boolean USE_MAVEN_COMPILATION = false;
+    public static boolean USE_MAVEN_EXECUTION = false;
+    //public static boolean USE_MAVEN_COMPILATION = true;
+    //public static boolean USE_MAVEN_EXECUTION = true;
 
-	public static void exec(String mainClass, String codeGenerationDir) throws IOException {
-		//ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./execute_testrunner_xterm.sh", mainClass);
+	public static void execOriginal(String mainClass, String codeGenerationDir) throws IOException {
 		ExptHelper.startCmd(ABS_SCRIPT_DIR, "./execute_testrunner_xterm.sh " +  mainClass + " " + codeGenerationDir);
 	}
-
-	public static void compileProject(String projectDir) throws IOException {
-		// original script launcher
-		//ExptHelper.startCmd(ABS_SCRIPT_DIR, "./compile_project_xterm.sh " + projectDir);
+	
+	private static void mavenExecution(String mainClass, String codeGenerationDir) {
+		//String PROJECT_DIR = PathDefinitions.getPath
+		MavenCli cli = new MavenCli();
+		String projectDirectory = codeGenerationDir;
+		// TODO: need to customise the classpath here?
+		System.out.println("Starting Maven Execution...");
+		cli.doMain(new String[] { "exec:java", "-Dexec.mainClass=\"" + mainClass + "\""}, projectDirectory, System.out, System.err);
+		System.out.println("Maven Execution Done...");
+	}
+	
+	public static void exec(String mainClass, String codeGenerationDir) throws IOException {
+		if (USE_MAVEN_EXECUTION) {
+			mavenExecution(mainClass, codeGenerationDir);
+		} else {
+			execOriginal(mainClass, codeGenerationDir);
+		}
+	}
+	
+	public static void compileProjectScriptWindows(String projectDir) throws IOException {
+		String workingDir = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
+		String cmdLine = "~/source/academic/sesame/WP6/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/scripts/compile_project_windows.sh";
+		Optional<ProcResult> res_o = ExptHelperWindows.runViaCygwinBash(cmdLine, workingDir, projectDir);
 		
-		// new script launcher to run the compilation in the main process
-		Optional<ProcResult> res_o = ExptHelper.runScriptWithArgs(ABS_SCRIPT_DIR, "./compile_project.sh", projectDir);
 		if (res_o.isPresent()) {
 			ProcResult res = res_o.get();
 			String output = res.getOutputString();
 			System.out.println("Compilation output" + output);
 		} else {
 			
+		}
+	}
+
+	public static void compileProjectScriptLinux(String projectDir) throws IOException {
+		// original script launcher
+		//ExptHelper.startCmd(ABS_SCRIPT_DIR, "./compile_project_xterm.sh " + projectDir);
+		
+		// new script launcher to run the compilation in the main process
+		String [] cmdArgs = {"-c", "/bin/ls.exe -l"};
+		
+		Optional<ProcResult> res_o = ExptHelper.runScriptWithArgs(ABS_SCRIPT_DIR, "c:\\cygwin64\\bin\\bash compile_project.sh", projectDir);
+		if (res_o.isPresent()) {
+			ProcResult res = res_o.get();
+			String output = res.getOutputString();
+			System.out.println("Compilation output" + output);
+		} else {
+			
+		}
+	}
+	
+	public static void printDependencyTreeCustom(MavenCli cli, String projectDir, String customStr) {
+		cli.doMain(new String [] { "dependency:tree"}, projectDir, System.out, System.err);
+	}
+	
+	public static void compileProjectMaven(String projectDir) throws IOException {
+		// Use MavenCLI to perform the compilation here
+		MavenCli cli = new MavenCli();
+		String invokerDirectory = projectDir;
+		System.setProperty("maven.multiModuleProjectDirectory", projectDir);
+		printDependencyTreeCustom(cli, projectDir, "aether");		
+		System.out.println("Maven compilation starting...");
+		cli.doMain(new String [] { "compile" }, projectDir, System.out, System.err);
+		System.out.println("Maven compilation done");
+	}
+	
+	public static void compileProject(String projectDir) throws IOException {
+		if (USE_MAVEN_COMPILATION) {
+			compileProjectMaven(projectDir);
+		} else {
+			String osName = System.getProperty("os.name");
+			if (osName.contains("Windows")) {
+				compileProjectScriptWindows(projectDir);
+			} else {
+				compileProjectScriptLinux(projectDir);
+			}
 		}
 	}
 

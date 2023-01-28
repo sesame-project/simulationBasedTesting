@@ -54,7 +54,7 @@ public class ConditionGenerator {
 			crossover = new SameRootSubtreeCrossover<String>(CROSSOVER_MAX_HEIGHT);
 			
 		} catch (FileNotFoundException e) {
-			throw new MissingGrammarFile("Grammar not loaded successfully from path " + grammarPath);
+			//throw new MissingGrammarFile("Grammar not loaded successfully from path " + grammarPath);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
