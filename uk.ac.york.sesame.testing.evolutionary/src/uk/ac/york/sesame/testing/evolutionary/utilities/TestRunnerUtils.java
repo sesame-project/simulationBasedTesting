@@ -12,13 +12,46 @@ import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelperWindows;
 
 public class TestRunnerUtils {
+	public enum OperatingSystem {
+		OS_LINUX,
+		OS_WINDOWS,
+	}
+	
     public static String ABS_SCRIPT_DIR = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
     public static boolean USE_MAVEN_COMPILATION = false;
     public static boolean USE_MAVEN_EXECUTION = false;
-    //public static boolean USE_MAVEN_COMPILATION = true;
-    //public static boolean USE_MAVEN_EXECUTION = true;
 
-	public static void execOriginal(String mainClass, String codeGenerationDir) throws IOException {
+    public static Optional<OperatingSystem> detectOS() {
+		String osName = System.getProperty("os.name");
+		if (osName.contains("Windows")) {
+			return Optional.of(OperatingSystem.OS_WINDOWS);
+		}
+		
+		if (osName.contains("Linux")) {
+			return Optional.of(OperatingSystem.OS_LINUX);
+		}
+		
+		// Unknown OS
+		return Optional.empty(); 
+    }
+
+	public static void execWindows(String mainClass, String codeGenerationDir) throws IOException {
+		String workingDir = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
+		String cmdLine = "~/source/academic/sesame/WP6/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/scripts/execute_testrunner_windows.sh";
+		String args = mainClass + " " + codeGenerationDir;
+		Optional<ProcResult> res_o = ExptHelperWindows.runViaCygwinBash(cmdLine, workingDir, "");
+		
+		if (res_o.isPresent()) {
+			ProcResult res = res_o.get();
+			String output = res.getOutputString();
+			System.out.println("Compilation output" + output);
+		} else {
+			System.out.println("Nothing returned from execWindows process result");
+		}
+		
+	}
+    
+	public static void execLinux(String mainClass, String codeGenerationDir) throws IOException {
 		ExptHelper.startCmd(ABS_SCRIPT_DIR, "./execute_testrunner_xterm.sh " +  mainClass + " " + codeGenerationDir);
 	}
 	
@@ -31,12 +64,22 @@ public class TestRunnerUtils {
 		cli.doMain(new String[] { "exec:java", "-Dexec.mainClass=\"" + mainClass + "\""}, projectDirectory, System.out, System.err);
 		System.out.println("Maven Execution Done...");
 	}
-	
+		
 	public static void exec(String mainClass, String codeGenerationDir) throws IOException {
 		if (USE_MAVEN_EXECUTION) {
 			mavenExecution(mainClass, codeGenerationDir);
 		} else {
-			execOriginal(mainClass, codeGenerationDir);
+			Optional<OperatingSystem> os_o = detectOS();
+			if (os_o.isPresent()) {
+				OperatingSystem os = os_o.get();
+				if (os == OperatingSystem.OS_WINDOWS) {
+					execWindows(mainClass, codeGenerationDir);
+				}
+				
+				if (os == OperatingSystem.OS_LINUX) {
+					execLinux(mainClass, codeGenerationDir);
+				}	
+			}	
 		}
 	}
 	
@@ -88,13 +131,19 @@ public class TestRunnerUtils {
 	
 	public static void compileProject(String projectDir) throws IOException {
 		if (USE_MAVEN_COMPILATION) {
+			// Maven is cross-platform so should work with either
 			compileProjectMaven(projectDir);
 		} else {
-			String osName = System.getProperty("os.name");
-			if (osName.contains("Windows")) {
-				compileProjectScriptWindows(projectDir);
-			} else {
-				compileProjectScriptLinux(projectDir);
+			Optional<OperatingSystem> os_o = detectOS();
+			if (os_o.isPresent()) {
+				OperatingSystem os = os_o.get();
+				if (os == OperatingSystem.OS_WINDOWS) {
+					compileProjectScriptWindows(projectDir);
+				}
+				
+				if (os == OperatingSystem.OS_LINUX) {
+					compileProjectScriptLinux(projectDir);
+				}	
 			}
 		}
 	}
