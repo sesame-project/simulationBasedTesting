@@ -129,7 +129,7 @@ public class ExptHelper {
 	public static Optional<ProcResult> runScriptWithArgs(String dir, String command, String [] args) {
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		File dirFile = new File(dir);
-		System.out.println("dir = " + dir);
+		System.out.println("workingDir = " + dir);
 		System.out.println("command = " + command);
 
 		ProcBuilder pb = new ProcBuilder(command).withWorkingDirectory(dirFile).withNoTimeout().withArgs(args);

@@ -35,11 +35,13 @@ public class TestRunnerUtils {
 		return Optional.empty(); 
     }
 
-	public static void execWindows(String mainClass, String codeGenerationDir) throws IOException {
+    public static void execWindows(String mainClass, String codeGenerationDir) throws IOException {
 		String workingDir = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
-		String cmdLine = "~/source/academic/sesame/WP6/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/scripts/execute_testrunner_windows.sh";
-		String args = mainClass + " " + codeGenerationDir;
-		Optional<ProcResult> res_o = ExptHelperWindows.runViaCygwinBash(cmdLine, workingDir, "");
+		// Change to using batch file
+		//String cmdLine = "~/source/academic/sesame/WP6/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/scripts/execute_w.bat";
+		String cmdLine = "C:\\cygwin64\\home\\James\\source\\academic\\sesame\\WP6\\simulationBasedTesting\\uk.ac.york.sesame.testing.evolutionary\\scripts\\execute_windows.bat";
+		String args [] = { mainClass, codeGenerationDir };
+		Optional<ProcResult> res_o = ExptHelperWindows.runBatchFile(cmdLine, workingDir, args);
 		
 		if (res_o.isPresent()) {
 			ProcResult res = res_o.get();
