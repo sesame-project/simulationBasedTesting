@@ -15,10 +15,8 @@ import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
-import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
 
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverOperation;
-import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEConditionsCrossover;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEConditionsCrossoverRandomised;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEMutationOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESimpleMutation;
@@ -119,8 +117,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			
 			// This is necessary to ensure the final test results are properly reflected in the model
 			problem.ensureFinalModelSaved();
-			
-			
+						
 			List<SESAMETestSolution> population = algorithm.getResult();
 			double duration = (System.currentTimeMillis() - startTime);
 			System.out.println("Total execution time: " + duration + "ms, " + (duration / 1000) + " seconds");

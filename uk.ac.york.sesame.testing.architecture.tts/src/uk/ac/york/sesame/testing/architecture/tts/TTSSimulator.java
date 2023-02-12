@@ -100,12 +100,12 @@ public class TTSSimulator implements ISimulator {
 		return null;
 	}
 	
-	private void runWindows(HashMap<String, String> params, String workingDir, long delayMsec) {
+	private void runWindows(HashMap<String, String> params, String simulatorDistDir, long delayMsec) {
 		// TODO: should the model contain an option for setting a custom JVM here?
-		String cmdLine = "/usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
-		ExptHelperWindows.runViaCygwinBash(cmdLine, workingDir, "");
-	
+		String cmdLine = "cd " + simulatorDistDir + " && '/cygdrive/c/Progra~1/Java/jdk1.8.0_202/bin/javaw.exe' -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		ExptHelperWindows.runViaCygwinBashWithCOpt(cmdLine, "", "");
 	}
+	
 	private void runLinux(HashMap<String, String> params, String workingDir, long delayMsec) {
 		// TODO: should the model contain an option for setting a custom JVM here?
 		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
