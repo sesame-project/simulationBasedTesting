@@ -102,8 +102,7 @@ public class TTSSimulator implements ISimulator {
 
 	@Override
 	public void run(HashMap<String, String> params) {
-		// For run, we need to use the TTS simulator path and the
-		// "dist" directory
+		// For run, we need to use the TTS simulator path and the "dist" directory
 		String workingDir = params.get("TTSProjectDir") + "/dist/";
 
 		long delayMsec = DEFAULT_TTS_LAUNCH_DELAY_MS;
@@ -170,6 +169,7 @@ public class TTSSimulator implements ISimulator {
 			// asyncStub.subscribe(inTopic, ro);
 			asyncStub.inject(requ, roInject);
 
+			
 		} catch (StatusRuntimeException e) {
 			System.out.println("RPC failed: {0}" + e.getStatus());
 			return;
