@@ -9,11 +9,11 @@ public class PathDefinitions {
 	}
 	
 	
-	private static String REPO_BASE_PATH = "C:\\cygwin64\\home\\James\\source\\academic\\sesame\\WP6\\simulationBasedTesting\\";
+	private static String REPO_BASE_PATH = "C:\\cygwin64\\home\\James\\academic\\sesame\\WP6\\simulationBasedTesting";
 	
 	public static String getPath(PathSpec ps) {
 		if (ps == PathSpec.MODEL_PATH) {
-			return REPO_BASE_PATH + "/uk.ac.york.sesame.testing.dsl/models/";
+			return REPO_BASE_PATH + "\\uk.ac.york.sesame.testing.dsl\\models\\";
 		}
 
 		if (ps == PathSpec.REPO_BASE_PATH) {

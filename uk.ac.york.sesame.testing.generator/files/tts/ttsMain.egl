@@ -47,7 +47,6 @@ import uk.ac.york.sesame.testing.architecture.tts.TTSSimulator;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 
-
 import metrics.custom.*;
 import metrics.fixed.*;
 
@@ -80,7 +79,16 @@ public class [%= testNameString %]_TestRunner {
 		[% } %]
 		
 		Properties properties = new Properties();
-		properties.setProperty("bootstrap.servers", "localhost:9092");
+		String serverNamePort = "localhost:9092"
+		String osName = System.getProperty("os.name");
+		if (osName.contains("Windows")) {
+			// TODO: can we automatically read this in some way?
+			// otherwise the user will have to set this every reboot
+			// IPv6 approach does not work
+			serverNamePort = "172.21.107.171:9092";	
+		}
+		
+		properties.setProperty("bootstrap.servers", serverNamePort);
 		properties.setProperty("group.id", "test");
 		
 		DataStream<ControlMessage> controlStream = env

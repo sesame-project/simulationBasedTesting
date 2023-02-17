@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
@@ -32,19 +33,20 @@ public class SESAMEModelLoader {
 	}
 
 	public Resource loadTestingSpace() throws EolModelLoadingException {
+		// Obtain a new resource set
+		ResourceSet resSet = new ResourceSetImpl();
+		
+		Map<String, Object> m = resSet.getResourceFactoryRegistry().getExtensionToFactoryMap();
+		m.put("model", new XMIResourceFactoryImpl());
+		
 		// Initialize the model
 		FuzzingOperationsPackage.eINSTANCE.eClass();
 		TestingPackagePackage.eINSTANCE.eClass();
 
-		// Register the XMI resource factory for the .website extension
-
-		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-		Map<String, Object> m = reg.getExtensionToFactoryMap();
-		m.put("model", new XMIResourceFactoryImpl());
-
-		// Obtain a new resource set
-		ResourceSet resSet = new ResourceSetImpl();
-
+		resSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("model", new XMIResourceFactoryImpl());
+		resSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("TestingMM", new XMIResourceFactoryImpl());
+		System.out.println("testingModelFilename = " + testingModelFilename);
+		
 		// Get the resource
 		resource = resSet.getResource(URI.createURI(testingModelFilename), true);
 		return resource;

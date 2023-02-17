@@ -193,6 +193,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				// This transform the testing space model into code - by invoking EGX/EGL
 				// The MRS model file is currently redundant due to the temporary approach of merging the models
 				String __mrsModelFile = "testingMRS.model";
+				System.out.println("orchestratorBasePath = " + orchestratorBasePath);
 				eglEx = new SESAMEEGLExecutor(orchestratorBasePath, spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
 				eglEx.run();
 			}

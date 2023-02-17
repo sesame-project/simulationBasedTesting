@@ -102,8 +102,8 @@ public class TTSSimulator implements ISimulator {
 	
 	private void runWindows(HashMap<String, String> params, String simulatorDistDir, long delayMsec) {
 		// TODO: should the model contain an option for setting a custom JVM here?
-		String cmdLine = "cd " + simulatorDistDir + " && '/cygdrive/c/Progra~1/Java/jdk1.8.0_202/bin/javaw.exe' -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
-		ExptHelperWindows.runViaCygwinBashWithCOpt(cmdLine, "", "");
+		String cmdLine = "cd " + simulatorDistDir + " && '/cygdrive/c/Progra~1/Java/jdk1.8.0_361/bin/java.exe' -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		ExptHelperWindows.runScriptNewThread("", cmdLine, "");
 	}
 	
 	private void runLinux(HashMap<String, String> params, String workingDir, long delayMsec) {

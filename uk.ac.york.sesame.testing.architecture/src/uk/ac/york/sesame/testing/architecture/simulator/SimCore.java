@@ -4,7 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -35,8 +34,16 @@ public final class SimCore {
     
     public void setTestName(String testName) {
     	this.testName = testName;
+    	// Also open a log file for the core
+    	String osName = System.getProperty("os.name");
     	try {
-			outputTimingLog = new FileWriter("/tmp/simCoreLog-" + this.testName);
+    		if (osName.contains("Windows")) {
+    			// TODO: find better location for the core log file under Windows 
+    			outputTimingLog = new FileWriter("C:\\cygwin64\\tmp-simCoreLog-" + this.testName);
+    		} else {
+    			outputTimingLog = new FileWriter("/tmp/simCoreLog-" + this.testName);
+    		}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
