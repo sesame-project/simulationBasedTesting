@@ -41,9 +41,9 @@ cd kafka_2.13-3.1.0
 edit config/zookeeper.properties, set clientPort to 5181
 ```
 
+## Back to Windows - under GUI
 Install Eclipse and JDK 8 / JDK 11
 Install Modelling, Epsilon and Emfatic as shown in the video
-Checkout the sim testing repo on Windows
 
 ## Install Cygwin
 Go to cygwin.org and download installer
@@ -169,7 +169,7 @@ netsh interface portproxy v4tov4 listenport=9092 listenaddress=0.0.0.0 connectpo
 
 ## Troubleshooting
 
-If you get "registered resource factory is needed" on loading the
+If you get "registered resource factory is needed** on loading the
 models, probably forgot to set the REPO\_BASE\_PATH in
 ModelPathDefinition.java to the correct value?
 
@@ -177,5 +177,11 @@ ModelPathDefinition.java to the correct value?
 
 * If the JDK11 is at any other location, need to override JAVA_HOME instead? this is used in scripts
 * JDK8 location currently needs to be hardcoded into TTSSimulator.java - better way
-* How to get the IP address automatically
+* How to get the IP address automatically?
+
 * Can Cygwin/WSL custom install packages be automated
+
+TODO: Use the following repository and modify the auto-installation scripts to work with it: 
+https://github.com/rtwolf/cygwin-auto-install
+
+
