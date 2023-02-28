@@ -40,16 +40,8 @@ public class TestRunnerUtils {
 		//String cmdLine = "~/source/academic/sesame/WP6/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/scripts/execute_w.bat";
 		String cmdLine = "C:\\cygwin64\\home\\James\\academic\\sesame\\WP6\\simulationBasedTesting\\uk.ac.york.sesame.testing.evolutionary\\scripts\\execute_windows.bat";
 		String args [] = { mainClass, codeGenerationDir };
-		Optional<ProcResult> res_o = ExptHelperWindows.runBatchFile(cmdLine, workingDir, args);
-		
-		if (res_o.isPresent()) {
-			ProcResult res = res_o.get();
-			String output = res.getOutputString();
-			System.out.println("Compilation output" + output);
-		} else {
-			System.out.println("Nothing returned from execWindows process result");
-		}
-		
+		ExptHelperWindows.runBatchFileNewThread(cmdLine, workingDir, args);
+		System.out.println("Launched Windows process via batch file");
 	}
     
 	public static void execLinux(String mainClass, String codeGenerationDir) throws IOException {
@@ -102,16 +94,13 @@ public class TestRunnerUtils {
 		// original script launcher
 		//ExptHelper.startCmd(ABS_SCRIPT_DIR, "./compile_project_xterm.sh " + projectDir);
 		
-		// new script launcher to run the compilation in the main process
-		String [] cmdArgs = {"-c", "/bin/ls.exe -l"};
-		
 		Optional<ProcResult> res_o = ExptHelper.runScriptWithArgs(ABS_SCRIPT_DIR, "c:\\cygwin64\\bin\\bash compile_project.sh", projectDir);
 		if (res_o.isPresent()) {
 			ProcResult res = res_o.get();
 			String output = res.getOutputString();
 			System.out.println("Compilation output" + output);
 		} else {
-			
+			System.out.println("Compilation launch failed");
 		}
 	}
 	
@@ -149,10 +138,29 @@ public class TestRunnerUtils {
 		}
 	}
 
-	public static void killProcesses() {
+	public static void killProcessesLinux() {
 		ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./terminate_sim.sh");
 	}
 	
+	private static void killProcessesWindows() {
+		ExptHelperWindows.runViaCygwinBash(ABS_SCRIPT_DIR, "./terminate_sim.sh");
+	}
+	
+	public static void killProcesses() {
+		Optional<OperatingSystem> os_o = detectOS();
+		if (os_o.isPresent()) {
+			OperatingSystem os = os_o.get();
+			if (os == OperatingSystem.OS_WINDOWS) {
+				killProcessesWindows();
+			}
+			
+			if (os == OperatingSystem.OS_LINUX) {
+				killProcessesLinux();
+			}	
+		}
+	}
+
+
 	public static void runCustomTerminateScript(String terminateScript) {
 		try {
 			ExptHelper.runScriptNew(ABS_SCRIPT_DIR, terminateScript);
@@ -165,9 +173,9 @@ public class TestRunnerUtils {
 		ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./clear_kafka.sh");
 	}
 	
-	public static void __variableLogging(String mainClass) throws IOException {
-		ExptHelper.runScriptNewWithBashTimeout(ABS_SCRIPT_DIR, "./log_topics.sh " + mainClass, 300);
-	}
+//	public static void __variableLogging(String mainClass) throws IOException {
+//		ExptHelper.runScriptNewWithBashTimeout(ABS_SCRIPT_DIR, "./log_topics.sh " + mainClass, 300);
+//	}
 
 	public static void waitForSeconds(long timeDelaySeconds) {
 		long endTimeMillis = System.currentTimeMillis() + timeDelaySeconds * 1000;

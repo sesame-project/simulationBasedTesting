@@ -23,6 +23,27 @@ public class ExptHelperWindows {
 		return res_o; 
 	}
 	
+	public static void runBatchFileNewThread(String cmdLine, String workingDir, String [] cmdArgs) {
+		String osName = System.getProperty("os.name");
+		System.out.println("osName = " + osName);
+		File dirFile = new File(workingDir);		
+		
+		Thread tNew = new Thread() {
+			public void run() {
+				ProcBuilder pb = new ProcBuilder(cmdLine).withArgs(cmdArgs).withWorkingDirectory(dirFile).withNoTimeout();
+				try {
+					ProcResult res = pb.run();
+					System.out.println(res.toString());
+					//System.out.println(output.toString());
+				} catch (org.buildobjects.process.TimeoutException e) {
+					System.out.println("Timeout of started process");
+				}
+			}
+		};
+		
+		tNew.start();
+	}
+	
 	public static Optional<ProcResult> runViaCygwinBash(String cmdLine, String workingDir) {
 		String osName = System.getProperty("os.name");
 		System.out.println("osName = " + osName);

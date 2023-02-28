@@ -190,6 +190,30 @@ public class ExptHelper {
 
 		tNew.start();
 	}
+	
+	public static void runScriptNewThread(String dir, String command, String [] args) {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		File dirFile = new File(dir);
+		// long timeOutMs = 15000;
+		System.out.println("dir = " + dir);
+		System.out.println("command = " + command);
+
+		Thread tNew = new Thread() {
+			public void run() {
+				ProcBuilder pb = new ProcBuilder("xterm").withArgs("-hold", "-e", "/bin/bash", "-l", "-c", command)
+						.withWorkingDirectory(dirFile).withOutputStream(output).withNoTimeout();
+				try {
+					ProcResult res = pb.run();
+					System.out.println(res.toString());
+					System.out.println(output.toString());
+				} catch (org.buildobjects.process.TimeoutException e) {
+					System.out.println("Timeout of started process");
+				}
+			}
+		};
+
+		tNew.start();
+	}
 
 	public static void runScriptNewWithBashTimeout(String dir, String command, long timeOutSeconds) {
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
