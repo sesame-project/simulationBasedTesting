@@ -1,6 +1,7 @@
 @ECHO OFF
-REM -- Automates cygwin installation
-REM -- Source: https://github.com/rtwolf/cygwin-auto-install
+REM -- Automates cygwin installation for SESAME simulation-based testing framework
+REM -- FROM: https://github.com/sesame-project/simulationBasedTesting
+REM -- Based on: https://github.com/rtwolf/cygwin-auto-install
 REM -- Based on: https://gist.github.com/wjrogers/1016065
  
 SETLOCAL
@@ -17,9 +18,10 @@ IF NOT EXIST cygwin-setup.exe (
 )
  
 REM -- Configure our paths
-SET SITE=http://cygwin.mirrors.pair.com/
+SET SITE=http://mirrorservice.org/sites/sourceware.org/pub/cygwin/
 SET LOCALDIR=%CD%
-SET ROOTDIR=C:/cygwin
+SET ROOTDIR=C:\cygwin64
+SET PATH=%ROOTDIR%\bin;%PATH%
  
 REM -- These are the packages we will install (in addition to the default packages)
 SET PACKAGES=mintty,wget,ctags,diffutils,git,git-completion,git-svn,stgit,mercurial,procps-ng,xterm,psmisc,tar,lynx
@@ -40,23 +42,16 @@ ECHO.
 ECHO.
 ECHO cygwin installation updated
 ECHO  - %PACKAGES%
-ECHO.
+ECHO %ROOTDIR%
 
-ECHO apt-cyg installing.
-set PATH=%ROOTDIR%/bin;%PATH%
-%ROOTDIR%/bin/bash.exe -c 'svn --force export http://apt-cyg.googlecode.com/svn/trunk/ /bin/'
-%ROOTDIR%/bin/bash.exe -c 'chmod +x /bin/apt-cyg'
+%ROOTDIR%\bin\bash.exe -c 'mkdir -p ~/academic/sesame/WP6'
+%ROOTDIR%\bin\bash.exe -c 'mkdir -p ~/source/maven-3.9.0'
+%ROOTDIR%\bin\bash.exe -c 'cd ~/academic/sesame/WP6 && git clone https://www.github.com/sesame-project/simulationBasedTesting.git'
+%ROOTDIR%\bin\bash.exe -c 'cd ~/academic/sesame/WP6 && git checkout windows'
+%ROOTDIR%\bin\bash.exe -c 'cd ~/source/maven-3.9.0 && wget https://dlcdn.apache.org/maven/maven-3/3.9.0/binaries/apache-maven-3.9.0-bin.tar.gz'
+%ROOTDIR%\bin\bash.exe -c 'cd ~/source/maven-3.9.0 && tar -xvzf apache-maven-3.9.0-bin.tar.gz'
 
-
-%ROOTDIR%/bin/bash.exe -c 'mkdir -p ~/academic/sesame/WP6 && mkdir ~/source/maven-3.9.0'
-%ROOTDIR%/bin/bash.exe -c 'cd ~/academic/sesame/WP6 && git clone http://www.github.com/sesame-project/simulationBasedTesting'
-%ROOTDIR%/bin/bash.exe -c 'cd ~/academic/sesame/WP6 && git checkout windows'
-%ROOTDIR%/bin/bash.exe -c 'cd ~/source/maven-3.9.0 && wget https://dlcdn.apache.org/maven/maven-3/3.9.0/binaries/apache-maven-3.9.0-bin.tar.gz'
-%ROOTDIR%/bin/bash.exe -c 'cd ~/source/maven-3.9.0 && tar -xvzf apache-maven-3.9.0-bin.tar.gz'
-
-
-ECHO apt-cyg installed if it says somin like "A    /bin" and "A   /bin/apt-cyg" and "Exported revision 18" or some other number.
-
+ECHO SESAME installation completed
 ENDLOCAL
  
 PAUSE
