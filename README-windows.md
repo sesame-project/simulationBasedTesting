@@ -41,10 +41,6 @@ cd kafka_2.13-3.1.0
 edit config/zookeeper.properties, set clientPort to 5181
 ```
 
-## Back to Windows - under GUI
-Install Eclipse and JDK 8 / JDK 11
-Install Modelling, Epsilon and Emfatic as shown in the video
-
 ## Install Cygwin
 Go to cygwin.org and download installer
 Select C:\cygwin64 as the installation path
@@ -164,8 +160,10 @@ and enter the following command (replae 172.21.107.171 with the 172.x.y.z IP
 obtained as the WSL ip address in the previous section)
 
 ```
-netsh interface portproxy v4tov4 listenport=9092 listenaddress=0.0.0.0 connectport=9092 connectaddress=172.21.107.171
+netsh interface portproxy add v4tov4 listenport=9092 listenaddress=0.0.0.0 connectport=9092 connectaddress=172.21.107.171
 ```
+
+This command is 
 
 ## Troubleshooting
 
