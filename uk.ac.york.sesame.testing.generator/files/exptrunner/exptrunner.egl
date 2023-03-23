@@ -4,13 +4,6 @@ import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
 
 public class ExptRunner_[%= campaign.name %] {
 	public static void main(String [] args) {
-
-		[*
-		// Parameters for NSGA-II
-		double timingProbMut = 0.666;
-		double participantProbMut = 0.333;
-		double paramProbMut = 0.333;
-		*]
 				
 		[% if (campaign.approach.isTypeOf(NSGAEvolutionaryAlgorithm)) { %]
 		[% var nsgainfo = campaign.approach; %]
@@ -24,25 +17,45 @@ public class ExptRunner_[%= campaign.name %] {
 		// The paths are now supplied from the Wizard - nothing needs to be configured here!
 		
 		// IProjectPath = [%= path %]
+		
+		[* For Windows, replace the backslashes: need repeated backslashes for 
+		proper escaping... EGL must construct a regex internally?
+		https://stackoverflow.com/questions/14183248/replacing-single-with-in-java
+		*]
+		[% 
+		var singleSlash = '\\\\';
+		var dualSlash = '\\\\\\\\';
+		var testingModelPath_escaped = testingModelPath.replace(singleSlash, dualSlash);
+		var codeGenerationDir_escaped = codeGenerationDirectory.replace(singleSlash, dualSlash);
+		var orchestratorBasePath_escaped = orchestratorBasePath.replace(singleSlash, dualSlash);
+		 %] 
 
-		final String spaceModelFileName = "[%= testingModelPath %]";
-		final String CODE_GENERATION_DIRECTORY = "[%= codeGenerationDirectory %]";
-		final String orchestratorBasePath = "[%= orchestratorBasePath %]";
+		final String spaceModelFileName = "[%= testingModelPath_escaped %]";
+		final String CODE_GENERATION_DIRECTORY = "[%= codeGenerationDir_escaped %]";
+		final String orchestratorBasePath = "[%= orchestratorBasePath_escaped %]";
 		
 		String campaignToRun = "[%= campaign.name %]";
 			
 		[% if (campaign.activationGeneration.isTypeOf(ConditionBasedActivationGenerationMethod)) { %]
 		final boolean conditionBased = true;
 		final int conditionDepth = [%= campaign.activationGeneration.conditionDepth %];
-		[% } %]
-		
-		[% if (campaign.activationGeneration.isTypeOf(TimeBasedActivationGenerationMethod)) { %]
+		[% } else if (campaign.activationGeneration.isTypeOf(TimeBasedActivationGenerationMethod)) { %]
 		final boolean conditionBased = false;
 		final int conditionDepth = 0;
+		[% } else { %]
+		[* If neither of these are set, default to time-based activation *]
+		final boolean conditionBased = false;
+		final int conditionDepth = 0;
+		[% } %]
 		
-		[% } %] 	 	
-				
-		final String grammarPath = "[%= codeGenerationDirectory %]/grammar/sesame-standardgrammar-[%= campaign.name %].bnf";
+		// Since EGL can't detect the OS, use dynamic OS detection to setup the path at runtime
+		final String grammarPath; 	 	
+		final String osName = System.getProperty("os.name");
+		if (osName.contains("Windows")) {		
+			grammarPath = "[%= codeGenerationDir_escaped %]\\grammar\\sesame-standardgrammar-[%= campaign.name %].bnf";
+		} else {
+			grammarPath = "[%= codeGenerationDir_escaped %]/grammar/sesame-standardgrammar-[%= campaign.name %].bnf";
+		}
 			
 		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, conditionDepth, grammarPath);
 		jmetalExpt.runExperiment();

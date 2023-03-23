@@ -3,9 +3,7 @@ package uk.ac.york.sesame.testing.generator;
 import org.eclipse.core.internal.resources.File;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.debug.internal.ui.sourcelookup.browsers.DirectorySourceContainerDialog;
+
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -13,21 +11,16 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.GridData;
+
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DirectoryDialog;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.dialogs.ContainerSelectionDialog;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.eclipse.ui.dialogs.FileSelectionDialog;
+
 import org.eclipse.ui.dialogs.ResourceListSelectionDialog;
-import org.eclipse.ui.dialogs.ResourceSelectionDialog;
-import org.eclipse.ui.dialogs.SaveAsDialog;
-import org.eclipse.ui.internal.ide.dialogs.FileFolderSelectionDialog;
+
 
 public class SesameWizardPage extends WizardPage {
 
@@ -170,15 +163,9 @@ public class SesameWizardPage extends WizardPage {
 	public String getOrchestratorBasePath() {
 		return orchestratorBasePath.getText();
 	}
-	
-//	public String getMRSModelLocation() {
-//		return mrsModelLocation.getText();
-//	}
 
 	protected void handleBrowseFile(Text textfield) {
-//		FileDialog dialog = new FileDialog(getShell());
-//		dialog.setFilterPath(ResourcesPlugin.getWorkspace().getRoot().toString());
-//		dialog.open();
+
 		ResourceListSelectionDialog dialog = new ResourceListSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), IResource.FILE);
 		if (dialog.open() == Window.OK) {
 			Object[] result = dialog.getResult();
