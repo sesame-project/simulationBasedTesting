@@ -97,7 +97,8 @@ message ROSMessage{
         Quaternion quaternion = 6;
         //QuaternionStamped quaternion_stamped = 7;
         JointTrajectoryPoint joint_trajectory_point = 8;
-        Header timeStamp = 9; 
+        Header timeStamp = 9;
+        SafetyZone safety_zone = 10;
     }
 }
 
@@ -166,6 +167,14 @@ message Quaternion{
     float y = 2;
     float z = 3;
     float w = 4;
+}
+
+message SafetyZone{
+    Header header = 1;
+    string zone = 2;
+    float level = 3;
+    string object1 = 4;
+    string object2 = 5;
 }
 
 
