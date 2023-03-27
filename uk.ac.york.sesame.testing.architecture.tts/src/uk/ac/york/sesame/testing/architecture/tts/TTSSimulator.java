@@ -344,14 +344,16 @@ public class TTSSimulator implements ISimulator {
 			this.kafkaTopic = Optional.of(givenTopic);
 		}
 		
-		private void setSimulatorTimeFromMessage(ROSMessage m) {
+		private void setSimulatorTimeFromMessage(ROSMessage m, EventMessage em) {
 			Header timeStamp_H = m.getTimeStamp();
 			time tSecNsec = timeStamp_H.getStamp();
 			long sec = tSecNsec.getSec();
 			long nsec = tSecNsec.getNsec();
 			double time = ((double)nsec) / 1e9;
 			System.out.println("Timestamp recovered from message = " + time);
+			
 			SimCore.getInstance().setTime(time);
+			em.setTimestamp(nsec);
 		}
 
 		@Override
@@ -366,11 +368,12 @@ public class TTSSimulator implements ISimulator {
 			String topic = path;
 
 			if (GET_TIME_FROM_MESSAGES) {
-				setSimulatorTimeFromMessage(m);
+				setSimulatorTimeFromMessage(m, em);
 			}
 
 			em.setType(type);
 			em.setTopic(topic);
+			
 			
 			// If there is an empty ROSMessage text value, as in the 
 			// safetyzone messages, the EventMessage value is set to

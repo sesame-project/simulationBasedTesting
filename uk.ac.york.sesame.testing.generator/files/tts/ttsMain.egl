@@ -9,8 +9,7 @@
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
-	var sanitiseVariables = true;
-	
+	var sanitiseVariables = false;
 %]
 
 import java.util.ArrayList;
@@ -60,6 +59,7 @@ public class [%= testNameString %]_TestRunner {
 		Configuration cfg = new Configuration();
 		int defaultLocalParallelism = 1;
 		cfg.setString("taskmanager.network.numberOfBuffers", "4096");
+		
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(defaultLocalParallelism, cfg);
 		
 		[%
@@ -81,6 +81,7 @@ public class [%= testNameString %]_TestRunner {
 		
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
+		properties.setProperty("max.in.flight.requests.per.connection", "1");
 		properties.setProperty("group.id", "test");
 		
 		DataStream<ControlMessage> controlStream = env
@@ -170,8 +171,7 @@ public class [%= testNameString %]_TestRunner {
 			public void run() {
 				System.out.println("From out to sim starts");
 				while (true) {
-					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance()
-							.consume("OUT");
+					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = ttsSim.translateTopicNameForOutput(inTopic);
