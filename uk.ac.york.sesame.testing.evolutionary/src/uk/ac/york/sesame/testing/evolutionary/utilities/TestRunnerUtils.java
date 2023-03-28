@@ -92,16 +92,7 @@ public class TestRunnerUtils {
 
 	public static void compileProjectScriptLinux(String projectDir) throws IOException {
 		// original script launcher
-		//ExptHelper.startCmd(ABS_SCRIPT_DIR, "./compile_project_xterm.sh " + projectDir);
-		
-		Optional<ProcResult> res_o = ExptHelper.runScriptWithArgs(ABS_SCRIPT_DIR, "c:\\cygwin64\\bin\\bash compile_project.sh", projectDir);
-		if (res_o.isPresent()) {
-			ProcResult res = res_o.get();
-			String output = res.getOutputString();
-			System.out.println("Compilation output" + output);
-		} else {
-			System.out.println("Compilation launch failed");
-		}
+		ExptHelper.startCmd(ABS_SCRIPT_DIR, "./compile_project_xterm.sh " + projectDir);
 	}
 	
 //	public static void printDependencyTreeCustom(MavenCli cli, String projectDir, String customStr) {
@@ -143,7 +134,17 @@ public class TestRunnerUtils {
 	}
 	
 	private static void killProcessesWindows() {
-		ExptHelperWindows.runViaCygwinBash(ABS_SCRIPT_DIR, "./terminate_sim.sh");
+		String workingDir = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
+		String cmdLine = "~/academic/sesame/WP6/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/scripts/terminate_sim_windows.sh";
+		Optional<ProcResult> res_o = ExptHelperWindows.runViaCygwinBash(cmdLine, workingDir, "");
+		
+		if (res_o.isPresent()) {
+			ProcResult res = res_o.get();
+			String output = res.getOutputString();
+			System.out.println("Kill Process output" + output);
+		} else {
+			
+		}
 	}
 	
 	public static void killProcesses() {
@@ -170,12 +171,51 @@ public class TestRunnerUtils {
 	}
 	
 	public static void clearKafka() {
-		ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./clear_kafka.sh");
+		Optional<OperatingSystem> os_o = detectOS();
+		if (os_o.isPresent()) {
+			OperatingSystem os = os_o.get();
+			if (os == OperatingSystem.OS_WINDOWS) {
+				clearKafkaWindows();
+			}
+			
+			if (os == OperatingSystem.OS_LINUX) {
+			clearKafkaLinux();
+			}	
+		}
+	}
+
+	public static void clearKafkaWindows() {
+		String workingDir = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
+		String cmdLine = "~/academic/sesame/WP6/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/scripts/clear_kafka_windows.sh";
+		Optional<ProcResult> res_o = ExptHelperWindows.runViaCygwinBash(cmdLine, workingDir, "");
+		
+		if (res_o.isPresent()) {
+			ProcResult res = res_o.get();
+			String output = res.getOutputString();
+			System.out.println("Clear Kafka output" + output);
+		} else {
+			
+		}
+		
+//		String workingDir = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
+//
+//		String cmd = "wsl -u jharbin ~/clear_kafka.sh";
+//		//String [] cmdArgs =  { "-u jharbin", " ~/clear_kafka.sh"};
+//		String [] cmdArgs = {};
+//		Optional<ProcResult> res_o = ExptHelper.runScriptWithArgs(workingDir, cmd, cmdArgs);
+//		
+//		if (res_o.isPresent()) {
+//			ProcResult res = res_o.get();
+//			String output = res.getOutputString();
+//			System.out.println("Clear kakfa call output: " + output);
+//		} else {
+//			
+//		}
 	}
 	
-//	public static void __variableLogging(String mainClass) throws IOException {
-//		ExptHelper.runScriptNewWithBashTimeout(ABS_SCRIPT_DIR, "./log_topics.sh " + mainClass, 300);
-//	}
+	public static void clearKafkaLinux() {
+		ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./clear_kafka.sh");
+	}
 
 	public static void waitForSeconds(long timeDelaySeconds) {
 		long endTimeMillis = System.currentTimeMillis() + timeDelaySeconds * 1000;
