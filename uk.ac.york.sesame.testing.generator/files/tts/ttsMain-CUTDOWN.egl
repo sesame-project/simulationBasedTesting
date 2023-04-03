@@ -18,6 +18,8 @@ import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import java.time.Instant;
+
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringEncoder;
@@ -46,9 +48,9 @@ import uk.ac.york.sesame.testing.architecture.tts.TTSSimulator;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 
-
 import metrics.custom.*;
 import metrics.fixed.*;
+import configs.fixed.*;
 
 public class [%= testNameString %]_TestRunner {
 	public static void main(String[] args) {
@@ -130,11 +132,7 @@ public class [%= testNameString %]_TestRunner {
 		// Preprocessing before simulation starts
 		System.out.println("Preprocessing Phase before Simulator Start");
 		
-		[% for (fOName in allFuzzOps.keySet()) {
-		var fuzzOp = allFuzzOps.get(fOName); %]
-		FuzzingOperation [%= fOName %] = [%= produceFOGenerationSignature(fuzzOp) %]; 
-		[%= fOName %].preprocessing();
-		[% } %]
+		attackJointPosR3200_cutdown1 fuzzOp0 = new attackJointPosR3200_cutdown1("joints/R3200ProductMove/Link0/R/position",100000.0,100001.0,0);
 		
 		System.out.print("TTS Simulator Starting...");
 		ttsSim.run(params);
@@ -176,7 +174,13 @@ public class [%= testNameString %]_TestRunner {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = ttsSim.translateTopicNameForOutput(inTopic);
 						[* TODO: only the fuzzingVars should be reflected back to the simulator! *]
-						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
+						EventMessage er = record.value();
+						long timestamp = er.getTimestamp();
+						Instant instant = Instant.now();
+						long timeStampMillis = instant.toEpochMilli();
+						long millisWallDelay = timeStampMillis - er.getIN_walltime();
+						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic + "output timestamp is = " + timestamp);
+						System.out.println("walldelay = " + millisWallDelay);
 						ttsSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
 					}
 				}
@@ -282,28 +286,8 @@ public class [%= testNameString %]_TestRunner {
 		campaignMetrics.addSink(metricsProducer);		
 		ConnectedStreams<EventMessage,MetricMessage> streamFO0 = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
 		
-		[% var foStreamCount = 0;
-		   var foLen = allFuzzOps.size();
-		   
-			if (foLen > 0) {    
-		   	   for (fuzzOpName in allFuzzOps.keySet()) {
-		      var inputStream = "streamFO" + foStreamCount;
-		      var outputStream = "streamFO" + (foStreamCount + 1);
-		      foStreamCount++;
-		      if (foStreamCount < foLen) { %]
-		      	[* For the first stream, we require to produce an output with an EventStream only *]
-			   	ConnectedStreams<EventMessage,MetricMessage> [%= outputStream %] = [%= inputStream %].
-					process([%= fuzzOpName %]).connect(allMetrics).keyBy(e -> TESTNAME, m -> TESTNAME);
- 			[% } else { %]
-				[* For the final stream, we require to produce an output with an EventStream only *]
-		   		DataStream<EventMessage> [%= outputStream %] = [%= inputStream %].process([%= fuzzOpName %]);
-				[% }
-		   		} %]
-			streamFO[%= foLen %].addSink(myProducer);
-		   [% } else { %]
-		   // Case with empty fuzzing operations
-		   stream.addSink(myProducer);
-		   [% } %]
+		DataStream<EventMessage> streamFO1 = stream.process(fuzzOp0);
+		streamFO1.addSink(myProducer);
 		
 		try {
 			env.execute();
