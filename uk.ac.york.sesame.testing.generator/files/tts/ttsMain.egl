@@ -9,7 +9,9 @@
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
+	
 	var sanitiseVariables = false;
+	var recordDelay = true;	
 %]
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.time.Instant;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.MapFunction;
@@ -175,8 +178,22 @@ public class [%= testNameString %]_TestRunner {
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = ttsSim.translateTopicNameForOutput(inTopic);
+						
+						[% if (recordDelay) { %]
+						long timestamp = record.value().getTimestamp();
+						EventMessage er = record.value();
+						
+						Instant instant = Instant.now();
+						long timeStampMillis = instant.toEpochMilli();
+						long millisWallDelay = timeStampMillis - er.getIN_walltime();
+						[% } %]
+												
 						[* TODO: only the fuzzingVars should be reflected back to the simulator! *]
 						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
+						[% if (recordDelay) { %]
+						System.out.println("walldelay = " + millisWallDelay);
+						[% } %]
+						
 						ttsSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
 					}
 				}
