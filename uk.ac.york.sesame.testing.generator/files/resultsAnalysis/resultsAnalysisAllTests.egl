@@ -1,6 +1,6 @@
 [%
 	// TODO: this should be a parameter name
-var campaignName = "repeat-805-timebased"; 
+var campaignName = "repeatConfig-custom"; 
 var filterResultSetString1 = "NONDOM";
 var filterResultSetString2 = "intermediate-1000";
 var targetType = Testing!ResultSetStatus#INTERMEDIATE;

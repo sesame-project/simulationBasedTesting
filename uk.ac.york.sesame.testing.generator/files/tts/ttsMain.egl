@@ -9,7 +9,7 @@
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
-	var sanitiseVariables = true;
+	var sanitiseVariables = false;
 	
 %]
 
@@ -61,6 +61,7 @@ public class [%= testNameString %]_TestRunner {
 		int defaultLocalParallelism = 1;
 		cfg.setString("taskmanager.network.numberOfBuffers", "4096");
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(defaultLocalParallelism, cfg);
+		env.setBufferTimeout(0);
 		
 		[%
 		// Build up map of all fuzzOps by name
