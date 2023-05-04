@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="FuzzingOperations" xmlns:_2="MRSPackage" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
+    <streams xsi:type="InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_IbT50BSTEe2NuvfcagGJYw" name="collisionOccurance" dir="LOWEST">
+    <streams xsi:type="InputStream" xmi:id="_pUyAkCKREe2LYMDzNfHpOQ"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="attackJointPosR270072_0" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_bJdhUN04EeyAL51MCA53dw" endTime="1000.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_SlE2IPLIEeyyicYP_3f6ng" propertyName="" upperBound="1.0"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_y1sMsChQEe26Ivhf6XyfHA" name="attackJointPosR270072_1" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_y1sMsShQEe26Ivhf6XyfHA" endTime="1000.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_y1sMsihQEe26Ivhf6XyfHA" propertyName="" upperBound="1.0"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A" conditionMetrics="_IbT50BSTEe2NuvfcagGJYw" includedOperations="_lc6UoN0YEeyv8LH3vdSfnw">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="200"/>
+    <performedTests xmi:id="_ADLjgC9pEe2Gbua-lJIAMA" name="Test_001_30_08_2022_13_12_35">
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_ADLjgS9pEe2Gbua-lJIAMA" name="attackJointPosR270072_0" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_ADLjgi9pEe2Gbua-lJIAMA" startTime="703.8531812625142" endTime="838.3077955058682"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_ADLjgy9pEe2Gbua-lJIAMA" propertyName="" lowerBound="0.9570623232882045" upperBound="0.9704609990462054"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_ADLjhC9pEe2Gbua-lJIAMA" name="Test_001_30_08_2022_13_18_18">
+      <operations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_ADLjhS9pEe2Gbua-lJIAMA" name="attackJointPosR270072_0" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" xmi:id="_ADLjhi9pEe2Gbua-lJIAMA" startTime="272.4516085961185" endTime="751.6942214615965"/>
+        <valueSet xsi:type="_1:DoubleRange" xmi:id="_ADLjhy9pEe2Gbua-lJIAMA" propertyName="" lowerBound="0.3610174734413184" upperBound="0.4762684978168296"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_08_09_2022_13_28_33">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR270072_0" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="944.3413608221549" endTime="996.8787610586407"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.03719192621590084" upperBound="0.4183429654739988"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_09_09_2022_12_24_50">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR270072_0" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="491.072507619337" endTime="553.4076839840241"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.43599721511019673" upperBound="0.624522836713196"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_12_09_2022_11_48_23">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR270072_0" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="364.4285407869593" endTime="538.8851926838536"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.20034187750397026" upperBound="0.6975119974424286"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_13_09_2022_14_12_13">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR270072_0" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="699.2798997892802" endTime="736.9564894167697"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.7717331846231531" upperBound="0.9036559550749492"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_13_09_2022_14_13_03">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR270072_0" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="992.8570040477655" endTime="996.2453546094958"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.7700777151892448" upperBound="0.8241114128254958"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_14_09_2022_12_10_29">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR270072_0" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="508.3653912532944" endTime="752.1663011928026"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.8370969518486244" upperBound="0.9147789942795596"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_14_09_2022_13_15_50">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR270072_0" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="990.817665273995" endTime="998.6289300349401"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.9980642758728397" upperBound="0.9997498597157312"/>
+      </operations>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="1000"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/mnt/resources/dl-temp/sesame/KukaDevelop" launchDelaySeconds="10">
+    <variables xmi:id="_BIPJ4Az1Ee2dUZBawpc2Eg" name="joints/R270072/Link1/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_udAVMChQEe26Ivhf6XyfHA" name="joints/R270072/Link2/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="R270072" publisher="_BIPJ4Az1Ee2dUZBawpc2Eg"/>
+    <simulator xsi:type="_2:TTSSimulator" xmi:id="_G7808Az1Ee2dUZBawpc2Eg" hostname="localhost" port="8089"/>
+    <propertyType xmi:id="_EYa9sAz0Ee2dUZBawpc2Eg" name="double"/>
+  </mrs>
+</TestingMM:TestingSpace>

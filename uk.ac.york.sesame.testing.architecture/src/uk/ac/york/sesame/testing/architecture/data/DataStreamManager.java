@@ -78,10 +78,18 @@ public class DataStreamManager {
 		String kafkaTopic = topicName.replace("/", ".").replace("[", "");
 //		KafkaProducer<Long, EventMessage> kafkaProducer = DataStreamManager.getInstance().getKafkaProducer();
 		eventMessage.setId(UUID.randomUUID().toString());
-		Instant instant = Instant.now();
-		long timeStampMillis = instant.toEpochMilli();
-		eventMessage.setTimestamp(timeStampMillis);
-//		eventMessage.setTopic(kafkaTopic);
+		
+		// JRH: only replace the event timestamp if they have not
+		// been set by simulator low-level timestamps
+		if (eventMessage.timestamp == 0) {
+			Instant instant = Instant.now();
+			long timeStampMillis = instant.toEpochMilli();
+			eventMessage.setTimestamp(timeStampMillis);
+		}
+		
+		// Ensure the IN_walltime is set
+		eventMessage.setIN_walltime_from_current();
+		
 		ProducerRecord<Long, EventMessage> record = new ProducerRecord<Long, EventMessage>(kafkaTopic, 1L,
 				eventMessage);
 		try {

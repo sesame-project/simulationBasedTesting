@@ -1,5 +1,6 @@
 [%
 	// TODO: this should be a parameter name
+
 var campaignName = "repeatConfig-custom"; 
 var filterResultSetString1 = "NONDOM";
 var filterResultSetString2 = "intermediate-1000";
@@ -26,7 +27,7 @@ operation getAllMetrics(test, header) {
 			str = str + res.name + "\t\t\t";
 		} else {
 			//var valStr = res.value.toString();
-			str = str + res.value.format("%.2f") + "\t\t\t";
+			str = str + res.value.format("%.3f") + "\t\t\t";
 		}
 	}
 	return str;

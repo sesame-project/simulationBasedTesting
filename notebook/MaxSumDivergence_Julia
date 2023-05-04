@@ -1,0 +1,123 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "ba91b8af",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "using Graphs, GraphPlot, MetaGraphs"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "cddd447b",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "find_max_weight_edge (generic function with 1 method)"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "function find_max_weight_edge(sim_graph, vertex_count)\n",
+    "    # Search for\n",
+    "    max_weight = 10000\n",
+    "    tu = 0\n",
+    "    tv = 0\n",
+    "    for u=1:vertex_count\n",
+    "        for v=1:vertex_count\n",
+    "            w = get_prop!(sim_graph, u, v)\n",
+    "            if (w > max_weight)\n",
+    "                tu = u\n",
+    "                tv = v\n",
+    "                w = max_weight\n",
+    "            end\n",
+    "        end\n",
+    "    end\n",
+    "    return [tu,tv]\n",
+    "end"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "83d36716",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "max_sum_divergence (generic function with 1 method)"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "function max_sum_divergence(sim_graph, phy_count)\n",
+    "    phy = MetaGraph() \n",
+    "    lim = floor(phy_count/2)\n",
+    "    for i = 1:lim\n",
+    "        (mu,mv) = find_max_weight_edge(sim_graph)\n",
+    "        add_vertex!(phy)\n",
+    "        add_vertex!(phy)\n",
+    "        # add nodes edge to phy\n",
+    "        # remove other connected edges to mu? / mv?\n",
+    "        # remove edge from S\n",
+    "        # check further\n",
+    "    end\n",
+    "    phy\n",
+    "end"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "2481a408",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "LoadError",
+     "evalue": "MethodError: no method matching max_sum_divergence()\n\u001b[0mClosest candidates are:\n\u001b[0m  max_sum_divergence(\u001b[91m::Any\u001b[39m, \u001b[91m::Any\u001b[39m) at In[3]:1",
+     "output_type": "error",
+     "traceback": [
+      "MethodError: no method matching max_sum_divergence()\n\u001b[0mClosest candidates are:\n\u001b[0m  max_sum_divergence(\u001b[91m::Any\u001b[39m, \u001b[91m::Any\u001b[39m) at In[3]:1",
+      "",
+      "Stacktrace:",
+      " [1] top-level scope",
+      "   @ In[4]:1"
+     ]
+    }
+   ],
+   "source": [
+    "max_sum_divergence()"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Julia 1.8.5",
+   "language": "julia",
+   "name": "julia-1.8"
+  },
+  "language_info": {
+   "file_extension": ".jl",
+   "mimetype": "application/julia",
+   "name": "julia",
+   "version": "1.8.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

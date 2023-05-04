@@ -35,10 +35,12 @@ import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
 public class TTSSimulator implements ISimulator {
 
 	private static final long DEFAULT_TTS_LAUNCH_DELAY_MS = 20000;
+	
+	private static boolean GET_TIME_FROM_MESSAGES = true;
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	private static final boolean DEBUG_DISPLAY_CLOCK_MESSAGE = true;
-	private static final boolean SUBSCRIBE_TO_CLOCK = true;
+	//private static final boolean SUBSCRIBE_TO_CLOCK = true;
 
 	static DataStreamManager dsm = DataStreamManager.getInstance();
 
@@ -102,8 +104,7 @@ public class TTSSimulator implements ISimulator {
 
 	@Override
 	public void run(HashMap<String, String> params) {
-		// For run, we need to use the TTS simulator path and the
-		// "dist" directory
+		// For run, we need to use the TTS simulator path and the "dist" directory
 		String workingDir = params.get("TTSProjectDir") + "/dist/";
 
 		long delayMsec = DEFAULT_TTS_LAUNCH_DELAY_MS;
@@ -170,6 +171,7 @@ public class TTSSimulator implements ISimulator {
 			// asyncStub.subscribe(inTopic, ro);
 			asyncStub.inject(requ, roInject);
 
+			
 		} catch (StatusRuntimeException e) {
 			System.out.println("RPC failed: {0}" + e.getStatus());
 			return;
@@ -286,9 +288,13 @@ public class TTSSimulator implements ISimulator {
 		}
 	}
 
+	private boolean subscribeToClock() {
+		return !GET_TIME_FROM_MESSAGES;
+	}
+	
 	@Override
 	public void updateTime() {
-		if (SUBSCRIBE_TO_CLOCK) {
+		if (subscribeToClock()) {
 			TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("model/clock").build();
 			ClockObserver co = new ClockObserver();
 			asyncStub.subscribe(clockTopic, co);
@@ -301,13 +307,12 @@ public class TTSSimulator implements ISimulator {
 
 		}
 
-		@Override
 		public void onNext(ROSMessage m) {
 			System.out.println("ClockObserver received value with header timestamp " + m.getTimeStamp());
 			Header h = m.getTimeStamp();
 			time t = h.getStamp();
 			double time = ((double)t.getNsec()) / 1e9;
-			System.out.println("Timestamp recovered from message = " + time);
+			System.out.println("Timestamp recovered from clock message = " + time);
 			SimCore.getInstance().setTime(time);
 		}
 
@@ -338,6 +343,18 @@ public class TTSSimulator implements ISimulator {
 		public void setTopic(String givenTopic) {
 			this.kafkaTopic = Optional.of(givenTopic);
 		}
+		
+		private void setSimulatorTimeFromMessage(ROSMessage m, EventMessage em) {
+			Header timeStamp_H = m.getTimeStamp();
+			time tSecNsec = timeStamp_H.getStamp();
+			long sec = tSecNsec.getSec();
+			long nsec = tSecNsec.getNsec();
+			double time = ((double)nsec) / 1e9;
+			System.out.println("Timestamp recovered from message = " + time);
+			
+			SimCore.getInstance().setTime(time);
+			em.setTimestamp(nsec);
+		}
 
 		@Override
 		public void onNext(ROSMessage m) {
@@ -349,8 +366,14 @@ public class TTSSimulator implements ISimulator {
 			
 			String type = m.getType();
 			String topic = path;
+
+			if (GET_TIME_FROM_MESSAGES) {
+				setSimulatorTimeFromMessage(m, em);
+			}
+
 			em.setType(type);
 			em.setTopic(topic);
+			
 			
 			// If there is an empty ROSMessage text value, as in the 
 			// safetyzone messages, the EventMessage value is set to

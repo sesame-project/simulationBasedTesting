@@ -10,7 +10,7 @@
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
 	var sanitiseVariables = false;
-	
+	var recordDelay = true;	
 %]
 
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.time.Instant;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.MapFunction;
@@ -60,6 +61,7 @@ public class [%= testNameString %]_TestRunner {
 		Configuration cfg = new Configuration();
 		int defaultLocalParallelism = 1;
 		cfg.setString("taskmanager.network.numberOfBuffers", "4096");
+		
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(defaultLocalParallelism, cfg);
 		env.setBufferTimeout(0);
 		
@@ -82,6 +84,7 @@ public class [%= testNameString %]_TestRunner {
 		
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
+		properties.setProperty("max.in.flight.requests.per.connection", "1");
 		properties.setProperty("group.id", "test");
 		
 		DataStream<ControlMessage> controlStream = env
@@ -171,13 +174,26 @@ public class [%= testNameString %]_TestRunner {
 			public void run() {
 				System.out.println("From out to sim starts");
 				while (true) {
-					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance()
-							.consume("OUT");
+					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = ttsSim.translateTopicNameForOutput(inTopic);
+						
+						[% if (recordDelay) { %]
+						long timestamp = record.value().getTimestamp();
+						EventMessage er = record.value();
+						
+						Instant instant = Instant.now();
+						long timeStampMillis = instant.toEpochMilli();
+						long millisWallDelay = timeStampMillis - er.getIN_walltime();
+						[% } %]
+												
 						[* TODO: only the fuzzingVars should be reflected back to the simulator! *]
 						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
+						[% if (recordDelay) { %]
+						System.out.println("walldelay = " + millisWallDelay);
+						[% } %]
+						
 						ttsSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
 					}
 				}

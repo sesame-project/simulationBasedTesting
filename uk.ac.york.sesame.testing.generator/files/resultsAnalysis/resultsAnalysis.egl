@@ -42,7 +42,7 @@ operation getAllMetrics(test, header) {
 			str = str + res.name + "\t\t\t";
 		} else {
 			//var valStr = res.value.toString();
-			str = str + res.value.format("%.2f") + "\t\t\t";
+			str = str + res.value.format("%.3f") + "\t\t\t";
 		}
 	}
 	return str;
