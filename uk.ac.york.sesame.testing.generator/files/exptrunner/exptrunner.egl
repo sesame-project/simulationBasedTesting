@@ -1,5 +1,6 @@
 package main;
 
+import java.io.File;
 import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
 
 public class ExptRunner_[%= campaign.name %] {
@@ -16,21 +17,25 @@ public class ExptRunner_[%= campaign.name %] {
 		// Setting paths
 		// The paths are now supplied from the Wizard - nothing needs to be configured here!
 		
-		// IProjectPath = [%= path %]
-		
 		[* For Windows, replace the backslashes: need repeated backslashes for 
 		proper escaping... EGL must construct a regex internally?
 		https://stackoverflow.com/questions/14183248/replacing-single-with-in-java
 		*]
 		[% 
+		
+		
 		var singleSlash = '\\\\';
 		var dualSlash = '\\\\\\\\';
+		
 		var testingModelPath_escaped = testingModelPath.replace(singleSlash, dualSlash);
 		var codeGenerationDir_escaped = codeGenerationDirectory.replace(singleSlash, dualSlash);
 		var orchestratorBasePath_escaped = orchestratorBasePath.replace(singleSlash, dualSlash);
 		 %] 
 
-		final String spaceModelFileName = "[%= testingModelPath_escaped %]";
+		// modelFile.toURI() - Fix for "a registered resource factory is needed" error on Windows
+		File modelFile = new File("[%= testingModelPath_escaped %]");
+		final String spaceModelFileName = modelFile.toURI().toASCIIString();
+		
 		final String CODE_GENERATION_DIRECTORY = "[%= codeGenerationDir_escaped %]";
 		final String orchestratorBasePath = "[%= orchestratorBasePath_escaped %]";
 		

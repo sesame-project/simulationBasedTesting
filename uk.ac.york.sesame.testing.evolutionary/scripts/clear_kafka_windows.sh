@@ -1,3 +1,1 @@
-#!/bin/sh
-
-wsl -u jharbin '~/clear_kafka.sh'
+clear_kafka_docker.sh
