@@ -98,6 +98,7 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 		var parsingMethod = fuzzOp.variableToAffect.type.parsingMethod.name;
 		var isFuzzingRelative = fuzzOp.isRelative;
 		var paramCount = 0;
+
 		if (parsingMethod.equalsIgnoreCase("JSON")) { 
 	%]
 			if (value.getTopic().equals(topic) && isReadyNow()) {

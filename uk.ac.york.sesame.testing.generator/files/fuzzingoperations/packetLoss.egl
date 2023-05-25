@@ -107,11 +107,10 @@ public class [%=fuzzOp.name%]PacketLossFlatMap_[%= classNameExt %] extends [%= s
 	}
 	
 	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception { 
-		Random rand = new Random();
 		String topic = value.getTopic();
 		System.out.println("frequency = " + frequency);
 		if (value.getTopic().contains(topic) && isReadyNow()) {
-			if (frequency <= rand.nextDouble()) {
+			if (frequency <= rng.nextDouble()) {
 				System.out.println("DISCARDING: Message on " + topic + " discarded");
 			} else {
 				System.out.println("ALLOWING: Message on " + topic + " allowed");
