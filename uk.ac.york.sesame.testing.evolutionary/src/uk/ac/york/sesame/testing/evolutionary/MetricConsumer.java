@@ -36,17 +36,12 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsFac
 
 public class MetricConsumer implements Runnable {
 
-	// TODO: look up how to log from this
-	// TODO: needs to contain MetricHandler and MetricSink logic
-
 	private static final Logger logger = LoggerFactory.getLogger(MetricConsumer.class);
 
 	private String clientId;
 	private KafkaConsumer<Long, MetricMessage> consumer;
 	private List<TopicPartition> partitions;
 	private TestCampaign selectedCampaign;
-
-	// private AdminClient kafkaAdminClient = new KafkaAdminClient();
 
 	private AtomicBoolean closed = new AtomicBoolean();
 	private CountDownLatch shutdownlatch = new CountDownLatch(1);

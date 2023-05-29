@@ -1,5 +1,5 @@
 [%
-var campaignName = "test868-repeated-condbased"; 
+var campaignName = "test868-fixedlen_15s"; 
 
 var targetType = Testing!ResultSetStatus#INTERMEDIATE;
 	

@@ -41,7 +41,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	private static final long DEFAULT_HARDCODED_DELAY = 100;
 	
-	//private static final long DEFAULT_COMPILE_DELAY = 10;
 	private static final long DEFAULT_KILL_DELAY = 5;
 	private static final long DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS = 5;
 	private static final long DEFAULT_WAIT_FOR_FINALISE_DELAY = 5;
@@ -64,7 +63,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	private SESAMEModelLoader loader;
 	private TestCampaign selectedCampaign;
-	private TestingSpace testingSpace;
 	private MRS mrs;
 
 	private SESAMEEGLExecutor eglEx;
@@ -89,8 +87,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		properties.setProperty("group.id", "test");
 		properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
 		properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, MetricMessage.class.getName());
-
-		// metricHandler = new MetricHandler();
 
 		// TODO: initializing the rng properly for repeatable experiments
 		rng = new Random();
