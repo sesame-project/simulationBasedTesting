@@ -114,6 +114,13 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case FuzzingOperationsPackage.CONDITION_BASED_TIME_LIMITED: {
+				ConditionBasedTimeLimited conditionBasedTimeLimited = (ConditionBasedTimeLimited)theEObject;
+				T result = caseConditionBasedTimeLimited(conditionBasedTimeLimited);
+				if (result == null) result = caseActivation(conditionBasedTimeLimited);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case FuzzingOperationsPackage.FUZZ_TESTING_OPERATION: {
 				FuzzTestingOperation fuzzTestingOperation = (FuzzTestingOperation)theEObject;
 				T result = caseFuzzTestingOperation(fuzzTestingOperation);
@@ -454,6 +461,21 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConditionBasedActivation(ConditionBasedActivation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Based Time Limited</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Based Time Limited</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionBasedTimeLimited(ConditionBasedTimeLimited object) {
 		return null;
 	}
 

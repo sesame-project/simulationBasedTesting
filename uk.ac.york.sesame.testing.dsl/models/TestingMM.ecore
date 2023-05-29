@@ -41,7 +41,11 @@
         eType="#//Test"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentCampaign" lowerBound="1"
         eType="#//TestCampaign" changeable="false" transient="true" eOpposite="#//TestCampaign/performedTests"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="debugFlags" upperBound="-1"
+        eType="#//TestDebuggingFlags" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TestDebuggingFlags" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PassiveMonitorOnly" eSuperTypes="#//TestDebuggingFlags"/>
   <eClassifiers xsi:type="ecore:EClass" name="ActivationGenerationMethod" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="TimeBasedActivationGenerationMethod"
       eSuperTypes="#//ActivationGenerationMethod"/>
@@ -105,6 +109,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="fromTemplate" eType="#//FuzzingOperations/FuzzingOperation"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="containingTest" eType="#//Test"
           changeable="false" transient="true" eOpposite="#//Test/operations"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="recordedTimings" eType="#//FuzzingOperations/FixedTimeActivation"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="seed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OfflineFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation">
@@ -129,6 +135,13 @@
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ending" eType="#//StandardGrammar/Condition"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumActivations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+          defaultValueLiteral="1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionBasedTimeLimited" eSuperTypes="#//FuzzingOperations/Activation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="starting" eType="#//StandardGrammar/Condition"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumActivations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="1"/>
     </eClassifiers>

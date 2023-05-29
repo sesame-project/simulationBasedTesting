@@ -1,5 +1,5 @@
-[% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase(); 
-%]
+[% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase(); %]
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
@@ -17,7 +17,7 @@ import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
 // TODO: EGL generators need to generate based on fuzzOp activation
 public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassName() %] {
 
-	[% var varNames = new Set; %]
+	[% var varNames = new Set;	%]
 
 	private static final long serialVersionUID = 1L;
 	Random rng;
@@ -25,25 +25,32 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 	[% if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { %]
 	public [%=fuzzOp.name%]FlatMap_[%= classNameExt %](String topic, double start, double end, long seed) {
 		super(topic,start,end);
-		this.rng = new Random(seed);
+		this.rng = new Random(seed); 
 	}
 	[% } %]
 	
-	[% if (fuzzOp.activation.isTypeOf(ConditionBasedActivation)) { 
-		var startCond = fuzzOp.activation.starting;
-		var endCond = fuzzOp.activation.ending;
-	%]
-	
+	[% if (fuzzOp.activation.isTypeOf(ConditionBasedActivation)) { %]
 	public [%=fuzzOp.name%]FlatMap_[%= classNameExt %](String topic, long seed) {
 		super(topic);
 		this.rng = new Random(seed);
 	}
+	[% } %]
 	
+	[% if (fuzzOp.activation.isTypeOf(ConditionBasedTimeLimited)) { %]
+	public [%=fuzzOp.name%]FlatMap_[%= classNameExt %](String topic, long seed) {
+		super(topic, [%=  fuzzOp.activation.length %]);
+		this.rng = new Random(seed);
+	}
+	[% } %]
+	
+	[% if (anyTypeOfCondition(fuzzOp)) { %] 
 	protected boolean evalStartCondition() {
 		boolean res = false;
 		try {
 			///// GENERATED CUSTOM CONDITION CODE START - STARTCOND
-			[% var startCondString = generateCondBoolean(startCond);
+			[% 
+			   var startCond = fuzzOp.activation.starting;
+			   var startCondString = generateCondBoolean(startCond);
 			   var varList = getVarsForCond(fuzzOp, startCond); %]
 			[% for (v in varList) { %]
 				Double [%= v %] = (Double) varState.get("[%= v %]");
@@ -64,13 +71,17 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 		}
 		return res;
 	}
+	[% } %]
 	
+	[* Only generate end conditions for the standard ConditionBasedActivation, not time limited *]
+	[% if (fuzzOp.activation.isTypeOf(ConditionBasedActivation)) { %] 
 	protected boolean evalEndCondition() {
 		boolean res = false;
 		try {
 			///// GENERATED CUSTOM CONDITION CODE START - ENDCOND
-			[% var endCondString = generateCondBoolean(endCond);
-			   var varList = getVarsForCond(fuzzOp, endCond); %]
+			[%  var endCond = fuzzOp.activation.ending;
+				var endCondString = generateCondBoolean(endCond);
+			   	var varList = getVarsForCond(fuzzOp, endCond); %]
 			[% for (v in varList) { %]
 				Double [%= v %] = (Double) varState.get("[%= v %]");
 				if ([%= v %] == null) {
@@ -163,6 +174,10 @@ operation superClassName() {
 	if (fuzzOp.activation.isTypeOf(ConditionBasedActivation)) {
 		return "ConditionBasedFuzzingOperation";	
 	}
+	
+	if (fuzzOp.activation.isTypeOf(ConditionBasedTimeLimited)) {
+		return "ConditionBasedTimeLimited";	
+	}
 }
 
 operation generateBinLogicOp(binop) {
@@ -230,6 +245,11 @@ operation getInitValue(varName) {
         }
     }
     return initVal;
+}
+
+operation anyTypeOfCondition(fuzzOp) {
+	return (fuzzOp.activation.isTypeOf(ConditionBasedActivation) 
+			or fuzzOp.activation.isTypeOf(ConditionBasedTimeLimited));
 }
 
 %]

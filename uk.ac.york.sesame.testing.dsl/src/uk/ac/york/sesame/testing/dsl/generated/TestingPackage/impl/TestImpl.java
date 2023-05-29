@@ -26,6 +26,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInst
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestDebuggingFlags;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
 /**
@@ -41,6 +42,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getMetrics <em>Metrics</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getDevelopedFrom <em>Developed From</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getParentCampaign <em>Parent Campaign</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getDebugFlags <em>Debug Flags</em>}</li>
  * </ul>
  *
  * @generated
@@ -95,6 +97,16 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * @ordered
 	 */
 	protected EList<Test> developedFrom;
+
+	/**
+	 * The cached value of the '{@link #getDebugFlags() <em>Debug Flags</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDebugFlags()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TestDebuggingFlags> debugFlags;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -187,6 +199,18 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<TestDebuggingFlags> getDebugFlags() {
+		if (debugFlags == null) {
+			debugFlags = new EObjectContainmentEList<TestDebuggingFlags>(TestDebuggingFlags.class, this, TestingPackagePackage.TEST__DEBUG_FLAGS);
+		}
+		return debugFlags;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -215,6 +239,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return ((InternalEList<?>)getMetrics()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
 				return eBasicSetContainer(null, TestingPackagePackage.TEST__PARENT_CAMPAIGN, msgs);
+			case TestingPackagePackage.TEST__DEBUG_FLAGS:
+				return ((InternalEList<?>)getDebugFlags()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -251,6 +277,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return getDevelopedFrom();
 			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
 				return getParentCampaign();
+			case TestingPackagePackage.TEST__DEBUG_FLAGS:
+				return getDebugFlags();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -279,6 +307,10 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				getDevelopedFrom().clear();
 				getDevelopedFrom().addAll((Collection<? extends Test>)newValue);
 				return;
+			case TestingPackagePackage.TEST__DEBUG_FLAGS:
+				getDebugFlags().clear();
+				getDebugFlags().addAll((Collection<? extends TestDebuggingFlags>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -303,6 +335,9 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 			case TestingPackagePackage.TEST__DEVELOPED_FROM:
 				getDevelopedFrom().clear();
 				return;
+			case TestingPackagePackage.TEST__DEBUG_FLAGS:
+				getDebugFlags().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -325,6 +360,8 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 				return developedFrom != null && !developedFrom.isEmpty();
 			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
 				return getParentCampaign() != null;
+			case TestingPackagePackage.TEST__DEBUG_FLAGS:
+				return debugFlags != null && !debugFlags.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

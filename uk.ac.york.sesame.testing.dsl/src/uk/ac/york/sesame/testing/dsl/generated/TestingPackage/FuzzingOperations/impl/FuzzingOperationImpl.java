@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 
@@ -50,6 +51,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getSubscribingVars <em>Subscribing Vars</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getFromTemplate <em>From Template</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getContainingTest <em>Containing Test</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getRecordedTimings <em>Recorded Timings</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getSeed <em>Seed</em>}</li>
  * </ul>
  *
@@ -255,6 +257,16 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected FuzzingOperation fromTemplate;
+
+	/**
+	 * The cached value of the '{@link #getRecordedTimings() <em>Recorded Timings</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRecordedTimings()
+	 * @generated
+	 * @ordered
+	 */
+	protected FixedTimeActivation recordedTimings;
 
 	/**
 	 * The default value of the '{@link #getSeed() <em>Seed</em>}' attribute.
@@ -641,6 +653,49 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FixedTimeActivation getRecordedTimings() {
+		return recordedTimings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetRecordedTimings(FixedTimeActivation newRecordedTimings, NotificationChain msgs) {
+		FixedTimeActivation oldRecordedTimings = recordedTimings;
+		recordedTimings = newRecordedTimings;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS, oldRecordedTimings, newRecordedTimings);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRecordedTimings(FixedTimeActivation newRecordedTimings) {
+		if (newRecordedTimings != recordedTimings) {
+			NotificationChain msgs = null;
+			if (recordedTimings != null)
+				msgs = ((InternalEObject)recordedTimings).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS, null, msgs);
+			if (newRecordedTimings != null)
+				msgs = ((InternalEObject)newRecordedTimings).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS, null, msgs);
+			msgs = basicSetRecordedTimings(newRecordedTimings, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS, newRecordedTimings, newRecordedTimings));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getSeed() {
 		return seed;
 	}
@@ -685,6 +740,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return basicSetActivation(null, msgs);
 			case FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST:
 				return eBasicSetContainer(null, FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST, msgs);
+			case FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS:
+				return basicSetRecordedTimings(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -744,6 +801,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return basicGetFromTemplate();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST:
 				return getContainingTest();
+			case FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS:
+				return getRecordedTimings();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
 				return getSeed();
 		}
@@ -805,6 +864,9 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__FROM_TEMPLATE:
 				setFromTemplate((FuzzingOperation)newValue);
 				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS:
+				setRecordedTimings((FixedTimeActivation)newValue);
+				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
 				setSeed((Integer)newValue);
 				return;
@@ -862,6 +924,9 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__FROM_TEMPLATE:
 				setFromTemplate((FuzzingOperation)null);
 				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS:
+				setRecordedTimings((FixedTimeActivation)null);
+				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
 				setSeed(SEED_EDEFAULT);
 				return;
@@ -907,6 +972,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return fromTemplate != null;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST:
 				return getContainingTest() != null;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS:
+				return recordedTimings != null;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
 				return seed != SEED_EDEFAULT;
 		}

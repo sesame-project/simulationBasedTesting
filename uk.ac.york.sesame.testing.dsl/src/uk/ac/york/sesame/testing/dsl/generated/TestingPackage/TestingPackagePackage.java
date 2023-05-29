@@ -295,13 +295,22 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST__PARENT_CAMPAIGN = 4;
 
 	/**
+	 * The feature id for the '<em><b>Debug Flags</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST__DEBUG_FLAGS = 5;
+
+	/**
 	 * The number of structural features of the '<em>Test</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_FEATURE_COUNT = 5;
+	int TEST_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Test</em>' class.
@@ -313,6 +322,62 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestDebuggingFlagsImpl <em>Test Debugging Flags</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestDebuggingFlagsImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTestDebuggingFlags()
+	 * @generated
+	 */
+	int TEST_DEBUGGING_FLAGS = 3;
+
+	/**
+	 * The number of structural features of the '<em>Test Debugging Flags</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_DEBUGGING_FLAGS_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Test Debugging Flags</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_DEBUGGING_FLAGS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.PassiveMonitorOnlyImpl <em>Passive Monitor Only</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.PassiveMonitorOnlyImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getPassiveMonitorOnly()
+	 * @generated
+	 */
+	int PASSIVE_MONITOR_ONLY = 4;
+
+	/**
+	 * The number of structural features of the '<em>Passive Monitor Only</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSIVE_MONITOR_ONLY_FEATURE_COUNT = TEST_DEBUGGING_FLAGS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Passive Monitor Only</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSIVE_MONITOR_ONLY_OPERATION_COUNT = TEST_DEBUGGING_FLAGS_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ActivationGenerationMethodImpl <em>Activation Generation Method</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -320,7 +385,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getActivationGenerationMethod()
 	 * @generated
 	 */
-	int ACTIVATION_GENERATION_METHOD = 3;
+	int ACTIVATION_GENERATION_METHOD = 5;
 
 	/**
 	 * The number of structural features of the '<em>Activation Generation Method</em>' class.
@@ -348,7 +413,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTimeBasedActivationGenerationMethod()
 	 * @generated
 	 */
-	int TIME_BASED_ACTIVATION_GENERATION_METHOD = 4;
+	int TIME_BASED_ACTIVATION_GENERATION_METHOD = 6;
 
 	/**
 	 * The number of structural features of the '<em>Time Based Activation Generation Method</em>' class.
@@ -376,7 +441,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getConditionBasedActivationGenerationMethod()
 	 * @generated
 	 */
-	int CONDITION_BASED_ACTIVATION_GENERATION_METHOD = 5;
+	int CONDITION_BASED_ACTIVATION_GENERATION_METHOD = 7;
 
 	/**
 	 * The feature id for the '<em><b>Condition Depth</b></em>' attribute.
@@ -413,7 +478,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getCampaignResultSet()
 	 * @generated
 	 */
-	int CAMPAIGN_RESULT_SET = 6;
+	int CAMPAIGN_RESULT_SET = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -468,7 +533,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getExecutionEndTrigger()
 	 * @generated
 	 */
-	int EXECUTION_END_TRIGGER = 7;
+	int EXECUTION_END_TRIGGER = 9;
 
 	/**
 	 * The number of structural features of the '<em>Execution End Trigger</em>' class.
@@ -496,7 +561,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTimeBasedEnd()
 	 * @generated
 	 */
-	int TIME_BASED_END = 8;
+	int TIME_BASED_END = 10;
 
 	/**
 	 * The feature id for the '<em><b>Time Limit Seconds</b></em>' attribute.
@@ -533,7 +598,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTestGenerationApproach()
 	 * @generated
 	 */
-	int TEST_GENERATION_APPROACH = 9;
+	int TEST_GENERATION_APPROACH = 11;
 
 	/**
 	 * The number of structural features of the '<em>Test Generation Approach</em>' class.
@@ -561,7 +626,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRandomTestGeneration()
 	 * @generated
 	 */
-	int RANDOM_TEST_GENERATION = 10;
+	int RANDOM_TEST_GENERATION = 12;
 
 	/**
 	 * The number of structural features of the '<em>Random Test Generation</em>' class.
@@ -589,7 +654,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getEvolutionaryAlgorithm()
 	 * @generated
 	 */
-	int EVOLUTIONARY_ALGORITHM = 11;
+	int EVOLUTIONARY_ALGORITHM = 13;
 
 	/**
 	 * The number of structural features of the '<em>Evolutionary Algorithm</em>' class.
@@ -617,7 +682,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getNSGAEvolutionaryAlgorithm()
 	 * @generated
 	 */
-	int NSGA_EVOLUTIONARY_ALGORITHM = 12;
+	int NSGA_EVOLUTIONARY_ALGORITHM = 14;
 
 	/**
 	 * The feature id for the '<em><b>Population Size</b></em>' attribute.
@@ -663,7 +728,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRepeatedExecution()
 	 * @generated
 	 */
-	int REPEATED_EXECUTION = 13;
+	int REPEATED_EXECUTION = 15;
 
 	/**
 	 * The feature id for the '<em><b>Test To Repeat</b></em>' reference.
@@ -709,7 +774,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getResultSetStatus()
 	 * @generated
 	 */
-	int RESULT_SET_STATUS = 14;
+	int RESULT_SET_STATUS = 16;
 
 
 	/**
@@ -950,6 +1015,37 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTest_ParentCampaign();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getDebugFlags <em>Debug Flags</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Debug Flags</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getDebugFlags()
+	 * @see #getTest()
+	 * @generated
+	 */
+	EReference getTest_DebugFlags();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestDebuggingFlags <em>Test Debugging Flags</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Test Debugging Flags</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestDebuggingFlags
+	 * @generated
+	 */
+	EClass getTestDebuggingFlags();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.PassiveMonitorOnly <em>Passive Monitor Only</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Passive Monitor Only</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.PassiveMonitorOnly
+	 * @generated
+	 */
+	EClass getPassiveMonitorOnly();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ActivationGenerationMethod <em>Activation Generation Method</em>}'.
@@ -1374,6 +1470,34 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST__PARENT_CAMPAIGN = eINSTANCE.getTest_ParentCampaign();
+
+		/**
+		 * The meta object literal for the '<em><b>Debug Flags</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST__DEBUG_FLAGS = eINSTANCE.getTest_DebugFlags();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestDebuggingFlagsImpl <em>Test Debugging Flags</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestDebuggingFlagsImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTestDebuggingFlags()
+		 * @generated
+		 */
+		EClass TEST_DEBUGGING_FLAGS = eINSTANCE.getTestDebuggingFlags();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.PassiveMonitorOnlyImpl <em>Passive Monitor Only</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.PassiveMonitorOnlyImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getPassiveMonitorOnly()
+		 * @generated
+		 */
+		EClass PASSIVE_MONITOR_ONLY = eINSTANCE.getPassiveMonitorOnly();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ActivationGenerationMethodImpl <em>Activation Generation Method</em>}' class.

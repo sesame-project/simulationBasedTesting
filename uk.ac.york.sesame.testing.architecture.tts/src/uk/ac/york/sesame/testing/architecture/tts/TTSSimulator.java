@@ -36,7 +36,7 @@ public class TTSSimulator implements ISimulator {
 
 	private static final long DEFAULT_TTS_LAUNCH_DELAY_MS = 20000;
 	
-	private static boolean GET_TIME_FROM_MESSAGES = true;
+	private static boolean GET_TIME_FROM_MESSAGES = false;
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	private static final boolean DEBUG_DISPLAY_CLOCK_MESSAGE = true;
@@ -180,7 +180,7 @@ public class TTSSimulator implements ISimulator {
 	
 	private void consumeFromTopicWithoutFuzzing(String topicName, String topicType, Boolean publishToKafka,	String kafkaTopic) {
 		String topicNameIn;
-		// TODO: think of better way to handle this - variable specific information
+		// TODO: think of better way to handle this - variable specific information?
 		if (topicName.contains("safetyzone")) {
 			topicNameIn = topicName;
 		} else {
@@ -188,12 +188,6 @@ public class TTSSimulator implements ISimulator {
 		}
 		
 		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-//		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-
-//		Optional<String> kTopic = Optional.empty();
-//		if (publishToKafka) {
-//			kTopic = Optional.of(kafkaTopic);
-//		}
 
 		try {
 			ROSObserver ro = new ROSObserver(topicNameIn);

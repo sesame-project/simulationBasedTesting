@@ -62,6 +62,7 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 			case FuzzingOperationsPackage.CUSTOM_OFFLINE_FUZZING_OPERATION: return createCustomOfflineFuzzingOperation();
 			case FuzzingOperationsPackage.FIXED_TIME_ACTIVATION: return createFixedTimeActivation();
 			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION: return createConditionBasedActivation();
+			case FuzzingOperationsPackage.CONDITION_BASED_TIME_LIMITED: return createConditionBasedTimeLimited();
 			case FuzzingOperationsPackage.FUZZ_TESTING_OPERATION: return createFuzzTestingOperation();
 			case FuzzingOperationsPackage.COMPONENT_OPERATION: return createComponentOperation();
 			case FuzzingOperationsPackage.COMPONENT_PROPERTY_OPERATION: return createComponentPropertyOperation();
@@ -175,6 +176,16 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	public ConditionBasedActivation createConditionBasedActivation() {
 		ConditionBasedActivationImpl conditionBasedActivation = new ConditionBasedActivationImpl();
 		return conditionBasedActivation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConditionBasedTimeLimited createConditionBasedTimeLimited() {
+		ConditionBasedTimeLimitedImpl conditionBasedTimeLimited = new ConditionBasedTimeLimitedImpl();
+		return conditionBasedTimeLimited;
 	}
 
 	/**

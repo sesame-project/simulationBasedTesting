@@ -84,6 +84,19 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TestingPackagePackage.TEST_DEBUGGING_FLAGS: {
+				TestDebuggingFlags testDebuggingFlags = (TestDebuggingFlags)theEObject;
+				T result = caseTestDebuggingFlags(testDebuggingFlags);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.PASSIVE_MONITOR_ONLY: {
+				PassiveMonitorOnly passiveMonitorOnly = (PassiveMonitorOnly)theEObject;
+				T result = casePassiveMonitorOnly(passiveMonitorOnly);
+				if (result == null) result = caseTestDebuggingFlags(passiveMonitorOnly);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case TestingPackagePackage.ACTIVATION_GENERATION_METHOD: {
 				ActivationGenerationMethod activationGenerationMethod = (ActivationGenerationMethod)theEObject;
 				T result = caseActivationGenerationMethod(activationGenerationMethod);
@@ -204,6 +217,36 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTest(Test object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Test Debugging Flags</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Test Debugging Flags</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTestDebuggingFlags(TestDebuggingFlags object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Passive Monitor Only</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Passive Monitor Only</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePassiveMonitorOnly(PassiveMonitorOnly object) {
 		return null;
 	}
 

@@ -29,6 +29,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPac
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.PassiveMonitorOnly;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RandomTestGeneration;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus;
@@ -43,6 +44,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.im
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestDebuggingFlags;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationApproach;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
@@ -77,6 +79,20 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * @generated
 	 */
 	private EClass testEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass testDebuggingFlagsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass passiveMonitorOnlyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -448,6 +464,33 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTest_DebugFlags() {
+		return (EReference)testEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTestDebuggingFlags() {
+		return testDebuggingFlagsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPassiveMonitorOnly() {
+		return passiveMonitorOnlyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getActivationGenerationMethod() {
 		return activationGenerationMethodEClass;
 	}
@@ -684,6 +727,11 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEReference(testEClass, TEST__METRICS);
 		createEReference(testEClass, TEST__DEVELOPED_FROM);
 		createEReference(testEClass, TEST__PARENT_CAMPAIGN);
+		createEReference(testEClass, TEST__DEBUG_FLAGS);
+
+		testDebuggingFlagsEClass = createEClass(TEST_DEBUGGING_FLAGS);
+
+		passiveMonitorOnlyEClass = createEClass(PASSIVE_MONITOR_ONLY);
 
 		activationGenerationMethodEClass = createEClass(ACTIVATION_GENERATION_METHOD);
 
@@ -762,6 +810,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		passiveMonitorOnlyEClass.getESuperTypes().add(this.getTestDebuggingFlags());
 		timeBasedActivationGenerationMethodEClass.getESuperTypes().add(this.getActivationGenerationMethod());
 		conditionBasedActivationGenerationMethodEClass.getESuperTypes().add(this.getActivationGenerationMethod());
 		timeBasedEndEClass.getESuperTypes().add(this.getExecutionEndTrigger());
@@ -795,6 +844,11 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEReference(getTest_Metrics(), theMetricsPackage.getMetricInstance(), null, "metrics", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_DevelopedFrom(), this.getTest(), null, "developedFrom", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTest_ParentCampaign(), this.getTestCampaign(), this.getTestCampaign_PerformedTests(), "parentCampaign", null, 1, 1, Test.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTest_DebugFlags(), this.getTestDebuggingFlags(), null, "debugFlags", null, 0, -1, Test.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(testDebuggingFlagsEClass, TestDebuggingFlags.class, "TestDebuggingFlags", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(passiveMonitorOnlyEClass, PassiveMonitorOnly.class, "PassiveMonitorOnly", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(activationGenerationMethodEClass, ActivationGenerationMethod.class, "ActivationGenerationMethod", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

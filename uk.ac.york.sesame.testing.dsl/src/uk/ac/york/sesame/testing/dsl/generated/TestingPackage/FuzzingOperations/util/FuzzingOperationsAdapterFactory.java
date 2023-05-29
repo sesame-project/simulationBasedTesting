@@ -96,6 +96,10 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 				return createConditionBasedActivationAdapter();
 			}
 			@Override
+			public Adapter caseConditionBasedTimeLimited(ConditionBasedTimeLimited object) {
+				return createConditionBasedTimeLimitedAdapter();
+			}
+			@Override
 			public Adapter caseFuzzTestingOperation(FuzzTestingOperation object) {
 				return createFuzzTestingOperationAdapter();
 			}
@@ -334,6 +338,20 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConditionBasedActivationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited <em>Condition Based Time Limited</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited
+	 * @generated
+	 */
+	public Adapter createConditionBasedTimeLimitedAdapter() {
 		return null;
 	}
 

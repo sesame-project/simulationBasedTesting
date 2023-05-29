@@ -46,6 +46,15 @@ class Test {
 	// which other tests it was developed from
 	ref Test[*] developedFrom; 
 	readonly transient ref TestCampaign[1]#performedTests parentCampaign;
+	val TestDebuggingFlags[*] debugFlags;
+}
+
+abstract class TestDebuggingFlags {
+	
+}
+
+class PassiveMonitorOnly extends TestDebuggingFlags {
+	
 }
 
 // This selects either condition-based or time-based fuzzing for this test,
@@ -122,6 +131,7 @@ abstract class FuzzingOperation {
 	ref MRSPackage.Variable[*] subscribingVars;
 	ref FuzzingOperation[0..1] fromTemplate;
 	readonly transient ref Test[0..1]#operations containingTest;
+	val FixedTimeActivation[0..1] recordedTimings; 
 	attr int seed;
 }
 
@@ -155,6 +165,12 @@ class FixedTimeActivation extends Activation {
 class ConditionBasedActivation extends Activation {
 	val StandardGrammar.Condition starting;
 	val StandardGrammar.Condition ending;
+	attr int maximumActivations = 1;
+}
+
+class ConditionBasedTimeLimited extends Activation {
+	val StandardGrammar.Condition starting;
+	attr double length;
 	attr int maximumActivations = 1;
 }
 

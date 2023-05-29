@@ -203,13 +203,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int FUZZING_OPERATION__CONTAINING_TEST = 14;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION__RECORDED_TIMINGS = 15;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION__SEED = 15;
+	int FUZZING_OPERATION__SEED = 16;
 
 	/**
 	 * The number of structural features of the '<em>Fuzzing Operation</em>' class.
@@ -218,7 +227,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_FEATURE_COUNT = 16;
+	int FUZZING_OPERATION_FEATURE_COUNT = 17;
 
 	/**
 	 * The number of operations of the '<em>Fuzzing Operation</em>' class.
@@ -373,6 +382,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int OFFLINE_FUZZING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
+
+	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_FUZZING_OPERATION__RECORDED_TIMINGS = FUZZING_OPERATION__RECORDED_TIMINGS;
 
 	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
@@ -556,6 +574,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int CUSTOM_FUZZING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__RECORDED_TIMINGS = FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -737,6 +764,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int CUSTOM_OFFLINE_FUZZING_OPERATION__CONTAINING_TEST = OFFLINE_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_FUZZING_OPERATION__RECORDED_TIMINGS = OFFLINE_FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -902,6 +938,61 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int CONDITION_BASED_ACTIVATION_OPERATION_COUNT = ACTIVATION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedTimeLimitedImpl <em>Condition Based Time Limited</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedTimeLimitedImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getConditionBasedTimeLimited()
+	 * @generated
+	 */
+	int CONDITION_BASED_TIME_LIMITED = 7;
+
+	/**
+	 * The feature id for the '<em><b>Starting</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED_TIME_LIMITED__STARTING = ACTIVATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED_TIME_LIMITED__LENGTH = ACTIVATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Maximum Activations</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED_TIME_LIMITED__MAXIMUM_ACTIVATIONS = ACTIVATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Condition Based Time Limited</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED_TIME_LIMITED_FEATURE_COUNT = ACTIVATION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Condition Based Time Limited</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED_TIME_LIMITED_OPERATION_COUNT = ACTIVATION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzTestingOperationImpl <em>Fuzz Testing Operation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -909,7 +1000,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getFuzzTestingOperation()
 	 * @generated
 	 */
-	int FUZZ_TESTING_OPERATION = 7;
+	int FUZZ_TESTING_OPERATION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1047,6 +1138,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int FUZZ_TESTING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_OPERATION__RECORDED_TIMINGS = FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1081,7 +1181,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getComponentOperation()
 	 * @generated
 	 */
-	int COMPONENT_OPERATION = 8;
+	int COMPONENT_OPERATION = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1219,6 +1319,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int COMPONENT_OPERATION__CONTAINING_TEST = FUZZ_TESTING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_OPERATION__RECORDED_TIMINGS = FUZZ_TESTING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1253,7 +1362,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getComponentPropertyOperation()
 	 * @generated
 	 */
-	int COMPONENT_PROPERTY_OPERATION = 9;
+	int COMPONENT_PROPERTY_OPERATION = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1391,6 +1500,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int COMPONENT_PROPERTY_OPERATION__CONTAINING_TEST = FUZZ_TESTING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_OPERATION__RECORDED_TIMINGS = FUZZ_TESTING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1434,7 +1552,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getComponentSubPropertyOperation()
 	 * @generated
 	 */
-	int COMPONENT_SUB_PROPERTY_OPERATION = 10;
+	int COMPONENT_SUB_PROPERTY_OPERATION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1572,6 +1690,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int COMPONENT_SUB_PROPERTY_OPERATION__CONTAINING_TEST = FUZZ_TESTING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_OPERATION__RECORDED_TIMINGS = FUZZ_TESTING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1624,7 +1751,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getVariableOperation()
 	 * @generated
 	 */
-	int VARIABLE_OPERATION = 11;
+	int VARIABLE_OPERATION = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1762,6 +1889,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int VARIABLE_OPERATION__CONTAINING_TEST = FUZZ_TESTING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_OPERATION__RECORDED_TIMINGS = FUZZ_TESTING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1805,7 +1941,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getRandomValueFuzzingOperation()
 	 * @generated
 	 */
-	int RANDOM_VALUE_FUZZING_OPERATION = 12;
+	int RANDOM_VALUE_FUZZING_OPERATION = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1943,6 +2079,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int RANDOM_VALUE_FUZZING_OPERATION__CONTAINING_TEST = COMPONENT_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FUZZING_OPERATION__RECORDED_TIMINGS = COMPONENT_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1977,7 +2122,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getRandomValueFromSetOperation()
 	 * @generated
 	 */
-	int RANDOM_VALUE_FROM_SET_OPERATION = 13;
+	int RANDOM_VALUE_FROM_SET_OPERATION = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2115,6 +2260,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int RANDOM_VALUE_FROM_SET_OPERATION__CONTAINING_TEST = RANDOM_VALUE_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_OPERATION__RECORDED_TIMINGS = RANDOM_VALUE_FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2167,7 +2321,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getValueSet()
 	 * @generated
 	 */
-	int VALUE_SET = 14;
+	int VALUE_SET = 15;
 
 	/**
 	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
@@ -2204,7 +2358,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getValueRange()
 	 * @generated
 	 */
-	int VALUE_RANGE = 15;
+	int VALUE_RANGE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
@@ -2241,7 +2395,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getIntRange()
 	 * @generated
 	 */
-	int INT_RANGE = 16;
+	int INT_RANGE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
@@ -2296,7 +2450,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getDoubleRange()
 	 * @generated
 	 */
-	int DOUBLE_RANGE = 17;
+	int DOUBLE_RANGE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
@@ -2351,7 +2505,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getPoint()
 	 * @generated
 	 */
-	int POINT = 18;
+	int POINT = 19;
 
 	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
@@ -2406,7 +2560,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getPointRange()
 	 * @generated
 	 */
-	int POINT_RANGE = 19;
+	int POINT_RANGE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
@@ -2461,7 +2615,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getStringSet()
 	 * @generated
 	 */
-	int STRING_SET = 20;
+	int STRING_SET = 21;
 
 	/**
 	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
@@ -2507,7 +2661,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getExternalResourceSet()
 	 * @generated
 	 */
-	int EXTERNAL_RESOURCE_SET = 21;
+	int EXTERNAL_RESOURCE_SET = 22;
 
 	/**
 	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
@@ -2553,7 +2707,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getResourceFuzzingOperation()
 	 * @generated
 	 */
-	int RESOURCE_FUZZING_OPERATION = 22;
+	int RESOURCE_FUZZING_OPERATION = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2691,6 +2845,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int RESOURCE_FUZZING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_FUZZING_OPERATION__RECORDED_TIMINGS = FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2725,7 +2888,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getStateFuzzingOperation()
 	 * @generated
 	 */
-	int STATE_FUZZING_OPERATION = 23;
+	int STATE_FUZZING_OPERATION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2863,6 +3026,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int STATE_FUZZING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_FUZZING_OPERATION__RECORDED_TIMINGS = FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2897,7 +3069,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getNetworkFuzzingOperation()
 	 * @generated
 	 */
-	int NETWORK_FUZZING_OPERATION = 24;
+	int NETWORK_FUZZING_OPERATION = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3035,6 +3207,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int NETWORK_FUZZING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_FUZZING_OPERATION__RECORDED_TIMINGS = FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3069,7 +3250,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getLoadResourceOperation()
 	 * @generated
 	 */
-	int LOAD_RESOURCE_OPERATION = 25;
+	int LOAD_RESOURCE_OPERATION = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3207,6 +3388,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int LOAD_RESOURCE_OPERATION__CONTAINING_TEST = RESOURCE_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOAD_RESOURCE_OPERATION__RECORDED_TIMINGS = RESOURCE_FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3250,7 +3440,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getLoadType()
 	 * @generated
 	 */
-	int LOAD_TYPE = 26;
+	int LOAD_TYPE = 27;
 
 	/**
 	 * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -3296,7 +3486,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getCPULoadType()
 	 * @generated
 	 */
-	int CPU_LOAD_TYPE = 27;
+	int CPU_LOAD_TYPE = 28;
 
 	/**
 	 * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -3342,7 +3532,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getMemoryLoadType()
 	 * @generated
 	 */
-	int MEMORY_LOAD_TYPE = 28;
+	int MEMORY_LOAD_TYPE = 29;
 
 	/**
 	 * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -3388,7 +3578,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getIOLoadType()
 	 * @generated
 	 */
-	int IO_LOAD_TYPE = 29;
+	int IO_LOAD_TYPE = 30;
 
 	/**
 	 * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -3434,7 +3624,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getDiskLoadType()
 	 * @generated
 	 */
-	int DISK_LOAD_TYPE = 30;
+	int DISK_LOAD_TYPE = 31;
 
 	/**
 	 * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -3480,7 +3670,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getShutdownStateOperaton()
 	 * @generated
 	 */
-	int SHUTDOWN_STATE_OPERATON = 31;
+	int SHUTDOWN_STATE_OPERATON = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3618,6 +3808,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int SHUTDOWN_STATE_OPERATON__CONTAINING_TEST = STATE_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHUTDOWN_STATE_OPERATON__RECORDED_TIMINGS = STATE_FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3652,7 +3851,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getTimeTravelStateOperaton()
 	 * @generated
 	 */
-	int TIME_TRAVEL_STATE_OPERATON = 32;
+	int TIME_TRAVEL_STATE_OPERATON = 33;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3790,6 +3989,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int TIME_TRAVEL_STATE_OPERATON__CONTAINING_TEST = STATE_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_TRAVEL_STATE_OPERATON__RECORDED_TIMINGS = STATE_FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3833,7 +4041,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getProcessKillerStateOperaton()
 	 * @generated
 	 */
-	int PROCESS_KILLER_STATE_OPERATON = 33;
+	int PROCESS_KILLER_STATE_OPERATON = 34;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3971,6 +4179,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int PROCESS_KILLER_STATE_OPERATON__CONTAINING_TEST = STATE_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_KILLER_STATE_OPERATON__RECORDED_TIMINGS = STATE_FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4014,7 +4231,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getBlackholeNetworkOperation()
 	 * @generated
 	 */
-	int BLACKHOLE_NETWORK_OPERATION = 34;
+	int BLACKHOLE_NETWORK_OPERATION = 35;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4152,6 +4369,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int BLACKHOLE_NETWORK_OPERATION__CONTAINING_TEST = NETWORK_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_OPERATION__RECORDED_TIMINGS = NETWORK_FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4186,7 +4412,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getLatencyNetworkOperation()
 	 * @generated
 	 */
-	int LATENCY_NETWORK_OPERATION = 35;
+	int LATENCY_NETWORK_OPERATION = 36;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4324,6 +4550,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int LATENCY_NETWORK_OPERATION__CONTAINING_TEST = NETWORK_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_OPERATION__RECORDED_TIMINGS = NETWORK_FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4367,7 +4602,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getPacketLossNetworkOperation()
 	 * @generated
 	 */
-	int PACKET_LOSS_NETWORK_OPERATION = 36;
+	int PACKET_LOSS_NETWORK_OPERATION = 37;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4505,6 +4740,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int PACKET_LOSS_NETWORK_OPERATION__CONTAINING_TEST = NETWORK_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_OPERATION__RECORDED_TIMINGS = NETWORK_FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4548,7 +4792,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getMultipleMessagesNetworkOperation()
 	 * @generated
 	 */
-	int MULTIPLE_MESSAGES_NETWORK_OPERATION = 37;
+	int MULTIPLE_MESSAGES_NETWORK_OPERATION = 38;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4686,6 +4930,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int MULTIPLE_MESSAGES_NETWORK_OPERATION__CONTAINING_TEST = NETWORK_FUZZING_OPERATION__CONTAINING_TEST;
 
 	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_MESSAGES_NETWORK_OPERATION__RECORDED_TIMINGS = NETWORK_FUZZING_OPERATION__RECORDED_TIMINGS;
+
+	/**
 	 * The feature id for the '<em><b>Seed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4729,7 +4982,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getOfflineOperationTime()
 	 * @generated
 	 */
-	int OFFLINE_OPERATION_TIME = 38;
+	int OFFLINE_OPERATION_TIME = 39;
 
 
 	/**
@@ -4908,6 +5161,17 @@ public interface FuzzingOperationsPackage extends EPackage {
 	EReference getFuzzingOperation_ContainingTest();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getRecordedTimings <em>Recorded Timings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Recorded Timings</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getRecordedTimings()
+	 * @see #getFuzzingOperation()
+	 * @generated
+	 */
+	EReference getFuzzingOperation_RecordedTimings();
+
+	/**
 	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getSeed <em>Seed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5054,6 +5318,49 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getConditionBasedActivation_MaximumActivations();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited <em>Condition Based Time Limited</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Condition Based Time Limited</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited
+	 * @generated
+	 */
+	EClass getConditionBasedTimeLimited();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited#getStarting <em>Starting</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Starting</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited#getStarting()
+	 * @see #getConditionBasedTimeLimited()
+	 * @generated
+	 */
+	EReference getConditionBasedTimeLimited_Starting();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited#getLength <em>Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Length</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited#getLength()
+	 * @see #getConditionBasedTimeLimited()
+	 * @generated
+	 */
+	EAttribute getConditionBasedTimeLimited_Length();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited#getMaximumActivations <em>Maximum Activations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Activations</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited#getMaximumActivations()
+	 * @see #getConditionBasedTimeLimited()
+	 * @generated
+	 */
+	EAttribute getConditionBasedTimeLimited_MaximumActivations();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzTestingOperation <em>Fuzz Testing Operation</em>}'.
@@ -5815,6 +6122,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		EReference FUZZING_OPERATION__CONTAINING_TEST = eINSTANCE.getFuzzingOperation_ContainingTest();
 
 		/**
+		 * The meta object literal for the '<em><b>Recorded Timings</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUZZING_OPERATION__RECORDED_TIMINGS = eINSTANCE.getFuzzingOperation_RecordedTimings();
+
+		/**
 		 * The meta object literal for the '<em><b>Seed</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5937,6 +6252,40 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONDITION_BASED_ACTIVATION__MAXIMUM_ACTIVATIONS = eINSTANCE.getConditionBasedActivation_MaximumActivations();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedTimeLimitedImpl <em>Condition Based Time Limited</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedTimeLimitedImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getConditionBasedTimeLimited()
+		 * @generated
+		 */
+		EClass CONDITION_BASED_TIME_LIMITED = eINSTANCE.getConditionBasedTimeLimited();
+
+		/**
+		 * The meta object literal for the '<em><b>Starting</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITION_BASED_TIME_LIMITED__STARTING = eINSTANCE.getConditionBasedTimeLimited_Starting();
+
+		/**
+		 * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONDITION_BASED_TIME_LIMITED__LENGTH = eINSTANCE.getConditionBasedTimeLimited_Length();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Activations</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONDITION_BASED_TIME_LIMITED__MAXIMUM_ACTIVATIONS = eINSTANCE.getConditionBasedTimeLimited_MaximumActivations();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzTestingOperationImpl <em>Fuzz Testing Operation</em>}' class.

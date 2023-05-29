@@ -67,6 +67,15 @@ public interface FuzzingOperationsFactory extends EFactory {
 	ConditionBasedActivation createConditionBasedActivation();
 
 	/**
+	 * Returns a new object of class '<em>Condition Based Time Limited</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Condition Based Time Limited</em>'.
+	 * @generated
+	 */
+	ConditionBasedTimeLimited createConditionBasedTimeLimited();
+
+	/**
 	 * Returns a new object of class '<em>Fuzz Testing Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

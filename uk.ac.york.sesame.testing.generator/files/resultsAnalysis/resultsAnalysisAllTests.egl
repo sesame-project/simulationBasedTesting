@@ -1,9 +1,6 @@
 [%
-	// TODO: this should be a parameter name
+var campaignName = "test868-repeated-condbased"; 
 
-var campaignName = "repeatConfig-custom"; 
-var filterResultSetString1 = "NONDOM";
-var filterResultSetString2 = "intermediate-1000";
 var targetType = Testing!ResultSetStatus#INTERMEDIATE;
 	
 var testSpace = Testing!TestingSpace.all().first();

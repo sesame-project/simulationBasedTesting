@@ -35,6 +35,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getSubscribingVars <em>Subscribing Vars</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getFromTemplate <em>From Template</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getContainingTest <em>Containing Test</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getRecordedTimings <em>Recorded Timings</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getSeed <em>Seed</em>}</li>
  * </ul>
  *
@@ -327,6 +328,28 @@ public interface FuzzingOperation extends EObject {
 	 * @generated
 	 */
 	Test getContainingTest();
+
+	/**
+	 * Returns the value of the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Recorded Timings</em>' containment reference.
+	 * @see #setRecordedTimings(FixedTimeActivation)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getFuzzingOperation_RecordedTimings()
+	 * @model containment="true"
+	 * @generated
+	 */
+	FixedTimeActivation getRecordedTimings();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getRecordedTimings <em>Recorded Timings</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Recorded Timings</em>' containment reference.
+	 * @see #getRecordedTimings()
+	 * @generated
+	 */
+	void setRecordedTimings(FixedTimeActivation value);
 
 	/**
 	 * Returns the value of the '<em><b>Seed</b></em>' attribute.

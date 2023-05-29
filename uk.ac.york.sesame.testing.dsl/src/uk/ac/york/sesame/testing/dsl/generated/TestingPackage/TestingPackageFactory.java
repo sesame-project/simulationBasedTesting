@@ -49,6 +49,15 @@ public interface TestingPackageFactory extends EFactory {
 	Test createTest();
 
 	/**
+	 * Returns a new object of class '<em>Passive Monitor Only</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Passive Monitor Only</em>'.
+	 * @generated
+	 */
+	PassiveMonitorOnly createPassiveMonitorOnly();
+
+	/**
 	 * Returns a new object of class '<em>Time Based Activation Generation Method</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

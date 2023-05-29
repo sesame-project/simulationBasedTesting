@@ -5,12 +5,19 @@
 	var topicsNodesPublish = Node.all().publisher.flatten();
 	var topicsMetricsNeed = Metric.all().relatedVariables.flatten();
 	var allTopics = topicsNodesPublish.includingAll(topicsMetricsNeed).asSet();
+	
 	var fuzzingVars = new Set();
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
 	var sanitiseVariables = false;
 	var recordDelay = true;	
+	
+	var sendBackToSimulator = true;
+	
+	// This will activate sending back all topics in the MITM. Normally only the
+	// fuzzing variables should be sent back
+	var sendBackAllTopics = false;
 %]
 
 import java.util.ArrayList;
@@ -78,9 +85,24 @@ public class [%= testNameString %]_TestRunner {
 			if (fuzzOp.variableToAffect != null) {
 				fuzzingVars.add(fuzzOp.variableToAffect);
 			}
-			
 		%]
 		[% } %]
+		
+		[* Java version of fuzzing topics to use in runtime checks to send back *]
+		List<String> fuzzingTopics = new ArrayList<String>();
+		[% for (v in fuzzingVars) { %]
+		fuzzingTopics.add("[%= v.name %]");
+		[% } %]
+		
+		[* If passive monitoring debug flag is enabled, don't send anything back to the
+		simulator *]
+		[%
+		for (debugFlag in test.debugFlags) {
+			if (debugFlag.isKindOf(PassiveMonitorOnly)) {
+				sendBackToSimulator = false; 
+			}
+		}
+		%]
 		
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
@@ -184,22 +206,34 @@ public class [%= testNameString %]_TestRunner {
 						EventMessage er = record.value();
 						
 						Instant instant = Instant.now();
-						long timeStampMillis = instant.toEpochMilli();
-						long millisWallDelay = timeStampMillis - er.getIN_walltime();
+						long timeOut = instant.toEpochMilli();
+						long timeIn = er.getIN_walltime();
+						long millisWallDelay = timeOut - timeIn;
 						[% } %]
 												
 						[* TODO: only the fuzzingVars should be reflected back to the simulator! *]
 						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
 						[% if (recordDelay) { %]
-						System.out.println("walldelay = " + millisWallDelay);
+						System.out.println("delaytiming," + "," + timeIn + "," + timeOut + "," + millisWallDelay);
 						[% } %]
 						
-						ttsSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
+						[% if (sendBackToSimulator) { %]
+							[% if (not sendBackAllTopics) { %]
+							if (fuzzingTopics.contains(inTopic)) { 
+							[% } %]
+							ttsSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
+						
+							[* closing brace only inserted when sendBackAllTopics not used *]
+							[% if (not sendBackAllTopics) { %]
+							} 
+							[% } %]
+						[% } else { %]
+						// Not sending anything back to simulator - passive monitoring only
+						[% } %]
 					}
 				}
 			}
 		}; 
-		
 		from_out_to_sim.start();
 		
 		// Generate keyed streams
@@ -385,6 +419,26 @@ operation produceFOGenerationSignature(fo) {
 	}
 	
 	if (aa.isKindOf(Testing!ConditionBasedActivation)) {
+		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
+			var frequencyVal = fo.frequency.lowerBound;
+			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + "," + frequencyVal + ")";
+		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
+			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\")";
+		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
+			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + ")";
+		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
+			var varName = null;
+			if (fo.variableToAffect != null) {
+			 	varName = fo.variableToAffect.name;
+			}			 
+			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + fo.seed + ")";
+		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
+			var delay = fo.latency.lowerBound;
+			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + delay + "," + fo.seed + ")";
+		}
+	}
+	
+	if (aa.isKindOf(Testing!ConditionBasedTimeLimited)) {
 		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
 			var frequencyVal = fo.frequency.lowerBound;
 			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + "," + frequencyVal + ")";

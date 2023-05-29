@@ -14,13 +14,12 @@ import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 
-public abstract class ConditionBasedFuzzingOperation extends FuzzingOperation {
+public abstract class ConditionBasedGeneral extends FuzzingOperation {
 
 	protected MapState<String, Object> varState;
 	protected ValueState<Boolean> isActive;
 	protected ValueState<Boolean> isTimerSetState;
 	protected ValueState<Integer> activationCount;
-	protected ValueState<Long> lastActivationTime;
 
 	protected int maxActivations = 1;
 
@@ -41,7 +40,6 @@ public abstract class ConditionBasedFuzzingOperation extends FuzzingOperation {
 		isActive = getRuntimeContext().getState(new ValueStateDescriptor<>("isActive", Boolean.class));
 		isTimerSetState = getRuntimeContext().getState(new ValueStateDescriptor<>("isTimerSetState", Boolean.class));
 		activationCount = getRuntimeContext().getState(new ValueStateDescriptor<>("activationCount", Integer.class));
-		lastActivationTime = getRuntimeContext().getState(new ValueStateDescriptor<>("lastActivationTime", Long.class));
 	}
 
 	protected void updateStateFrom(MetricMessage value) {
@@ -58,45 +56,14 @@ public abstract class ConditionBasedFuzzingOperation extends FuzzingOperation {
 
 	protected abstract boolean evalStartCondition();
 
-	protected abstract boolean evalEndCondition();
-
 	public enum ConditionBasedState {
 		INACTIVE,
 		ACTIVE
 	}
 
-	protected void checkConditionState(Context ctx) {
-		try {
-			if (isActive.value() == null) {
-				isActive.update(false);
-			}
 
-			if (!isActive.value()) {
-				if (evalStartCondition()) {
-					if (shouldActivateByCount()) {
-						isActive.update(true);
-						activationCount.update(activationCount.value() + 1);
-						long timeNow = ctx.timestamp();
-						String opName = this.toString();
-						SimCore.getInstance().registerFuzzingStart(timeNow, opName);
-					}
-				}
-			} else {
-				if (evalEndCondition()) {
-					isActive.update(false);
-					long timeNow = ctx.timestamp();
-					String opName = this.toString();
-					SimCore.getInstance().registerFuzzingEnd(timeNow, opName);
-				}
-			}
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	private boolean shouldActivateByCount() throws IOException {
+	protected boolean shouldActivateByCount() throws IOException {
 		if (activationCount.value() == null) {
 			activationCount.update(0);
 		}
@@ -114,7 +81,7 @@ public abstract class ConditionBasedFuzzingOperation extends FuzzingOperation {
 		this.topic = topic;
 	}
 
-	public ConditionBasedFuzzingOperation(String topic) {
+	public ConditionBasedGeneral(String topic) {
 		super(topic);
 	}
 
@@ -133,4 +100,7 @@ public abstract class ConditionBasedFuzzingOperation extends FuzzingOperation {
 		updateStateFrom(value);
 		checkConditionState(ctx);
 	}
+
+	protected abstract void checkConditionState(
+			CoProcessFunction<EventMessage, MetricMessage, EventMessage>.Context ctx);
 }

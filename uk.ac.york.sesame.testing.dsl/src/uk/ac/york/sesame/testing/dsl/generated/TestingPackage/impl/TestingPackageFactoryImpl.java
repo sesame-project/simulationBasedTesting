@@ -60,6 +60,7 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 			case TestingPackagePackage.TESTING_SPACE: return createTestingSpace();
 			case TestingPackagePackage.TEST_CAMPAIGN: return createTestCampaign();
 			case TestingPackagePackage.TEST: return createTest();
+			case TestingPackagePackage.PASSIVE_MONITOR_ONLY: return createPassiveMonitorOnly();
 			case TestingPackagePackage.TIME_BASED_ACTIVATION_GENERATION_METHOD: return createTimeBasedActivationGenerationMethod();
 			case TestingPackagePackage.CONDITION_BASED_ACTIVATION_GENERATION_METHOD: return createConditionBasedActivationGenerationMethod();
 			case TestingPackagePackage.CAMPAIGN_RESULT_SET: return createCampaignResultSet();
@@ -130,6 +131,16 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	public Test createTest() {
 		TestImpl test = new TestImpl();
 		return test;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PassiveMonitorOnly createPassiveMonitorOnly() {
+		PassiveMonitorOnlyImpl passiveMonitorOnly = new PassiveMonitorOnlyImpl();
+		return passiveMonitorOnly;
 	}
 
 	/**

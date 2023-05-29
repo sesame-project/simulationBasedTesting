@@ -80,6 +80,14 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 				return createTestAdapter();
 			}
 			@Override
+			public Adapter caseTestDebuggingFlags(TestDebuggingFlags object) {
+				return createTestDebuggingFlagsAdapter();
+			}
+			@Override
+			public Adapter casePassiveMonitorOnly(PassiveMonitorOnly object) {
+				return createPassiveMonitorOnlyAdapter();
+			}
+			@Override
 			public Adapter caseActivationGenerationMethod(ActivationGenerationMethod object) {
 				return createActivationGenerationMethodAdapter();
 			}
@@ -182,6 +190,34 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTestAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestDebuggingFlags <em>Test Debugging Flags</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestDebuggingFlags
+	 * @generated
+	 */
+	public Adapter createTestDebuggingFlagsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.PassiveMonitorOnly <em>Passive Monitor Only</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.PassiveMonitorOnly
+	 * @generated
+	 */
+	public Adapter createPassiveMonitorOnlyAdapter() {
 		return null;
 	}
 

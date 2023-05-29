@@ -17,6 +17,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ComponentPropertyOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ComponentSubPropertyOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedActivation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomOfflineFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DiskLoadType;
@@ -127,6 +128,13 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	private EClass conditionBasedActivationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conditionBasedTimeLimitedEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -584,8 +592,17 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFuzzingOperation_RecordedTimings() {
+		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getFuzzingOperation_Seed() {
-		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(15);
+		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -703,6 +720,42 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 */
 	public EAttribute getConditionBasedActivation_MaximumActivations() {
 		return (EAttribute)conditionBasedActivationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConditionBasedTimeLimited() {
+		return conditionBasedTimeLimitedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConditionBasedTimeLimited_Starting() {
+		return (EReference)conditionBasedTimeLimitedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConditionBasedTimeLimited_Length() {
+		return (EAttribute)conditionBasedTimeLimitedEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConditionBasedTimeLimited_MaximumActivations() {
+		return (EAttribute)conditionBasedTimeLimitedEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1271,6 +1324,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__SUBSCRIBING_VARS);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__FROM_TEMPLATE);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__CONTAINING_TEST);
+		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__RECORDED_TIMINGS);
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__SEED);
 
 		offlineFuzzingOperationEClass = createEClass(OFFLINE_FUZZING_OPERATION);
@@ -1291,6 +1345,11 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEReference(conditionBasedActivationEClass, CONDITION_BASED_ACTIVATION__STARTING);
 		createEReference(conditionBasedActivationEClass, CONDITION_BASED_ACTIVATION__ENDING);
 		createEAttribute(conditionBasedActivationEClass, CONDITION_BASED_ACTIVATION__MAXIMUM_ACTIVATIONS);
+
+		conditionBasedTimeLimitedEClass = createEClass(CONDITION_BASED_TIME_LIMITED);
+		createEReference(conditionBasedTimeLimitedEClass, CONDITION_BASED_TIME_LIMITED__STARTING);
+		createEAttribute(conditionBasedTimeLimitedEClass, CONDITION_BASED_TIME_LIMITED__LENGTH);
+		createEAttribute(conditionBasedTimeLimitedEClass, CONDITION_BASED_TIME_LIMITED__MAXIMUM_ACTIVATIONS);
 
 		fuzzTestingOperationEClass = createEClass(FUZZ_TESTING_OPERATION);
 
@@ -1422,6 +1481,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		customOfflineFuzzingOperationEClass.getESuperTypes().add(this.getOfflineFuzzingOperation());
 		fixedTimeActivationEClass.getESuperTypes().add(this.getActivation());
 		conditionBasedActivationEClass.getESuperTypes().add(this.getActivation());
+		conditionBasedTimeLimitedEClass.getESuperTypes().add(this.getActivation());
 		fuzzTestingOperationEClass.getESuperTypes().add(this.getFuzzingOperation());
 		componentOperationEClass.getESuperTypes().add(this.getFuzzTestingOperation());
 		componentPropertyOperationEClass.getESuperTypes().add(this.getFuzzTestingOperation());
@@ -1468,6 +1528,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEReference(getFuzzingOperation_SubscribingVars(), theMRSPackagePackage.getVariable(), null, "subscribingVars", null, 0, -1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_FromTemplate(), this.getFuzzingOperation(), null, "fromTemplate", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_ContainingTest(), theTestingPackagePackage.getTest(), theTestingPackagePackage.getTest_Operations(), "containingTest", null, 0, 1, FuzzingOperation.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFuzzingOperation_RecordedTimings(), this.getFixedTimeActivation(), null, "recordedTimings", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFuzzingOperation_Seed(), ecorePackage.getEInt(), "seed", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(offlineFuzzingOperationEClass, OfflineFuzzingOperation.class, "OfflineFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1488,6 +1549,11 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEReference(getConditionBasedActivation_Starting(), theStandardGrammarPackage.getCondition(), null, "starting", null, 0, 1, ConditionBasedActivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConditionBasedActivation_Ending(), theStandardGrammarPackage.getCondition(), null, "ending", null, 0, 1, ConditionBasedActivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConditionBasedActivation_MaximumActivations(), ecorePackage.getEInt(), "maximumActivations", "1", 0, 1, ConditionBasedActivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(conditionBasedTimeLimitedEClass, ConditionBasedTimeLimited.class, "ConditionBasedTimeLimited", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConditionBasedTimeLimited_Starting(), theStandardGrammarPackage.getCondition(), null, "starting", null, 0, 1, ConditionBasedTimeLimited.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConditionBasedTimeLimited_Length(), ecorePackage.getEDouble(), "length", null, 0, 1, ConditionBasedTimeLimited.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConditionBasedTimeLimited_MaximumActivations(), ecorePackage.getEInt(), "maximumActivations", "1", 0, 1, ConditionBasedTimeLimited.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fuzzTestingOperationEClass, FuzzTestingOperation.class, "FuzzTestingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
