@@ -43,9 +43,7 @@ public class TestMetricConsumer {
 				TestCampaign tc = tc_o.get();
 				
 				SESAMETestSolution sol = new SESAMETestSolution(tc, "T1TestingTestSuiteRunner_metricslink");
-				MetricConsumer consumer = new MetricConsumer(tc, properties, parts);
-				consumer.setSolution(sol);
-
+				MetricConsumer consumer = new MetricConsumer(tc, sol, parts);
 				Thread t = new Thread(consumer);
 				t.run();
 			}

@@ -91,11 +91,11 @@ public class [%= testNameString %]_TestRunner {
 		properties.setProperty("group.id", "test");
 		
 		DataStream<ControlMessage> controlStream = env
-					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
+					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages-[%= testNameString %]", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
 		
 		
 		DataStream<EventMessage> streamOrig = env
-			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
+			.addSource(new FlinkKafkaConsumer<EventMessage>("IN-[%= testNameString %]", new EventMessageSchema(), properties)).returns(EventMessage.class);
 			
 		[% if (sanitiseVariables) { %]
 			DataStream<EventMessage> stream = streamOrig.flatMap(new SanitiseFuzzingValues());
@@ -104,16 +104,16 @@ public class [%= testNameString %]_TestRunner {
 		[% } %]
 		
 		DataStream<EventMessage> streamOut = env
-				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
+				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT-[%= testNameString %]", new EventMessageSchema(), properties))
 				.returns(EventMessage.class);
 		
 		// Kafka Sink to OUT
-		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
+		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT-[%= testNameString %]", // target topic
 				new EventMessageSchema(), properties);
 				
 		// This connects the metrics via Kafka to the metrics monitoring on the SESAME tool
 		FlinkKafkaProducer<MetricMessage> metricsProducer = new FlinkKafkaProducer<MetricMessage>(
-		        "metricMessages",             // target topic
+		        "metricMessages-[%= testNameString %]",             // target topic
 		        new MetricMessageSchema(),    // serialization schema
 		        properties             // producer config
 		      );
@@ -156,9 +156,9 @@ public class [%= testNameString %]_TestRunner {
 			public void run() {
 				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
 				[% if (fuzzingVars.contains(aTopic)) { %]
-				ttsSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN", true);
+				ttsSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN-[%= testNameString %]", true);
 				[% } else { %]
-				ttsSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN", false);
+				ttsSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN-[%= testNameString %]", false);
 				[% } %]
 			}
 		};
@@ -178,7 +178,7 @@ public class [%= testNameString %]_TestRunner {
 				System.out.println("From out to sim starts");
 				while (true) {
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance()
-							.consume("OUT");
+							.consume("OUT-[%= testNameString %]");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = ttsSim.translateTopicNameForOutput(inTopic);

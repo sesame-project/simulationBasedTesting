@@ -4,12 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 import java.util.Random;
 
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.TopicPartition;
-import org.apache.kafka.common.serialization.LongDeserializer;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -21,7 +18,6 @@ import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 import uk.ac.york.sesame.testing.architecture.data.ControlMessage;
-import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
@@ -71,8 +67,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private String codeGenerationDirectory;
 
 	private SESAMEModelLoader loader;
-	private MetricConsumer metricConsumer;
-	private ControlProducer controlProducer;
+	//private MetricConsumer metricConsumer;
+	//private ControlProducer controlProducer;
 
 	// TODO: how to model the grammar
 	// Grammar<String> grammar;
@@ -81,24 +77,12 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	// model
 
 	// Sets up a metric queue to listen for the given campaign
-	private void setupMetricListener(TestCampaign campaign) throws StreamSetupFailed, InvalidTestCampaign {
+	private MetricConsumer setupMetricListener(TestCampaign campaign, SESAMETestSolution sol) throws InvalidTestCampaign {
 //		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 		
-		// TODO: move these properties - except for the bootstrap.servers: into the Consumer
-		Properties properties = new Properties();
-		properties.setProperty("bootstrap.servers", "localhost:9092");
-		properties.setProperty("group.id", "test");
-		properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
-		properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, MetricMessage.class.getName());
-
-		// metricHandler = new MetricHandler();
-
-		// TODO: initializing the rng properly for repeatable experiments
-		rng = new Random();
 		List<TopicPartition> parts = new ArrayList<TopicPartition>();
-		metricConsumer = new MetricConsumer(campaign, properties, parts);
-		Thread t = new Thread(metricConsumer);
-		t.start();
+		MetricConsumer metricConsumer = new MetricConsumer(campaign, sol, parts);
+		return metricConsumer;
 	}
 
 	public SESAMEEvaluationProblem(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
@@ -120,22 +104,18 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		
 		testingSpace = loader.getTestingSpace(testSpaceModel);
 		mrs = testingSpace.getMrs();
+		rng = new Random();
 
 		if (tc_o.isPresent()) {
 			selectedCampaign = tc_o.get();
-			setupMetricListener(selectedCampaign);
-			setupControlProducer();
+			//setupMetricListener(selectedCampaign);
+			//setupControlProducer();
 			condGenerator = new ConditionGenerator(grammarPath, selectedCampaign, conditionDepth);
 		} else {
 			throw new InvalidTestCampaign(campaignName);
 		}
 	}
 	
-	private void setupControlProducer() {
-		controlProducer = new ControlProducer();
-		
-	}
-
 	public TestCampaign getCampaign() {
 		return selectedCampaign;
 	}
@@ -173,16 +153,15 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	public void performSESAMETest(SESAMETestSolution solution) {
 		try {
 			String mainClassName = solution.getMainClassName();
-
-			metricConsumer.setSolution(solution);
+			MetricConsumer metricConsumer = setupMetricListener(selectedCampaign, solution);
+			ControlProducer controlProducer = new ControlProducer(solution);
+			Thread t = new Thread(metricConsumer);
+			t.start();
 
 			System.out.println("Running test for " + solution);
 			// This ensures that the new test is installed in the model
 			solution.ensureModelUpdated(selectedCampaign);
 			loader.saveTestingSpace();
-			// THIS is a temporary change to test if caching is causing the model to be stale for EGL??? 
-			//String novelModelFile = "/tmp/testingspace-updated-after-" + mainClassName + ".model";
-			//loader.saveTestingSpaceToNewFile(novelModelFile);
 			System.out.println("Model updated");
 			
 			System.out.print("Waiting to begin code generation...");
@@ -227,7 +206,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				}
 				
 				System.out.flush();
-				
 
 				// Need to wait for simulation completion here...
 				// If no trigger specified specifically for this test, use the default for the
@@ -278,13 +256,16 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				System.out.print("done");
 				
 				metricConsumer.clearTopic();
-
+				t.stop();
 			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
 			System.out.println("Probably a metric returned something non-numeric");
+			e.printStackTrace();
+		} catch (InvalidTestCampaign e) {
+			System.out.println("Invalid test campaign selected");
 			e.printStackTrace();
 		}
 	}
@@ -407,8 +388,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	    return FuzzingOperations.get(randomIndex);
 	}
 
-	public void shutDownMetricListener() {
-		metricConsumer.close();
-		
-	}
+//	public void shutDownMetricListener() {
+//		metricConsumer.close();
+//		
+//	}
 }

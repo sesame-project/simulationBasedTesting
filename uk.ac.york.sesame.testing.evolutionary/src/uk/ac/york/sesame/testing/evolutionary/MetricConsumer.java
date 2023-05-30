@@ -18,6 +18,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
+import org.apache.kafka.common.serialization.LongDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -75,11 +76,17 @@ public class MetricConsumer implements Runnable {
 		}
 	}
 
-	public MetricConsumer(TestCampaign selectedCampaign, Properties configs, List<TopicPartition> partitions)
+	public MetricConsumer(TestCampaign selectedCampaign, SESAMETestSolution sol, List<TopicPartition> partitions)
 			throws InvalidTestCampaign {
-		this.clientId = configs.getProperty(ConsumerConfig.CLIENT_ID_CONFIG);
+		
+		Properties properties = new Properties();
+		properties.setProperty("bootstrap.servers", "localhost:9092");
+		properties.setProperty("group.id", "test");
+		properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
+		properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, MetricMessage.class.getName());
+		this.clientId = properties.getProperty(ConsumerConfig.CLIENT_ID_CONFIG);
 		this.partitions = partitions;
-		this.consumer = new KafkaConsumer<>(configs);
+		this.consumer = new KafkaConsumer<>(properties);
 		if (selectedCampaign == null) {
 			throw new InvalidTestCampaign(InvalidTestCampaign.INVALIDITY_REASON.NULL_OBJECT);
 		}
@@ -87,7 +94,8 @@ public class MetricConsumer implements Runnable {
 		this.selectedCampaign = selectedCampaign;
 
 		List<String> topics = new ArrayList<String>();
-		topics.add(METRIC_TOPIC_NAME);
+		String topicName = METRIC_TOPIC_NAME + "-" + sol.getName();
+		topics.add(topicName);
 		consumer.subscribe(topics);
 
 		setupMetricLookup();
@@ -146,6 +154,7 @@ public class MetricConsumer implements Runnable {
 
 	public void close() {
 		try {
+			consumer.close();
 			closed.set(true);
 			shutdownlatch.await();
 		} catch (InterruptedException e) {
@@ -153,9 +162,9 @@ public class MetricConsumer implements Runnable {
 		}
 	}
 
-	public void setSolution(SESAMETestSolution solution) {
-		this.currentSolution = Optional.of(solution);
-	}
+//	public void setSolution(SESAMETestSolution solution) {
+//		this.currentSolution = Optional.of(solution);
+//	}
 
 	public void updateMetricsInModel(String metricName, Object val) throws InvalidName {
 	

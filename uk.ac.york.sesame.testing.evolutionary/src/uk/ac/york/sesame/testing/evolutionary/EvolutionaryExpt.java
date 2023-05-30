@@ -134,7 +134,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			problem.ensureFinalModelSaved();
 			
 			// Close the socket to terminate experiment
-			problem.shutDownMetricListener();
+			//problem.shutDownMetricListener();
 			
 			if (!referenceParetoFront.equals("")) {
 				printQualityIndicators(population, referenceParetoFront);
