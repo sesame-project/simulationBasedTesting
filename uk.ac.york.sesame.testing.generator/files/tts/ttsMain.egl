@@ -84,7 +84,7 @@ public class [%= testNameString %]_TestRunner {
 
 		if (osName.contains("Windows")) {
 			// Custom WSL hostname - set using host alias defined in WSL script
-			serverNamePort = "ubuntu1804.wsl:9092";	
+			serverNamePort = "localhost:9092";	
 		}
 		
 		properties.setProperty("bootstrap.servers", serverNamePort);

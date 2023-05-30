@@ -67,8 +67,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private String codeGenerationDirectory;
 
 	private SESAMEModelLoader loader;
-	//private MetricConsumer metricConsumer;
-	//private ControlProducer controlProducer;
 
 	// TODO: how to model the grammar
 	// Grammar<String> grammar;
@@ -255,8 +253,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				TestRunnerUtils.waitForSeconds(DEFAULT_KILL_DELAY);
 				System.out.print("done");
 				
-				metricConsumer.clearTopic();
-				t.stop();
+				metricConsumer.close();
+
 			}
 
 		} catch (IOException e) {
