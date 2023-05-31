@@ -21,6 +21,10 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 
 	private static final long serialVersionUID = 1L;
 	Random rng;
+	
+	protected String getUniqueID() {
+		return "[%= fuzzOp.name %]-[%= fuzzOp.id %]";
+	}
 
 	[% if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { %]
 	public [%=fuzzOp.name%]FlatMap_[%= classNameExt %](String topic, double start, double end, long seed) {

@@ -280,8 +280,13 @@ public class [%= testNameString %]_TestRunner {
 			// allMetrics has to include all the metrics, both those  used in the fuzzing experiment and the condition metrics
 			var allMetrics = campaignMetrics.includingAll(parentCampaign.conditionMetrics).asSet();
 		    for (sMetric in allMetrics.selectByKind(StreamMetric)) { %] 
-			// Generate a message stream for all metrics
+		    [% if (sMetric.isKindOf(DirectMessageGenerationMetric)) { %]
+		    [* For direct message generation metrics, create a metric message stream from a subclass of DirectMessageGenerationMetric, that directly produces metric messages *]
+		    DataStream<MetricMessage> metricMsg[%= sMetric.name %] = [%= streamJavaName(sMetric,stream) %].process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
+		    [% } else { %]
+			[* Map doubles from the metric message stream into the metric message stream to be unified later *]
 			DataStream<MetricMessage> metricMsg[%= sMetric.name %] = [%= sMetric.name %]resStream.map(d -> new MetricMessage("[%=test.name.firstToUpperCase() %]", "[%= sMetric.name %]", d));
+			[% } %]
 		[% } %]
 		
 		[% for (sMetric in allMetrics.selectByKind(StreamMetric)) { %]
@@ -476,7 +481,11 @@ operation additionalInfo(sMetric) {
 	if (sMetric.isTypeOf(FuzzingOperationTimesMetric)) {
 		return "fuzzOpTimes";
 	} else {
-		return "";
+		if (sMetric.isTypeOf(StartEndTimingMetric)) {
+			return "TESTNAME";
+		} else {
+			return "";
+		}
 	}
 }
 

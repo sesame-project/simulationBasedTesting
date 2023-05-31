@@ -239,6 +239,9 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/StreamMetric/streams"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Metrics/StreamMetric/res"/>
       </genClasses>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//Metrics/SpecialMetric"/>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//Metrics/DirectMessageGenerationMetric"/>
+      <genClasses ecoreClass="TestingMM.ecore#//Metrics/StartEndTimingMetric"/>
       <genClasses ecoreClass="TestingMM.ecore#//Metrics/FuzzingOperationTimesMetric"/>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//Metrics/StreamResult"/>
       <genClasses ecoreClass="TestingMM.ecore#//Metrics/FileStreamResult">

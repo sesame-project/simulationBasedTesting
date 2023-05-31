@@ -26,7 +26,7 @@ public abstract class ConditionBasedFuzzingOperation extends ConditionBasedGener
 						activationCount.update(activationCount.value() + 1);
 						long timeNow = ctx.timestamp();
 						String opName = this.toString();
-						SimCore.getInstance().registerFuzzingStart(timeNow, opName);
+						SimCore.getInstance().registerFuzzingStart(timeNow, getUniqueID());
 					}
 				}
 			} else {
@@ -34,7 +34,7 @@ public abstract class ConditionBasedFuzzingOperation extends ConditionBasedGener
 					isActive.update(false);
 					long timeNow = ctx.timestamp();
 					String opName = this.toString();
-					SimCore.getInstance().registerFuzzingEnd(timeNow, opName);
+					SimCore.getInstance().registerFuzzingEnd(timeNow, getUniqueID());
 				}
 			}
 

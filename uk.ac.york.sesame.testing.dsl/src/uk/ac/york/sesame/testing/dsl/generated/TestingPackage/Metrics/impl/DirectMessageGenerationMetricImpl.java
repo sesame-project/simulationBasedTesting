@@ -4,23 +4,23 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FuzzingOperationTimesMetric;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.DirectMessageGenerationMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Fuzzing Operation Times Metric</b></em>'.
+ * An implementation of the model object '<em><b>Direct Message Generation Metric</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class FuzzingOperationTimesMetricImpl extends SpecialMetricImpl implements FuzzingOperationTimesMetric {
+public abstract class DirectMessageGenerationMetricImpl extends StreamMetricImpl implements DirectMessageGenerationMetric {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FuzzingOperationTimesMetricImpl() {
+	protected DirectMessageGenerationMetricImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class FuzzingOperationTimesMetricImpl extends SpecialMetricImpl implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MetricsPackage.Literals.FUZZING_OPERATION_TIMES_METRIC;
+		return MetricsPackage.Literals.DIRECT_MESSAGE_GENERATION_METRIC;
 	}
 
-} //FuzzingOperationTimesMetricImpl
+} //DirectMessageGenerationMetricImpl

@@ -14,5 +14,4 @@ public abstract class Metric extends CoProcessFunction<EventMessage, ControlMess
 	public void processElement2(ControlMessage controlMsg, CoProcessFunction<EventMessage, ControlMessage, Double>.Context arg1, Collector<Double> arg2) throws Exception {
 		
 	}
-	
 }

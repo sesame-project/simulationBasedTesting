@@ -13,8 +13,9 @@ public class ControlMessage implements IData, Serializer, Deserializer {
 	private static ObjectMapper objectMapper = new ObjectMapper();
 	
 	public enum CONTROL_COMMAND {
-		END_SIMULATION
-		// Other control commads here
+		END_SIMULATION,
+		GET_OPERATION_RECORDED_TIMINGS
+		// Other control commands here
 	}
 	
 	public class UnknownCommand extends Exception {
@@ -26,6 +27,7 @@ public class ControlMessage implements IData, Serializer, Deserializer {
 	Long id = testIDCounter++;
 	String testID;
 	long timestamp;
+	String operationID;
 	private CONTROL_COMMAND command;
 	
 	public ControlMessage() {
@@ -37,11 +39,16 @@ public class ControlMessage implements IData, Serializer, Deserializer {
 		this.testID = other.testID;
 		this.timestamp = other.timestamp;
 		this.command = other.command;
+		this.operationID = other.operationID;
 	}
 		
 	public ControlMessage(CONTROL_COMMAND cmd) {
 		this();
 		this.command = cmd;
+	}
+	
+	public boolean containsCommand(CONTROL_COMMAND cmd) {
+		return this.command.equals(cmd);
 	}
 
 	public long getId() {

@@ -1,6 +1,7 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -26,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
@@ -155,8 +157,27 @@ public class MetricConsumer implements Runnable {
 	public void setSolution(SESAMETestSolution solution) {
 		this.currentSolution = Optional.of(solution);
 	}
+	
+	private void updateFuzzOperationTime(String fuzzOpId, Double d, String tag) {
+		EList<FuzzingOperation> ops = selectedCampaign.getIncludedOperations();
+		for (FuzzingOperation op : ops) {
+			EObject eo = (EObject)op;
+			// How to get ID from this?
+		}
+	}
+	
+	private void updateMetricsInModelSpecial(MetricMessage msg) {
+		// Find the fuzzing operation for this message
+		// Update the value from it
+		String fuzzOpId = msg.getMetricName();
+		String tag = msg.getSpecialTag();
+		if (tag.equals("START") || tag.equals("END")) {
+			Double d = Double.parseDouble((String)msg.getValue());
+			updateFuzzOperationTime(fuzzOpId, d, tag); 
+		}
+	}
 
-	public void updateMetricsInModel(String metricName, Object val) throws InvalidName {
+	public void updateMetricsInModelStandard(String metricName, Object val) throws InvalidName {
 	
 		if (currentSolution.isEmpty()) {
 			System.out.println("currentSolution not set - cannot update metric is empty");
@@ -199,7 +220,7 @@ public class MetricConsumer implements Runnable {
 			}
 		}
 	}
-
+	
 	private void setMetricFromCampaign(MetricInstance mNewInst, String targetID) throws MissingMetric {
 		Metric m = metricLookup.get(targetID);
 		if (m != null) {
@@ -268,7 +289,11 @@ public class MetricConsumer implements Runnable {
 				MetricMessage msg = metricMessages.get(metricName);
 				Object val = msg.getValue();
 				try {
-					updateMetricsInModel(metricName, val);
+					if (msg.isSpecial()) {
+						updateMetricsInModelSpecial(msg);
+					} else {
+						updateMetricsInModelStandard(metricName, val);
+					}
 					if (m.isUseInOptimisation()) {
 						updateObjectivesJMetal(metricName, val);
 					}
@@ -283,7 +308,7 @@ public class MetricConsumer implements Runnable {
 					MetricDefault mDef = m.getValueIfNotReceived();
 					Double val = mDef.getDefaultVal();
 					try {
-						updateMetricsInModel(metricName, val);
+						updateMetricsInModelStandard(metricName, val);
 						if (m.isUseInOptimisation()) {
 							updateObjectivesJMetal(metricName, val);
 						}
@@ -300,6 +325,7 @@ public class MetricConsumer implements Runnable {
 		
 		metricMessages.clear();
 	}
+
 
 	public void notifyFinalise() {
 		// TODO: this should ignore all metrics other than the FuzzingOperationTimes?

@@ -358,6 +358,7 @@ abstract class PropertyMetric extends Metric {
 	ref MRSPackage.ComponentProperty[1] property;
 }
 
+// TODO: do we need ConditionPropertyMetric? - what actually is it?
 class ConditionalPropertyMetric extends PropertyMetric {
 	attr String condition;
 }
@@ -367,9 +368,21 @@ class StreamMetric extends Metric {
 	val StreamResult res; 
 }
 
-class FuzzingOperationTimesMetric extends StreamMetric {
+abstract class SpecialMetric extends StreamMetric {
+	
+}
+
+abstract class DirectMessageGenerationMetric extends StreamMetric {
+	
+}
+
+class StartEndTimingMetric extends DirectMessageGenerationMetric {
 	
 } 
+
+class FuzzingOperationTimesMetric extends SpecialMetric {
+	
+}
 
 abstract class StreamResult {
 	

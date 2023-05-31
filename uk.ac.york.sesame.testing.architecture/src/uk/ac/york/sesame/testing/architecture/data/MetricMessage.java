@@ -18,9 +18,11 @@ public class MetricMessage implements IData, Serializer<MetricMessage>, Deserial
 	int id = testIDCounter++;
 	String testID;
 	String metricName;
+	String specialTag;
 	Object value;
 	double timestamp;
 	String type;
+	boolean special = false;
 	
 	public MetricMessage() {
 		
@@ -32,6 +34,36 @@ public class MetricMessage implements IData, Serializer<MetricMessage>, Deserial
 		this.value = v;
 		this.type = "Double";
 		this.timestamp = SimCore.getInstance().getTime();
+	}
+	
+	public enum SPECIAL_TIMING_MESSAGE {
+		SPECIAL_START,
+		SPECIAL_END
+	}
+	
+	public static MetricMessage makeSpecialMessageForTiming(String testID, String fuzzOpID, double timingVal, SPECIAL_TIMING_MESSAGE s) {
+		String name = fuzzOpID;
+		MetricMessage m = new MetricMessage(testID, name, timingVal);
+		if (s.equals(SPECIAL_TIMING_MESSAGE.SPECIAL_START)) {
+			m.setSpecial("START");
+		}
+		if (s.equals(SPECIAL_TIMING_MESSAGE.SPECIAL_END)) {
+			m.setSpecial("END");
+		}
+		return m;
+	}
+	
+	public void setSpecial(String specialTag) {
+		this.special = true;
+		this.specialTag = specialTag;
+	}
+	
+	public boolean isSpecial() {
+		return special;
+	}
+	
+	public String getSpecialTag() {
+		return specialTag;
 	}
 	
 	public String timeStampedValString() {

@@ -13,5 +13,5 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics;
  * @model
  * @generated
  */
-public interface FuzzingOperationTimesMetric extends StreamMetric {
+public interface FuzzingOperationTimesMetric extends SpecialMetric {
 } // FuzzingOperationTimesMetric

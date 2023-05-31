@@ -278,7 +278,11 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="res" eType="#//Metrics/StreamResult"
           containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="FuzzingOperationTimesMetric" eSuperTypes="#//Metrics/StreamMetric"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SpecialMetric" abstract="true" eSuperTypes="#//Metrics/StreamMetric"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DirectMessageGenerationMetric" abstract="true"
+        eSuperTypes="#//Metrics/StreamMetric"/>
+    <eClassifiers xsi:type="ecore:EClass" name="StartEndTimingMetric" eSuperTypes="#//Metrics/DirectMessageGenerationMetric"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FuzzingOperationTimesMetric" eSuperTypes="#//Metrics/SpecialMetric"/>
     <eClassifiers xsi:type="ecore:EClass" name="StreamResult" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="FileStreamResult" eSuperTypes="#//Metrics/StreamResult">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="filename" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

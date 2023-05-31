@@ -19,6 +19,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPack
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.DirectMessageGenerationMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FileStreamResult;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FuzzingOperationTimesMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.InputStream;
@@ -31,6 +32,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPac
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.OutputStream;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.PropertyMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.SimStream;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.SpecialMetric;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StartEndTimingMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StreamMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StreamResult;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric;
@@ -122,6 +125,27 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * @generated
 	 */
 	private EClass streamMetricEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass specialMetricEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass directMessageGenerationMetricEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass startEndTimingMetricEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -455,6 +479,33 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSpecialMetric() {
+		return specialMetricEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDirectMessageGenerationMetric() {
+		return directMessageGenerationMetricEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStartEndTimingMetric() {
+		return startEndTimingMetricEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFuzzingOperationTimesMetric() {
 		return fuzzingOperationTimesMetricEClass;
 	}
@@ -557,6 +608,12 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		createEReference(streamMetricEClass, STREAM_METRIC__STREAMS);
 		createEReference(streamMetricEClass, STREAM_METRIC__RES);
 
+		specialMetricEClass = createEClass(SPECIAL_METRIC);
+
+		directMessageGenerationMetricEClass = createEClass(DIRECT_MESSAGE_GENERATION_METRIC);
+
+		startEndTimingMetricEClass = createEClass(START_END_TIMING_METRIC);
+
 		fuzzingOperationTimesMetricEClass = createEClass(FUZZING_OPERATION_TIMES_METRIC);
 
 		streamResultEClass = createEClass(STREAM_RESULT);
@@ -606,7 +663,10 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		propertyMetricEClass.getESuperTypes().add(this.getMetric());
 		conditionalPropertyMetricEClass.getESuperTypes().add(this.getPropertyMetric());
 		streamMetricEClass.getESuperTypes().add(this.getMetric());
-		fuzzingOperationTimesMetricEClass.getESuperTypes().add(this.getStreamMetric());
+		specialMetricEClass.getESuperTypes().add(this.getStreamMetric());
+		directMessageGenerationMetricEClass.getESuperTypes().add(this.getStreamMetric());
+		startEndTimingMetricEClass.getESuperTypes().add(this.getDirectMessageGenerationMetric());
+		fuzzingOperationTimesMetricEClass.getESuperTypes().add(this.getSpecialMetric());
 		fileStreamResultEClass.getESuperTypes().add(this.getStreamResult());
 
 		// Initialize classes, features, and operations; add parameters
@@ -643,6 +703,12 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		initEClass(streamMetricEClass, StreamMetric.class, "StreamMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStreamMetric_Streams(), this.getSimStream(), null, "streams", null, 0, -1, StreamMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStreamMetric_Res(), this.getStreamResult(), null, "res", null, 0, 1, StreamMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(specialMetricEClass, SpecialMetric.class, "SpecialMetric", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(directMessageGenerationMetricEClass, DirectMessageGenerationMetric.class, "DirectMessageGenerationMetric", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(startEndTimingMetricEClass, StartEndTimingMetric.class, "StartEndTimingMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(fuzzingOperationTimesMetricEClass, FuzzingOperationTimesMetric.class, "FuzzingOperationTimesMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

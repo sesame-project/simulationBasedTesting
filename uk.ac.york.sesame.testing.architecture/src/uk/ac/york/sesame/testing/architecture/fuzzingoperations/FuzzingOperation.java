@@ -11,7 +11,7 @@ public abstract class FuzzingOperation extends CoProcessFunction<EventMessage, M
 	
 	protected String topic;
 
-	public String getTopic() {
+	protected String getTopic() {
 		return topic;
 	}
 
@@ -22,6 +22,8 @@ public abstract class FuzzingOperation extends CoProcessFunction<EventMessage, M
 	public FuzzingOperation(String topic) {
 		this.topic = topic;
 	}
+	
+	protected abstract String getUniqueID();
 
 	abstract public boolean isReadyNow();
 

@@ -85,6 +85,15 @@ public interface MetricsFactory extends EFactory {
 	StreamMetric createStreamMetric();
 
 	/**
+	 * Returns a new object of class '<em>Start End Timing Metric</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Start End Timing Metric</em>'.
+	 * @generated
+	 */
+	StartEndTimingMetric createStartEndTimingMetric();
+
+	/**
 	 * Returns a new object of class '<em>Fuzzing Operation Times Metric</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

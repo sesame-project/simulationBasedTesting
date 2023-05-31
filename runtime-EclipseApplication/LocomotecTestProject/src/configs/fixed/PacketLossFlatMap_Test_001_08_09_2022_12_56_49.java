@@ -30,6 +30,10 @@ public class PacketLossFlatMap_Test_001_08_09_2022_12_56_49 extends TimeBasedFuz
 		this.frequency = frequency;
 	}
 	
+	public String getUniqueID() {
+		return "NO-ID";
+	}
+	
 	
 	public void open(Configuration parameters) throws Exception {
 		super.open(parameters);
