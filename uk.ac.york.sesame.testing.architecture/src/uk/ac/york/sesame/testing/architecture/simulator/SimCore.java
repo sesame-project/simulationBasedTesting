@@ -25,7 +25,6 @@ public final class SimCore {
     // This records the record of all start and end times per operations    	
     private ConcurrentHashMap<String, List<TimingPair>> fuzzingTimingHistory = new ConcurrentHashMap<String,List<TimingPair>>();
     private double totalFuzzingSecondCount;
-    
     private FileWriter outputTimingLog;
     
     double time = 0.0;
@@ -67,7 +66,7 @@ public final class SimCore {
 		}
 	}
 
-	public synchronized void registerFuzzingStart(double flinkTimeStart, String fuzzUniqueID) {
+	public synchronized void registerFuzzingStart(String fuzzUniqueID) {
 		// Using the simCore time rather than the Flink time
 		double timeStart = time;
 		fuzzingStartTimes.put(fuzzUniqueID, timeStart);
@@ -79,14 +78,13 @@ public final class SimCore {
 		}
 	}
 	
-	public synchronized void registerFuzzingEnd(long flinkTimeEnd, String fuzzUniqueID) {
+	public synchronized void registerFuzzingEnd(String fuzzUniqueID) {
 		// Using the simCore time rather than the Flink time
 		double timeEnd = time;
 		double fuzzingStart = fuzzingStartTimes.get(fuzzUniqueID);
 		double timeLength = timeEnd - fuzzingStart;
 		totalFuzzingSecondCount += timeLength;
 		fuzzingStartTimes.remove(fuzzUniqueID);
-		
 		addTimeRecord(fuzzUniqueID, fuzzingStart, timeEnd);
 				
 		outputTimingLog(timeEnd + " : Fuzzing operation " + fuzzUniqueID + " ENDED dynamic timing\n");
@@ -107,12 +105,11 @@ public final class SimCore {
 		
 	}
 
-	public synchronized void finaliseFuzzingTimes(long flinkFinaliseTime) {
+	public synchronized void finaliseFuzzingTimes() {
 		// Using the SimCore time rather than the Flink time
 		Set<String> toProcess = new HashSet<String>(fuzzingStartTimes.keySet());
 		for (String key : toProcess) {
-			// The flinkFinaliseTime is not used here
-			registerFuzzingEnd(flinkFinaliseTime, key);
+			registerFuzzingEnd(key);
 		}
 		try {
 			outputTimingLog.flush();

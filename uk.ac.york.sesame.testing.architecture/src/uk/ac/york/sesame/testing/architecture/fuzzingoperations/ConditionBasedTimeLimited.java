@@ -54,19 +54,15 @@ public abstract class ConditionBasedTimeLimited extends ConditionBasedGeneral {
 					if (shouldActivateByCount()) {
 						isActive.update(true);
 						activationCount.update(activationCount.value() + 1);
-						long flinkTimeNow = ctx.timestamp();
-						String opName = this.toString();
 						double coreTime = SimCore.getInstance().getTime();
 						lastActivationTime.update(coreTime);
-						SimCore.getInstance().registerFuzzingStart(flinkTimeNow, getUniqueID());
+						SimCore.getInstance().registerFuzzingStart(getUniqueID());
 					}
 				}
 			} else {
 				if (timeExpired()) {
 					isActive.update(false);
-					long timeNow = ctx.timestamp();
-					String opName = this.toString();
-					SimCore.getInstance().registerFuzzingEnd(timeNow, getUniqueID());
+					SimCore.getInstance().registerFuzzingEnd(getUniqueID());
 				}
 			}
 

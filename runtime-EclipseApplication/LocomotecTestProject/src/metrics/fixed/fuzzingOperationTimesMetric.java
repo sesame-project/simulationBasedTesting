@@ -33,8 +33,7 @@ public class fuzzingOperationTimesMetric extends Metric {
     
 	public void processElement2(ControlMessage controlMsg, CoProcessFunction<EventMessage, ControlMessage, Double>.Context ctx, Collector<Double> out) throws Exception {
 		// Transmit this on the finalisation
-		long timeNow = ctx.timestamp();
-		SimCore.getInstance().finaliseFuzzingTimes(timeNow);
+		SimCore.getInstance().finaliseFuzzingTimes();
     	double total = 0.0;
     	for (Double d : attackTimes) {
     		total += d;

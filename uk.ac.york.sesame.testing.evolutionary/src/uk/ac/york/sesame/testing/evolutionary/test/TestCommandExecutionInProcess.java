@@ -10,10 +10,7 @@ import uk.ac.york.sesame.testing.evolutionary.utilities.PathDefinitions;
 public class TestCommandExecutionInProcess {
 	
 	public static void main(String [] args) {
-		String ABS_SCRIPT_DIR = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
-		
-		//ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./compile_project.sh " + projectDir);
-		
+		String ABS_SCRIPT_DIR = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);	
 		String [] cmdArgs = {"ARG1TEST", "/home/jharbin"};
 		Optional<ProcResult> res_o = ExptHelper.runScriptWithArgs(ABS_SCRIPT_DIR, "./ls_dir.sh", cmdArgs);
 		if (res_o.isPresent()) {

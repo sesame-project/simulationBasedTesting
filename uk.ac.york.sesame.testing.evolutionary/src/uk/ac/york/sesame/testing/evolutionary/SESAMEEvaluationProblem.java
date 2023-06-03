@@ -71,15 +71,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private MetricConsumer metricConsumer;
 	private ControlProducer controlProducer;
 
-	// TODO: how to model the grammar
-	// Grammar<String> grammar;
-
-	// properties here have been removed - they are either redundant or set from the
-	// model
-
-	// Sets up a metric queue to listen for the given campaign
 	private void setupMetricListener(TestCampaign campaign) throws StreamSetupFailed, InvalidTestCampaign {
-//		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 		
 		// TODO: move these properties - except for the bootstrap.servers: into the Consumer
 		Properties properties = new Properties();
@@ -193,19 +185,13 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				// Invoke maven script to ensure that the project is rebuilt
 				TestRunnerUtils.compileProject(codeGenerationDirectory);
 				
-				// Now it will wait for compilation of the compileProject
-				
-				//System.out.print("Waiting for project to recompile...");
-				//System.out.flush();
-				//TestRunnerUtils.waitForSeconds(DEFAULT_COMPILE_DELAY);
-				
-				System.out.println("done");
+				System.out.println("Compilation completed");
 
 				// Invokes the main method for this code
 				System.out.print("Launching test runner for " + mainClassName + "... (classpath " + codeGenerationDirectory + ")");
 				System.out.flush();
 				TestRunnerUtils.exec(mainClassName, codeGenerationDirectory);
-				System.out.println("Testrunner launched");		
+				System.out.println("Testrunner " + mainClassName + " launched");		
 				System.out.flush();
 										
 				if (RECORD_ROSBAG) {
@@ -221,7 +207,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				}
 				
 				System.out.flush();
-				
 
 				// Need to wait for simulation completion here...
 				// If no trigger specified specifically for this test, use the default for the
@@ -246,7 +231,11 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				System.out.println("done");
 
 				// Send the end of simulation message
+				// TODO: for now the end of simulation message is used for both
+				// time tracking and start-end tracking
 				controlProducer.send(ControlMessage.CONTROL_COMMAND.END_SIMULATION);
+				// Send the time tracking message
+				//controlProducer.send(ControlMessage.CONTROL_COMMAND.GET_OPERATION_RECORDED_TIMINGS);
 				metricConsumer.notifyFinalise();
 				System.out.print("Finalising: Waiting for metrics to come back from test runner " + waitTimeSeconds + " seconds...");
 				TestRunnerUtils.waitForSeconds(DEFAULT_WAIT_FOR_FINALISE_DELAY);

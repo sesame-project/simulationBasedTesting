@@ -1,1 +1,1 @@
-execute_testrunner_original.sh
+execute_testrunner_debugging.sh

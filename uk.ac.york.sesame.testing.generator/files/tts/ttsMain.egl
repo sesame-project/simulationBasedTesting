@@ -256,16 +256,19 @@ public class [%= testNameString %]_TestRunner {
 		
 		[* Stream metrics here *]
 		[% for (sMetric in Testing!StreamMetric.all()) { %]
-			[% if (sMetric.streams.size() == 2) {
+			[* Don't generate any mapping streams for direct message generation metrics *]
+			[% if (not sMetric.isKindOf(DirectMessageGenerationMetric)) { %]
+				[% if (sMetric.streams.size() == 2) {
 				var stream1 = sMetric.streams.get(0);
 				var stream2 = sMetric.streams.get(1); %]
 				ConnectedStreams<EventMessage, EventMessage> [%= sMetric.name %]combinedStream = [%= streamJavaName(sMetric,stream1) %].connect([%= streamJavaName(sMetric,stream2) %]);
 				DataStream<Double> [%= sMetric.name %]resStream = [%= sMetric.name %]combinedStream.process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
-			[% } %]
-			
-			[% if (sMetric.streams.size() == 1) { 
+				[% } %]
+				
+				[% if (sMetric.streams.size() == 1) { 
 				var stream = sMetric.streams.get(0); %]
 				DataStream<Double> [%= sMetric.name %]resStream = [%= streamJavaName(sMetric,stream) %].process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
+				[% } %]
 			[% } %]
 		[% } %]
 		
@@ -282,7 +285,8 @@ public class [%= testNameString %]_TestRunner {
 		    for (sMetric in allMetrics.selectByKind(StreamMetric)) { %] 
 		    [% if (sMetric.isKindOf(DirectMessageGenerationMetric)) { %]
 		    [* For direct message generation metrics, create a metric message stream from a subclass of DirectMessageGenerationMetric, that directly produces metric messages *]
-		    DataStream<MetricMessage> metricMsg[%= sMetric.name %] = [%= streamJavaName(sMetric,stream) %].process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
+		    // DIRECT MESSAGE GENERATION METRIC
+		    DataStream<MetricMessage> metricMsg[%= sMetric.name %] = eventsAndControlIn.process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
 		    [% } else { %]
 			[* Map doubles from the metric message stream into the metric message stream to be unified later *]
 			DataStream<MetricMessage> metricMsg[%= sMetric.name %] = [%= sMetric.name %]resStream.map(d -> new MetricMessage("[%=test.name.firstToUpperCase() %]", "[%= sMetric.name %]", d));

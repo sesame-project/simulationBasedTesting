@@ -85,15 +85,6 @@ public abstract class ConditionBasedGeneral extends FuzzingOperation {
 		super(topic);
 	}
 
-	public void setupTimer(Context ctx) throws IOException {
-		// Start the one-second timer used for checking the fuzzing status
-		if (isTimerSetState.value() == null || !isTimerSetState.value()) {
-			long newTime = ctx.timestamp() + 1000;
-			ctx.timerService().registerProcessingTimeTimer(newTime);
-			isTimerSetState.update(true);
-		}
-	}
-
 	public void processElement2(MetricMessage value,
 			CoProcessFunction<EventMessage, MetricMessage, EventMessage>.Context ctx, Collector<EventMessage> out)
 			throws Exception {

@@ -8,45 +8,45 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ControlMessage implements IData, Serializer, Deserializer {
-	
-	private static long testIDCounter = 0;
+
+	private static long controlMessageCounter = 0;
 	private static ObjectMapper objectMapper = new ObjectMapper();
-	
+
 	public enum CONTROL_COMMAND {
-		END_SIMULATION,
-		GET_OPERATION_RECORDED_TIMINGS
-		// Other control commands here
+		END_SIMULATION, GET_OPERATION_RECORDED_TIMINGS
+		// Other control commands here - need to set up in commandToString
 	}
-	
+
 	public class UnknownCommand extends Exception {
+		private static final long serialVersionUID = 1L;
+		private CONTROL_COMMAND cmd;
+
 		public UnknownCommand(CONTROL_COMMAND cmd) {
-			// TODO Auto-generated constructor stub
+			this.cmd = cmd;
 		}
 	}
-	
-	Long id = testIDCounter++;
+
+	Long id = controlMessageCounter++;
 	String testID;
 	long timestamp;
-	String operationID;
 	private CONTROL_COMMAND command;
-	
+
 	public ControlMessage() {
-		
+
 	}
-	
+
 	public ControlMessage(ControlMessage other) {
 		this.id = other.id;
 		this.testID = other.testID;
 		this.timestamp = other.timestamp;
 		this.command = other.command;
-		this.operationID = other.operationID;
 	}
-		
+
 	public ControlMessage(CONTROL_COMMAND cmd) {
 		this();
 		this.command = cmd;
 	}
-	
+
 	public boolean containsCommand(CONTROL_COMMAND cmd) {
 		return this.command.equals(cmd);
 	}
@@ -71,14 +71,12 @@ public class ControlMessage implements IData, Serializer, Deserializer {
 	public byte[] serialize(String arg0, Object arg1) {
 		return convertObjectToByteArray(arg1);
 	}
-	
+
 	public byte[] convertObjectToByteArray(Object obj) {
 		byte[] serializedDataArray = null;
 		try {
 			if (obj != null) {
 				serializedDataArray = objectMapper.writeValueAsBytes(obj);
-//				 System.out.println(gson.toJson(serializedDataArray));
-				// serializedDataArray = gson.toJson(obj).getBytes();
 			}
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
@@ -86,13 +84,13 @@ public class ControlMessage implements IData, Serializer, Deserializer {
 
 		return serializedDataArray;
 	}
-	
+
 	@Override
 	public String toString() {
 		try {
-			return "EventMessage (id: " + this.id + ", value: " + timestamp + " + timestamp " + command + commandToString(this.command);
+			return "ControlMessage (id: " + this.id + ", value: " + timestamp + " + timestamp " + command
+					+ commandToString(this.command);
 		} catch (UnknownCommand e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "INVALID-COMMAND";
 		}
@@ -101,9 +99,12 @@ public class ControlMessage implements IData, Serializer, Deserializer {
 	private String commandToString(CONTROL_COMMAND cmd) throws UnknownCommand {
 		if (cmd == CONTROL_COMMAND.END_SIMULATION) {
 			return "END_SIMULATION";
-		} else {
-			throw new UnknownCommand(cmd);
 		}
+
+		if (cmd == CONTROL_COMMAND.GET_OPERATION_RECORDED_TIMINGS) {
+			return "GET_OPERATION_RECORDED_TIMINGS";
+		}
+		throw new UnknownCommand(cmd);
 	}
 
 	@Override
@@ -121,13 +122,11 @@ public class ControlMessage implements IData, Serializer, Deserializer {
 
 	@Override
 	public void configure(Map configs, boolean isKey) {
-		// TODO Auto-generated method stub
 		Serializer.super.configure(configs, isKey);
 	}
 
 	@Override
 	public void close() {
-		// TODO Auto-generated method stub
 		Serializer.super.close();
 	}
 }

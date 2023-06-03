@@ -18,11 +18,10 @@ public class MetricMessage implements IData, Serializer<MetricMessage>, Deserial
 	int id = testIDCounter++;
 	String testID;
 	String metricName;
-	String specialTag;
+	String specialInfo;
 	Object value;
 	double timestamp;
 	String type;
-	boolean special = false;
 	
 	public MetricMessage() {
 		
@@ -34,6 +33,7 @@ public class MetricMessage implements IData, Serializer<MetricMessage>, Deserial
 		this.value = v;
 		this.type = "Double";
 		this.timestamp = SimCore.getInstance().getTime();
+		this.specialInfo = "";
 	}
 	
 	public enum SPECIAL_TIMING_MESSAGE {
@@ -45,25 +45,24 @@ public class MetricMessage implements IData, Serializer<MetricMessage>, Deserial
 		String name = fuzzOpID;
 		MetricMessage m = new MetricMessage(testID, name, timingVal);
 		if (s.equals(SPECIAL_TIMING_MESSAGE.SPECIAL_START)) {
-			m.setSpecial("START");
+			m.setSpecialInfo("START");
 		}
 		if (s.equals(SPECIAL_TIMING_MESSAGE.SPECIAL_END)) {
-			m.setSpecial("END");
+			m.setSpecialInfo("END");
 		}
 		return m;
 	}
 	
-	public void setSpecial(String specialTag) {
-		this.special = true;
-		this.specialTag = specialTag;
+	public void setSpecialInfo(String specialTag) {
+		this.specialInfo = specialTag;
 	}
 	
-	public boolean isSpecial() {
-		return special;
+	public boolean checkIfSpecial() {
+		return (specialInfo.length() > 0);
 	}
 	
-	public String getSpecialTag() {
-		return specialTag;
+	public String getSpecialInfo() {
+		return specialInfo;
 	}
 	
 	public String timeStampedValString() {
@@ -84,6 +83,7 @@ public class MetricMessage implements IData, Serializer<MetricMessage>, Deserial
 		this.timestamp = other.timestamp;
 		this.testID = other.testID;
 		this.type = other.type;
+		this.specialInfo = other.specialInfo;
 	}
 		
 	public int getId() {
@@ -128,8 +128,6 @@ public class MetricMessage implements IData, Serializer<MetricMessage>, Deserial
 		try {
 			if (obj != null) {
 				serializedDataArray = objectMapper.writeValueAsBytes(obj);
-//				 System.out.println(gson.toJson(serializedDataArray));
-				// serializedDataArray = gson.toJson(obj).getBytes();
 			}
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
@@ -140,7 +138,7 @@ public class MetricMessage implements IData, Serializer<MetricMessage>, Deserial
 	
 	@Override
 	public String toString() {
-		return "MetricMessage (id: " + this.id + ",testID = " + this.getTestID() + ",metricName = " + this.metricName +   ", value: " + this.value + ", timestamp" + this.timestamp + ", type: " + this.type +")";
+		return "MetricMessage (id: " + this.id + ",testID = " + this.getTestID() + ",metricName = " + this.metricName +   ", value: " + this.value + ", timestamp:" + this.timestamp + ", type: " + this.type + ", specialInfo:" + this.specialInfo + ")";
 	}
 
 	@Override

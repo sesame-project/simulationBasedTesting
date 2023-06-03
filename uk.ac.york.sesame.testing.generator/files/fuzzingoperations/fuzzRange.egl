@@ -18,7 +18,6 @@ import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
 public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassName() %] {
 
 	[% var varNames = new Set;	%]
-
 	private static final long serialVersionUID = 1L;
 	Random rng;
 	

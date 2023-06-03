@@ -19,7 +19,6 @@ public class ControlProducer {
 		props.put("linger.ms", 1);
 		props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
 		props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ControlMessage.class.getName());
-		
 		producer = new KafkaProducer<>(props);
 	}
 	

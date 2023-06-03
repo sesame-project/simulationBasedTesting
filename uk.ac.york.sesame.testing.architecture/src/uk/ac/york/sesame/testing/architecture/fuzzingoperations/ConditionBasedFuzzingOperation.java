@@ -24,17 +24,13 @@ public abstract class ConditionBasedFuzzingOperation extends ConditionBasedGener
 					if (shouldActivateByCount()) {
 						isActive.update(true);
 						activationCount.update(activationCount.value() + 1);
-						long timeNow = ctx.timestamp();
-						String opName = this.toString();
-						SimCore.getInstance().registerFuzzingStart(timeNow, getUniqueID());
+						SimCore.getInstance().registerFuzzingStart(getUniqueID());
 					}
 				}
 			} else {
 				if (evalEndCondition()) {
 					isActive.update(false);
-					long timeNow = ctx.timestamp();
-					String opName = this.toString();
-					SimCore.getInstance().registerFuzzingEnd(timeNow, getUniqueID());
+					SimCore.getInstance().registerFuzzingEnd(getUniqueID());
 				}
 			}
 
