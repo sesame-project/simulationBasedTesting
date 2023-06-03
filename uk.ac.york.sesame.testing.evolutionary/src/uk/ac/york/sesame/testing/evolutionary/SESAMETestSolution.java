@@ -286,4 +286,14 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 		EList<Test> developedFrom = t.getDevelopedFrom();
 		developedFrom.add(parentT);
 	}
+
+	public void setOperationSequenceNums() {
+		Test t = this.getInternalType();
+		int i = 0;
+		EList<FuzzingOperation> ops = t.getOperations();
+		for (FuzzingOperation o : ops) {
+			o.setSequenceNumInTest(i);
+			i++;
+		}
+	}
 }

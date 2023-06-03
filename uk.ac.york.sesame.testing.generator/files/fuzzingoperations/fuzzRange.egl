@@ -22,7 +22,8 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 	Random rng;
 	
 	protected String getUniqueID() {
-		return "[%= fuzzOp.name %]-[%= fuzzOp.id %]";
+		//return "[%= fuzzOp.name %]-[%= fuzzOp.id %]";
+		return "[%= fuzzOp.name %]-[%= fuzzOp.sequenceNumInTest %]";
 	}
 
 	[% if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { %]

@@ -53,6 +53,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getContainingTest <em>Containing Test</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getRecordedTimings <em>Recorded Timings</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getSeed <em>Seed</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getSequenceNumInTest <em>Sequence Num In Test</em>}</li>
  * </ul>
  *
  * @generated
@@ -287,6 +288,26 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected int seed = SEED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSequenceNumInTest() <em>Sequence Num In Test</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSequenceNumInTest()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int SEQUENCE_NUM_IN_TEST_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getSequenceNumInTest() <em>Sequence Num In Test</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSequenceNumInTest()
+	 * @generated
+	 * @ordered
+	 */
+	protected int sequenceNumInTest = SEQUENCE_NUM_IN_TEST_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -717,6 +738,27 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getSequenceNumInTest() {
+		return sequenceNumInTest;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSequenceNumInTest(int newSequenceNumInTest) {
+		int oldSequenceNumInTest = sequenceNumInTest;
+		sequenceNumInTest = newSequenceNumInTest;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST, oldSequenceNumInTest, sequenceNumInTest));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -805,6 +847,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return getRecordedTimings();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
 				return getSeed();
+			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
+				return getSequenceNumInTest();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -870,6 +914,9 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
 				setSeed((Integer)newValue);
 				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
+				setSequenceNumInTest((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -930,6 +977,9 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
 				setSeed(SEED_EDEFAULT);
 				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
+				setSequenceNumInTest(SEQUENCE_NUM_IN_TEST_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -976,6 +1026,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return recordedTimings != null;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
 				return seed != SEED_EDEFAULT;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
+				return sequenceNumInTest != SEQUENCE_NUM_IN_TEST_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1004,6 +1056,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 		result.append(allSubscribingVars);
 		result.append(", seed: ");
 		result.append(seed);
+		result.append(", sequenceNumInTest: ");
+		result.append(sequenceNumInTest);
 		result.append(')');
 		return result.toString();
 	}

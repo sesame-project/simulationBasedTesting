@@ -221,13 +221,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int FUZZING_OPERATION__SEED = 16;
 
 	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST = 17;
+
+	/**
 	 * The number of structural features of the '<em>Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_FEATURE_COUNT = 17;
+	int FUZZING_OPERATION_FEATURE_COUNT = 18;
 
 	/**
 	 * The number of operations of the '<em>Fuzzing Operation</em>' class.
@@ -400,6 +409,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int OFFLINE_FUZZING_OPERATION__SEED = FUZZING_OPERATION__SEED;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST = FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
 
 	/**
 	 * The feature id for the '<em><b>Operation Time</b></em>' attribute.
@@ -592,6 +610,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int CUSTOM_FUZZING_OPERATION__SEED = FUZZING_OPERATION__SEED;
 
 	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST = FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
+
+	/**
 	 * The feature id for the '<em><b>Params</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -780,6 +807,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_OFFLINE_FUZZING_OPERATION__SEED = OFFLINE_FUZZING_OPERATION__SEED;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST = OFFLINE_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
 
 	/**
 	 * The feature id for the '<em><b>Operation Time</b></em>' attribute.
@@ -1156,6 +1192,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int FUZZ_TESTING_OPERATION__SEED = FUZZING_OPERATION__SEED;
 
 	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_OPERATION__SEQUENCE_NUM_IN_TEST = FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
+
+	/**
 	 * The number of structural features of the '<em>Fuzz Testing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1337,6 +1382,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int COMPONENT_OPERATION__SEED = FUZZ_TESTING_OPERATION__SEED;
 
 	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_OPERATION__SEQUENCE_NUM_IN_TEST = FUZZ_TESTING_OPERATION__SEQUENCE_NUM_IN_TEST;
+
+	/**
 	 * The number of structural features of the '<em>Component Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1516,6 +1570,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_PROPERTY_OPERATION__SEED = FUZZ_TESTING_OPERATION__SEED;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_OPERATION__SEQUENCE_NUM_IN_TEST = FUZZ_TESTING_OPERATION__SEQUENCE_NUM_IN_TEST;
 
 	/**
 	 * The feature id for the '<em><b>Property To Affect</b></em>' reference.
@@ -1706,6 +1769,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_SUB_PROPERTY_OPERATION__SEED = FUZZ_TESTING_OPERATION__SEED;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_OPERATION__SEQUENCE_NUM_IN_TEST = FUZZ_TESTING_OPERATION__SEQUENCE_NUM_IN_TEST;
 
 	/**
 	 * The feature id for the '<em><b>Property To Affect</b></em>' reference.
@@ -1907,6 +1979,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int VARIABLE_OPERATION__SEED = FUZZ_TESTING_OPERATION__SEED;
 
 	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_OPERATION__SEQUENCE_NUM_IN_TEST = FUZZ_TESTING_OPERATION__SEQUENCE_NUM_IN_TEST;
+
+	/**
 	 * The feature id for the '<em><b>Sub Parameters</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2097,6 +2178,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int RANDOM_VALUE_FUZZING_OPERATION__SEED = COMPONENT_OPERATION__SEED;
 
 	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST = COMPONENT_OPERATION__SEQUENCE_NUM_IN_TEST;
+
+	/**
 	 * The number of structural features of the '<em>Random Value Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2276,6 +2366,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_VALUE_FROM_SET_OPERATION__SEED = RANDOM_VALUE_FUZZING_OPERATION__SEED;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_OPERATION__SEQUENCE_NUM_IN_TEST = RANDOM_VALUE_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
 
 	/**
 	 * The feature id for the '<em><b>Value Set</b></em>' containment reference list.
@@ -2863,6 +2962,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int RESOURCE_FUZZING_OPERATION__SEED = FUZZING_OPERATION__SEED;
 
 	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST = FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
+
+	/**
 	 * The number of structural features of the '<em>Resource Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3042,6 +3150,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_FUZZING_OPERATION__SEED = FUZZING_OPERATION__SEED;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST = FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
 
 	/**
 	 * The number of structural features of the '<em>State Fuzzing Operation</em>' class.
@@ -3225,6 +3342,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int NETWORK_FUZZING_OPERATION__SEED = FUZZING_OPERATION__SEED;
 
 	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST = FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
+
+	/**
 	 * The number of structural features of the '<em>Network Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3404,6 +3530,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int LOAD_RESOURCE_OPERATION__SEED = RESOURCE_FUZZING_OPERATION__SEED;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOAD_RESOURCE_OPERATION__SEQUENCE_NUM_IN_TEST = RESOURCE_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
 
 	/**
 	 * The feature id for the '<em><b>Load Type</b></em>' reference.
@@ -3826,6 +3961,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int SHUTDOWN_STATE_OPERATON__SEED = STATE_FUZZING_OPERATION__SEED;
 
 	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHUTDOWN_STATE_OPERATON__SEQUENCE_NUM_IN_TEST = STATE_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
+
+	/**
 	 * The number of structural features of the '<em>Shutdown State Operaton</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4005,6 +4149,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int TIME_TRAVEL_STATE_OPERATON__SEED = STATE_FUZZING_OPERATION__SEED;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_TRAVEL_STATE_OPERATON__SEQUENCE_NUM_IN_TEST = STATE_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
 
 	/**
 	 * The feature id for the '<em><b>Time Travel Value</b></em>' containment reference.
@@ -4197,6 +4350,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int PROCESS_KILLER_STATE_OPERATON__SEED = STATE_FUZZING_OPERATION__SEED;
 
 	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_KILLER_STATE_OPERATON__SEQUENCE_NUM_IN_TEST = STATE_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
+
+	/**
 	 * The feature id for the '<em><b>Process Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4387,6 +4549,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int BLACKHOLE_NETWORK_OPERATION__SEED = NETWORK_FUZZING_OPERATION__SEED;
 
 	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_OPERATION__SEQUENCE_NUM_IN_TEST = NETWORK_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
+
+	/**
 	 * The number of structural features of the '<em>Blackhole Network Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4566,6 +4737,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int LATENCY_NETWORK_OPERATION__SEED = NETWORK_FUZZING_OPERATION__SEED;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_OPERATION__SEQUENCE_NUM_IN_TEST = NETWORK_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
 
 	/**
 	 * The feature id for the '<em><b>Latency</b></em>' containment reference.
@@ -4758,6 +4938,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int PACKET_LOSS_NETWORK_OPERATION__SEED = NETWORK_FUZZING_OPERATION__SEED;
 
 	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_OPERATION__SEQUENCE_NUM_IN_TEST = NETWORK_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
+
+	/**
 	 * The feature id for the '<em><b>Frequency</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4946,6 +5135,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLE_MESSAGES_NETWORK_OPERATION__SEED = NETWORK_FUZZING_OPERATION__SEED;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_MESSAGES_NETWORK_OPERATION__SEQUENCE_NUM_IN_TEST = NETWORK_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
 
 	/**
 	 * The feature id for the '<em><b>How Many Clones</b></em>' containment reference.
@@ -5181,6 +5379,17 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFuzzingOperation_Seed();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getSequenceNumInTest <em>Sequence Num In Test</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Sequence Num In Test</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getSequenceNumInTest()
+	 * @see #getFuzzingOperation()
+	 * @generated
+	 */
+	EAttribute getFuzzingOperation_SequenceNumInTest();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineFuzzingOperation <em>Offline Fuzzing Operation</em>}'.
@@ -6136,6 +6345,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FUZZING_OPERATION__SEED = eINSTANCE.getFuzzingOperation_Seed();
+
+		/**
+		 * The meta object literal for the '<em><b>Sequence Num In Test</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST = eINSTANCE.getFuzzingOperation_SequenceNumInTest();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.OfflineFuzzingOperationImpl <em>Offline Fuzzing Operation</em>}' class.

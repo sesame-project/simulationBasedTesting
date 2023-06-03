@@ -160,6 +160,9 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 			System.out.println("Running test for " + solution);
 			// This ensures that the new test is installed in the model
+			
+			solution.setOperationSequenceNums();
+			
 			solution.ensureModelUpdated(selectedCampaign);
 			loader.saveTestingSpace();
 			// THIS is a temporary change to test if caching is causing the model to be stale for EGL??? 

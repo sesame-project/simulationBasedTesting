@@ -133,6 +133,7 @@ abstract class FuzzingOperation {
 	readonly transient ref Test[0..1]#operations containingTest;
 	val FixedTimeActivation[0..1] recordedTimings; 
 	attr int seed;
+	attr int sequenceNumInTest;
 }
 
 class OfflineFuzzingOperation extends FuzzingOperation {

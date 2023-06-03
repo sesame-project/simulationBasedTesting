@@ -95,6 +95,7 @@
         <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/FuzzingOperation/containingTest"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/FuzzingOperation/recordedTimings"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/seed"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/sequenceNumInTest"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation/operationTime"/>

@@ -172,21 +172,14 @@ public class MetricConsumer implements Runnable {
 			Test t = currentSolution.get().getInternalType();
 			EList<FuzzingOperation> ops = t.getOperations();
 			Optional<FuzzingOperation> target = Optional.empty();
+
 			// Scan for an operation with matching ID
 			for (FuzzingOperation op : ops) {
-				EObject eo = (EObject) op;
-				Resource er = eo.eResource();
-				er.getEObject(tag);
-				XMLResource xmler = (XMLResource)er;	
-				String currentOpId = xmler.getURIFragment(eo);
-				
 				String name = op.getName();
-				String combinedID = name + "-" + currentOpId;
-				// This has to match the value of getUniqueID in generated subclasses of
-				// FuzzingOperation
+				int seqNum = op.getSequenceNumInTest();
+				String combinedID = name + "-" + String.valueOf(seqNum) + "-";
 
-				System.out.println("existing fuzzop combinedID = " + combinedID);
-				if (combinedID.equals(fuzzOpId)) {
+				if (fuzzOpId.contains(combinedID)) {
 					target = Optional.of(op);
 				}
 			}
