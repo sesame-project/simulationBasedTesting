@@ -11,7 +11,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import uk.ac.york.sesame.testing.architecture.data.TimingPair;
+import uk.ac.york.sesame.testing.architecture.data.TimeInterval;
+import uk.ac.york.sesame.testing.architecture.data.TimeInterval.InvalidTimingPair;
 
 public final class SimCore {
 	
@@ -23,7 +24,7 @@ public final class SimCore {
     private ConcurrentHashMap<String, Double> fuzzingStartTimes = new ConcurrentHashMap<String,Double>();
     
     // This records the record of all start and end times per operations    	
-    private ConcurrentHashMap<String, List<TimingPair>> fuzzingTimingHistory = new ConcurrentHashMap<String,List<TimingPair>>();
+    private ConcurrentHashMap<String, List<TimeInterval>> fuzzingTimingHistory = new ConcurrentHashMap<String,List<TimeInterval>>();
     private double totalFuzzingSecondCount;
     private FileWriter outputTimingLog;
     
@@ -85,7 +86,11 @@ public final class SimCore {
 		double timeLength = timeEnd - fuzzingStart;
 		totalFuzzingSecondCount += timeLength;
 		fuzzingStartTimes.remove(fuzzUniqueID);
-		addTimeRecord(fuzzUniqueID, fuzzingStart, timeEnd);
+		try {
+			addTimeRecord(fuzzUniqueID, fuzzingStart, timeEnd);
+		} catch (InvalidTimingPair e1) {
+			e1.printStackTrace();
+		}
 				
 		outputTimingLog(timeEnd + " : Fuzzing operation " + fuzzUniqueID + " ENDED dynamic timing\n");
 		try {
@@ -95,13 +100,13 @@ public final class SimCore {
 		}
 	}
 	
-	private void addTimeRecord(String fuzzUniqueID, double fuzzingStartTime, double fuzzingEndTime) {
+	private void addTimeRecord(String fuzzUniqueID, double fuzzingStartTime, double fuzzingEndTime) throws InvalidTimingPair {
 		if (!fuzzingTimingHistory.contains(fuzzUniqueID)) {
-			fuzzingTimingHistory.put(fuzzUniqueID, new ArrayList<TimingPair>());
+			fuzzingTimingHistory.put(fuzzUniqueID, new ArrayList<TimeInterval>());
 		}
 		
-		List<TimingPair> timings = fuzzingTimingHistory.get(fuzzUniqueID);
-		timings.add(new TimingPair(fuzzingStartTime, fuzzingEndTime));
+		List<TimeInterval> timings = fuzzingTimingHistory.get(fuzzUniqueID);
+		timings.add(new TimeInterval(fuzzingStartTime, fuzzingEndTime));
 		
 	}
 
@@ -118,7 +123,7 @@ public final class SimCore {
 		}
 	}
 	
-	public synchronized ConcurrentHashMap<String, List<TimingPair>> getTimingRecords() {
+	public synchronized ConcurrentHashMap<String, List<TimeInterval>> getTimingRecords() {
 		return fuzzingTimingHistory;
 	}
 
