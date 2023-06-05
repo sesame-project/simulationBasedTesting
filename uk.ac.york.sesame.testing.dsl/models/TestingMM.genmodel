@@ -11,6 +11,16 @@
       <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//ResultSetStatus/FINAL"/>
       <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//ResultSetStatus/INTERMEDIATE"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TestingMM.ecore#//DimensionID">
+      <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//DimensionID/T1_TIME_MIDPOINT_MEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//DimensionID/T2_TIME_LENGTH_MEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//DimensionID/T3_TIME_MIDPOINT_VAR"/>
+      <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//DimensionID/P1_PARAMETER_MEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//DimensionID/P2_PARAMETER_VARIANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//DimensionID/O1_FUZZRANGE_COUNT"/>
+      <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//DimensionID/O2_DELAY_COUNT"/>
+      <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//DimensionID/O3_DELETION_COUNT"/>
+    </genEnums>
     <genClasses ecoreClass="TestingMM.ecore#//TestingSpace">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//TestingSpace/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//TestingSpace/metrics"/>
@@ -59,6 +69,14 @@
     <genClasses ecoreClass="TestingMM.ecore#//NSGAEvolutionaryAlgorithm">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGAEvolutionaryAlgorithm/populationSize"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGAEvolutionaryAlgorithm/iterations"/>
+    </genClasses>
+    <genClasses ecoreClass="TestingMM.ecore#//NSGAWithCoverageCells">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGAWithCoverageCells/coveragePerCell"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//NSGAWithCoverageCells/dimensionRecords"/>
+    </genClasses>
+    <genClasses ecoreClass="TestingMM.ecore#//DimensionCountRecord">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//DimensionCountRecord/dimID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//DimensionCountRecord/count"/>
     </genClasses>
     <genClasses ecoreClass="TestingMM.ecore#//RepeatedExecution">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TestingMM.ecore#//RepeatedExecution/testToRepeat"/>

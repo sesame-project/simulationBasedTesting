@@ -721,6 +721,116 @@ public interface TestingPackagePackage extends EPackage {
 	int NSGA_EVOLUTIONARY_ALGORITHM_OPERATION_COUNT = EVOLUTIONARY_ALGORITHM_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl <em>NSGA With Coverage Cells</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getNSGAWithCoverageCells()
+	 * @generated
+	 */
+	int NSGA_WITH_COVERAGE_CELLS = 15;
+
+	/**
+	 * The feature id for the '<em><b>Population Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS__POPULATION_SIZE = NSGA_EVOLUTIONARY_ALGORITHM__POPULATION_SIZE;
+
+	/**
+	 * The feature id for the '<em><b>Iterations</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS__ITERATIONS = NSGA_EVOLUTIONARY_ALGORITHM__ITERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Coverage Per Cell</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Dimension Records</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>NSGA With Coverage Cells</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS_FEATURE_COUNT = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>NSGA With Coverage Cells</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS_OPERATION_COUNT = NSGA_EVOLUTIONARY_ALGORITHM_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionCountRecordImpl <em>Dimension Count Record</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionCountRecordImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionCountRecord()
+	 * @generated
+	 */
+	int DIMENSION_COUNT_RECORD = 16;
+
+	/**
+	 * The feature id for the '<em><b>Dim ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_COUNT_RECORD__DIM_ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_COUNT_RECORD__COUNT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Dimension Count Record</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_COUNT_RECORD_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Dimension Count Record</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_COUNT_RECORD_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl <em>Repeated Execution</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -728,7 +838,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRepeatedExecution()
 	 * @generated
 	 */
-	int REPEATED_EXECUTION = 15;
+	int REPEATED_EXECUTION = 17;
 
 	/**
 	 * The feature id for the '<em><b>Test To Repeat</b></em>' reference.
@@ -774,7 +884,18 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getResultSetStatus()
 	 * @generated
 	 */
-	int RESULT_SET_STATUS = 16;
+	int RESULT_SET_STATUS = 18;
+
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID <em>Dimension ID</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionID()
+	 * @generated
+	 */
+	int DIMENSION_ID = 19;
 
 
 	/**
@@ -1225,6 +1346,70 @@ public interface TestingPackagePackage extends EPackage {
 	EAttribute getNSGAEvolutionaryAlgorithm_Iterations();
 
 	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells <em>NSGA With Coverage Cells</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>NSGA With Coverage Cells</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells
+	 * @generated
+	 */
+	EClass getNSGAWithCoverageCells();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getCoveragePerCell <em>Coverage Per Cell</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Coverage Per Cell</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getCoveragePerCell()
+	 * @see #getNSGAWithCoverageCells()
+	 * @generated
+	 */
+	EAttribute getNSGAWithCoverageCells_CoveragePerCell();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getDimensionRecords <em>Dimension Records</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Dimension Records</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getDimensionRecords()
+	 * @see #getNSGAWithCoverageCells()
+	 * @generated
+	 */
+	EReference getNSGAWithCoverageCells_DimensionRecords();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord <em>Dimension Count Record</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dimension Count Record</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord
+	 * @generated
+	 */
+	EClass getDimensionCountRecord();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord#getDimID <em>Dim ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dim ID</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord#getDimID()
+	 * @see #getDimensionCountRecord()
+	 * @generated
+	 */
+	EAttribute getDimensionCountRecord_DimID();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord#getCount <em>Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Count</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord#getCount()
+	 * @see #getDimensionCountRecord()
+	 * @generated
+	 */
+	EAttribute getDimensionCountRecord_Count();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution <em>Repeated Execution</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1265,6 +1450,16 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getResultSetStatus();
+
+	/**
+	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID <em>Dimension ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Dimension ID</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID
+	 * @generated
+	 */
+	EEnum getDimensionID();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1656,6 +1851,58 @@ public interface TestingPackagePackage extends EPackage {
 		EAttribute NSGA_EVOLUTIONARY_ALGORITHM__ITERATIONS = eINSTANCE.getNSGAEvolutionaryAlgorithm_Iterations();
 
 		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl <em>NSGA With Coverage Cells</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getNSGAWithCoverageCells()
+		 * @generated
+		 */
+		EClass NSGA_WITH_COVERAGE_CELLS = eINSTANCE.getNSGAWithCoverageCells();
+
+		/**
+		 * The meta object literal for the '<em><b>Coverage Per Cell</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL = eINSTANCE.getNSGAWithCoverageCells_CoveragePerCell();
+
+		/**
+		 * The meta object literal for the '<em><b>Dimension Records</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS = eINSTANCE.getNSGAWithCoverageCells_DimensionRecords();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionCountRecordImpl <em>Dimension Count Record</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionCountRecordImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionCountRecord()
+		 * @generated
+		 */
+		EClass DIMENSION_COUNT_RECORD = eINSTANCE.getDimensionCountRecord();
+
+		/**
+		 * The meta object literal for the '<em><b>Dim ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIMENSION_COUNT_RECORD__DIM_ID = eINSTANCE.getDimensionCountRecord_DimID();
+
+		/**
+		 * The meta object literal for the '<em><b>Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIMENSION_COUNT_RECORD__COUNT = eINSTANCE.getDimensionCountRecord_Count();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl <em>Repeated Execution</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1690,6 +1937,16 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum RESULT_SET_STATUS = eINSTANCE.getResultSetStatus();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID <em>Dimension ID</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionID()
+		 * @generated
+		 */
+		EEnum DIMENSION_ID = eINSTANCE.getDimensionID();
 
 	}
 

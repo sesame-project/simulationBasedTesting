@@ -128,6 +128,14 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 				return createNSGAEvolutionaryAlgorithmAdapter();
 			}
 			@Override
+			public Adapter caseNSGAWithCoverageCells(NSGAWithCoverageCells object) {
+				return createNSGAWithCoverageCellsAdapter();
+			}
+			@Override
+			public Adapter caseDimensionCountRecord(DimensionCountRecord object) {
+				return createDimensionCountRecordAdapter();
+			}
+			@Override
 			public Adapter caseRepeatedExecution(RepeatedExecution object) {
 				return createRepeatedExecutionAdapter();
 			}
@@ -358,6 +366,34 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNSGAEvolutionaryAlgorithmAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells <em>NSGA With Coverage Cells</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells
+	 * @generated
+	 */
+	public Adapter createNSGAWithCoverageCellsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord <em>Dimension Count Record</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord
+	 * @generated
+	 */
+	public Adapter createDimensionCountRecordAdapter() {
 		return null;
 	}
 
