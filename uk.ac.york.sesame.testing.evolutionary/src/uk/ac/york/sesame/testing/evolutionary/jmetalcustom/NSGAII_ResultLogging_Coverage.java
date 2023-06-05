@@ -46,7 +46,8 @@ import java.util.List;
 public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends AbstractGeneticAlgorithm<S, List<S>> {
 	
 	// This is a backup evaluation count if the coverage criterion is not met
-	private static int maxEvaluations_FIXED = 10000;
+	// TODO: set this in the model
+	private static final int maxEvaluations_FIXED = 10000;
 	// Use max coverage limit even if coverage is not met
 	private boolean USE_MAX_EVALUATION_LIMIT = true;
 
