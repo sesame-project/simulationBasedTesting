@@ -17,6 +17,7 @@ import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
@@ -24,6 +25,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationAppr
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
 import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging;
+import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging_Coverage;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.RepeatedRun;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEConditionsCrossover;
@@ -141,6 +143,13 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			if (app instanceof NSGAEvolutionaryAlgorithm) {
 				// TODO: read relevant parameters from the TestGenerationApproach here
 				algorithm = new NSGAII_ResultLogging(selectedCampaign, scenarioStr, problem, maxIterations,
+						populationSize, matingPoolSize, offspringPopulationSize, crossover, mutation, selection,
+						dominanceComparator, evaluator);
+			}
+			
+			if (app instanceof NSGAWithCoverageCells) {
+				// TODO: read relevant parameters from the TestGenerationApproach here
+				algorithm = new NSGAII_ResultLogging_Coverage(selectedCampaign, scenarioStr, problem, maxIterations,
 						populationSize, matingPoolSize, offspringPopulationSize, crossover, mutation, selection,
 						dominanceComparator, evaluator);
 			}

@@ -21,6 +21,12 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.CoverageCheckingAlg;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.GridCoverageChecker;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.ParameterSpaceDimensionalityReduction;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.SESAMEStandardDimensionSetReducer;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 
 import java.io.FileWriter;
@@ -29,6 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.EnumMap;
 import java.util.List;
 
 /**
@@ -36,7 +43,13 @@ import java.util.List;
  */
 @SuppressWarnings("serial")
 
-public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGeneticAlgorithm<S, List<S>> {
+public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends AbstractGeneticAlgorithm<S, List<S>> {
+	
+	// This is a backup evaluation count if the coverage criterion is not met
+	private static int maxEvaluations_FIXED = 10000;
+	// Use max coverage limit even if coverage is not met
+	private boolean USE_MAX_EVALUATION_LIMIT = true;
+
 	protected final int maxEvaluations;
 
 	protected final SolutionListEvaluator<S> evaluator;
@@ -50,14 +63,20 @@ public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGenetic
 	private TestCampaign selectedCampaign;
 
 	private String scenarioStr;
+	
+	private ParameterSpaceDimensionalityReduction dimensionReducer; 
+	
  
 	/**
-	 * Constructor
+	 * TODO: make this a subclass of NSGAII_ResultLogging
 	 */
-	public NSGAII_ResultLogging(TestCampaign selectedCampaign, String scenarioStr, Problem<S> problem, int maxEvaluations, int populationSize, int matingPoolSize,
+	public NSGAII_ResultLogging_Coverage(TestCampaign selectedCampaign, String scenarioStr, Problem<S> problem, int populationSize, int matingPoolSize,
 			int offspringPopulationSize, CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator,
 			SelectionOperator<List<S>, S> selectionOperator, SolutionListEvaluator<S> evaluator) {
-		this(selectedCampaign, scenarioStr, problem, maxEvaluations, populationSize, matingPoolSize, offspringPopulationSize, crossoverOperator,
+		
+		
+		
+		this(selectedCampaign, scenarioStr, problem, maxEvaluations_FIXED, populationSize, matingPoolSize, offspringPopulationSize, crossoverOperator,
 				mutationOperator, selectionOperator, new DominanceComparator<S>(), evaluator);
 		this.selectedCampaign = selectedCampaign;
 	}
@@ -65,7 +84,7 @@ public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGenetic
 	/**
 	 * Constructor
 	 */
-	public NSGAII_ResultLogging(TestCampaign selectedCampaign, String scenarioStr, Problem<S> problem, int maxEvaluations, int populationSize, int matingPoolSize,
+	public NSGAII_ResultLogging_Coverage(TestCampaign selectedCampaign, String scenarioStr, Problem<S> problem, int maxEvaluations, int populationSize, int matingPoolSize,
 			int offspringPopulationSize, CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator,
 			SelectionOperator<List<S>, S> selectionOperator, Comparator<S> dominanceComparator,
 			SolutionListEvaluator<S> evaluator) {
@@ -73,7 +92,6 @@ public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGenetic
 		this.maxEvaluations = maxEvaluations;
 		this.selectedCampaign = selectedCampaign;
 		setMaxPopulationSize(populationSize);
-		;
 
 		this.crossoverOperator = crossoverOperator;
 		this.mutationOperator = mutationOperator;
@@ -85,6 +103,8 @@ public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGenetic
 		this.matingPoolSize = matingPoolSize;
 		this.offspringPopulationSize = offspringPopulationSize;
 		this.scenarioStr = scenarioStr;
+		
+		this.dimensionReducer = new SESAMEStandardDimensionSetReducer();
 	}
 
 	@Override
@@ -97,9 +117,29 @@ public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGenetic
 		evaluations += offspringPopulationSize;
 	}
 
-	@Override
+	protected boolean isCoverageAchieved() {
+
+		CoverageCheckingAlg covChecker = new GridCoverageChecker();
+		for (S s : population) {
+			Test t = ((SESAMETestSolution)s).getInternalType();
+			try {
+				EnumMap<DimensionID, Double> dimPoint = dimensionReducer.generateDimensionSetsForParams(t, selectedCampaign);
+				covChecker.register(dimPoint);
+			} catch (MissingDimensionsInMap e) {
+				e.printStackTrace();
+			}
+		}
+		boolean coverageReached = covChecker.isCovered();
+		return coverageReached;
+	}
+	
+	
 	protected boolean isStoppingConditionReached() {
-		return evaluations >= maxEvaluations;
+		if (USE_MAX_EVALUATION_LIMIT) {
+			return isCoverageAchieved() || (evaluations > maxEvaluations);
+		} else {
+			return isCoverageAchieved();
+		}
 	}
 
 	@Override
