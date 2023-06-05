@@ -107,6 +107,30 @@ class NSGAEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 	attr int iterations;
 }
 
+class NSGAWithCoverageCells extends NSGAEvolutionaryAlgorithm {
+	attr int coveragePerCell;
+	val DimensionInterval[1..*]  dimensionRecords;
+}
+
+class DimensionInterval {
+	attr DimensionID dimID;
+	attr double minValue;
+	attr double maxValue;
+	attr int count;
+}
+
+enum DimensionID {
+	T1_TIME_MIDPOINT_MEAN = 1;
+	T2_TIME_LENGTH_MEAN = 2;
+	T3_TIME_MIDPOINT_VAR = 3; 
+	P1_PARAMETER_MEAN = 4;
+	P2_PARAMETER_VARIANCE = 5;
+	O1_FUZZRANGE_COUNT = 6;
+	O2_DELAY_COUNT = 7;
+	O3_DELETION_COUNT = 8;
+}
+
+
 class RepeatedExecution extends TestGenerationApproach {
 	ref Test[1] testToRepeat;
 	attr int repeatCount;

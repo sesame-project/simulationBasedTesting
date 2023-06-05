@@ -16,6 +16,7 @@ import org.uma.jmetal.util.fileoutput.SolutionListOutput;
 import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
+import uk.ac.york.sesame.testing.architecture.data.IntervalWithCount;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
@@ -119,8 +120,15 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	}
 
 	protected boolean isCoverageAchieved() {
-
-		CoverageCheckingAlg covChecker = new GridCoverageChecker();
+		// TODO: extract this information from the GA - pull in as parameters
+		// from the DimensionInterval from NSGAWithCoverageCells 
+		EnumMap<DimensionID,IntervalWithCount> intervals = new EnumMap<DimensionID,IntervalWithCount>(DimensionID.class);
+		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 80.0, 5));
+		final int MIN_COVERAGE_PER_CELL = 1;
+		//////////////////////////////////////////////////////////////////////////
+		
+		// Ensure a new coverage checker is created for this scan... 
+		CoverageCheckingAlg covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL);
 		for (S s : population) {
 			Test t = ((SESAMETestSolution)s).getInternalType();
 			try {

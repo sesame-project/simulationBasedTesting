@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ActivationGenerationMethod;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.EvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 
@@ -29,6 +31,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPac
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.PassiveMonitorOnly;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RandomTestGeneration;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution;
@@ -169,6 +172,20 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass nsgaWithCoverageCellsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dimensionIntervalEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass repeatedExecutionEClass = null;
 
 	/**
@@ -177,6 +194,13 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * @generated
 	 */
 	private EEnum resultSetStatusEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum dimensionIDEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -644,6 +668,78 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNSGAWithCoverageCells() {
+		return nsgaWithCoverageCellsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNSGAWithCoverageCells_CoveragePerCell() {
+		return (EAttribute)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNSGAWithCoverageCells_DimensionRecords() {
+		return (EReference)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDimensionInterval() {
+		return dimensionIntervalEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDimensionInterval_DimID() {
+		return (EAttribute)dimensionIntervalEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDimensionInterval_MinValue() {
+		return (EAttribute)dimensionIntervalEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDimensionInterval_MaxValue() {
+		return (EAttribute)dimensionIntervalEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDimensionInterval_Count() {
+		return (EAttribute)dimensionIntervalEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRepeatedExecution() {
 		return repeatedExecutionEClass;
 	}
@@ -673,6 +769,15 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 */
 	public EEnum getResultSetStatus() {
 		return resultSetStatusEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getDimensionID() {
+		return dimensionIDEEnum;
 	}
 
 	/**
@@ -760,12 +865,23 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEAttribute(nsgaEvolutionaryAlgorithmEClass, NSGA_EVOLUTIONARY_ALGORITHM__POPULATION_SIZE);
 		createEAttribute(nsgaEvolutionaryAlgorithmEClass, NSGA_EVOLUTIONARY_ALGORITHM__ITERATIONS);
 
+		nsgaWithCoverageCellsEClass = createEClass(NSGA_WITH_COVERAGE_CELLS);
+		createEAttribute(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL);
+		createEReference(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS);
+
+		dimensionIntervalEClass = createEClass(DIMENSION_INTERVAL);
+		createEAttribute(dimensionIntervalEClass, DIMENSION_INTERVAL__DIM_ID);
+		createEAttribute(dimensionIntervalEClass, DIMENSION_INTERVAL__MIN_VALUE);
+		createEAttribute(dimensionIntervalEClass, DIMENSION_INTERVAL__MAX_VALUE);
+		createEAttribute(dimensionIntervalEClass, DIMENSION_INTERVAL__COUNT);
+
 		repeatedExecutionEClass = createEClass(REPEATED_EXECUTION);
 		createEReference(repeatedExecutionEClass, REPEATED_EXECUTION__TEST_TO_REPEAT);
 		createEAttribute(repeatedExecutionEClass, REPEATED_EXECUTION__REPEAT_COUNT);
 
 		// Create enums
 		resultSetStatusEEnum = createEEnum(RESULT_SET_STATUS);
+		dimensionIDEEnum = createEEnum(DIMENSION_ID);
 	}
 
 	/**
@@ -817,6 +933,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		randomTestGenerationEClass.getESuperTypes().add(this.getTestGenerationApproach());
 		evolutionaryAlgorithmEClass.getESuperTypes().add(this.getTestGenerationApproach());
 		nsgaEvolutionaryAlgorithmEClass.getESuperTypes().add(this.getEvolutionaryAlgorithm());
+		nsgaWithCoverageCellsEClass.getESuperTypes().add(this.getNSGAEvolutionaryAlgorithm());
 		repeatedExecutionEClass.getESuperTypes().add(this.getTestGenerationApproach());
 
 		// Initialize classes, features, and operations; add parameters
@@ -877,6 +994,16 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEAttribute(getNSGAEvolutionaryAlgorithm_PopulationSize(), ecorePackage.getEInt(), "populationSize", null, 0, 1, NSGAEvolutionaryAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNSGAEvolutionaryAlgorithm_Iterations(), ecorePackage.getEInt(), "iterations", null, 0, 1, NSGAEvolutionaryAlgorithm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(nsgaWithCoverageCellsEClass, NSGAWithCoverageCells.class, "NSGAWithCoverageCells", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNSGAWithCoverageCells_CoveragePerCell(), ecorePackage.getEInt(), "coveragePerCell", null, 0, 1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNSGAWithCoverageCells_DimensionRecords(), this.getDimensionInterval(), null, "dimensionRecords", null, 1, -1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dimensionIntervalEClass, DimensionInterval.class, "DimensionInterval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDimensionInterval_DimID(), this.getDimensionID(), "dimID", null, 0, 1, DimensionInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDimensionInterval_MinValue(), ecorePackage.getEDouble(), "minValue", null, 0, 1, DimensionInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDimensionInterval_MaxValue(), ecorePackage.getEDouble(), "maxValue", null, 0, 1, DimensionInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDimensionInterval_Count(), ecorePackage.getEInt(), "count", null, 0, 1, DimensionInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(repeatedExecutionEClass, RepeatedExecution.class, "RepeatedExecution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRepeatedExecution_TestToRepeat(), this.getTest(), null, "testToRepeat", null, 1, 1, RepeatedExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRepeatedExecution_RepeatCount(), ecorePackage.getEInt(), "repeatCount", null, 0, 1, RepeatedExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -885,6 +1012,16 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEEnum(resultSetStatusEEnum, ResultSetStatus.class, "ResultSetStatus");
 		addEEnumLiteral(resultSetStatusEEnum, ResultSetStatus.FINAL);
 		addEEnumLiteral(resultSetStatusEEnum, ResultSetStatus.INTERMEDIATE);
+
+		initEEnum(dimensionIDEEnum, DimensionID.class, "DimensionID");
+		addEEnumLiteral(dimensionIDEEnum, DimensionID.T1_TIME_MIDPOINT_MEAN);
+		addEEnumLiteral(dimensionIDEEnum, DimensionID.T2_TIME_LENGTH_MEAN);
+		addEEnumLiteral(dimensionIDEEnum, DimensionID.T3_TIME_MIDPOINT_VAR);
+		addEEnumLiteral(dimensionIDEEnum, DimensionID.P1_PARAMETER_MEAN);
+		addEEnumLiteral(dimensionIDEEnum, DimensionID.P2_PARAMETER_VARIANCE);
+		addEEnumLiteral(dimensionIDEEnum, DimensionID.O1_FUZZRANGE_COUNT);
+		addEEnumLiteral(dimensionIDEEnum, DimensionID.O2_DELAY_COUNT);
+		addEEnumLiteral(dimensionIDEEnum, DimensionID.O3_DELETION_COUNT);
 
 		// Create resource
 		createResource(eNS_URI);

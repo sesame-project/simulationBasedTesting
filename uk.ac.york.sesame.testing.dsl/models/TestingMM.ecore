@@ -75,6 +75,27 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="populationSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="iterations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NSGAWithCoverageCells" eSuperTypes="#//NSGAEvolutionaryAlgorithm">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coveragePerCell" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dimensionRecords" lowerBound="1"
+        upperBound="-1" eType="#//DimensionInterval" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DimensionInterval">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dimID" eType="#//DimensionID"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DimensionID">
+    <eLiterals name="T1_TIME_MIDPOINT_MEAN" value="1"/>
+    <eLiterals name="T2_TIME_LENGTH_MEAN" value="2"/>
+    <eLiterals name="T3_TIME_MIDPOINT_VAR" value="3"/>
+    <eLiterals name="P1_PARAMETER_MEAN" value="4"/>
+    <eLiterals name="P2_PARAMETER_VARIANCE" value="5"/>
+    <eLiterals name="O1_FUZZRANGE_COUNT" value="6"/>
+    <eLiterals name="O2_DELAY_COUNT" value="7"/>
+    <eLiterals name="O3_DELETION_COUNT" value="8"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RepeatedExecution" eSuperTypes="#//TestGenerationApproach">
     <eStructuralFeatures xsi:type="ecore:EReference" name="testToRepeat" lowerBound="1"
         eType="#//Test"/>

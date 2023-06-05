@@ -164,6 +164,21 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS: {
+				NSGAWithCoverageCells nsgaWithCoverageCells = (NSGAWithCoverageCells)theEObject;
+				T result = caseNSGAWithCoverageCells(nsgaWithCoverageCells);
+				if (result == null) result = caseNSGAEvolutionaryAlgorithm(nsgaWithCoverageCells);
+				if (result == null) result = caseEvolutionaryAlgorithm(nsgaWithCoverageCells);
+				if (result == null) result = caseTestGenerationApproach(nsgaWithCoverageCells);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.DIMENSION_INTERVAL: {
+				DimensionInterval dimensionInterval = (DimensionInterval)theEObject;
+				T result = caseDimensionInterval(dimensionInterval);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case TestingPackagePackage.REPEATED_EXECUTION: {
 				RepeatedExecution repeatedExecution = (RepeatedExecution)theEObject;
 				T result = caseRepeatedExecution(repeatedExecution);
@@ -397,6 +412,36 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNSGAEvolutionaryAlgorithm(NSGAEvolutionaryAlgorithm object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>NSGA With Coverage Cells</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>NSGA With Coverage Cells</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNSGAWithCoverageCells(NSGAWithCoverageCells object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dimension Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dimension Interval</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDimensionInterval(DimensionInterval object) {
 		return null;
 	}
 

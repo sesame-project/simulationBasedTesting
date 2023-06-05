@@ -112,6 +112,24 @@ public interface TestingPackageFactory extends EFactory {
 	NSGAEvolutionaryAlgorithm createNSGAEvolutionaryAlgorithm();
 
 	/**
+	 * Returns a new object of class '<em>NSGA With Coverage Cells</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>NSGA With Coverage Cells</em>'.
+	 * @generated
+	 */
+	NSGAWithCoverageCells createNSGAWithCoverageCells();
+
+	/**
+	 * Returns a new object of class '<em>Dimension Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dimension Interval</em>'.
+	 * @generated
+	 */
+	DimensionInterval createDimensionInterval();
+
+	/**
 	 * Returns a new object of class '<em>Repeated Execution</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
