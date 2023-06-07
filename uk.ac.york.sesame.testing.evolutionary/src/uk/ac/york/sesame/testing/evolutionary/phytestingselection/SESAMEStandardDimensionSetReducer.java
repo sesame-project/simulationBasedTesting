@@ -1,7 +1,7 @@
 package uk.ac.york.sesame.testing.evolutionary.phytestingselection;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalDouble;
@@ -12,9 +12,14 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActi
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.BlackholeNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DoubleRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LatencyNetworkOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PacketLossNetworkOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
 
 /** SESAME Standard Dimensional Reducer **/
 public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensionalityReduction {
@@ -79,6 +84,49 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		}
 	}
 	
+	private OptionalDouble calculateMeanOfArray(List<Double> vs) {
+		return vs.stream().mapToDouble(d->d).average();
+	}
+	
+	private OptionalDouble calculateVarianceOfArray(List<Double> vs) {
+		OptionalDouble mean_o = calculateMeanOfArray(vs);
+		if (mean_o.isPresent()) {
+			Double mean = mean_o.getAsDouble();
+			OptionalDouble var_o = vs.stream().map(d -> (d - mean)).map(d -> d*d).mapToDouble(d->d).average();
+			return var_o;
+		} else {
+			return OptionalDouble.empty();
+		}
+	}
+	
+	private void accumulateNormalisedParams(List<Double> normalisedParams, FuzzingOperation op) {
+		// RandomValueFromSetOperation - uses the distance from upper to lower as the param magnitude
+		if (op instanceof RandomValueFromSetOperation) {
+			RandomValueFromSetOperation rvfs = (RandomValueFromSetOperation)op;
+			DoubleRange dr = (DoubleRange)rvfs.getValueSet();
+			double dist = dr.getUpperBound() - dr.getLowerBound();
+			normalisedParams.add(normaliseParam(dist));
+		}
+		
+		if (op instanceof LatencyNetworkOperation) {
+			LatencyNetworkOperation lno = (LatencyNetworkOperation)op;
+			DoubleRange dr = (DoubleRange)lno.getLatency();
+			double dist = dr.getUpperBound() - dr.getLowerBound();
+			normalisedParams.add(normaliseParam(dist));	
+		}
+		
+		if (op instanceof PacketLossNetworkOperation) {
+			PacketLossNetworkOperation pno = (PacketLossNetworkOperation)op;
+			DoubleRange dr = pno.getFrequency();
+			double dist = dr.getUpperBound() - dr.getLowerBound();
+			normalisedParams.add(normaliseParam(dist));	
+		}
+	}
+	
+	private Double normaliseParam(double dist) {
+		return null;
+	}
+
 	private void setTimingDimensions(Test t, Map<DimensionID, Double> m) {
 		List<FuzzingOperation> ops = t.getOperations();
 		// Fuzzing time mean computed over all operation midpoint times in the test)
@@ -91,7 +139,7 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 				(FuzzingOperation op) -> { return fuzzingOperationTimeRange(op).getLength(); });
 		
 		// TODO: should we use standard deviation or variance?
-		OptionalDouble midpointVariance = calculateStddevViaLambda(ops, 
+		OptionalDouble midpointVariance = calculateVarianceViaLambda(ops, 
 				(FuzzingOperation op) -> { return fuzzingOperationTimeRange(op).getMidpoint(); });
 		
 		if (midpointMean.isPresent()) {
@@ -108,11 +156,50 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 	}
 	
 	private void setParameterDimensions(Test t, EnumMap<DimensionID, Double> m) {
-		// TODO Auto-generated method stub
+		List<Double> normalisedParams = new ArrayList<Double>();
+		List<FuzzingOperation> ops = t.getOperations();
+		for (FuzzingOperation op : ops) {
+			accumulateNormalisedParams(normalisedParams, op);
+		}
+		
+		OptionalDouble paramMean = calculateMeanOfArray(normalisedParams);
+		OptionalDouble paramVar = calculateVarianceOfArray(normalisedParams); 
+		
+		if (paramMean.isPresent()) {
+			m.put(DimensionID.P1_PARAMETER_MEAN, paramMean.getAsDouble());
+		}
+		
+		if (paramVar.isPresent()) {
+			m.put(DimensionID.P2_PARAMETER_VARIANCE, paramVar.getAsDouble());
+		}
 	}
 	
 	private void setOpVarDimensions(Test t, EnumMap<DimensionID, Double> m) {
-		// TODO Auto-generated method stub
+		int fuzzRangeCount = 0;
+		int delayCount = 0;
+		int deletionCount = 0;
+		List<FuzzingOperation> ops = t.getOperations();
+		for (FuzzingOperation op : ops) {
+			if (op instanceof RandomValueFromSetOperation) {
+				fuzzRangeCount++;
+			}
+			
+			if (op instanceof LatencyNetworkOperation) {
+				delayCount++;
+			}
+			
+			if (op instanceof PacketLossNetworkOperation) {
+				deletionCount++;
+			}
+			
+			if (op instanceof BlackholeNetworkOperation) {
+				deletionCount++;
+			}
+			
+			m.put(DimensionID.O1_FUZZRANGE_COUNT, Double.valueOf(fuzzRangeCount));
+			m.put(DimensionID.O2_DELAY_COUNT, Double.valueOf(delayCount));
+			m.put(DimensionID.O3_DELETION_COUNT, Double.valueOf(deletionCount));
+		}
 	}
 
 	public EnumMap<DimensionID, Double> generateDimensionSetsForParams(Test t, TestCampaign selectedCampaign) throws MissingDimensionsInMap {

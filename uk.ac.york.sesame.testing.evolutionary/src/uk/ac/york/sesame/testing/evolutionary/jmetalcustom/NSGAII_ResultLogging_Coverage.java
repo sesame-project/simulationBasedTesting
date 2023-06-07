@@ -38,6 +38,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
@@ -45,6 +46,8 @@ import java.util.List;
 @SuppressWarnings("serial")
 
 public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends AbstractGeneticAlgorithm<S, List<S>> {
+	
+	private Set<S> evolutionaryHistory; 
 	
 	// This is a backup evaluation count if the coverage criterion is not met
 	// TODO: set this in the model
@@ -124,12 +127,20 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		// from the DimensionInterval from NSGAWithCoverageCells 
 		EnumMap<DimensionID,IntervalWithCount> intervals = new EnumMap<DimensionID,IntervalWithCount>(DimensionID.class);
 		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 80.0, 5));
+		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 80.0, 5));
+		intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 20.0, 2));
+		// TODO: set the rest of the dimensions
 		final int MIN_COVERAGE_PER_CELL = 1;
 		//////////////////////////////////////////////////////////////////////////
 		
 		// Ensure a new coverage checker is created for this scan... 
 		CoverageCheckingAlg covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL);
-		for (S s : population) {
+		
+		addToHistory(population);
+		
+		// This should track everything over the entire evolutionary history, not
+		// just the current population
+		for (S s : evolutionaryHistory) {
 			Test t = ((SESAMETestSolution)s).getInternalType();
 			try {
 				EnumMap<DimensionID, Double> dimPoint = dimensionReducer.generateDimensionSetsForParams(t, selectedCampaign);
@@ -143,6 +154,13 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	}
 	
 	
+	private void addToHistory(List<S> population) {
+		for (S s : population) {
+			evolutionaryHistory.add(s);
+		}
+		
+	}
+
 	protected boolean isStoppingConditionReached() {
 		if (USE_MAX_EVALUATION_LIMIT) {
 			return isCoverageAchieved() || (evaluations > maxEvaluations);

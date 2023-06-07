@@ -53,7 +53,8 @@ public class GridCoverageChecker extends CoverageCheckingAlg {
 	}
 
 	public boolean isCovered() {
-		NdIndexIterator allCells = new NdIndexIterator();
+		int [] gridCellCounts = countVectorForDimensions(rangeInfo);
+		NdIndexIterator allCells = new NdIndexIterator(gridCellCounts);
 		while (allCells.hasNext()) {
 			long[] currentIndices = allCells.next();
 			double value = grid.getDouble(currentIndices);
@@ -65,7 +66,8 @@ public class GridCoverageChecker extends CoverageCheckingAlg {
 	}
 	
 	public double coverageProportion() {
-		NdIndexIterator allCells = new NdIndexIterator();
+		int [] gridCellCounts = countVectorForDimensions(rangeInfo);
+		NdIndexIterator allCells = new NdIndexIterator(gridCellCounts);
 		int totalCells = 0;
 		int coveredCells = 0;
 		
