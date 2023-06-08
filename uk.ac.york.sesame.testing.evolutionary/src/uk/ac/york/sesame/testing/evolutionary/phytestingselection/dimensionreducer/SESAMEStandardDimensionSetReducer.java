@@ -1,4 +1,4 @@
-package uk.ac.york.sesame.testing.evolutionary.phytestingselection;
+package uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -20,6 +20,11 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LatencyNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PacketLossNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.FuzzOpLambdaFunction;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingTimingPair;
 
 /** SESAME Standard Dimensional Reducer **/
 public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensionalityReduction {
@@ -100,12 +105,16 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 	}
 	
 	private void accumulateNormalisedParams(List<Double> normalisedParams, FuzzingOperation op) {
-		// RandomValueFromSetOperation - uses the distance from upper to lower as the param magnitude
+		// The parameters for all of these have to be accumulated differently
 		if (op instanceof RandomValueFromSetOperation) {
 			RandomValueFromSetOperation rvfs = (RandomValueFromSetOperation)op;
-			DoubleRange dr = (DoubleRange)rvfs.getValueSet();
-			double dist = dr.getUpperBound() - dr.getLowerBound();
-			normalisedParams.add(normaliseParam(dist));
+			for (ValueSet vr : rvfs.getValueSet()) {
+				if (vr instanceof DoubleRange) {
+					DoubleRange dr = (DoubleRange)vr; 
+					double dist = dr.getUpperBound() - dr.getLowerBound();
+					normalisedParams.add(normaliseParam(dist));
+				}
+			}
 		}
 		
 		if (op instanceof LatencyNetworkOperation) {
@@ -124,7 +133,8 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 	}
 	
 	private Double normaliseParam(double dist) {
-		return null;
+		// TODO: this value is not normalised yet
+		return dist;
 	}
 
 	private void setTimingDimensions(Test t, Map<DimensionID, Double> m) {

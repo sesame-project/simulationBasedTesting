@@ -22,12 +22,12 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
-import uk.ac.york.sesame.testing.evolutionary.phytestingselection.CoverageCheckingAlg;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
-import uk.ac.york.sesame.testing.evolutionary.phytestingselection.GridCoverageChecker;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
-import uk.ac.york.sesame.testing.evolutionary.phytestingselection.ParameterSpaceDimensionalityReduction;
-import uk.ac.york.sesame.testing.evolutionary.phytestingselection.SESAMEStandardDimensionSetReducer;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker.CoverageCheckingAlg;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker.GridCoverageChecker;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.ParameterSpaceDimensionalityReduction;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.SESAMEStandardDimensionSetReducer;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 
 import java.io.FileWriter;
@@ -129,13 +129,17 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 80.0, 5));
 		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 80.0, 5));
 		intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 20.0, 2));
+		
+		//intervals.put(DimensionID.
 		// TODO: set the rest of the dimensions
 		final int MIN_COVERAGE_PER_CELL = 1;
+		final double NEEDED_COVERAGE_PROPORTION = 0.2;
 		//////////////////////////////////////////////////////////////////////////
 		
 		// Ensure a new coverage checker is created for this scan... 
-		CoverageCheckingAlg covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL);
+		CoverageCheckingAlg covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL, NEEDED_COVERAGE_PROPORTION);
 		
+		// Ensure the population is added to the evolutionary history
 		addToHistory(population);
 		
 		// This should track everything over the entire evolutionary history, not

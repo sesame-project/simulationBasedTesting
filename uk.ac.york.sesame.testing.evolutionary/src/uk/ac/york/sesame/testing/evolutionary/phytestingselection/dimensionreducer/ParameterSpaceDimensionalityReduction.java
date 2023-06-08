@@ -1,4 +1,4 @@
-package uk.ac.york.sesame.testing.evolutionary.phytestingselection;
+package uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer;
 
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -8,6 +8,8 @@ import java.util.Set;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
 
 /** Processes the Test to generate a set of coordinates for the parameter space **/
 public abstract class ParameterSpaceDimensionalityReduction {

@@ -1,4 +1,4 @@
-package uk.ac.york.sesame.testing.evolutionary.phytestingselection;
+package uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -8,19 +8,23 @@ import org.nd4j.linalg.api.iter.NdIndexIterator;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import uk.ac.york.sesame.testing.architecture.data.IntervalWithCount;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 
 public class GridCoverageChecker extends CoverageCheckingAlg {
 
 	INDArray grid;
 	EnumMap<DimensionID, IntervalWithCount> rangeInfo;
 	private int coveragePerCellTarget;
-
-	public GridCoverageChecker(EnumMap<DimensionID, IntervalWithCount> intervalsForDimensions, int coveragePerCellTarget) {
+	private double proportionCoverageNeeded;
+	
+	/** This checks coverage across the entire grid **/
+	public GridCoverageChecker(EnumMap<DimensionID, IntervalWithCount> intervalsForDimensions, int coveragePerCellTarget, double proportionCoverageNeeded) {
 		// Create the nd value from the number of dim in each dimension's interval
 		this.rangeInfo = intervalsForDimensions;
 		int [] gridCellCounts = countVectorForDimensions(rangeInfo);
 		grid = Nd4j.create(gridCellCounts);
 		this.coveragePerCellTarget = coveragePerCellTarget;
+		this.proportionCoverageNeeded = proportionCoverageNeeded;
 	}
 	
 	public void register(EnumMap<DimensionID, Double> testInfo) {
@@ -53,16 +57,8 @@ public class GridCoverageChecker extends CoverageCheckingAlg {
 	}
 
 	public boolean isCovered() {
-		int [] gridCellCounts = countVectorForDimensions(rangeInfo);
-		NdIndexIterator allCells = new NdIndexIterator(gridCellCounts);
-		while (allCells.hasNext()) {
-			long[] currentIndices = allCells.next();
-			double value = grid.getDouble(currentIndices);
-			if (value < coveragePerCellTarget) {
-				return false;
-			}
-		}
-		return true;
+		double coverageProportion = coverageProportion();
+		return (coverageProportion >= proportionCoverageNeeded);
 	}
 	
 	public double coverageProportion() {

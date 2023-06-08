@@ -1,4 +1,4 @@
-package uk.ac.york.sesame.testing.evolutionary.phytestingselection;
+package uk.ac.york.sesame.testing.evolutionary.phytestingselection.metricquality;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;

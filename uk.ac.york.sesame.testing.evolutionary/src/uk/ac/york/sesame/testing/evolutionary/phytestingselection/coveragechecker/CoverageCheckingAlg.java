@@ -1,6 +1,8 @@
-package uk.ac.york.sesame.testing.evolutionary.phytestingselection;
+package uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker;
 
 import java.util.EnumMap;
+
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 
 public abstract class CoverageCheckingAlg {
 	public abstract void register(EnumMap<DimensionID, Double> map);

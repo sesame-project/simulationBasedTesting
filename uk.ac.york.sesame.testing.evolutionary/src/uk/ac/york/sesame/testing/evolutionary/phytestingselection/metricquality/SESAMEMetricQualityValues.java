@@ -1,4 +1,4 @@
-package uk.ac.york.sesame.testing.evolutionary.phytestingselection;
+package uk.ac.york.sesame.testing.evolutionary.phytestingselection.metricquality;
 
 import java.util.List;
 

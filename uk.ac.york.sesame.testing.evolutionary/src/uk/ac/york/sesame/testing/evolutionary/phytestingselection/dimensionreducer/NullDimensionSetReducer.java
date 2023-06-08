@@ -1,10 +1,11 @@
-package uk.ac.york.sesame.testing.evolutionary.phytestingselection;
+package uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer;
 
 import java.util.EnumMap;
 import java.util.HashMap;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 
 /** This one reduces the dimensions to just 0.5 in every dimension **/
 public class NullDimensionSetReducer extends ParameterSpaceDimensionalityReduction {

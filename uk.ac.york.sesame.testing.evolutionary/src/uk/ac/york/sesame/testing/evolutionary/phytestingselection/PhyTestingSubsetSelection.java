@@ -1,5 +1,8 @@
 package uk.ac.york.sesame.testing.evolutionary.phytestingselection;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -14,6 +17,8 @@ import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.*;
 
 import uk.ac.york.sesame.testing.evolutionary.InvalidTestCampaign;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.ParameterSpaceDimensionalityReduction;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.metricquality.MetricQualityValue;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
 public class PhyTestingSubsetSelection {
@@ -26,6 +31,11 @@ public class PhyTestingSubsetSelection {
 	
 	ParameterSpaceDimensionalityReduction dsc;
 	MetricQualityValue mqv;
+	
+	private HashMap<Test, EnumMap<DimensionID, Double>> parameterSpaceMappings = new HashMap<Test, EnumMap<DimensionID, Double>>();
+	private HashMap<Test, Double> qualityMappings = new HashMap<Test, Double>();
+	private List<Test> testsToInclude = new ArrayList<Test>();
+	
 	
 	public PhyTestingSubsetSelection(ParameterSpaceDimensionalityReduction dsc, MetricQualityValue mqv) {
 		this.dsc = dsc;
@@ -42,13 +52,9 @@ public class PhyTestingSubsetSelection {
 		if (!testCampaign_o.isPresent()) {
 			throw new InvalidTestCampaign(campaignName);
 		} else {
-
-			HashMap<Test, EnumMap<DimensionID, Double>> parameterSpaceMappings = new HashMap<Test, EnumMap<DimensionID, Double>>();
-			HashMap<Test, Double> qualityMappings = new HashMap<Test, Double>();
-
 			TestCampaign selectedCampaign = testCampaign_o.get();
 			EList<Test> tests = selectedCampaign.getPerformedTests();
-			List<Test> testsToInclude = new ArrayList<Test>();
+
 			for (Test t : tests) {
 				// shouldIncludeTest gets a subset - either the final Pareto front or other
 				// constraints
@@ -69,8 +75,6 @@ public class PhyTestingSubsetSelection {
 					qualityMappings.put(t, qualityValue);
 
 				}
-				writeOutResults(tests, parameterSpaceMappings, qualityMappings);
-
 			} catch (MissingDimensionsInMap e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -78,23 +82,53 @@ public class PhyTestingSubsetSelection {
 		}
 	}
 
-	private void writeOutResults(EList<Test> tests, HashMap<Test, EnumMap<DimensionID, Double>> parameterSpaceMappings, HashMap<Test, Double> qualityMappings) {
+	public void writeOutResultsTabSep(List<Test> specificTests) {
+		DecimalFormat df = new DecimalFormat("#.##");
+		
 		EnumSet<DimensionID> allDimensions = EnumSet.allOf(DimensionID.class);
 		for (DimensionID d : allDimensions) {
-			System.out.print(d.toString() + "\t");
+			String dname = d.toString().substring(0,7);
+			System.out.print(dname + "\t");
 		}
 		System.out.println("METRIC_Q");
 		
-		for (Test t : tests) {
+		for (Test t : specificTests) {
 			EnumMap<DimensionID, Double> paramValuesForConfig = parameterSpaceMappings.get(t);
 			Double qv = qualityMappings.get(t);
 			for (DimensionID d : paramValuesForConfig.keySet()) {
 				Double v = paramValuesForConfig.get(d);
-				System.out.print(v + "\t");
+				System.out.print(df.format(v) + "\t");
 			}
-			System.out.println(qv);
+			System.out.println(df.format(qv));
 		}
 	}
-
-
+	
+	public void writeOutResultsCSV(String filePathOut, List<Test> specificTests) throws IOException {
+		FileWriter fout = new FileWriter(filePathOut);
+		EnumSet<DimensionID> allDimensions = EnumSet.allOf(DimensionID.class);
+		for (DimensionID d : allDimensions) {
+			String dname = d.toString().substring(0,7);
+			fout.write(dname + ",");
+		}
+		fout.write("METRIC_Q\n");
+		
+		for (Test t : specificTests) {
+			EnumMap<DimensionID, Double> paramValuesForConfig = parameterSpaceMappings.get(t);
+			Double qv = qualityMappings.get(t);
+			for (DimensionID d : paramValuesForConfig.keySet()) {
+				Double v = paramValuesForConfig.get(d);
+				fout.write(v + ",");
+			}
+			fout.write(qv + "\n");
+		}
+		fout.close();
+	}
+	
+	public void writeOutResultsTabSep() {
+		writeOutResultsTabSep(testsToInclude);
+	}
+	
+	public void writeOutResultsCSV(String filePathOut) throws IOException {
+		writeOutResultsCSV(filePathOut, testsToInclude);
+	}
 }
