@@ -43,6 +43,8 @@ public class TTSSimulator implements ISimulator {
 	//private static final boolean SUBSCRIBE_TO_CLOCK = true;
 
 	static DataStreamManager dsm = DataStreamManager.getInstance();
+	
+	//StepObserver so;
 
 	private static StreamObserver<PubRequest> publisher;
 	HashMap<String, ROSObserver> createdTopics = new HashMap<String, ROSObserver>();
@@ -50,6 +52,8 @@ public class TTSSimulator implements ISimulator {
 	private static SimlogAPIGrpc.SimlogAPIStub asyncStub;
 	private static SimlogAPIGrpc.SimlogAPIBlockingStub blockingStub;
 	ManagedChannel channel;
+
+	//private boolean canSendToSimulator = false;
 
 	@Override
 	public List<String> getTopics() {
@@ -71,9 +75,19 @@ public class TTSSimulator implements ISimulator {
 		int port = Integer.parseInt(params.getProperties().get(params.PORT).toString());
 		String target = host + ":" + String.valueOf(port);
 		channel = ManagedChannelBuilder.forTarget(target).usePlaintext().build();
-
+		int stepSizeMillis = Integer.parseInt(params.getProperties().get(params.STEP_SIZE).toString());
+		
 		blockingStub = SimlogAPIGrpc.newBlockingStub(channel);
 		asyncStub = SimlogAPIGrpc.newStub(channel);
+		
+		StepSizeRequest stepRQ = StepSizeRequest.newBuilder().setStep(stepSizeMillis).build();
+		// Set step size using the blocking stub
+		blockingStub.setStepSize(stepRQ);
+		
+		//so = new StepObserver();
+		
+		
+		// Step size set here
 		try {
 			Thread.sleep(500);
 			System.out.println("TTSimulator: connection made");
@@ -400,4 +414,55 @@ public class TTSSimulator implements ISimulator {
 			System.out.println(path + ":finished");
 		}
 	}
+	
+	public boolean stepSimulator() {
+		StepRequest rq = StepRequest.newBuilder().build();
+		StepResponse response = blockingStub.step(rq);
+		return responseIsOK(response);	
+	}
+
+	private boolean responseIsOK(StepResponse response) {
+		// Currently the response is assumed always OK
+		if (response.getCode() < 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+//	public void stepSimulator() {
+//		canSendToSimulator = false;
+//		StepRequest rq = StepRequest.newBuilder().build();
+//		asyncStub.step(rq, so);
+//	}
+//
+//	private class StepObserver implements StreamObserver<StepResponse> {
+//
+//		public StepObserver() {
+//
+//		}
+//
+//		@Override
+//		public void onNext(StepResponse m) {
+//			canSendToSimulator = true;
+//		}
+//
+//		@Override
+//		public void onError(Throwable t) {
+//			System.err.println("StepObserver failed: " + Status.fromThrowable(t));
+//		}
+//
+//		@Override
+//		public void onCompleted() {
+//			System.out.println("StepObserver step() call finished");
+//		}
+//	}
+//
+//	public boolean waitForSimulator() {
+//		while (!canSendToSimulator) {
+//			// Wait
+//		};
+//		
+//		return true;
+//	}
 }

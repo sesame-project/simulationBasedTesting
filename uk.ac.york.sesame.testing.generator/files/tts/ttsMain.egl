@@ -147,6 +147,8 @@ public class [%= testNameString %]_TestRunner {
 		HashMap<String, Object> propsMap = new HashMap<String, Object>();
 		propsMap.put(ConnectionProperties.HOSTNAME, "[%=simulator.hostname %]");
 		propsMap.put(ConnectionProperties.PORT, [%=simulator.port %]);
+		// TODO: hardcoded step size for now
+		propsMap.put(ConnectionProperties.STEP_SIZE, 20);
 		cp.setProperties(propsMap);
 				
 		params.put("TTSProjectDir", "[%= launchFileLocation %]");
@@ -195,7 +197,7 @@ public class [%= testNameString %]_TestRunner {
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
 				System.out.println("From out to sim starts");
-				while (true) {
+				while (ttsSim.stepSimulator()) {
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
