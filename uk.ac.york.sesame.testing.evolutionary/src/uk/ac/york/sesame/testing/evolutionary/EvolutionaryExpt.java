@@ -140,7 +140,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			// model
 
 			TestGenerationApproach app = selectedCampaign.getApproach();
-			if (app instanceof NSGAEvolutionaryAlgorithm) {
+			if ((app instanceof NSGAEvolutionaryAlgorithm) && !(app instanceof NSGAWithCoverageCells)) {
 				// TODO: read relevant parameters from the TestGenerationApproach here
 				algorithm = new NSGAII_ResultLogging(selectedCampaign, scenarioStr, problem, maxIterations,
 						populationSize, matingPoolSize, offspringPopulationSize, crossover, mutation, selection,

@@ -1,6 +1,7 @@
 package uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -8,29 +9,43 @@ import org.nd4j.linalg.api.iter.NdIndexIterator;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import uk.ac.york.sesame.testing.architecture.data.IntervalWithCount;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 
 public class GridCoverageChecker extends CoverageCheckingAlg {
 
 	INDArray grid;
-	EnumMap<DimensionID, IntervalWithCount> rangeInfo;
+	EnumMap<DimensionID, IntervalWithCount> chosenDimensionIntervals;
+	EnumMap<DimensionID, Integer> indexForDimension;
 	private int coveragePerCellTarget;
 	private double proportionCoverageNeeded;
 	
 	/** This checks coverage across the entire grid **/
-	public GridCoverageChecker(EnumMap<DimensionID, IntervalWithCount> intervalsForDimensions, int coveragePerCellTarget, double proportionCoverageNeeded) {
+	public GridCoverageChecker(EnumMap<DimensionID, IntervalWithCount> chosenDimensionIntervals, int coveragePerCellTarget, double proportionCoverageNeeded) {
 		// Create the nd value from the number of dim in each dimension's interval
-		this.rangeInfo = intervalsForDimensions;
-		int [] gridCellCounts = countVectorForDimensions(rangeInfo);
+		this.chosenDimensionIntervals = chosenDimensionIntervals;	
+		int [] gridCellCounts = countVectorForDimensions(chosenDimensionIntervals);
+		setIndexMappingForChosenDimensions();
 		grid = Nd4j.create(gridCellCounts);
+		System.out.println("COV: create grid with dimensions " + Arrays.toString(gridCellCounts));
 		this.coveragePerCellTarget = coveragePerCellTarget;
 		this.proportionCoverageNeeded = proportionCoverageNeeded;
 	}
 	
-	public void register(EnumMap<DimensionID, Double> testInfo) {
+	private void setIndexMappingForChosenDimensions() {
+		indexForDimension = new EnumMap<DimensionID, Integer>(DimensionID.class); 
+		int i = 0;
+		for (DimensionID d : chosenDimensionIntervals.keySet()) {
+			indexForDimension.put(d,i);
+			i++;
+		}
+	}
+	
+	public void register(Test test, EnumMap<DimensionID, Double> testInfo) {
 		// TODO Auto-generated method stub
 		// Calculate the value for each dimension
 		int [] indices = indexVectorForDimensions(testInfo);
+		System.out.println("COV: register for test " + test.getName() + Arrays.toString(indices));
 		// Increment the value at the specified incides
 		double current = grid.getDouble(indices);
 		grid.putScalar(indices, current+1);
@@ -39,10 +54,14 @@ public class GridCoverageChecker extends CoverageCheckingAlg {
 	private int[] indexVectorForDimensions(EnumMap<DimensionID, Double> testInfo) {
 		List<Integer> dimIndices = new ArrayList<Integer>();
 		for (DimensionID d : testInfo.keySet()) {
-			IntervalWithCount iwc = rangeInfo.get(d); 
-			Double v = testInfo.get(d);
-			int index = iwc.getIndexOfIntervalForValue(v);
-			dimIndices.add(index);
+			if (chosenDimensionIntervals.containsKey(d)) {
+				IntervalWithCount iwc = chosenDimensionIntervals.get(d); 
+				Double v = testInfo.get(d);
+				int index = iwc.getIndexOfCellForValue(v);
+				dimIndices.add(index);
+			} else {
+				System.out.println("COV: skipping dimension ID " + d.toString() + " not in chosen dimensions");
+			}
 		}
 		return dimIndices.stream().mapToInt(Integer::intValue).toArray();
 	}
@@ -58,11 +77,12 @@ public class GridCoverageChecker extends CoverageCheckingAlg {
 
 	public boolean isCovered() {
 		double coverageProportion = coverageProportion();
+		System.out.println("COV: coverage proportion " + coverageProportion + ", proportionCoverageNeeded = " + proportionCoverageNeeded);
 		return (coverageProportion >= proportionCoverageNeeded);
 	}
 	
 	public double coverageProportion() {
-		int [] gridCellCounts = countVectorForDimensions(rangeInfo);
+		int [] gridCellCounts = countVectorForDimensions(chosenDimensionIntervals);
 		NdIndexIterator allCells = new NdIndexIterator(gridCellCounts);
 		int totalCells = 0;
 		int coveredCells = 0;
@@ -73,6 +93,7 @@ public class GridCoverageChecker extends CoverageCheckingAlg {
 			double value = grid.getDouble(currentIndices);
 			if (value >= coveragePerCellTarget) {
 				coveredCells+=1;
+				System.out.println("COV: found covered cell " + Arrays.toString(currentIndices));
 			}
 		}
 		// Need to iterate over all cells and find the proportion meeting the coverage constraint

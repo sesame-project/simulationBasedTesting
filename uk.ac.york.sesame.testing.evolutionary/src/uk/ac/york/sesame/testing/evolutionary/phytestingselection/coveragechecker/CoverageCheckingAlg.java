@@ -2,10 +2,11 @@ package uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragecheck
 
 import java.util.EnumMap;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 
 public abstract class CoverageCheckingAlg {
-	public abstract void register(EnumMap<DimensionID, Double> map);
+	public abstract void register(Test t, EnumMap<DimensionID, Double> map);
 	public abstract boolean isCovered();
 	public abstract double coverageProportion();
 }

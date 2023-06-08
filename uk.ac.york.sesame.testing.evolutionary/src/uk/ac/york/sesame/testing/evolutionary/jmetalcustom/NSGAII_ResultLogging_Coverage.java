@@ -8,13 +8,10 @@ import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.RankingAndCrowdingSelection;
 import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.solution.Solution;
-import org.uma.jmetal.util.JMetalLogger;
+
 import org.uma.jmetal.util.SolutionListUtils;
 import org.uma.jmetal.util.comparator.DominanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
-import org.uma.jmetal.util.fileoutput.SolutionListOutput;
-import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
-import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
 import uk.ac.york.sesame.testing.architecture.data.IntervalWithCount;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
@@ -37,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.EnumMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -47,11 +45,8 @@ import java.util.Set;
 
 public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends AbstractGeneticAlgorithm<S, List<S>> {
 	
-	private Set<S> evolutionaryHistory; 
+	private List<S> evolutionaryHistory; 
 	
-	// This is a backup evaluation count if the coverage criterion is not met
-	// TODO: set this in the model
-	private static final int maxEvaluations_FIXED = 10000;
 	// Use max coverage limit even if coverage is not met
 	private boolean USE_MAX_EVALUATION_LIMIT = true;
 
@@ -71,20 +66,17 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	
 	private ParameterSpaceDimensionalityReduction dimensionReducer; 
 	
- 
-	/**
+ 	/**
 	 * TODO: make this a subclass of NSGAII_ResultLogging
 	 */
-	public NSGAII_ResultLogging_Coverage(TestCampaign selectedCampaign, String scenarioStr, Problem<S> problem, int populationSize, int matingPoolSize,
-			int offspringPopulationSize, CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator,
-			SelectionOperator<List<S>, S> selectionOperator, SolutionListEvaluator<S> evaluator) {
-		
-		
-		
-		this(selectedCampaign, scenarioStr, problem, maxEvaluations_FIXED, populationSize, matingPoolSize, offspringPopulationSize, crossoverOperator,
-				mutationOperator, selectionOperator, new DominanceComparator<S>(), evaluator);
-		this.selectedCampaign = selectedCampaign;
-	}
+//	public NSGAII_ResultLogging_Coverage(TestCampaign selectedCampaign, String scenarioStr, Problem<S> problem, int populationSize, int matingPoolSize,
+//			int offspringPopulationSize, CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator,
+//			SelectionOperator<List<S>, S> selectionOperator, SolutionListEvaluator<S> evaluator) {
+//		this(selectedCampaign, scenarioStr, problem, maxEvaluations_FIXED, populationSize, matingPoolSize, offspringPopulationSize, crossoverOperator,
+//				mutationOperator, selectionOperator, new DominanceComparator<S>(), evaluator);
+//		this.selectedCampaign = selectedCampaign;
+//		this.evolutionaryHistory = new HashSet<S>();
+//	}
 
 	/**
 	 * Constructor
@@ -108,8 +100,10 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		this.matingPoolSize = matingPoolSize;
 		this.offspringPopulationSize = offspringPopulationSize;
 		this.scenarioStr = scenarioStr;
-		
+				
 		this.dimensionReducer = new SESAMEStandardDimensionSetReducer();
+		this.evolutionaryHistory = new ArrayList<S>();
+		System.out.println("maxEvaluations = " + maxEvaluations);
 	}
 
 	@Override
@@ -124,13 +118,14 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 
 	protected boolean isCoverageAchieved() {
 		// TODO: extract this information from the GA - pull in as parameters
-		// from the DimensionInterval from NSGAWithCoverageCells 
-		EnumMap<DimensionID,IntervalWithCount> intervals = new EnumMap<DimensionID,IntervalWithCount>(DimensionID.class);
-		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 80.0, 5));
-		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 80.0, 5));
-		intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 20.0, 2));
+		// from the DimensionInterval from NSGAWithCoverageCells
 		
-		//intervals.put(DimensionID.
+		// The GA is only using a subset of dimensions
+		EnumMap<DimensionID,IntervalWithCount> intervals = new EnumMap<DimensionID,IntervalWithCount>(DimensionID.class);
+		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 80.0, 4));
+		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 40.0, 4));
+		intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 20.0, 2));
+
 		// TODO: set the rest of the dimensions
 		final int MIN_COVERAGE_PER_CELL = 1;
 		final double NEEDED_COVERAGE_PROPORTION = 0.2;
@@ -145,10 +140,11 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		// This should track everything over the entire evolutionary history, not
 		// just the current population
 		for (S s : evolutionaryHistory) {
+			System.out.println("evolutionaryHistory size = " + evolutionaryHistory.size());
 			Test t = ((SESAMETestSolution)s).getInternalType();
 			try {
 				EnumMap<DimensionID, Double> dimPoint = dimensionReducer.generateDimensionSetsForParams(t, selectedCampaign);
-				covChecker.register(dimPoint);
+				covChecker.register(t, dimPoint);
 			} catch (MissingDimensionsInMap e) {
 				e.printStackTrace();
 			}
