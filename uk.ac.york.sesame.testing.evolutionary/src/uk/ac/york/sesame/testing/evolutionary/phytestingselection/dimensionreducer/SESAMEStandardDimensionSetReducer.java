@@ -10,7 +10,6 @@ import uk.ac.york.sesame.testing.architecture.data.TimeInterval;
 import uk.ac.york.sesame.testing.architecture.data.TimeInterval.InvalidTimingPair;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.BlackholeNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited;
@@ -149,7 +148,7 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 				(FuzzingOperation op) -> { return fuzzingOperationTimeRange(op).getLength(); });
 		
 		// TODO: should we use standard deviation or variance?
-		OptionalDouble midpointVariance = calculateVarianceViaLambda(ops, 
+		OptionalDouble midpointVariance = calculateStddevViaLambda(ops, 
 				(FuzzingOperation op) -> { return fuzzingOperationTimeRange(op).getMidpoint(); });
 		
 		if (midpointMean.isPresent()) {
@@ -206,13 +205,15 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 				deletionCount++;
 			}
 			
+			int totalCount = fuzzRangeCount + delayCount + deletionCount;
 			m.put(DimensionID.O1_FUZZRANGE_COUNT, Double.valueOf(fuzzRangeCount));
 			m.put(DimensionID.O2_DELAY_COUNT, Double.valueOf(delayCount));
 			m.put(DimensionID.O3_DELETION_COUNT, Double.valueOf(deletionCount));
+			m.put(DimensionID.O0_TOTAL_COUNT, Double.valueOf(totalCount));
 		}
 	}
 
-	public EnumMap<DimensionID, Double> generateDimensionSetsForParams(Test t, TestCampaign selectedCampaign) throws MissingDimensionsInMap {
+	public EnumMap<DimensionID, Double> generateDimensionSetsForParams(Test t) throws MissingDimensionsInMap {
 		EnumMap<DimensionID, Double> m = new EnumMap<DimensionID, Double>(DimensionID.class);
 		setTimingDimensions(t, m);
 		setParameterDimensions(t, m);

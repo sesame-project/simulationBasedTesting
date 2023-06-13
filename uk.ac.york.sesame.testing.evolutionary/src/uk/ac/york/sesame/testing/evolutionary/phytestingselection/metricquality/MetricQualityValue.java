@@ -5,5 +5,11 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 
 /** Processes the Test to generate a set of coordinates **/
 public abstract class MetricQualityValue {
-	public abstract Double generateMetricQualityValue(Test t, TestCampaign selectedCampaign);
+	protected TestCampaign selectedCampaign;
+	
+	public abstract double generateMetricQualityValue(Test t);
+
+	public void setCampaign(TestCampaign selectedCampaign) {
+		this.selectedCampaign = selectedCampaign;
+	}
 }

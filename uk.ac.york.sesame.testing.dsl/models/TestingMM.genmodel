@@ -73,6 +73,7 @@
     <genClasses ecoreClass="TestingMM.ecore#//NSGAWithCoverageCells">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGAWithCoverageCells/coveragePerCell"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//NSGAWithCoverageCells/dimensionRecords"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGAWithCoverageCells/useMutationEnhancingCoverage"/>
     </genClasses>
     <genClasses ecoreClass="TestingMM.ecore#//DimensionInterval">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//DimensionInterval/dimID"/>

@@ -47,7 +47,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 	private static final double PROB_SELECT_START_OR_END = 0.5;
 
 	protected Random rng;
-	private FileWriter mutationLog;
+	protected FileWriter mutationLog;
 	private ConditionGenerator condGenerator;
 
 	public SESAMESimpleMutation(Random rng, String mutationLogFileName, double probTemporalMut, double probParamMut,

@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getCoveragePerCell <em>Coverage Per Cell</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getDimensionRecords <em>Dimension Records</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#isUseMutationEnhancingCoverage <em>Use Mutation Enhancing Coverage</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getNSGAWithCoverageCells()
@@ -55,5 +56,28 @@ public interface NSGAWithCoverageCells extends NSGAEvolutionaryAlgorithm {
 	 * @generated
 	 */
 	EList<DimensionInterval> getDimensionRecords();
+
+	/**
+	 * Returns the value of the '<em><b>Use Mutation Enhancing Coverage</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Use Mutation Enhancing Coverage</em>' attribute.
+	 * @see #setUseMutationEnhancingCoverage(boolean)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getNSGAWithCoverageCells_UseMutationEnhancingCoverage()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isUseMutationEnhancingCoverage();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#isUseMutationEnhancingCoverage <em>Use Mutation Enhancing Coverage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Use Mutation Enhancing Coverage</em>' attribute.
+	 * @see #isUseMutationEnhancingCoverage()
+	 * @generated
+	 */
+	void setUseMutationEnhancingCoverage(boolean value);
 
 } // NSGAWithCoverageCells

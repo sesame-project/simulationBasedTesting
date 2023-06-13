@@ -42,7 +42,6 @@ public class GridCoverageChecker extends CoverageCheckingAlg {
 	}
 	
 	public void register(Test test, EnumMap<DimensionID, Double> testInfo) {
-		// TODO Auto-generated method stub
 		// Calculate the value for each dimension
 		int [] indices = indexVectorForDimensions(testInfo);
 		System.out.println("COV: register for test " + test.getName() + Arrays.toString(indices));
@@ -98,5 +97,19 @@ public class GridCoverageChecker extends CoverageCheckingAlg {
 		}
 		// Need to iterate over all cells and find the proportion meeting the coverage constraint
 		return ((double)coveredCells) / totalCells;
+	}
+
+	@Override
+	public boolean _debugIsCellOccupied(int[] indices) {
+		if (grid.getDouble(indices) == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean isCellOccupied(Test t, EnumMap<DimensionID, Double> map) {
+		int [] indices = indexVectorForDimensions(map);
+		return _debugIsCellOccupied(indices);
 	}
 }

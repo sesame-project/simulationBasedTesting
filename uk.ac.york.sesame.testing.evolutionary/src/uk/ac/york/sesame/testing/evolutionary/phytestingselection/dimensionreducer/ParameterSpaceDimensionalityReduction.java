@@ -2,7 +2,6 @@ package uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionredu
 
 import java.util.EnumMap;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +12,9 @@ import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensi
 
 /** Processes the Test to generate a set of coordinates for the parameter space **/
 public abstract class ParameterSpaceDimensionalityReduction {
-	public abstract EnumMap<DimensionID, Double> generateDimensionSetsForParams(Test t, TestCampaign selectedCampaign) throws MissingDimensionsInMap;
+	protected TestCampaign selectedCampaign;
+
+	public abstract EnumMap<DimensionID, Double> generateDimensionSetsForParams(Test t) throws MissingDimensionsInMap;
 	
 	protected void checkAllDimensionsSet(EnumMap<DimensionID, Double> m) throws MissingDimensionsInMap {
 		// TODO: check the dimensional values are all set properly for the test
@@ -28,5 +29,9 @@ public abstract class ParameterSpaceDimensionalityReduction {
 		if (missingDimensions.size() > 0) {
 			throw new MissingDimensionsInMap(missingDimensions,m);
 		}
+	}
+
+	public void setCampaign(TestCampaign selectedCampaign) {
+		this.selectedCampaign = selectedCampaign;
 	}
 }

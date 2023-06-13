@@ -767,13 +767,22 @@ public interface TestingPackagePackage extends EPackage {
 	int NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Use Mutation Enhancing Coverage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>NSGA With Coverage Cells</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NSGA_WITH_COVERAGE_CELLS_FEATURE_COUNT = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 2;
+	int NSGA_WITH_COVERAGE_CELLS_FEATURE_COUNT = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>NSGA With Coverage Cells</em>' class.
@@ -1396,6 +1405,17 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getNSGAWithCoverageCells_DimensionRecords();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#isUseMutationEnhancingCoverage <em>Use Mutation Enhancing Coverage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Use Mutation Enhancing Coverage</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#isUseMutationEnhancingCoverage()
+	 * @see #getNSGAWithCoverageCells()
+	 * @generated
+	 */
+	EAttribute getNSGAWithCoverageCells_UseMutationEnhancingCoverage();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval <em>Dimension Interval</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1915,6 +1935,14 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS = eINSTANCE.getNSGAWithCoverageCells_DimensionRecords();
+
+		/**
+		 * The meta object literal for the '<em><b>Use Mutation Enhancing Coverage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE = eINSTANCE.getNSGAWithCoverageCells_UseMutationEnhancingCoverage();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl <em>Dimension Interval</em>}' class.

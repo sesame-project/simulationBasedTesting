@@ -110,6 +110,7 @@ class NSGAEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 class NSGAWithCoverageCells extends NSGAEvolutionaryAlgorithm {
 	attr int coveragePerCell;
 	val DimensionInterval[1..*]  dimensionRecords;
+	attr boolean useMutationEnhancingCoverage = false;
 }
 
 class DimensionInterval {

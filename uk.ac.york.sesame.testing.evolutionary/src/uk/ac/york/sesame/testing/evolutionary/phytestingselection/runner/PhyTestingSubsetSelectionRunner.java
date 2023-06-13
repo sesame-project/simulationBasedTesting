@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 import uk.ac.york.sesame.testing.evolutionary.InvalidTestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.PhyTestingSubsetSelection;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.*;
@@ -18,13 +17,15 @@ public class PhyTestingSubsetSelectionRunner {
 		String csvOut = "/tmp/phytestout.csv";
 		
 		try {
-			List<Metric> metricList = new ArrayList<Metric>();
-			PhyTestingSubsetSelection testPhysub = new PhyTestingSubsetSelection(new SESAMEStandardDimensionSetReducer(), new SESAMEMetricQualityValues(metricList));
+			List<String> metricNameList = new ArrayList<String>();
+			metricNameList.add("collisionOccurance");
+			PhyTestingSubsetSelection testPhysub = new PhyTestingSubsetSelection(new SESAMEStandardDimensionSetReducer(), new SESAMEMetricQualityValues(metricNameList));
 			testPhysub.loadModelToResults(fileName, "firstExperiment");
 			testPhysub.writeOutResultsTabSep();
 			testPhysub.writeOutResultsCSV(csvOut);
+			
 			System.out.println("Writing out to CSV done...");
-			// TODO: invoke Python to render the subsets here
+			// TODO: invoke Python to run the subset processing here
 			
 		} catch (EolModelLoadingException | InvalidTestCampaign e) {
 			e.printStackTrace();

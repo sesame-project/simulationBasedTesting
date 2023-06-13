@@ -79,6 +79,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="coveragePerCell" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dimensionRecords" lowerBound="1"
         upperBound="-1" eType="#//DimensionInterval" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="useMutationEnhancingCoverage"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DimensionInterval">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dimID" eType="#//DimensionID"/>

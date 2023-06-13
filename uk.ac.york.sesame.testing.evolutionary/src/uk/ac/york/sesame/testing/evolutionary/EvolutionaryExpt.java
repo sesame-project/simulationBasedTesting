@@ -138,8 +138,9 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
 			// TODO: the algorithm - here NSGA should be selectable from the TestCampaign
 			// model
-
+	
 			TestGenerationApproach app = selectedCampaign.getApproach();
+			
 			if ((app instanceof NSGAEvolutionaryAlgorithm) && !(app instanceof NSGAWithCoverageCells)) {
 				// TODO: read relevant parameters from the TestGenerationApproach here
 				algorithm = new NSGAII_ResultLogging(selectedCampaign, scenarioStr, problem, maxIterations,
@@ -148,10 +149,12 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			}
 			
 			if (app instanceof NSGAWithCoverageCells) {
-				// TODO: read relevant parameters from the TestGenerationApproach here
+				NSGAWithCoverageCells nsgaCov = (NSGAWithCoverageCells)app;
+				boolean useMutationEnhancing = nsgaCov.isUseMutationEnhancingCoverage();
+				// TODO: read relevant parameters from nsgaCov here
 				algorithm = new NSGAII_ResultLogging_Coverage(selectedCampaign, scenarioStr, problem, maxIterations,
 						populationSize, matingPoolSize, offspringPopulationSize, crossover, mutation, selection,
-						dominanceComparator, evaluator);
+						dominanceComparator, evaluator, useMutationEnhancing);
 			}
 
 			if (app instanceof RepeatedExecution) {

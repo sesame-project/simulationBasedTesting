@@ -34,9 +34,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.EnumMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
@@ -44,9 +42,12 @@ import java.util.Set;
 @SuppressWarnings("serial")
 
 public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends AbstractGeneticAlgorithm<S, List<S>> {
-	
-	private List<S> evolutionaryHistory; 
-	
+
+	private static final int NUM_GENERATIONS_TO_USE_COVERAGEBOOSTING = 3;
+	private static final int ONE_OUT_OF_N_COVERAGE = 2;
+
+	private List<S> evolutionaryHistory;
+
 	// Use max coverage limit even if coverage is not met
 	private boolean USE_MAX_EVALUATION_LIMIT = true;
 
@@ -57,16 +58,19 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	protected int evaluations;
 	protected Comparator<S> dominanceComparator;
 
+	protected MutationOperator<S> coverageMutationOperator;
+	protected boolean useCoverageEnhancing = true;
+
 	protected int matingPoolSize;
 	protected int offspringPopulationSize;
-	
+
 	private TestCampaign selectedCampaign;
 
 	private String scenarioStr;
-	
-	private ParameterSpaceDimensionalityReduction dimensionReducer; 
-	
- 	/**
+
+	private ParameterSpaceDimensionalityReduction dimensionReducer;
+
+	/**
 	 * TODO: make this a subclass of NSGAII_ResultLogging
 	 */
 //	public NSGAII_ResultLogging_Coverage(TestCampaign selectedCampaign, String scenarioStr, Problem<S> problem, int populationSize, int matingPoolSize,
@@ -81,10 +85,11 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	/**
 	 * Constructor
 	 */
-	public NSGAII_ResultLogging_Coverage(TestCampaign selectedCampaign, String scenarioStr, Problem<S> problem, int maxEvaluations, int populationSize, int matingPoolSize,
-			int offspringPopulationSize, CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator,
+	public NSGAII_ResultLogging_Coverage(TestCampaign selectedCampaign, String scenarioStr, Problem<S> problem,
+			int maxEvaluations, int populationSize, int matingPoolSize, int offspringPopulationSize,
+			CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator,
 			SelectionOperator<List<S>, S> selectionOperator, Comparator<S> dominanceComparator,
-			SolutionListEvaluator<S> evaluator) {
+			SolutionListEvaluator<S> evaluator, boolean useMutationEnhancingCoverage) {
 		super(problem);
 		this.maxEvaluations = maxEvaluations;
 		this.selectedCampaign = selectedCampaign;
@@ -100,9 +105,10 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		this.matingPoolSize = matingPoolSize;
 		this.offspringPopulationSize = offspringPopulationSize;
 		this.scenarioStr = scenarioStr;
-				
+
 		this.dimensionReducer = new SESAMEStandardDimensionSetReducer();
 		this.evolutionaryHistory = new ArrayList<S>();
+		this.useCoverageEnhancing = useMutationEnhancingCoverage;
 		System.out.println("maxEvaluations = " + maxEvaluations);
 	}
 
@@ -119,9 +125,10 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	protected boolean isCoverageAchieved() {
 		// TODO: extract this information from the GA - pull in as parameters
 		// from the DimensionInterval from NSGAWithCoverageCells
-		
+
 		// The GA is only using a subset of dimensions
-		EnumMap<DimensionID,IntervalWithCount> intervals = new EnumMap<DimensionID,IntervalWithCount>(DimensionID.class);
+		EnumMap<DimensionID, IntervalWithCount> intervals = new EnumMap<DimensionID, IntervalWithCount>(
+				DimensionID.class);
 		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 80.0, 4));
 		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 40.0, 4));
 		intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 20.0, 2));
@@ -130,20 +137,21 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		final int MIN_COVERAGE_PER_CELL = 1;
 		final double NEEDED_COVERAGE_PROPORTION = 0.2;
 		//////////////////////////////////////////////////////////////////////////
-		
-		// Ensure a new coverage checker is created for this scan... 
-		CoverageCheckingAlg covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL, NEEDED_COVERAGE_PROPORTION);
-		
+
+		// Ensure a new coverage checker is created for this scan...
+		CoverageCheckingAlg covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL,
+				NEEDED_COVERAGE_PROPORTION);
+
 		// Ensure the population is added to the evolutionary history
 		addToHistory(population);
-		
+
 		// This should track everything over the entire evolutionary history, not
 		// just the current population
 		for (S s : evolutionaryHistory) {
 			System.out.println("evolutionaryHistory size = " + evolutionaryHistory.size());
-			Test t = ((SESAMETestSolution)s).getInternalType();
+			Test t = ((SESAMETestSolution) s).getInternalType();
 			try {
-				EnumMap<DimensionID, Double> dimPoint = dimensionReducer.generateDimensionSetsForParams(t, selectedCampaign);
+				EnumMap<DimensionID, Double> dimPoint = dimensionReducer.generateDimensionSetsForParams(t);
 				covChecker.register(t, dimPoint);
 			} catch (MissingDimensionsInMap e) {
 				e.printStackTrace();
@@ -152,13 +160,12 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		boolean coverageReached = covChecker.isCovered();
 		return coverageReached;
 	}
-	
-	
+
 	private void addToHistory(List<S> population) {
 		for (S s : population) {
 			evolutionaryHistory.add(s);
 		}
-		
+
 	}
 
 	protected boolean isStoppingConditionReached() {
@@ -212,6 +219,8 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 
 		checkNumberOfParents(matingPool, numberOfParents);
 
+		int generationNum = evaluations / getMaxPopulationSize();
+
 		List<S> offspringPopulation = new ArrayList<>(offspringPopulationSize);
 		for (int i = 0; i < matingPool.size(); i += numberOfParents) {
 			List<S> parents = new ArrayList<>(numberOfParents);
@@ -222,13 +231,31 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 			List<S> offspring = crossoverOperator.execute(parents);
 
 			for (S s : offspring) {
-				mutationOperator.execute(s);
+				if (shouldUseCoverageMutation(i, generationNum)) {
+					coverageMutationOperator.execute(s);
+				} else {
+					mutationOperator.execute(s);
+				}
 				offspringPopulation.add(s);
 				if (offspringPopulation.size() >= offspringPopulationSize)
 					break;
 			}
 		}
 		return offspringPopulation;
+	}
+
+	private boolean shouldUseCoverageMutation(int i, int genNum) {
+		if (!useCoverageEnhancing) {
+			return false;
+		} else {
+			// Every third generation may use coverage boosting mutation...
+			if ((genNum % NUM_GENERATIONS_TO_USE_COVERAGEBOOSTING) == 0) {
+				// for 50% of mutations
+				return ((i % ONE_OUT_OF_N_COVERAGE)) == 0;
+			} else {
+				return false;
+			}
+		}
 	}
 
 	@Override
@@ -262,9 +289,9 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		// Log the intermediate populations
 		String fileName = "populationAtEval-" + evaluations + ".res";
 		FileWriter fw = new FileWriter(fileName);
-		//logPopulationToFile(fw);
+		// logPopulationToFile(fw);
 		fw.close();
-		
+
 		String logNonDomMetrics = "jmetal-intermediate-nondom-eval" + evaluations + ".csv";
 		String logFullMetrics = "jmetal-intermediate-full-eval" + evaluations + ".csv";
 		logMetricsForOutput(logFullMetrics, logNonDomMetrics, false);
@@ -295,13 +322,13 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 
 	public void logFinalSolutionsCustom(String finalNonDom, String finalPop) {
 		try {
-			
+
 			FileWriter fwPop = new FileWriter(finalPop);
-			//logFinalPopulationToFile(fwPop, false);
+			// logFinalPopulationToFile(fwPop, false);
 			fwPop.close();
-			
+
 			FileWriter fwPopND = new FileWriter(finalNonDom);
-			//logFinalPopulationToFile(fwPopND, true);
+			// logFinalPopulationToFile(fwPopND, true);
 			fwPopND.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -311,24 +338,24 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	public void logPopulationMetrics(String scenarioStr, String filename, boolean nonDom) throws IOException {
 		System.out.println("Evaluations = " + evaluations);
 		FileWriter fw = new FileWriter(filename);
-		//fw.write("#ScenarioName,FuzzingTestNum,RunNum,");
+		// fw.write("#ScenarioName,FuzzingTestNum,RunNum,");
 		boolean headerPrinted = false;
-		
+
 		List<S> targetPop;
 		if (nonDom) {
 			targetPop = SolutionListUtils.getNonDominatedSolutions(getPopulation());
 		} else {
 			targetPop = getPopulation();
 		}
-		
+
 		for (S s : targetPop) {
 			if (s instanceof SESAMETestSolution) {
-				SESAMETestSolution fss = (SESAMETestSolution)s;
-				
+				SESAMETestSolution fss = (SESAMETestSolution) s;
+
 				// Print the header from the metric names
 				if (!headerPrinted) {
 					for (int i = 0; i < fss.getNumberOfObjectives(); i++) {
-						String delim="";
+						String delim = "";
 						if (i < fss.getNumberOfObjectives() - 1) {
 							delim = ",";
 						}
@@ -337,10 +364,10 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 					fw.write("\n");
 					headerPrinted = true;
 				}
-				
+
 				fw.write(fss.toString() + ",");
 				for (int i = 0; i < fss.getNumberOfObjectives(); i++) {
-					String delim="";
+					String delim = "";
 					if (i < fss.getNumberOfObjectives() - 1) {
 						delim = ",";
 					}
@@ -351,12 +378,13 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		}
 		fw.close();
 	}
-	
-	private void logPopulationRefsToModel(TestCampaign selectedCampaign, String scenarioStr, boolean nonDom, boolean isFinalResults) {
+
+	private void logPopulationRefsToModel(TestCampaign selectedCampaign, String scenarioStr, boolean nonDom,
+			boolean isFinalResults) {
 		List<S> targetPop;
 		String name;
 		String dateStr = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss").format(new Date());
-		
+
 		if (nonDom) {
 			targetPop = SolutionListUtils.getNonDominatedSolutions(getPopulation());
 			name = "NONDOM-" + dateStr;
@@ -364,7 +392,7 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 			targetPop = getPopulation();
 			name = "FULL-" + dateStr;
 		}
-		
+
 		ResultSetStatus status;
 		if (isFinalResults) {
 			status = ResultSetStatus.FINAL;
@@ -373,9 +401,9 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 			status = ResultSetStatus.INTERMEDIATE;
 			name = name + "-intermediate-" + String.valueOf(evaluations);
 		}
-				
+
 		TestingPackageFactory tf = TestingPackageFactory.eINSTANCE;
-		
+
 		// Create new result set in the model
 		EList<CampaignResultSet> resultSets = selectedCampaign.getResultSets();
 		CampaignResultSet rs = tf.createCampaignResultSet();
@@ -385,20 +413,19 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 
 		for (S s : targetPop) {
 			if (s instanceof SESAMETestSolution) {
-				Test t = ((SESAMETestSolution)s).getInternalType();
+				Test t = ((SESAMETestSolution) s).getInternalType();
 				results.add(t);
 			}
 		}
-		
+
 		resultSets.add(rs);
 	}
-	
+
 	public void logMetricsForOutput(String fullPopFile, String nonDomFile, boolean isFinal) throws IOException {
 		logPopulationMetrics(scenarioStr, fullPopFile, false);
 		logPopulationRefsToModel(selectedCampaign, scenarioStr, false, isFinal);
 		logPopulationMetrics(scenarioStr, nonDomFile, true);
 		logPopulationRefsToModel(selectedCampaign, scenarioStr, true, isFinal);
 	}
-
 
 }
