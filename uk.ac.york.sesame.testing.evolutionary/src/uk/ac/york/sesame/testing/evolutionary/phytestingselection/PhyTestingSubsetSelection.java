@@ -80,6 +80,7 @@ public class PhyTestingSubsetSelection {
 				// constraints
 				if (shouldIncludeTest(selectedCampaign, t)) {
 					testsToInclude.add(t);
+					mqv.registerTestToInclude(t);
 				}
 				
 				// Check in the campaign if it is in the final Pareto front, or
@@ -107,8 +108,6 @@ public class PhyTestingSubsetSelection {
 			}
 		}
 	}
-
-
 
 	public void writeOutResultsTabSep(List<Test> specificTests) {
 		DecimalFormat df = new DecimalFormat("#.##");

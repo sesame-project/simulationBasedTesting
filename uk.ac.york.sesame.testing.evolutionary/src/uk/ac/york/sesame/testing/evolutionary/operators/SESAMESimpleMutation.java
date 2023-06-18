@@ -48,16 +48,16 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 
 	protected Random rng;
 	protected FileWriter mutationLog;
-	private ConditionGenerator condGenerator;
+	protected ConditionGenerator condGenerator;
 
-	public SESAMESimpleMutation(Random rng, String mutationLogFileName, double probTemporalMut, double probParamMut,
+	public SESAMESimpleMutation(Random rng, FileWriter mutationLog, double probTemporalMut, double probParamMut,
 			ConditionGenerator cg) throws IOException {
 		this.rng = rng;
 		this.probTemporalMutation = probTemporalMut;
 		this.probParamMutation = probParamMut;
 		this.condGenerator = cg;
 
-		this.mutationLog = new FileWriter(mutationLogFileName);
+		this.mutationLog = mutationLog;
 		mutationLog.write("probTemporalMutation=" + probTemporalMut + "\n");
 		mutationLog.write("probParamMutation=" + probParamMut + "\n");
 	}

@@ -34,8 +34,6 @@ rule customOp2FlatMap transform fuzzOp: Testing!CustomFuzzingOperation {
 	target : "src/"+ fuzzOp.name + "CustomOp_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 }
 
-
-
 rule delayFlatMap transform fuzzOp: Testing!LatencyNetworkOperation {
 	guard : fuzzOp.containingTest != null
 	template : "fuzzingoperations/delay.egl"	

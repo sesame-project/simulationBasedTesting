@@ -6,6 +6,7 @@ import java.util.Random;
 
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.NoOperations;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker.CoverageCheckingAlg;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.ParameterSpaceDimensionalityReduction;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
@@ -22,9 +23,8 @@ public class SESAMEMutationBoostingCoverage extends SESAMESimpleMutation {
 	private CoverageCheckingAlg coverageCheckingAlg;
 	private ParameterSpaceDimensionalityReduction dimensionReducer; 
 	
-	public SESAMEMutationBoostingCoverage(Random rng, String mutationLogFileName, double probTemporalMut,
-			double probParamMut, ConditionGenerator cg) throws IOException {
-		super(rng, mutationLogFileName, probTemporalMut, probParamMut, cg);
+	public SESAMEMutationBoostingCoverage(SESAMESimpleMutation other) throws IOException {
+		super(other.rng, other.mutationLog, other.probTemporalMutation, other.probParamMutation, other.condGenerator);
 	}
 	
 	public void setCoverageChecker(CoverageCheckingAlg coverageCheckingAlg) {
@@ -35,14 +35,15 @@ public class SESAMEMutationBoostingCoverage extends SESAMESimpleMutation {
 		this.dimensionReducer = dimensionReducer;
 	}
 
-	private boolean checkOccupationForSolution(SESAMETestSolution solTest) {
+	private boolean checkOccupationForSolution(SESAMETestSolution solTest) throws NoOperations {
 		Test t = solTest.getInternalType();
+		System.out.println("Incoming test: " + t);
 		EnumMap<DimensionID, Double> dimPoint;
 		try {
 			dimPoint = dimensionReducer.generateDimensionSetsForParams(t);
 			return coverageCheckingAlg.isCellOccupied(t, dimPoint);
 		} catch (MissingDimensionsInMap e) {
-			// TODO Auto-generated catch block
+			e.printMissingDimensions();
 			e.printStackTrace();
 			return false;
 		}
@@ -58,16 +59,21 @@ public class SESAMEMutationBoostingCoverage extends SESAMESimpleMutation {
 				
 				int tries = 0;
 				SESAMETestSolution newTry = sol;
-				boolean ok = !(checkOccupationForSolution(sol));
-				while (!ok && (tries < TRY_LIMIT)) {
-					mutationLog.write("First try at finding an uncovered solution: Trying new solution " + newTry);
-					// Try attempts to mutate with original operation
-					newTry = super.execute(sol); 
-					// Issue is that we cannot check occupation for the solution before 
-					// actually executing it, since only then do we know the occupation of
-					// the temporal dimensions!
-					ok = (!checkOccupationForSolution(newTry));
-					tries++;
+				try {
+					boolean ok = !(checkOccupationForSolution(sol));
+					while (!ok && (tries < TRY_LIMIT)) {
+						mutationLog.write("First try at finding an uncovered solution: Trying new solution " + newTry);
+						// Try attempts to mutate with original operation
+						newTry = super.execute(sol); 
+						// Issue is that we cannot check occupation for the solution before 
+						// actually executing it, since only then do we know the occupation of
+						// the temporal dimensions!
+						ok = (!checkOccupationForSolution(newTry));
+						tries++;
+					}
+				} catch (NoOperations e) {
+					System.out.println("No fuzzing operations - returning same operation");
+					//newTry = super.execute(sol);
 				}
 				// TODO: need to modify the original values here 
 				sol = newTry;

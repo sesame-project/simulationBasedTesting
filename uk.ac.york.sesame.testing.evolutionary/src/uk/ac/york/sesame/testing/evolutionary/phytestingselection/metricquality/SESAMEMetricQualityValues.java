@@ -82,7 +82,7 @@ public class SESAMEMetricQualityValues extends MetricQualityValue {
 		ensureTestsInCampaignSorted();
 		String tname = t.getName();
 		if (rankings.containsKey(tname)) {
-			return (double)(rankings.get(tname));
+			return ((double)(rankings.get(tname))) / testCount;
 		} else {
 			return -1.0;
 		}

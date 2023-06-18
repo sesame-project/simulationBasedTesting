@@ -35,4 +35,11 @@ public class TimeInterval {
 	public double getEndTime() {
 		return timeEnd;
 	}
+
+	public TimeInterval normaliseToRange(TimeInterval tTemplate) {
+		double tsr = (timeStart - tTemplate.timeStart) / (tTemplate.timeEnd - tTemplate.timeStart);
+		double ter = (timeEnd - tTemplate.timeStart) / (tTemplate.timeEnd - tTemplate.timeStart);
+		return new TimeInterval(tsr,ter);
+		
+	}
 }

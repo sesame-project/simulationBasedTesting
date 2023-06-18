@@ -19,8 +19,11 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
+import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEMutationBoostingCoverage;
+import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESimpleMutation;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.NoOperations;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker.CoverageCheckingAlg;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker.GridCoverageChecker;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.ParameterSpaceDimensionalityReduction;
@@ -35,6 +38,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
@@ -58,7 +62,7 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	protected int evaluations;
 	protected Comparator<S> dominanceComparator;
 
-	protected MutationOperator<S> coverageMutationOperator;
+	protected SESAMEMutationBoostingCoverage coverageMutationOperator;
 	protected boolean useCoverageEnhancing = true;
 
 	protected int matingPoolSize;
@@ -97,6 +101,14 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 
 		this.crossoverOperator = crossoverOperator;
 		this.mutationOperator = mutationOperator;
+		
+		try {
+			this.coverageMutationOperator = new SESAMEMutationBoostingCoverage((SESAMESimpleMutation) mutationOperator);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		this.selectionOperator = selectionOperator;
 
 		this.evaluator = evaluator;
@@ -132,15 +144,19 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 80.0, 4));
 		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 40.0, 4));
 		intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 20.0, 2));
-
 		// TODO: set the rest of the dimensions
+		
 		final int MIN_COVERAGE_PER_CELL = 1;
-		final double NEEDED_COVERAGE_PROPORTION = 0.2;
+		final double NEEDED_COVERAGE_PROPORTION = 0.5;
 		//////////////////////////////////////////////////////////////////////////
 
 		// Ensure a new coverage checker is created for this scan...
 		CoverageCheckingAlg covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL,
 				NEEDED_COVERAGE_PROPORTION);
+		
+		// TODO: is this OK? do we need a global coverage checker?
+		coverageMutationOperator.setCoverageChecker(covChecker);
+		coverageMutationOperator.setDimensionReducer(dimensionReducer);
 
 		// Ensure the population is added to the evolutionary history
 		addToHistory(population);
@@ -155,7 +171,7 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 				covChecker.register(t, dimPoint);
 			} catch (MissingDimensionsInMap e) {
 				e.printStackTrace();
-			}
+			} 
 		}
 		boolean coverageReached = covChecker.isCovered();
 		return coverageReached;
@@ -231,8 +247,9 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 			List<S> offspring = crossoverOperator.execute(parents);
 
 			for (S s : offspring) {
+				SESAMETestSolution sts = (SESAMETestSolution)s;
 				if (shouldUseCoverageMutation(i, generationNum)) {
-					coverageMutationOperator.execute(s);
+					coverageMutationOperator.execute(sts);
 				} else {
 					mutationOperator.execute(s);
 				}

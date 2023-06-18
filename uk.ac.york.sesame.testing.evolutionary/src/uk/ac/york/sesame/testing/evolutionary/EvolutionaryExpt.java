@@ -1,5 +1,6 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
@@ -127,8 +128,9 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			} else {
 				crossover = new SESAMESwapAttacksFromTestsCrossover(crossoverRNG, crossoverProb, crossoverLogFile);
 			}
-
-			mutation = new SESAMESimpleMutation(mutationRNG, mutationLogFile, timingMutProb, paramMutProb, cg);
+			
+			FileWriter mutationLog = new FileWriter(mutationLogFile);
+			mutation = new SESAMESimpleMutation(mutationRNG, mutationLog, timingMutProb, paramMutProb, cg);
 
 			selection = new TournamentSelection<SESAMETestSolution>(5);
 			dominanceComparator = new DominanceComparator<>();
