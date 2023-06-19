@@ -141,13 +141,19 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		// The GA is only using a subset of dimensions
 		EnumMap<DimensionID, IntervalWithCount> intervals = new EnumMap<DimensionID, IntervalWithCount>(
 				DimensionID.class);
-		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 80.0, 4));
-		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 40.0, 4));
-		intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 20.0, 2));
+		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 1.0, 4));
+		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 0.5, 3));
+		//intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 1.0, 2));
+		intervals.put(DimensionID.P1_PARAMETER_MEAN, new IntervalWithCount(0.0, 1.0, 3));
+		//intervals.put(DimensionID.P2_PARAMETER_VARIANCE, new IntervalWithCount(0.0, 1.0, 2));
+		//intervals.put(DimensionID.O1_FUZZRANGE_COUNT, new IntervalWithCount(0.0, 2.0, 3));
+
+		
+		
 		// TODO: set the rest of the dimensions
 		
 		final int MIN_COVERAGE_PER_CELL = 1;
-		final double NEEDED_COVERAGE_PROPORTION = 0.5;
+		final double NEEDED_COVERAGE_PROPORTION = 0.25;
 		//////////////////////////////////////////////////////////////////////////
 
 		// Ensure a new coverage checker is created for this scan...
