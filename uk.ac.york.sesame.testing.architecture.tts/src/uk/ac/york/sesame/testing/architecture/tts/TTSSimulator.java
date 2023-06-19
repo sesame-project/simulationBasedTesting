@@ -52,6 +52,7 @@ public class TTSSimulator implements ISimulator {
 	private static SimlogAPIGrpc.SimlogAPIStub asyncStub;
 	private static SimlogAPIGrpc.SimlogAPIBlockingStub blockingStub;
 	ManagedChannel channel;
+	ManagedChannel channelSync;
 
 	//private boolean canSendToSimulator = false;
 
@@ -75,9 +76,10 @@ public class TTSSimulator implements ISimulator {
 		int port = Integer.parseInt(params.getProperties().get(params.PORT).toString());
 		String target = host + ":" + String.valueOf(port);
 		channel = ManagedChannelBuilder.forTarget(target).usePlaintext().build();
+		channelSync = ManagedChannelBuilder.forTarget(target).usePlaintext().build();
 		int stepSizeMillis = Integer.parseInt(params.getProperties().get(params.STEP_SIZE).toString());
 		
-		blockingStub = SimlogAPIGrpc.newBlockingStub(channel);
+		blockingStub = SimlogAPIGrpc.newBlockingStub(channelSync);
 		asyncStub = SimlogAPIGrpc.newStub(channel);
 		
 		StepSizeRequest stepRQ = StepSizeRequest.newBuilder().setStep(stepSizeMillis).build();
@@ -417,8 +419,13 @@ public class TTSSimulator implements ISimulator {
 	
 	public boolean stepSimulator() {
 		StepRequest rq = StepRequest.newBuilder().build();
+		try {
 		StepResponse response = blockingStub.step(rq);
 		return responseIsOK(response);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}	
 	}
 
 	private boolean responseIsOK(StepResponse response) {
