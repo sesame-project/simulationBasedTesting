@@ -14,14 +14,19 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 
+import uk.ac.york.sesame.testing.architecture.data.IntervalWithCount;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.*;
 
 import uk.ac.york.sesame.testing.evolutionary.InvalidTestCampaign;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker.CoverageCheckingAlg;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker.GridCoverageChecker;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.ParameterSpaceDimensionalityReduction;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.metricquality.MetricQualityValue;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
 public class PhyTestingSubsetSelection {
+
+	private static final boolean DEBUG_REGISTER_CELLS = true;
 
 	// This returns whether the given test should be included in the output results
 	// Can filter based upon whether it is in the Pareto front, generation number
@@ -41,7 +46,24 @@ public class PhyTestingSubsetSelection {
 	private List<Test> testsToInclude = new ArrayList<Test>();
 	private HashMap<Test, TestResultTags> testTags = new HashMap<Test,TestResultTags>();
 	
+	// This is used for debugging the coverage checker grid assignment
+	private CoverageCheckingAlg _covChecker;
+	
 	public PhyTestingSubsetSelection(ParameterSpaceDimensionalityReduction dsc, MetricQualityValue mqv) {
+		
+		EnumMap<DimensionID, IntervalWithCount> intervals = new EnumMap<DimensionID, IntervalWithCount>(
+				DimensionID.class);
+		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 1.0, 4));
+		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 0.5, 3));
+		//intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 1.0, 2));
+		intervals.put(DimensionID.P1_PARAMETER_MEAN, new IntervalWithCount(0.0, 1.0, 3));
+		
+		final int MIN_COVERAGE_PER_CELL = 1;
+		final double NEEDED_COVERAGE_PROPORTION = 1.0;
+		
+		this._covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL,
+				NEEDED_COVERAGE_PROPORTION);
+		
 		this.dsc = dsc;
 		this.mqv = mqv;
 	}
@@ -100,6 +122,11 @@ public class PhyTestingSubsetSelection {
 					double qualityValue = mqv.generateMetricQualityValue(t);
 					parameterSpaceMappings.put(t, paramValuesForConfig);
 					qualityMappings.put(t, qualityValue);
+					
+					if (DEBUG_REGISTER_CELLS) {
+						_covChecker.register(t, paramValuesForConfig);
+					}
+					
 
 				}
 			} catch (MissingDimensionsInMap e) {

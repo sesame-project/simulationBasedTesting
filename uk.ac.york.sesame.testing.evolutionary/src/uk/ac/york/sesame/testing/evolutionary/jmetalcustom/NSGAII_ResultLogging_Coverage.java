@@ -51,6 +51,11 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	private static final int ONE_OUT_OF_N_COVERAGE = 2;
 
 	private List<S> evolutionaryHistory;
+	
+	private final int MIN_COVERAGE_PER_CELL = 1;
+	private final double NEEDED_COVERAGE_PROPORTION = 0.5;
+	
+	private FileWriter coverageLog;
 
 	// Use max coverage limit even if coverage is not met
 	private boolean USE_MAX_EVALUATION_LIMIT = true;
@@ -63,7 +68,7 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	protected Comparator<S> dominanceComparator;
 
 	protected SESAMEMutationBoostingCoverage coverageMutationOperator;
-	protected boolean useCoverageEnhancing = true;
+	protected boolean useCoverageEnhancing;
 
 	protected int matingPoolSize;
 	protected int offspringPopulationSize;
@@ -117,10 +122,22 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		this.matingPoolSize = matingPoolSize;
 		this.offspringPopulationSize = offspringPopulationSize;
 		this.scenarioStr = scenarioStr;
-
+		
 		this.dimensionReducer = new SESAMEStandardDimensionSetReducer();
 		this.evolutionaryHistory = new ArrayList<S>();
 		this.useCoverageEnhancing = useMutationEnhancingCoverage;
+		
+		try {
+			if (useCoverageEnhancing) {
+				this.coverageLog = new FileWriter("coverageWithBoosting.log");
+			} else {
+				this.coverageLog = new FileWriter("coverageTracking.log");
+			}
+			coverageLog.write("evaluations,coverageProp\n");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		System.out.println("maxEvaluations = " + maxEvaluations);
 	}
 
@@ -141,19 +158,14 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		// The GA is only using a subset of dimensions
 		EnumMap<DimensionID, IntervalWithCount> intervals = new EnumMap<DimensionID, IntervalWithCount>(
 				DimensionID.class);
-		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 1.0, 4));
-		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 0.5, 3));
-		//intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 1.0, 2));
+		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 1.0, 6));
+		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 0.5, 6));
+		//intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 1.0, 3));
 		intervals.put(DimensionID.P1_PARAMETER_MEAN, new IntervalWithCount(0.0, 1.0, 3));
 		//intervals.put(DimensionID.P2_PARAMETER_VARIANCE, new IntervalWithCount(0.0, 1.0, 2));
 		//intervals.put(DimensionID.O1_FUZZRANGE_COUNT, new IntervalWithCount(0.0, 2.0, 3));
+		
 
-		
-		
-		// TODO: set the rest of the dimensions
-		
-		final int MIN_COVERAGE_PER_CELL = 1;
-		final double NEEDED_COVERAGE_PROPORTION = 0.25;
 		//////////////////////////////////////////////////////////////////////////
 
 		// Ensure a new coverage checker is created for this scan...
@@ -165,7 +177,7 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		coverageMutationOperator.setDimensionReducer(dimensionReducer);
 
 		// Ensure the population is added to the evolutionary history
-		addToHistory(population);
+		//addToHistory(population);
 
 		// This should track everything over the entire evolutionary history, not
 		// just the current population
@@ -179,8 +191,19 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 				e.printStackTrace();
 			} 
 		}
-		boolean coverageReached = covChecker.isCovered();
+		
+		double coverageProp = covChecker.coverageProportion();
+		boolean coverageReached = (coverageProp >= NEEDED_COVERAGE_PROPORTION);
+		int evolutionaryHistoryCount = evolutionaryHistory.size();
+		
+		try {
+			coverageLog.write(evolutionaryHistoryCount + "," + coverageProp + "\n");
+			coverageLog.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return coverageReached;
+		
 	}
 
 	private void addToHistory(List<S> population) {
@@ -328,12 +351,16 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 
 		population = createInitialPopulation();
 		population = evaluatePopulation(population);
+		addToHistory(population);
 		initProgress();
 		while (!isStoppingConditionReached()) {
 			matingPopulation = selection(population);
 			offspringPopulation = reproduction(matingPopulation);
 			offspringPopulation = evaluatePopulation(offspringPopulation);
+			// Add to the history all the evaluated populations!
+			addToHistory(offspringPopulation);
 			population = replacement(population, offspringPopulation);
+			
 			updateProgress();
 			try {
 				logIntermediate();
@@ -344,7 +371,11 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	}
 
 	public void logFinalSolutionsCustom(String finalNonDom, String finalPop) {
+		
+		
 		try {
+			
+			coverageLog.close();
 
 			FileWriter fwPop = new FileWriter(finalPop);
 			// logFinalPopulationToFile(fwPop, false);
