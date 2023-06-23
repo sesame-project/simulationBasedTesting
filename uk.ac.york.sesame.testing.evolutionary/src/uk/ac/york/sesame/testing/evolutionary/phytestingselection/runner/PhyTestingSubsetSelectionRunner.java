@@ -13,14 +13,14 @@ import uk.ac.york.sesame.testing.evolutionary.phytestingselection.metricquality.
 
 public class PhyTestingSubsetSelectionRunner {
 	public static void main(String[] args) {
-		String fileName = "/home/jharbin/eclipse-workspace-sesame/TTSTestProject/models/results/testingTTS-physubsettest.model";
+		String fileName = "/home/jharbin/eclipse-workspace-sesame/TTSTestProject/models/phytesting/results/testingTTS_Kuka_phytesting_coverageGA-jun20.model";
 		String csvOut = "/tmp/phytestout.csv";
 		
 		try {
 			List<String> metricNameList = new ArrayList<String>();
 			metricNameList.add("collisionOccurance");
 			PhyTestingSubsetSelection testPhysub = new PhyTestingSubsetSelection(new SESAMEStandardDimensionSetReducer(), new SESAMEMetricQualityValues(metricNameList));
-			testPhysub.loadModelToResults(fileName, "firstExperiment");
+			testPhysub.loadModelToResults(fileName, "coverageExperiment");
 			testPhysub.writeOutResultsTabSep();
 			testPhysub.writeOutResultsCSV(csvOut);
 			
