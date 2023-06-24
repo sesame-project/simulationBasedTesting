@@ -164,30 +164,17 @@ public class TTSSimulator implements ISimulator {
 	public void consumeFromTopicForFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
 		String topicNameIn = topicName + "/in";
 		String topicNameShadow = topicName + "/shadow";
-		String topicNameOut = topicName + "/out";
-
+		
 		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
 		TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(topicNameShadow).build();	
-//		TopicDescriptor outTopic = TopicDescriptor.newBuilder().setPath(topicNameOut).build();
 
-		// InjectRequest requestInj =
-		// InjectRequest.newBuilder().setInjected(shadowTopic).build();
 		InjectRequest requ = InjectRequest.newBuilder().setInjected(shadowTopic).setTarget(inTopic).build();
-//		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-//
-//		Optional<String> kTopic = Optional.empty();
-//		if (publishToKafka) {
-//			kTopic = Optional.of(kafkaTopic);
-//		}
 
 		try {
 			ROSObserver roInject = new ROSObserver(topicNameIn);
 			roInject.setTopic(kafkaTopic);
 			System.out.println("Setting up injection to : " + inTopic);
-			// asyncStub.subscribe(inTopic, ro);
-			asyncStub.inject(requ, roInject);
-
-			
+			asyncStub.inject(requ, roInject);			
 		} catch (StatusRuntimeException e) {
 			System.out.println("RPC failed: {0}" + e.getStatus());
 			return;
@@ -302,12 +289,24 @@ public class TTSSimulator implements ISimulator {
 		return !GET_TIME_FROM_MESSAGES;
 	}
 	
-	@Override
+	private void updateTimeHack() {
+		String clockIN = "model/clock";
+		String clockOut_Fake = clockIN + "/shadow";
+		
+		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(clockIN).build();
+		TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(clockOut_Fake).build();	
+		InjectRequest requ = InjectRequest.newBuilder().setInjected(shadowTopic).setTarget(inTopic).build();
+		
+		ROSObserver roClock = new ROSObserver("model/clock");
+		asyncStub.inject(requ, roClock);
+	}
+	
 	public void updateTime() {
 		if (subscribeToClock()) {
 			TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("model/clock").build();
 			ClockObserver co = new ClockObserver();
 			asyncStub.subscribe(clockTopic, co);
+			//updateTimeHack();
 		}
 	}
 
