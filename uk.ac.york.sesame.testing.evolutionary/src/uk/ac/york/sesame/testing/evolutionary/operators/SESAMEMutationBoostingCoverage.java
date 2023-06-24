@@ -18,7 +18,7 @@ public class SESAMEMutationBoostingCoverage extends SESAMESimpleMutation {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final int TRY_LIMIT = 10;
+	private static final int TRY_LIMIT = 50;
 
 	private CoverageCheckingAlg coverageCheckingAlg;
 	private ParameterSpaceDimensionalityReduction dimensionReducer; 
@@ -60,15 +60,15 @@ public class SESAMEMutationBoostingCoverage extends SESAMESimpleMutation {
 				int tries = 0;
 				SESAMETestSolution newTry = sol;
 				try {
-					boolean ok = !(checkOccupationForSolution(sol));
-					while (!ok && (tries < TRY_LIMIT)) {
+					boolean foundFreeCell = !(checkOccupationForSolution(newTry));
+					while (!foundFreeCell && (tries < TRY_LIMIT)) {
 						mutationLog.write("First try at finding an uncovered solution: Trying new solution " + newTry);
 						// Try attempts to mutate with original operation
 						newTry = super.execute(sol); 
 						// Issue is that we cannot check occupation for the solution before 
 						// actually executing it, since only then do we know the occupation of
 						// the temporal dimensions!
-						ok = (!checkOccupationForSolution(newTry));
+						foundFreeCell = (!checkOccupationForSolution(newTry));
 						tries++;
 					}
 				} catch (NoOperations e) {

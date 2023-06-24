@@ -101,11 +101,7 @@ public class GridCoverageChecker extends CoverageCheckingAlg {
 
 	@Override
 	public boolean _debugIsCellOccupied(int[] indices) {
-		if (grid.getDouble(indices) == 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return (grid.getDouble(indices) >= coveragePerCellTarget);
 	}
 
 	public boolean isCellOccupied(Test t, EnumMap<DimensionID, Double> map) {

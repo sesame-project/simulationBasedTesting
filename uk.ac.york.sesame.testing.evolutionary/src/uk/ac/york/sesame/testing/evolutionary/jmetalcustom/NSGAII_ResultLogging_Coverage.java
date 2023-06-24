@@ -47,7 +47,7 @@ import java.util.Random;
 
 public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends AbstractGeneticAlgorithm<S, List<S>> {
 
-	private static final int NUM_GENERATIONS_TO_USE_COVERAGEBOOSTING = 3;
+	private static final int NUM_GENERATIONS_TO_USE_COVERAGEBOOSTING = 2;
 	private static final int ONE_OUT_OF_N_COVERAGE = 2;
 
 	private List<S> evolutionaryHistory;
