@@ -21,6 +21,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PacketLossNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet;
+import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.FuzzOpLambdaFunction;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
@@ -288,5 +289,12 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 			checkAllDimensionsSet(m, t);
 		}
 		return m;
+	}
+
+	@Override
+	public EnumMap<DimensionID, Double> generateDimensionSetsSpeculative(SESAMETestSolution sts)
+			throws MissingDimensionsInMap {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -41,7 +41,13 @@ public class SESAMEMutationBoostingCoverage extends SESAMESimpleMutation {
 		EnumMap<DimensionID, Double> dimPoint;
 		try {
 			dimPoint = dimensionReducer.generateDimensionSetsForParams(t);
-			return coverageCheckingAlg.isCellOccupied(t, dimPoint);
+			boolean isOccupied = coverageCheckingAlg.isCellOccupied(t, dimPoint);
+			try {
+				mutationLog.write("checkOccupation for test " + solTest + " - dimension points " + dimPoint.toString() + " occupication " + isOccupied + "\n");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return isOccupied;
 		} catch (MissingDimensionsInMap e) {
 			e.printMissingDimensions();
 			e.printStackTrace();
@@ -55,16 +61,17 @@ public class SESAMEMutationBoostingCoverage extends SESAMESimpleMutation {
 			mutationLog.write(sol.toString() + "\n");
 			for (int i = 0; i < sol.getNumberOfVariables(); i++) {
 				SESAMEFuzzingOperationWrapper sta = sol.getVariable(i);
-				System.out.println("Before modification SESAMETestAttack=" + sta);
+				System.out.println("Before modification with mutation boosting coverage SESAMETestAttack=" + sta);
 				
 				int tries = 0;
 				SESAMETestSolution newTry = sol;
 				try {
+					mutationLog.write("First try at finding an uncovered solution: Trying first mutation " + newTry);
 					boolean foundFreeCell = !(checkOccupationForSolution(newTry));
 					while (!foundFreeCell && (tries < TRY_LIMIT)) {
-						mutationLog.write("First try at finding an uncovered solution: Trying new solution " + newTry);
-						// Try attempts to mutate with original operation
-						newTry = super.execute(sol); 
+						mutationLog.write("Try " + tries + " at finding an uncovered solution: Trying new solution " + newTry);
+						// Try attempts to mutate based on previous attempt
+						newTry = super.execute(newTry); 
 						// Issue is that we cannot check occupation for the solution before 
 						// actually executing it, since only then do we know the occupation of
 						// the temporal dimensions!

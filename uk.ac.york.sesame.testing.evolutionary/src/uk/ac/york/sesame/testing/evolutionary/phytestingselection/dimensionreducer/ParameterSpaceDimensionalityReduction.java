@@ -7,6 +7,7 @@ import java.util.Set;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.NoOperations;
@@ -16,6 +17,7 @@ public abstract class ParameterSpaceDimensionalityReduction {
 	protected TestCampaign selectedCampaign;
 
 	public abstract EnumMap<DimensionID, Double> generateDimensionSetsForParams(Test t) throws MissingDimensionsInMap;
+	public abstract EnumMap<DimensionID, Double> generateDimensionSetsSpeculative(SESAMETestSolution sts) throws MissingDimensionsInMap;
 	
 	protected void checkAllDimensionsSet(EnumMap<DimensionID, Double> m, Test t) throws MissingDimensionsInMap {
 		// TODO: check the dimensional values are all set properly for the test

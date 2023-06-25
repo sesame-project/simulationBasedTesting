@@ -371,16 +371,11 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	}
 
 	public void logFinalSolutionsCustom(String finalNonDom, String finalPop) {
-		
-		
 		try {
-			
 			coverageLog.close();
-
 			FileWriter fwPop = new FileWriter(finalPop);
 			// logFinalPopulationToFile(fwPop, false);
 			fwPop.close();
-
 			FileWriter fwPopND = new FileWriter(finalNonDom);
 			// logFinalPopulationToFile(fwPopND, true);
 			fwPopND.close();
