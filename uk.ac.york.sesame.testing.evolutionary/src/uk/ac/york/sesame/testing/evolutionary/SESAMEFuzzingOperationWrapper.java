@@ -257,6 +257,10 @@ public class SESAMEFuzzingOperationWrapper {
 	public FuzzingOperation getAttack() {
 		return t;
 	}
+	
+	public FuzzingOperation getFuzzingOperation() {
+		return t;
+	}
 
 	public String getName() {
 		return t.getName();

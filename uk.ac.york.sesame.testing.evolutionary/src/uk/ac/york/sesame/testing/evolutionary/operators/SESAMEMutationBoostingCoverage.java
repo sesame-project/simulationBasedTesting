@@ -18,7 +18,7 @@ public class SESAMEMutationBoostingCoverage extends SESAMESimpleMutation {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final int TRY_LIMIT = 50;
+	private static final int TRY_LIMIT = 10;
 
 	private CoverageCheckingAlg coverageCheckingAlg;
 	private ParameterSpaceDimensionalityReduction dimensionReducer; 
@@ -36,11 +36,11 @@ public class SESAMEMutationBoostingCoverage extends SESAMESimpleMutation {
 	}
 
 	private boolean checkOccupationForSolution(SESAMETestSolution solTest) throws NoOperations {
+		System.out.println("Incoming test: " + solTest.getInternalType().getName());
 		Test t = solTest.getInternalType();
-		System.out.println("Incoming test: " + t);
 		EnumMap<DimensionID, Double> dimPoint;
 		try {
-			dimPoint = dimensionReducer.generateDimensionSetsForParams(t);
+			dimPoint = dimensionReducer.generateDimensionSetsSpeculative(solTest);
 			boolean isOccupied = coverageCheckingAlg.isCellOccupied(t, dimPoint);
 			try {
 				mutationLog.write("checkOccupation for test " + solTest + " - dimension points " + dimPoint.toString() + " occupication " + isOccupied + "\n");

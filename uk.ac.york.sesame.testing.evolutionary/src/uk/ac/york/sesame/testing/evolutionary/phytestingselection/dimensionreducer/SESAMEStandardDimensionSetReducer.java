@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalDouble;
+import java.util.stream.Collectors;
 
 import uk.ac.york.sesame.testing.architecture.data.TimeInterval;
 import uk.ac.york.sesame.testing.architecture.data.TimeInterval.InvalidTimingPair;
@@ -21,6 +22,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PacketLossNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet;
+import uk.ac.york.sesame.testing.evolutionary.SESAMEFuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.FuzzOpLambdaFunction;
@@ -199,8 +201,7 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		}
 	}
 
-	private void setTimingDimensions(Test t, Map<DimensionID, Double> m) {
-		List<FuzzingOperation> ops = t.getOperations();
+	private void setTimingDimensions(List<FuzzingOperation> ops, Map<DimensionID, Double> m) {
 		// Fuzzing time mean computed over all operation midpoint times in the test)
 		// Fuzzing time mean length (mean length computed over all operation
 
@@ -230,9 +231,9 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		}
 	}
 
-	private void setParameterDimensions(Test t, EnumMap<DimensionID, Double> m) {
+	private void setParameterDimensions(List<FuzzingOperation> ops, EnumMap<DimensionID, Double> m) {
 		List<Double> normalisedParams = new ArrayList<Double>();
-		List<FuzzingOperation> ops = t.getOperations();
+		//List<FuzzingOperation> ops = t.getOperations();
 		for (FuzzingOperation op : ops) {
 			accumulateNormalisedParams(normalisedParams, op);
 		}
@@ -249,11 +250,11 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		}
 	}
 
-	private void setOpVarDimensions(Test t, EnumMap<DimensionID, Double> m) {
+	private void setOpVarDimensions(List<FuzzingOperation> ops, EnumMap<DimensionID, Double> m) {
 		int fuzzRangeCount = 0;
 		int delayCount = 0;
 		int deletionCount = 0;
-		List<FuzzingOperation> ops = t.getOperations();
+		
 		for (FuzzingOperation op : ops) {
 			if (op instanceof RandomValueFromSetOperation) {
 				fuzzRangeCount++;
@@ -278,23 +279,31 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 			m.put(DimensionID.O0_TOTAL_COUNT, Double.valueOf(totalCount));
 		}
 	}
-
-	public EnumMap<DimensionID, Double> generateDimensionSetsForParams(Test t) throws MissingDimensionsInMap {
+	
+	private EnumMap<DimensionID, Double> generateDimensionSets(List<FuzzingOperation> ops) throws MissingDimensionsInMap {
 		EnumMap<DimensionID, Double> m = new EnumMap<DimensionID, Double>(DimensionID.class);
-		setTimingDimensions(t, m);
-		setParameterDimensions(t, m);
-		setOpVarDimensions(t, m);
+		setTimingDimensions(ops, m);
+		setParameterDimensions(ops, m);
+		setOpVarDimensions(ops, m);
+		
 		// If there are no operations, no values will be returned for this case!
-		if (t.getOperations().size() > 0) {
-			checkAllDimensionsSet(m, t);
+		if (ops.size() > 0) {
+			checkAllDimensionsSet(m);
 		}
+		
 		return m;
 	}
 
-	@Override
-	public EnumMap<DimensionID, Double> generateDimensionSetsSpeculative(SESAMETestSolution sts)
-			throws MissingDimensionsInMap {
-		// TODO Auto-generated method stub
-		return null;
+	public EnumMap<DimensionID, Double> generateDimensionSetsForParams(Test t) throws MissingDimensionsInMap {
+		List<FuzzingOperation> ops = t.getOperations();
+		EnumMap<DimensionID, Double> m = generateDimensionSets(ops);
+		return m;
+	}
+
+	public EnumMap<DimensionID, Double> generateDimensionSetsSpeculative(SESAMETestSolution sts) throws MissingDimensionsInMap {
+		List<SESAMEFuzzingOperationWrapper> sfowList = sts.getVariables();
+		List<FuzzingOperation> ops = sfowList.stream().map(sfow -> sfow.getFuzzingOperation()).collect(Collectors.toList());
+		EnumMap<DimensionID, Double> m = generateDimensionSets(ops);
+		return m;
 	}
 }

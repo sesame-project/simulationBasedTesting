@@ -323,9 +323,6 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 			logWithoutError("Performing parameter mutation on " + sta.getName());
 			newParameters(sta);
 		}
-
-		// New participants is redundant, since there is a standard set of
-		// topics for the attack
 	}
 
 	public double getMutationProbability() {
