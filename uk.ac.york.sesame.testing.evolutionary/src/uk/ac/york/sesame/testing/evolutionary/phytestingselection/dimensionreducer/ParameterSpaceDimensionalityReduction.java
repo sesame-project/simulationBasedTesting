@@ -20,7 +20,7 @@ public abstract class ParameterSpaceDimensionalityReduction {
 	public abstract EnumMap<DimensionID, Double> generateDimensionSetsSpeculative(SESAMETestSolution sts) throws MissingDimensionsInMap;
 	
 	protected void checkAllDimensionsSet(EnumMap<DimensionID, Double> m) throws MissingDimensionsInMap {
-		// TODO: check the dimensional values are all set properly for the test
+		// check the dimensional values are all set properly for the test
 		EnumSet<DimensionID> allDimensions = EnumSet.allOf(DimensionID.class);
 		Set<DimensionID> missingDimensions = new HashSet<DimensionID>();
 		for (DimensionID d : allDimensions) {

@@ -204,7 +204,6 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 	private void setTimingDimensions(List<FuzzingOperation> ops, Map<DimensionID, Double> m) {
 		// Fuzzing time mean computed over all operation midpoint times in the test)
 		// Fuzzing time mean length (mean length computed over all operation
-
 		OptionalDouble midpointMean = calculateMeanViaLambda(ops, (FuzzingOperation op) -> {
 			return normalisedFuzzOpTimeRange(op).getMidpoint();
 		});
@@ -293,10 +292,35 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		
 		return m;
 	}
+	
+	public boolean opHasTiming(FuzzingOperation op) {
+		Activation a = op.getActivation();
+		
+		if ((a instanceof ConditionBasedActivation) || (a instanceof ConditionBasedTimeLimited)) {
+			FixedTimeActivation fta = op.getRecordedTimings();
+			if (fta == null) {
+				// No timing info recorded for condition-based operation
+				System.out.println("OPHASTIMING: rejecting for no timing info " + op.getName());
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		// If it is time-based, always include it
+		return true;
+	}
+	
+	public List<FuzzingOperation> filterOpsRemoveUnactivated(List<FuzzingOperation> ops) {
+		return ops.stream().filter(op -> opHasTiming(op)).collect(Collectors.toList());
+	}
 
 	public EnumMap<DimensionID, Double> generateDimensionSetsForParams(Test t) throws MissingDimensionsInMap {
-		List<FuzzingOperation> ops = t.getOperations();
+		List<FuzzingOperation> opsUnfiltered = t.getOperations();
+		System.out.println("OPHASTIMING: checking " + t.getName() + opsUnfiltered.size() + " operations");
+		List<FuzzingOperation> ops = filterOpsRemoveUnactivated(opsUnfiltered);
 		EnumMap<DimensionID, Double> m = generateDimensionSets(ops);
+		System.out.println("OPHASTIMING: after filtering - " + t.getName() + ops.size() + " operations");
 		return m;
 	}
 
