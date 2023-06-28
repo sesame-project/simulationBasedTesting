@@ -22,6 +22,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PacketLossNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedActivationImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedTimeLimitedImpl;
 import uk.ac.york.sesame.testing.evolutionary.SESAMEFuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
@@ -296,7 +298,8 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 	public boolean opHasTiming(FuzzingOperation op) {
 		Activation a = op.getActivation();
 		
-		if ((a instanceof ConditionBasedActivation) || (a instanceof ConditionBasedTimeLimited)) {
+		if ((a instanceof ConditionBasedActivation) || (a instanceof ConditionBasedTimeLimited) || 
+				(a instanceof ConditionBasedActivationImpl) || (a instanceof ConditionBasedTimeLimitedImpl)) {
 			FixedTimeActivation fta = op.getRecordedTimings();
 			if (fta == null) {
 				// No timing info recorded for condition-based operation
@@ -305,10 +308,10 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 			} else {
 				return true;
 			}
+		} else {
+			// If it is time-based, always include it
+			return true;
 		}
-
-		// If it is time-based, always include it
-		return true;
 	}
 	
 	public List<FuzzingOperation> filterOpsRemoveUnactivated(List<FuzzingOperation> ops) {
@@ -317,10 +320,11 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 
 	public EnumMap<DimensionID, Double> generateDimensionSetsForParams(Test t) throws MissingDimensionsInMap {
 		List<FuzzingOperation> opsUnfiltered = t.getOperations();
-		System.out.println("OPHASTIMING: checking " + t.getName() + opsUnfiltered.size() + " operations");
+		System.out.println("OPHASTIMING: checking " + t.getName() + " - " + opsUnfiltered.size() + " operations");
 		List<FuzzingOperation> ops = filterOpsRemoveUnactivated(opsUnfiltered);
+		System.out.println("OPHASTIMING: after filtering - " + t.getName() + " - " + ops.size() + " operations");
 		EnumMap<DimensionID, Double> m = generateDimensionSets(ops);
-		System.out.println("OPHASTIMING: after filtering - " + t.getName() + ops.size() + " operations");
+		
 		return m;
 	}
 
