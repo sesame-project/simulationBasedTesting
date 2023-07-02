@@ -45,7 +45,11 @@ sudo cp protocol.py.orig protocol.py
 ```
 
 ## Installation Instructions For Windows
-[Installation Instructions For Windows]()
+
+The installation instructions for Windows are located at the following
+location (upon a seperate branch):
+
+[Installation Instructions For Windows](https://github.com/sesame-project/simulationBasedTesting/blob/windows/README-windows.md)
 
 ## User Guide
-[User Guide]()
+[User Guide](./userguide.md)
