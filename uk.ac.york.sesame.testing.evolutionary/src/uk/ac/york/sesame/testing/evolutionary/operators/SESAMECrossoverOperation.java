@@ -20,7 +20,7 @@ abstract public class SESAMECrossoverOperation implements CrossoverOperator<SESA
 	
 	protected void logWithoutException(String s) {
 		try {
-			crossoverLog.write(s);
+			crossoverLog.write(s + "\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -1,0 +1,1333 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.FuzzingOperations="FuzzingOperations" xmlns:TestingMM.MRSPackage="MRSPackage" xmlns:TestingMM.Metrics="Metrics" xmlns:TestingMM.StandardGrammar="StandardGrammar" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_TiizQN04EeyAL51MCA53dw" name="totalEnergyAtEnd" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_w22pAPeeEeylIplG5t0blg" defaultVal="100000.0"/>
+    <initValue xmi:id="_TirEoAiyEe2PgNfDdRvGSA"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_TdUpsOd4Eeym1vCwkNoiAw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_PURDYPb_EeyPjPxeigDHmw" filename="/home/jharbin/academic/sesame/WP6/metric-results/totalEnergy"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_Vo1xYN04EeyAL51MCA53dw" name="completedRooms" dir="LOWEST" relatedVariables="_lUwUoOuyEeye997npOVsNQ _zQnykOuyEeye997npOVsNQ _zbYREOuyEeye997npOVsNQ">
+    <valueIfNotReceived xmi:id="_JWrkAPUlEeyXNMijK69yfA" defaultVal="100000.0"/>
+    <initValue xmi:id="_VSYHsAiyEe2PgNfDdRvGSA"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_UBH6UOd4Eeym1vCwkNoiAw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_QmNzcPb_EeyPjPxeigDHmw" filename="/home/jharbin/academic/sesame/WP6/metric-results/completedRooms"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_g8Hi0N1AEeyWQcgNPk0koQ" name="totalDistanceAtEnd">
+    <valueIfNotReceived xmi:id="_1PD_YPeeEeylIplG5t0blg" defaultVal="-100000.0"/>
+    <initValue xmi:id="_WlcSEAiyEe2PgNfDdRvGSA"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_Uav7QOd4Eeym1vCwkNoiAw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_RIG_kPb_EeyPjPxeigDHmw" filename="/home/jharbin/academic/sesame/WP6/metric-results/totalDistance"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_bJdhUN04EeyAL51MCA53dw" startTime="100.0" endTime="350.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IPLIEeyyicYP_3f6ng" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IfLIEeyyicYP_3f6ng" propertyName="geometry_msgs/twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_mIrOcN0YEeyv8LH3vdSfnw" name="attackVel_robot1" variableToAffect="_TXerYOIdEeynuZg3j0KLEQ">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_ciaRQN04EeyAL51MCA53dw" startTime="100.0" endTime="350.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IvLIEeyyicYP_3f6ng" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2I_LIEeyyicYP_3f6ng" propertyName="geometry_msgs/twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_mf6CsN0YEeyv8LH3vdSfnw" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_eIZ-sN04EeyAL51MCA53dw" startTime="100.0" endTime="350.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2JPLIEeyyicYP_3f6ng" propertyName="geometry_msgs/twist.linear.x" lowerBound="-1.0" upperBound="1.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2JfLIEeyyicYP_3f6ng" propertyName="geometry_msgs/twist.linear.y" lowerBound="-1.0" upperBound="1.0"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_Vo1xYN04EeyAL51MCA53dw _g8Hi0N1AEeyWQcgNPk0koQ _hrtGEPZBEeypkdw9q4st1A" conditionMetrics="_Vo1xYN04EeyAL51MCA53dw _g8Hi0N1AEeyWQcgNPk0koQ" includedOperations="_lc6UoN0YEeyv8LH3vdSfnw _mIrOcN0YEeyv8LH3vdSfnw _mf6CsN0YEeyv8LH3vdSfnw">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="200"/>
+    <performedTests name="Test_001_26_07_2022_02_16_47">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="5"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.029245922891130594" upperBound="0.7858140395363206"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.5833940508135882" upperBound="0.6426837746175051"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5918213341498708"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_002_26_07_2022_02_16_47">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="14"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="8"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.366012417782152" upperBound="0.46944205302919706"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.3197825558380947" upperBound="0.5338508555291447"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_26_07_2022_04_57_31">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot1" variableToAffect="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.707245279401886" upperBound="0.7208866125174187"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.3630191497472244" upperBound="-0.02952695026190666"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="16"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.4659306584767915" upperBound="0.22291274142553508"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.6822723018759134" upperBound="0.7101189210567147"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.54595575114138"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="1.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_002_26_07_2022_04_57_31">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="11"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="8"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.19321215404525915" upperBound="0.6780937273808993"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.9899088559565401" upperBound="0.9978241336546271"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_26_07_2022_05_05_40">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot1" variableToAffect="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="1"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.008559707126852834" upperBound="0.8157968848746417"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.18513770268479846" upperBound="0.9477259694168871"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.4519404907001227"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="1.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_002_26_07_2022_05_05_40">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="7"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="6.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="3.8824982247903432"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_003_26_07_2022_05_05_40">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9250895668594796" upperBound="0.9782695672525846"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.6203039957193968" upperBound="-0.01909230066919876"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.48315681433393487"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_004_26_07_2022_05_05_40">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot1" variableToAffect="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="4"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="12"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.5190098071338549" upperBound="0.3752262389911525"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.9386353831599628" upperBound="-0.07475738291738399"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.544899249438068"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_005_26_07_2022_05_05_40">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="2"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="5"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.686003621900932" upperBound="0.8530903409658372"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.8162129022296061" upperBound="0.836785321990171"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="8"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.512218610400752" upperBound="0.3003068627279306"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.8614668692977774" upperBound="-0.06307543949634598"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="7.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.767959292775748"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="10.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_006_26_07_2022_05_05_40">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot1" variableToAffect="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9549830243847579" upperBound="0.9563323930375762"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.1998446606189177" upperBound="0.2118068693537829"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="5"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.02893095900575693" upperBound="0.2605687149817859"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.5736180167490983" upperBound="0.19431876539775783"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5884927264833041"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_007_26_07_2022_05_05_40">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="15"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.038455429480663605" upperBound="0.40496205842576183"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.5653455203748368" upperBound="-0.5077788276889239"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot1" variableToAffect="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="7"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.012232621260019672" upperBound="0.7531538446368267"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.117486933631749" upperBound="0.3342146038443913"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="19"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.1345521191576322" upperBound="0.8249337351685989"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.4279224342622183" upperBound="0.9367047292917574"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="7.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.604757885101717"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="164.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_008_26_07_2022_05_05_40">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="5"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.5639902779147479" upperBound="0.9234421986497476"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.5650947540103852" upperBound="0.1471335114627751"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot1" variableToAffect="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.13741912694690295" upperBound="0.08520010865726732"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.32588808385826606" upperBound="0.7754378338331749"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="4"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="14"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.46195258948456464" upperBound="0.8235510797434549"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.551946766834897" upperBound="0.9920212899554065"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.6283240656750804"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_009_26_07_2022_05_48_59" developedFrom="//@campaigns.0/@performedTests.7 //@campaigns.0/@performedTests.9">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot1" variableToAffect="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="16"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="12"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.5190098071338549" upperBound="0.3752262389911525"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.9386353831599628" upperBound="-0.07475738291738399"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.6002330290981153"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_010_26_07_2022_05_48_59" developedFrom="//@campaigns.0/@performedTests.7 //@campaigns.0/@performedTests.9">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot1" variableToAffect="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9549830243847579" upperBound="0.9563323930375762"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.1998446606189177" upperBound="0.2118068693537829"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.02893095900575693" upperBound="0.2605687149817859"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.5736180167490983" upperBound="0.19431876539775783"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="4.90250733764874"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_011_26_07_2022_05_48_59" developedFrom="//@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.9">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="2"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.686003621900932" upperBound="0.8530903409658372"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.8162129022296061" upperBound="0.836785321990171"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="5"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.02893095900575693" upperBound="0.2605687149817859"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.5736180167490983" upperBound="0.19431876539775783"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.7627121433928978"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="13.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_012_26_07_2022_05_48_59" developedFrom="//@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.9">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="8"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.512218610400752" upperBound="0.3003068627279306"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.8614668692977774" upperBound="-0.06307543949634598"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot1" variableToAffect="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9549830243847579" upperBound="0.9563323930375762"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.1998446606189177" upperBound="0.2118068693537829"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5891113775271041"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_013_26_07_2022_05_48_59" developedFrom="//@campaigns.0/@performedTests.5">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.593639201492708"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_014_26_07_2022_05_48_59" developedFrom="//@campaigns.0/@performedTests.5">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="7"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.551810981464151"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_015_26_07_2022_05_48_59" developedFrom="//@campaigns.0/@performedTests.5">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="17"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="3.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="6.955429325175822"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_016_26_07_2022_05_48_59" developedFrom="//@campaigns.0/@performedTests.5">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="7"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="3.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="3.8744162235570094"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="277.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_017_26_07_2022_06_32_18" developedFrom="//@campaigns.0/@performedTests.19 //@campaigns.0/@performedTests.18">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="7"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="3.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="8.562642791804741"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_018_26_07_2022_06_32_18" developedFrom="//@campaigns.0/@performedTests.19 //@campaigns.0/@performedTests.18">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="3.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="3.7351451785942817"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_019_26_07_2022_06_32_18" developedFrom="//@campaigns.0/@performedTests.14 //@campaigns.0/@performedTests.5">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.686003621900932" upperBound="0.8530903409658372"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.8162129022296061" upperBound="0.836785321990171"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="5"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.02893095900575693" upperBound="0.2605687149817859"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.5736180167490983" upperBound="0.19431876539775783"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5938543720566851"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_020_26_07_2022_06_32_18" developedFrom="//@campaigns.0/@performedTests.14 //@campaigns.0/@performedTests.5">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5878021435011649"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_021_26_07_2022_06_32_18" developedFrom="//@campaigns.0/@performedTests.19 //@campaigns.0/@performedTests.18">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="7"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="1"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="5.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="3.8666799374867753"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="117.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_022_26_07_2022_06_32_18" developedFrom="//@campaigns.0/@performedTests.19 //@campaigns.0/@performedTests.18">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="17"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="9"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5313903814355754"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_023_26_07_2022_06_32_18" developedFrom="//@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.13">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="17"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="3.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="6.872751154858493"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_024_26_07_2022_06_32_18" developedFrom="//@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.13">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot1" variableToAffect="_TXerYOIdEeynuZg3j0KLEQ" fromTemplate="_mIrOcN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.9549830243847579" upperBound="0.9563323930375762"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="0.1998446606189177" upperBound="0.2118068693537829"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot2" variableToAffect="_VH-_sOIdEeynuZg3j0KLEQ" fromTemplate="_mf6CsN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="-0.02893095900575693" upperBound="0.2605687149817859"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-0.5736180167490983" upperBound="0.19431876539775783"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.529117241966921"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_025_26_07_2022_07_15_37" developedFrom="//@campaigns.0/@performedTests.20">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="7"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="3.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="6.902398353830816"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="276.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_026_26_07_2022_07_15_37" developedFrom="//@campaigns.0/@performedTests.20">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="7"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="7"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.7286280434866103"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="13.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_027_26_07_2022_07_15_37" developedFrom="//@campaigns.0/@performedTests.20">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="7"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="9"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="3.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="8.95503080939338"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_028_26_07_2022_07_15_37" developedFrom="//@campaigns.0/@performedTests.20">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="3.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="3.927515162229863"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_029_26_07_2022_07_15_37" developedFrom="//@campaigns.0/@performedTests.21 //@campaigns.0/@performedTests.18">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="8"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="3.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="7.316984774832082"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_030_26_07_2022_07_15_37" developedFrom="//@campaigns.0/@performedTests.21 //@campaigns.0/@performedTests.18">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="17"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionVariable" metric="_Vo1xYN04EeyAL51MCA53dw"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="3.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="7.019599798584007"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_031_26_07_2022_07_15_37" developedFrom="//@campaigns.0/@performedTests.20">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="7"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_g8Hi0N1AEeyWQcgNPk0koQ"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="6"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="9.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="0.5671171393158652"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_032_26_07_2022_07_15_37" developedFrom="//@campaigns.0/@performedTests.20">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" name="attackVel_robot0" variableToAffect="_OxQuMOIdEeynuZg3j0KLEQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw">
+        <activation xsi:type="TestingMM.FuzzingOperations:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="16"/>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="TestingMM.StandardGrammar:BasicCondition" bincomp="GREATER_THAN">
+              <left metric="_Vo1xYN04EeyAL51MCA53dw"/>
+              <right xsi:type="TestingMM.StandardGrammar:ConditionInteger" value="13"/>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.x" lowerBound="0.47950295869050574" upperBound="0.7101273609107875"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" propertyName="geometry_msgs/twist.linear.y" lowerBound="-4.4189190059462646E-4" upperBound="0.9683007214087237"/>
+      </operations>
+      <metrics metric="_Vo1xYN04EeyAL51MCA53dw">
+        <result name="completedRooms" value="3.0"/>
+      </metrics>
+      <metrics metric="_g8Hi0N1AEeyWQcgNPk0koQ">
+        <result name="totalDistanceAtEnd" value="3.566641751133743"/>
+      </metrics>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+    </performedTests>
+    <resultSets name="FULL-26_07_2022_06_32_18-intermediate-16" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.5 //@campaigns.0/@performedTests.13 //@campaigns.0/@performedTests.19 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.11 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.14"/>
+    <resultSets name="NONDOM-26_07_2022_06_32_18-intermediate-16" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.18"/>
+    <resultSets name="FULL-26_07_2022_07_15_37-intermediate-24" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.20 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.26 //@campaigns.0/@performedTests.13 //@campaigns.0/@performedTests.19 //@campaigns.0/@performedTests.21 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.5"/>
+    <resultSets name="NONDOM-26_07_2022_07_15_37-intermediate-24" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.20"/>
+    <resultSets name="FULL-26_07_2022_07_58_55-intermediate-32" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.30 //@campaigns.0/@performedTests.20 //@campaigns.0/@performedTests.32 //@campaigns.0/@performedTests.33 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.26 //@campaigns.0/@performedTests.28 //@campaigns.0/@performedTests.13"/>
+    <resultSets name="NONDOM-26_07_2022_07_58_55-intermediate-32" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.30"/>
+    <resultSets name="FULL-26_07_2022_07_58_55-final" results="//@campaigns.0/@performedTests.30 //@campaigns.0/@performedTests.20 //@campaigns.0/@performedTests.32 //@campaigns.0/@performedTests.33 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.26 //@campaigns.0/@performedTests.28 //@campaigns.0/@performedTests.13"/>
+    <resultSets name="NONDOM-26_07_2022_07_58_55-final" results="//@campaigns.0/@performedTests.30"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="300"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_healthcare.sh">
+    <variables xmi:id="_OxQuMOIdEeynuZg3j0KLEQ" name="/tb3_0/cmd_velIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <variables xmi:id="_TXerYOIdEeynuZg3j0KLEQ" name="/tb3_1/cmd_velIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <variables xmi:id="_VH-_sOIdEeynuZg3j0KLEQ" name="/tb3_2/cmd_velIN" type="_fSym0OIdEeynuZg3j0KLEQ"/>
+    <variables xmi:id="_XUzckOIdEeynuZg3j0KLEQ" name="/tb3_0/amcl_pose" type="_SSj1kOMsEeylpr6FvsbTLQ"/>
+    <variables xmi:id="_Y4k8cOIdEeynuZg3j0KLEQ" name="/tb3_1/amcl_pose" type="_SSj1kOMsEeylpr6FvsbTLQ"/>
+    <variables xmi:id="_aSUWkOIdEeynuZg3j0KLEQ" name="/tb3_2/amcl_pose" type="_SSj1kOMsEeylpr6FvsbTLQ"/>
+    <variables xmi:id="_lUwUoOuyEeye997npOVsNQ" name="/tb3_0/roomCompleted" type="_QJhQgOuzEeye997npOVsNQ"/>
+    <variables xmi:id="_zQnykOuyEeye997npOVsNQ" name="/tb3_1/roomCompleted" type="_QJhQgOuzEeye997npOVsNQ"/>
+    <variables xmi:id="_zbYREOuyEeye997npOVsNQ" name="/tb3_2/roomCompleted" type="_QJhQgOuzEeye997npOVsNQ"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="tb3_0" subscriber="_OxQuMOIdEeynuZg3j0KLEQ" publisher="_XUzckOIdEeynuZg3j0KLEQ"/>
+    <nodes xmi:id="_IXXz8OIdEeynuZg3j0KLEQ" name="tb3_1" subscriber="_TXerYOIdEeynuZg3j0KLEQ" publisher="_Y4k8cOIdEeynuZg3j0KLEQ"/>
+    <nodes xmi:id="_JclvkOIdEeynuZg3j0KLEQ" name="tb3_2" subscriber="_VH-_sOIdEeynuZg3j0KLEQ" publisher="_aSUWkOIdEeynuZg3j0KLEQ"/>
+    <nodes xmi:id="_MMQa0OIdEeynuZg3j0KLEQ" name="collective_intelligence" publisher="_OxQuMOIdEeynuZg3j0KLEQ _TXerYOIdEeynuZg3j0KLEQ _VH-_sOIdEeynuZg3j0KLEQ"/>
+    <simulator xsi:type="TestingMM.MRSPackage:ROSSimulator" xmi:id="_JmUQcOMnEeylpr6FvsbTLQ" hostname="0.0.0.0" port="9090"/>
+    <propertyType xmi:id="_fSym0OIdEeynuZg3j0KLEQ" name="geometry_msgs/Twist">
+      <parameters xmi:id="_iUwjAOIdEeynuZg3j0KLEQ" name="linear">
+        <subparameters xmi:id="_k6FmgOIdEeynuZg3j0KLEQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_mT1nsOIdEeynuZg3j0KLEQ" name="Y" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_nVtUYOIdEeynuZg3j0KLEQ" name="Z" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      </parameters>
+      <parameters xmi:id="_3ajbkOIeEeypgch9ckSMJQ" name="angular">
+        <subparameters xmi:id="_3ajbkeIeEeypgch9ckSMJQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_3ajbkuIeEeypgch9ckSMJQ" name="Y" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+        <subparameters xmi:id="_3ajbk-IeEeypgch9ckSMJQ" name="Z" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      </parameters>
+    </propertyType>
+    <propertyType xmi:id="_xq0RkOIeEeypgch9ckSMJQ" name="float64"/>
+    <propertyType xmi:id="_SSj1kOMsEeylpr6FvsbTLQ" name="geometry_msgs/PoseWithCovarianceStamped">
+      <parameters xmi:id="_fiW3sOMsEeylpr6FvsbTLQ" name="pose">
+        <subparameters xmi:id="_iRjo4OMsEeylpr6FvsbTLQ" name="position" type="_l5jqUOMsEeylpr6FvsbTLQ"/>
+      </parameters>
+    </propertyType>
+    <propertyType xmi:id="_l5jqUOMsEeylpr6FvsbTLQ" name="geometry_msgs/Point">
+      <parameters xmi:id="_oT1UYOMsEeylpr6FvsbTLQ" name="X" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      <parameters xmi:id="_qCfOkOMsEeylpr6FvsbTLQ" name="Y" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+      <parameters xmi:id="_sJRU4OMsEeylpr6FvsbTLQ" name="Z" type="_xq0RkOIeEeypgch9ckSMJQ"/>
+    </propertyType>
+    <propertyType xmi:id="_QJhQgOuzEeye997npOVsNQ" name="std_msgs/Int32"/>
+  </mrs>
+</TestingMM:TestingSpace>

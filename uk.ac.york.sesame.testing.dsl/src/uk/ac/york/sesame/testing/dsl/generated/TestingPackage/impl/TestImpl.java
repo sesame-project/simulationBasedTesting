@@ -19,15 +19,14 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
-
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestDebuggingFlags;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
 /**
@@ -39,11 +38,11 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getName <em>Name</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getAttacks <em>Attacks</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getMetrics <em>Metrics</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getEndTrigger <em>End Trigger</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getDevelopedFrom <em>Developed From</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getParentCampaign <em>Parent Campaign</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl#getDebugFlags <em>Debug Flags</em>}</li>
  * </ul>
  *
  * @generated
@@ -70,14 +69,14 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAttacks() <em>Attacks</em>}' containment reference list.
+	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAttacks()
+	 * @see #getOperations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Attack> attacks;
+	protected EList<FuzzingOperation> operations;
 
 	/**
 	 * The cached value of the '{@link #getMetrics() <em>Metrics</em>}' containment reference list.
@@ -90,16 +89,6 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	protected EList<MetricInstance> metrics;
 
 	/**
-	 * The cached value of the '{@link #getEndTrigger() <em>End Trigger</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndTrigger()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExecutionEndTrigger endTrigger;
-
-	/**
 	 * The cached value of the '{@link #getDevelopedFrom() <em>Developed From</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -108,6 +97,16 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * @ordered
 	 */
 	protected EList<Test> developedFrom;
+
+	/**
+	 * The cached value of the '{@link #getDebugFlags() <em>Debug Flags</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDebugFlags()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TestDebuggingFlags> debugFlags;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -154,11 +153,11 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Attack> getAttacks() {
-		if (attacks == null) {
-			attacks = new EObjectContainmentWithInverseEList<Attack>(Attack.class, this, TestingPackagePackage.TEST__ATTACKS, AttacksPackage.ATTACK__CONTAINING_TEST);
+	public EList<FuzzingOperation> getOperations() {
+		if (operations == null) {
+			operations = new EObjectContainmentWithInverseEList<FuzzingOperation>(FuzzingOperation.class, this, TestingPackagePackage.TEST__OPERATIONS, FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST);
 		}
-		return attacks;
+		return operations;
 	}
 
 	/**
@@ -171,49 +170,6 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 			metrics = new EObjectContainmentEList<MetricInstance>(MetricInstance.class, this, TestingPackagePackage.TEST__METRICS);
 		}
 		return metrics;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExecutionEndTrigger getEndTrigger() {
-		return endTrigger;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEndTrigger(ExecutionEndTrigger newEndTrigger, NotificationChain msgs) {
-		ExecutionEndTrigger oldEndTrigger = endTrigger;
-		endTrigger = newEndTrigger;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST__END_TRIGGER, oldEndTrigger, newEndTrigger);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndTrigger(ExecutionEndTrigger newEndTrigger) {
-		if (newEndTrigger != endTrigger) {
-			NotificationChain msgs = null;
-			if (endTrigger != null)
-				msgs = ((InternalEObject)endTrigger).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST__END_TRIGGER, null, msgs);
-			if (newEndTrigger != null)
-				msgs = ((InternalEObject)newEndTrigger).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST__END_TRIGGER, null, msgs);
-			msgs = basicSetEndTrigger(newEndTrigger, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST__END_TRIGGER, newEndTrigger, newEndTrigger));
 	}
 
 	/**
@@ -243,12 +199,24 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<TestDebuggingFlags> getDebugFlags() {
+		if (debugFlags == null) {
+			debugFlags = new EObjectContainmentEList<TestDebuggingFlags>(TestDebuggingFlags.class, this, TestingPackagePackage.TEST__DEBUG_FLAGS);
+		}
+		return debugFlags;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TestingPackagePackage.TEST__ATTACKS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAttacks()).basicAdd(otherEnd, msgs);
+			case TestingPackagePackage.TEST__OPERATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperations()).basicAdd(otherEnd, msgs);
 			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -265,14 +233,14 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TestingPackagePackage.TEST__ATTACKS:
-				return ((InternalEList<?>)getAttacks()).basicRemove(otherEnd, msgs);
+			case TestingPackagePackage.TEST__OPERATIONS:
+				return ((InternalEList<?>)getOperations()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TEST__METRICS:
 				return ((InternalEList<?>)getMetrics()).basicRemove(otherEnd, msgs);
-			case TestingPackagePackage.TEST__END_TRIGGER:
-				return basicSetEndTrigger(null, msgs);
 			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
 				return eBasicSetContainer(null, TestingPackagePackage.TEST__PARENT_CAMPAIGN, msgs);
+			case TestingPackagePackage.TEST__DEBUG_FLAGS:
+				return ((InternalEList<?>)getDebugFlags()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -301,16 +269,16 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 		switch (featureID) {
 			case TestingPackagePackage.TEST__NAME:
 				return getName();
-			case TestingPackagePackage.TEST__ATTACKS:
-				return getAttacks();
+			case TestingPackagePackage.TEST__OPERATIONS:
+				return getOperations();
 			case TestingPackagePackage.TEST__METRICS:
 				return getMetrics();
-			case TestingPackagePackage.TEST__END_TRIGGER:
-				return getEndTrigger();
 			case TestingPackagePackage.TEST__DEVELOPED_FROM:
 				return getDevelopedFrom();
 			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
 				return getParentCampaign();
+			case TestingPackagePackage.TEST__DEBUG_FLAGS:
+				return getDebugFlags();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -327,20 +295,21 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 			case TestingPackagePackage.TEST__NAME:
 				setName((String)newValue);
 				return;
-			case TestingPackagePackage.TEST__ATTACKS:
-				getAttacks().clear();
-				getAttacks().addAll((Collection<? extends Attack>)newValue);
+			case TestingPackagePackage.TEST__OPERATIONS:
+				getOperations().clear();
+				getOperations().addAll((Collection<? extends FuzzingOperation>)newValue);
 				return;
 			case TestingPackagePackage.TEST__METRICS:
 				getMetrics().clear();
 				getMetrics().addAll((Collection<? extends MetricInstance>)newValue);
 				return;
-			case TestingPackagePackage.TEST__END_TRIGGER:
-				setEndTrigger((ExecutionEndTrigger)newValue);
-				return;
 			case TestingPackagePackage.TEST__DEVELOPED_FROM:
 				getDevelopedFrom().clear();
 				getDevelopedFrom().addAll((Collection<? extends Test>)newValue);
+				return;
+			case TestingPackagePackage.TEST__DEBUG_FLAGS:
+				getDebugFlags().clear();
+				getDebugFlags().addAll((Collection<? extends TestDebuggingFlags>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -357,17 +326,17 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 			case TestingPackagePackage.TEST__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case TestingPackagePackage.TEST__ATTACKS:
-				getAttacks().clear();
+			case TestingPackagePackage.TEST__OPERATIONS:
+				getOperations().clear();
 				return;
 			case TestingPackagePackage.TEST__METRICS:
 				getMetrics().clear();
 				return;
-			case TestingPackagePackage.TEST__END_TRIGGER:
-				setEndTrigger((ExecutionEndTrigger)null);
-				return;
 			case TestingPackagePackage.TEST__DEVELOPED_FROM:
 				getDevelopedFrom().clear();
+				return;
+			case TestingPackagePackage.TEST__DEBUG_FLAGS:
+				getDebugFlags().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -383,16 +352,16 @@ public class TestImpl extends MinimalEObjectImpl.Container implements Test {
 		switch (featureID) {
 			case TestingPackagePackage.TEST__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TestingPackagePackage.TEST__ATTACKS:
-				return attacks != null && !attacks.isEmpty();
+			case TestingPackagePackage.TEST__OPERATIONS:
+				return operations != null && !operations.isEmpty();
 			case TestingPackagePackage.TEST__METRICS:
 				return metrics != null && !metrics.isEmpty();
-			case TestingPackagePackage.TEST__END_TRIGGER:
-				return endTrigger != null;
 			case TestingPackagePackage.TEST__DEVELOPED_FROM:
 				return developedFrom != null && !developedFrom.isEmpty();
 			case TestingPackagePackage.TEST__PARENT_CAMPAIGN:
 				return getParentCampaign() != null;
+			case TestingPackagePackage.TEST__DEBUG_FLAGS:
+				return debugFlags != null && !debugFlags.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

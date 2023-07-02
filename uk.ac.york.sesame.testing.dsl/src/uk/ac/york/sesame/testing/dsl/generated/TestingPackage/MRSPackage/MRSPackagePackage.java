@@ -68,13 +68,13 @@ public interface MRSPackagePackage extends EPackage {
 	int MRS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Topics</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MRS__TOPICS = 0;
+	int MRS__VARIABLES = 0;
 
 	/**
 	 * The feature id for the '<em><b>Launch File Location</b></em>' attribute.
@@ -86,13 +86,40 @@ public interface MRSPackagePackage extends EPackage {
 	int MRS__LAUNCH_FILE_LOCATION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Launch Delay Seconds</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MRS__LAUNCH_DELAY_SECONDS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Custom Terminate File Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MRS__CUSTOM_TERMINATE_FILE_LOCATION = 3;
+
+	/**
+	 * The feature id for the '<em><b>Record File Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MRS__RECORD_FILE_LOCATION = 4;
+
+	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MRS__NODES = 2;
+	int MRS__NODES = 5;
 
 	/**
 	 * The feature id for the '<em><b>Simulator</b></em>' containment reference.
@@ -101,7 +128,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MRS__SIMULATOR = 3;
+	int MRS__SIMULATOR = 6;
 
 	/**
 	 * The feature id for the '<em><b>Property Type</b></em>' containment reference list.
@@ -110,7 +137,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MRS__PROPERTY_TYPE = 4;
+	int MRS__PROPERTY_TYPE = 7;
 
 	/**
 	 * The number of structural features of the '<em>MRS</em>' class.
@@ -119,7 +146,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MRS_FEATURE_COUNT = 5;
+	int MRS_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>MRS</em>' class.
@@ -195,14 +222,14 @@ public interface MRSPackagePackage extends EPackage {
 	int NODE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TopicImpl <em>Topic</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.VariableImpl <em>Variable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TopicImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getTopic()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.VariableImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getVariable()
 	 * @generated
 	 */
-	int TOPIC = 2;
+	int VARIABLE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -211,7 +238,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC__NAME = 0;
+	int VARIABLE__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -220,25 +247,25 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC__TYPE = 1;
+	int VARIABLE__TYPE = 1;
 
 	/**
-	 * The number of structural features of the '<em>Topic</em>' class.
+	 * The number of structural features of the '<em>Variable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC_FEATURE_COUNT = 2;
+	int VARIABLE_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Topic</em>' class.
+	 * The number of operations of the '<em>Variable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOPIC_OPERATION_COUNT = 0;
+	int VARIABLE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TypeImpl <em>Type</em>}' class.
@@ -584,15 +611,15 @@ public interface MRSPackagePackage extends EPackage {
 	EClass getMRS();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getTopics <em>Topics</em>}'.
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getVariables <em>Variables</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Topics</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getTopics()
+	 * @return the meta object for the containment reference list '<em>Variables</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getVariables()
 	 * @see #getMRS()
 	 * @generated
 	 */
-	EReference getMRS_Topics();
+	EReference getMRS_Variables();
 
 	/**
 	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getLaunchFileLocation <em>Launch File Location</em>}'.
@@ -604,6 +631,39 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getMRS_LaunchFileLocation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getLaunchDelaySeconds <em>Launch Delay Seconds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Launch Delay Seconds</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getLaunchDelaySeconds()
+	 * @see #getMRS()
+	 * @generated
+	 */
+	EAttribute getMRS_LaunchDelaySeconds();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getCustomTerminateFileLocation <em>Custom Terminate File Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Custom Terminate File Location</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getCustomTerminateFileLocation()
+	 * @see #getMRS()
+	 * @generated
+	 */
+	EAttribute getMRS_CustomTerminateFileLocation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getRecordFileLocation <em>Record File Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Record File Location</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getRecordFileLocation()
+	 * @see #getMRS()
+	 * @generated
+	 */
+	EAttribute getMRS_RecordFileLocation();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getNodes <em>Nodes</em>}'.
@@ -693,36 +753,36 @@ public interface MRSPackagePackage extends EPackage {
 	EReference getNode_Properties();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic <em>Topic</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable <em>Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Topic</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic
+	 * @return the meta object for class '<em>Variable</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable
 	 * @generated
 	 */
-	EClass getTopic();
+	EClass getVariable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic#getName()
-	 * @see #getTopic()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable#getName()
+	 * @see #getVariable()
 	 * @generated
 	 */
-	EAttribute getTopic_Name();
+	EAttribute getVariable_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic#getType <em>Type</em>}'.
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic#getType()
-	 * @see #getTopic()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable#getType()
+	 * @see #getVariable()
 	 * @generated
 	 */
-	EReference getTopic_Type();
+	EReference getVariable_Type();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type <em>Type</em>}'.
@@ -992,12 +1052,12 @@ public interface MRSPackagePackage extends EPackage {
 		EClass MRS = eINSTANCE.getMRS();
 
 		/**
-		 * The meta object literal for the '<em><b>Topics</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MRS__TOPICS = eINSTANCE.getMRS_Topics();
+		EReference MRS__VARIABLES = eINSTANCE.getMRS_Variables();
 
 		/**
 		 * The meta object literal for the '<em><b>Launch File Location</b></em>' attribute feature.
@@ -1006,6 +1066,30 @@ public interface MRSPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MRS__LAUNCH_FILE_LOCATION = eINSTANCE.getMRS_LaunchFileLocation();
+
+		/**
+		 * The meta object literal for the '<em><b>Launch Delay Seconds</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MRS__LAUNCH_DELAY_SECONDS = eINSTANCE.getMRS_LaunchDelaySeconds();
+
+		/**
+		 * The meta object literal for the '<em><b>Custom Terminate File Location</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MRS__CUSTOM_TERMINATE_FILE_LOCATION = eINSTANCE.getMRS_CustomTerminateFileLocation();
+
+		/**
+		 * The meta object literal for the '<em><b>Record File Location</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MRS__RECORD_FILE_LOCATION = eINSTANCE.getMRS_RecordFileLocation();
 
 		/**
 		 * The meta object literal for the '<em><b>Nodes</b></em>' containment reference list feature.
@@ -1074,14 +1158,14 @@ public interface MRSPackagePackage extends EPackage {
 		EReference NODE__PROPERTIES = eINSTANCE.getNode_Properties();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TopicImpl <em>Topic</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.VariableImpl <em>Variable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TopicImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getTopic()
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.VariableImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getVariable()
 		 * @generated
 		 */
-		EClass TOPIC = eINSTANCE.getTopic();
+		EClass VARIABLE = eINSTANCE.getVariable();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1089,7 +1173,7 @@ public interface MRSPackagePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TOPIC__NAME = eINSTANCE.getTopic_Name();
+		EAttribute VARIABLE__NAME = eINSTANCE.getVariable_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
@@ -1097,7 +1181,7 @@ public interface MRSPackagePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TOPIC__TYPE = eINSTANCE.getTopic_Type();
+		EReference VARIABLE__TYPE = eINSTANCE.getVariable_Type();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TypeImpl <em>Type</em>}' class.

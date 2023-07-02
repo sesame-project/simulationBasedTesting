@@ -84,6 +84,39 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TestingPackagePackage.TEST_DEBUGGING_FLAGS: {
+				TestDebuggingFlags testDebuggingFlags = (TestDebuggingFlags)theEObject;
+				T result = caseTestDebuggingFlags(testDebuggingFlags);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.PASSIVE_MONITOR_ONLY: {
+				PassiveMonitorOnly passiveMonitorOnly = (PassiveMonitorOnly)theEObject;
+				T result = casePassiveMonitorOnly(passiveMonitorOnly);
+				if (result == null) result = caseTestDebuggingFlags(passiveMonitorOnly);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.ACTIVATION_GENERATION_METHOD: {
+				ActivationGenerationMethod activationGenerationMethod = (ActivationGenerationMethod)theEObject;
+				T result = caseActivationGenerationMethod(activationGenerationMethod);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.TIME_BASED_ACTIVATION_GENERATION_METHOD: {
+				TimeBasedActivationGenerationMethod timeBasedActivationGenerationMethod = (TimeBasedActivationGenerationMethod)theEObject;
+				T result = caseTimeBasedActivationGenerationMethod(timeBasedActivationGenerationMethod);
+				if (result == null) result = caseActivationGenerationMethod(timeBasedActivationGenerationMethod);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.CONDITION_BASED_ACTIVATION_GENERATION_METHOD: {
+				ConditionBasedActivationGenerationMethod conditionBasedActivationGenerationMethod = (ConditionBasedActivationGenerationMethod)theEObject;
+				T result = caseConditionBasedActivationGenerationMethod(conditionBasedActivationGenerationMethod);
+				if (result == null) result = caseActivationGenerationMethod(conditionBasedActivationGenerationMethod);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case TestingPackagePackage.CAMPAIGN_RESULT_SET: {
 				CampaignResultSet campaignResultSet = (CampaignResultSet)theEObject;
 				T result = caseCampaignResultSet(campaignResultSet);
@@ -100,12 +133,6 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				TimeBasedEnd timeBasedEnd = (TimeBasedEnd)theEObject;
 				T result = caseTimeBasedEnd(timeBasedEnd);
 				if (result == null) result = caseExecutionEndTrigger(timeBasedEnd);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TestingPackagePackage.GRAMMAR_CONSTRAINT: {
-				GrammarConstraint grammarConstraint = (GrammarConstraint)theEObject;
-				T result = caseGrammarConstraint(grammarConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -137,9 +164,25 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TestingPackagePackage.GRAMMAR_SPECIFICATION: {
-				GrammarSpecification grammarSpecification = (GrammarSpecification)theEObject;
-				T result = caseGrammarSpecification(grammarSpecification);
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS: {
+				NSGAWithCoverageCells nsgaWithCoverageCells = (NSGAWithCoverageCells)theEObject;
+				T result = caseNSGAWithCoverageCells(nsgaWithCoverageCells);
+				if (result == null) result = caseNSGAEvolutionaryAlgorithm(nsgaWithCoverageCells);
+				if (result == null) result = caseEvolutionaryAlgorithm(nsgaWithCoverageCells);
+				if (result == null) result = caseTestGenerationApproach(nsgaWithCoverageCells);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.DIMENSION_INTERVAL: {
+				DimensionInterval dimensionInterval = (DimensionInterval)theEObject;
+				T result = caseDimensionInterval(dimensionInterval);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.REPEATED_EXECUTION: {
+				RepeatedExecution repeatedExecution = (RepeatedExecution)theEObject;
+				T result = caseRepeatedExecution(repeatedExecution);
+				if (result == null) result = caseTestGenerationApproach(repeatedExecution);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -193,6 +236,81 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Test Debugging Flags</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Test Debugging Flags</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTestDebuggingFlags(TestDebuggingFlags object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Passive Monitor Only</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Passive Monitor Only</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePassiveMonitorOnly(PassiveMonitorOnly object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Activation Generation Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Activation Generation Method</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActivationGenerationMethod(ActivationGenerationMethod object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Time Based Activation Generation Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Time Based Activation Generation Method</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTimeBasedActivationGenerationMethod(TimeBasedActivationGenerationMethod object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Based Activation Generation Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Based Activation Generation Method</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionBasedActivationGenerationMethod(ConditionBasedActivationGenerationMethod object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Campaign Result Set</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -234,21 +352,6 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTimeBasedEnd(TimeBasedEnd object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Grammar Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Grammar Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGrammarConstraint(GrammarConstraint object) {
 		return null;
 	}
 
@@ -313,17 +416,47 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Grammar Specification</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>NSGA With Coverage Cells</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Grammar Specification</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>NSGA With Coverage Cells</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGrammarSpecification(GrammarSpecification object) {
+	public T caseNSGAWithCoverageCells(NSGAWithCoverageCells object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dimension Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dimension Interval</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDimensionInterval(DimensionInterval object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Repeated Execution</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Repeated Execution</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRepeatedExecution(RepeatedExecution object) {
 		return null;
 	}
 

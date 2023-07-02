@@ -1,0 +1,15 @@
+[% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase();
+   var fuzzOpCommon : Template = TemplateFactory.load("fuzzingoperations/fuzzOpCommon.egl");
+   var opClassName = fuzzOp.name + "BlackHoleFlatMap_" + classNameExt;
+ %]
+	
+[%= fuzzOpCommon.process() %]
+	@Override 
+	public void processElement(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
+		if (value.getTopic().equalsIgnoreCase(topic) && isReadyNow()) {
+			System.out.println("Message: " + value + " discarded.");
+		} else {
+			out.collect(value);
+		}
+	}	
+}

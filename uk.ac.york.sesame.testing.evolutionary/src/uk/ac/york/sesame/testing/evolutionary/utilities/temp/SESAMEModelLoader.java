@@ -8,30 +8,20 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
-import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.epsilon.common.util.StringProperties;
-import org.eclipse.epsilon.emc.emf.EmfModel;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
-import org.eclipse.epsilon.eol.models.IRelativePathResolver;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.*;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.*;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
 
 public class SESAMEModelLoader {
 	private String testingModelFilename;
@@ -43,7 +33,7 @@ public class SESAMEModelLoader {
 
 	public Resource loadTestingSpace() throws EolModelLoadingException {
 		// Initialize the model
-		AttacksPackage.eINSTANCE.eClass();
+		FuzzingOperationsPackage.eINSTANCE.eClass();
 		TestingPackagePackage.eINSTANCE.eClass();
 
 		// Register the XMI resource factory for the .website extension
@@ -123,5 +113,10 @@ public class SESAMEModelLoader {
 			}
 		}
 		return tc_o;
+	}
+	
+	public TestingSpace getTestingSpace(Resource testingSpaceModel) {
+		TestingSpace ts = (TestingSpace) testingSpaceModel.getContents().get(0);
+		return ts;
 	}
 }

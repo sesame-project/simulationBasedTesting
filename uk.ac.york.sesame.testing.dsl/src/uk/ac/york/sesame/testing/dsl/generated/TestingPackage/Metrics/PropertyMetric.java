@@ -4,7 +4,6 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ComponentProperty;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Property Metric</b></em>'.
@@ -22,7 +21,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Compone
  * @generated
  */
 public interface PropertyMetric extends Metric {
-
 	/**
 	 * Returns the value of the '<em><b>Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -44,4 +42,5 @@ public interface PropertyMetric extends Metric {
 	 * @generated
 	 */
 	void setProperty(ComponentProperty value);
+
 } // PropertyMetric

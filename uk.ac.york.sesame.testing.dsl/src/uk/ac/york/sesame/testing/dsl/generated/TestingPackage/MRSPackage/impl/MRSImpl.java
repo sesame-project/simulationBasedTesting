@@ -22,8 +22,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Simulator;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,8 +33,11 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getTopics <em>Topics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getVariables <em>Variables</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getLaunchFileLocation <em>Launch File Location</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getLaunchDelaySeconds <em>Launch Delay Seconds</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getCustomTerminateFileLocation <em>Custom Terminate File Location</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getRecordFileLocation <em>Record File Location</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getSimulator <em>Simulator</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSImpl#getPropertyType <em>Property Type</em>}</li>
@@ -44,14 +47,14 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type;
  */
 public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	/**
-	 * The cached value of the '{@link #getTopics() <em>Topics</em>}' containment reference list.
+	 * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTopics()
+	 * @see #getVariables()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Topic> topics;
+	protected EList<Variable> variables;
 
 	/**
 	 * The default value of the '{@link #getLaunchFileLocation() <em>Launch File Location</em>}' attribute.
@@ -72,6 +75,66 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	 * @ordered
 	 */
 	protected String launchFileLocation = LAUNCH_FILE_LOCATION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLaunchDelaySeconds() <em>Launch Delay Seconds</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLaunchDelaySeconds()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int LAUNCH_DELAY_SECONDS_EDEFAULT = 40;
+
+	/**
+	 * The cached value of the '{@link #getLaunchDelaySeconds() <em>Launch Delay Seconds</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLaunchDelaySeconds()
+	 * @generated
+	 * @ordered
+	 */
+	protected int launchDelaySeconds = LAUNCH_DELAY_SECONDS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCustomTerminateFileLocation() <em>Custom Terminate File Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCustomTerminateFileLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CUSTOM_TERMINATE_FILE_LOCATION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCustomTerminateFileLocation() <em>Custom Terminate File Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCustomTerminateFileLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected String customTerminateFileLocation = CUSTOM_TERMINATE_FILE_LOCATION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRecordFileLocation() <em>Record File Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRecordFileLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String RECORD_FILE_LOCATION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getRecordFileLocation() <em>Record File Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRecordFileLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected String recordFileLocation = RECORD_FILE_LOCATION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' containment reference list.
@@ -127,11 +190,11 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Topic> getTopics() {
-		if (topics == null) {
-			topics = new EObjectContainmentEList<Topic>(Topic.class, this, MRSPackagePackage.MRS__TOPICS);
+	public EList<Variable> getVariables() {
+		if (variables == null) {
+			variables = new EObjectContainmentEList<Variable>(Variable.class, this, MRSPackagePackage.MRS__VARIABLES);
 		}
-		return topics;
+		return variables;
 	}
 
 	/**
@@ -153,6 +216,69 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 		launchFileLocation = newLaunchFileLocation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MRSPackagePackage.MRS__LAUNCH_FILE_LOCATION, oldLaunchFileLocation, launchFileLocation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getLaunchDelaySeconds() {
+		return launchDelaySeconds;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLaunchDelaySeconds(int newLaunchDelaySeconds) {
+		int oldLaunchDelaySeconds = launchDelaySeconds;
+		launchDelaySeconds = newLaunchDelaySeconds;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MRSPackagePackage.MRS__LAUNCH_DELAY_SECONDS, oldLaunchDelaySeconds, launchDelaySeconds));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getCustomTerminateFileLocation() {
+		return customTerminateFileLocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCustomTerminateFileLocation(String newCustomTerminateFileLocation) {
+		String oldCustomTerminateFileLocation = customTerminateFileLocation;
+		customTerminateFileLocation = newCustomTerminateFileLocation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MRSPackagePackage.MRS__CUSTOM_TERMINATE_FILE_LOCATION, oldCustomTerminateFileLocation, customTerminateFileLocation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getRecordFileLocation() {
+		return recordFileLocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRecordFileLocation(String newRecordFileLocation) {
+		String oldRecordFileLocation = recordFileLocation;
+		recordFileLocation = newRecordFileLocation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MRSPackagePackage.MRS__RECORD_FILE_LOCATION, oldRecordFileLocation, recordFileLocation));
 	}
 
 	/**
@@ -230,8 +356,8 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MRSPackagePackage.MRS__TOPICS:
-				return ((InternalEList<?>)getTopics()).basicRemove(otherEnd, msgs);
+			case MRSPackagePackage.MRS__VARIABLES:
+				return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
 			case MRSPackagePackage.MRS__NODES:
 				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
 			case MRSPackagePackage.MRS__SIMULATOR:
@@ -250,10 +376,16 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MRSPackagePackage.MRS__TOPICS:
-				return getTopics();
+			case MRSPackagePackage.MRS__VARIABLES:
+				return getVariables();
 			case MRSPackagePackage.MRS__LAUNCH_FILE_LOCATION:
 				return getLaunchFileLocation();
+			case MRSPackagePackage.MRS__LAUNCH_DELAY_SECONDS:
+				return getLaunchDelaySeconds();
+			case MRSPackagePackage.MRS__CUSTOM_TERMINATE_FILE_LOCATION:
+				return getCustomTerminateFileLocation();
+			case MRSPackagePackage.MRS__RECORD_FILE_LOCATION:
+				return getRecordFileLocation();
 			case MRSPackagePackage.MRS__NODES:
 				return getNodes();
 			case MRSPackagePackage.MRS__SIMULATOR:
@@ -273,12 +405,21 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MRSPackagePackage.MRS__TOPICS:
-				getTopics().clear();
-				getTopics().addAll((Collection<? extends Topic>)newValue);
+			case MRSPackagePackage.MRS__VARIABLES:
+				getVariables().clear();
+				getVariables().addAll((Collection<? extends Variable>)newValue);
 				return;
 			case MRSPackagePackage.MRS__LAUNCH_FILE_LOCATION:
 				setLaunchFileLocation((String)newValue);
+				return;
+			case MRSPackagePackage.MRS__LAUNCH_DELAY_SECONDS:
+				setLaunchDelaySeconds((Integer)newValue);
+				return;
+			case MRSPackagePackage.MRS__CUSTOM_TERMINATE_FILE_LOCATION:
+				setCustomTerminateFileLocation((String)newValue);
+				return;
+			case MRSPackagePackage.MRS__RECORD_FILE_LOCATION:
+				setRecordFileLocation((String)newValue);
 				return;
 			case MRSPackagePackage.MRS__NODES:
 				getNodes().clear();
@@ -303,11 +444,20 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MRSPackagePackage.MRS__TOPICS:
-				getTopics().clear();
+			case MRSPackagePackage.MRS__VARIABLES:
+				getVariables().clear();
 				return;
 			case MRSPackagePackage.MRS__LAUNCH_FILE_LOCATION:
 				setLaunchFileLocation(LAUNCH_FILE_LOCATION_EDEFAULT);
+				return;
+			case MRSPackagePackage.MRS__LAUNCH_DELAY_SECONDS:
+				setLaunchDelaySeconds(LAUNCH_DELAY_SECONDS_EDEFAULT);
+				return;
+			case MRSPackagePackage.MRS__CUSTOM_TERMINATE_FILE_LOCATION:
+				setCustomTerminateFileLocation(CUSTOM_TERMINATE_FILE_LOCATION_EDEFAULT);
+				return;
+			case MRSPackagePackage.MRS__RECORD_FILE_LOCATION:
+				setRecordFileLocation(RECORD_FILE_LOCATION_EDEFAULT);
 				return;
 			case MRSPackagePackage.MRS__NODES:
 				getNodes().clear();
@@ -330,10 +480,16 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MRSPackagePackage.MRS__TOPICS:
-				return topics != null && !topics.isEmpty();
+			case MRSPackagePackage.MRS__VARIABLES:
+				return variables != null && !variables.isEmpty();
 			case MRSPackagePackage.MRS__LAUNCH_FILE_LOCATION:
 				return LAUNCH_FILE_LOCATION_EDEFAULT == null ? launchFileLocation != null : !LAUNCH_FILE_LOCATION_EDEFAULT.equals(launchFileLocation);
+			case MRSPackagePackage.MRS__LAUNCH_DELAY_SECONDS:
+				return launchDelaySeconds != LAUNCH_DELAY_SECONDS_EDEFAULT;
+			case MRSPackagePackage.MRS__CUSTOM_TERMINATE_FILE_LOCATION:
+				return CUSTOM_TERMINATE_FILE_LOCATION_EDEFAULT == null ? customTerminateFileLocation != null : !CUSTOM_TERMINATE_FILE_LOCATION_EDEFAULT.equals(customTerminateFileLocation);
+			case MRSPackagePackage.MRS__RECORD_FILE_LOCATION:
+				return RECORD_FILE_LOCATION_EDEFAULT == null ? recordFileLocation != null : !RECORD_FILE_LOCATION_EDEFAULT.equals(recordFileLocation);
 			case MRSPackagePackage.MRS__NODES:
 				return nodes != null && !nodes.isEmpty();
 			case MRSPackagePackage.MRS__SIMULATOR:
@@ -356,6 +512,12 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (launchFileLocation: ");
 		result.append(launchFileLocation);
+		result.append(", launchDelaySeconds: ");
+		result.append(launchDelaySeconds);
+		result.append(", customTerminateFileLocation: ");
+		result.append(customTerminateFileLocation);
+		result.append(", recordFileLocation: ");
+		result.append(recordFileLocation);
 		result.append(')');
 		return result.toString();
 	}

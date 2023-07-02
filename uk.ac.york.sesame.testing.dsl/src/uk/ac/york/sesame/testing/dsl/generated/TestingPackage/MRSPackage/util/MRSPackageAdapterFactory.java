@@ -76,8 +76,8 @@ public class MRSPackageAdapterFactory extends AdapterFactoryImpl {
 				return createNodeAdapter();
 			}
 			@Override
-			public Adapter caseTopic(Topic object) {
-				return createTopicAdapter();
+			public Adapter caseVariable(Variable object) {
+				return createVariableAdapter();
 			}
 			@Override
 			public Adapter caseType(Type object) {
@@ -156,16 +156,16 @@ public class MRSPackageAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic <em>Topic</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable <em>Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable
 	 * @generated
 	 */
-	public Adapter createTopicAdapter() {
+	public Adapter createVariableAdapter() {
 		return null;
 	}
 

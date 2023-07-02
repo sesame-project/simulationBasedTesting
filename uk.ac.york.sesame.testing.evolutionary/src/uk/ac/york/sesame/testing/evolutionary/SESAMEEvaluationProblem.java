@@ -7,49 +7,49 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.Random;
 
-import org.apache.flink.streaming.api.datastream.DataStream;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.LongDeserializer;
-import org.apache.kafka.common.serialization.LongSerializer;
-import org.apache.kafka.common.serialization.StringDeserializer;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.uma.jmetal.problem.Problem;
-import org.awaitility.Awaitility;
-import org.awaitility.Awaitility.*;
 
-import java.time.Duration.*;
-import java.util.concurrent.TimeUnit;
-
-import akka.remote.serialization.StringSerializer;
+import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
+import uk.ac.york.sesame.testing.architecture.data.ControlMessage;
 import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 
 public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long serialVersionUID = 1L;
 
 	private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = true;
 	private static final boolean DEBUG_ACTUALLY_RUN = true;
+	
+	private static final boolean FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE = true;
+	
+	private static final boolean RECORD_ROSBAG = true;
 
 	private static final long DEFAULT_HARDCODED_DELAY = 100;
 	
-	private static final long DEFAULT_COMPILE_DELAY = 10;
-	private static final long DEFAULT_KILL_DELAY = 10;
-	private static final long DEFAULT_MODEL_SAVING_DELAY = 10;
+	private static final long DEFAULT_KILL_DELAY = 5;
+	private static final long DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS = 5;
+	private static final long DEFAULT_WAIT_FOR_FINALISE_DELAY = 5;
+	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
+	private static final double MODEL_SAVING_DELAY_IN_DEBUG_MODE = 0.5;
 
 	private static final boolean DUMMY_EVAL = false;
+
+	private boolean conditionBased;
 
 	private Random rng;
 
@@ -60,68 +60,71 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private String campaignName;
 	private String orchestratorBasePath;
 	
-	private StreamExecutionEnvironment env;
-	//private DataStream<MetricMessage> metricStream;
-	private Resource testSpaceModel;
+	private ConditionGenerator condGenerator;
+
+	private SESAMEModelLoader loader;
 	private TestCampaign selectedCampaign;
+	private MRS mrs;
 
 	private SESAMEEGLExecutor eglEx;
 	private String codeGenerationDirectory;
 
-	private SESAMEModelLoader loader;
 	private MetricConsumer metricConsumer;
+	private ControlProducer controlProducer;
 
-	// TODO: how to model the grammar
-	// Grammar<String> grammar;
-
-	// properties here have been removed - they are either redundant or set from the
-	// model
-
-	// Sets up a metric queue to listen for the given campaign
 	private void setupMetricListener(TestCampaign campaign) throws StreamSetupFailed, InvalidTestCampaign {
-		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+		
+		// TODO: move these properties - except for the bootstrap.servers: into the Consumer
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
 		properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
 		properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, MetricMessage.class.getName());
 
-		// metricHandler = new MetricHandler();
-
 		// TODO: initializing the rng properly for repeatable experiments
 		rng = new Random();
 		List<TopicPartition> parts = new ArrayList<TopicPartition>();
 		metricConsumer = new MetricConsumer(campaign, properties, parts);
-
 		Thread t = new Thread(metricConsumer);
 		t.start();
 	}
 
-	public SESAMEEvaluationProblem(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory)
-			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException {
-		this.spaceModelFileName = spaceModelFileName;
-		this.campaignName = campaignName;
+	public SESAMEEvaluationProblem(String orchestratorBasePath, SESAMEModelLoader loader, String spaceModelFileName, Resource testingSpaceModel, TestingSpace testingSpace, Optional<TestCampaign> tc_o, String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
+			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException, MissingGrammarFile {
 		this.codeGenerationDirectory = codeGenerationDirectory;
 		this.orchestratorBasePath = orchestratorBasePath;
-		loader = new SESAMEModelLoader(spaceModelFileName);
-		testSpaceModel = loader.loadTestingSpace();
-		Optional<TestCampaign> tc_o = loader.getTestCampaign(testSpaceModel, campaignName);
+		this.conditionBased = conditionBased;
+		this.spaceModelFileName = spaceModelFileName;
+		this.loader = loader;
 
 		// TODO: mrsModelFile is not currently used - until the bug is fixed and there
 		// is a seperate model again
 		//String __mrsModelFile = "testingMRS.model";
 		//eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
+		mrs = testingSpace.getMrs();
+		
 
 		if (tc_o.isPresent()) {
 			selectedCampaign = tc_o.get();
 			setupMetricListener(selectedCampaign);
+			setupControlProducer();
+			condGenerator = new ConditionGenerator(grammarPath, selectedCampaign, conditionDepth);
 		} else {
 			throw new InvalidTestCampaign(campaignName);
 		}
 	}
 	
+	private void setupControlProducer() {
+		controlProducer = new ControlProducer();
+		
+	}
+
 	public TestCampaign getCampaign() {
 		return selectedCampaign;
+	}
+	
+	public ConditionGenerator getCondGenerator() {
+		return condGenerator;
 	}
 
 	public int getNumberOfVariables() {
@@ -131,7 +134,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	// TODO: this should be a method upon TestCampaign when it is figured out how
 	// to create them with the genmodel
 	public int getNumberOfMetricsInTestCampaign(TestCampaign tc) {
-		return tc.getMetrics().size();
+		return (int)tc.getMetrics().stream().filter(m -> m.isUseInOptimisation()).count();
 	}
 
 	public int getNumberOfObjectives() {
@@ -158,6 +161,9 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 			System.out.println("Running test for " + solution);
 			// This ensures that the new test is installed in the model
+			
+			solution.setOperationSequenceNums();
+			
 			solution.ensureModelUpdated(selectedCampaign);
 			loader.saveTestingSpace();
 			// THIS is a temporary change to test if caching is causing the model to be stale for EGL??? 
@@ -167,7 +173,12 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			
 			System.out.print("Waiting to begin code generation...");
 			System.out.flush();
-			TestRunnerUtils.waitForSeconds(DEFAULT_MODEL_SAVING_DELAY);
+			
+			if (DEBUG_ACTUALLY_GENERATE_EGL) { 
+				TestRunnerUtils.waitForSeconds(DEFAULT_MODEL_SAVING_DELAY);
+			} else {
+				TestRunnerUtils.waitForSeconds(MODEL_SAVING_DELAY_IN_DEBUG_MODE);
+			}
 			
 			if (DEBUG_ACTUALLY_GENERATE_EGL) {
 				// This transform the testing space model into code - by invoking EGX/EGL
@@ -182,63 +193,76 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			if (DEBUG_ACTUALLY_RUN) {
 				// Invoke maven script to ensure that the project is rebuilt
 				TestRunnerUtils.compileProject(codeGenerationDirectory);
-				System.out.print("Waiting for project to recompile...");
-				System.out.flush();
-				TestRunnerUtils.waitForSeconds(DEFAULT_COMPILE_DELAY);
-				System.out.println("done");
+				
+				System.out.println("Compilation completed");
 
 				// Invokes the main method for this code
 				System.out.print("Launching test runner for " + mainClassName + "... (classpath " + codeGenerationDirectory + ")");
 				System.out.flush();
 				TestRunnerUtils.exec(mainClassName, codeGenerationDirectory);
-				
-				////////////////////////////// THIS IS ONLY FOR TEMPORARY LOGGING OF THE POSITIONS FOR THE EXPERIMENT 
-				// Take out after 1st July!
-				Thread varLogThread = new Thread() {
-					public void run() {				
-						try {
-							System.out.println("Starting var logging thread");
-							TestRunnerUtils.__variableLogging(mainClassName);
-							System.out.println("Var logging thread completed");
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
+				System.out.println("Testrunner " + mainClassName + " launched");		
+				System.out.flush();
+										
+				if (RECORD_ROSBAG) {
+					Optional<String> recordLauncherFile_o = getRecordLocationForMRS();
+					if (recordLauncherFile_o.isPresent()) {
+						String recordLauncherFile = recordLauncherFile_o.get();				
+						// TODO: this should be generalised so it is either specified in the
+						// 	model or the recording is based on the simulation type
+						System.out.println("Rosbag recording started via " + recordLauncherFile + "...");
+						TestRunnerUtils.recordSim(recordLauncherFile, solution.getName());
+						System.out.flush();
 					}
-				};
-				varLogThread.start();
-				//////////////////////////////////////////////////////////////////////////////////////////////////////
+				}
 				
-				System.out.println("done");
 				System.out.flush();
 
 				// Need to wait for simulation completion here...
 				// If no trigger specified specifically for this test, use the default for the
 				// campaign
 				ExecutionEndTrigger et;
-				et = solution.getInternalType().getEndTrigger();
-				if (et == null) {
-					System.out.println("Using default end trigger defined in testing campaign");
-					et = selectedCampaign.getDefaultEndTrigger();
-				}
+				long waitTimeSeconds = DEFAULT_HARDCODED_DELAY;
+				et = selectedCampaign.getEndTrigger();
 
 				// Wait for the time given in the model under the test
 				if (et instanceof TimeBasedEnd) {
-					long waitTimeSeconds = ((TimeBasedEnd) et).getTimeLimitSeconds();
-					if (waitTimeSeconds == 0) {
-						waitTimeSeconds = DEFAULT_HARDCODED_DELAY;
-					}
-					System.out.print("Waiting for completion of fixed time delay = " + waitTimeSeconds);
+					waitTimeSeconds = ((TimeBasedEnd)et).getTimeLimitSeconds();
+					System.out.print("Using selected fixed time delay...");		
 					System.out.flush();
 				} else {
-					System.out.println("Using hardcoded delay of " + DEFAULT_HARDCODED_DELAY);
-					TestRunnerUtils.waitForSeconds(DEFAULT_HARDCODED_DELAY);
+					System.out.print("Using hardcoded delay...");
 				}
+				
+				waitTimeSeconds = waitTimeSeconds - DEFAULT_WAIT_FOR_FINALISE_DELAY;
+				
+				System.out.print("Waiting " + waitTimeSeconds + " seconds...");
+				TestRunnerUtils.waitForSeconds(waitTimeSeconds);
 				System.out.println("done");
 
+				// Send the end of simulation message
+				// TODO: for now the end of simulation message is used for both
+				// time tracking and start-end tracking
+				controlProducer.send(ControlMessage.CONTROL_COMMAND.END_SIMULATION);
+				// Send the time tracking message
+				//controlProducer.send(ControlMessage.CONTROL_COMMAND.GET_OPERATION_RECORDED_TIMINGS);
+				metricConsumer.notifyFinalise();
+				System.out.print("Finalising: Waiting for metrics to come back from test runner " + waitTimeSeconds + " seconds...");
+				TestRunnerUtils.waitForSeconds(DEFAULT_WAIT_FOR_FINALISE_DELAY);
+				System.out.println("done");
+				
 				// Ensure that the model is updated with the metric results
-				metricConsumer.finaliseUpdates();
+				metricConsumer.finaliseUpdates();				
 
+				String customTerminateScript = mrs.getCustomTerminateFileLocation();
+				if (customTerminateScript != null) {
+					System.out.println("Running custom termination script " + customTerminateScript);
+					TestRunnerUtils.runCustomTerminateScript(customTerminateScript);
+					TestRunnerUtils.waitForSeconds(DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS);
+				}
+				
+				System.out.println("Running standard termination script");
 				TestRunnerUtils.killProcesses();
+				
 				TestRunnerUtils.clearKafka();
 				System.out.print("Waiting for simulation processes to be killed...");
 				System.out.flush();
@@ -254,6 +278,14 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		} catch (NumberFormatException e) {
 			System.out.println("Probably a metric returned something non-numeric");
 			e.printStackTrace();
+		}
+	}
+
+	private Optional<String> getRecordLocationForMRS() {
+		if (mrs != null && mrs.getRecordFileLocation() != null) {
+			return Optional.of(mrs.getRecordFileLocation());
+		} else {
+			return Optional.empty();
 		}
 	}
 
@@ -286,48 +318,85 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	// and TestCampaign
 	// TODO: this needs to be specified as an extension point, for now, just using
 	// 50% for all attacks
-	public boolean includeAttack(Attack a) {
-		final double INCLUDE_ATTACK_PROB = 0.5;
+	public boolean shouldIncludeFuzzingOperation(FuzzingOperation a) {
+		final double INCLUDE_FuzzingOperation_PROB = 0.5;
 		double v = rng.nextDouble();
-		return (v < INCLUDE_ATTACK_PROB);
+		return (v < INCLUDE_FuzzingOperation_PROB);
 	}
 
 	public SESAMETestSolution createSolution() {
 		// Needs to create the initial selections from the TestingSpace and constraints
 		// from TestCampaign
 
-		// Created with attacks specified within the space
-		// TODO: attacks can be a "subset" of each of the selected attacks
+		// Created with FuzzingOperations specified within the space
+		// TODO: FuzzingOperations can be a "subset" of each of the selected FuzzingOperations
 		int i = 0;
 		System.out.println("createSolution");
 
 		SESAMETestSolution sol = new SESAMETestSolution(selectedCampaign);
 
-		EList<Attack> attacksInCampaign = selectedCampaign.getIncludedAttacks();
-		for (Attack a : attacksInCampaign) {
-			if (includeAttack(a)) {
-				// Attacks produced as a "subset" of each of the selected attacks
+		EList<FuzzingOperation> FuzzingOperationsInCampaign = selectedCampaign.getIncludedOperations();
+		for (FuzzingOperation a : FuzzingOperationsInCampaign) {
+			if (shouldIncludeFuzzingOperation(a)) {
+				// FuzzingOperations produced as a "subset" of each of the selected FuzzingOperations
 				// TODO: this should be configurable somehow
-				SESAMETestAttack sta = SESAMETestAttack.reductionOfAttack(sol, a);
-				sol.addContents(i++, sta);
+				if (conditionBased) {
+					SESAMEFuzzingOperationWrapper sta;
+					try {
+						sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a, condGenerator);
+						sol.addContents(i++, sta);
+					} catch (ConversionFailed e) {
+						e.printStackTrace();
+					} catch (ParamError e) {
+						e.printStackTrace();
+					}
+					
+				} else {
+					// Time-based fuzzing
+					SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a);
+					sol.addContents(i++, sta);
+				}
+				
 			}
 		}
 		
 		// If we haven't picked any, pick one
-		if (sol.getNumberOfVariables() == 0 && attacksInCampaign.size() > 0) {
-			Attack baseAttack = getRandomAttack(attacksInCampaign);
-			SESAMETestAttack sta = SESAMETestAttack.reductionOfAttack(sol, baseAttack);
-			sol.addContents(i++, sta);
+		if (sol.getNumberOfVariables() == 0 && FuzzingOperationsInCampaign.size() > 0) {
+			FuzzingOperation baseFuzzingOperation = getRandomFuzzingOperation(FuzzingOperationsInCampaign);
+			if (conditionBased) {
+				SESAMEFuzzingOperationWrapper sta;
+				try {
+					sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, baseFuzzingOperation, condGenerator);
+					sol.addContents(i++, sta);
+				} catch (ConversionFailed e) {
+					if (FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE) {
+						throw new SolutionCreationFailed(e);
+					} else {
+						e.printStackTrace();
+					}
+					
+				} catch (ParamError e) {
+					if (FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE) {
+						throw new SolutionCreationFailed(e);
+					} else {
+						e.printStackTrace();
+					}
+				}
+				
+			} else {
+				SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, baseFuzzingOperation);
+				sol.addContents(i++, sta);
+			}
 		}
 		
 		return sol;
 	}
 
-	private Attack getRandomAttack(EList<Attack> attacks)
+	private FuzzingOperation getRandomFuzzingOperation(EList<FuzzingOperation> FuzzingOperations)
 	{
-	    int listSize = attacks.size();
+	    int listSize = FuzzingOperations.size();
 	    int randomIndex = rng.nextInt(listSize);
-	    return attacks.get(randomIndex);
+	    return FuzzingOperations.get(randomIndex);
 	}
 
 	public void shutDownMetricListener() {

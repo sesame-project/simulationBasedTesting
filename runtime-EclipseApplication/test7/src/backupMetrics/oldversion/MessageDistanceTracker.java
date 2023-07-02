@@ -53,7 +53,7 @@ public class MessageDistanceTracker extends KeyedProcessFunction<String, EventMe
     	        Double firstApproachTime = firstApproachState.value();
     	        if (firstApproachTime == null) {
     	        	System.out.println("FIRST APPROACH");
-    	        	firstApproachTime = Double.parseDouble(SimCore.getInstance().getTime());
+    	        	firstApproachTime = SimCore.getInstance().getTime();
     	        	firstApproachState.update(firstApproachTime);
     	        	out.collect(firstApproachTime);
     	        }

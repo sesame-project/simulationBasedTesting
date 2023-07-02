@@ -49,6 +49,33 @@ public interface TestingPackageFactory extends EFactory {
 	Test createTest();
 
 	/**
+	 * Returns a new object of class '<em>Passive Monitor Only</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Passive Monitor Only</em>'.
+	 * @generated
+	 */
+	PassiveMonitorOnly createPassiveMonitorOnly();
+
+	/**
+	 * Returns a new object of class '<em>Time Based Activation Generation Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Time Based Activation Generation Method</em>'.
+	 * @generated
+	 */
+	TimeBasedActivationGenerationMethod createTimeBasedActivationGenerationMethod();
+
+	/**
+	 * Returns a new object of class '<em>Condition Based Activation Generation Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Condition Based Activation Generation Method</em>'.
+	 * @generated
+	 */
+	ConditionBasedActivationGenerationMethod createConditionBasedActivationGenerationMethod();
+
+	/**
 	 * Returns a new object of class '<em>Campaign Result Set</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,15 +92,6 @@ public interface TestingPackageFactory extends EFactory {
 	 * @generated
 	 */
 	TimeBasedEnd createTimeBasedEnd();
-
-	/**
-	 * Returns a new object of class '<em>Grammar Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Grammar Constraint</em>'.
-	 * @generated
-	 */
-	GrammarConstraint createGrammarConstraint();
 
 	/**
 	 * Returns a new object of class '<em>Random Test Generation</em>'.
@@ -94,13 +112,31 @@ public interface TestingPackageFactory extends EFactory {
 	NSGAEvolutionaryAlgorithm createNSGAEvolutionaryAlgorithm();
 
 	/**
-	 * Returns a new object of class '<em>Grammar Specification</em>'.
+	 * Returns a new object of class '<em>NSGA With Coverage Cells</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Grammar Specification</em>'.
+	 * @return a new object of class '<em>NSGA With Coverage Cells</em>'.
 	 * @generated
 	 */
-	GrammarSpecification createGrammarSpecification();
+	NSGAWithCoverageCells createNSGAWithCoverageCells();
+
+	/**
+	 * Returns a new object of class '<em>Dimension Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dimension Interval</em>'.
+	 * @generated
+	 */
+	DimensionInterval createDimensionInterval();
+
+	/**
+	 * Returns a new object of class '<em>Repeated Execution</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Repeated Execution</em>'.
+	 * @generated
+	 */
+	RepeatedExecution createRepeatedExecution();
 
 	/**
 	 * Returns the package supported by this factory.

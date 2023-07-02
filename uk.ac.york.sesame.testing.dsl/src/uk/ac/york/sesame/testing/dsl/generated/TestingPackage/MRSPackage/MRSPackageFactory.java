@@ -40,13 +40,13 @@ public interface MRSPackageFactory extends EFactory {
 	Node createNode();
 
 	/**
-	 * Returns a new object of class '<em>Topic</em>'.
+	 * Returns a new object of class '<em>Variable</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Topic</em>'.
+	 * @return a new object of class '<em>Variable</em>'.
 	 * @generated
 	 */
-	Topic createTopic();
+	Variable createVariable();
 
 	/**
 	 * Returns a new object of class '<em>Type</em>'.

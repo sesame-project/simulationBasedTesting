@@ -6,9 +6,10 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
 /**
@@ -22,8 +23,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getMetrics <em>Metrics</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getPossibleAttacks <em>Possible Attacks</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getGrammarSpecfication <em>Grammar Specfication</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getPossibleFuzzingOperations <em>Possible Fuzzing Operations</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getCampaigns <em>Campaigns</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getMrs <em>Mrs</em>}</li>
  * </ul>
@@ -68,38 +68,16 @@ public interface TestingSpace extends EObject {
 	EList<Metric> getMetrics();
 
 	/**
-	 * Returns the value of the '<em><b>Possible Attacks</b></em>' containment reference list.
-	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack}.
+	 * Returns the value of the '<em><b>Possible Fuzzing Operations</b></em>' containment reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Possible Attacks</em>' containment reference list.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestingSpace_PossibleAttacks()
+	 * @return the value of the '<em>Possible Fuzzing Operations</em>' containment reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestingSpace_PossibleFuzzingOperations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Attack> getPossibleAttacks();
-
-	/**
-	 * Returns the value of the '<em><b>Grammar Specfication</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Grammar Specfication</em>' containment reference.
-	 * @see #setGrammarSpecfication(GrammarSpecification)
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestingSpace_GrammarSpecfication()
-	 * @model containment="true"
-	 * @generated
-	 */
-	GrammarSpecification getGrammarSpecfication();
-
-	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getGrammarSpecfication <em>Grammar Specfication</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Grammar Specfication</em>' containment reference.
-	 * @see #getGrammarSpecfication()
-	 * @generated
-	 */
-	void setGrammarSpecfication(GrammarSpecification value);
+	EList<FuzzingOperation> getPossibleFuzzingOperations();
 
 	/**
 	 * Returns the value of the '<em><b>Campaigns</b></em>' containment reference list.

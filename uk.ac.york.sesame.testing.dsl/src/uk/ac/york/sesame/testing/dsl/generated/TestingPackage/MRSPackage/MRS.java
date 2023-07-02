@@ -15,8 +15,11 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getTopics <em>Topics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getVariables <em>Variables</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getLaunchFileLocation <em>Launch File Location</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getLaunchDelaySeconds <em>Launch Delay Seconds</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getCustomTerminateFileLocation <em>Custom Terminate File Location</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getRecordFileLocation <em>Record File Location</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getNodes <em>Nodes</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getSimulator <em>Simulator</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getPropertyType <em>Property Type</em>}</li>
@@ -28,16 +31,16 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface MRS extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Topics</b></em>' containment reference list.
-	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic}.
+	 * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Topics</em>' containment reference list.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getMRS_Topics()
+	 * @return the value of the '<em>Variables</em>' containment reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getMRS_Variables()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Topic> getTopics();
+	EList<Variable> getVariables();
 
 	/**
 	 * Returns the value of the '<em><b>Launch File Location</b></em>' attribute.
@@ -60,6 +63,73 @@ public interface MRS extends EObject {
 	 * @generated
 	 */
 	void setLaunchFileLocation(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Launch Delay Seconds</b></em>' attribute.
+	 * The default value is <code>"40"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Launch Delay Seconds</em>' attribute.
+	 * @see #setLaunchDelaySeconds(int)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getMRS_LaunchDelaySeconds()
+	 * @model default="40"
+	 * @generated
+	 */
+	int getLaunchDelaySeconds();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getLaunchDelaySeconds <em>Launch Delay Seconds</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Launch Delay Seconds</em>' attribute.
+	 * @see #getLaunchDelaySeconds()
+	 * @generated
+	 */
+	void setLaunchDelaySeconds(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Custom Terminate File Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Custom Terminate File Location</em>' attribute.
+	 * @see #setCustomTerminateFileLocation(String)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getMRS_CustomTerminateFileLocation()
+	 * @model
+	 * @generated
+	 */
+	String getCustomTerminateFileLocation();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getCustomTerminateFileLocation <em>Custom Terminate File Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Custom Terminate File Location</em>' attribute.
+	 * @see #getCustomTerminateFileLocation()
+	 * @generated
+	 */
+	void setCustomTerminateFileLocation(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Record File Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Record File Location</em>' attribute.
+	 * @see #setRecordFileLocation(String)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getMRS_RecordFileLocation()
+	 * @model
+	 * @generated
+	 */
+	String getRecordFileLocation();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getRecordFileLocation <em>Record File Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Record File Location</em>' attribute.
+	 * @see #getRecordFileLocation()
+	 * @generated
+	 */
+	void setRecordFileLocation(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.

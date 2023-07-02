@@ -10,33 +10,40 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.AttackTimesMetric;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.DirectMessageGenerationMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FileStreamResult;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FuzzingOperationTimesMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.InputStream;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricStateKeyedBy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.OutputStream;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.PropertyMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.SimStream;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.SpecialMetric;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StartEndTimingMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StreamMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StreamResult;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.TopicMetric;
-
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.impl.ResultsPackageImpl;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
@@ -89,7 +96,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass topicMetricEClass = null;
+	private EClass variableMetricEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,7 +131,28 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass attackTimesMetricEClass = null;
+	private EClass specialMetricEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass directMessageGenerationMetricEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass startEndTimingMetricEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fuzzingOperationTimesMetricEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -146,13 +174,6 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * @generated
 	 */
 	private EEnum metricOptimisationDirectionEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum metricStateKeyedByEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -204,25 +225,29 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(TestingPackagePackage.eNS_URI);
 		TestingPackagePackageImpl theTestingPackagePackage = (TestingPackagePackageImpl)(registeredPackage instanceof TestingPackagePackageImpl ? registeredPackage : TestingPackagePackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(AttacksPackage.eNS_URI);
-		AttacksPackageImpl theAttacksPackage = (AttacksPackageImpl)(registeredPackage instanceof AttacksPackageImpl ? registeredPackage : AttacksPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FuzzingOperationsPackage.eNS_URI);
+		FuzzingOperationsPackageImpl theFuzzingOperationsPackage = (FuzzingOperationsPackageImpl)(registeredPackage instanceof FuzzingOperationsPackageImpl ? registeredPackage : FuzzingOperationsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 		ResultsPackageImpl theResultsPackage = (ResultsPackageImpl)(registeredPackage instanceof ResultsPackageImpl ? registeredPackage : ResultsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
+		StandardGrammarPackageImpl theStandardGrammarPackage = (StandardGrammarPackageImpl)(registeredPackage instanceof StandardGrammarPackageImpl ? registeredPackage : StandardGrammarPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theMetricsPackage.createPackageContents();
 		theTestingPackagePackage.createPackageContents();
-		theAttacksPackage.createPackageContents();
+		theFuzzingOperationsPackage.createPackageContents();
 		theResultsPackage.createPackageContents();
+		theStandardGrammarPackage.createPackageContents();
 		theMRSPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theMetricsPackage.initializePackageContents();
 		theTestingPackagePackage.initializePackageContents();
-		theAttacksPackage.initializePackageContents();
+		theFuzzingOperationsPackage.initializePackageContents();
 		theResultsPackage.initializePackageContents();
+		theStandardGrammarPackage.initializePackageContents();
 		theMRSPackagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -292,8 +317,8 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMetric_KeyedBy() {
-		return (EAttribute)metricEClass.getEStructuralFeatures().get(2);
+	public EReference getMetric_RelatedVariables() {
+		return (EReference)metricEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -301,7 +326,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMetric_RelatedTopics() {
+	public EReference getMetric_ValueIfNotReceived() {
 		return (EReference)metricEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -310,8 +335,17 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMetric_Default() {
+	public EReference getMetric_InitValue() {
 		return (EReference)metricEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMetric_UseInOptimisation() {
+		return (EAttribute)metricEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -337,8 +371,8 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTopicMetric() {
-		return topicMetricEClass;
+	public EClass getVariableMetric() {
+		return variableMetricEClass;
 	}
 
 	/**
@@ -346,8 +380,8 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTopicMetric_ChosenTopics() {
-		return (EReference)topicMetricEClass.getEStructuralFeatures().get(0);
+	public EReference getVariableMetric_ChosenVariables() {
+		return (EReference)variableMetricEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -445,8 +479,35 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAttackTimesMetric() {
-		return attackTimesMetricEClass;
+	public EClass getSpecialMetric() {
+		return specialMetricEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDirectMessageGenerationMetric() {
+		return directMessageGenerationMetricEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStartEndTimingMetric() {
+		return startEndTimingMetricEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFuzzingOperationTimesMetric() {
+		return fuzzingOperationTimesMetricEClass;
 	}
 
 	/**
@@ -490,15 +551,6 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getMetricStateKeyedBy() {
-		return metricStateKeyedByEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public MetricsFactory getMetricsFactory() {
 		return (MetricsFactory)getEFactoryInstance();
 	}
@@ -531,15 +583,16 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		metricEClass = createEClass(METRIC);
 		createEAttribute(metricEClass, METRIC__NAME);
 		createEAttribute(metricEClass, METRIC__DIR);
-		createEAttribute(metricEClass, METRIC__KEYED_BY);
-		createEReference(metricEClass, METRIC__RELATED_TOPICS);
-		createEReference(metricEClass, METRIC__DEFAULT);
+		createEReference(metricEClass, METRIC__RELATED_VARIABLES);
+		createEReference(metricEClass, METRIC__VALUE_IF_NOT_RECEIVED);
+		createEReference(metricEClass, METRIC__INIT_VALUE);
+		createEAttribute(metricEClass, METRIC__USE_IN_OPTIMISATION);
 
 		metricDefaultEClass = createEClass(METRIC_DEFAULT);
 		createEAttribute(metricDefaultEClass, METRIC_DEFAULT__DEFAULT_VAL);
 
-		topicMetricEClass = createEClass(TOPIC_METRIC);
-		createEReference(topicMetricEClass, TOPIC_METRIC__CHOSEN_TOPICS);
+		variableMetricEClass = createEClass(VARIABLE_METRIC);
+		createEReference(variableMetricEClass, VARIABLE_METRIC__CHOSEN_VARIABLES);
 
 		metricInstanceEClass = createEClass(METRIC_INSTANCE);
 		createEReference(metricInstanceEClass, METRIC_INSTANCE__METRIC);
@@ -555,7 +608,13 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		createEReference(streamMetricEClass, STREAM_METRIC__STREAMS);
 		createEReference(streamMetricEClass, STREAM_METRIC__RES);
 
-		attackTimesMetricEClass = createEClass(ATTACK_TIMES_METRIC);
+		specialMetricEClass = createEClass(SPECIAL_METRIC);
+
+		directMessageGenerationMetricEClass = createEClass(DIRECT_MESSAGE_GENERATION_METRIC);
+
+		startEndTimingMetricEClass = createEClass(START_END_TIMING_METRIC);
+
+		fuzzingOperationTimesMetricEClass = createEClass(FUZZING_OPERATION_TIMES_METRIC);
 
 		streamResultEClass = createEClass(STREAM_RESULT);
 
@@ -564,7 +623,6 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 
 		// Create enums
 		metricOptimisationDirectionEEnum = createEEnum(METRIC_OPTIMISATION_DIRECTION);
-		metricStateKeyedByEEnum = createEEnum(METRIC_STATE_KEYED_BY);
 	}
 
 	/**
@@ -601,11 +659,14 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		// Add supertypes to classes
 		inputStreamEClass.getESuperTypes().add(this.getSimStream());
 		outputStreamEClass.getESuperTypes().add(this.getSimStream());
-		topicMetricEClass.getESuperTypes().add(this.getMetric());
+		variableMetricEClass.getESuperTypes().add(this.getMetric());
 		propertyMetricEClass.getESuperTypes().add(this.getMetric());
 		conditionalPropertyMetricEClass.getESuperTypes().add(this.getPropertyMetric());
 		streamMetricEClass.getESuperTypes().add(this.getMetric());
-		attackTimesMetricEClass.getESuperTypes().add(this.getStreamMetric());
+		specialMetricEClass.getESuperTypes().add(this.getStreamMetric());
+		directMessageGenerationMetricEClass.getESuperTypes().add(this.getStreamMetric());
+		startEndTimingMetricEClass.getESuperTypes().add(this.getDirectMessageGenerationMetric());
+		fuzzingOperationTimesMetricEClass.getESuperTypes().add(this.getSpecialMetric());
 		fileStreamResultEClass.getESuperTypes().add(this.getStreamResult());
 
 		// Initialize classes, features, and operations; add parameters
@@ -618,15 +679,16 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		initEClass(metricEClass, Metric.class, "Metric", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMetric_Name(), ecorePackage.getEString(), "name", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMetric_Dir(), this.getMetricOptimisationDirection(), "dir", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMetric_KeyedBy(), this.getMetricStateKeyedBy(), "keyedBy", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetric_RelatedTopics(), theMRSPackagePackage.getTopic(), null, "relatedTopics", null, 0, -1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetric_Default(), this.getMetricDefault(), null, "default", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMetric_RelatedVariables(), theMRSPackagePackage.getVariable(), null, "relatedVariables", null, 0, -1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMetric_ValueIfNotReceived(), this.getMetricDefault(), null, "valueIfNotReceived", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMetric_InitValue(), this.getMetricDefault(), null, "initValue", null, 1, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMetric_UseInOptimisation(), ecorePackage.getEBoolean(), "useInOptimisation", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(metricDefaultEClass, MetricDefault.class, "MetricDefault", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMetricDefault_DefaultVal(), ecorePackage.getEDouble(), "defaultVal", null, 0, 1, MetricDefault.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(topicMetricEClass, TopicMetric.class, "TopicMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTopicMetric_ChosenTopics(), theMRSPackagePackage.getTopic(), null, "chosenTopics", null, 1, 1, TopicMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(variableMetricEClass, VariableMetric.class, "VariableMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVariableMetric_ChosenVariables(), theMRSPackagePackage.getVariable(), null, "chosenVariables", null, 1, 1, VariableMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(metricInstanceEClass, MetricInstance.class, "MetricInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMetricInstance_Metric(), this.getMetric(), null, "metric", null, 1, 1, MetricInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -642,7 +704,13 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		initEReference(getStreamMetric_Streams(), this.getSimStream(), null, "streams", null, 0, -1, StreamMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStreamMetric_Res(), this.getStreamResult(), null, "res", null, 0, 1, StreamMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(attackTimesMetricEClass, AttackTimesMetric.class, "AttackTimesMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(specialMetricEClass, SpecialMetric.class, "SpecialMetric", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(directMessageGenerationMetricEClass, DirectMessageGenerationMetric.class, "DirectMessageGenerationMetric", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(startEndTimingMetricEClass, StartEndTimingMetric.class, "StartEndTimingMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(fuzzingOperationTimesMetricEClass, FuzzingOperationTimesMetric.class, "FuzzingOperationTimesMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(streamResultEClass, StreamResult.class, "StreamResult", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -653,10 +721,6 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		initEEnum(metricOptimisationDirectionEEnum, MetricOptimisationDirection.class, "MetricOptimisationDirection");
 		addEEnumLiteral(metricOptimisationDirectionEEnum, MetricOptimisationDirection.HIGHEST);
 		addEEnumLiteral(metricOptimisationDirectionEEnum, MetricOptimisationDirection.LOWEST);
-
-		initEEnum(metricStateKeyedByEEnum, MetricStateKeyedBy.class, "MetricStateKeyedBy");
-		addEEnumLiteral(metricStateKeyedByEEnum, MetricStateKeyedBy.TEST);
-		addEEnumLiteral(metricStateKeyedByEEnum, MetricStateKeyedBy.TOPIC);
 	}
 
 } //MetricsPackageImpl

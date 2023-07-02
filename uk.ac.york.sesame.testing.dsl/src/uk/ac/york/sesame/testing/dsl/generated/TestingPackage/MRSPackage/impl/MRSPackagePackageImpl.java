@@ -10,9 +10,9 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ComponentProperty;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MOOSSimulator;
@@ -24,8 +24,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Parsing
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSSimulator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Simulator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 
@@ -34,6 +34,10 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.Metri
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.impl.ResultsPackageImpl;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
@@ -65,7 +69,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass topicEClass = null;
+	private EClass variableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -173,26 +177,30 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(TestingPackagePackage.eNS_URI);
 		TestingPackagePackageImpl theTestingPackagePackage = (TestingPackagePackageImpl)(registeredPackage instanceof TestingPackagePackageImpl ? registeredPackage : TestingPackagePackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(AttacksPackage.eNS_URI);
-		AttacksPackageImpl theAttacksPackage = (AttacksPackageImpl)(registeredPackage instanceof AttacksPackageImpl ? registeredPackage : AttacksPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FuzzingOperationsPackage.eNS_URI);
+		FuzzingOperationsPackageImpl theFuzzingOperationsPackage = (FuzzingOperationsPackageImpl)(registeredPackage instanceof FuzzingOperationsPackageImpl ? registeredPackage : FuzzingOperationsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MetricsPackage.eNS_URI);
 		MetricsPackageImpl theMetricsPackage = (MetricsPackageImpl)(registeredPackage instanceof MetricsPackageImpl ? registeredPackage : MetricsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 		ResultsPackageImpl theResultsPackage = (ResultsPackageImpl)(registeredPackage instanceof ResultsPackageImpl ? registeredPackage : ResultsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
+		StandardGrammarPackageImpl theStandardGrammarPackage = (StandardGrammarPackageImpl)(registeredPackage instanceof StandardGrammarPackageImpl ? registeredPackage : StandardGrammarPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theMRSPackagePackage.createPackageContents();
 		theTestingPackagePackage.createPackageContents();
-		theAttacksPackage.createPackageContents();
+		theFuzzingOperationsPackage.createPackageContents();
 		theMetricsPackage.createPackageContents();
 		theResultsPackage.createPackageContents();
+		theStandardGrammarPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theMRSPackagePackage.initializePackageContents();
 		theTestingPackagePackage.initializePackageContents();
-		theAttacksPackage.initializePackageContents();
+		theFuzzingOperationsPackage.initializePackageContents();
 		theMetricsPackage.initializePackageContents();
 		theResultsPackage.initializePackageContents();
+		theStandardGrammarPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theMRSPackagePackage.freeze();
@@ -216,7 +224,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMRS_Topics() {
+	public EReference getMRS_Variables() {
 		return (EReference)mrsEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -234,8 +242,35 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMRS_LaunchDelaySeconds() {
+		return (EAttribute)mrsEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMRS_CustomTerminateFileLocation() {
+		return (EAttribute)mrsEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMRS_RecordFileLocation() {
+		return (EAttribute)mrsEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getMRS_Nodes() {
-		return (EReference)mrsEClass.getEStructuralFeatures().get(2);
+		return (EReference)mrsEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -244,7 +279,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * @generated
 	 */
 	public EReference getMRS_Simulator() {
-		return (EReference)mrsEClass.getEStructuralFeatures().get(3);
+		return (EReference)mrsEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -253,7 +288,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * @generated
 	 */
 	public EReference getMRS_PropertyType() {
-		return (EReference)mrsEClass.getEStructuralFeatures().get(4);
+		return (EReference)mrsEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -306,8 +341,8 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTopic() {
-		return topicEClass;
+	public EClass getVariable() {
+		return variableEClass;
 	}
 
 	/**
@@ -315,8 +350,8 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTopic_Name() {
-		return (EAttribute)topicEClass.getEStructuralFeatures().get(0);
+	public EAttribute getVariable_Name() {
+		return (EAttribute)variableEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -324,8 +359,8 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTopic_Type() {
-		return (EReference)topicEClass.getEStructuralFeatures().get(1);
+	public EReference getVariable_Type() {
+		return (EReference)variableEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -555,8 +590,11 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 
 		// Create classes and their features
 		mrsEClass = createEClass(MRS);
-		createEReference(mrsEClass, MRS__TOPICS);
+		createEReference(mrsEClass, MRS__VARIABLES);
 		createEAttribute(mrsEClass, MRS__LAUNCH_FILE_LOCATION);
+		createEAttribute(mrsEClass, MRS__LAUNCH_DELAY_SECONDS);
+		createEAttribute(mrsEClass, MRS__CUSTOM_TERMINATE_FILE_LOCATION);
+		createEAttribute(mrsEClass, MRS__RECORD_FILE_LOCATION);
 		createEReference(mrsEClass, MRS__NODES);
 		createEReference(mrsEClass, MRS__SIMULATOR);
 		createEReference(mrsEClass, MRS__PROPERTY_TYPE);
@@ -567,9 +605,9 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		createEReference(nodeEClass, NODE__PUBLISHER);
 		createEReference(nodeEClass, NODE__PROPERTIES);
 
-		topicEClass = createEClass(TOPIC);
-		createEAttribute(topicEClass, TOPIC__NAME);
-		createEReference(topicEClass, TOPIC__TYPE);
+		variableEClass = createEClass(VARIABLE);
+		createEAttribute(variableEClass, VARIABLE__NAME);
+		createEReference(variableEClass, VARIABLE__TYPE);
 
 		typeEClass = createEClass(TYPE);
 		createEAttribute(typeEClass, TYPE__NAME);
@@ -637,21 +675,24 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mrsEClass, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, "MRS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMRS_Topics(), this.getTopic(), null, "topics", null, 0, -1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMRS_Variables(), this.getVariable(), null, "variables", null, 0, -1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMRS_LaunchFileLocation(), ecorePackage.getEString(), "launchFileLocation", null, 0, 1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMRS_LaunchDelaySeconds(), ecorePackage.getEInt(), "launchDelaySeconds", "40", 0, 1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMRS_CustomTerminateFileLocation(), ecorePackage.getEString(), "customTerminateFileLocation", null, 0, 1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMRS_RecordFileLocation(), ecorePackage.getEString(), "recordFileLocation", null, 0, 1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMRS_Nodes(), this.getNode(), null, "nodes", null, 0, -1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMRS_Simulator(), this.getSimulator(), null, "simulator", null, 1, 1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMRS_PropertyType(), this.getType(), null, "propertyType", null, 0, -1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNode_Subscriber(), this.getTopic(), null, "subscriber", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNode_Publisher(), this.getTopic(), null, "publisher", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_Subscriber(), this.getVariable(), null, "subscriber", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_Publisher(), this.getVariable(), null, "publisher", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_Properties(), this.getComponentProperty(), null, "properties", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(topicEClass, Topic.class, "Topic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTopic_Name(), ecorePackage.getEString(), "name", null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTopic_Type(), this.getType(), null, "type", null, 1, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVariable_Type(), this.getType(), null, "type", null, 1, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getType_Name(), ecorePackage.getEString(), "name", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -686,6 +727,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		addEEnumLiteral(parsingMethodEEnum, ParsingMethod.JSON);
 		addEEnumLiteral(parsingMethodEEnum, ParsingMethod.CSV);
 		addEEnumLiteral(parsingMethodEEnum, ParsingMethod.CUSTOM);
+		addEEnumLiteral(parsingMethodEEnum, ParsingMethod.STRING);
 	}
 
 } //MRSPackagePackageImpl

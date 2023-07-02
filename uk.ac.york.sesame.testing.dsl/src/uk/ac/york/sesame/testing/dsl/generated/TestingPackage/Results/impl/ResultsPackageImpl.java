@@ -8,12 +8,14 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttacksPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.impl.AttacksPackageImpl;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl;
@@ -21,6 +23,10 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.Metri
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.Result;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPackage;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
@@ -90,25 +96,29 @@ public class ResultsPackageImpl extends EPackageImpl implements ResultsPackage {
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(TestingPackagePackage.eNS_URI);
 		TestingPackagePackageImpl theTestingPackagePackage = (TestingPackagePackageImpl)(registeredPackage instanceof TestingPackagePackageImpl ? registeredPackage : TestingPackagePackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(AttacksPackage.eNS_URI);
-		AttacksPackageImpl theAttacksPackage = (AttacksPackageImpl)(registeredPackage instanceof AttacksPackageImpl ? registeredPackage : AttacksPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(FuzzingOperationsPackage.eNS_URI);
+		FuzzingOperationsPackageImpl theFuzzingOperationsPackage = (FuzzingOperationsPackageImpl)(registeredPackage instanceof FuzzingOperationsPackageImpl ? registeredPackage : FuzzingOperationsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MetricsPackage.eNS_URI);
 		MetricsPackageImpl theMetricsPackage = (MetricsPackageImpl)(registeredPackage instanceof MetricsPackageImpl ? registeredPackage : MetricsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
+		StandardGrammarPackageImpl theStandardGrammarPackage = (StandardGrammarPackageImpl)(registeredPackage instanceof StandardGrammarPackageImpl ? registeredPackage : StandardGrammarPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theResultsPackage.createPackageContents();
 		theTestingPackagePackage.createPackageContents();
-		theAttacksPackage.createPackageContents();
+		theFuzzingOperationsPackage.createPackageContents();
 		theMetricsPackage.createPackageContents();
+		theStandardGrammarPackage.createPackageContents();
 		theMRSPackagePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theResultsPackage.initializePackageContents();
 		theTestingPackagePackage.initializePackageContents();
-		theAttacksPackage.initializePackageContents();
+		theFuzzingOperationsPackage.initializePackageContents();
 		theMetricsPackage.initializePackageContents();
+		theStandardGrammarPackage.initializePackageContents();
 		theMRSPackagePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed

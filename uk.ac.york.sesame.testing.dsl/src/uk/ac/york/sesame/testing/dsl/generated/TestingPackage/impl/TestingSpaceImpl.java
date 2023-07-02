@@ -18,11 +18,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
-
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpecification;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
@@ -39,8 +38,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getMetrics <em>Metrics</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getPossibleAttacks <em>Possible Attacks</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getGrammarSpecfication <em>Grammar Specfication</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getPossibleFuzzingOperations <em>Possible Fuzzing Operations</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getCampaigns <em>Campaigns</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingSpaceImpl#getMrs <em>Mrs</em>}</li>
  * </ul>
@@ -79,24 +77,14 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 	protected EList<Metric> metrics;
 
 	/**
-	 * The cached value of the '{@link #getPossibleAttacks() <em>Possible Attacks</em>}' containment reference list.
+	 * The cached value of the '{@link #getPossibleFuzzingOperations() <em>Possible Fuzzing Operations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPossibleAttacks()
+	 * @see #getPossibleFuzzingOperations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Attack> possibleAttacks;
-
-	/**
-	 * The cached value of the '{@link #getGrammarSpecfication() <em>Grammar Specfication</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGrammarSpecfication()
-	 * @generated
-	 * @ordered
-	 */
-	protected GrammarSpecification grammarSpecfication;
+	protected EList<FuzzingOperation> possibleFuzzingOperations;
 
 	/**
 	 * The cached value of the '{@link #getCampaigns() <em>Campaigns</em>}' containment reference list.
@@ -175,54 +163,11 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Attack> getPossibleAttacks() {
-		if (possibleAttacks == null) {
-			possibleAttacks = new EObjectContainmentEList<Attack>(Attack.class, this, TestingPackagePackage.TESTING_SPACE__POSSIBLE_ATTACKS);
+	public EList<FuzzingOperation> getPossibleFuzzingOperations() {
+		if (possibleFuzzingOperations == null) {
+			possibleFuzzingOperations = new EObjectContainmentEList<FuzzingOperation>(FuzzingOperation.class, this, TestingPackagePackage.TESTING_SPACE__POSSIBLE_FUZZING_OPERATIONS);
 		}
-		return possibleAttacks;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GrammarSpecification getGrammarSpecfication() {
-		return grammarSpecfication;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGrammarSpecfication(GrammarSpecification newGrammarSpecfication, NotificationChain msgs) {
-		GrammarSpecification oldGrammarSpecfication = grammarSpecfication;
-		grammarSpecfication = newGrammarSpecfication;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECFICATION, oldGrammarSpecfication, newGrammarSpecfication);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGrammarSpecfication(GrammarSpecification newGrammarSpecfication) {
-		if (newGrammarSpecfication != grammarSpecfication) {
-			NotificationChain msgs = null;
-			if (grammarSpecfication != null)
-				msgs = ((InternalEObject)grammarSpecfication).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECFICATION, null, msgs);
-			if (newGrammarSpecfication != null)
-				msgs = ((InternalEObject)newGrammarSpecfication).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECFICATION, null, msgs);
-			msgs = basicSetGrammarSpecfication(newGrammarSpecfication, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECFICATION, newGrammarSpecfication, newGrammarSpecfication));
+		return possibleFuzzingOperations;
 	}
 
 	/**
@@ -290,10 +235,8 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 		switch (featureID) {
 			case TestingPackagePackage.TESTING_SPACE__METRICS:
 				return ((InternalEList<?>)getMetrics()).basicRemove(otherEnd, msgs);
-			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_ATTACKS:
-				return ((InternalEList<?>)getPossibleAttacks()).basicRemove(otherEnd, msgs);
-			case TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECFICATION:
-				return basicSetGrammarSpecfication(null, msgs);
+			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_FUZZING_OPERATIONS:
+				return ((InternalEList<?>)getPossibleFuzzingOperations()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				return ((InternalEList<?>)getCampaigns()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TESTING_SPACE__MRS:
@@ -314,10 +257,8 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 				return getName();
 			case TestingPackagePackage.TESTING_SPACE__METRICS:
 				return getMetrics();
-			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_ATTACKS:
-				return getPossibleAttacks();
-			case TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECFICATION:
-				return getGrammarSpecfication();
+			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_FUZZING_OPERATIONS:
+				return getPossibleFuzzingOperations();
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				return getCampaigns();
 			case TestingPackagePackage.TESTING_SPACE__MRS:
@@ -342,12 +283,9 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 				getMetrics().clear();
 				getMetrics().addAll((Collection<? extends Metric>)newValue);
 				return;
-			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_ATTACKS:
-				getPossibleAttacks().clear();
-				getPossibleAttacks().addAll((Collection<? extends Attack>)newValue);
-				return;
-			case TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECFICATION:
-				setGrammarSpecfication((GrammarSpecification)newValue);
+			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_FUZZING_OPERATIONS:
+				getPossibleFuzzingOperations().clear();
+				getPossibleFuzzingOperations().addAll((Collection<? extends FuzzingOperation>)newValue);
 				return;
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				getCampaigns().clear();
@@ -374,11 +312,8 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TESTING_SPACE__METRICS:
 				getMetrics().clear();
 				return;
-			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_ATTACKS:
-				getPossibleAttacks().clear();
-				return;
-			case TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECFICATION:
-				setGrammarSpecfication((GrammarSpecification)null);
+			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_FUZZING_OPERATIONS:
+				getPossibleFuzzingOperations().clear();
 				return;
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				getCampaigns().clear();
@@ -402,10 +337,8 @@ public class TestingSpaceImpl extends MinimalEObjectImpl.Container implements Te
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case TestingPackagePackage.TESTING_SPACE__METRICS:
 				return metrics != null && !metrics.isEmpty();
-			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_ATTACKS:
-				return possibleAttacks != null && !possibleAttacks.isEmpty();
-			case TestingPackagePackage.TESTING_SPACE__GRAMMAR_SPECFICATION:
-				return grammarSpecfication != null;
+			case TestingPackagePackage.TESTING_SPACE__POSSIBLE_FUZZING_OPERATIONS:
+				return possibleFuzzingOperations != null && !possibleFuzzingOperations.isEmpty();
 			case TestingPackagePackage.TESTING_SPACE__CAMPAIGNS:
 				return campaigns != null && !campaigns.isEmpty();
 			case TestingPackagePackage.TESTING_SPACE__MRS:

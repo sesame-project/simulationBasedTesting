@@ -6,7 +6,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
@@ -21,12 +21,13 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getMetrics <em>Metrics</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedAttacks <em>Included Attacks</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConditionMetrics <em>Condition Metrics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getActivationGeneration <em>Activation Generation</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedOperations <em>Included Operations</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getPerformedTests <em>Performed Tests</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getResultSets <em>Result Sets</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger <em>Default End Trigger</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getEndTrigger <em>End Trigger</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign()
@@ -69,28 +70,50 @@ public interface TestCampaign extends EObject {
 	EList<Metric> getMetrics();
 
 	/**
-	 * Returns the value of the '<em><b>Included Attacks</b></em>' reference list.
-	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack}.
+	 * Returns the value of the '<em><b>Condition Metrics</b></em>' reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Included Attacks</em>' reference list.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_IncludedAttacks()
+	 * @return the value of the '<em>Condition Metrics</em>' reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_ConditionMetrics()
 	 * @model
 	 * @generated
 	 */
-	EList<Attack> getIncludedAttacks();
+	EList<Metric> getConditionMetrics();
 
 	/**
-	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
-	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint}.
+	 * Returns the value of the '<em><b>Activation Generation</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraints</em>' containment reference list.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_Constraints()
+	 * @return the value of the '<em>Activation Generation</em>' containment reference.
+	 * @see #setActivationGeneration(ActivationGenerationMethod)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_ActivationGeneration()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<GrammarConstraint> getConstraints();
+	ActivationGenerationMethod getActivationGeneration();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getActivationGeneration <em>Activation Generation</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Activation Generation</em>' containment reference.
+	 * @see #getActivationGeneration()
+	 * @generated
+	 */
+	void setActivationGeneration(ActivationGenerationMethod value);
+
+	/**
+	 * Returns the value of the '<em><b>Included Operations</b></em>' reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Included Operations</em>' reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_IncludedOperations()
+	 * @model
+	 * @generated
+	 */
+	EList<FuzzingOperation> getIncludedOperations();
 
 	/**
 	 * Returns the value of the '<em><b>Approach</b></em>' containment reference.
@@ -141,25 +164,25 @@ public interface TestCampaign extends EObject {
 	EList<CampaignResultSet> getResultSets();
 
 	/**
-	 * Returns the value of the '<em><b>Default End Trigger</b></em>' containment reference.
+	 * Returns the value of the '<em><b>End Trigger</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default End Trigger</em>' containment reference.
-	 * @see #setDefaultEndTrigger(ExecutionEndTrigger)
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_DefaultEndTrigger()
+	 * @return the value of the '<em>End Trigger</em>' containment reference.
+	 * @see #setEndTrigger(ExecutionEndTrigger)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getTestCampaign_EndTrigger()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ExecutionEndTrigger getDefaultEndTrigger();
+	ExecutionEndTrigger getEndTrigger();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger <em>Default End Trigger</em>}' containment reference.
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getEndTrigger <em>End Trigger</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default End Trigger</em>' containment reference.
-	 * @see #getDefaultEndTrigger()
+	 * @param value the new value of the '<em>End Trigger</em>' containment reference.
+	 * @see #getEndTrigger()
 	 * @generated
 	 */
-	void setDefaultEndTrigger(ExecutionEndTrigger value);
+	void setEndTrigger(ExecutionEndTrigger value);
 
 } // TestCampaign

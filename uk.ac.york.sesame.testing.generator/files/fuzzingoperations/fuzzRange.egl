@@ -1,0 +1,64 @@
+[% var commonTemplate : Template = TemplateFactory.load("fuzzingoperations/fuzzOpCommon.egl");
+commonTemplate.populate("fuzzOp", fuzzOp);
+commonTemplate.populate("classNameMiddle", "FlatMap");
+commonTemplate.populate("extraImports", new List());
+%]
+[%= commonTemplate.process() %]
+
+	@Override
+	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception { 
+	[%
+		var parsingMethod = fuzzOp.variableToAffect.type.parsingMethod.name;
+		var isFuzzingRelative = fuzzOp.isRelative;
+		var paramCount = 0;
+
+		if (parsingMethod.equalsIgnoreCase("JSON")) { 
+	%]
+			if (value.getTopic().equals(topic) && isReadyNow()) {
+				Object obj = JSONValue.parse(value.getValue().toString());
+	      		JSONObject jo = (JSONObject)obj;
+	      		[* TODO: other ValueSets here *]
+	      	[% for (aParameter in fuzzOp.valueSet) { %]
+	      		double genVal[%= paramCount++ %] = new DoubleRange([%= aParameter.lowerBound %], [%=aParameter.upperBound %]).generateInRange(rng);
+	      		[% if (isFuzzingRelative) { %]
+	      		UpdateLambda lop[%= paramCount %] = ((orig) -> { return ((Double)orig + genVal[%= paramCount %]); });
+				jo = ParsingUtils.updateJSONObject(jo, "[%= aParameter.propertyName %]", lop[%= paramCount %]);
+				[% } else { %]
+				jo = ParsingUtils.updateJSONObject(jo, "[%= aParameter.propertyName %]", genVal[%= paramCount %]);
+				[% } %]
+	      		
+	      	[% } %]
+	      		EventMessage valueOut = new EventMessage(value);
+	      		valueOut.setValue(jo.toString());
+				out.collect(valueOut);
+			} else {
+				out.collect(value);
+			}
+			
+		[% } else if (parsingMethod.equalsIgnoreCase("STRING")) { %]
+			if (value.getTopic().contains(topic) && isReadyNow()) {
+				[* TODO: this will apply them sequentially? should it? *]
+				[% for (aParameter in fuzzOp.valueSet) { %]
+				double newValue = new DoubleRange([%= aParameter.lowerBound %], [%=aParameter.upperBound %]).generateInRange(rng);
+				EventMessage valueOut = new EventMessage(value);
+				[% if (isFuzzingRelative) { %]
+				Double origVal = Double.parseDouble((String)value.getValue());
+				Double fuzzedVal = origVal + newValue;
+				valueOut.setValue(fuzzedVal.toString());
+				[% } else { %]
+				valueOut.setValue(newValue.toString());
+				[% } %]
+				
+	      		[% } %]
+				out.collect(valueOut);
+			} else {
+				out.collect(value);
+			}
+			
+			
+		[% } else if (parsingMethod.equalsIgnoreCase("CSV")) { %]
+			raise Unimplemented("Parsing method CSV is not yet implemented");
+		[% } %]	
+	}	
+	[% %]
+}

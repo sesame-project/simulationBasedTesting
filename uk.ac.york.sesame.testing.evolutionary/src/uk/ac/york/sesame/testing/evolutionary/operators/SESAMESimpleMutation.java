@@ -5,16 +5,19 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.Random;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttackActivation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.AttackFixedTime;
-import uk.ac.york.sesame.testing.evolutionary.SESAMETestAttack;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
+import uk.ac.york.sesame.testing.evolutionary.ConditionGenerator;
+import uk.ac.york.sesame.testing.evolutionary.ParamError;
+import uk.ac.york.sesame.testing.evolutionary.SESAMEFuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import it.units.malelab.jgea.representation.tree.Tree;
+import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 //import it.units.malelab.jgea.representation.tree.Tree;
-import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
 import uk.ac.york.sesame.testing.evolutionary.utilities.RandomFunctions;
 
 // TODO: check mutation logic against the changes that I made with Simos on github last year
@@ -23,40 +26,40 @@ import uk.ac.york.sesame.testing.evolutionary.utilities.RandomFunctions;
 public class SESAMESimpleMutation extends SESAMEMutation {
 
 	public enum TimeSpecChangeOp {
-		CHANGE_LENGTH, 
-		CHANGE_START_CONDITION, 
-		CHANGE_END_CONDITION
+		CHANGE_LENGTH, CHANGE_START_CONDITION, CHANGE_END_CONDITION
+	}
+
+	public enum ConditionMutationSelection {
+		SELECT_START, SELECT_END
 	}
 
 	protected final double DEFAULT_PROB_OF_TEMPORAL_MUTATION = 1.0 / 3.0;
 	protected final double DEFAULT_PROB_OF_PARAM_CHANGE = 1.0 / 3.0;
 	protected final double DEFAULT_PROB_OF_PARTICIPANT_CHANGE = 1.0 / 3.0;
-	
+
 	protected double probTemporalMutation = DEFAULT_PROB_OF_TEMPORAL_MUTATION;
 	protected double probParamMutation = DEFAULT_PROB_OF_PARAM_CHANGE;
 	protected double probParticipantMutation = DEFAULT_PROB_OF_PARTICIPANT_CHANGE;
 
 	private final double PROB_OF_TIMESPEC_CHANGE_END = 0.5;
 
-	private final double DEFAULT_PROB_OF_INCLUDING_ROBOT = 0.5;
-
-	protected final int MUTATION_DEPTH = 1;
-
 	private static final long serialVersionUID = 1L;
-	
-	protected Random rng;
-	private FileWriter mutationLog;
-	//protected GrammarBasedSubtreeMutation<String> mutator;
+	private static final double PROB_SELECT_START_OR_END = 0.5;
 
-	public SESAMESimpleMutation(Grammar g, Random rng, String mutationLogFileName, double probTemporalMut, double probParamMut) throws IOException {
+	protected Random rng;
+	protected FileWriter mutationLog;
+	protected ConditionGenerator condGenerator;
+
+	public SESAMESimpleMutation(Random rng, FileWriter mutationLog, double probTemporalMut, double probParamMut,
+			ConditionGenerator cg) throws IOException {
 		this.rng = rng;
 		this.probTemporalMutation = probTemporalMut;
 		this.probParamMutation = probParamMut;
+		this.condGenerator = cg;
 
-		this.mutationLog = new FileWriter(mutationLogFileName);
+		this.mutationLog = mutationLog;
 		mutationLog.write("probTemporalMutation=" + probTemporalMut + "\n");
 		mutationLog.write("probParamMutation=" + probParamMut + "\n");
-		//this.mutator = new GrammarBasedSubtreeMutation<String>(MUTATION_DEPTH, g);
 	}
 
 	// This only applies to the start condition + time length
@@ -81,145 +84,220 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 
 	// This should be pushed into a subclass to indicate that it only does totally
 	// random time generation. Other approaches, e.g. time shifting are possible.
-	private void mutateFixedTimeSpec(AttackFixedTime aft, AttackFixedTime aftSpace) {
+	private void mutateFixedTimeSpec(FixedTimeActivation aft, FixedTimeActivation aftSpace) {
 		// Look up the attack that it is based upon
 		double startTime;
 		double endTime;
 		double limitStartTime = aftSpace.getStartTime();
 		double limitEndTime = aftSpace.getEndTime();
-		
-		startTime = RandomFunctions.randomInRange(rng, limitStartTime, limitEndTime);
-		endTime = RandomFunctions.randomInRange(rng, startTime, limitEndTime);
+
+		startTime = RandomFunctions.randomDoubleInRange(rng, limitStartTime, limitEndTime);
+		endTime = RandomFunctions.randomDoubleInRange(rng, startTime, limitEndTime);
 		aft.setStartTime(startTime);
-		aft.setEndTime(endTime);	
+		aft.setEndTime(endTime);
 	}
 
-	private void mutateIndividualActivation(AttackActivation aa, AttackActivation aaSpace) {
-		if ((aa instanceof AttackFixedTime) && (aaSpace instanceof AttackFixedTime)) {
-			mutateFixedTimeSpec((AttackFixedTime)aa, (AttackFixedTime)aaSpace);
+	private void mutateConditionBased(SESAMEFuzzingOperationWrapper sfow, ConditionBasedActivation aa, ConditionMutationSelection s) throws MutationFailed, IOException {
+		try {
+			if (s == ConditionMutationSelection.SELECT_START) {
+				Tree<String> t = sfow.getStoredStartTree();
+				mutationLog.write("Mutating start condition: original is " + t + "\n");
+				Tree<String> tNew = condGenerator.mutate(t, rng);
+				mutationLog.write("Mutating start condition: mutated to " + tNew + "\n");
+				Condition cNew = condGenerator.convert(tNew);
+				mutationLog.write("Mutation condition = " + condGenerator.conditionToString(cNew) + "\n");
+				aa.setStarting(cNew);
+				sfow.setStoredStartTree(tNew);
+			}
+
+			if (s == ConditionMutationSelection.SELECT_END) {
+				Tree<String> t = sfow.getStoredEndTree();
+				mutationLog.write("Mutating end condition: original is " + t + "\n");
+				Tree<String> tNew = condGenerator.mutate(t, rng);
+				mutationLog.write("Mutating end condition: mutated to " + tNew + "\n");
+				Condition cNew = condGenerator.convert(tNew);
+				mutationLog.write("Mutation condition = " + condGenerator.conditionToString(cNew) + "\n");
+				aa.setEnding(cNew);
+				sfow.setStoredEndTree(tNew);
+			}
+		} catch (ConversionFailed e) {
+			e.printStackTrace();
+			throw new MutationFailed(e);
 		}
 	}
-	
-	private Optional<AttackActivation> getAttackActivation(Attack basedUpon, int i) {
+
+	private void mutateIndividualActivation(SESAMEFuzzingOperationWrapper sfow, Activation aa, Activation aaSpace)
+			throws MutationFailed, IOException {
+		if ((aa instanceof FixedTimeActivation) && (aaSpace instanceof FixedTimeActivation)) {
+			mutateFixedTimeSpec((FixedTimeActivation) aa, (FixedTimeActivation) aaSpace);
+		}
+
+		if ((aa instanceof ConditionBasedActivation)) {
+			// TODO: select start and end
+			double next = rng.nextDouble();
+			ConditionMutationSelection selection;
+			if (next < PROB_SELECT_START_OR_END) {
+				selection = ConditionMutationSelection.SELECT_START;
+			} else {
+				selection = ConditionMutationSelection.SELECT_END;
+			}
+
+			mutateConditionBased(sfow, (ConditionBasedActivation) aa, selection);
+		}
+	}
+
+	private Optional<Activation> getActivation(FuzzingOperation basedUpon) {
 		if (basedUpon == null) {
 			return Optional.empty();
 		}
-		
-		if (basedUpon.getAttackActivation() == null) {
+
+		if (basedUpon.getActivation() == null) {
 			return Optional.empty();
 		}
-		
-		return Optional.of(basedUpon.getAttackActivation().get(i));
+
+		return Optional.of(basedUpon.getActivation());
+
 	}
-	
-	private void mutateActivations(SESAMETestAttack krec) {
-		EList<AttackActivation> aas = krec.getAttack().getAttackActivation();
-		int i = 0;
-		for (AttackActivation aa : aas) {
-			Optional<AttackActivation> aaSpace = getAttackActivation(krec.getAttack().getFromTemplate(), i);
-			if (aaSpace.isPresent()) {
-				mutateIndividualActivation(aa, aaSpace.get());
-			}
-			i++;
+
+	private void mutateActivations(SESAMEFuzzingOperationWrapper sfow) throws MutationFailed, IOException {
+		Activation aa = sfow.getAttack().getActivation();
+		Optional<Activation> aaSpace = getActivation(sfow.getAttack().getFromTemplate());
+		if (aaSpace.isPresent()) {
+			mutateIndividualActivation(sfow, aa, aaSpace.get());
 		}
 	}
 	
-	// TODO: condition based fuzzing
-	
-//		if (ts instanceof FuzzingConditionStartSpec) {
-//			TimeSpecChangeOp changeOp = getTimeSpecChangeOperationStartLength();
-//			if (changeOp == TimeSpecChangeOp.CHANGE_START_CONDITION) {
-//				FuzzingConditionStartSpec tsc = (FuzzingConditionStartSpec) ts;
-//				FuzzingCondition c = tsc.getCondition();
-//				Tree<String> t = c.getTree();
-//				Tree<String> tNew = mutator.mutate(t, rng);
-//
-//				System.out.print("MUTATION: Original tree = ");
-//				t.prettyPrintLine(System.out);
-//				System.out.print(": Mutated tree = ");
-//				tNew.prettyPrintLine(System.out);
-//				System.out.print("\n");
-//
-//				FuzzingCondition cNew = new FuzzingCondition(tNew);
-//				FuzzingConditionStartSpec newC = new FuzzingConditionStartSpec(cNew, tsc.getEndTime());
-//				krec.setTimeSpec(newC);
-//			}
-//		}
-//
-//		if (ts instanceof FuzzingConditionStartEnd) {
-//			TimeSpecChangeOp changeOp = getTimeSpecChangeOperationStartEnd();
-//			FuzzingConditionStartEnd tsc = (FuzzingConditionStartEnd) ts;
-//
-//			if (changeOp == TimeSpecChangeOp.CHANGE_START_CONDITION) {
-//				// CHANGE START CONDITION
-//				FuzzingCondition c = tsc.getStartCondition();
-//				Tree<String> t = c.getTree();
-//				Tree<String> tNew = mutator.mutate(t, rng);
-//
-//				System.out.print("MUTATION: Original tree = ");
-//				t.prettyPrintLine(System.out);
-//				System.out.print(": Mutated tree = ");
-//				tNew.prettyPrintLine(System.out);
-//				System.out.print("\n");
-//
-//				FuzzingCondition cNew = new FuzzingCondition(tNew);
-//				FuzzingConditionStartEnd newC = new FuzzingConditionStartEnd(cNew, tsc.getEndCondition());
-//				krec.setTimeSpec(newC);
-//			}
-//
-//			if (changeOp == TimeSpecChangeOp.CHANGE_END_CONDITION) {
-//				// CHANGE END CONDITION
-//				FuzzingCondition c = tsc.getEndCondition();
-//				Tree<String> t = c.getTree();
-//				Tree<String> tNew = mutator.mutate(t, rng);
-//
-//				System.out.print("MUTATION: Original tree = ");
-//				t.prettyPrintLine(System.out);
-//				System.out.print(": Mutated tree = ");
-//				tNew.prettyPrintLine(System.out);
-//				System.out.print("\n");
-//
-//				FuzzingCondition cNew = new FuzzingCondition(tNew);
-//				FuzzingConditionStartEnd newC = new FuzzingConditionStartEnd(tsc.getStartCondition(), cNew);
-//				krec.setTimeSpec(newC);
-//			}
-//		}
-//	}
+	private void reduceValueSet(EList<ValueSet> newValueSet, EList<ValueSet> origValueSet) {
+		FuzzingOperationsFactory af = FuzzingOperationsFactory.eINSTANCE;
+		newValueSet.clear();
 
-//	protected <E> E selectRandomElementFrom(List<E> l, String what) throws ListHasNoElement {
-//		int length = l.size();
-//		if (length == 0) {
-//			throw new ListHasNoElement(what);
-//		} else {
-//			int i = rng.nextInt(length);
-//			return l.get(i);
-//		}
-//	}
-
-	private void newParameters(SESAMETestAttack m) {
-		// TODO: not all parameters are available
-//		for (Map.Entry<String, VariableSpecification> vs : fsm.getRecords().entrySet()) {
-//			VariableSpecification var = vs.getValue();
-//
-//			if (m instanceof FuzzingKeySelectionRecord) {
-//				FuzzingKeySelectionRecord kr = (FuzzingKeySelectionRecord) m;
-//				// Need to check the variable spec matches the chosen key!
-//				if (var.getVariable().equals(kr.getKey())) {
-//					// Select an operation parameter set to use
-//					List<OpParamSetType> opsetTypes = var.getOperationParamSets();
-//					OpParamSetType opsetType = selectRandomElementFrom(opsetTypes, "opsetType in newParameters");
-//					OperationParameterSet opset = opsetType.getOpset();
-//					List<Object> specificOpParams = opset.generateSpecific();
-//					kr.setParams(specificOpParams);
-//				}
-//			}
-//		}
+		for (ValueSet vsOrig : origValueSet) {
+			// TODO: better way of dispatching upon this type here
+			if (vsOrig instanceof DoubleRange) {
+				// Create new valueSet
+				double lb;
+				double ub;
+				double origLB = ((DoubleRange) vsOrig).getLowerBound();
+				double origUB = ((DoubleRange) vsOrig).getUpperBound();
+				lb = RandomFunctions.randomDoubleInRange(rng, origLB, origUB);
+				ub = RandomFunctions.randomDoubleInRange(rng, lb, origUB);
+				DoubleRange vs = af.createDoubleRange();
+				// Property name must be set
+				vs.setPropertyName(((DoubleRange) vsOrig).getPropertyName());
+				vs.setLowerBound(lb);
+				vs.setUpperBound(ub);
+				newValueSet.add(vs);
+			}
+		}
 	}
 
-//	private void newParticipants(SESAMETestAttack m) throws ListHasNoElement, OperationLoadFailed {
-//		List<String> newParticipants = getRandomParticipantsFromMission();
-//		((FuzzingKeySelectionRecord) m).setParticipants(newParticipants);
-//	}
+	private void reduceCustomParameters(EList<ValueSet> newParams, EList<ValueSet> origParams ) throws ParamError {
+		boolean reduceRangeToSingle = true;
+		FuzzingOperationsFactory af = FuzzingOperationsFactory.eINSTANCE;
+		newParams.clear();
+
+		// TODO: better way of dispatching upon this type here
+		for (ValueSet vsOrig : origParams) {
+			if (vsOrig instanceof DoubleRange) {
+				double lb;
+				double ub;
+				double origLB = ((DoubleRange) vsOrig).getLowerBound();
+				double origUB = ((DoubleRange) vsOrig).getUpperBound();
+				lb = RandomFunctions.randomDoubleInRange(rng, origLB, origUB);
+				ub = RandomFunctions.randomDoubleInRange(rng, lb, origUB);
+				DoubleRange vs = af.createDoubleRange();
+				// Property name must be set
+				vs.setPropertyName(((DoubleRange) vsOrig).getPropertyName());
+				vs.setLowerBound(lb);
+				vs.setUpperBound(ub);
+				newParams.add(vs);
+			}
+
+			if (vsOrig instanceof IntRange) {
+				int lb;
+				int ub;
+			
+				int origLB = ((IntRange) vsOrig).getLowerBound();
+				int origUB = ((IntRange) vsOrig).getUpperBound();
+				if (!reduceRangeToSingle) {
+					lb = RandomFunctions.randomIntInRange(rng, origLB, origUB);
+					ub = RandomFunctions.randomIntInRange(rng, lb, origUB);
+				} else {
+					lb = RandomFunctions.randomIntInRange(rng, origLB, origUB);
+					ub = lb;
+				}
+				IntRange vs = af.createIntRange();
+				// Property name must be set
+				vs.setPropertyName(((IntRange)vsOrig).getPropertyName());
+				vs.setLowerBound(lb);
+				vs.setUpperBound(ub);
+				newParams.add(vs);
+			}
+			
+			// Reduce the maximum and minimum point to a single point - ideally
+			// this should be configurable
+			if (vsOrig instanceof PointRange) {
+				Point origLB = ((PointRange)vsOrig).getMinPoint();
+				Point origUB = ((PointRange)vsOrig).getMaxPoint();
+				if ((origLB == null) || (origUB == null)) {
+					throw new ParamError("Missing minpoint and maxpoint in PointRange");
+				} else {
+					Point lb = RandomFunctions.randomPointInRange(rng, origLB, origUB);
+					Point ub = EcoreUtil.copy(lb);
+					PointRange vs = af.createPointRange();
+					// Property name must be set
+					vs.setPropertyName(((PointRange) vsOrig).getPropertyName());
+					vs.setMinPoint(lb);
+					vs.setMaxPoint(ub);
+					newParams.add(vs);
+				}
+			}
+			
+			// Choose a single element from the set
+			if (vsOrig instanceof StringSet) {
+				EList<String> origSet = ((StringSet)vsOrig).getChoices();
+				Optional<String> elt_o = RandomFunctions.randomElementInList(rng, origSet);
+				if (elt_o.isPresent()) {
+					String elt = elt_o.get();
+					StringSet vs = af.createStringSet();
+								
+				// Property name must be set
+				vs.setPropertyName(((StringSet)vsOrig).getPropertyName());
+				vs.getChoices().clear();
+				vs.getChoices().add(elt);
+				newParams.add(vs);
+				} else {
+					throw new ParamError("Zero-length string set");
+				}
+			}
+		}
+	}
+	
+	public void reduceOperationSpecific(FuzzingOperation newA, FuzzingOperation original) throws ParamError {
+		// TODO: better way of dispatching upon this type here
+		// this is repeated code between the initial generation
+		if (original instanceof RandomValueFromSetOperation) {
+			RandomValueFromSetOperation rvfsO = (RandomValueFromSetOperation) original;
+			RandomValueFromSetOperation rvfsN = (RandomValueFromSetOperation) newA;
+			reduceValueSet(rvfsN.getValueSet(), rvfsO.getValueSet());
+		}
+
+		if (original instanceof CustomFuzzingOperation) {
+			CustomFuzzingOperation cfoO = (CustomFuzzingOperation) original;
+			CustomFuzzingOperation cfoN = (CustomFuzzingOperation) newA;
+			reduceCustomParameters(cfoN.getParams(), cfoO.getParams());
+		}
+	}
+
+	private void newParameters(SESAMEFuzzingOperationWrapper sfow) {
+		FuzzingOperation newOp = sfow.getAttack();
+		FuzzingOperation original = newOp.getFromTemplate();
+		try {
+			reduceOperationSpecific(newOp, original);
+		} catch (ParamError e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void logWithoutError(String s) {
 		try {
@@ -229,24 +307,22 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		}
 	}
 
-	public void modifyGivenRecord(SESAMETestAttack sta) {
-			if (rng.nextDouble() < probTemporalMutation) {
-				logWithoutError("Performing temporal mutation on " + sta.getName());
+	public void modifyGivenRecord(SESAMEFuzzingOperationWrapper sta) throws IOException {
+		if (rng.nextDouble() < probTemporalMutation) {
+			logWithoutError("Performing temporal mutation on " + sta.getName());
+			try {
 				mutateActivations(sta);
+			} catch (MutationFailed e) {
+				// TODO: log the failed mutation because of the conversion error
+				// should we raise it again
+				e.printStackTrace();
 			}
+		}
 
-			if (rng.nextDouble() < probParamMutation) {
-				logWithoutError("Performing parameter mutation on " + sta.getName());
-				newParameters(sta);
-			}
-
-			// New participants is redundant, since there is a standard set of 
-			// topics for the attack
-			
-//			if (rng.nextDouble() < probParticipantMutation) {
-//				logWithoutError("Performing participant mutation on " + krec.getSimpleName());
-//				newParticipants(krec);
-//			}
+		if (rng.nextDouble() < probParamMutation) {
+			logWithoutError("Performing parameter mutation on " + sta.getName());
+			newParameters(sta);
+		}
 	}
 
 	public double getMutationProbability() {
@@ -254,27 +330,21 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 	}
 
 	public SESAMETestSolution execute(SESAMETestSolution sol) {
-		// PRE-MUTATION DEBUGGING
 		try {
+			// Pre-mutation debugging
 			mutationLog.write(sol.toString() + "\n");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		for (int i = 0; i < sol.getNumberOfVariables(); i++) {
-			SESAMETestAttack sta = sol.getVariable(i);
-			System.out.println("Before modification SESAMETestAttack=" + sta);
-			modifyGivenRecord(sta);
-		}
-
-		// POST-MUTATION DEBUGGING
-		try {
+			for (int i = 0; i < sol.getNumberOfVariables(); i++) {
+				SESAMEFuzzingOperationWrapper sta = sol.getVariable(i);
+				System.out.println("Before modification SESAMETestAttack=" + sta);
+				modifyGivenRecord(sta);
+			}
+			// Post-mutation debugging
 			mutationLog.write(sol.toString() + "\n");
 			mutationLog.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return sol;
 	}
 

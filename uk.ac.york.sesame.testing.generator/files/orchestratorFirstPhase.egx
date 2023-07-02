@@ -11,12 +11,27 @@ rule metricAsSingleStream transform metric: Testing!StreamMetric {
 }
 
 rule generateRunners transform campaign: Testing!TestCampaign {
+	parameters : Map {
+		"path" = path,
+		"testingModelPath" = testingModelPath,
+		"codeGenerationDirectory" = codeGenerationDirectory,
+		"orchestratorBasePath" = orchestratorBasePath
+	}
 	template : "exptrunner/exptrunner.egl"
 	target : "src/main/ExptRunner_" + campaign.name + ".java"
 }
 
-/* Other metrics here */
-/* Attack templates? */
+rule genGrammar transform testCampaign: Testing!TestCampaign {
+	template : "grammar/generateGrammar.egl"
+	target : "grammar/sesame-standardgrammar-" + testCampaign.name + ".bnf"
+}
 
-// First phase should also produce the EvolutionaryRunner.java - as the entry point?
-// Should also contain the properties?
+rule generatePOM transform testingSpace: Testing!TestingSpace {
+	template : "pom/pomXML.egl"
+	target : "pom.xml"
+}
+
+rule customOpTemplate transform fuzzOp: Testing!CustomFuzzingOperation {
+	template : "fuzzingoperations/template/customOpTemplate.egl"	
+	target : "src/fuzzingoperations/template/" + fuzzOp.name + ".java"
+}

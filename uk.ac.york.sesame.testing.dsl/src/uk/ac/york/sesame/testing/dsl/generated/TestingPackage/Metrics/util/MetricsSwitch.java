@@ -98,10 +98,10 @@ public class MetricsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetricsPackage.TOPIC_METRIC: {
-				TopicMetric topicMetric = (TopicMetric)theEObject;
-				T result = caseTopicMetric(topicMetric);
-				if (result == null) result = caseMetric(topicMetric);
+			case MetricsPackage.VARIABLE_METRIC: {
+				VariableMetric variableMetric = (VariableMetric)theEObject;
+				T result = caseVariableMetric(variableMetric);
+				if (result == null) result = caseMetric(variableMetric);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -133,11 +133,37 @@ public class MetricsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MetricsPackage.ATTACK_TIMES_METRIC: {
-				AttackTimesMetric attackTimesMetric = (AttackTimesMetric)theEObject;
-				T result = caseAttackTimesMetric(attackTimesMetric);
-				if (result == null) result = caseStreamMetric(attackTimesMetric);
-				if (result == null) result = caseMetric(attackTimesMetric);
+			case MetricsPackage.SPECIAL_METRIC: {
+				SpecialMetric specialMetric = (SpecialMetric)theEObject;
+				T result = caseSpecialMetric(specialMetric);
+				if (result == null) result = caseStreamMetric(specialMetric);
+				if (result == null) result = caseMetric(specialMetric);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetricsPackage.DIRECT_MESSAGE_GENERATION_METRIC: {
+				DirectMessageGenerationMetric directMessageGenerationMetric = (DirectMessageGenerationMetric)theEObject;
+				T result = caseDirectMessageGenerationMetric(directMessageGenerationMetric);
+				if (result == null) result = caseStreamMetric(directMessageGenerationMetric);
+				if (result == null) result = caseMetric(directMessageGenerationMetric);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetricsPackage.START_END_TIMING_METRIC: {
+				StartEndTimingMetric startEndTimingMetric = (StartEndTimingMetric)theEObject;
+				T result = caseStartEndTimingMetric(startEndTimingMetric);
+				if (result == null) result = caseDirectMessageGenerationMetric(startEndTimingMetric);
+				if (result == null) result = caseStreamMetric(startEndTimingMetric);
+				if (result == null) result = caseMetric(startEndTimingMetric);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MetricsPackage.FUZZING_OPERATION_TIMES_METRIC: {
+				FuzzingOperationTimesMetric fuzzingOperationTimesMetric = (FuzzingOperationTimesMetric)theEObject;
+				T result = caseFuzzingOperationTimesMetric(fuzzingOperationTimesMetric);
+				if (result == null) result = caseSpecialMetric(fuzzingOperationTimesMetric);
+				if (result == null) result = caseStreamMetric(fuzzingOperationTimesMetric);
+				if (result == null) result = caseMetric(fuzzingOperationTimesMetric);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -234,17 +260,17 @@ public class MetricsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Topic Metric</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Variable Metric</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Topic Metric</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Variable Metric</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTopicMetric(TopicMetric object) {
+	public T caseVariableMetric(VariableMetric object) {
 		return null;
 	}
 
@@ -309,17 +335,62 @@ public class MetricsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attack Times Metric</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Special Metric</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attack Times Metric</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Special Metric</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttackTimesMetric(AttackTimesMetric object) {
+	public T caseSpecialMetric(SpecialMetric object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Direct Message Generation Metric</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Direct Message Generation Metric</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDirectMessageGenerationMetric(DirectMessageGenerationMetric object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Start End Timing Metric</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Start End Timing Metric</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStartEndTimingMetric(StartEndTimingMetric object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fuzzing Operation Times Metric</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fuzzing Operation Times Metric</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFuzzingOperationTimesMetric(FuzzingOperationTimesMetric object) {
 		return null;
 	}
 

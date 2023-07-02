@@ -60,12 +60,16 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 			case TestingPackagePackage.TESTING_SPACE: return createTestingSpace();
 			case TestingPackagePackage.TEST_CAMPAIGN: return createTestCampaign();
 			case TestingPackagePackage.TEST: return createTest();
+			case TestingPackagePackage.PASSIVE_MONITOR_ONLY: return createPassiveMonitorOnly();
+			case TestingPackagePackage.TIME_BASED_ACTIVATION_GENERATION_METHOD: return createTimeBasedActivationGenerationMethod();
+			case TestingPackagePackage.CONDITION_BASED_ACTIVATION_GENERATION_METHOD: return createConditionBasedActivationGenerationMethod();
 			case TestingPackagePackage.CAMPAIGN_RESULT_SET: return createCampaignResultSet();
 			case TestingPackagePackage.TIME_BASED_END: return createTimeBasedEnd();
-			case TestingPackagePackage.GRAMMAR_CONSTRAINT: return createGrammarConstraint();
 			case TestingPackagePackage.RANDOM_TEST_GENERATION: return createRandomTestGeneration();
 			case TestingPackagePackage.NSGA_EVOLUTIONARY_ALGORITHM: return createNSGAEvolutionaryAlgorithm();
-			case TestingPackagePackage.GRAMMAR_SPECIFICATION: return createGrammarSpecification();
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS: return createNSGAWithCoverageCells();
+			case TestingPackagePackage.DIMENSION_INTERVAL: return createDimensionInterval();
+			case TestingPackagePackage.REPEATED_EXECUTION: return createRepeatedExecution();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -81,6 +85,8 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 		switch (eDataType.getClassifierID()) {
 			case TestingPackagePackage.RESULT_SET_STATUS:
 				return createResultSetStatusFromString(eDataType, initialValue);
+			case TestingPackagePackage.DIMENSION_ID:
+				return createDimensionIDFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -96,6 +102,8 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 		switch (eDataType.getClassifierID()) {
 			case TestingPackagePackage.RESULT_SET_STATUS:
 				return convertResultSetStatusToString(eDataType, instanceValue);
+			case TestingPackagePackage.DIMENSION_ID:
+				return convertDimensionIDToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -136,6 +144,36 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PassiveMonitorOnly createPassiveMonitorOnly() {
+		PassiveMonitorOnlyImpl passiveMonitorOnly = new PassiveMonitorOnlyImpl();
+		return passiveMonitorOnly;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TimeBasedActivationGenerationMethod createTimeBasedActivationGenerationMethod() {
+		TimeBasedActivationGenerationMethodImpl timeBasedActivationGenerationMethod = new TimeBasedActivationGenerationMethodImpl();
+		return timeBasedActivationGenerationMethod;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConditionBasedActivationGenerationMethod createConditionBasedActivationGenerationMethod() {
+		ConditionBasedActivationGenerationMethodImpl conditionBasedActivationGenerationMethod = new ConditionBasedActivationGenerationMethodImpl();
+		return conditionBasedActivationGenerationMethod;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CampaignResultSet createCampaignResultSet() {
 		CampaignResultSetImpl campaignResultSet = new CampaignResultSetImpl();
 		return campaignResultSet;
@@ -149,16 +187,6 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	public TimeBasedEnd createTimeBasedEnd() {
 		TimeBasedEndImpl timeBasedEnd = new TimeBasedEndImpl();
 		return timeBasedEnd;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GrammarConstraint createGrammarConstraint() {
-		GrammarConstraintImpl grammarConstraint = new GrammarConstraintImpl();
-		return grammarConstraint;
 	}
 
 	/**
@@ -186,9 +214,29 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GrammarSpecification createGrammarSpecification() {
-		GrammarSpecificationImpl grammarSpecification = new GrammarSpecificationImpl();
-		return grammarSpecification;
+	public NSGAWithCoverageCells createNSGAWithCoverageCells() {
+		NSGAWithCoverageCellsImpl nsgaWithCoverageCells = new NSGAWithCoverageCellsImpl();
+		return nsgaWithCoverageCells;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DimensionInterval createDimensionInterval() {
+		DimensionIntervalImpl dimensionInterval = new DimensionIntervalImpl();
+		return dimensionInterval;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RepeatedExecution createRepeatedExecution() {
+		RepeatedExecutionImpl repeatedExecution = new RepeatedExecutionImpl();
+		return repeatedExecution;
 	}
 
 	/**
@@ -208,6 +256,26 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	 * @generated
 	 */
 	public String convertResultSetStatusToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DimensionID createDimensionIDFromString(EDataType eDataType, String initialValue) {
+		DimensionID result = DimensionID.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertDimensionIDToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -2,8 +2,7 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
-
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,18 +21,17 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Topic;
  * @generated
  */
 public interface TopicMetric extends Metric {
-
 	/**
 	 * Returns the value of the '<em><b>Chosen Topics</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Chosen Topics</em>' reference.
-	 * @see #setChosenTopics(Topic)
+	 * @see #setChosenTopics(Variable)
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getTopicMetric_ChosenTopics()
 	 * @model required="true"
 	 * @generated
 	 */
-	Topic getChosenTopics();
+	Variable getChosenTopics();
 
 	/**
 	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.TopicMetric#getChosenTopics <em>Chosen Topics</em>}' reference.
@@ -43,5 +41,6 @@ public interface TopicMetric extends Metric {
 	 * @see #getChosenTopics()
 	 * @generated
 	 */
-	void setChosenTopics(Topic value);
+	void setChosenTopics(Variable value);
+
 } // TopicMetric

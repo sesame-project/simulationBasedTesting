@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +24,7 @@ import edu.wpi.rail.jrosbridge.Ros;
 import edu.wpi.rail.jrosbridge.Topic;
 import edu.wpi.rail.jrosbridge.callback.TopicCallback;
 import edu.wpi.rail.jrosbridge.messages.Message;
+import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
@@ -33,6 +36,8 @@ import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
 
 public class ROSSimulator implements ISimulator {
+
+	protected static final boolean USE_FRACTIONAL_TIME = true;
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = false;
 	
@@ -87,10 +92,14 @@ public class ROSSimulator implements ISimulator {
 	public void run(HashMap<String, String> params) {
 		//boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 		String launchFilePath = params.get("launchPath");
-		String workingDir = "/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts";
+		Path launchFileP = Paths.get(launchFilePath);
+		Path containingDir = launchFileP.getParent();
+		String workingDir = containingDir.toString();
+		
 		System.out.println("workingDir = " + workingDir + ",launchFilePath = " + launchFilePath);
 		String args = "";
-		ExptHelper.runScriptNewWithBash(workingDir, launchFilePath);
+		//ExptHelper.runScriptNewWithBash(workingDir, launchFilePath);
+		ExptHelper.runScriptNewThread(workingDir, launchFilePath);
 	}
 
 	@Override
@@ -113,7 +122,7 @@ public class ROSSimulator implements ISimulator {
 	 * This is for ROS Topics
 	 */
 	@Override
-	public synchronized void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean debugThisMessage) {
+	public synchronized void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean shouldFuzz) throws SubscriptionFailure {
 		System.out.println("TopicName: " + topicName);
 
 		Topic topic;
@@ -122,10 +131,14 @@ public class ROSSimulator implements ISimulator {
 		} else {
 			topic = (Topic)createTopic(topicName, topicType);
 		}
+		
+		try {
+		
+		// shouldFuzz is ignored for ROS interface
 		topic.subscribe(new TopicCallback() {
 			@Override
 			public void handleMessage(Message message) {
-				if (DEBUG_DISPLAY_INBOUND_MESSAGES || debugThisMessage) {
+				if (DEBUG_DISPLAY_INBOUND_MESSAGES) {
 					System.out.println("message: " + message);
 				}
 				EventMessage em = new EventMessage();
@@ -133,7 +146,7 @@ public class ROSSimulator implements ISimulator {
 				em.setType(topicType);
 				em.setTopic(topicName);
 				if(publishToKafka) {
-					if (DEBUG_DISPLAY_INBOUND_MESSAGES || debugThisMessage) {
+					if (DEBUG_DISPLAY_INBOUND_MESSAGES) {
 						System.out.println(em);
 					}
 
@@ -141,10 +154,13 @@ public class ROSSimulator implements ISimulator {
 				}
 			}
 		});
-		//while(true) {}
+		} catch (NullPointerException e) {
+			System.out.println("ROS subscription failed - exiting middleware");
+			throw new SubscriptionFailure();
+		}
 	}
 	
-	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
+	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) throws SubscriptionFailure {
 		consumeFromTopic(topicName, topicType, publishToKafka, kafkaTopic, false);
 	}
 	
@@ -168,8 +184,7 @@ public class ROSSimulator implements ISimulator {
 
 	@Override
 	public void disconnect() {
-		ros.disconnect();
-		
+		ros.disconnect();	
 	}
 
 	@Override
@@ -200,18 +215,27 @@ public class ROSSimulator implements ISimulator {
 	}
 
 	@Override
-	public void updateTime() {
+	public void updateTime() throws SubscriptionFailure {
 		Topic topic = (Topic) createTopic("/clock", "rosgraph_msgs/Clock");
+		try {
 		topic.subscribe(new TopicCallback() {
 			@Override
 			public void handleMessage(Message message) {
-				String seconds = message.toString().split("secs\":")[1].split(",")[0];
-				SimCore.getInstance().setTime(seconds);
+				//System.out.println("Time message = " + message.toString());
+				String timeMsg = message.toString();
+				String secondsStr = timeMsg.split("secs\":")[1].split(",")[0];
+				Double time = Double.parseDouble(secondsStr);
+				if (USE_FRACTIONAL_TIME) {
+					String nsecondsStr = timeMsg.split("nsecs\":")[1].split("}")[0];
+					time = time + (Double.parseDouble(nsecondsStr) / 1e9);
+				}
+				//System.out.println("time = " + time);
+				SimCore.getInstance().setTime(time);
 			}
 		});
-		while(true) {}
+		} catch (NullPointerException e) {
+			System.out.println("ROS subscription failed - exiting middleware");
+			throw new SubscriptionFailure();
+		}
 	}
-
-
-
 }    

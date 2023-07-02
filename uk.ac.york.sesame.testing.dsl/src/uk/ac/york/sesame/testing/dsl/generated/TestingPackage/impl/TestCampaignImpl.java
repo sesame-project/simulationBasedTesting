@@ -19,12 +19,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
-
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ActivationGenerationMethod;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
@@ -43,12 +42,13 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getMetrics <em>Metrics</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getIncludedAttacks <em>Included Attacks</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getConditionMetrics <em>Condition Metrics</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getActivationGeneration <em>Activation Generation</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getIncludedOperations <em>Included Operations</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getApproach <em>Approach</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getPerformedTests <em>Performed Tests</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getResultSets <em>Result Sets</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getDefaultEndTrigger <em>Default End Trigger</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestCampaignImpl#getEndTrigger <em>End Trigger</em>}</li>
  * </ul>
  *
  * @generated
@@ -85,24 +85,34 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	protected EList<Metric> metrics;
 
 	/**
-	 * The cached value of the '{@link #getIncludedAttacks() <em>Included Attacks</em>}' reference list.
+	 * The cached value of the '{@link #getConditionMetrics() <em>Condition Metrics</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIncludedAttacks()
+	 * @see #getConditionMetrics()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Attack> includedAttacks;
+	protected EList<Metric> conditionMetrics;
 
 	/**
-	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
+	 * The cached value of the '{@link #getActivationGeneration() <em>Activation Generation</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstraints()
+	 * @see #getActivationGeneration()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GrammarConstraint> constraints;
+	protected ActivationGenerationMethod activationGeneration;
+
+	/**
+	 * The cached value of the '{@link #getIncludedOperations() <em>Included Operations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIncludedOperations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FuzzingOperation> includedOperations;
 
 	/**
 	 * The cached value of the '{@link #getApproach() <em>Approach</em>}' containment reference.
@@ -135,14 +145,14 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	protected EList<CampaignResultSet> resultSets;
 
 	/**
-	 * The cached value of the '{@link #getDefaultEndTrigger() <em>Default End Trigger</em>}' containment reference.
+	 * The cached value of the '{@link #getEndTrigger() <em>End Trigger</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefaultEndTrigger()
+	 * @see #getEndTrigger()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExecutionEndTrigger defaultEndTrigger;
+	protected ExecutionEndTrigger endTrigger;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,11 +211,11 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Attack> getIncludedAttacks() {
-		if (includedAttacks == null) {
-			includedAttacks = new EObjectResolvingEList<Attack>(Attack.class, this, TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS);
+	public EList<Metric> getConditionMetrics() {
+		if (conditionMetrics == null) {
+			conditionMetrics = new EObjectResolvingEList<Metric>(Metric.class, this, TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS);
 		}
-		return includedAttacks;
+		return conditionMetrics;
 	}
 
 	/**
@@ -213,11 +223,54 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<GrammarConstraint> getConstraints() {
-		if (constraints == null) {
-			constraints = new EObjectContainmentEList<GrammarConstraint>(GrammarConstraint.class, this, TestingPackagePackage.TEST_CAMPAIGN__CONSTRAINTS);
+	public ActivationGenerationMethod getActivationGeneration() {
+		return activationGeneration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetActivationGeneration(ActivationGenerationMethod newActivationGeneration, NotificationChain msgs) {
+		ActivationGenerationMethod oldActivationGeneration = activationGeneration;
+		activationGeneration = newActivationGeneration;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION, oldActivationGeneration, newActivationGeneration);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return constraints;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setActivationGeneration(ActivationGenerationMethod newActivationGeneration) {
+		if (newActivationGeneration != activationGeneration) {
+			NotificationChain msgs = null;
+			if (activationGeneration != null)
+				msgs = ((InternalEObject)activationGeneration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION, null, msgs);
+			if (newActivationGeneration != null)
+				msgs = ((InternalEObject)newActivationGeneration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION, null, msgs);
+			msgs = basicSetActivationGeneration(newActivationGeneration, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION, newActivationGeneration, newActivationGeneration));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<FuzzingOperation> getIncludedOperations() {
+		if (includedOperations == null) {
+			includedOperations = new EObjectResolvingEList<FuzzingOperation>(FuzzingOperation.class, this, TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS);
+		}
+		return includedOperations;
 	}
 
 	/**
@@ -292,8 +345,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutionEndTrigger getDefaultEndTrigger() {
-		return defaultEndTrigger;
+	public ExecutionEndTrigger getEndTrigger() {
+		return endTrigger;
 	}
 
 	/**
@@ -301,11 +354,11 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDefaultEndTrigger(ExecutionEndTrigger newDefaultEndTrigger, NotificationChain msgs) {
-		ExecutionEndTrigger oldDefaultEndTrigger = defaultEndTrigger;
-		defaultEndTrigger = newDefaultEndTrigger;
+	public NotificationChain basicSetEndTrigger(ExecutionEndTrigger newEndTrigger, NotificationChain msgs) {
+		ExecutionEndTrigger oldEndTrigger = endTrigger;
+		endTrigger = newEndTrigger;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER, oldDefaultEndTrigger, newDefaultEndTrigger);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST_CAMPAIGN__END_TRIGGER, oldEndTrigger, newEndTrigger);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -316,18 +369,18 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultEndTrigger(ExecutionEndTrigger newDefaultEndTrigger) {
-		if (newDefaultEndTrigger != defaultEndTrigger) {
+	public void setEndTrigger(ExecutionEndTrigger newEndTrigger) {
+		if (newEndTrigger != endTrigger) {
 			NotificationChain msgs = null;
-			if (defaultEndTrigger != null)
-				msgs = ((InternalEObject)defaultEndTrigger).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER, null, msgs);
-			if (newDefaultEndTrigger != null)
-				msgs = ((InternalEObject)newDefaultEndTrigger).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER, null, msgs);
-			msgs = basicSetDefaultEndTrigger(newDefaultEndTrigger, msgs);
+			if (endTrigger != null)
+				msgs = ((InternalEObject)endTrigger).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST_CAMPAIGN__END_TRIGGER, null, msgs);
+			if (newEndTrigger != null)
+				msgs = ((InternalEObject)newEndTrigger).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.TEST_CAMPAIGN__END_TRIGGER, null, msgs);
+			msgs = basicSetEndTrigger(newEndTrigger, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER, newDefaultEndTrigger, newDefaultEndTrigger));
+			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.TEST_CAMPAIGN__END_TRIGGER, newEndTrigger, newEndTrigger));
 	}
 
 	/**
@@ -353,16 +406,16 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TestingPackagePackage.TEST_CAMPAIGN__CONSTRAINTS:
-				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
+			case TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION:
+				return basicSetActivationGeneration(null, msgs);
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				return basicSetApproach(null, msgs);
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
 				return ((InternalEList<?>)getPerformedTests()).basicRemove(otherEnd, msgs);
 			case TestingPackagePackage.TEST_CAMPAIGN__RESULT_SETS:
 				return ((InternalEList<?>)getResultSets()).basicRemove(otherEnd, msgs);
-			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
-				return basicSetDefaultEndTrigger(null, msgs);
+			case TestingPackagePackage.TEST_CAMPAIGN__END_TRIGGER:
+				return basicSetEndTrigger(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -379,18 +432,20 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return getName();
 			case TestingPackagePackage.TEST_CAMPAIGN__METRICS:
 				return getMetrics();
-			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS:
-				return getIncludedAttacks();
-			case TestingPackagePackage.TEST_CAMPAIGN__CONSTRAINTS:
-				return getConstraints();
+			case TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS:
+				return getConditionMetrics();
+			case TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION:
+				return getActivationGeneration();
+			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
+				return getIncludedOperations();
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				return getApproach();
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
 				return getPerformedTests();
 			case TestingPackagePackage.TEST_CAMPAIGN__RESULT_SETS:
 				return getResultSets();
-			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
-				return getDefaultEndTrigger();
+			case TestingPackagePackage.TEST_CAMPAIGN__END_TRIGGER:
+				return getEndTrigger();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -411,13 +466,16 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				getMetrics().clear();
 				getMetrics().addAll((Collection<? extends Metric>)newValue);
 				return;
-			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS:
-				getIncludedAttacks().clear();
-				getIncludedAttacks().addAll((Collection<? extends Attack>)newValue);
+			case TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS:
+				getConditionMetrics().clear();
+				getConditionMetrics().addAll((Collection<? extends Metric>)newValue);
 				return;
-			case TestingPackagePackage.TEST_CAMPAIGN__CONSTRAINTS:
-				getConstraints().clear();
-				getConstraints().addAll((Collection<? extends GrammarConstraint>)newValue);
+			case TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION:
+				setActivationGeneration((ActivationGenerationMethod)newValue);
+				return;
+			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
+				getIncludedOperations().clear();
+				getIncludedOperations().addAll((Collection<? extends FuzzingOperation>)newValue);
 				return;
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				setApproach((TestGenerationApproach)newValue);
@@ -430,8 +488,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				getResultSets().clear();
 				getResultSets().addAll((Collection<? extends CampaignResultSet>)newValue);
 				return;
-			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
-				setDefaultEndTrigger((ExecutionEndTrigger)newValue);
+			case TestingPackagePackage.TEST_CAMPAIGN__END_TRIGGER:
+				setEndTrigger((ExecutionEndTrigger)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -451,11 +509,14 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TEST_CAMPAIGN__METRICS:
 				getMetrics().clear();
 				return;
-			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS:
-				getIncludedAttacks().clear();
+			case TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS:
+				getConditionMetrics().clear();
 				return;
-			case TestingPackagePackage.TEST_CAMPAIGN__CONSTRAINTS:
-				getConstraints().clear();
+			case TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION:
+				setActivationGeneration((ActivationGenerationMethod)null);
+				return;
+			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
+				getIncludedOperations().clear();
 				return;
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				setApproach((TestGenerationApproach)null);
@@ -466,8 +527,8 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 			case TestingPackagePackage.TEST_CAMPAIGN__RESULT_SETS:
 				getResultSets().clear();
 				return;
-			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
-				setDefaultEndTrigger((ExecutionEndTrigger)null);
+			case TestingPackagePackage.TEST_CAMPAIGN__END_TRIGGER:
+				setEndTrigger((ExecutionEndTrigger)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -485,18 +546,20 @@ public class TestCampaignImpl extends MinimalEObjectImpl.Container implements Te
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case TestingPackagePackage.TEST_CAMPAIGN__METRICS:
 				return metrics != null && !metrics.isEmpty();
-			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_ATTACKS:
-				return includedAttacks != null && !includedAttacks.isEmpty();
-			case TestingPackagePackage.TEST_CAMPAIGN__CONSTRAINTS:
-				return constraints != null && !constraints.isEmpty();
+			case TestingPackagePackage.TEST_CAMPAIGN__CONDITION_METRICS:
+				return conditionMetrics != null && !conditionMetrics.isEmpty();
+			case TestingPackagePackage.TEST_CAMPAIGN__ACTIVATION_GENERATION:
+				return activationGeneration != null;
+			case TestingPackagePackage.TEST_CAMPAIGN__INCLUDED_OPERATIONS:
+				return includedOperations != null && !includedOperations.isEmpty();
 			case TestingPackagePackage.TEST_CAMPAIGN__APPROACH:
 				return approach != null;
 			case TestingPackagePackage.TEST_CAMPAIGN__PERFORMED_TESTS:
 				return performedTests != null && !performedTests.isEmpty();
 			case TestingPackagePackage.TEST_CAMPAIGN__RESULT_SETS:
 				return resultSets != null && !resultSets.isEmpty();
-			case TestingPackagePackage.TEST_CAMPAIGN__DEFAULT_END_TRIGGER:
-				return defaultEndTrigger != null;
+			case TestingPackagePackage.TEST_CAMPAIGN__END_TRIGGER:
+				return endTrigger != null;
 		}
 		return super.eIsSet(featureID);
 	}

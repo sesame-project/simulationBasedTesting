@@ -7,6 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd;
 

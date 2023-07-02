@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ExSceMM:MRS xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ExSceMM="http://ExSceMM" xmi:id="_STr50NWUEeuVsJ3fBBuxxQ" launchFileLocation="/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.examples.ros.bridge/files/start.sh">
+  <topics xmi:id="_VJ1AgNWUEeuVsJ3fBBuxxQ" name="/turtle1/cmd_vel" type="geometry_msgs/Twist"/>
+  <topics xmi:id="_G-Z3wPRNEeur5Z2YsOLfWA" name="/turtle1/pose" type="turtlesim/Pose"/>
+  <nodes xmi:id="_S2XJENWUEeuVsJ3fBBuxxQ" name="turtle1" subscriber="_VJ1AgNWUEeuVsJ3fBBuxxQ" publisher="_G-Z3wPRNEeur5Z2YsOLfWA"/>
+  <nodes xmi:id="_UAvRgNWUEeuVsJ3fBBuxxQ" name="teleop" publisher="_VJ1AgNWUEeuVsJ3fBBuxxQ"/>
+  <nodes xmi:id="_VxM60NWaEeuVsJ3fBBuxxQ" name="turtle2" subscriber="_VJ1AgNWUEeuVsJ3fBBuxxQ"/>
+  <simulator xsi:type="ExSceMM:ROSSimulator" xmi:id="_ojRBcPRAEeur5Z2YsOLfWA" hostname="localhost" port="9090"/>
+</ExSceMM:MRS>

@@ -8,15 +8,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.uma.jmetal.solution.*;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Attacks.Attack;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 
-public class SESAMETestSolution implements Solution<SESAMETestAttack> {
+public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrapper> {
 	private static final long serialVersionUID = 1L;
 
 	private Test t;
@@ -32,7 +33,7 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	private Map<Integer, Double> objectives = new HashMap<Integer, Double>();
 	private Map<Integer, Metric> objectiveMetrics = new HashMap<Integer, Metric>();
 	private Map<Integer, Double> constraints = new HashMap<Integer, Double>();
-	private List<SESAMETestAttack> contents = new ArrayList<SESAMETestAttack>();
+	private List<SESAMEFuzzingOperationWrapper> contents = new ArrayList<SESAMEFuzzingOperationWrapper>();
 
 	private void checkSetupTestingFactory() {
 		if (tFactory == null) {
@@ -44,8 +45,6 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 		checkSetupTestingFactory();
 		t = tFactory.createTest();
 		t.setName(createTestName());
-		// Set up the test with the default end trigger
-		t.setEndTrigger(selectedCampaign.getDefaultEndTrigger());
 	}
 	
 	public String getName() {
@@ -53,7 +52,11 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	}
 	
 	public String toString() {
-		return t.getName() + "-[" + contents.size() + " attacks]";
+		String output = t.getName() + "-[" + contents.size() + " operations]:\n";
+		for (SESAMEFuzzingOperationWrapper sfow : contents) {
+			output = output + sfow.toString() + "\n";
+		}
+		return output;
 	}
 	
 	public SESAMETestSolution(TestCampaign selectedCampaign) {
@@ -64,6 +67,11 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	public SESAMETestSolution(TestCampaign selectedCampaign, String overrideName) {
 		this.selectedCampaign = selectedCampaign;
 		setupInternalType(this);
+		t.setName(overrideName);
+	}
+	
+	public SESAMETestSolution(TestCampaign selectedCampaign, Test fixed, String overrideName) {
+		t = EcoreUtil.copy(fixed);
 		t.setName(overrideName);
 	}
 	
@@ -80,9 +88,9 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 		this.actuallyRun = other.actuallyRun;
 		this.exptRunTime = other.exptRunTime;
 		this.selectedCampaign = other.selectedCampaign;
-		this.contents = new ArrayList<SESAMETestAttack>(other.contents.size());
+		this.contents = new ArrayList<SESAMEFuzzingOperationWrapper>(other.contents.size());
 
-		for (SESAMETestAttack fi : other.contents) {
+		for (SESAMEFuzzingOperationWrapper fi : other.contents) {
 			this.contents.add(fi.dup());
 		}
 		
@@ -106,7 +114,7 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 		return res;
 	}
 
-	public SESAMETestAttack getVariable(int index) {
+	public SESAMEFuzzingOperationWrapper getVariable(int index) {
 		if (index < contents.size() && index >= 0) {
 			return contents.get(index);
 		} else {
@@ -114,11 +122,11 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 		}
 	}
 
-	public List<SESAMETestAttack> getVariables() {
+	public List<SESAMEFuzzingOperationWrapper> getVariables() {
 		return contents;
 	}
 
-	public void setVariable(int index, SESAMETestAttack variable) {
+	public void setVariable(int index, SESAMEFuzzingOperationWrapper variable) {
 		contents.set(index, variable);
 	}
 
@@ -160,16 +168,20 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 		return this.copy();
 	}
 
-	public List<SESAMETestAttack> getFuzzingSelections() {
+	public List<SESAMEFuzzingOperationWrapper> getFuzzingSelections() {
 		return contents;
 	}
 
-	public void setContents(int index, SESAMETestAttack fi) {
+	public void setContents(int index, SESAMEFuzzingOperationWrapper fi) {
 		contents.set(index, fi);
 	}
 
-	public void addContents(int index, SESAMETestAttack fi) {
+	public void addContents(int index, SESAMEFuzzingOperationWrapper fi) {
 		contents.add(index, fi);
+	}
+	
+	public void addToContents(SESAMEFuzzingOperationWrapper fi) {
+		contents.add(fi);
 	}
 
 	public int numberOfFuzzingSelections() {
@@ -192,15 +204,15 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 		return attributes;
 	}
 
-	public void setAllContents(List<SESAMETestAttack> fis) {
+	public void setAllContents(List<SESAMEFuzzingOperationWrapper> fis) {
 		int i = 0;
-		for (SESAMETestAttack fi : fis) {
+		for (SESAMEFuzzingOperationWrapper fi : fis) {
 			addContents(i, fi);
 			i++;
 		}
 	}
 
-	public List<SESAMETestAttack> variables() {
+	public List<SESAMEFuzzingOperationWrapper> variables() {
 		return getVariables();
 	}
 
@@ -245,11 +257,11 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 	}
 
 	public void ensureModelUpdated(TestCampaign campaign) {
-		List<Attack> testAttacks = t.getAttacks();
+		List<FuzzingOperation> testAttacks = t.getOperations();
 		// First, ensure the model attack objects are all updated in the model object
 		// from its contents
-		for (SESAMETestAttack sta : contents) {
-			Attack a = sta.getAttack();
+		for (SESAMEFuzzingOperationWrapper sta : contents) {
+			FuzzingOperation a = sta.getAttack();
 			testAttacks.add(a);
 		}
 		
@@ -273,5 +285,15 @@ public class SESAMETestSolution implements Solution<SESAMETestAttack> {
 		Test parentT = parent.getInternalType();
 		EList<Test> developedFrom = t.getDevelopedFrom();
 		developedFrom.add(parentT);
+	}
+
+	public void setOperationSequenceNums() {
+		Test t = this.getInternalType();
+		int i = 0;
+		EList<FuzzingOperation> ops = t.getOperations();
+		for (FuzzingOperation o : ops) {
+			o.setSequenceNumInTest(i);
+			i++;
+		}
 	}
 }

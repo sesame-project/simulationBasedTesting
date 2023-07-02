@@ -46,8 +46,6 @@ public class SESAMESwapAttacksFromTestsCrossover extends SESAMECrossoverOperatio
 			int xcut = rng.nextInt(xlimit);
 			int ycut = rng.nextInt(ylimit);
 
-			// TODO: add constructors to duplicate these objects
-
 			for (int x = 0; x < xlimit; x++) {
 				if (x <= xcut) {
 					new1.addContents(new1_index++, cx.getVariable(x).dup());

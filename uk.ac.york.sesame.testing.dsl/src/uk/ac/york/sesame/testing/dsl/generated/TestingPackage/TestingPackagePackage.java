@@ -86,22 +86,13 @@ public interface TestingPackagePackage extends EPackage {
 	int TESTING_SPACE__METRICS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Possible Attacks</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Possible Fuzzing Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TESTING_SPACE__POSSIBLE_ATTACKS = 2;
-
-	/**
-	 * The feature id for the '<em><b>Grammar Specfication</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TESTING_SPACE__GRAMMAR_SPECFICATION = 3;
+	int TESTING_SPACE__POSSIBLE_FUZZING_OPERATIONS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Campaigns</b></em>' containment reference list.
@@ -110,7 +101,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TESTING_SPACE__CAMPAIGNS = 4;
+	int TESTING_SPACE__CAMPAIGNS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Mrs</b></em>' containment reference.
@@ -119,7 +110,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TESTING_SPACE__MRS = 5;
+	int TESTING_SPACE__MRS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Testing Space</em>' class.
@@ -128,7 +119,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TESTING_SPACE_FEATURE_COUNT = 6;
+	int TESTING_SPACE_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Testing Space</em>' class.
@@ -168,22 +159,31 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_CAMPAIGN__METRICS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Included Attacks</b></em>' reference list.
+	 * The feature id for the '<em><b>Condition Metrics</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__INCLUDED_ATTACKS = 2;
+	int TEST_CAMPAIGN__CONDITION_METRICS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Activation Generation</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__CONSTRAINTS = 3;
+	int TEST_CAMPAIGN__ACTIVATION_GENERATION = 3;
+
+	/**
+	 * The feature id for the '<em><b>Included Operations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_CAMPAIGN__INCLUDED_OPERATIONS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Approach</b></em>' containment reference.
@@ -192,7 +192,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__APPROACH = 4;
+	int TEST_CAMPAIGN__APPROACH = 5;
 
 	/**
 	 * The feature id for the '<em><b>Performed Tests</b></em>' containment reference list.
@@ -201,7 +201,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__PERFORMED_TESTS = 5;
+	int TEST_CAMPAIGN__PERFORMED_TESTS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Result Sets</b></em>' containment reference list.
@@ -210,16 +210,16 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__RESULT_SETS = 6;
+	int TEST_CAMPAIGN__RESULT_SETS = 7;
 
 	/**
-	 * The feature id for the '<em><b>Default End Trigger</b></em>' containment reference.
+	 * The feature id for the '<em><b>End Trigger</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN__DEFAULT_END_TRIGGER = 7;
+	int TEST_CAMPAIGN__END_TRIGGER = 8;
 
 	/**
 	 * The number of structural features of the '<em>Test Campaign</em>' class.
@@ -228,7 +228,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CAMPAIGN_FEATURE_COUNT = 8;
+	int TEST_CAMPAIGN_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>Test Campaign</em>' class.
@@ -259,13 +259,13 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Attacks</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST__ATTACKS = 1;
+	int TEST__OPERATIONS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Metrics</b></em>' containment reference list.
@@ -277,22 +277,13 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST__METRICS = 2;
 
 	/**
-	 * The feature id for the '<em><b>End Trigger</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEST__END_TRIGGER = 3;
-
-	/**
 	 * The feature id for the '<em><b>Developed From</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST__DEVELOPED_FROM = 4;
+	int TEST__DEVELOPED_FROM = 3;
 
 	/**
 	 * The feature id for the '<em><b>Parent Campaign</b></em>' container reference.
@@ -301,7 +292,16 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST__PARENT_CAMPAIGN = 5;
+	int TEST__PARENT_CAMPAIGN = 4;
+
+	/**
+	 * The feature id for the '<em><b>Debug Flags</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST__DEBUG_FLAGS = 5;
 
 	/**
 	 * The number of structural features of the '<em>Test</em>' class.
@@ -322,6 +322,155 @@ public interface TestingPackagePackage extends EPackage {
 	int TEST_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestDebuggingFlagsImpl <em>Test Debugging Flags</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestDebuggingFlagsImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTestDebuggingFlags()
+	 * @generated
+	 */
+	int TEST_DEBUGGING_FLAGS = 3;
+
+	/**
+	 * The number of structural features of the '<em>Test Debugging Flags</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_DEBUGGING_FLAGS_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Test Debugging Flags</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_DEBUGGING_FLAGS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.PassiveMonitorOnlyImpl <em>Passive Monitor Only</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.PassiveMonitorOnlyImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getPassiveMonitorOnly()
+	 * @generated
+	 */
+	int PASSIVE_MONITOR_ONLY = 4;
+
+	/**
+	 * The number of structural features of the '<em>Passive Monitor Only</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSIVE_MONITOR_ONLY_FEATURE_COUNT = TEST_DEBUGGING_FLAGS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Passive Monitor Only</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSIVE_MONITOR_ONLY_OPERATION_COUNT = TEST_DEBUGGING_FLAGS_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ActivationGenerationMethodImpl <em>Activation Generation Method</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ActivationGenerationMethodImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getActivationGenerationMethod()
+	 * @generated
+	 */
+	int ACTIVATION_GENERATION_METHOD = 5;
+
+	/**
+	 * The number of structural features of the '<em>Activation Generation Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVATION_GENERATION_METHOD_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Activation Generation Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVATION_GENERATION_METHOD_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TimeBasedActivationGenerationMethodImpl <em>Time Based Activation Generation Method</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TimeBasedActivationGenerationMethodImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTimeBasedActivationGenerationMethod()
+	 * @generated
+	 */
+	int TIME_BASED_ACTIVATION_GENERATION_METHOD = 6;
+
+	/**
+	 * The number of structural features of the '<em>Time Based Activation Generation Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_BASED_ACTIVATION_GENERATION_METHOD_FEATURE_COUNT = ACTIVATION_GENERATION_METHOD_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Time Based Activation Generation Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_BASED_ACTIVATION_GENERATION_METHOD_OPERATION_COUNT = ACTIVATION_GENERATION_METHOD_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ConditionBasedActivationGenerationMethodImpl <em>Condition Based Activation Generation Method</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ConditionBasedActivationGenerationMethodImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getConditionBasedActivationGenerationMethod()
+	 * @generated
+	 */
+	int CONDITION_BASED_ACTIVATION_GENERATION_METHOD = 7;
+
+	/**
+	 * The feature id for the '<em><b>Condition Depth</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED_ACTIVATION_GENERATION_METHOD__CONDITION_DEPTH = ACTIVATION_GENERATION_METHOD_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Condition Based Activation Generation Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED_ACTIVATION_GENERATION_METHOD_FEATURE_COUNT = ACTIVATION_GENERATION_METHOD_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Condition Based Activation Generation Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_BASED_ACTIVATION_GENERATION_METHOD_OPERATION_COUNT = ACTIVATION_GENERATION_METHOD_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.CampaignResultSetImpl <em>Campaign Result Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -329,7 +478,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getCampaignResultSet()
 	 * @generated
 	 */
-	int CAMPAIGN_RESULT_SET = 3;
+	int CAMPAIGN_RESULT_SET = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -384,7 +533,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getExecutionEndTrigger()
 	 * @generated
 	 */
-	int EXECUTION_END_TRIGGER = 4;
+	int EXECUTION_END_TRIGGER = 9;
 
 	/**
 	 * The number of structural features of the '<em>Execution End Trigger</em>' class.
@@ -412,7 +561,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTimeBasedEnd()
 	 * @generated
 	 */
-	int TIME_BASED_END = 5;
+	int TIME_BASED_END = 10;
 
 	/**
 	 * The feature id for the '<em><b>Time Limit Seconds</b></em>' attribute.
@@ -442,34 +591,6 @@ public interface TestingPackagePackage extends EPackage {
 	int TIME_BASED_END_OPERATION_COUNT = EXECUTION_END_TRIGGER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarConstraintImpl <em>Grammar Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarConstraintImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getGrammarConstraint()
-	 * @generated
-	 */
-	int GRAMMAR_CONSTRAINT = 6;
-
-	/**
-	 * The number of structural features of the '<em>Grammar Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAMMAR_CONSTRAINT_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Grammar Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GRAMMAR_CONSTRAINT_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestGenerationApproachImpl <em>Test Generation Approach</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -477,7 +598,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTestGenerationApproach()
 	 * @generated
 	 */
-	int TEST_GENERATION_APPROACH = 7;
+	int TEST_GENERATION_APPROACH = 11;
 
 	/**
 	 * The number of structural features of the '<em>Test Generation Approach</em>' class.
@@ -505,7 +626,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRandomTestGeneration()
 	 * @generated
 	 */
-	int RANDOM_TEST_GENERATION = 8;
+	int RANDOM_TEST_GENERATION = 12;
 
 	/**
 	 * The number of structural features of the '<em>Random Test Generation</em>' class.
@@ -533,7 +654,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getEvolutionaryAlgorithm()
 	 * @generated
 	 */
-	int EVOLUTIONARY_ALGORITHM = 9;
+	int EVOLUTIONARY_ALGORITHM = 13;
 
 	/**
 	 * The number of structural features of the '<em>Evolutionary Algorithm</em>' class.
@@ -561,7 +682,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getNSGAEvolutionaryAlgorithm()
 	 * @generated
 	 */
-	int NSGA_EVOLUTIONARY_ALGORITHM = 10;
+	int NSGA_EVOLUTIONARY_ALGORITHM = 14;
 
 	/**
 	 * The feature id for the '<em><b>Population Size</b></em>' attribute.
@@ -600,33 +721,187 @@ public interface TestingPackagePackage extends EPackage {
 	int NSGA_EVOLUTIONARY_ALGORITHM_OPERATION_COUNT = EVOLUTIONARY_ALGORITHM_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarSpecificationImpl <em>Grammar Specification</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl <em>NSGA With Coverage Cells</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarSpecificationImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getGrammarSpecification()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getNSGAWithCoverageCells()
 	 * @generated
 	 */
-	int GRAMMAR_SPECIFICATION = 11;
+	int NSGA_WITH_COVERAGE_CELLS = 15;
 
 	/**
-	 * The number of structural features of the '<em>Grammar Specification</em>' class.
+	 * The feature id for the '<em><b>Population Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAMMAR_SPECIFICATION_FEATURE_COUNT = 0;
+	int NSGA_WITH_COVERAGE_CELLS__POPULATION_SIZE = NSGA_EVOLUTIONARY_ALGORITHM__POPULATION_SIZE;
 
 	/**
-	 * The number of operations of the '<em>Grammar Specification</em>' class.
+	 * The feature id for the '<em><b>Iterations</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAMMAR_SPECIFICATION_OPERATION_COUNT = 0;
+	int NSGA_WITH_COVERAGE_CELLS__ITERATIONS = NSGA_EVOLUTIONARY_ALGORITHM__ITERATIONS;
 
+	/**
+	 * The feature id for the '<em><b>Coverage Per Cell</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Dimension Records</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Use Mutation Enhancing Coverage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>NSGA With Coverage Cells</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS_FEATURE_COUNT = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>NSGA With Coverage Cells</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS_OPERATION_COUNT = NSGA_EVOLUTIONARY_ALGORITHM_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl <em>Dimension Interval</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionInterval()
+	 * @generated
+	 */
+	int DIMENSION_INTERVAL = 16;
+
+	/**
+	 * The feature id for the '<em><b>Dim ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_INTERVAL__DIM_ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Min Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_INTERVAL__MIN_VALUE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Max Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_INTERVAL__MAX_VALUE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_INTERVAL__COUNT = 3;
+
+	/**
+	 * The number of structural features of the '<em>Dimension Interval</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_INTERVAL_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Dimension Interval</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_INTERVAL_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl <em>Repeated Execution</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRepeatedExecution()
+	 * @generated
+	 */
+	int REPEATED_EXECUTION = 17;
+
+	/**
+	 * The feature id for the '<em><b>Test To Repeat</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATED_EXECUTION__TEST_TO_REPEAT = TEST_GENERATION_APPROACH_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Repeat Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATED_EXECUTION__REPEAT_COUNT = TEST_GENERATION_APPROACH_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Repeated Execution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATED_EXECUTION_FEATURE_COUNT = TEST_GENERATION_APPROACH_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Repeated Execution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATED_EXECUTION_OPERATION_COUNT = TEST_GENERATION_APPROACH_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus <em>Result Set Status</em>}' enum.
@@ -636,7 +911,18 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getResultSetStatus()
 	 * @generated
 	 */
-	int RESULT_SET_STATUS = 12;
+	int RESULT_SET_STATUS = 18;
+
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID <em>Dimension ID</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionID()
+	 * @generated
+	 */
+	int DIMENSION_ID = 19;
 
 
 	/**
@@ -672,26 +958,15 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestingSpace_Metrics();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getPossibleAttacks <em>Possible Attacks</em>}'.
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getPossibleFuzzingOperations <em>Possible Fuzzing Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Possible Attacks</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getPossibleAttacks()
+	 * @return the meta object for the containment reference list '<em>Possible Fuzzing Operations</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getPossibleFuzzingOperations()
 	 * @see #getTestingSpace()
 	 * @generated
 	 */
-	EReference getTestingSpace_PossibleAttacks();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getGrammarSpecfication <em>Grammar Specfication</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Grammar Specfication</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getGrammarSpecfication()
-	 * @see #getTestingSpace()
-	 * @generated
-	 */
-	EReference getTestingSpace_GrammarSpecfication();
+	EReference getTestingSpace_PossibleFuzzingOperations();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace#getCampaigns <em>Campaigns</em>}'.
@@ -748,26 +1023,37 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestCampaign_Metrics();
 
 	/**
-	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedAttacks <em>Included Attacks</em>}'.
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConditionMetrics <em>Condition Metrics</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Included Attacks</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedAttacks()
+	 * @return the meta object for the reference list '<em>Condition Metrics</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConditionMetrics()
 	 * @see #getTestCampaign()
 	 * @generated
 	 */
-	EReference getTestCampaign_IncludedAttacks();
+	EReference getTestCampaign_ConditionMetrics();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConstraints <em>Constraints</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getActivationGeneration <em>Activation Generation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getConstraints()
+	 * @return the meta object for the containment reference '<em>Activation Generation</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getActivationGeneration()
 	 * @see #getTestCampaign()
 	 * @generated
 	 */
-	EReference getTestCampaign_Constraints();
+	EReference getTestCampaign_ActivationGeneration();
+
+	/**
+	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedOperations <em>Included Operations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Included Operations</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getIncludedOperations()
+	 * @see #getTestCampaign()
+	 * @generated
+	 */
+	EReference getTestCampaign_IncludedOperations();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getApproach <em>Approach</em>}'.
@@ -803,15 +1089,15 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getTestCampaign_ResultSets();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger <em>Default End Trigger</em>}'.
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getEndTrigger <em>End Trigger</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Default End Trigger</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getDefaultEndTrigger()
+	 * @return the meta object for the containment reference '<em>End Trigger</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign#getEndTrigger()
 	 * @see #getTestCampaign()
 	 * @generated
 	 */
-	EReference getTestCampaign_DefaultEndTrigger();
+	EReference getTestCampaign_EndTrigger();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test <em>Test</em>}'.
@@ -835,15 +1121,15 @@ public interface TestingPackagePackage extends EPackage {
 	EAttribute getTest_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getAttacks <em>Attacks</em>}'.
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getOperations <em>Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Attacks</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getAttacks()
+	 * @return the meta object for the containment reference list '<em>Operations</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getOperations()
 	 * @see #getTest()
 	 * @generated
 	 */
-	EReference getTest_Attacks();
+	EReference getTest_Operations();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getMetrics <em>Metrics</em>}'.
@@ -855,17 +1141,6 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTest_Metrics();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getEndTrigger <em>End Trigger</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>End Trigger</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getEndTrigger()
-	 * @see #getTest()
-	 * @generated
-	 */
-	EReference getTest_EndTrigger();
 
 	/**
 	 * Returns the meta object for the reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getDevelopedFrom <em>Developed From</em>}'.
@@ -888,6 +1163,78 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTest_ParentCampaign();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getDebugFlags <em>Debug Flags</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Debug Flags</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test#getDebugFlags()
+	 * @see #getTest()
+	 * @generated
+	 */
+	EReference getTest_DebugFlags();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestDebuggingFlags <em>Test Debugging Flags</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Test Debugging Flags</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestDebuggingFlags
+	 * @generated
+	 */
+	EClass getTestDebuggingFlags();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.PassiveMonitorOnly <em>Passive Monitor Only</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Passive Monitor Only</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.PassiveMonitorOnly
+	 * @generated
+	 */
+	EClass getPassiveMonitorOnly();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ActivationGenerationMethod <em>Activation Generation Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Activation Generation Method</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ActivationGenerationMethod
+	 * @generated
+	 */
+	EClass getActivationGenerationMethod();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedActivationGenerationMethod <em>Time Based Activation Generation Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Time Based Activation Generation Method</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedActivationGenerationMethod
+	 * @generated
+	 */
+	EClass getTimeBasedActivationGenerationMethod();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod <em>Condition Based Activation Generation Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Condition Based Activation Generation Method</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod
+	 * @generated
+	 */
+	EClass getConditionBasedActivationGenerationMethod();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod#getConditionDepth <em>Condition Depth</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Condition Depth</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod#getConditionDepth()
+	 * @see #getConditionBasedActivationGenerationMethod()
+	 * @generated
+	 */
+	EAttribute getConditionBasedActivationGenerationMethod_ConditionDepth();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet <em>Campaign Result Set</em>}'.
@@ -964,16 +1311,6 @@ public interface TestingPackagePackage extends EPackage {
 	EAttribute getTimeBasedEnd_TimeLimitSeconds();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint <em>Grammar Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Grammar Constraint</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarConstraint
-	 * @generated
-	 */
-	EClass getGrammarConstraint();
-
-	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationApproach <em>Test Generation Approach</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1036,14 +1373,133 @@ public interface TestingPackagePackage extends EPackage {
 	EAttribute getNSGAEvolutionaryAlgorithm_Iterations();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpecification <em>Grammar Specification</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells <em>NSGA With Coverage Cells</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Grammar Specification</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.GrammarSpecification
+	 * @return the meta object for class '<em>NSGA With Coverage Cells</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells
 	 * @generated
 	 */
-	EClass getGrammarSpecification();
+	EClass getNSGAWithCoverageCells();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getCoveragePerCell <em>Coverage Per Cell</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Coverage Per Cell</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getCoveragePerCell()
+	 * @see #getNSGAWithCoverageCells()
+	 * @generated
+	 */
+	EAttribute getNSGAWithCoverageCells_CoveragePerCell();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getDimensionRecords <em>Dimension Records</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Dimension Records</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getDimensionRecords()
+	 * @see #getNSGAWithCoverageCells()
+	 * @generated
+	 */
+	EReference getNSGAWithCoverageCells_DimensionRecords();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#isUseMutationEnhancingCoverage <em>Use Mutation Enhancing Coverage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Use Mutation Enhancing Coverage</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#isUseMutationEnhancingCoverage()
+	 * @see #getNSGAWithCoverageCells()
+	 * @generated
+	 */
+	EAttribute getNSGAWithCoverageCells_UseMutationEnhancingCoverage();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval <em>Dimension Interval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dimension Interval</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval
+	 * @generated
+	 */
+	EClass getDimensionInterval();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getDimID <em>Dim ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dim ID</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getDimID()
+	 * @see #getDimensionInterval()
+	 * @generated
+	 */
+	EAttribute getDimensionInterval_DimID();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getMinValue <em>Min Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getMinValue()
+	 * @see #getDimensionInterval()
+	 * @generated
+	 */
+	EAttribute getDimensionInterval_MinValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getMaxValue <em>Max Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Max Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getMaxValue()
+	 * @see #getDimensionInterval()
+	 * @generated
+	 */
+	EAttribute getDimensionInterval_MaxValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getCount <em>Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Count</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getCount()
+	 * @see #getDimensionInterval()
+	 * @generated
+	 */
+	EAttribute getDimensionInterval_Count();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution <em>Repeated Execution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Repeated Execution</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution
+	 * @generated
+	 */
+	EClass getRepeatedExecution();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution#getTestToRepeat <em>Test To Repeat</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Test To Repeat</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution#getTestToRepeat()
+	 * @see #getRepeatedExecution()
+	 * @generated
+	 */
+	EReference getRepeatedExecution_TestToRepeat();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution#getRepeatCount <em>Repeat Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Repeat Count</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution#getRepeatCount()
+	 * @see #getRepeatedExecution()
+	 * @generated
+	 */
+	EAttribute getRepeatedExecution_RepeatCount();
 
 	/**
 	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus <em>Result Set Status</em>}'.
@@ -1054,6 +1510,16 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getResultSetStatus();
+
+	/**
+	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID <em>Dimension ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Dimension ID</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID
+	 * @generated
+	 */
+	EEnum getDimensionID();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1105,20 +1571,12 @@ public interface TestingPackagePackage extends EPackage {
 		EReference TESTING_SPACE__METRICS = eINSTANCE.getTestingSpace_Metrics();
 
 		/**
-		 * The meta object literal for the '<em><b>Possible Attacks</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Possible Fuzzing Operations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TESTING_SPACE__POSSIBLE_ATTACKS = eINSTANCE.getTestingSpace_PossibleAttacks();
-
-		/**
-		 * The meta object literal for the '<em><b>Grammar Specfication</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TESTING_SPACE__GRAMMAR_SPECFICATION = eINSTANCE.getTestingSpace_GrammarSpecfication();
+		EReference TESTING_SPACE__POSSIBLE_FUZZING_OPERATIONS = eINSTANCE.getTestingSpace_PossibleFuzzingOperations();
 
 		/**
 		 * The meta object literal for the '<em><b>Campaigns</b></em>' containment reference list feature.
@@ -1163,20 +1621,28 @@ public interface TestingPackagePackage extends EPackage {
 		EReference TEST_CAMPAIGN__METRICS = eINSTANCE.getTestCampaign_Metrics();
 
 		/**
-		 * The meta object literal for the '<em><b>Included Attacks</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Condition Metrics</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_CAMPAIGN__INCLUDED_ATTACKS = eINSTANCE.getTestCampaign_IncludedAttacks();
+		EReference TEST_CAMPAIGN__CONDITION_METRICS = eINSTANCE.getTestCampaign_ConditionMetrics();
 
 		/**
-		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Activation Generation</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_CAMPAIGN__CONSTRAINTS = eINSTANCE.getTestCampaign_Constraints();
+		EReference TEST_CAMPAIGN__ACTIVATION_GENERATION = eINSTANCE.getTestCampaign_ActivationGeneration();
+
+		/**
+		 * The meta object literal for the '<em><b>Included Operations</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_CAMPAIGN__INCLUDED_OPERATIONS = eINSTANCE.getTestCampaign_IncludedOperations();
 
 		/**
 		 * The meta object literal for the '<em><b>Approach</b></em>' containment reference feature.
@@ -1203,12 +1669,12 @@ public interface TestingPackagePackage extends EPackage {
 		EReference TEST_CAMPAIGN__RESULT_SETS = eINSTANCE.getTestCampaign_ResultSets();
 
 		/**
-		 * The meta object literal for the '<em><b>Default End Trigger</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>End Trigger</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_CAMPAIGN__DEFAULT_END_TRIGGER = eINSTANCE.getTestCampaign_DefaultEndTrigger();
+		EReference TEST_CAMPAIGN__END_TRIGGER = eINSTANCE.getTestCampaign_EndTrigger();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestImpl <em>Test</em>}' class.
@@ -1229,12 +1695,12 @@ public interface TestingPackagePackage extends EPackage {
 		EAttribute TEST__NAME = eINSTANCE.getTest_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Attacks</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Operations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST__ATTACKS = eINSTANCE.getTest_Attacks();
+		EReference TEST__OPERATIONS = eINSTANCE.getTest_Operations();
 
 		/**
 		 * The meta object literal for the '<em><b>Metrics</b></em>' containment reference list feature.
@@ -1243,14 +1709,6 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST__METRICS = eINSTANCE.getTest_Metrics();
-
-		/**
-		 * The meta object literal for the '<em><b>End Trigger</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEST__END_TRIGGER = eINSTANCE.getTest_EndTrigger();
 
 		/**
 		 * The meta object literal for the '<em><b>Developed From</b></em>' reference list feature.
@@ -1267,6 +1725,72 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST__PARENT_CAMPAIGN = eINSTANCE.getTest_ParentCampaign();
+
+		/**
+		 * The meta object literal for the '<em><b>Debug Flags</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST__DEBUG_FLAGS = eINSTANCE.getTest_DebugFlags();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestDebuggingFlagsImpl <em>Test Debugging Flags</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestDebuggingFlagsImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTestDebuggingFlags()
+		 * @generated
+		 */
+		EClass TEST_DEBUGGING_FLAGS = eINSTANCE.getTestDebuggingFlags();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.PassiveMonitorOnlyImpl <em>Passive Monitor Only</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.PassiveMonitorOnlyImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getPassiveMonitorOnly()
+		 * @generated
+		 */
+		EClass PASSIVE_MONITOR_ONLY = eINSTANCE.getPassiveMonitorOnly();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ActivationGenerationMethodImpl <em>Activation Generation Method</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ActivationGenerationMethodImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getActivationGenerationMethod()
+		 * @generated
+		 */
+		EClass ACTIVATION_GENERATION_METHOD = eINSTANCE.getActivationGenerationMethod();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TimeBasedActivationGenerationMethodImpl <em>Time Based Activation Generation Method</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TimeBasedActivationGenerationMethodImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getTimeBasedActivationGenerationMethod()
+		 * @generated
+		 */
+		EClass TIME_BASED_ACTIVATION_GENERATION_METHOD = eINSTANCE.getTimeBasedActivationGenerationMethod();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ConditionBasedActivationGenerationMethodImpl <em>Condition Based Activation Generation Method</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.ConditionBasedActivationGenerationMethodImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getConditionBasedActivationGenerationMethod()
+		 * @generated
+		 */
+		EClass CONDITION_BASED_ACTIVATION_GENERATION_METHOD = eINSTANCE.getConditionBasedActivationGenerationMethod();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition Depth</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONDITION_BASED_ACTIVATION_GENERATION_METHOD__CONDITION_DEPTH = eINSTANCE.getConditionBasedActivationGenerationMethod_ConditionDepth();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.CampaignResultSetImpl <em>Campaign Result Set</em>}' class.
@@ -1331,16 +1855,6 @@ public interface TestingPackagePackage extends EPackage {
 		EAttribute TIME_BASED_END__TIME_LIMIT_SECONDS = eINSTANCE.getTimeBasedEnd_TimeLimitSeconds();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarConstraintImpl <em>Grammar Constraint</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarConstraintImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getGrammarConstraint()
-		 * @generated
-		 */
-		EClass GRAMMAR_CONSTRAINT = eINSTANCE.getGrammarConstraint();
-
-		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestGenerationApproachImpl <em>Test Generation Approach</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1397,14 +1911,106 @@ public interface TestingPackagePackage extends EPackage {
 		EAttribute NSGA_EVOLUTIONARY_ALGORITHM__ITERATIONS = eINSTANCE.getNSGAEvolutionaryAlgorithm_Iterations();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarSpecificationImpl <em>Grammar Specification</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl <em>NSGA With Coverage Cells</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.GrammarSpecificationImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getGrammarSpecification()
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getNSGAWithCoverageCells()
 		 * @generated
 		 */
-		EClass GRAMMAR_SPECIFICATION = eINSTANCE.getGrammarSpecification();
+		EClass NSGA_WITH_COVERAGE_CELLS = eINSTANCE.getNSGAWithCoverageCells();
+
+		/**
+		 * The meta object literal for the '<em><b>Coverage Per Cell</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL = eINSTANCE.getNSGAWithCoverageCells_CoveragePerCell();
+
+		/**
+		 * The meta object literal for the '<em><b>Dimension Records</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS = eINSTANCE.getNSGAWithCoverageCells_DimensionRecords();
+
+		/**
+		 * The meta object literal for the '<em><b>Use Mutation Enhancing Coverage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE = eINSTANCE.getNSGAWithCoverageCells_UseMutationEnhancingCoverage();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl <em>Dimension Interval</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionInterval()
+		 * @generated
+		 */
+		EClass DIMENSION_INTERVAL = eINSTANCE.getDimensionInterval();
+
+		/**
+		 * The meta object literal for the '<em><b>Dim ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIMENSION_INTERVAL__DIM_ID = eINSTANCE.getDimensionInterval_DimID();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIMENSION_INTERVAL__MIN_VALUE = eINSTANCE.getDimensionInterval_MinValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIMENSION_INTERVAL__MAX_VALUE = eINSTANCE.getDimensionInterval_MaxValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIMENSION_INTERVAL__COUNT = eINSTANCE.getDimensionInterval_Count();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl <em>Repeated Execution</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRepeatedExecution()
+		 * @generated
+		 */
+		EClass REPEATED_EXECUTION = eINSTANCE.getRepeatedExecution();
+
+		/**
+		 * The meta object literal for the '<em><b>Test To Repeat</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPEATED_EXECUTION__TEST_TO_REPEAT = eINSTANCE.getRepeatedExecution_TestToRepeat();
+
+		/**
+		 * The meta object literal for the '<em><b>Repeat Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REPEATED_EXECUTION__REPEAT_COUNT = eINSTANCE.getRepeatedExecution_RepeatCount();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus <em>Result Set Status</em>}' enum.
@@ -1415,6 +2021,16 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum RESULT_SET_STATUS = eINSTANCE.getResultSetStatus();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID <em>Dimension ID</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionID()
+		 * @generated
+		 */
+		EEnum DIMENSION_ID = eINSTANCE.getDimensionID();
 
 	}
 

@@ -1,6 +1,5 @@
 package uk.ac.york.sesame.testing.architecture.data;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
@@ -11,7 +10,6 @@ import java.util.Properties;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -80,10 +78,18 @@ public class DataStreamManager {
 		String kafkaTopic = topicName.replace("/", ".").replace("[", "");
 //		KafkaProducer<Long, EventMessage> kafkaProducer = DataStreamManager.getInstance().getKafkaProducer();
 		eventMessage.setId(UUID.randomUUID().toString());
-		Instant instant = Instant.now();
-		long timeStampMillis = instant.toEpochMilli();
-		eventMessage.setTimestamp(timeStampMillis);
-//		eventMessage.setTopic(kafkaTopic);
+		
+		// JRH: only replace the event timestamp if they have not
+		// been set by simulator low-level timestamps
+		if (eventMessage.timestamp == 0) {
+			Instant instant = Instant.now();
+			long timeStampMillis = instant.toEpochMilli();
+			eventMessage.setTimestamp(timeStampMillis);
+		}
+		
+		// Ensure the IN_walltime is set
+		eventMessage.setIN_walltime_from_current();
+		
 		ProducerRecord<Long, EventMessage> record = new ProducerRecord<Long, EventMessage>(kafkaTopic, 1L,
 				eventMessage);
 		try {

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="FuzzingOperations" xmlns:_2="MRSPackage" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_Ay798DR2Ee2fbo-0GeUOEw" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+    <res xsi:type="FileStreamResult" xmi:id="_f6_EgDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/fuzzingOpTimes"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_IbT50BSTEe2NuvfcagGJYw" name="uvExposureForHuman">
+    <valueIfNotReceived xmi:id="_44TpsDR1Ee2fbo-0GeUOEw"/>
+    <streams xsi:type="InputStream" xmi:id="_pUyAkCKREe2LYMDzNfHpOQ"/>
+    <res xsi:type="FileStreamResult" xmi:id="_uAnicDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/uvExposureForHuman"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_KG4H8C9nEe2WLcT3ce_NEw" name="wallCollisions">
+    <valueIfNotReceived xmi:id="_6-WJIDR1Ee2fbo-0GeUOEw"/>
+    <streams xsi:type="InputStream" xmi:id="_KG4H8S9nEe2WLcT3ce_NEw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_wqXy8DT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/wallCollisions"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_HeP5sDNVEe2BrK8BAi5Xqg" name="distanceFromStartPoint" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_9HcjoDR1Ee2fbo-0GeUOEw" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_SER4sDNfEe2BrK8BAi5Xqg"/>
+    <res xsi:type="FileStreamResult" xmi:id="_0KTdgDT5Ee2Mes87OmSvXg" filename="/home/jharbin/academic/sesame/WP6/metric-results/distanceFromStartPoint"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="_1:CustomFuzzingOperation" xmi:id="_u2BukCkTEe2rWIgPkXJ7Hg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_sQ_XQCkZEe2rWIgPkXJ7Hg" endTime="120.0"/>
+    <params xsi:type="_1:DoubleRange" xmi:id="_NnsC4CnuEe2CPLNHTC0Tug" propertyName="rangeFactor" upperBound="0.1"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_EQvMICmiEe2HELjiSIEHlA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_dND-0Cn6Ee2U6tODQsyjgg" endTime="120.0"/>
+    <frequency xmi:id="_GF7MICmiEe2HELjiSIEHlA" upperBound="1.0"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:LatencyNetworkOperation" xmi:id="_Bjxj0C0JEe22IeLGRwtkQg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_DTrbMC0JEe22IeLGRwtkQg" endTime="100.0"/>
+    <latency xmi:id="_EsMGQC0JEe22IeLGRwtkQg" upperBound="5.0"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _HeP5sDNVEe2BrK8BAi5Xqg" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg" includedOperations="_u2BukCkTEe2rWIgPkXJ7Hg _Bjxj0C0JEe22IeLGRwtkQg _EQvMICmiEe2HELjiSIEHlA">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="6" iterations="32"/>
+    <performedTests name="Test_001_24_09_2022_02_51_29">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="16.276675785815375" endTime="45.01614660976865"/>
+        <latency upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="87.71587785700038" endTime="97.99607783188546"/>
+        <frequency upperBound="1.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="39.01967079883835"/>
+      </metrics>
+      <metrics metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result name="distanceFromStartPoint" value="100000.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_002_24_09_2022_02_51_29">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="4.687953036188124" endTime="96.81761159735387"/>
+        <frequency upperBound="1.0"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_24_09_2022_02_59_29">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="55.54042004831773" endTime="95.47427717734958"/>
+        <latency upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="97.23488544331296" endTime="118.16156175026943"/>
+        <frequency upperBound="1.0"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_24_09_2022_03_05_07">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="8.65066210879808" endTime="80.11489885647356"/>
+        <latency upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="71.46423674767547"/>
+      </metrics>
+      <metrics metric="_HeP5sDNVEe2BrK8BAi5Xqg">
+        <result name="distanceFromStartPoint" value="12.191505289363045"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_002_24_09_2022_03_05_07">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_Bjxj0C0JEe22IeLGRwtkQg">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="18.9782328646356" endTime="70.93869225405129"/>
+        <latency upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg" fromTemplate="_EQvMICmiEe2HELjiSIEHlA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="85.48113004738423" endTime="101.7064752528309"/>
+        <frequency upperBound="1.0"/>
+      </operations>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="120"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_locomotec2.sh" launchDelaySeconds="10">
+    <variables xmi:id="_NzG5gCkOEe2rWIgPkXJ7Hg" name="/base_scan" type="_DwpnoCjCEe26Ivhf6XyfHA"/>
+    <variables xmi:id="_OfgcsCxUEe2oWKgCvvsh2w" name="/amcl_pose" type="_4NIrMCxxEe2oWKgCvvsh2w"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="robot0_controller" publisher="_OfgcsCxUEe2oWKgCvvsh2w"/>
+    <nodes xmi:id="_PTmb4CkOEe2rWIgPkXJ7Hg" name="robot0_laserScanner" publisher="_NzG5gCkOEe2rWIgPkXJ7Hg"/>
+    <simulator xsi:type="_2:ROSSimulator" xmi:id="_AoDfACjCEe26Ivhf6XyfHA" hostname="localhost" port="8089"/>
+    <propertyType xmi:id="_DwpnoCjCEe26Ivhf6XyfHA" name="sensor_msgs/LaserScan"/>
+    <propertyType xmi:id="_4NIrMCxxEe2oWKgCvvsh2w" name="geometry_msgs/PoseWithCovarianceStamped"/>
+  </mrs>
+</TestingMM:TestingSpace>

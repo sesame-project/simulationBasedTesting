@@ -1,0 +1,1728 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="FuzzingOperations" xmlns:_2="MRSPackage" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_Ay798DR2Ee2fbo-0GeUOEw" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+    <res xsi:type="FileStreamResult" xmi:id="_f6_EgDT5Ee2Mes87OmSvXg" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/fuzzingOpTimes"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_IbT50BSTEe2NuvfcagGJYw" name="uvExposureForHuman" relatedVariables="_SOhUwEMAEe2m59gLLXjQ5g">
+    <valueIfNotReceived xmi:id="_44TpsDR1Ee2fbo-0GeUOEw"/>
+    <streams xsi:type="InputStream" xmi:id="_pUyAkCKREe2LYMDzNfHpOQ"/>
+    <res xsi:type="FileStreamResult" xmi:id="_uAnicDT5Ee2Mes87OmSvXg" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/uvExposureForHuman"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_KG4H8C9nEe2WLcT3ce_NEw" name="wallCollisions">
+    <valueIfNotReceived xmi:id="_6-WJIDR1Ee2fbo-0GeUOEw"/>
+    <streams xsi:type="InputStream" xmi:id="_KG4H8S9nEe2WLcT3ce_NEw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_wqXy8DT5Ee2Mes87OmSvXg" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/wallCollisions"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_HeP5sDNVEe2BrK8BAi5Xqg" name="distanceFromStartPoint" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_9HcjoDR1Ee2fbo-0GeUOEw" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_SER4sDNfEe2BrK8BAi5Xqg"/>
+    <res xsi:type="FileStreamResult" xmi:id="_0KTdgDT5Ee2Mes87OmSvXg" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/distanceFromStartPoint"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_qYdz4ET7Ee21kZ_DgzCBrA" name="uvDisinfectionSurface" dir="LOWEST" relatedVariables="_2DLWQET1Ee21kZ_DgzCBrA">
+    <valueIfNotReceived xmi:id="_qYdz4UT7Ee21kZ_DgzCBrA" defaultVal="1000000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_qYdz4kT7Ee21kZ_DgzCBrA"/>
+    <res xsi:type="FileStreamResult" xmi:id="_qYdz40T7Ee21kZ_DgzCBrA" filename="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/metric-results/uvDisinfectionSurfaceMetric"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="_1:CustomFuzzingOperation" xmi:id="_u2BukCkTEe2rWIgPkXJ7Hg" name="distortBaseScan" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_sQ_XQCkZEe2rWIgPkXJ7Hg" endTime="120.0"/>
+    <params xsi:type="_1:DoubleRange" xmi:id="_NnsC4CnuEe2CPLNHTC0Tug" propertyName="rangeFactor" lowerBound="0.15" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_EQvMICmiEe2HELjiSIEHlA" name="baseScanPacketLoss" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_dND-0Cn6Ee2U6tODQsyjgg" endTime="120.0"/>
+    <frequency xmi:id="_GF7MICmiEe2HELjiSIEHlA" lowerBound="0.4" upperBound="0.7"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:LatencyNetworkOperation" xmi:id="_Bjxj0C0JEe22IeLGRwtkQg" name="baseScanDelay" variableToAffect="_NzG5gCkOEe2rWIgPkXJ7Hg">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_DTrbMC0JEe22IeLGRwtkQg" endTime="100.0"/>
+    <latency xmi:id="_EsMGQC0JEe22IeLGRwtkQg" lowerBound="1.0" upperBound="5.0"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:PacketLossNetworkOperation" xmi:id="_QKc88ET9Ee21kZ_DgzCBrA" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_QKc88UT9Ee21kZ_DgzCBrA" endTime="120.0"/>
+    <frequency xmi:id="_QKc88kT9Ee21kZ_DgzCBrA" lowerBound="0.4" upperBound="0.7"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_EpCRIEVeEe21kZ_DgzCBrA" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" isRelative="true">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_Vs7N8EV0Ee2tmpoSRkgLMw" endTime="100.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_qf-oIEVeEe21kZ_DgzCBrA" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-1.5" upperBound="1.5"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_q9g4sEVeEe21kZ_DgzCBrA" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.01" upperBound="0.01"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:LatencyNetworkOperation" xmi:id="_N8sYIErgEe2FB_wSTOSn3Q" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_N8sYIUrgEe2FB_wSTOSn3Q" endTime="100.0"/>
+    <latency xmi:id="_N8sYIkrgEe2FB_wSTOSn3Q" lowerBound="1.0" upperBound="5.0"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _IbT50BSTEe2NuvfcagGJYw _qYdz4ET7Ee21kZ_DgzCBrA" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg" includedOperations="_N8sYIErgEe2FB_wSTOSn3Q _QKc88ET9Ee21kZ_DgzCBrA _EpCRIEVeEe21kZ_DgzCBrA">
+    <activationGeneration xsi:type="TestingMM:TimeBasedActivationGenerationMethod" xmi:id="_3bXdcDx_Ee2btv-8bZumyw"/>
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="12" iterations="128"/>
+    <performedTests name="Test_001_18_10_2022_05_14_30">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="69.10972163005312" endTime="76.80259318840024"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="7.692871558347122"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.04710160385577413"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.995888821884613"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_002_18_10_2022_05_14_30">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="91.59035446248474" endTime="96.04939196562398"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="101.3386019661817" endTime="103.92074934237039"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="33.542690140999085" endTime="72.13247664605869"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.465684689352035" upperBound="1.4925900098267377"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.008322078097221004" upperBound="-0.002562472359478608"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="45.630971384387536"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="3.58167708049196"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.890472022721916"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_003_18_10_2022_05_14_30">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="62.42273723930211" endTime="96.60288391930786"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="34.18014668000575"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.030380792539439015"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.810537505824371"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_004_18_10_2022_05_14_30">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="38.772774029218006" endTime="82.22902221929769"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="50.75878615769505" endTime="54.06433068921374"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.277593920373322" upperBound="0.7473041166790836"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.004719349519592457" upperBound="0.008474553173033436"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="46.761792721598376"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.03657797652352139"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="5.916046539789077"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_005_18_10_2022_05_14_30">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="29.71741724869711" endTime="58.21254829858567"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="28.495131049888563"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.0601128763550755"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.275808968909653"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_006_18_10_2022_05_14_30">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="4.5240985200370165" endTime="53.09982329727115"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="48.575724777234136"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.00709251231133202"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.603316328465118"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_007_18_10_2022_05_14_30">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="58.082467654778156" endTime="87.75836162371503"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="29.675893968936876"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.061661760939692015"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.745197331274184"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_008_18_10_2022_05_14_30">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="38.013984223218486" endTime="48.91346503395908"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="53.9540042086484" endTime="66.33054603246589"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="23.276022634558082"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.04598046018672904"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.702107658686348"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_009_18_10_2022_05_14_30">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="112.21141094156445" endTime="113.74255229275063"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="52.348292552514216" endTime="56.60035120011439"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.2202408405818632" upperBound="1.29383966544066"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-7.591022431745146E-4" upperBound="0.009392693525964049"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="5.783199998786351"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.3717390259466237"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.523678595670004"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_010_18_10_2022_05_14_30">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="84.91318853845135" endTime="96.29749506556722"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="11.384306527115868"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.03822188291904411"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.616421657018453"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_011_18_10_2022_05_14_30">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="93.66734095594634" endTime="93.9419208943122"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="105.43565148182833" endTime="118.06436937736358"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="0.18990732245924846" endTime="19.26394943894822"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.3643580657404213" upperBound="1.0456614548537537"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.007140963106572232" upperBound="0.008272996881387431"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="31.97733995039008"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.06937085287819142"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.540608786482768"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_012_18_10_2022_05_14_30">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="82.69383573893813" endTime="85.07700342676856"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="2.383167687830422"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.0597221907162403"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="7.451514108699347"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_013_18_10_2022_05_14_30">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="28.292455603411593" endTime="69.05976116625547"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="38.94697948592108" endTime="54.87369272404037"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="56.694018800963164"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="12.581757870448282"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_014_18_10_2022_05_14_30">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="48.85534442572834" endTime="50.412926501707716"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.28252886947875977" upperBound="1.056936499635867"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.004188962090676887" upperBound="0.00902827785849299"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="1.5575820759793757"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.014934754868201876"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="12.2736291884104"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_015_18_10_2022_05_14_30">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="77.188384232817" endTime="84.44666524048483"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="7.258281007667833"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.03105120740595675"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="12.875777016146687"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_016_18_10_2022_05_14_30">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="79.38674197059977" endTime="98.07778597836719"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="90.34049063445934" endTime="96.34394392377291"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.1219615869902833" upperBound="1.3063273339213206"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.00837193126001707" upperBound="-0.0074176603775736255"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="24.694497297080986"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.06180524708224729"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.935500647059204"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_017_18_10_2022_05_50_22" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.7">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="19.424275412882732" endTime="41.26103731718016"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="21.83676190429743"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.13341823542482273"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.722307549232712"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_018_18_10_2022_05_50_22" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.7">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="88.63126120232538" endTime="97.9601264957424"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="31.89560470891037" endTime="106.8909520108545"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="84.32421259536116"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.00679053356501782"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="4.807471227178732"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_019_18_10_2022_05_50_22" developedFrom="//@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.2">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="62.63996331935019" endTime="96.90113909198884"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="105.43565148182833" endTime="118.06436937736358"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="25.045605482869004" endTime="61.742153394034204"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.8495131776963816" upperBound="1.201486122974558"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.002343837988159088" upperBound="0.0046583200993188835"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="83.5864415793391"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="2.4405433259356357"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.864171122273119"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_020_18_10_2022_05_50_22" developedFrom="//@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.2">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="62.42273723930211" endTime="96.60288391930786"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="34.18014668000575"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.046436815073289145"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.600705068538334"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_021_18_10_2022_05_50_22" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.14">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="91.59035446248474" endTime="96.04939196562398"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="33.53094015893238" endTime="52.77197692244235"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="66.72757627227887" endTime="83.4551972458386"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.465684689352035" upperBound="1.4925900098267377"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.008322078097221004" upperBound="-0.002562472359478608"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="40.42769524020895"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.03871041566370981"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.72516275831423"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_022_18_10_2022_05_50_22" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.14">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="77.188384232817" endTime="84.44666524048483"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="7.258281007667833"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.015331229443574537"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.072728254095795"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_023_18_10_2022_05_50_22" developedFrom="//@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.4">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="113.12055141464869" endTime="119.03245825232717"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="5.911906837678487"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.03830524696224151"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.929189461324805"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_024_18_10_2022_05_50_22" developedFrom="//@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.4">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="35.37962384491421" endTime="93.47512179267034"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.277593920373322" upperBound="0.7473041166790836"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.004719349519592457" upperBound="0.008474553173033436"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="39.859893349691724" endTime="45.9416948061526"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="64.177299404217"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="1.298693437213086"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="12.540417309142136"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_025_18_10_2022_05_50_22" developedFrom="//@campaigns.0/@performedTests.6 //@campaigns.0/@performedTests.4">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="53.34028929661915" endTime="90.57659186164142"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="37.23630256502227"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.06916863800580032"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.480281105497028"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_027_18_10_2022_05_50_22" developedFrom="//@campaigns.0/@performedTests.13">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="48.85534442572834" endTime="50.412926501707716"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.3462059361873115" upperBound="1.4880980928019103"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.0014475472483791423" upperBound="0.009359570095606482"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="1.5575820759793757"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.03827584796186866"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.490534036187285"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_029_18_10_2022_05_50_22" developedFrom="//@campaigns.0/@performedTests.7 //@campaigns.0/@performedTests.13">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="61.14215227025485" endTime="72.87795922779118"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="11.735806957536333"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.06693423245486069"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="12.399678641162106"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_031_18_10_2022_05_50_22" developedFrom="//@campaigns.0/@performedTests.0 //@campaigns.0/@performedTests.13">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="69.10972163005312" endTime="76.80259318840024"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="7.692871558347122"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.05382834355669102"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="8.856916796239561"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_033_18_10_2022_06_17_16" developedFrom="//@campaigns.0/@performedTests.11 //@campaigns.0/@performedTests.15">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="63.72461359141426" endTime="92.4047408230135"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="28.680127231599236"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.05366761100899442"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.3923930411084"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_034_18_10_2022_06_17_16" developedFrom="//@campaigns.0/@performedTests.11 //@campaigns.0/@performedTests.15">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="4.251199677954136" endTime="18.82225495653563"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="80.99613076365638" endTime="87.46452064977953"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.03592252318160449" upperBound="0.9518625864153726"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.00918188413782414" upperBound="0.00978125820231069"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="21.03944516470464"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.08258258822560353"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.255035881913184"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_035_18_10_2022_06_17_16" developedFrom="//@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.15">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="41.63460998820473" endTime="50.65387565564329"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="9.01926566743856"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.05037817624061944"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.538425674779246"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_036_18_10_2022_06_17_16" developedFrom="//@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.15">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="50.75878615769505" endTime="54.06433068921374"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.890284876907029" upperBound="0.7757262967992823"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.008231402038310421" upperBound="0.009935751473028998"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="36.70625194685308" endTime="89.79708835515541"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="96.52725004352313" endTime="98.65555766408353"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.1219615869902833" upperBound="1.3063273339213206"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.00837193126001707" upperBound="-0.0074176603775736255"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="58.52468856038143"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.11566609155989331"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="5.251263940918299"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_037_18_10_2022_06_17_16" developedFrom="//@campaigns.0/@performedTests.21 //@campaigns.0/@performedTests.24">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="94.1417025844187" endTime="98.47898076233011"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="4.337278177911415"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.045949813415586"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.515441075824267"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_038_18_10_2022_06_17_16" developedFrom="//@campaigns.0/@performedTests.21 //@campaigns.0/@performedTests.24">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="60.95016274891821" endTime="99.20994505284307"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="38.25978230392486"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.0387713932695936"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.089476632565413"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_039_18_10_2022_06_17_16" developedFrom="//@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.3">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="2.0487218970600773" endTime="74.61617352451198"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="44.41899524050497" endTime="85.60678537237058"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.2202408405818632" upperBound="1.29383966544066"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-7.591022431745146E-4" upperBound="0.009392693525964049"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="4.991117639608977" endTime="83.91201030570176"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.7563918935526419" upperBound="1.4015414921169393"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.00805643061351303" upperBound="0.008129537155122052"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="192.67613442541028"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="2.8548330003956846"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="7.782817032840708"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_040_18_10_2022_06_17_16" developedFrom="//@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.3">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="103.87144388391391" endTime="119.6581041570877"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="15.786660273173794"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.05945955437071544"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.360760515689371"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_041_18_10_2022_06_17_16" developedFrom="//@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.26">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="52.53126740453746" endTime="63.80436416016114"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="105.43565148182833" endTime="118.06436937736358"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="89.94820939368338" endTime="91.5874541561997"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.2682665270027291" upperBound="1.1049252792559203"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.005497290190791346" upperBound="0.007467915233472464"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="25.541059413675242"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.023003512118396924"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.671925392617561"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_043_18_10_2022_06_17_16" developedFrom="//@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.6">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="53.34028929661915" endTime="90.57659186164142"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="37.23630256502227"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.03771913722943969"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.314878166385176"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_045_18_10_2022_06_17_16" developedFrom="//@campaigns.0/@performedTests.11 //@campaigns.0/@performedTests.8">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="63.194513874045654" endTime="83.95988759374484"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="20.765373719699184"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.0686647552501059"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="9.079498032543084"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_047_18_10_2022_06_17_16" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.18">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="91.59035446248474" endTime="96.04939196562398"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="101.3386019661817" endTime="103.92074934237039"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="4.686121922627462" endTime="44.47366738621647"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.0661371667410702" upperBound="1.2197524991915687"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.0013605781640568075" upperBound="0.009567248442498321"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="46.828730342916934"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.9253405655823292"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="14.159116603906913"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_049_18_10_2022_06_44_11" developedFrom="//@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.23">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="112.21141094156445" endTime="113.74255229275063"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="81.9094050943728" endTime="84.02529984357281"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-1.1578479249453166" upperBound="0.7635438673070827"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="9.80088280552514E-4" upperBound="0.006773288478734796"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="3.647036100386188"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.060492594356596985"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.752648974020243"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_050_18_10_2022_06_44_11" developedFrom="//@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.23">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="91.38135658070705" endTime="96.35105608893232"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.4279679542998256" upperBound="1.457203075427427"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.006937989010874052" upperBound="0.00830556710267363"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="4.3896669004307665" endTime="29.934767752772665"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="30.514800360567172"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.04529233943501078"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.204239018515624"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_051_18_10_2022_06_44_11" developedFrom="//@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.31">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="58.721437092913334" endTime="88.85937666864847"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="30.137939575735132"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.060897121771531976"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="9.99359628167117"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_052_18_10_2022_06_44_11" developedFrom="//@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.31">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="12.276675077073541" endTime="57.82882912551735"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="91.68446365146859" endTime="99.23108226179792"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.20106614109984733" upperBound="0.03394138429423857"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="2.469968561895613E-4" upperBound="0.009536445720733816"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="50.75878615769505" endTime="54.06433068921374"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.3710795598938206" upperBound="1.409959648867864"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.0070999835424896286" upperBound="0.0093840025598597"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="52.595061532304086" endTime="58.48896485508395"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="96.52725004352313" endTime="98.65555766408353"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.1219615869902833" upperBound="1.3063273339213206"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.00837193126001707" upperBound="-0.0074176603775736255"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="64.4265281336321"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.11033758518852413"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.621505689868336"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_053_18_10_2022_06_44_11" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.17">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="91.59035446248474" endTime="96.04939196562398"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="15.643815914971494" endTime="16.445534974987673"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="33.542690140999085" endTime="72.13247664605869"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.16057108418600885" upperBound="1.2299860085757313"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.0025898454550529774" upperBound="0.004605050743323161"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="90.58631020975857" endTime="104.39789388431805"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="57.66212674277452"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="1.8317416718132498"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="12.43925850083334"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_054_18_10_2022_06_44_11" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.17">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="99.80643942404473" endTime="99.99096214822669"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="0.18452272418196003"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.05387416688307173"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.03868031571361"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_055_18_10_2022_06_44_11" developedFrom="//@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.1">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="53.34028929661915" endTime="90.57659186164142"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="78.31307160482602" endTime="99.03035560314083"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.8222315350642253" upperBound="-0.43697400061502945"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.00668462738160973" upperBound="0.008733521221573622"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="57.95358656333708"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.03041384797487136"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.407323801055337"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_056_18_10_2022_06_44_11" developedFrom="//@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.1">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="43.96745241452019" endTime="86.47470690594218"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="6.572034862895846" endTime="72.53352629926059"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="108.46874592778673"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="7.4030773818046445"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_057_18_10_2022_06_44_11" developedFrom="//@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.1">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="55.898719587183784" endTime="79.10999466921676"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="23.211275082032977"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.06784580106281857"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="12.067257948272724"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_059_18_10_2022_06_44_11" developedFrom="//@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.26">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="50.75878615769505" endTime="54.06433068921374"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.890284876907029" upperBound="0.7757262967992823"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.008231402038310421" upperBound="0.009935751473028998"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="3.3055445315186915"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.03893225413088312"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.607505151509779"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_061_18_10_2022_06_44_11" developedFrom="//@campaigns.0/@performedTests.38 //@campaigns.0/@performedTests.3">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="63.194513874045654" endTime="83.95988759374484"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="20.765373719699184"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.0457354595020989"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.18048880463316"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_063_18_10_2022_06_44_11" developedFrom="//@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.26">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="77.76933117069512" endTime="91.33906019158783"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-1.161859967372492" upperBound="0.776936045162721"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.0033368049796228677" upperBound="0.008301006893462201"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="13.569729020892709"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.07586676113731061"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.595091362790837"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_065_18_10_2022_07_11_07" developedFrom="//@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.18">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="76.83139608204485" endTime="91.2183127571769"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="25.045605482869004" endTime="61.742153394034204"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.8495131776963816" upperBound="1.201486122974558"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.002343837988159088" upperBound="0.0046583200993188835"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="51.083464586297254"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="2.5399508151193397"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.850211254989729"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_066_18_10_2022_07_11_07" developedFrom="//@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.18">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="62.63996331935019" endTime="96.90113909198884"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="100.97562596290733" endTime="106.30888326742779"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="39.59443307715911"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.037797893171593405"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.432033577299745"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_067_18_10_2022_07_11_07" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.24">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="83.46022703529273" endTime="92.04053171063983"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="79.60101060680799" endTime="101.39924836079378"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="30.37854242933288"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.015311509914037014"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.232251830491991"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_068_18_10_2022_07_11_07" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.24">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="85.86585990030444" endTime="92.5963030207848"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.8713391860547334" upperBound="0.31119415220845437"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.00952865186171253" upperBound="-0.007982174766541473"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="5.569796383138637" endTime="48.341274384485914"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="49.501921121827635"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.02267359257683115"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.671066178033556"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_069_18_10_2022_07_11_07" developedFrom="//@campaigns.0/@performedTests.17">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="88.63126120232538" endTime="97.9601264957424"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="77.65627267296473" endTime="110.4020449798505"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="39.087289801105015" endTime="41.00769561272427"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="43.99504341192205"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.051992456821748044"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.931460549483145"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_070_18_10_2022_07_11_07" developedFrom="//@campaigns.0/@performedTests.17">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="82.78095283012289" endTime="90.27682414606062"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="7.495871315937734"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.03811345069341381"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.049205923410803"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_071_18_10_2022_07_11_07" developedFrom="//@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.8">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="94.32314588150759" endTime="97.192004070023"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="2.868858188515418"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.030793374467202272"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.86041219480743"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_072_18_10_2022_07_11_07" developedFrom="//@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.8">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="75.37342225013485" endTime="96.32890229165726"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="52.348292552514216" endTime="56.60035120011439"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.48939300566728305" upperBound="0.9231764967559264"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.009116466426369443" upperBound="0.003340966246674284"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="25.20753868912258"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.29152902180599727"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.035386608571121"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_073_18_10_2022_07_11_07" developedFrom="//@campaigns.0/@performedTests.40 //@campaigns.0/@performedTests.17">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="91.94950707753537" endTime="117.08547147035044"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="11.650832898949538" endTime="79.61328357540654"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="93.09841506927206"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.0069658775726610545"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="7.802877132871181"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_075_18_10_2022_07_11_07" developedFrom="//@campaigns.0/@performedTests.26 //@campaigns.0/@performedTests.11">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="43.1761257095341" endTime="59.19705023191381"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="16.020924522379715"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.015505843243749736"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.963264354837024"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_077_18_10_2022_07_11_07" developedFrom="//@campaigns.0/@performedTests.29 //@campaigns.0/@performedTests.8">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="72.84320809230823" endTime="115.74558037647044"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="42.90237228416221"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.05345419520024439"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.294508359427645"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_079_18_10_2022_07_11_07" developedFrom="//@campaigns.0/@performedTests.17 //@campaigns.0/@performedTests.45">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="26.26750039473784" endTime="97.00570423473464"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="70.7382038399968"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.06002779705279508"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.517269152087993"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_081_18_10_2022_07_38_04" developedFrom="//@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.17">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="98.66499992018402" endTime="99.66779071064124"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.890284876907029" upperBound="0.7757262967992823"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.008231402038310421" upperBound="0.009935751473028998"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="78.04108153785447" endTime="108.07224675406437"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="44.06590202101414" endTime="74.64383696643009"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.9746294680172096" upperBound="1.158735743944252"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.0018214152607239405" upperBound="7.005226794302619E-4"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="61.61189095208307"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.01336742359746364"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.471555602989307"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_082_18_10_2022_07_38_04" developedFrom="//@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.17">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="88.63126120232538" endTime="97.9601264957424"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="31.89560470891037" endTime="106.8909520108545"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="84.32421259536116"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.05421686113562111"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="2.192131503807309"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_083_18_10_2022_07_38_04" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.34">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="90.43927539976048" endTime="93.01192704502975"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="87.27948874693881" endTime="115.1761435969556"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="44.41899524050497" endTime="85.60678537237058"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.2202408405818632" upperBound="1.29383966544066"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-7.591022431745146E-4" upperBound="0.009392693525964049"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="8.90214693321234" endTime="36.44603983701943"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-1.0904263277128066" upperBound="0.0222314036792568"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.009365887129558674" upperBound="0.003165355267328576"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="99.20098953095876"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="9.840308921982055"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_084_18_10_2022_07_38_04" developedFrom="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.34">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="93.00378878777097" endTime="94.55594514181527"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.19784078973743258" upperBound="0.6429844421547661"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.008717078040198218" upperBound="0.009675590840665523"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="114.6825905158694" endTime="117.11208190150987"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="3.9816477396847603"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.0675091596844099"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="12.039870677317687"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_085_18_10_2022_07_38_04" developedFrom="//@campaigns.0/@performedTests.26">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="0.8638267051240489" endTime="8.73783754455073"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="7.874010839426681"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.04585926288511747"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.838190610438602"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_086_18_10_2022_07_38_04" developedFrom="//@campaigns.0/@performedTests.26">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="24.40316787334713" endTime="43.98155255980221"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="19.57838468645508"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.07546404028514613"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="12.203625998039053"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_087_18_10_2022_07_38_04" developedFrom="//@campaigns.0/@performedTests.39 //@campaigns.0/@performedTests.52">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="91.59035446248474" endTime="96.04939196562398"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="23.045111912395257" endTime="23.8678538508267"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="5.281779441570688"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.022842582886044713"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="12.2750661911783"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_088_18_10_2022_07_38_04" developedFrom="//@campaigns.0/@performedTests.39 //@campaigns.0/@performedTests.52">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="4.686121922627462" endTime="44.47366738621647"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.752711462397821" upperBound="1.2466855011731663"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.009188197345599567" upperBound="0.004181765222280075"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="54.60176775337878" endTime="82.8003874481555"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="84.73491582987619" endTime="90.36861145078346"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.395298836812366" upperBound="1.4435290745775273"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.0025570786397454736" upperBound="0.007078290938350819"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="73.61986077927301"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.8183768282713179"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="9.962769993476504"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_089_18_10_2022_07_38_04" developedFrom="//@campaigns.0/@performedTests.39 //@campaigns.0/@performedTests.29">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="91.59035446248474" endTime="96.04939196562398"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="32.45367304184195" endTime="110.21675439838535"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="74.21306074572396" endTime="86.13356379783708"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.2241088635161228" upperBound="1.412340078881007"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.0090566305543555" upperBound="0.009516749896592727"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="94.14262191179576"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.47083630273519916"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="7.146871602575941"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_091_18_10_2022_07_38_04" developedFrom="//@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.38">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="62.252872638126455" endTime="94.83020725246519"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-1.1290796881260592" upperBound="-1.1075228006772504"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.0036582974732988875" upperBound="0.007560918473675588"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="32.57733461433873"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.1364922864503982"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.684270175236982"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_093_18_10_2022_07_38_04" developedFrom="//@campaigns.0/@performedTests.29 //@campaigns.0/@performedTests.18">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="4.251199677954136" endTime="18.82225495653563"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="80.99613076365638" endTime="87.46452064977953"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.13222252303811555" upperBound="1.1422199257516406"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.00765175965855981" upperBound="0.008378758551347131"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="21.03944516470464"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.0457730849840816"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.658232178933398"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_095_18_10_2022_07_38_04" developedFrom="//@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.26">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="112.21141094156445" endTime="113.74255229275063"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="14.656421917189565" endTime="46.802935645814344"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.9805966994583196" upperBound="0.3846413128808651"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.008916046972051495" upperBound="0.00864211295092476"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="33.67765507981096"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.014023187783683956"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.23029250428909"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_097_18_10_2022_08_05_02" developedFrom="//@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.59">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="62.63996331935019" endTime="96.90113909198884"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="34.26117577263865"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.038234562651306245"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="10.080815046078735"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_098_18_10_2022_08_05_02" developedFrom="//@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.59">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="105.43565148182833" endTime="118.06436937736358"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="80.72213885816683" endTime="98.15074760331235"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.8495131776963816" upperBound="1.201486122974558"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.002343837988159088" upperBound="0.0046583200993188835"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="27.010204733299375" endTime="73.12650991783224"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="60.00810692770864" endTime="63.80839074104491"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.48939300566728305" upperBound="0.9231764967559264"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.009116466426369443" upperBound="0.003340966246674284"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="79.9739156385499"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="9.390882662938656"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_099_18_10_2022_08_05_02" developedFrom="//@campaigns.0/@performedTests.52 //@campaigns.0/@performedTests.1">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="3.7966550881036176" endTime="6.868626819620565"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="25.045605482869004" endTime="61.742153394034204"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-1.0830748438377729" upperBound="0.04954614923814349"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.00663337103565948" upperBound="-0.0027124904425200776"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="39.76851964268214"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.040128604638538"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_100_18_10_2022_08_05_02" developedFrom="//@campaigns.0/@performedTests.52 //@campaigns.0/@performedTests.1">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="91.59035446248474" endTime="96.04939196562398"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="26.99262015471687" endTime="78.88547782869426"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="18.18409659795641" endTime="74.15702827288787"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.465684689352035" upperBound="1.4925900098267377"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.008322078097221004" upperBound="-0.002562472359478608"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="112.32482685204809"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="2.1159141587353014"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="8.693073019126446"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_101_18_10_2022_08_05_02" developedFrom="//@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.11">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="99.80643942404473" endTime="99.99096214822669"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="0.18452272418196003"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.04599264366030033"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.802297393822759"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_102_18_10_2022_08_05_02" developedFrom="//@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.11">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="82.69383573893813" endTime="85.07700342676856"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="2.383167687830422"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.06644452213501602"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.355969743348156"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_103_18_10_2022_08_05_02" developedFrom="//@campaigns.0/@performedTests.59 //@campaigns.0/@performedTests.34">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="85.15338505302151" endTime="106.01387585882736"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="4.991117639608977" endTime="83.91201030570176"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-1.031670270427743" upperBound="0.18904184892506026"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.006091154267856536" upperBound="0.009524404413148911"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="99.78138347189864"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="12.818420834751077"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_104_18_10_2022_08_05_02" developedFrom="//@campaigns.0/@performedTests.59 //@campaigns.0/@performedTests.34">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="18.7056234316174" endTime="98.21764618990478"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="1.2462068284141994" upperBound="1.4714234878249322"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.00772478892116552" upperBound="-0.004955283461003272"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="2.0487218970600773" endTime="74.61617352451198"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="89.72815875286477" endTime="99.55586062873158"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.06780703851751646" upperBound="0.8236178749026489"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.001553008732667704" upperBound="0.004987977962263931"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="161.90717626160608"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.7479823975072837"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="7.795034202088075"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_105_18_10_2022_08_05_02" developedFrom="//@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.71">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="63.27586731204398" endTime="94.00098588612144"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="75.71473515361876" endTime="85.35376125181838"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="0.395298836812366" upperBound="1.4435290745775273"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.0025570786397454736" upperBound="0.007078290938350819"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="40.364144672277085"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.07502396252908505"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.498598153310176"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_107_18_10_2022_08_05_02" developedFrom="//@campaigns.0/@performedTests.38 //@campaigns.0/@performedTests.59">
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_N8sYIErgEe2FB_wSTOSn3Q">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="63.194513874045654" endTime="83.95988759374484"/>
+        <latency lowerBound="1.0" upperBound="5.0"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="20.765373719699184"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.045973280238760725"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.386097254937246"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_109_18_10_2022_08_05_02" developedFrom="//@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.1">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="95.93356318071307" endTime="100.30398028323681"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="4.370417102523746"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.08325157284566423"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="13.063398381683928"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_111_18_10_2022_08_05_02" developedFrom="//@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.29">
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="86.79355893614249" endTime="95.528704181011"/>
+        <frequency lowerBound="0.4" upperBound="0.7"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="80.99613076365638" endTime="87.46452064977953"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.8383005136279008" upperBound="-0.25172717752228213"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-8.475086036799067E-4" upperBound="0.0017952639527047754"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="15.203535130991654"/>
+      </metrics>
+      <metrics metric="_IbT50BSTEe2NuvfcagGJYw">
+        <result name="uvExposureForHuman" value="0.05367935901559702"/>
+      </metrics>
+      <metrics metric="_qYdz4ET7Ee21kZ_DgzCBrA">
+        <result name="uvDisinfectionSurface" value="11.948043395641927"/>
+      </metrics>
+    </performedTests>
+    <resultSets name="FULL-18_10_2022_06_17_16-intermediate-24" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.6 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.11 //@campaigns.0/@performedTests.13 //@campaigns.0/@performedTests.15 //@campaigns.0/@performedTests.17 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.23 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.26 //@campaigns.0/@performedTests.10 //@campaigns.0/@performedTests.16 //@campaigns.0/@performedTests.21"/>
+    <resultSets name="NONDOM-18_10_2022_06_17_16-intermediate-24" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.6 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.11 //@campaigns.0/@performedTests.13 //@campaigns.0/@performedTests.15 //@campaigns.0/@performedTests.17 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.23 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.26"/>
+    <resultSets name="FULL-18_10_2022_06_44_11-intermediate-32" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.11 //@campaigns.0/@performedTests.13 //@campaigns.0/@performedTests.17 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.23 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.26 //@campaigns.0/@performedTests.29 //@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.34 //@campaigns.0/@performedTests.38 //@campaigns.0/@performedTests.39"/>
+    <resultSets name="NONDOM-18_10_2022_06_44_11-intermediate-32" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.11 //@campaigns.0/@performedTests.13 //@campaigns.0/@performedTests.17 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.23 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.25 //@campaigns.0/@performedTests.26 //@campaigns.0/@performedTests.29 //@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.34 //@campaigns.0/@performedTests.38"/>
+    <resultSets name="FULL-18_10_2022_07_11_07-intermediate-40" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.11 //@campaigns.0/@performedTests.17 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.26 //@campaigns.0/@performedTests.29 //@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.34 //@campaigns.0/@performedTests.38 //@campaigns.0/@performedTests.40 //@campaigns.0/@performedTests.44 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.39"/>
+    <resultSets name="NONDOM-18_10_2022_07_11_07-intermediate-40" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.11 //@campaigns.0/@performedTests.17 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.24 //@campaigns.0/@performedTests.26 //@campaigns.0/@performedTests.29 //@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.34 //@campaigns.0/@performedTests.38 //@campaigns.0/@performedTests.40 //@campaigns.0/@performedTests.44 //@campaigns.0/@performedTests.45"/>
+    <resultSets name="FULL-18_10_2022_07_38_04-intermediate-48" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.11 //@campaigns.0/@performedTests.17 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.26 //@campaigns.0/@performedTests.29 //@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.34 //@campaigns.0/@performedTests.38 //@campaigns.0/@performedTests.40 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.52 //@campaigns.0/@performedTests.59 //@campaigns.0/@performedTests.39"/>
+    <resultSets name="NONDOM-18_10_2022_07_38_04-intermediate-48" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.11 //@campaigns.0/@performedTests.17 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.26 //@campaigns.0/@performedTests.29 //@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.34 //@campaigns.0/@performedTests.38 //@campaigns.0/@performedTests.40 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.52 //@campaigns.0/@performedTests.59"/>
+    <resultSets name="FULL-18_10_2022_08_05_02-intermediate-56" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.34 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.65 //@campaigns.0/@performedTests.72 //@campaigns.0/@performedTests.71 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.59 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.52 //@campaigns.0/@performedTests.69 //@campaigns.0/@performedTests.38 //@campaigns.0/@performedTests.29 //@campaigns.0/@performedTests.11"/>
+    <resultSets name="NONDOM-18_10_2022_08_05_02-intermediate-56" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.34 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.65 //@campaigns.0/@performedTests.72 //@campaigns.0/@performedTests.71 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.59 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.52 //@campaigns.0/@performedTests.69 //@campaigns.0/@performedTests.38 //@campaigns.0/@performedTests.29 //@campaigns.0/@performedTests.11"/>
+    <resultSets name="FULL-18_10_2022_08_32_01-intermediate-64" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.34 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.65 //@campaigns.0/@performedTests.79 //@campaigns.0/@performedTests.71 //@campaigns.0/@performedTests.83 //@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.72 //@campaigns.0/@performedTests.59 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.52 //@campaigns.0/@performedTests.69 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.86"/>
+    <resultSets name="NONDOM-18_10_2022_08_32_01-intermediate-64" status="INTERMEDIATE" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.34 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.65 //@campaigns.0/@performedTests.79 //@campaigns.0/@performedTests.71 //@campaigns.0/@performedTests.83 //@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.72 //@campaigns.0/@performedTests.59 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.52 //@campaigns.0/@performedTests.69 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.86"/>
+    <resultSets name="FULL-18_10_2022_08_32_01-final" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.34 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.65 //@campaigns.0/@performedTests.79 //@campaigns.0/@performedTests.71 //@campaigns.0/@performedTests.83 //@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.72 //@campaigns.0/@performedTests.59 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.52 //@campaigns.0/@performedTests.69 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.86"/>
+    <resultSets name="NONDOM-18_10_2022_08_32_01-final" results="//@campaigns.0/@performedTests.1 //@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.34 //@campaigns.0/@performedTests.45 //@campaigns.0/@performedTests.65 //@campaigns.0/@performedTests.79 //@campaigns.0/@performedTests.71 //@campaigns.0/@performedTests.83 //@campaigns.0/@performedTests.31 //@campaigns.0/@performedTests.72 //@campaigns.0/@performedTests.59 //@campaigns.0/@performedTests.18 //@campaigns.0/@performedTests.52 //@campaigns.0/@performedTests.69 //@campaigns.0/@performedTests.8 //@campaigns.0/@performedTests.86"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="100"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/temp-launch-scripts/launch-scripts/auto_launch_locomotec2.sh" launchDelaySeconds="10" customTerminateFileLocation="/home/jamesharbin/academic/sesame/WP6/simulationBasedTesting/temp-launch-scripts/launch-scripts/terminate_locomotec.sh">
+    <variables xmi:id="_NzG5gCkOEe2rWIgPkXJ7Hg" name="/base_scan" type="_DwpnoCjCEe26Ivhf6XyfHA"/>
+    <variables xmi:id="_OfgcsCxUEe2oWKgCvvsh2w" name="/amcl_pose" type="_4NIrMCxxEe2oWKgCvvsh2w"/>
+    <variables xmi:id="_SOhUwEMAEe2m59gLLXjQ5g" name="/virtual_uvc_meter_p1/measurements" type="_U_hcwEMAEe2m59gLLXjQ5g"/>
+    <variables xmi:id="_2DLWQET1Ee21kZ_DgzCBrA" name="/virtual_uvc_meter_s1/measurements" type="_U_hcwEMAEe2m59gLLXjQ5g"/>
+    <variables xmi:id="_TeAYYET9Ee21kZ_DgzCBrA" name="/person_detector/persons" type="_0B7tQEVjEe21kZ_DgzCBrA"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="robot0_controller" publisher="_OfgcsCxUEe2oWKgCvvsh2w"/>
+    <nodes xmi:id="_sWsYgEVmEe21kZ_DgzCBrA" name="person_detector" publisher="_TeAYYET9Ee21kZ_DgzCBrA"/>
+    <nodes xmi:id="_PTmb4CkOEe2rWIgPkXJ7Hg" name="robot0_laserScanner" publisher="_NzG5gCkOEe2rWIgPkXJ7Hg"/>
+    <simulator xsi:type="_2:ROSSimulator" xmi:id="_AoDfACjCEe26Ivhf6XyfHA" hostname="localhost" port="8089"/>
+    <propertyType xmi:id="_DwpnoCjCEe26Ivhf6XyfHA" name="sensor_msgs/LaserScan"/>
+    <propertyType xmi:id="_4NIrMCxxEe2oWKgCvvsh2w" name="geometry_msgs/PoseWithCovarianceStamped"/>
+    <propertyType xmi:id="_U_hcwEMAEe2m59gLLXjQ5g" name="std_msgs/Float64MultiArray"/>
+    <propertyType xmi:id="_0B7tQEVjEe21kZ_DgzCBrA" name="perception_msgs/DetectedObjectList"/>
+  </mrs>
+</TestingMM:TestingSpace>

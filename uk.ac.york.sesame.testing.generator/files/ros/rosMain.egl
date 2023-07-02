@@ -3,10 +3,13 @@
 	var launchFileLocation = mrs.launchFileLocation;
 	var simulator = mrs.simulator;
 	var topicsNodesPublish = Node.all().publisher.flatten();
-	var topicsMetricsNeed = Metric.all().relatedTopics.flatten();
+	var topicsMetricsNeed = Metric.all().relatedVariables.flatten();
+	var allTopics = topicsNodesPublish.includingAll(topicsMetricsNeed).asSet();
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
+	
+	var sanitiseVariables = true;
 %]
 
 import java.util.ArrayList;
@@ -20,7 +23,10 @@ import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringEncoder;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.common.typeinfo.Types;
-import org.apache.flink.connector.file.sink.FileSink; 
+import org.apache.flink.connector.file.sink.FileSink;
+
+import org.apache.flink.configuration.Configuration;
+
 import org.apache.flink.core.fs.Path;
 import org.apache.flink.streaming.api.datastream.*;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -32,26 +38,59 @@ import org.apache.flink.util.Collector;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
-import uk.ac.york.sesame.testing.architecture.attacks.*;
+import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
 import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.*;
 
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
+import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
+import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 
 import metrics.custom.*;
 import metrics.fixed.*;
 
 public class [%= testNameString %]_TestRunner {
 	public static void main(String[] args) {
+	
+		final String TESTNAME = "[%= testNameString %]";
 		
-		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+		final boolean QUIT_MIDDLEWARE_ON_TOPIC_SUBSCRIPTION_FAILURE = true;
+		
+		// JRH: needed to increase the number of buffers used
+		Configuration cfg = new Configuration();
+		int defaultLocalParallelism = 1;
+		cfg.setString("taskmanager.network.numberOfBuffers", "4096");
+		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(defaultLocalParallelism, cfg);
+		
+		[%
+		// Build up map of all fuzzOps by name
+		// Generate all the objects and add them to a Java list to preprocess 
+		var allFuzzOps = new Map;
+		var fuzzOpCount = 0;
+		for (fuzzOp in test.operations) {
+			var fuzzOpName = "fuzzOp" + fuzzOpCount;
+			fuzzOpCount++;
+			allFuzzOps.put(fuzzOpName, fuzzOp); %]
+		[% } %]
+		
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
 		
-		DataStream<EventMessage> stream = env
+		DataStream<ControlMessage> controlStream = env
+					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
+		
+		
+		DataStream<EventMessage> streamOrig = env
 			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
+			
+		[% if (sanitiseVariables) { %]
+			DataStream<EventMessage> stream = streamOrig.flatMap(new SanitiseFuzzingValues());
+		[% } else { %]
+			DataStream<EventMessage> stream = streamOrig;
+		[% } %]
+			
 		
 		DataStream<EventMessage> streamOut = env
 				.addSource(new FlinkKafkaConsumer<EventMessage>("OUT", new EventMessageSchema(), properties))
@@ -67,19 +106,7 @@ public class [%= testNameString %]_TestRunner {
 		        new MetricMessageSchema(),    // serialization schema
 		        properties             // producer config
 		      );
-				
-		stream.
-		[%
-			for (attack in test.attacks) {
-				var flatMapString = produceFlatMapSignature(attack);
-				%]
-				[%=flatMapString%]
-				[%
-			}
-		%]
-		addSink(myProducer);
-		
-
+					
 		[%
 		if (simulator.isTypeOf(ROSSimulator)) { %]
 		ROSSimulator rosSim = new ROSSimulator();
@@ -92,25 +119,38 @@ public class [%= testNameString %]_TestRunner {
 		// JRH: moved the simulation launcher outside of the thread to the main code
 		HashMap<String, String> params = new HashMap<String,String>();
 		params.put("launchPath", "[%=launchFileLocation%]");
+		
+		// Preprocessing before simulation starts
+		System.out.println("Preprocessing Phase");
+		
+		[% for (fOName in allFuzzOps.keySet()) {
+		var fuzzOp = allFuzzOps.get(fOName); %]
+		FuzzingOperation [%= fOName %] = [%= produceFOGenerationSignature(fuzzOp) %]; 
+		[%= fOName %].preprocessing();
+		[% } %]
+				
 		System.out.println("Simulator Starts");
 		rosSim.run(params);
+		// TODO: this delay needs to be configurable
+		waitForSeconds([%= mrs.launchDelaySeconds %]);
+		
+		System.out.println("Simulator run period completed - connecting to topics");
 		rosSim.connect(cp);
-		
-		[% for (aTopic in topicsNodesPublish) { %]
+				
+		[% for (aTopic in allTopics) { %]
 		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
 			public void run() {
-				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
-				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
-			}
-		};
-		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
-		[% } %]
-		
-		[% for (aTopic in topicsMetricsNeed) { %]
-		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
-			public void run() {
-				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
-				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
+				try {
+					System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
+					rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
+				} catch (SubscriptionFailure e) {
+					if (QUIT_MIDDLEWARE_ON_TOPIC_SUBSCRIPTION_FAILURE) {
+						System.out.println("Subscription to [%=aTopic.name.replace("/","_")%] Failed - Exiting Middleware");
+						System.exit(1);
+					} else {
+						System.out.println("Subscription to [%=aTopic.name.replace("/","_")%] Failed - Continuing");
+					}
+				}
 			}
 		};
 		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
@@ -119,11 +159,19 @@ public class [%= testNameString %]_TestRunner {
 		Thread time_subscriber = new Thread() {
 			public void run() {
 				System.out.println("updateTime starting");
-				rosSim.updateTime();
+				try {
+					rosSim.updateTime();
+				} catch (SubscriptionFailure e) {
+					if (QUIT_MIDDLEWARE_ON_TOPIC_SUBSCRIPTION_FAILURE) {
+						System.out.println("Subscription to time failed - Exiting Middleware");
+						System.exit(1);
+					} else {
+						System.out.println("Subscription to time failed - Continuing");
+					}
+				}
 			}
 		};
 		time_subscriber.start();
-
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
@@ -149,11 +197,17 @@ public class [%= testNameString %]_TestRunner {
 		KeyedStream<EventMessage, String> testKeyedIn = stream.keyBy(value -> "[%= test.name %]");
 		KeyedStream<EventMessage, String> testKeyedOut = streamOut.keyBy(value -> "[%= test.name %]");;
 		
+		
+		ConnectedStreams<EventMessage,ControlMessage> eventsAndControlIn = testKeyedIn.connect(controlStream).keyBy(e -> TESTNAME,m -> TESTNAME);
+		ConnectedStreams<EventMessage,ControlMessage> eventsAndControlOut = testKeyedOut.connect(controlStream).keyBy(e -> TESTNAME,m -> TESTNAME);
+		
 		[* For attack times metric *]
-		List<Double> attackTimes = new ArrayList<Double>(); 
-		[% for (attack in test.attacks) { %]
-			[%= produceAttackTimeString(attack) %]
+		List<Double> fuzzOpTimes = new ArrayList<Double>(); 
+		
+		[% for (fuzzOp in test.operations) { %]
+			[%= produceTimeString(fuzzOp) %]
 		[% } %]
+		
 		
 		[* Stream metrics here *]
 		[% for (sMetric in Testing!StreamMetric.all()) { %]
@@ -173,10 +227,13 @@ public class [%= testNameString %]_TestRunner {
 		[* TODO: Add the topic metrics here *]
 		
 		SimCore simcore = SimCore.getInstance();
+		simcore.setTestName(TESTNAME);
 		[* StreamMetrics *]
 		
 		[%  var parentCampaign = test.parentCampaign;
-			var allMetrics = parentCampaign.metrics.clone();
+			var campaignMetrics = parentCampaign.metrics.clone();
+			// allMetrics has to include all the metrics, both those  used in the fuzzing experiment and the condition metrics
+			var allMetrics = campaignMetrics.includingAll(parentCampaign.conditionMetrics).asSet();
 		    for (sMetric in allMetrics.selectByKind(StreamMetric)) { %] 
 			// Generate a message stream for all metrics
 			DataStream<MetricMessage> metricMsg[%= sMetric.name %] = [%= sMetric.name %]resStream.map(d -> new MetricMessage("[%=test.name.firstToUpperCase() %]", "[%= sMetric.name %]", d));
@@ -199,9 +256,11 @@ public class [%= testNameString %]_TestRunner {
 				metricMsg[%= sMetric.name %].map(msg -> msg.timeStampedValString()).sinkTo([%= sMetric.name %]streamFileSink);
 			[% } %]
 		[% } %]
-				
+		
+		DataStream<MetricMessage> allMetrics = 		
 		[* Create the unioned metric stream and link to the producer *]
 		[% 	if (allMetrics.size() > 0) {
+		
 			var firstMetric = allMetrics.removeAt(0); %]
 		metricMsg[%= firstMetric.name%]
 		
@@ -210,11 +269,49 @@ public class [%= testNameString %]_TestRunner {
 				for (metric in allMetrics) { %]
 		.union(metricMsg[%= metric.name %])
 				[% }
-		} %]
-				
-		.addSink(metricsProducer);
-		[% } %]
+		} %]	
+		[% } %];
 		
+		
+		[% if (campaignMetrics.size() > 0) { %]
+		DataStream<MetricMessage> campaignMetrics =
+		[% var firstM = campaignMetrics.removeAt(0); %]
+		metricMsg[%= firstM.name %]
+		
+		[% if (campaignMetrics.size() > 0) {
+				for (metric in campaignMetrics) { %]
+		.union(metricMsg[%= metric.name %])
+				[% }
+		} %]	
+		[% } %];
+		
+		campaignMetrics.addSink(metricsProducer);
+		
+		
+		ConnectedStreams<EventMessage,MetricMessage> streamFO0 = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
+		
+		[% var foStreamCount = 0;
+		   var foLen = allFuzzOps.size();
+		   
+			if (foLen > 0) {    
+		   	   for (fuzzOpName in allFuzzOps.keySet()) {
+		      var inputStream = "streamFO" + foStreamCount;
+		      var outputStream = "streamFO" + (foStreamCount + 1);
+		      foStreamCount++;
+		      if (foStreamCount < foLen) { %]
+		      	[* For the first stream, we require to produce an output with an EventStream only *]
+			   	ConnectedStreams<EventMessage,MetricMessage> [%= outputStream %] = [%= inputStream %].
+					process([%= fuzzOpName %]).connect(allMetrics).keyBy(e -> TESTNAME, m -> TESTNAME);
+ 			[% } else { %]
+				[* For the final stream, we require to produce an output with an EventStream only *]
+		   		DataStream<EventMessage> [%= outputStream %] = [%= inputStream %].process([%= fuzzOpName %]);
+				[% }
+		   		} %]
+			streamFO[%= foLen %].addSink(myProducer);
+		   [% } else { %]
+		   // Case with empty fuzzing operations
+		   stream.addSink(myProducer);
+		   [% } %]
 		
 		try {
 			env.execute();
@@ -222,82 +319,100 @@ public class [%= testNameString %]_TestRunner {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		[%
+		[% } %]
+	}
+	
+	public static void waitForSeconds(long timeDelaySeconds) {
+		long endTimeMillis = System.currentTimeMillis() + timeDelaySeconds * 1000;
+		while (System.currentTimeMillis() < endTimeMillis) {
+			try {
+				Thread.sleep(endTimeMillis - System.currentTimeMillis());
+			} catch (InterruptedException e) {
+				
+			}
 		}
-		%]
 	}
 }
 
 [%
 
+// TODO: this operation should be factored out into template for ROS/TTS interface etc
+
 operation streamJavaName(sMetric, stream) {
-	// TODO: Get comparison of enum working rather than using literal value
-	// Metrics!MetricStateKeyedBy#TEST doesn't work
-//	if (sMetric.keyedBy == 2) {
-//		if (stream.isTypeOf(Testing!InputStream)) {
-//			return "topicKeyedIn";
-//		}
-//	
-//		if (stream.isTypeOf(Testing!OutputStream)) {
-//			return "topicKeyedOut";
-//		}
-//	}
-	
-	
-//	if (sMetric.keyedBy == 1) {
 		if (stream.isTypeOf(Testing!InputStream)) {
-			return "testKeyedIn";
+			return "eventsAndControlIn";
 		}
 	
 		if (stream.isTypeOf(Testing!OutputStream)) {
-			return "testKeyedOut";
+			return "eventsAndControlOut";
 		}
-//	}
 }
 
-// TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap and RandomValueFromSetAttack are supported
-operation produceFlatMapSignature(attack) {
+// TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap, RandomValueFromSetAttack and CustomFuzzingOperation are supported
+operation produceFOGenerationSignature(fo) {
 	var flatmap = "";
-	var aaList = attack.attackActivation;
-	var startTime;
-	var endTime;
+	var aa = fo.activation;
 	
-	// TODO: currently, this only uses the first AttackActivation
-	var aa = aaList.first();
-	
-	if (aa.isKindOf(AttackFixedTime)) {
-		startTime = aa.startTime;
-		endTime = aa.endTime;
-	}
-			
+	if (aa.isKindOf(Testing!FixedTimeActivation)) {
+		var startTime = aa.startTime;
+		var endTime = aa.endTime;
 		
-	if (attack.isTypeOf(Testing!PacketLossNetworkAttack)) {
-		flatmap = "flatMap(new PacketLossFlatMap_" + testNameString + "(\"" + attack.topicToAttack.name + "\"," + startTime + "," + endTime + "," + attack.frequency + ")).";
-	} else if (attack.isTypeOf(Testing!BlackholeNetworkAttack)) {
-		flatmap = "flatMap(new BlackHoleFlatMap_" + testNameString + "(\"" + attack.topicToAttack.name + "\"," + startTime + "," + endTime + ")).";
-	} else if (attack.isTypeOf(Testing!RandomValueFromSetAttack)) {
-		// TODO: set up proper random seed here
-		flatmap = "flatMap(new " + attack.name + "FlatMap_" + testNameString + "(\"" + attack.topicToAttack.name + "\"," + startTime + "," + endTime + "," + attack.seed + ")).";
+		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
+			var frequencyVal = fo.frequency.lowerBound;
+			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + "," + frequencyVal + ")";
+		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
+			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + ")";
+		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
+			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
+		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
+			var varName = null;
+			if (fo.variableToAffect != null) {
+			 	varName = fo.variableToAffect.name;
+			}
+			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
+		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
+			var delay = fo.latency.lowerBound;
+			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + delay + "," + fo.seed + ")";
+		}
+	}
+	
+	if (aa.isKindOf(Testing!ConditionBasedActivation)) {
+		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
+			var frequencyVal = fo.frequency.lowerBound;
+			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + "," + frequencyVal + ")";
+		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
+			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\")";
+		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
+			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + ")";
+		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
+			var varName = null;
+			if (fo.variableToAffect != null) {
+			 	varName = fo.variableToAffect.name;
+			}			 
+			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + fo.seed + ")";
+		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
+			var delay = fo.latency.lowerBound;
+			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + delay + "," + fo.seed + ")";
+		}
 	}
 	
 	return flatmap;
 }
 
-operation produceAttackTimeString(attack) {
-	var aaList = attack.attackActivation;
-	
+operation produceTimeString(fuzzOp) {
+	var aaList = fuzzOp.activation;
 	var str="";
 	for (aa in aaList) {
-		if (aa.isKindOf(AttackFixedTime)) {
-			str = "attackTimes.add(new Double(" + (aa.endTime - aa.startTime) + "));\n";
+		if (aa.isKindOf(FixedTimeActivation)) {
+			str = "fuzzOpTimes.add(Double.valueOf(" + (aa.endTime - aa.startTime) + "));\n";
 		}
 	}
 	return str;
 }
 
 operation additionalInfo(sMetric) {
-	if (sMetric.isTypeOf(AttackTimesMetric)) {
-		return "attackTimes";
+	if (sMetric.isTypeOf(FuzzingOperationTimesMetric)) {
+		return "fuzzOpTimes";
 	} else {
 		return "";
 	}

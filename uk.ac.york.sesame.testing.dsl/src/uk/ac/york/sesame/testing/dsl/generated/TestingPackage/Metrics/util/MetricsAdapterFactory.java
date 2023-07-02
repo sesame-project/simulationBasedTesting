@@ -88,8 +88,8 @@ public class MetricsAdapterFactory extends AdapterFactoryImpl {
 				return createMetricDefaultAdapter();
 			}
 			@Override
-			public Adapter caseTopicMetric(TopicMetric object) {
-				return createTopicMetricAdapter();
+			public Adapter caseVariableMetric(VariableMetric object) {
+				return createVariableMetricAdapter();
 			}
 			@Override
 			public Adapter caseMetricInstance(MetricInstance object) {
@@ -108,8 +108,20 @@ public class MetricsAdapterFactory extends AdapterFactoryImpl {
 				return createStreamMetricAdapter();
 			}
 			@Override
-			public Adapter caseAttackTimesMetric(AttackTimesMetric object) {
-				return createAttackTimesMetricAdapter();
+			public Adapter caseSpecialMetric(SpecialMetric object) {
+				return createSpecialMetricAdapter();
+			}
+			@Override
+			public Adapter caseDirectMessageGenerationMetric(DirectMessageGenerationMetric object) {
+				return createDirectMessageGenerationMetricAdapter();
+			}
+			@Override
+			public Adapter caseStartEndTimingMetric(StartEndTimingMetric object) {
+				return createStartEndTimingMetricAdapter();
+			}
+			@Override
+			public Adapter caseFuzzingOperationTimesMetric(FuzzingOperationTimesMetric object) {
+				return createFuzzingOperationTimesMetricAdapter();
 			}
 			@Override
 			public Adapter caseStreamResult(StreamResult object) {
@@ -210,16 +222,16 @@ public class MetricsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.TopicMetric <em>Topic Metric</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric <em>Variable Metric</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.TopicMetric
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric
 	 * @generated
 	 */
-	public Adapter createTopicMetricAdapter() {
+	public Adapter createVariableMetricAdapter() {
 		return null;
 	}
 
@@ -280,16 +292,58 @@ public class MetricsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.AttackTimesMetric <em>Attack Times Metric</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.SpecialMetric <em>Special Metric</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.AttackTimesMetric
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.SpecialMetric
 	 * @generated
 	 */
-	public Adapter createAttackTimesMetricAdapter() {
+	public Adapter createSpecialMetricAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.DirectMessageGenerationMetric <em>Direct Message Generation Metric</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.DirectMessageGenerationMetric
+	 * @generated
+	 */
+	public Adapter createDirectMessageGenerationMetricAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StartEndTimingMetric <em>Start End Timing Metric</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StartEndTimingMetric
+	 * @generated
+	 */
+	public Adapter createStartEndTimingMetricAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FuzzingOperationTimesMetric <em>Fuzzing Operation Times Metric</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FuzzingOperationTimesMetric
+	 * @generated
+	 */
+	public Adapter createFuzzingOperationTimesMetricAdapter() {
 		return null;
 	}
 

@@ -5,10 +5,12 @@ import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
 public class ExptRunner_[%= campaign.name %] {
 	public static void main(String [] args) {
 
+		[*
 		// Parameters for NSGA-II
 		double timingProbMut = 0.666;
 		double participantProbMut = 0.333;
 		double paramProbMut = 0.333;
+		*]
 				
 		[% if (campaign.approach.isTypeOf(NSGAEvolutionaryAlgorithm)) { %]
 		[% var nsgainfo = campaign.approach; %]
@@ -16,21 +18,37 @@ public class ExptRunner_[%= campaign.name %] {
 		int populationSize = [%= nsgainfo.populationSize %];
 		int offspringSize = [%= nsgainfo.populationSize %];
 		//ExperimentType etype = ExperimentType.FIXED_TIME_FUZZING;
-		// Sets the space model file and the campaign to run here
+		// Sets the space model file and the campaign to run here 
 		
-		// PATHS HERE
-		// This should be the absolute path of the model file on the system
-		final String spaceModelFileName = "...";
-		// This should be the absolute path of the project under which the code should be generated
-		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/eclipse-workspace/localAutoGen";
-		// This should be the absolute path of the generator project under the parent eclipse 
-		final String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
+		// Setting paths
+		// The paths are now supplied from the Wizard - nothing needs to be configured here!
+		// IProjectPath = [%= path %]
+
+		final String spaceModelFileName = "[%= testingModelPath %]";
+		final String CODE_GENERATION_DIRECTORY = "[%= codeGenerationDirectory %]";
+		final String orchestratorBasePath = "[%= orchestratorBasePath %]";
 		
 		String campaignToRun = "[%= campaign.name %]";
 			
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize);
-		jmetalExpt.runExperiment();
+		[% if (campaign.activationGeneration.isTypeOf(ConditionBasedActivationGenerationMethod)) { %]
+		final boolean conditionBased = true;
+		final int conditionDepth = [%= campaign.activationGeneration.conditionDepth %];
 		[% } %]
 		
+		[% if (campaign.activationGeneration.isTypeOf(TimeBasedActivationGenerationMethod)) { %]
+		final boolean conditionBased = false;
+		final int conditionDepth = 0;
+		
+		[% } %] 	 	
+				
+		final String grammarPath = "[%= codeGenerationDirectory %]/grammar/sesame-standardgrammar-[%= campaign.name %].bnf";
+		EvolutionaryExpt jmetalExpt;
+		try {
+			jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, conditionDepth, grammarPath);
+			jmetalExpt.runExperiment();
+		} catch (EolModelLoadingException e) {
+			e.printStackTrace();
+		}
+		[% } %]
 	}
 }

@@ -1,5 +1,7 @@
 package uk.ac.york.sesame.testing.evolutionary.main;
 
+import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
+
 import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
 
 public class EvolutionaryRunner {
@@ -18,9 +20,9 @@ public class EvolutionaryRunner {
 		double participantProbMut = 0.333;
 		double paramProbMut = 0.333;
 				
-		int maxIterations = 48;
-		int populationSize = 8;
-		int offspringSize = 8;
+		int maxIterations = 1000;
+		int populationSize = 10;
+		int offspringSize = 10;
 		//ExperimentType etype = ExperimentType.FIXED_TIME_FUZZING;
 		
 		// Sets the space model file and the campaign to run here
@@ -30,11 +32,19 @@ public class EvolutionaryRunner {
 		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/eclipse-workspace/localAutoGen";
 		final String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
 
-		// uk.ac.york.sesame.testing.evolutionary/scripts/execute_testrunner.sh needs the CODE_GENERATION_DIRECTORY as the classpath
 		String campaignToRun = "firstExperiment";
-		// Mention in documentation that pkill is required by default
-			
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize);
-		jmetalExpt.runExperiment();
+		
+		String grammarFile = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.evolutionary/grammar/sesame-standard-grammar.bnf";
+
+		final boolean conditionBased = true;
+		final int maxConditionDepth = 6;
+		EvolutionaryExpt jmetalExpt;
+		try {
+			jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, maxConditionDepth, grammarFile);
+			jmetalExpt.runExperiment();
+		} catch (EolModelLoadingException e) {
+			e.printStackTrace();
+		}
+
 	}
 }
