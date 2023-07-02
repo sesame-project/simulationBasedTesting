@@ -1,20 +1,36 @@
-# SESAME Simulation-Based Testing Platform
+# SESAME Simulation-Based Testing Platform Installation Guide
 
 This repository presents the installation guide and source code for
 the SESAME simulation-based testing platform developed for the system.
 The software, its design principles and rationale are described in the
 SESAME deliverable documents
 
-- D6.6: Simulation-Based Testing Methodology for EDDIs
-- D6.7: Tools for Automated Quality Assurance of EDDI-Supported MRS
+- D6.2: D6.2 Simulation-Based Testing Methodology for EDDIs
+- D6.3: Tools for Automated Quality Assurance of EDDI-Supported MRS (Initial Version)
 
-This online guide complements D6.7 in reference to providing
-source code and instructions for the platform.
+This online guide complements D6.3 in reference to providing
+installation instructions for the platform.
 
-# Documentation
+# Installation Video
 
-[Documentation for the platform](./documentation/index.md)
+An installation instructions video for the platform is presented below:
+This uses the "development-release-aug2022" branch:
 
+[Installation video](https://drive.google.com/file/d/1O_F2LPpgkkYIkHfmnHXhXkFeUero5v6l/view?usp=sharing)
+
+Please use the video instructions rather than the previous install
+instructions, since several steps e.g. setting paths, have been
+altered.
+
+# TurtleSim Case Study
+
+The TurtleSim case study provides a simple ROS-based test for the
+Simulation-based Testing platform.
+
+## Dependencies
+
+Please install the following packages (tested on Ubuntu 18.04 for ROS
+Melodic):
 
 ```
 apt-get install ros-melodic-turtlebot3-*
