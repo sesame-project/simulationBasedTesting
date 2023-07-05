@@ -10,8 +10,7 @@ installed the platform. The user guide contains the following headings:
 - Defining the Testing model
 - Generating Code
 - Implementing Custom Performance Metrics
-- Executing Experiments
-- 
+- Executing Experiments 
 
 ## Starting Child Eclipse
 In order to use the simulation-based testing platform, firstly, the
