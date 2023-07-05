@@ -292,7 +292,7 @@ the user's populated model, and associated settings. Here we choose the
 model file and the locations of other items for the project. The
 annotations in red upon the screenshot show the values selected for
 the text boxes:
-![A screenshot of the wizard settings](./readme-images/sesame-wizard2.png)
+![A screenshot of the wizard settings](./readme-images/sesame-wizard2-annotated.png)
 
 ## Implementing Custom Performance Metrics
 The next step involves the user specifying scenario-specific
