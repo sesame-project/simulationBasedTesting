@@ -107,6 +107,7 @@ given below:
 #### Example for KUKA/TTS case study
 ![An example of the KUKA/TTS MRS model screenshot](./readme-images/kuka-tts-example-mrs.png)
 
+### Setting up Testing Model
 The metamodel for Testing is specified as UML here:
 ![Testing UML diagram](./readme-images/testing-metamodel-uml.png)
 
