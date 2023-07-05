@@ -258,3 +258,132 @@ performance metrics for the results of evaluation of that particular
 Test. During execution of the Test, the metric instances will be
 recorded and stored within the model. This provides a record of the
 impact of the fuzzing performed. 
+
+### Example Testing Campaign Model
+
+An example testing campaign model is given here:
+![Example Testing model screenshot](./readme-images/tts-model-example-partial.png)
+
+## Generating Code 
+After having defined the testing model, code generation can be used to
+generate metric templates automatically, within the newly generated
+project under the child Eclipse instance. The testing platform
+provides a plugin consisting of a wizard with a single page, which can
+be accessed by right-clicking on the user’s newly generated project
+and selecting "Generate SESAME Code":
+[A screenshot of the "Generate SESAME Code" wizard button](./readme-images/sesame-wizard1.png)
+
+The plugin provides an interface option to select the file containing
+the user's populated model, and associated settings. Here we choose the
+model file and the locations of other items for the project. The
+annotations in red upon the screenshot show the values selected for
+the text boxes:
+
+[A screenshot of the wizard settings](./readme-images/sesame-wizard2.png)
+
+## Implementing Metrics
+The next step involves the user specifying scenario-specific
+performance metrics for the metrics generated in the model, in order
+to quantify violations of mission requirements. In order to implement
+these metrics, the user first needs to copy these classes from package
+**metrics.generated** into a newly package **metrics.custom**. Then,
+it is necessary to implement the needed platform-specific metrics as
+Java code. The figure below presents the key method processElement1 of
+the implementation of the *collisionOccurrence* metric used in the
+KUKA/TTS use case, to quantify violations by tracking the number of
+intervals in which collisions of the gripper safety zone with any
+safety zone.
+
+```
+public void processElement1(EventMessage msg, Context ctx, Collector<Double> out)  {
+    String completionTopicName = "safetyzone";
+    String topic = msg.getTopic();
+    if (topic.contains(completionTopicName) && topicMatches(topic)) {
+        if (msg.getValue() instanceof String) {
+            String s = (String) msg.getValue();
+            Optional<ROSMessage> rosmsg_o = ROSMessageConversion.fromJsonString(s);
+            if (rosmsg_o.isPresent()) {
+                ROSMessage rosmsg = rosmsg_o.get();
+                SafetyZone sv = rosmsg.getSafetyZone();
+                float level = sv.getLevel();
+
+                if (violationCount.value() == null) {
+                    violationCount.update(0L);
+                }
+
+                if (level < getLevelThreshold() && isReadyToLogNow()) {
+                    violationCount.update(violationCount.value() + 1);
+                    out.collect(Double.valueOf(violationCount.value()));
+                }
+            }
+        }
+    }
+}
+```
+
+The metric operates as follows:
+
+If the region surrounding the robot gripper (green sphere) collides
+with these regions, the collision detection logic will trigger a
+safety zone message which will be sent to the testing platform via the
+TTSSimulator custom API over gRPC.  As an inbound simulator event,
+these will then trigger the processElement1 method of the metric.  If
+the message inbound topic is a safety zone message of sufficient
+depth, then the violationCount$ variable will be incremented.  This
+value is emitted as the output value.  The final $violationCount$
+value will be logged as the output of the metric.
+
+## Executing The Experiments
+The user should create an Eclipse Run Configuration for the generated
+Java class **ExptRunner\_NAME.java** for the name corresponding to the
+name of the run configuration they have in the DSL. would like to
+execute, and invoke this Run Configuration in order to run the
+experiment.  This runner will be configured with the parameters chosen
+from the Testing DSL.  If any parameters of the experiment in the
+model are changed, users should rerun ``Generate SESAME Code'' with
+the wizard, to ensure the experiment runner settings are updated.
+
+The experiment runner will generate tests according to the strategy
+specified for the experiement's test campaign.  Its
+TestGenerationApproach selection allows the user to specify the
+parameters for an experiment by setting one of several subclasses.
+For example, including **NSGAEvolutionaryAlgorithm** allows an
+evolutionary experiment with the NSGA-II algorithm, and contains
+specific parameters relevant to this approach, e.g., the number of
+iterations and the population size.  We also provide a new
+coverage-aware GA **NSGACoverageWithCells**, which seeks to improve
+coverage of the space of potential fuzzing tests.  Further,
+**RepeatedRunner** provides support for repeated execution of a
+particular selected test a number of times.  The utility of this is to
+allow an interesting test with a high reality gap or other performance
+issues to be repeated and the reasons for its behaviour to be
+investigated in depth.
+
+Regardless of the test generation strategy selected, the
+*performedTests* attribute is populated during the execution of
+experiments, containing the particular Tests generated and executed
+for that campaign.  Each test is evaluated by first dynamically
+generating a specialised test runner which acts as a middleware
+interfacing with the low-level MRS simulation and modifying its
+internal messages, using any custom-supplied metric definitions
+provided to quantify the impact of the fuzzing test.  The
+*resultSets* attribute is also populated as the experiments
+proceed and finalised upon their completion, containing references to
+the population of results upon a Pareto front.  This is an important
+feature that enables keeping track of the history of evolved tests
+during simulation-based testing.
+
+The output results (both the individual Tests and the result sets
+generated), can be browsed with the Exceed editor. A fragment of the
+an output result set s is shown here:
+
+[Output results](./readme-images/output-res-example.png)
+
+This shows some result sets from an experiment, with the population of
+a front at an intermediate generation. The results in the result set
+are shown here. Using the Exceed editor the tests comprising this
+result set are be displyed. Also, using a provided EGL script under
+**uk.ac.york.sesame.testing.generator** at
+**files/resultsAnalysis/resultsAnalysis.egl** allows the results and
+output metrics to be listed in the Eclipse console window.
+
