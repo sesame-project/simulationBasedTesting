@@ -55,72 +55,88 @@ The Testing model defines the testing process, and needs to be
 specified in order to define the test campaign (experiment behaviour
 and structure), the available fuzzing operations, and the performance
 metrics. In addition, our testing platform provides a convenient
-visual editor for system test engineers to configure the MRS during
-system testing experiments.
+visual editor for system test engineers to configure the MRS structure
+(a representation of the ) during system testing experiments.
 
-The metamodel for Testing is specified here:
+### Interactive Editing of the Testing Model
+In order to define the model interactively, the Exceed editor can be
+used to add classes in a hierarchical structure. The root element
+TestingSpace is already included in the model, but right-clicking on
+it will allow child elements of this model be added. The metamodel
+constrains how elements are related to each other. Elements can have
+children, and properties can be set for objects, according to the
+permitted data types.
+
+### Setting up MRS model
+The information in the ExSce can be used to define an MRS model that
+serves as an input to the testing platform. The information in this is
+used to control the subscriptions to simulator variables, by
+specifying information about their data types and the logical
+structure of the system in terms of transmitting and receiving nodes.
+
+A UML diagram of the MRS model is presented here:
+![The MRS model used to define the multi-robot system](./readme-images/testing-metamodel-attacks-uml.png)
+
+To add the MRS as a child of the testing model, right-click upon the
+TestingSpace and add a "New child" / "MRS". The users can then set in
+the properties editor the "Launch File Location" (a shell script that
+runs the chosen simulator), and "Launch Delay Seconds" - a time delay
+to allow the MRS to start up before the platform attempts to connect
+to it.
+
+Then the user should add "New Child" / "Simulator" object, either ROS
+or TTSSimulator, which configures the type of logical interface for
+the platform to use and the launching method. The port property should
+currently be 8089 for both simulators, typically the hostname should
+be "localhost".
+
+The selected type of information and parsing method also alters the
+internal operation of several fuzzing operations; for example,
+selecting the JSON ParsingMethod when using ROS allows the use of
+structured variables, while within raw variables, the STRING parsing
+method should be used.  These MRS variables are referenced when
+specifying the testing model *variablesToAffect* (e.g., fuzzing
+operations are selected to operate upon a particular variable).
+
+Examples for the MRS model structure for both ROS and KUKA/TTS are
+given below:
+
+#### Example for ROS case study
+![An example of a ROS MRS model screenshot](./readme-images/ros-example-mrs.png)
+
+#### Example for KUKA/TTS case study
+![An example of the KUKA/TTS MRS model screenshot](./readme-images/kuka-tts-example-mrs.png)
+
+The metamodel for Testing is specified as UML here:
 ![Testing UML diagram](./readme-images/testing-metamodel-uml.png)
 
 The TestingSpace class is the root element of the DSL, and contains
 permissible fuzzing operations (under *possibleOperations*) that
 collectively specify the boundaries of the potential fuzzing space
 that can be explored. The fuzzing operations that can be applied to
-the MRS in a particular fuzzing test are always a subset of
-these, with potentially more specific parameters. 
+the MRS in a particular fuzzing test are always a subset of these,
+with potentially more specific parameters. 
 
-### Test Campaigns and Performed Test Results
-The testing space also includes particular metrics which are used to
+A testing space also includes particular metrics which are used to
 quantify the robotic system performance in regard to safety
 violations, which allows multi-objective optimisation of system
-performance to be performed. References to a grammar are reserved to
-specify a grammar for custom fuzzing conditions, that control the
-activation and deactivation of particular fuzzing operations.
+performance to be performed. These metrics will be defined as Java
+code, allowing users to define exactly how the system responds to
+incoming messages from the MRS and processes them to produce the
+metric values.
 
-The TestCampaign class specifies an experiment that can be performed
-and sets parameters for a specific fuzzing experiment. A TestCampaign
-references a choice of particular metrics to use in evaluating that
-campaign. The includedOperations reference list allows the selection
-of particular operations in order to constrain an experiment, by
-allowing a system test engineer to choose interesting or relevant
-operations. 
-
-Under a TestCampaign, the TestGenerationApproach selection allows the
-user to specify the parameters for an experiment by selecting one of
-several subclasses. For example, including NSGAEvolutionaryAlgorithm
-allows an evolutionary experiment with the NSGA-II
-algorithm, and contains specific parameters
-relevant to this approach, e.g., the number of iterations and the
-population size. In this case, the evolutionary algorithm is concerned
-with maximising violations of the intended result metrics, and does
-not specifically track the coverage obtained. 
-
-We also provide a new coverage-aware GA NSGACoverageWithCells, which
-seeks to improve coverage of the space of potential fuzzing
-tests. Further, RepeatedRunner provides support for repeated execution
-of a particular selected test a number of times. The utility of this
-is to allow an interesting test with a high reality gap or other
-performance issues to be repeated and the reasons for its behaviour
-investigated in depth. 
-
-Regardless of the test generation approach selected, the
-performedTests attribute is populated during the execution of
-experiments, containing the particular Tests generated and executed
-for that campaign. The *resultSets* attribute is also populated
-as the experiments proceed and finalised upon their completion,
-containing references to the population of results upon a Pareto
-front. This is an important feature that enables keeping track of the
-history of evolved tests during simulation-based testing.
-
-The Test class represents one test configuration that can be applied
-to the MRS, corresponding to a particular selection of operations, and
-the recorded history of evaluation of performance metrics. The latter
-are represented by the containment of MetricInstances, which record
-performance metrics for the results of evaluation of that particular
-Test. During execution of the Test, the metric instances will be
-recorded and stored within the model. This provides a record of the
-impact of the fuzzing performed. 
+The user should name their testing space by double-clicking and
+setting the value for the "Name" property in the Properties editor at
+the bottom. The suggested value for a testing space name is
+"fullSpace"
 
 ### Defining Fuzzing Operations
+
+In order to define the types of fuzzing that can be permitted upon the
+system, right-click on the TestingSpace in the editor and select "New
+Child" to add Fuzzing Operations. The available fuzzing operations
+will be indicated on the menu that appears.
+
 This section describes particular fuzzing operations that can be
 specified via the testing DSL. Each fuzzing operation involves a
 manipulation of the simulator internal state, system communications,
@@ -197,23 +213,47 @@ point, or its filesystem paths. PointRange can be used to define a
 range of points to be used as an offset, which will be reduced to
 specify specific values during the evolutionary process.
 
-## Setting up MRS model
-The information in the ExSce is used to define an MRS model that
-serves as an input to the testing platform.  The information in this
-is used to control the subscriptions to simulator variables, by
-specifying information about their data types and the logical
-structure of the system in terms of transmitting and receiving
-nodes. The selected type of information and parsing method also alters
-the internal operation of several fuzzing operations; for example,
-selecting the JSON ParsingMethod when using ROS allows the use of
-structured variables, while within raw variables, the STRING parsing
-method should be used.  These MRS variables are referenced when
-specifying the testing model *variablesToAffect* (e.g., fuzzing
-operations are selected to operate upon a particular variable).  A UML
-diagram of the MRS model is provided in Figure 
+### Test Campaigns and Performed Test Results
+The TestCampaign class specifies an experiment that can be performed
+and sets parameters for a specific fuzzing experiment. A TestCampaign
+references a choice of particular metrics to use in evaluating that
+campaign. The includedOperations reference list allows the selection
+of particular operations in order to constrain an experiment, by
+allowing a system test engineer to choose interesting or relevant
+operations.
 
-[The MRS model used to define the multi-robot system](./readme-images/testing-metamodel-attacks-uml.png)
+Under a TestCampaign, the TestGenerationApproach selection allows the
+user to specify the parameters for an experiment by selecting one of
+several subclasses. For example, including NSGAEvolutionaryAlgorithm
+allows an evolutionary experiment with the NSGA-II algorithm, and
+contains specific parameters relevant to this approach, e.g., the
+number of iterations and the population size. In this case, the
+evolutionary algorithm is concerned with maximising violations of the
+intended result metrics, and does not specifically track the coverage
+obtained.
 
-### Example for ROS case study
+We also provide a new coverage-aware GA NSGACoverageWithCells, which
+seeks to improve coverage of the space of potential fuzzing
+tests. Further, RepeatedRunner provides support for repeated execution
+of a particular selected test a number of times. The utility of this
+is to allow an interesting test with a high reality gap or other
+performance issues to be repeated and the reasons for its behaviour
+investigated in depth.
 
-### Example for KUKA/TTS case study
+Regardless of the test generation approach selected, the
+performedTests attribute is populated during the execution of
+experiments, containing the particular Tests generated and executed
+for that campaign. The *resultSets* attribute is also populated
+as the experiments proceed and finalised upon their completion,
+containing references to the population of results upon a Pareto
+front. This is an important feature that enables keeping track of the
+history of evolved tests during simulation-based testing.
+
+The Test class represents one test configuration that can be applied
+to the MRS, corresponding to a particular selection of operations, and
+the recorded history of evaluation of performance metrics. The latter
+are represented by the containment of MetricInstances, which record
+performance metrics for the results of evaluation of that particular
+Test. During execution of the Test, the metric instances will be
+recorded and stored within the model. This provides a record of the
+impact of the fuzzing performed. 
