@@ -16,13 +16,13 @@ installed the platform. The user guide contains the following headings:
 In order to use the simulation-based testing platform, firstly, the
 user should load Eclipse and then invoke a new Eclipse Application, by
 right-clicking upon the project
-**uk.ac.york.sesame.testing.generator** and selecting *Run As* /
-*Eclipse Application*. This will launch a fresh Eclipse instance under
+**uk.ac.york.sesame.testing.generator** and selecting "Run As" /
+"Eclipse Application". This will launch a fresh Eclipse instance under
 which the SESAME automated code generation plugins are available:
 
 ![Starting a Child Eclipse by running the generator project](./readme-images/run-generator-project.png)
 
-(If there is a problem flagged regarding ``javax.xml.bind'', ignore
+(If there is a problem flagged regarding "javax.xml.bind", ignore
 it). There may be a delay on the first invocation of this.
 
 ## Creating New Project
@@ -41,27 +41,27 @@ below. Then, click Cancel on the dialog box that appears.
 
 ## Initial Model Creation
 Next, create an instance of the testing metamodel. To do this, right
-click on the folder ``models'' and select ``New'' / ``Other'' /
-``Epsilon'' / ``EMF Model'' and set up the parameters as shown below: 
+click on the folder "models" and select "New" / "Other" / "Epsilon" /
+"EMF Model" and set up the parameters as shown below:
+
 ![Screenshot for creating a new empty model](./readme-images/new-model-generation.png)
 
-Use ``Browse'' to find
-``TestingMM'' as the metamodel URI. The model filename can be chosen
-to fit the scenario that the users are setting up.
+Use "Browse" to find "TestingMM" as the metamodel URI. The model
+filename can be chosen to fit the scenario that the users are setting
+up.
 
 Now users can complete the steps specified in the SESAME
 simulation-based testing methodology. When the model is completed, or
 when there are any changes to the experiments, right click on the
-project, and select ``SESAME'' / ``Generate SESAME Code'' to
+project, and select "SESAME" / "Generate SESAME Code" to
 regenerate code for metric templates and experiment runners based on
 it.
 
 After this code generation is performed for the first time, the
   project structure must be changed to a Maven project. Users should
-  right-click on the project, select ``Configure'' / ``Convert to
-  Maven Project''. Then the user should right-click and select
-  ``Maven'' / ``Update Project'' to ensure all the dependencies are
-  updated.
+  right-click on the project, select "Configure" / "Convert to Maven
+  Project". Then the user should right-click and select "Maven" /
+  "Update Project" to ensure all the dependencies are updated.
 
 ## Defining the Testing Model
 
@@ -90,6 +90,7 @@ specifying information about their data types and the logical
 structure of the system in terms of transmitting and receiving nodes.
 
 A UML diagram of the MRS model is presented here:
+
 ![The MRS model used to define the multi-robot system](./readme-images/testing-metamodel-attacks-uml.png)
 
 To add the MRS as a child of the testing model, right-click upon the
@@ -117,13 +118,16 @@ Examples for the MRS model structure for both ROS and KUKA/TTS are
 given below:
 
 #### Example for ROS case study
+
 ![An example of a ROS MRS model screenshot](./readme-images/ros-example-mrs.png)
 
 #### Example for KUKA/TTS case study
+
 ![An example of the KUKA/TTS MRS model screenshot](./readme-images/kuka-tts-example-mrs.png)
 
 ### Setting up Testing Model
 The metamodel for Testing is specified as UML here:
+
 ![Testing UML diagram](./readme-images/testing-metamodel-uml.png)
 
 The TestingSpace class is the root element of the DSL, and contains
@@ -144,7 +148,7 @@ metric values.
 The user should name their testing space by double-clicking and
 setting the value for the "Name" property in the Properties editor at
 the bottom. The suggested value for a testing space name is
-"fullSpace"
+"fullSpace".
 
 ### Defining Fuzzing Operations
 
@@ -277,6 +281,7 @@ impact of the fuzzing performed.
 ### Example Testing Campaign Model
 
 An example testing campaign model is given here:
+
 ![Example Testing model screenshot](./readme-images/tts-model-example-partial.png)
 
 ## Generating Code 
@@ -286,6 +291,7 @@ project under the child Eclipse instance. The testing platform
 provides a plugin consisting of a wizard with a single page, which can
 be accessed by right-clicking on the user’s newly generated project
 and selecting "Generate SESAME Code":
+
 ![A screenshot of the "Generate SESAME Code" wizard button](./readme-images/sesame-wizard1.png)
 
 The plugin provides an interface option to select the file containing
@@ -293,6 +299,7 @@ the user's populated model, and associated settings. Here we choose the
 model file and the locations of other items for the project. The
 annotations in red upon the screenshot show the values selected for
 the text boxes:
+
 ![A screenshot of the wizard settings](./readme-images/sesame-wizard2-annotated.png)
 
 ## Implementing Custom Performance Metrics
@@ -400,4 +407,3 @@ result set are be displyed. Also, using a provided EGL script under
 **uk.ac.york.sesame.testing.generator** at
 **files/resultsAnalysis/resultsAnalysis.egl** allows the results and
 output metrics to be listed in the Eclipse console window.
-
