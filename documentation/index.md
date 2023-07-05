@@ -1,5 +1,11 @@
 # SESAME Simulation-Based Testing Platform Documentation 
 
+## Installation Instructions For Linux
+
+Installation instructions for Linux platforms are presented below:
+
+[Installation instructions](./INSTALL-linux.md)
+
 ## Installation Video for Linux
 
 An installation instructions video for the platform is presented below:
@@ -10,6 +16,8 @@ This uses the "development-release-aug2022" branch:
 Please use the video instructions rather than the previous install
 instructions, since several steps e.g. setting paths, have been
 altered.
+
+
 
 ## Patching for jrosbridge
 
