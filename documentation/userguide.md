@@ -28,8 +28,8 @@ it). There may be a delay on the first invocation of this.
 ## Creating New Project
 
 Create a new Java project - here, we use **TTSTestProject** Create a
-folder ``models'' in it. When creating the project, turn off ``Create
-module-info.java'' at the bottom of the project dialog.
+folder "models" in it. (When creating the project, turn off "Create
+module-info.java" at the bottom of the project dialog).
 
 In order to generate a model for the first time in a newly created
 project, it is necessary to register the metamodels. This can be done
