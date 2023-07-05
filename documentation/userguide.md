@@ -17,13 +17,13 @@ In order to use the simulation-based testing platform, firstly, the
 user should load Eclipse and then invoke a new Eclipse Application, by
 right-clicking upon the project
 **uk.ac.york.sesame.testing.generator** and selecting *Run As* /
-*Eclipse Application*. This will launch a fresh Eclipse instance
-under which the SESAME automated code generation plugins are available
-(Figure \ref{FIG-RUN-GENERATOR-PROJECT}). (If there is a problem
-flagged regarding ``javax.xml.bind'', ignore it). There may be a delay
-on the first invocation of this.
+*Eclipse Application*. This will launch a fresh Eclipse instance under
+which the SESAME automated code generation plugins are available:
 
 ![Starting a Child Eclipse by running the generator project](./readme-images/run-generator-project.png)
+
+(If there is a problem flagged regarding ``javax.xml.bind'', ignore
+it). There may be a delay on the first invocation of this.
 
 ## Creating New Project
 
@@ -42,8 +42,10 @@ below. Then, click Cancel on the dialog box that appears.
 ## Initial Model Creation
 Next, create an instance of the testing metamodel. To do this, right
 click on the folder ``models'' and select ``New'' / ``Other'' /
-``Epsilon'' / ``EMF Model'' and set up the parameters as shown in
-Figure~\ref{FIG-NEW-MODEL-GENERATION}. Use ``Browse'' to find
+``Epsilon'' / ``EMF Model'' and set up the parameters as shown below: 
+![Screenshot for creating a new empty model](./readme-images/new-model-generation.png)
+
+Use ``Browse'' to find
 ``TestingMM'' as the metamodel URI. The model filename can be chosen
 to fit the scenario that the users are setting up.
 
