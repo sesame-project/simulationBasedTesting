@@ -11,7 +11,7 @@ under which the SESAME automated code generation plugins are available
 flagged regarding ``javax.xml.bind'', ignore it). There may be a delay
 on the first invocation of this.
 
-![Starting a Child Eclipse by running the generator project](/readme-images/)
+![Starting a Child Eclipse by running the generator project](/readme-images/run-generator-project.png)
 
 ## Creating New Project
 
@@ -83,7 +83,7 @@ visual editor for system test engineers to configure the MRS during
 system testing experiments.
 
 The metamodel for Testing is specified here:
-[the Testing UML diagram](./readme-images/testing-metamodel-uml.png)
+![Testing UML diagram](./readme-images/testing-metamodel-uml.png)
 
 The TestingSpace class is the root element of the DSL, and contains
 permissible fuzzing operations (under *possibleOperations*) that
@@ -160,8 +160,7 @@ subscriptions and defining the variables to which fuzzing operations
 are applied.
 
 The following fuzzing operations are available:
-available:
-[Available fuzzing operations in the Testing DSL UML diagram](./readme-images/testing-metamodel-attacks-uml.png)
+![Available fuzzing operations in the Testing DSL UML diagram](./readme-images/testing-metamodel-attacks-uml.png)
 
 **BlackholeNetworkOperation**: This class defines a network fuzzing
 operation which involves the disruption of message transmissions from
