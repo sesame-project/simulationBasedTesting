@@ -11,7 +11,7 @@ under which the SESAME automated code generation plugins are available
 flagged regarding ``javax.xml.bind'', ignore it). There may be a delay
 on the first invocation of this.
 
-![Starting a Child Eclipse by running the generator project](/readme-images/run-generator-project.png)
+![Starting a Child Eclipse by running the generator project](./readme-images/run-generator-project.png)
 
 ## Creating New Project
 
@@ -40,14 +40,14 @@ simulation-based testing methodology. When the model is completed, or
 when there are any changes to the experiments, right click on the
 project, and select ``SESAME'' / ``Generate SESAME Code'' to
 regenerate code for metric templates and experiment runners based on
-it (Figure \ref{FIG-SESAME-WIZARD}).
+it.
 
-\jrhchanged{After this code generation is performed for the first
-  time, the project structure must be changed to a Maven
-  project. Users should right-click on the project, select
-  ``Configure'' / ``Convert to Maven Project''. Then the user should
-  right-click and select ``Maven'' / ``Update Project'' to ensure all
-  the dependencies are updated.}
+After this code generation is performed for the first time, the
+  project structure must be changed to a Maven project. Users should
+  right-click on the project, select ``Configure'' / ``Convert to
+  Maven Project''. Then the user should right-click and select
+  ``Maven'' / ``Update Project'' to ensure all the dependencies are
+  updated.
 
 ## Defining the Testing Model
 
