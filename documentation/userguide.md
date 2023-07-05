@@ -1,4 +1,17 @@
 # User Guide
+This document describes using the SESAME simulation-based testing platform.
+It is assumed that at this point the users have already set and
+installed the platform. The user guide contains the following headings:
+
+- Starting the Child Eclipse (in order to run the SESAME Wizard)
+- Creating a new Project (to host the model, custom and generated code)
+- Creating the model file
+- Defining the MRS model
+- Defining the Testing model
+- Generating Code
+- Implementing Custom Performance Metrics
+- Executing Experiments
+- 
 
 ## Starting Child Eclipse
 In order to use the simulation-based testing platform, firstly, the
@@ -56,7 +69,8 @@ specified in order to define the test campaign (experiment behaviour
 and structure), the available fuzzing operations, and the performance
 metrics. In addition, our testing platform provides a convenient
 visual editor for system test engineers to configure the MRS structure
-(a representation of the ) during system testing experiments.
+(a representation of the multi-robot system, its robots, system
+variables and data types) during system testing experiments.
 
 ### Interactive Editing of the Testing Model
 In order to define the model interactively, the Exceed editor can be
@@ -271,17 +285,16 @@ project under the child Eclipse instance. The testing platform
 provides a plugin consisting of a wizard with a single page, which can
 be accessed by right-clicking on the user’s newly generated project
 and selecting "Generate SESAME Code":
-[A screenshot of the "Generate SESAME Code" wizard button](./readme-images/sesame-wizard1.png)
+![A screenshot of the "Generate SESAME Code" wizard button](./readme-images/sesame-wizard1.png)
 
 The plugin provides an interface option to select the file containing
 the user's populated model, and associated settings. Here we choose the
 model file and the locations of other items for the project. The
 annotations in red upon the screenshot show the values selected for
 the text boxes:
+![A screenshot of the wizard settings](./readme-images/sesame-wizard2.png)
 
-[A screenshot of the wizard settings](./readme-images/sesame-wizard2.png)
-
-## Implementing Metrics
+## Implementing Custom Performance Metrics
 The next step involves the user specifying scenario-specific
 performance metrics for the metrics generated in the model, in order
 to quantify violations of mission requirements. In order to implement
@@ -377,7 +390,7 @@ The output results (both the individual Tests and the result sets
 generated), can be browsed with the Exceed editor. A fragment of the
 an output result set s is shown here:
 
-[Output results](./readme-images/output-res-example.png)
+![Output results](./readme-images/output-res-example.png)
 
 This shows some result sets from an experiment, with the population of
 a front at an intermediate generation. The results in the result set
