@@ -10,7 +10,7 @@ SESAME deliverable documents
 
 The integrated methodology:
 
-![Integrated methodology figure](./documentation/readme-images/overall-alg-structure.png)
+![Integrated methodology figure](./documentation/readme-images/overall-alg-structure.png?)
 
 The testing architecture:
 
