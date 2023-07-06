@@ -137,3 +137,10 @@ cd ~/source/KukaCell-2022_12_05_newtriggerzones
 ```
 Edit the file runargs.ini - in particular, if you have a license, set it according to 
 TTS instructions
+
+# Additional instructions for ROS use case
+[Additional instructions for ROS use cases](./INSTALL-linux-ros.md)
+
+# Troubleshooting
+[See troubleshooting in case of problems with installation or usage](./TROUBLE.md)
+
