@@ -24,7 +24,7 @@ import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreduc
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.metricquality.MetricQualityValue;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
-public class PhyTestingSubsetSelection {
+public abstract class PhyTestingSubsetSelection {
 
 	private static final boolean DEBUG_REGISTER_CELLS = true;
 
@@ -51,6 +51,7 @@ public class PhyTestingSubsetSelection {
 	
 	public PhyTestingSubsetSelection(ParameterSpaceDimensionalityReduction dsc, MetricQualityValue mqv) {
 		
+		////////////////////////////// DEBUG - these are used for debugging the coverage checking 
 		EnumMap<DimensionID, IntervalWithCount> intervals = new EnumMap<DimensionID, IntervalWithCount>(
 				DimensionID.class);
 		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 1.0, 4));
@@ -61,26 +62,13 @@ public class PhyTestingSubsetSelection {
 		final int MIN_COVERAGE_PER_CELL = 1;
 		final double NEEDED_COVERAGE_PROPORTION = 1.0;
 		
-		this._covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL,
-				NEEDED_COVERAGE_PROPORTION);
+		this._covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL, NEEDED_COVERAGE_PROPORTION);
 		
 		this.dsc = dsc;
 		this.mqv = mqv;
 	}
 	
-	private boolean isInFinalFront(TestCampaign selectedCampaign, Test t) {
-		EList<CampaignResultSet> rs = selectedCampaign.getResultSets();
-		for (CampaignResultSet r : rs) {
-			if (r.getStatus() == ResultSetStatus.FINAL) {
-				if (r.getName().contains("NONDOM")) {
-					if (r.getResults().contains(t)) {
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
+	protected abstract boolean isTagged(TestCampaign selectedCampaign, Test t);
 
 	public void loadModelToResults(String modelFileName, String campaignName)
 			throws InvalidTestCampaign, EolModelLoadingException {
@@ -107,7 +95,7 @@ public class PhyTestingSubsetSelection {
 				
 				// Check in the campaign if it is in the final Pareto front, or
 				// not - if so, set the tags appropriately
-				if (isInFinalFront(selectedCampaign, t)) {
+				if (isTagged(selectedCampaign, t)) {
 					 testTags.put(t, TestResultTags.IN_FINAL_PARETO_FRONT);
 				}
 			}

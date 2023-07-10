@@ -8,24 +8,32 @@ import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 
 import uk.ac.york.sesame.testing.evolutionary.InvalidTestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.PhyTestingSubsetSelection;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.PhyTestingSubsetSelectionPartial;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.*;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.metricquality.*;
 
 public class PhyTestingSubsetSelectionRunner {
 	public static void main(String[] args) {
-		String fileName = "/home/jharbin/eclipse-workspace-sesame/TTSTestProject/models/phytesting/results/testingTTS_Kuka_phytesting_coverageGA-jun20.model";
-		String csvOut = "/tmp/phytestout.csv";
+		///////////////////////////////////// SET PARAMETERS HERE ////////////////////////////////////////////////////////
+		String fileName = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/TTSTestProject/models/phytesting/results/testingTTS_Kuka_phytesting_coverageGA_condbased_jul03.model";
+		String campaignName = "coverageExperiment-condbased";
+		boolean isFinal = false;
+		String searchString1 = "NONDOM";
+		String searchString2 = "intermediate-210";
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		String csvOut = fileName + campaignName + "reduced-" + searchString1 + "-" + searchString2 + ".csv";
 		
 		try {
 			List<String> metricNameList = new ArrayList<String>();
 			metricNameList.add("collisionOccurance");
-			PhyTestingSubsetSelection testPhysub = new PhyTestingSubsetSelection(new SESAMEStandardDimensionSetReducer(), new SESAMEMetricQualityValues(metricNameList));
-			testPhysub.loadModelToResults(fileName, "coverageExperiment");
+			PhyTestingSubsetSelection testPhysub = new PhyTestingSubsetSelectionPartial(new SESAMEStandardDimensionSetReducer(), new SESAMEMetricQualityValues(metricNameList), isFinal, searchString1, searchString2);
+			
+			testPhysub.loadModelToResults(fileName, campaignName);
 			testPhysub.writeOutResultsTabSep();
 			testPhysub.writeOutResultsCSV(csvOut);
 			
 			System.out.println("Writing out to CSV done...");
-			// TODO: invoke Python to run the subset processing here
 			
 		} catch (EolModelLoadingException | InvalidTestCampaign e) {
 			e.printStackTrace();

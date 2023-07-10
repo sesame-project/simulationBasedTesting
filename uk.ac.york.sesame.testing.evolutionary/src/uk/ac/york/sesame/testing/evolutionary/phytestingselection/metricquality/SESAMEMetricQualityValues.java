@@ -70,10 +70,13 @@ public class SESAMEMetricQualityValues extends MetricQualityValue {
 			EList<Test> tests = selectedCampaign.getPerformedTests();
 			List<Test> testsSorted = (List<Test>)EcoreUtil.copyAll(tests);
 			Collections.sort(testsSorted, compareWithMetrics);
-			int i = tests.size();
+			//int r = tests.size();
+			// TODO: need to handle sort order, this gives a high ranking to the largest
+			int r = 0;
 			for (Test t : testsSorted) {
-				rankings.put(t.getName(),i);
-				i--;
+				rankings.put(t.getName(),r);
+				System.out.println("SESAMEMetricQualityValues: Test " + t.getName() + " - ranking " + r);
+				r++;
 			}
 		}
 	}

@@ -1,7 +1,9 @@
 [%
+	//var campaignName = "coverageBoostingExperiment";
 	var campaignName = "coverageExperiment";
 	var filterResultSetString1 = "NONDOM";
 	var filterResultSetString2 = "intermediate-210";
+	//var targetType = Testing!ResultSetStatus#INTERMEDIATE;
 	var targetType = Testing!ResultSetStatus#INTERMEDIATE;
 	
 	// TODO: this should be a parameter name
