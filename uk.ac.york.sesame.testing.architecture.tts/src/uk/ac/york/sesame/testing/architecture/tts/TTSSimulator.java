@@ -20,6 +20,7 @@ import io.grpc.stub.StreamObserver;
 import simlog.server.*;
 
 import com.google.protobuf.Empty;
+import com.googlecode.protobuf.format.JsonFormat;
 
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
@@ -38,7 +39,9 @@ public class TTSSimulator implements ISimulator {
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	private static final boolean DEBUG_DISPLAY_CLOCK_MESSAGE = true;
-	private static final boolean SUBSCRIBE_TO_CLOCK = false;
+	//private static final boolean SUBSCRIBE_TO_CLOCK = false;
+	
+	private static boolean GET_TIME_FROM_MESSAGES = false;
 
 	static DataStreamManager dsm = DataStreamManager.getInstance();
 
@@ -191,21 +194,21 @@ public class TTSSimulator implements ISimulator {
 	}
 	
 	private void consumeFromTopicWithoutFuzzing(String topicName, String topicType, Boolean publishToKafka,	String kafkaTopic) {
-		String topicNameIn = topicName + "/in";
-		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-
-		Optional<String> kTopic = Optional.empty();
-		if (publishToKafka) {
-			kTopic = Optional.of(kafkaTopic);
+		String topicNameIn;
+		// TODO: think of better way to handle this - variable specific information?
+		if (topicName.contains("safetyzone")) {
+			topicNameIn = topicName;
+		} else {
+			topicNameIn = topicName + "/in";
 		}
+		
+		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
 
 		try {
 			ROSObserver ro = new ROSObserver(topicNameIn);
 			ro.setTopic(kafkaTopic);
 			System.out.println("Setting up subscription to : " + inTopic);
 			asyncStub.subscribe(inTopic, ro);
-
 		} catch (StatusRuntimeException e) {
 			System.out.println("RPC failed: {0}" + e.getStatus());
 			return;
@@ -293,26 +296,32 @@ public class TTSSimulator implements ISimulator {
 			e.printStackTrace();
 		}
 	}
+	
+	private boolean subscribeToClock() {
+		return !GET_TIME_FROM_MESSAGES;
+	}
 
 	@Override
 	public void updateTime() {
-		if (SUBSCRIBE_TO_CLOCK) {
+		if (subscribeToClock()) {
 			TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("/model/clock").build();
 			ClockObserver co = new ClockObserver();
 			asyncStub.subscribe(clockTopic, co);
 		}
 	}
-
+	
 	private class ClockObserver implements StreamObserver<ROSMessage> {
 
 		public ClockObserver() {
 
 		}
 
-		@Override
 		public void onNext(ROSMessage m) {
-			System.out.println("ClockObserver received value=" + m.getValue());
-			Double time = Double.parseDouble(m.getValue());
+			System.out.println("ClockObserver received value with header timestamp " + m.getTimeStamp());
+			Header h = m.getTimeStamp();
+			time t = h.getStamp();
+			double time = ((double)t.getNsec()) / 1e9;
+			System.out.println("Timestamp recovered from clock message = " + time);
 			SimCore.getInstance().setTime(time);
 		}
 
@@ -326,7 +335,7 @@ public class TTSSimulator implements ISimulator {
 			System.out.println("ClockObserver finished");
 		}
 	}
-
+	
 	private class ROSObserver implements StreamObserver<ROSMessage> {
 		private String path;
 		private boolean debugThisMessage;
@@ -343,6 +352,18 @@ public class TTSSimulator implements ISimulator {
 		public void setTopic(String givenTopic) {
 			this.kafkaTopic = Optional.of(givenTopic);
 		}
+		
+		private void setSimulatorTimeFromMessage(ROSMessage m, EventMessage em) {
+			Header timeStamp_H = m.getTimeStamp();
+			time tSecNsec = timeStamp_H.getStamp();
+			long sec = tSecNsec.getSec();
+			long nsec = tSecNsec.getNsec();
+			double time = ((double)nsec) / 1e9;
+			System.out.println("Timestamp recovered from message = " + time);
+			
+			SimCore.getInstance().setTime(time);
+			em.setTimestamp(nsec);
+		}
 
 		@Override
 		public void onNext(ROSMessage m) {
@@ -351,13 +372,29 @@ public class TTSSimulator implements ISimulator {
 				System.out.println("message: " + m);
 			}
 			EventMessage em = new EventMessage();
+			
 			String type = m.getType();
 			String topic = path;
-			String val = m.getValue();
 
-			em.setValue(val);
+			if (GET_TIME_FROM_MESSAGES) {
+				setSimulatorTimeFromMessage(m, em);
+			}
+
 			em.setType(type);
 			em.setTopic(topic);
+			
+			
+			// If there is an empty ROSMessage text value, as in the 
+			// safetyzone messages, the EventMessage value is set to
+			// the JSON representation of the protobuf ROS message
+			String val = m.getValue();
+			if (val == null || val.isEmpty()) {
+				JsonFormat jsf = new JsonFormat();
+				String jsonString = jsf.printToString(m);
+				em.setValue(jsonString);
+			} else {
+				em.setValue(val);
+			}
 
 			if (kafkaTopic.isPresent()) {
 				String kTopicName = kafkaTopic.get();
