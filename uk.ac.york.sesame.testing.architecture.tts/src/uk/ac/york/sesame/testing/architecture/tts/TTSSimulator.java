@@ -35,18 +35,10 @@ import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
 public class TTSSimulator implements ISimulator {
 
 	private static final long DEFAULT_TTS_LAUNCH_DELAY_MS = 20000;
-	
-	private static boolean GET_TIME_FROM_MESSAGES = true;
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	private static final boolean DEBUG_DISPLAY_CLOCK_MESSAGE = true;
-<<<<<<< HEAD
-	//private static final boolean SUBSCRIBE_TO_CLOCK = false;
-	
 	private static boolean GET_TIME_FROM_MESSAGES = false;
-=======
-	//private static final boolean SUBSCRIBE_TO_CLOCK = true;
->>>>>>> 69283a5ae35eed92b012db6fef021907fa2c6bbe
 
 	static DataStreamManager dsm = DataStreamManager.getInstance();
 
@@ -292,18 +284,10 @@ public class TTSSimulator implements ISimulator {
 		return !GET_TIME_FROM_MESSAGES;
 	}
 
-	private boolean subscribeToClock() {
-		return !GET_TIME_FROM_MESSAGES;
-	}
-	
 	@Override
 	public void updateTime() {
 		if (subscribeToClock()) {
-<<<<<<< HEAD
-			TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("/model/clock").build();
-=======
 			TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("model/clock").build();
->>>>>>> 69283a5ae35eed92b012db6fef021907fa2c6bbe
 			ClockObserver co = new ClockObserver();
 			asyncStub.subscribe(clockTopic, co);
 		}
