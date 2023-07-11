@@ -14,13 +14,12 @@ import org.eclipse.epsilon.eol.models.IModel;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import simlog.server.*;
 
 import com.google.protobuf.Empty;
-import com.googlecode.protobuf.format.JsonFormat;
 
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
@@ -31,22 +30,15 @@ import uk.ac.york.sesame.testing.architecture.simulator.IPropertySetter;
 import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
+import uk.ac.york.sesame.testing.architecture.utilities.ExptHelperWindows;
 
 public class TTSSimulator implements ISimulator {
 
 	private static final long DEFAULT_TTS_LAUNCH_DELAY_MS = 20000;
-	
-	private static boolean GET_TIME_FROM_MESSAGES = true;
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	private static final boolean DEBUG_DISPLAY_CLOCK_MESSAGE = true;
-<<<<<<< HEAD
-	//private static final boolean SUBSCRIBE_TO_CLOCK = false;
-	
-	private static boolean GET_TIME_FROM_MESSAGES = false;
-=======
-	//private static final boolean SUBSCRIBE_TO_CLOCK = true;
->>>>>>> 69283a5ae35eed92b012db6fef021907fa2c6bbe
+	private static final boolean SUBSCRIBE_TO_CLOCK = false;
 
 	static DataStreamManager dsm = DataStreamManager.getInstance();
 
@@ -107,6 +99,18 @@ public class TTSSimulator implements ISimulator {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	private void runWindows(HashMap<String, String> params, String simulatorDistDir, long delayMsec) {
+		// TODO: should the model contain an option for setting a custom JVM here?
+		String cmdLine = "cd " + simulatorDistDir + " && '/cygdrive/c/Progra~1/Java/jdk1.8.0_361/bin/java.exe' -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		ExptHelperWindows.runScriptNewThread("", cmdLine, "");
+	}
+	
+	private void runLinux(HashMap<String, String> params, String workingDir, long delayMsec) {
+		// TODO: should the model contain an option for setting a custom JVM here?
+		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		ExptHelper.runScriptNewThread(workingDir, cmd);
+	}
 
 	@Override
 	public void run(HashMap<String, String> params) {
@@ -117,10 +121,13 @@ public class TTSSimulator implements ISimulator {
 		if (params.containsKey("launchDelayMsec")) {
 			delayMsec = Long.parseLong(params.get("launchDelayMsec"));
 		}
-
-		// TODO: this needs an option for setting a custom JVM here?
-		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
-		ExptHelper.runScriptNewThread(workingDir, cmd);
+	
+		String osName = System.getProperty("os.name");
+		if (osName.contains("Windows")) {
+			runWindows(params, workingDir, delayMsec);
+		} else {
+			runLinux(params, workingDir, delayMsec);
+		}
 
 		// Need to wait the delay
 		try {
@@ -157,18 +164,18 @@ public class TTSSimulator implements ISimulator {
 		String topicNameOut = topicName + "/out";
 
 		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-		TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(topicNameShadow).build();	
-//		TopicDescriptor outTopic = TopicDescriptor.newBuilder().setPath(topicNameOut).build();
+		TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(topicNameShadow).build();
+		TopicDescriptor outTopic = TopicDescriptor.newBuilder().setPath(topicNameOut).build();
 
 		// InjectRequest requestInj =
 		// InjectRequest.newBuilder().setInjected(shadowTopic).build();
 		InjectRequest requ = InjectRequest.newBuilder().setInjected(shadowTopic).setTarget(inTopic).build();
-//		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-//
-//		Optional<String> kTopic = Optional.empty();
-//		if (publishToKafka) {
-//			kTopic = Optional.of(kafkaTopic);
-//		}
+		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
+
+		Optional<String> kTopic = Optional.empty();
+		if (publishToKafka) {
+			kTopic = Optional.of(kafkaTopic);
+		}
 
 		try {
 			ROSObserver roInject = new ROSObserver(topicNameIn);
@@ -177,7 +184,6 @@ public class TTSSimulator implements ISimulator {
 			// asyncStub.subscribe(inTopic, ro);
 			asyncStub.inject(requ, roInject);
 
-			
 		} catch (StatusRuntimeException e) {
 			System.out.println("RPC failed: {0}" + e.getStatus());
 			return;
@@ -185,21 +191,21 @@ public class TTSSimulator implements ISimulator {
 	}
 	
 	private void consumeFromTopicWithoutFuzzing(String topicName, String topicType, Boolean publishToKafka,	String kafkaTopic) {
-		String topicNameIn;
-		// TODO: think of better way to handle this - variable specific information?
-		if (topicName.contains("safetyzone")) {
-			topicNameIn = topicName;
-		} else {
-			topicNameIn = topicName + "/in";
-		}
-		
+		String topicNameIn = topicName + "/in";
 		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
+		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
+
+		Optional<String> kTopic = Optional.empty();
+		if (publishToKafka) {
+			kTopic = Optional.of(kafkaTopic);
+		}
 
 		try {
 			ROSObserver ro = new ROSObserver(topicNameIn);
 			ro.setTopic(kafkaTopic);
 			System.out.println("Setting up subscription to : " + inTopic);
 			asyncStub.subscribe(inTopic, ro);
+
 		} catch (StatusRuntimeException e) {
 			System.out.println("RPC failed: {0}" + e.getStatus());
 			return;
@@ -287,40 +293,26 @@ public class TTSSimulator implements ISimulator {
 			e.printStackTrace();
 		}
 	}
-	
-	private boolean subscribeToClock() {
-		return !GET_TIME_FROM_MESSAGES;
-	}
 
-	private boolean subscribeToClock() {
-		return !GET_TIME_FROM_MESSAGES;
-	}
-	
 	@Override
 	public void updateTime() {
-		if (subscribeToClock()) {
-<<<<<<< HEAD
+		if (SUBSCRIBE_TO_CLOCK) {
 			TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("/model/clock").build();
-=======
-			TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("model/clock").build();
->>>>>>> 69283a5ae35eed92b012db6fef021907fa2c6bbe
 			ClockObserver co = new ClockObserver();
 			asyncStub.subscribe(clockTopic, co);
 		}
 	}
-	
+
 	private class ClockObserver implements StreamObserver<ROSMessage> {
 
 		public ClockObserver() {
 
 		}
 
+		@Override
 		public void onNext(ROSMessage m) {
-			System.out.println("ClockObserver received value with header timestamp " + m.getTimeStamp());
-			Header h = m.getTimeStamp();
-			time t = h.getStamp();
-			double time = ((double)t.getNsec()) / 1e9;
-			System.out.println("Timestamp recovered from clock message = " + time);
+			System.out.println("ClockObserver received value=" + m.getValue());
+			Double time = Double.parseDouble(m.getValue());
 			SimCore.getInstance().setTime(time);
 		}
 
@@ -334,7 +326,7 @@ public class TTSSimulator implements ISimulator {
 			System.out.println("ClockObserver finished");
 		}
 	}
-	
+
 	private class ROSObserver implements StreamObserver<ROSMessage> {
 		private String path;
 		private boolean debugThisMessage;
@@ -351,18 +343,6 @@ public class TTSSimulator implements ISimulator {
 		public void setTopic(String givenTopic) {
 			this.kafkaTopic = Optional.of(givenTopic);
 		}
-		
-		private void setSimulatorTimeFromMessage(ROSMessage m, EventMessage em) {
-			Header timeStamp_H = m.getTimeStamp();
-			time tSecNsec = timeStamp_H.getStamp();
-			long sec = tSecNsec.getSec();
-			long nsec = tSecNsec.getNsec();
-			double time = ((double)nsec) / 1e9;
-			System.out.println("Timestamp recovered from message = " + time);
-			
-			SimCore.getInstance().setTime(time);
-			em.setTimestamp(nsec);
-		}
 
 		@Override
 		public void onNext(ROSMessage m) {
@@ -371,29 +351,13 @@ public class TTSSimulator implements ISimulator {
 				System.out.println("message: " + m);
 			}
 			EventMessage em = new EventMessage();
-			
 			String type = m.getType();
 			String topic = path;
+			String val = m.getValue();
 
-			if (GET_TIME_FROM_MESSAGES) {
-				setSimulatorTimeFromMessage(m, em);
-			}
-
+			em.setValue(val);
 			em.setType(type);
 			em.setTopic(topic);
-			
-			
-			// If there is an empty ROSMessage text value, as in the 
-			// safetyzone messages, the EventMessage value is set to
-			// the JSON representation of the protobuf ROS message
-			String val = m.getValue();
-			if (val == null || val.isEmpty()) {
-				JsonFormat jsf = new JsonFormat();
-				String jsonString = jsf.printToString(m);
-				em.setValue(jsonString);
-			} else {
-				em.setValue(val);
-			}
 
 			if (kafkaTopic.isPresent()) {
 				String kTopicName = kafkaTopic.get();
