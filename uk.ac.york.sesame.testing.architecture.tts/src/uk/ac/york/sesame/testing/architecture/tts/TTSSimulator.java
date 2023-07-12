@@ -86,10 +86,6 @@ public class TTSSimulator implements ISimulator {
 		// Set step size using the blocking stub
 		blockingStub.setStepSize(stepRQ);
 		
-		//so = new StepObserver();
-		
-		
-		// Step size set here
 		try {
 			Thread.sleep(500);
 			System.out.println("TTSimulator: connection made");
@@ -428,47 +424,10 @@ public class TTSSimulator implements ISimulator {
 	}
 
 	private boolean responseIsOK(StepResponse response) {
-		// Currently the response is assumed always OK
 		if (response.getCode() < 0) {
 			return false;
 		} else {
 			return true;
 		}
 	}
-	
-//	public void stepSimulator() {
-//		canSendToSimulator = false;
-//		StepRequest rq = StepRequest.newBuilder().build();
-//		asyncStub.step(rq, so);
-//	}
-//
-//	private class StepObserver implements StreamObserver<StepResponse> {
-//
-//		public StepObserver() {
-//
-//		}
-//
-//		@Override
-//		public void onNext(StepResponse m) {
-//			canSendToSimulator = true;
-//		}
-//
-//		@Override
-//		public void onError(Throwable t) {
-//			System.err.println("StepObserver failed: " + Status.fromThrowable(t));
-//		}
-//
-//		@Override
-//		public void onCompleted() {
-//			System.out.println("StepObserver step() call finished");
-//		}
-//	}
-//
-//	public boolean waitForSimulator() {
-//		while (!canSendToSimulator) {
-//			// Wait
-//		};
-//		
-//		return true;
-//	}
 }

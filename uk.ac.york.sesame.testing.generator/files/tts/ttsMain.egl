@@ -60,6 +60,29 @@ import metrics.custom.*;
 import metrics.fixed.*;
 
 public class [%= testNameString %]_TestRunner {
+
+	private static final long MIN_DEBUG_STEP_TIME = 100;
+	private static final boolean USE_STEP_RATE_LIMITING = true;
+
+	public static boolean extraDebugWait(long millisLastStep) {
+		if (USE_STEP_RATE_LIMITING) {
+			Instant instant = Instant.now();
+			long timeNow = instant.toEpochMilli();
+			long delay = timeNow - millisLastStep;
+			if (delay < MIN_DEBUG_STEP_TIME) {
+				try {
+					Thread.sleep(MIN_DEBUG_STEP_TIME - delay);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}	
+			return true;
+		} else {
+			// If not using rate limiting, exit immediately
+			return true;
+		}
+	}
+
 	public static void main(String[] args) {
 	
 		final String TESTNAME = "[%= testNameString %]";
@@ -196,14 +219,16 @@ public class [%= testNameString %]_TestRunner {
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
+				
+				long millisLastStep = 0;
 				System.out.println("From out to sim starts");
-				while (ttsSim.stepSimulator()) {
+							
+				while (ttsSim.stepSimulator() && extraDebugWait(millisLastStep)) {
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = ttsSim.translateTopicNameForOutput(inTopic);
 						
-						[% if (recordDelay) { %]
 						long timestamp = record.value().getTimestamp();
 						EventMessage er = record.value();
 						
@@ -211,7 +236,8 @@ public class [%= testNameString %]_TestRunner {
 						long timeOut = instant.toEpochMilli();
 						long timeIn = er.getIN_walltime();
 						long millisWallDelay = timeOut - timeIn;
-						[% } %]
+						// Update last step time from now
+						millisLastStep = timeOut;
 												
 						[* TODO: only the fuzzingVars should be reflected back to the simulator! *]
 						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
