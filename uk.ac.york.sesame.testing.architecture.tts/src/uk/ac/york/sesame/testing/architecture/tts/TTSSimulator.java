@@ -77,18 +77,22 @@ public class TTSSimulator implements ISimulator {
 		String target = host + ":" + String.valueOf(port);
 		channel = ManagedChannelBuilder.forTarget(target).usePlaintext().build();
 		channelSync = ManagedChannelBuilder.forTarget(target).usePlaintext().build();
-		int stepSizeMillis = Integer.parseInt(params.getProperties().get(params.STEP_SIZE).toString());
 		
 		blockingStub = SimlogAPIGrpc.newBlockingStub(channelSync);
 		asyncStub = SimlogAPIGrpc.newStub(channel);
 		
-		StepSizeRequest stepRQ = StepSizeRequest.newBuilder().setStep(stepSizeMillis).build();
-		// Set step size using the blocking stub
-		blockingStub.setStepSize(stepRQ);
+		// Activate stepping if the STEP_SIZE parameter is supplied
+		if (params.getProperties().containsKey(params.STEP_SIZE)) {
+			System.out.println("TTSimulator: setting step size");
+			int stepSizeMillis = Integer.parseInt(params.getProperties().get(params.STEP_SIZE).toString());
+			StepSizeRequest stepRQ = StepSizeRequest.newBuilder().setStep(stepSizeMillis).build();
+			blockingStub.setStepSize(stepRQ);
+		}
 		
 		try {
+			// Wait is needed to prevent gRPC connection errors later
 			Thread.sleep(500);
-			System.out.println("TTSimulator: connection made");
+			System.out.println("TTSimulator: connection made");		
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

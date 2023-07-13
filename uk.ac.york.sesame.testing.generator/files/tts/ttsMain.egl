@@ -15,6 +15,8 @@
 	
 	var sendBackToSimulator = true;
 	
+	var useStepping = mrs.useStepping;
+	
 	// This will activate sending back all topics in the MITM. Normally only the
 	// fuzzing variables should be sent back
 	var sendBackAllTopics = true;
@@ -171,7 +173,10 @@ public class [%= testNameString %]_TestRunner {
 		propsMap.put(ConnectionProperties.HOSTNAME, "[%=simulator.hostname %]");
 		propsMap.put(ConnectionProperties.PORT, [%=simulator.port %]);
 		// TODO: hardcoded step size for now
+		
+		[% if (useStepping) { %]
 		propsMap.put(ConnectionProperties.STEP_SIZE, 20);
+		[% } %]
 		cp.setProperties(propsMap);
 				
 		params.put("TTSProjectDir", "[%= launchFileLocation %]");
@@ -222,8 +227,12 @@ public class [%= testNameString %]_TestRunner {
 				
 				long millisLastStep = 0;
 				System.out.println("From out to sim starts");
-							
+						
+				[% if (useStepping) { %]			
 				while (ttsSim.stepSimulator() && extraDebugWait(millisLastStep)) {
+				[% } else { %]
+				while (true) {
+				[% } %]			
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();

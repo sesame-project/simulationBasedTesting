@@ -541,5 +541,7 @@ package MRSPackage {
 	class TTSSimulator extends Simulator {
 		attr String hostname;
 		attr String port;
+		attr double stepSizeMillis = 20;
+		attr boolean useStepping = false;
 	}
 }

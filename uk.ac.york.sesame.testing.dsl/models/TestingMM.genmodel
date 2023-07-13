@@ -366,6 +366,8 @@
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/TTSSimulator">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/TTSSimulator/hostname"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/TTSSimulator/port"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/TTSSimulator/stepSizeMillis"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/TTSSimulator/useStepping"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

@@ -1,5 +1,7 @@
 [% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase(); %]
 
+[% var logFuzzingChanges = true; %]
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
@@ -11,6 +13,8 @@ import org.json.simple.*;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 import uk.ac.york.sesame.testing.architecture.utilities.UpdateLambda;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
+
+import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 
 import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
 
@@ -147,8 +151,11 @@ public class [%=fuzzOp.name%]FlatMap_[%= classNameExt %] extends [%= superClassN
 				Double origVal = Double.parseDouble((String)value.getValue());
 				Double fuzzedVal = origVal + newValue;
 				valueOut.setValue(fuzzedVal.toString());
+				double time = SimCore.getInstance().getTime();
+				System.out.println("fuzzRangeLog," + time + "," + origVal + "," + fuzzedVal + "\n");
 				[% } else { %]
 				valueOut.setValue(newValue.toString());
+				System.out.println("fuzzRangeLog," + time + "," + origVal + "," + fuzzedVal + "\n");
 				[% } %]
 				
 	      		[% } %]
