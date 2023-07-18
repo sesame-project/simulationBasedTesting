@@ -31,6 +31,7 @@ import uk.ac.york.sesame.testing.architecture.simulator.IPropertySetter;
 import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
+import uk.ac.york.sesame.testing.architecture.utilities.ExptHelperWindows;
 
 public class TTSSimulator implements ISimulator {
 
@@ -99,6 +100,18 @@ public class TTSSimulator implements ISimulator {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	private void runWindows(HashMap<String, String> params, String simulatorDistDir, long delayMsec) {
+		// TODO: should the model contain an option for setting a custom JVM here?
+		String cmdLine = "cd " + simulatorDistDir + " && '/cygdrive/c/Progra~1/Java/jdk1.8.0_361/bin/java.exe' -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		ExptHelperWindows.runScriptNewThread("", cmdLine, "");
+	}
+	
+	private void runLinux(HashMap<String, String> params, String workingDir, long delayMsec) {
+		// TODO: should the model contain an option for setting a custom JVM here?
+		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		ExptHelper.runScriptNewThread(workingDir, cmd);
+	}
 
 	@Override
 	public void run(HashMap<String, String> params) {
@@ -109,10 +122,13 @@ public class TTSSimulator implements ISimulator {
 		if (params.containsKey("launchDelayMsec")) {
 			delayMsec = Long.parseLong(params.get("launchDelayMsec"));
 		}
-
-		// TODO: this needs an option for setting a custom JVM here?
-		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
-		ExptHelper.runScriptNewThread(workingDir, cmd);
+	
+		String osName = System.getProperty("os.name");
+		if (osName.contains("Windows")) {
+			runWindows(params, workingDir, delayMsec);
+		} else {
+			runLinux(params, workingDir, delayMsec);
+		}
 
 		// Need to wait the delay
 		try {
@@ -121,7 +137,7 @@ public class TTSSimulator implements ISimulator {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Override
 	public HashMap<String, ?> getCreatedTopicsByTopicName() {
 		return createdTopics;
