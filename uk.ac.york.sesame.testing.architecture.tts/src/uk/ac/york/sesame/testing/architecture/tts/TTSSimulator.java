@@ -81,6 +81,15 @@ public class TTSSimulator implements ISimulator {
 		blockingStub = SimlogAPIGrpc.newBlockingStub(channelSync);
 		asyncStub = SimlogAPIGrpc.newStub(channel);
 		
+		try {
+			// Wait is needed 1sec before setting the step size
+			Thread.sleep(1000);
+			System.out.println("TTSimulator: wait to set step size completed");		
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// Activate stepping if the STEP_SIZE parameter is supplied
 		if (params.getProperties().containsKey(params.STEP_SIZE)) {
 			System.out.println("TTSimulator: setting step size");
@@ -89,14 +98,7 @@ public class TTSSimulator implements ISimulator {
 			blockingStub.setStepSize(stepRQ);
 		}
 		
-		try {
-			// Wait is needed to prevent gRPC connection errors later
-			Thread.sleep(500);
-			System.out.println("TTSimulator: connection made");		
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println("TTSimulator: connection ready");
 		return asyncStub;
 	}
 
@@ -215,8 +217,6 @@ public class TTSSimulator implements ISimulator {
 			consumeFromTopicWithoutFuzzing(topicName, topicType, publishToKafka, kafkaTopic);
 		}
 	}
-
-
 
 	@Override
 	public void publishToTopic(String topicName, String topicType, String message) {

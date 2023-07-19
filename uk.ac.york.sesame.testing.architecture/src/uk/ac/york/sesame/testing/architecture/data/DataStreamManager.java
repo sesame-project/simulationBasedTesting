@@ -21,6 +21,12 @@ import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.LongSerializer;
 
 public class DataStreamManager {
+	
+	//private long POLL_TIMEOUT = 1000;
+	private final long POLL_TIMEOUT = 0;
+	// Zero will return immediately if there are no pending records available, allowing us to go onto the
+	// next step:
+	// https://kafka.apache.org/24/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html
 
 	private static final DataStreamManager INSTANCE = new DataStreamManager();
 	private static KafkaProducer<Long, EventMessage> kafkaProducer;
@@ -115,7 +121,7 @@ public class DataStreamManager {
 			consumers.put(kafkaTopic, consumer);
 		}
 		consumer.subscribe(Collections.singletonList(kafkaTopic));
-		final ConsumerRecords<Long, EventMessage> consumerRecords = consumer.poll(Duration.ofMillis(1000));
+		final ConsumerRecords<Long, EventMessage> consumerRecords = consumer.poll(Duration.ofMillis(POLL_TIMEOUT));
 		return consumerRecords;
 	}
 }

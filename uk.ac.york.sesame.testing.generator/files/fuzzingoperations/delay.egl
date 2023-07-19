@@ -39,6 +39,10 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 	private long delayTime;
 	Random rng;
 	
+	protected String getUniqueID() {
+		return "[%= fuzzOp.name %]-[%= fuzzOp.sequenceNumInTest %]";
+	}
+	
 	private MapState<Long,List<EventMessage>> queue;
 
 	[% if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { %]
@@ -123,10 +127,11 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 	}
 	
 	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
-		if (value.getTopic().equals(topic) && isReadyNow()) {
+		if (value.getTopic().contains(topic) && isReadyNow()) {
 			long currentTime = ctx.timestamp();
 			long scheduledTime = currentTime + Math.round(rng.nextDouble() * delayTime);
 			double simTime = SimCore.getInstance().getTime();
+			value.setSimTimeIn(simTime);
 		
 			List<EventMessage> currentPending = queue.get(scheduledTime);
 		
@@ -144,14 +149,18 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 	
 	public void onTimer(long timestamp, OnTimerContext ctx, Collector<EventMessage> out) {
 		long currentTime = ctx.timestamp();
+		double simCoreTime = SimCore.getInstance().getTime();
 
 		try {
-			for (Iterator<Entry<Long, List<EventMessage>>> it = queue.entries().iterator(); it.hasNext();) {
+			for (Iterator<Entry<Long, List<EventMessage>>> it = queue.entries().iterator(); it.hasNext()) {
 				Entry<Long, List<EventMessage>> entry = it.next();
 				long schedTime = entry.getKey();
 				if (currentTime >= schedTime) {
 					List<EventMessage> queuedMsgs = entry.getValue();
 					for (EventMessage m : queuedMsgs) {
+						double simCoreTimeIn = m.getSimTimeIn();
+						double actualDelay = simCoreTime - simCoreTimeIn;
+						System.out.println("delayTracking," + currentTime + "," + simCoreTimeIn + "," + simCoreTime + "," + actualDelay);
 						out.collect(m);
 					}
 					it.remove();

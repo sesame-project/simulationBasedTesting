@@ -15,7 +15,7 @@
 	
 	var sendBackToSimulator = true;
 	
-	var useStepping = mrs.useStepping;
+	var useStepping = simulator.useStepping;
 	
 	// This will activate sending back all topics in the MITM. Normally only the
 	// fuzzing variables should be sent back
