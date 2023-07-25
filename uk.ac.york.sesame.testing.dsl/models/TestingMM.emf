@@ -323,6 +323,7 @@ class BlackholeNetworkOperation extends NetworkFuzzingOperation {
 
 class LatencyNetworkOperation extends NetworkFuzzingOperation {
 	val DoubleRange[1] latency;
+	attr boolean randomised = false;
 }
 
 class PacketLossNetworkOperation extends NetworkFuzzingOperation {

@@ -1249,6 +1249,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getLatencyNetworkOperation_Randomised() {
+		return (EAttribute)latencyNetworkOperationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPacketLossNetworkOperation() {
 		return packetLossNetworkOperationEClass;
 	}
@@ -1442,6 +1451,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		latencyNetworkOperationEClass = createEClass(LATENCY_NETWORK_OPERATION);
 		createEReference(latencyNetworkOperationEClass, LATENCY_NETWORK_OPERATION__LATENCY);
+		createEAttribute(latencyNetworkOperationEClass, LATENCY_NETWORK_OPERATION__RANDOMISED);
 
 		packetLossNetworkOperationEClass = createEClass(PACKET_LOSS_NETWORK_OPERATION);
 		createEReference(packetLossNetworkOperationEClass, PACKET_LOSS_NETWORK_OPERATION__FREQUENCY);
@@ -1647,6 +1657,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		initEClass(latencyNetworkOperationEClass, LatencyNetworkOperation.class, "LatencyNetworkOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLatencyNetworkOperation_Latency(), this.getDoubleRange(), null, "latency", null, 1, 1, LatencyNetworkOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLatencyNetworkOperation_Randomised(), ecorePackage.getEBoolean(), "randomised", "false", 0, 1, LatencyNetworkOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packetLossNetworkOperationEClass, PacketLossNetworkOperation.class, "PacketLossNetworkOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPacketLossNetworkOperation_Frequency(), this.getDoubleRange(), null, "frequency", null, 1, 1, PacketLossNetworkOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

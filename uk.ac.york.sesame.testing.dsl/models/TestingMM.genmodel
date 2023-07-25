@@ -210,6 +210,7 @@
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/BlackholeNetworkOperation"/>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/LatencyNetworkOperation">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/LatencyNetworkOperation/latency"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/LatencyNetworkOperation/randomised"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/PacketLossNetworkOperation">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/PacketLossNetworkOperation/frequency"/>

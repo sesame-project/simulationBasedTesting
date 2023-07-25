@@ -36,7 +36,7 @@ public class TTSSimulator implements ISimulator {
 
 	private static final long DEFAULT_TTS_LAUNCH_DELAY_MS = 20000;
 	
-	private static boolean GET_TIME_FROM_MESSAGES = false;
+	private static boolean GET_TIME_FROM_MESSAGES = true;
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	private static final boolean DEBUG_DISPLAY_CLOCK_MESSAGE = true;
@@ -80,16 +80,7 @@ public class TTSSimulator implements ISimulator {
 		
 		blockingStub = SimlogAPIGrpc.newBlockingStub(channelSync);
 		asyncStub = SimlogAPIGrpc.newStub(channel);
-		
-		try {
-			// Wait is needed 1sec before setting the step size
-			Thread.sleep(1000);
-			System.out.println("TTSimulator: wait to set step size completed");		
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+
 		// Activate stepping if the STEP_SIZE parameter is supplied
 		if (params.getProperties().containsKey(params.STEP_SIZE)) {
 			System.out.println("TTSimulator: setting step size");
@@ -97,6 +88,17 @@ public class TTSSimulator implements ISimulator {
 			StepSizeRequest stepRQ = StepSizeRequest.newBuilder().setStep(stepSizeMillis).build();
 			blockingStub.setStepSize(stepRQ);
 		}
+		
+		try {
+			// Wait is needed to prevent gRPC connection errors
+			Thread.sleep(500);
+			System.out.println("TTSimulator: wait to set step size completed");		
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
 		
 		System.out.println("TTSimulator: connection ready");
 		return asyncStub;
@@ -131,7 +133,9 @@ public class TTSSimulator implements ISimulator {
 		}
 
 		// TODO: this needs an option for setting a custom JVM here?
-		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		//String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		String cmd = "xterm -e /usr/lib/jvm/java-11-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+				
 		ExptHelper.runScriptNewThread(workingDir, cmd);
 
 		// Need to wait the delay
@@ -377,7 +381,9 @@ public class TTSSimulator implements ISimulator {
 			String topic = path;
 
 			if (GET_TIME_FROM_MESSAGES) {
-				setSimulatorTimeFromMessage(m, em);
+				if (!topic.contains("safetyzone")) {
+					setSimulatorTimeFromMessage(m, em);
+				}
 			}
 
 			em.setType(type);
@@ -424,7 +430,7 @@ public class TTSSimulator implements ISimulator {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
-		}	
+		}
 	}
 
 	private boolean responseIsOK(StepResponse response) {
