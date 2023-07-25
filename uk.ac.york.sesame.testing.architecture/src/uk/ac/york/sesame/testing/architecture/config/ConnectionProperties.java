@@ -6,6 +6,7 @@ public class ConnectionProperties {
 	
 	public final static String HOSTNAME = "HOSTNAME";
 	public final static String PORT = "PORT";
+	public final static String STEP_SIZE = "STEP_SIZE"; 
 	
 	HashMap<String, Object> properties = new HashMap<String, Object>();
 

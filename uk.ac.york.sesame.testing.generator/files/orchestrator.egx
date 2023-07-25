@@ -34,11 +34,24 @@ rule customOp2FlatMap transform fuzzOp: Testing!CustomFuzzingOperation {
 	target : "src/"+ fuzzOp.name + "CustomOp_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 }
 
+// Delay when not using TTS - use timers for time-tracking 
+rule delayFlatMapTimers transform fuzzOp: Testing!LatencyNetworkOperation {
+	guard : (fuzzOp.containingTest != null) and Testing!TTSSimulator.all().isEmpty()
+	template : "fuzzingoperations/delay.egl"
+	target : "src/"+ fuzzOp.name + "Delay_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
+}
 
-
-rule delayFlatMap transform fuzzOp: Testing!LatencyNetworkOperation {
-	guard : fuzzOp.containingTest != null
+// Delay when using TTS and not stepping
+rule delayTTSStepping transform fuzzOp: Testing!LatencyNetworkOperation {
+	guard : (fuzzOp.containingTest != null) and Testing!TTSSimulator.all().notEmpty() and (Testing!TTSSimulator.all().first().useStepping == false)
 	template : "fuzzingoperations/delay.egl"	
+	target : "src/"+ fuzzOp.name + "Delay_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
+}
+
+// Delay when using TTS and stepping
+rule delayTTSStepping transform fuzzOp: Testing!LatencyNetworkOperation {
+	guard : (fuzzOp.containingTest != null) and Testing!TTSSimulator.all().notEmpty() and (Testing!TTSSimulator.all().first().useStepping == true)
+	template : "tts/fuzzingoperations/delayStepping.egl"	
 	target : "src/"+ fuzzOp.name + "Delay_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 }
 

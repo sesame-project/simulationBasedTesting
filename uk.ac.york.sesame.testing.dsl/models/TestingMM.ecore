@@ -242,6 +242,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="LatencyNetworkOperation" eSuperTypes="#//FuzzingOperations/NetworkFuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="latency" lowerBound="1"
           eType="#//FuzzingOperations/DoubleRange" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="randomised" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="false"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PacketLossNetworkOperation" eSuperTypes="#//FuzzingOperations/NetworkFuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="frequency" lowerBound="1"
@@ -423,6 +425,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="TTSSimulator" eSuperTypes="#//MRSPackage/Simulator">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepSizeMillis" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+          defaultValueLiteral="20"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="useStepping" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="false"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

@@ -15,6 +15,8 @@
 	
 	var sendBackToSimulator = true;
 	
+	var useStepping = simulator.useStepping;
+	
 	// This will activate sending back all topics in the MITM. Normally only the
 	// fuzzing variables should be sent back
 	var sendBackAllTopics = true;
@@ -60,6 +62,29 @@ import metrics.custom.*;
 import metrics.fixed.*;
 
 public class [%= testNameString %]_TestRunner {
+
+	private static final long MIN_DEBUG_STEP_TIME = 100;
+	private static final boolean USE_STEP_RATE_LIMITING = true;
+
+	public static boolean extraDebugWait(long millisLastStep) {
+		if (USE_STEP_RATE_LIMITING) {
+			Instant instant = Instant.now();
+			long timeNow = instant.toEpochMilli();
+			long delay = timeNow - millisLastStep;
+			if (delay < MIN_DEBUG_STEP_TIME) {
+				try {
+					Thread.sleep(MIN_DEBUG_STEP_TIME - delay);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}	
+			return true;
+		} else {
+			// If not using rate limiting, exit immediately
+			return true;
+		}
+	}
+
 	public static void main(String[] args) {
 	
 		final String TESTNAME = "[%= testNameString %]";
@@ -147,6 +172,11 @@ public class [%= testNameString %]_TestRunner {
 		HashMap<String, Object> propsMap = new HashMap<String, Object>();
 		propsMap.put(ConnectionProperties.HOSTNAME, "[%=simulator.hostname %]");
 		propsMap.put(ConnectionProperties.PORT, [%=simulator.port %]);
+		// TODO: hardcoded step size for now
+		
+		[% if (useStepping) { %]
+		propsMap.put(ConnectionProperties.STEP_SIZE, 20);
+		[% } %]
 		cp.setProperties(propsMap);
 				
 		params.put("TTSProjectDir", "[%= launchFileLocation %]");
@@ -194,14 +224,20 @@ public class [%= testNameString %]_TestRunner {
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
+				
+				long millisLastStep = 0;
 				System.out.println("From out to sim starts");
+						
+				[% if (useStepping) { %]			
+				while (ttsSim.stepSimulator() && extraDebugWait(millisLastStep)) {
+				[% } else { %]
 				while (true) {
+				[% } %]			
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = ttsSim.translateTopicNameForOutput(inTopic);
 						
-						[% if (recordDelay) { %]
 						long timestamp = record.value().getTimestamp();
 						EventMessage er = record.value();
 						
@@ -209,7 +245,8 @@ public class [%= testNameString %]_TestRunner {
 						long timeOut = instant.toEpochMilli();
 						long timeIn = er.getIN_walltime();
 						long millisWallDelay = timeOut - timeIn;
-						[% } %]
+						// Update last step time from now
+						millisLastStep = timeOut;
 												
 						[* TODO: only the fuzzingVars should be reflected back to the simulator! *]
 						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);

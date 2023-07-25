@@ -1,9 +1,5 @@
 package uk.ac.york.sesame.testing.architecture.ros;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -15,9 +11,6 @@ import org.eclipse.epsilon.emc.emf.EmfModel;
 import org.eclipse.epsilon.emc.plainxml.PlainXmlModel;
 import org.eclipse.epsilon.eol.launch.EolRunConfiguration;
 import org.eclipse.epsilon.eol.models.IModel;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import edu.wpi.rail.jrosbridge.JRosbridge.WebSocketType;
 import edu.wpi.rail.jrosbridge.Ros;
@@ -237,5 +230,9 @@ public class ROSSimulator implements ISimulator {
 			System.out.println("ROS subscription failed - exiting middleware");
 			throw new SubscriptionFailure();
 		}
+	}
+
+	public boolean stepSimulator() {
+		return true;	
 	}
 }    

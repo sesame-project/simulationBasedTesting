@@ -18,11 +18,33 @@ public class EventMessage implements IData, Serializer, Deserializer {
 	long timestamp;
 	// Records the wall-clock time of the arrival of this message
 	long IN_walltime;
+	
+	// This is only used for debugging specific operations, e.g. the ordering of delay operations
+	long debugSequenceNumber;
+	
+	// When using delay operations, records the start time of message
+	double simTimeIn; 
 	String topic;
 	String type;
 	
 	public EventMessage() {
 		
+	}
+	
+	public void setDebugSequenceNumber(long seqnum) {
+		this.debugSequenceNumber = seqnum;
+	}
+	
+	public long getDebugSequenceNumber() {
+		return debugSequenceNumber;
+	}
+	
+	public void setSimTimeIn(double time) {
+		this.simTimeIn = time;
+	}
+	
+	public double getSimTimeIn() {
+		return simTimeIn;
 	}
 	
 	public EventMessage(EventMessage other) {

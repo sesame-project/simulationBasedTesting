@@ -23,6 +23,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.LatencyNetworkOperationImpl#getLatency <em>Latency</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.LatencyNetworkOperationImpl#isRandomised <em>Randomised</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,6 +38,25 @@ public class LatencyNetworkOperationImpl extends NetworkFuzzingOperationImpl imp
 	 * @ordered
 	 */
 	protected DoubleRange latency;
+
+	/**
+	 * The default value of the '{@link #isRandomised() <em>Randomised</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRandomised()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RANDOMISED_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isRandomised() <em>Randomised</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRandomised()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean randomised = RANDOMISED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,6 +125,27 @@ public class LatencyNetworkOperationImpl extends NetworkFuzzingOperationImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isRandomised() {
+		return randomised;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRandomised(boolean newRandomised) {
+		boolean oldRandomised = randomised;
+		randomised = newRandomised;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.LATENCY_NETWORK_OPERATION__RANDOMISED, oldRandomised, randomised));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -124,6 +165,8 @@ public class LatencyNetworkOperationImpl extends NetworkFuzzingOperationImpl imp
 		switch (featureID) {
 			case FuzzingOperationsPackage.LATENCY_NETWORK_OPERATION__LATENCY:
 				return getLatency();
+			case FuzzingOperationsPackage.LATENCY_NETWORK_OPERATION__RANDOMISED:
+				return isRandomised();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -138,6 +181,9 @@ public class LatencyNetworkOperationImpl extends NetworkFuzzingOperationImpl imp
 		switch (featureID) {
 			case FuzzingOperationsPackage.LATENCY_NETWORK_OPERATION__LATENCY:
 				setLatency((DoubleRange)newValue);
+				return;
+			case FuzzingOperationsPackage.LATENCY_NETWORK_OPERATION__RANDOMISED:
+				setRandomised((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -154,6 +200,9 @@ public class LatencyNetworkOperationImpl extends NetworkFuzzingOperationImpl imp
 			case FuzzingOperationsPackage.LATENCY_NETWORK_OPERATION__LATENCY:
 				setLatency((DoubleRange)null);
 				return;
+			case FuzzingOperationsPackage.LATENCY_NETWORK_OPERATION__RANDOMISED:
+				setRandomised(RANDOMISED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -168,8 +217,26 @@ public class LatencyNetworkOperationImpl extends NetworkFuzzingOperationImpl imp
 		switch (featureID) {
 			case FuzzingOperationsPackage.LATENCY_NETWORK_OPERATION__LATENCY:
 				return latency != null;
+			case FuzzingOperationsPackage.LATENCY_NETWORK_OPERATION__RANDOMISED:
+				return randomised != RANDOMISED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (randomised: ");
+		result.append(randomised);
+		result.append(')');
+		return result.toString();
 	}
 
 } //LatencyNetworkOperationImpl
