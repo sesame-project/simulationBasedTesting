@@ -19,29 +19,25 @@ import org.eclipse.epsilon.eol.execute.context.Variable;
 
 public class StandaloneGeneratorFirstPhase {
 
-	////////////////////// PARAMS TO SET////////////////////////////////////////////////////
+	// ARGS /////////////////////////////////////////////////////////////////////////////////////////////////
+	// arg 1 - REPO_BASE - this is the root at which you checked out the Github SMB repository
+	// e.g. "/home/jharbin/academic/sesame/WP6/";
+	private static String REPO_BASE;
 	//
-	// REPO_BASE - this is the root at which you checked out the Github SMB
-	////////////////////// repository
-	private static String REPO_BASE = "/home/jharbin/academic/sesame/WP6/";
-
-	// This is the testing model file you want to use to generate code from
-	private static String testingModelPath = REPO_BASE
-			+ "uk.ac.york.sesame.testing.standalone.generator/models/testingKUKA_TTS.model";
-
-	// These are the paths of the generator project and metamodel (relative to the
-	// REPO_BASE set) - You shouldn't need to change these
-	private static String generatorProjectPath = REPO_BASE + "uk.ac.york.sesame.testing.generator/";
-	private static String metamodelDirectory = REPO_BASE + "uk.ac.york.sesame.testing.dsl/models";
-
+	// arg 2 - testingModelPath - this is the testing model file you want to use to generate code from
+	// e.g. "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.standalone.generator/models/testingKUKA_TTS.model";
+	private static String testingModelPath;
+	//
+	// arg 3 - codeGenerationDirectory:
 	// This is the output directory for generated Java code (for metrics and experiment runners) to be placed
 	// Here we generate into a test project: StandaloneGenTest - which should be created as a 
 	// Java project in the standard Eclipse workspace
-	private static String codeGenerationDirectory = "/home/jharbin/eclipse-workspace/StandaloneGenTest";
-	
-	// It may be more useful to generate to a temporary directory?
-	// If so, create the directory and try this...
-	//private static String codeGenerationDirectory = "/tmp/codegen/";
+	// e.g. "/home/jharbin/eclipse-workspace/StandaloneGenTest";
+	private static String codeGenerationDirectory;
+	//	
+	/////////////////////////////////////////////////////////
+	private static String generatorProjectPath;
+	private static String metamodelDirectory;
 	
 	////////////////////////////////////////////////////////////////////////////////////////
 
@@ -87,7 +83,20 @@ public class StandaloneGeneratorFirstPhase {
 	}
 
 	public static void main(String[] args) {
-
+		if (args.length < 3) {
+			System.out.println("3 arguments needed, repo base, model path, code generation dir");
+		} else {
+			REPO_BASE = args[0];
+			testingModelPath = args[1];
+			codeGenerationDirectory = args[2];
+			generatorProjectPath = REPO_BASE + "uk.ac.york.sesame.testing.generator/";
+			metamodelDirectory = REPO_BASE + "uk.ac.york.sesame.testing.dsl/models";
+			generateCode();
+		}
+	}
+	
+	public static void generateCode() {
+					
 		try {
 			// Load the EMF model and metamodel
 			EmfModel testingModel = loadEMFModel("TestingMM", testingModelPath, "Testing");
