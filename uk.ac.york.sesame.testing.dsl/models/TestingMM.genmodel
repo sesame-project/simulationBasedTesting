@@ -369,6 +369,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/TTSSimulator/port"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/TTSSimulator/stepSizeMillis"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/TTSSimulator/useStepping"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/TTSSimulator/useGUI"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

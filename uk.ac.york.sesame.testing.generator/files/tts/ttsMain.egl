@@ -16,6 +16,7 @@
 	var sendBackToSimulator = true;
 	
 	var useStepping = simulator.useStepping;
+	var useGUI = simulator.useGUI;
 	
 	// This will activate sending back all topics in the MITM. Normally only the
 	// fuzzing variables should be sent back
@@ -63,7 +64,12 @@ import metrics.fixed.*;
 
 public class [%= testNameString %]_TestRunner {
 
+	[% if (useGUI) { %]
 	private static final long MIN_DEBUG_STEP_TIME = 100;
+	[% } else {%]
+	private static final long MIN_DEBUG_STEP_TIME = 10;
+	[% } %]
+	
 	private static final boolean USE_STEP_RATE_LIMITING = true;
 
 	public static boolean extraDebugWait(long millisLastStep) {
@@ -228,10 +234,10 @@ public class [%= testNameString %]_TestRunner {
 				long millisLastStep = 0;
 				System.out.println("From out to sim starts");
 						
-				[% if (useStepping) { %]			
-				while (ttsSim.stepSimulator() && extraDebugWait(millisLastStep)) {
+				[% if (useStepping) { %]
+					while (ttsSim.stepSimulator() && extraDebugWait(millisLastStep)) {			
 				[% } else { %]
-				while (true) {
+					while (true) {
 				[% } %]			
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {

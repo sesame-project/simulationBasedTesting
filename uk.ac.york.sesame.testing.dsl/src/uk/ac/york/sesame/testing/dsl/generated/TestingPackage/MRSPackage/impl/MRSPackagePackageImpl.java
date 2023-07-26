@@ -575,6 +575,15 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTTSSimulator_UseGUI() {
+		return (EAttribute)ttsSimulatorEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getParsingMethod() {
 		return parsingMethodEEnum;
 	}
@@ -656,6 +665,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		createEAttribute(ttsSimulatorEClass, TTS_SIMULATOR__PORT);
 		createEAttribute(ttsSimulatorEClass, TTS_SIMULATOR__STEP_SIZE_MILLIS);
 		createEAttribute(ttsSimulatorEClass, TTS_SIMULATOR__USE_STEPPING);
+		createEAttribute(ttsSimulatorEClass, TTS_SIMULATOR__USE_GUI);
 
 		// Create enums
 		parsingMethodEEnum = createEEnum(PARSING_METHOD);
@@ -743,6 +753,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		initEAttribute(getTTSSimulator_Port(), ecorePackage.getEString(), "port", null, 0, 1, TTSSimulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTTSSimulator_StepSizeMillis(), ecorePackage.getEDouble(), "stepSizeMillis", "20", 0, 1, TTSSimulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTTSSimulator_UseStepping(), ecorePackage.getEBoolean(), "useStepping", "false", 0, 1, TTSSimulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTTSSimulator_UseGUI(), ecorePackage.getEBoolean(), "useGUI", "false", 0, 1, TTSSimulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(parsingMethodEEnum, ParsingMethod.class, "ParsingMethod");
