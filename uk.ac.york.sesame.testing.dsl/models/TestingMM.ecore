@@ -429,6 +429,8 @@
           defaultValueLiteral="20"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="useStepping" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="useGUI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="false"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

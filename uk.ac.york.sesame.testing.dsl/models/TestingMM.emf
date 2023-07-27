@@ -544,5 +544,6 @@ package MRSPackage {
 		attr String port;
 		attr double stepSizeMillis = 20;
 		attr boolean useStepping = false;
+		attr boolean useGUI = false;
 	}
 }

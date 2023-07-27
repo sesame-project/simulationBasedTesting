@@ -91,7 +91,8 @@ public class TTSSimulator implements ISimulator {
 		
 		try {
 			// Wait is needed to prevent gRPC connection errors
-			Thread.sleep(500);
+			// This was originally 500 ms, then increasing to 1000sec for batch mode
+			Thread.sleep(1000);
 			System.out.println("TTSimulator: wait to set step size completed");		
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -135,7 +136,6 @@ public class TTSSimulator implements ISimulator {
 		// TODO: this needs an option for setting a custom JVM here?
 		//String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
 		String cmd = "xterm -e /usr/lib/jvm/java-11-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
-				
 		ExptHelper.runScriptNewThread(workingDir, cmd);
 
 		// Need to wait the delay
