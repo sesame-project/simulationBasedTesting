@@ -4,6 +4,6 @@ public class entryToTriggerZone1Metric extends entryToTriggerZoneMetric {
 	private static final long serialVersionUID = 1L;
 
 	public String getExtraString() {
-		return "Z4";
+		return "ZTRIG1";
 	}
 }
