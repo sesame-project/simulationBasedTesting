@@ -152,7 +152,7 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 		double simCoreTime = SimCore.getInstance().getTime();
 
 		try {
-			for (Iterator<Entry<Long, List<EventMessage>>> it = queue.entries().iterator(); it.hasNext()) {
+			for (Iterator<Entry<Long, List<EventMessage>>> it = queue.entries().iterator(); it.hasNext();) {
 				Entry<Long, List<EventMessage>> entry = it.next();
 				long schedTime = entry.getKey();
 				if (currentTime >= schedTime) {
