@@ -1,55 +1,64 @@
 # Installing the testing platform for Windows with TTS/KUKA use case
 
-Requirements: Windows 10 - since Kafka uses WSL
+The testing platform on Windows requires Eclipse and the modelling
+components, but also Cygwin, in order to support the Unix components
+and scripts. Also, the Kafka message bus requires the installation of
+Docker with support from WSL underneath. Currently, we use Docker
+since it provides the best stability on our test configuration.
 
-It may be possible to run on Windows 7, but Kakfa would have to use 
-Docker containers.
+## System Requirements for Installation
 
-This is currently mostly internal instructions for me (JRH)
-A less complex install method should be developed for end-users
-to partially automate some of this
+Most of these requirements are necessary for Docker and its underlying
+WSL support system.
 
-## Install WSL2 - Ubuntu 18.04 LTS
+- Requirements: Windows 10 installed natively, not in a virtual machine
+-- It may work under Windows 7, but has not yet been tested
+-- At least Windows 10 version 1903 or higher, with Build 18362 or higher
 
-Use command prompt (run as adminstrator)
+-- WSL 2 installed, version 1.1.3.0 or above. WSL 2 feature enabled on
+Windows. For detailed instructions, refer to the Microsoft
+documentation.
 
-```
-https://github.com/microsoft/WSL/issues/5363
-Ensure to activate Hyper-V in BIOS if necessary?
-```
-Create Unix username: jharbin
+-- Windows 10 64-bit: Home or Pro 21H2 (build 19044) or higher, or
+Enterprise or Education 21H2 (build 19044) or higher.
 
-Activate bash:
+- Virtualisation enabled in the BIOS (it may be labelled as Hyper-V)
 
-home directory - 
-\\wsl.localhost\Ubuntu-18.04\home\jharbin
+- 4GB system RAM
 
-mklink /d "c:\linux" "\\wsl.localhost\Ubuntu-18.04\home\jharbin"
+- Recommended at least 10Gb free for installation and generation of
+Kafka message logs over large experiments. If there is a problem with
+space on the system drive, it may be possible to move Docker
+containers for Kakfa to another drive.
+**TODO: link the moving of Docker for Kafka in another section**
 
-```
-Install Kafka - kafka_2.13-3.1.0.tgz from:wsl
-wget https://archive.apache.org/dist/kafka/3.1.0/kafka_2.13-3.1.0.tgz
-```
+## Install Docker Desktop
 
-move the kafka_.tgz to c:\linux\source
-in Powershell (run as administrator), run "wsl"
-This will get you a Linux shell
-```
-cd ~/source
-tar -xvzf kafka_2.13-3.1.0.tgz
-cd kafka_2.13-3.1.0
-edit config/zookeeper.properties, set clientPort to 5181
-```
+After setting up the instructions as above, please install Docker
+Desktop as shown here:
+
+https://docs.docker.com/desktop/install/windows-install/
+
+You may have to restart your PC to ensure that the installation and
+associated services start successfully. Open the Docker panel and
+check there are no error messages.
 
 ## Install Cygwin
-Go to cygwin.org and download installer
-Select C:\cygwin64 as the installation path
-If it gives an error "Unable to download mirror list"
-This installation may require manual specification of a mirror location
-if the auto-installer doesn't work:
 
-enter "http://cygwin.mirror.uk.sargasso.net" under "Choose a Download Site"... "User USL"
-and press "Add" to add the custom location
+Cygwin is necessary for the Unix components which provide e.g. scripts
+for launching the simulator, compiling code dynamically at runtime
+etc.
+
+- Go to cygwin.org and download the installer
+
+- Select C:\cygwin64 as the installation path (this is needed as
+  certain scripts are coded to use this location in later phases)
+
+- If you receive an error "Unable to download mirror list":
+This installation may require manual specification of a mirror
+location if the auto-installer doesn't work: enter
+"http://cygwin.mirror.uk.sargasso.net" under "Choose a Download
+Site"... "User USL" and press "Add" to add the custom location
 
 Please drop down check boxes to select to install the packages lynx,
 procps-ng, xterm, pcmisc, git, wget and tar in the installer.
@@ -60,34 +69,39 @@ If you get an error messagebox coming up during installation
 OK to continue. It is an internal Cygwin error message and should not
 affect the rest of the installation.
 
-
-## Install Kafka
-Use wget in a Cygwin terminal to retrieve it)
-
-```
-wget https://downloads.apache.org/kafka/3.3.1/kafka_2.13-3.3.1.tgz
-```
-
-and then unzip it:
-
-```
-tar -xvzf kafka_2.13-3.3.1.tgz
-```
-
 ## Install Eclipse
 
 Install Eclipse (2022-09 here)
-Install Modelling, Epsilon and Emfatic as shown in the video
+Install Modelling, Epsilon and Emfatic as shown
 
-# Two JDKs
+# Installing OpenJDK8 and OpenJDK11
 
-Need JDK11.0.17 at c:\Program Files\Java\jdk-11.0.17 (this path is encoded into compile_project_windows.sh)
-JDK8 needed for TTS simulator at C:\Program Files\Java\jdk-1.8.0_361
+Two JDKs (in addition to those used internally for compilation by
+Eclipse are needed). JDK11 is required becuase Apache Flink is not
+compatible with JDK17, so even if you have. JDK8 is required if you
+are planning to execute releases of the DDDSimulator released before
+about March 2023.
 
-## Install the platform via Git under cygwin
+We now use OpenJDK on Windows to avoid dependencies on the Sun JDK and
+associated licensing issues:
 
+## OpenJDK8
+
+- Download JDK8 (from Eclipse Adoptium): https://adoptium.net/de/download/
+- During local testing, we used the version JDK8.0.372.7-hotspot
+- It will install to this path: **C:\Program Files\Eclipse Adoptium\jdk-8.0.372.7-hotspot**
+
+## OpenJDK11
+
+- Install the following version from the OpenJDK archive: https://jdk.java.net/archive/
+- Choose to install to this location: **C:\Program Files\Java\jdk-11.0.2**
+
+# Install the testing platform via Git under cygwin
+
+Upon a 
 mkdir -p ~/academic/sesame/WP6
-git checkout ...simulationBasedTesting... (windows branch)
+git checkout ...simulationBasedTesting...
+
 
 ## Install Maven tarball under Cygwin
 maven-3.9.0 from apache.maven...
@@ -110,60 +124,56 @@ e.g. /cygdrive/c/Progra~1/Java/jdk1.8.0_361
 (should put the JDK path in the model?)
 
 ## Install TTS distribution under Cygwin
-under ~/KukaCell
+**TODO: unpack the archive under ~/KukaCell**
 
-## Installing/Starting Kakfa
+## Installing and starting Kafka Dockers
+Apache Kafka is a message bus that is used for communications between
+the testing platform and the simulator, and between the experiment
+runner and the runners for individual tests. It 
 
-Activate WSL using "wsl" under command prompt
-```
-sudo apt-get update
-apt-get install openjdk-11-jdk
-```
-Install Kakfa at ~/source/kafka_2.13-3.1.0
+- Open two Cygwin terminal from the Start Menu or desktop.
 
-```
-KAFKA_BASE=~/source/kafka/kafka_2.13-3.1.0
-cd $KAFKA_BASE
-echo "Starting Zookeeper"
-xterm -hold -e /bin/bash -l -c "./bin/zookeeper-server-start.sh ./config/zookeeper.properties" &
-sleep 10
-```
+### Installing the Dockers
+This will only have be executed once.
 
-For some reason, I set zookeeper.connect=localhost:5181 in config/server.properties
-and clientPort=5181 in config/zookeeper.properties
-There may have been a port clash with another application
-As long as these are identical, there should be no problem on Windows
-
-Get the WSL ip address with:
+In the first terminal, run the following:
 ```
-ip addr | grep eth0
-```
-This will report e.g. 172.21.107.171 (sadly this changes every reboot)
-
-This IP address needs to be set in
-config/server.properties 
-```
-listeners=PLAINTEXT://172.21.107.171:9092
+cd ~
+git clone https://github.com/conduktor/kafka-stack-docker-compose
 ```
 
-Currently this IP address needs to be set in the Eclipse project:
-*uk.ac.york.sesame.testing.generator/files/tts/ttsMain.egl*
-under serverNamePort
+### Starting the Dockers
+These steps will have to be performed every time you wish to use the
+testing platform.
 
-Copy the script from temp-launch-scripts/start_zookeeper_kafa.sh
+Start the Docker Desktop GUI application console.
 
-
-## Firewall port changes to allow Windows to communicate with WSL2 for Kafka
-
-Then, select command prompt from Start Menu (right-click "Run as adminstrator")
-and enter the following command (replae 172.21.107.171 with the 172.x.y.z IP
-obtained as the WSL ip address in the previous section)
-
+To start the Dockers, in the first Cygwin terminal, run:
 ```
-netsh interface portproxy add v4tov4 listenport=9092 listenaddress=0.0.0.0 connectport=9092 connectaddress=172.21.107.171
+cd ~/docker-yaml/kafka-stack-docker-compose
+docker-compose -f zk-single-kafka-single.yml up -d
 ```
 
-This command is 
+In the second Cygwin terminal, wait one minute or so, and then run:
+```
+cd ~/docker-yaml/kafka-stack-docker-compose
+docker-compose -f zk-single-kafka-single.yml ps
+```
+
+Two containers (Kafka and Zookeeper) should be running correctly.
+Sometimes, especially on first reboot, they will not start correctly,
+or will shut down after the first minute, but will normally run
+properly at the second attempt. If one of them is listed as not
+running, restart them by running in the first terminal:
+
+```
+cd ~/docker-yaml/kafka-stack-docker-compose
+docker-compose -f zk-single-kafka-single.yml down
+docker-compose -f zk-single-kafka-single.yml up -d
+```
+
+
+
 
 ## Troubleshooting
 
@@ -181,5 +191,4 @@ ModelPathDefinition.java to the correct value?
 
 TODO: Use the following repository and modify the auto-installation scripts to work with it: 
 https://github.com/rtwolf/cygwin-auto-install
-
 
