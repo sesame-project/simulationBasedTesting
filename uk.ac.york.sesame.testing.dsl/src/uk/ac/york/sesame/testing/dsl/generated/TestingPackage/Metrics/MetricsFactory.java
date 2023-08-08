@@ -67,15 +67,6 @@ public interface MetricsFactory extends EFactory {
 	MetricInstance createMetricInstance();
 
 	/**
-	 * Returns a new object of class '<em>Conditional Property Metric</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conditional Property Metric</em>'.
-	 * @generated
-	 */
-	ConditionalPropertyMetric createConditionalPropertyMetric();
-
-	/**
 	 * Returns a new object of class '<em>Stream Metric</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getCoveragePerCell <em>Coverage Per Cell</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getTargetCoverageProportion <em>Target Coverage Proportion</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getDimensionRecords <em>Dimension Records</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#isUseMutationEnhancingCoverage <em>Use Mutation Enhancing Coverage</em>}</li>
  * </ul>
@@ -44,6 +45,28 @@ public interface NSGAWithCoverageCells extends NSGAEvolutionaryAlgorithm {
 	 * @generated
 	 */
 	void setCoveragePerCell(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Coverage Proportion</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target Coverage Proportion</em>' attribute.
+	 * @see #setTargetCoverageProportion(double)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getNSGAWithCoverageCells_TargetCoverageProportion()
+	 * @model
+	 * @generated
+	 */
+	double getTargetCoverageProportion();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getTargetCoverageProportion <em>Target Coverage Proportion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target Coverage Proportion</em>' attribute.
+	 * @see #getTargetCoverageProportion()
+	 * @generated
+	 */
+	void setTargetCoverageProportion(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Dimension Records</b></em>' containment reference list.

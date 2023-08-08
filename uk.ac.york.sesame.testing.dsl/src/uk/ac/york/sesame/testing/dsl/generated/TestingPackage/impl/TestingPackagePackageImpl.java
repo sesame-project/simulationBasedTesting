@@ -686,8 +686,17 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getNSGAWithCoverageCells_TargetCoverageProportion() {
+		return (EAttribute)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getNSGAWithCoverageCells_DimensionRecords() {
-		return (EReference)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(1);
+		return (EReference)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -696,7 +705,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * @generated
 	 */
 	public EAttribute getNSGAWithCoverageCells_UseMutationEnhancingCoverage() {
-		return (EAttribute)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -876,6 +885,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 
 		nsgaWithCoverageCellsEClass = createEClass(NSGA_WITH_COVERAGE_CELLS);
 		createEAttribute(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL);
+		createEAttribute(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__TARGET_COVERAGE_PROPORTION);
 		createEReference(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS);
 		createEAttribute(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE);
 
@@ -1006,6 +1016,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 
 		initEClass(nsgaWithCoverageCellsEClass, NSGAWithCoverageCells.class, "NSGAWithCoverageCells", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNSGAWithCoverageCells_CoveragePerCell(), ecorePackage.getEInt(), "coveragePerCell", null, 0, 1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNSGAWithCoverageCells_TargetCoverageProportion(), ecorePackage.getEDouble(), "targetCoverageProportion", null, 0, 1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNSGAWithCoverageCells_DimensionRecords(), this.getDimensionInterval(), null, "dimensionRecords", null, 1, -1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNSGAWithCoverageCells_UseMutationEnhancingCoverage(), ecorePackage.getEBoolean(), "useMutationEnhancingCoverage", "false", 0, 1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

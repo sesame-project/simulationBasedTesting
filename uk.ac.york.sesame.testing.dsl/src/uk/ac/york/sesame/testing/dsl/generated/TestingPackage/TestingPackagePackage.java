@@ -758,13 +758,22 @@ public interface TestingPackagePackage extends EPackage {
 	int NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Target Coverage Proportion</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS__TARGET_COVERAGE_PROPORTION = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Dimension Records</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 1;
+	int NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Use Mutation Enhancing Coverage</b></em>' attribute.
@@ -773,7 +782,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 2;
+	int NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>NSGA With Coverage Cells</em>' class.
@@ -782,7 +791,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NSGA_WITH_COVERAGE_CELLS_FEATURE_COUNT = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 3;
+	int NSGA_WITH_COVERAGE_CELLS_FEATURE_COUNT = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>NSGA With Coverage Cells</em>' class.
@@ -1394,6 +1403,17 @@ public interface TestingPackagePackage extends EPackage {
 	EAttribute getNSGAWithCoverageCells_CoveragePerCell();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getTargetCoverageProportion <em>Target Coverage Proportion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Target Coverage Proportion</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getTargetCoverageProportion()
+	 * @see #getNSGAWithCoverageCells()
+	 * @generated
+	 */
+	EAttribute getNSGAWithCoverageCells_TargetCoverageProportion();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getDimensionRecords <em>Dimension Records</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1927,6 +1947,14 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL = eINSTANCE.getNSGAWithCoverageCells_CoveragePerCell();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Coverage Proportion</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NSGA_WITH_COVERAGE_CELLS__TARGET_COVERAGE_PROPORTION = eINSTANCE.getNSGAWithCoverageCells_TargetCoverageProportion();
 
 		/**
 		 * The meta object literal for the '<em><b>Dimension Records</b></em>' containment reference list feature.

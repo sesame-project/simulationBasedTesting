@@ -489,106 +489,6 @@ public interface MetricsPackage extends EPackage {
 	int PROPERTY_METRIC_OPERATION_COUNT = METRIC_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.ConditionalPropertyMetricImpl <em>Conditional Property Metric</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.ConditionalPropertyMetricImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getConditionalPropertyMetric()
-	 * @generated
-	 */
-	int CONDITIONAL_PROPERTY_METRIC = 8;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__NAME = PROPERTY_METRIC__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dir</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__DIR = PROPERTY_METRIC__DIR;
-
-	/**
-	 * The feature id for the '<em><b>Related Variables</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__RELATED_VARIABLES = PROPERTY_METRIC__RELATED_VARIABLES;
-
-	/**
-	 * The feature id for the '<em><b>Value If Not Received</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__VALUE_IF_NOT_RECEIVED = PROPERTY_METRIC__VALUE_IF_NOT_RECEIVED;
-
-	/**
-	 * The feature id for the '<em><b>Init Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__INIT_VALUE = PROPERTY_METRIC__INIT_VALUE;
-
-	/**
-	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__USE_IN_OPTIMISATION = PROPERTY_METRIC__USE_IN_OPTIMISATION;
-
-	/**
-	 * The feature id for the '<em><b>Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__PROPERTY = PROPERTY_METRIC__PROPERTY;
-
-	/**
-	 * The feature id for the '<em><b>Condition</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__CONDITION = PROPERTY_METRIC_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Conditional Property Metric</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC_FEATURE_COUNT = PROPERTY_METRIC_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Conditional Property Metric</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC_OPERATION_COUNT = PROPERTY_METRIC_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StreamMetricImpl <em>Stream Metric</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -596,7 +496,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getStreamMetric()
 	 * @generated
 	 */
-	int STREAM_METRIC = 9;
+	int STREAM_METRIC = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -696,7 +596,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getSpecialMetric()
 	 * @generated
 	 */
-	int SPECIAL_METRIC = 10;
+	int SPECIAL_METRIC = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -796,7 +696,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getDirectMessageGenerationMetric()
 	 * @generated
 	 */
-	int DIRECT_MESSAGE_GENERATION_METRIC = 11;
+	int DIRECT_MESSAGE_GENERATION_METRIC = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -896,7 +796,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getStartEndTimingMetric()
 	 * @generated
 	 */
-	int START_END_TIMING_METRIC = 12;
+	int START_END_TIMING_METRIC = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -996,7 +896,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getFuzzingOperationTimesMetric()
 	 * @generated
 	 */
-	int FUZZING_OPERATION_TIMES_METRIC = 13;
+	int FUZZING_OPERATION_TIMES_METRIC = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1096,7 +996,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getStreamResult()
 	 * @generated
 	 */
-	int STREAM_RESULT = 14;
+	int STREAM_RESULT = 13;
 
 	/**
 	 * The number of structural features of the '<em>Stream Result</em>' class.
@@ -1124,7 +1024,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getFileStreamResult()
 	 * @generated
 	 */
-	int FILE_STREAM_RESULT = 15;
+	int FILE_STREAM_RESULT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Filename</b></em>' attribute.
@@ -1161,7 +1061,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricOptimisationDirection()
 	 * @generated
 	 */
-	int METRIC_OPTIMISATION_DIRECTION = 16;
+	int METRIC_OPTIMISATION_DIRECTION = 15;
 
 
 	/**
@@ -1364,27 +1264,6 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPropertyMetric_Property();
-
-	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric <em>Conditional Property Metric</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Conditional Property Metric</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric
-	 * @generated
-	 */
-	EClass getConditionalPropertyMetric();
-
-	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric#getCondition <em>Condition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Condition</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric#getCondition()
-	 * @see #getConditionalPropertyMetric()
-	 * @generated
-	 */
-	EAttribute getConditionalPropertyMetric_Condition();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StreamMetric <em>Stream Metric</em>}'.
@@ -1689,24 +1568,6 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROPERTY_METRIC__PROPERTY = eINSTANCE.getPropertyMetric_Property();
-
-		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.ConditionalPropertyMetricImpl <em>Conditional Property Metric</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.ConditionalPropertyMetricImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getConditionalPropertyMetric()
-		 * @generated
-		 */
-		EClass CONDITIONAL_PROPERTY_METRIC = eINSTANCE.getConditionalPropertyMetric();
-
-		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONDITIONAL_PROPERTY_METRIC__CONDITION = eINSTANCE.getConditionalPropertyMetric_Condition();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StreamMetricImpl <em>Stream Metric</em>}' class.
