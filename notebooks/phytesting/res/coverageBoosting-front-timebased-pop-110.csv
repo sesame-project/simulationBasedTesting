@@ -1,0 +1,4 @@
+TestID,fuzzingOperationTime,collisionOccurance,TestStructure
+Test:Test_063_25_06_2023_12_09_47,0.022,0.000,1:attackJointPosR3200ProductMove_Link1([0.27-0.29])FixedTimeActivation:{42.9->42.9}
+Test:Test_072_25_06_2023_12_26_09,20.781,20.000,1:attackJointPosR3200ProductMove_Link1([-0.02-0.27])FixedTimeActivation:{2.1->22.8}
+Test:Test_098_25_06_2023_12_59_00,1.993,7.000,1:attackJointPosR3200ProductMove_Link1([0.10-0.23])FixedTimeActivation:{3.1->5.1}

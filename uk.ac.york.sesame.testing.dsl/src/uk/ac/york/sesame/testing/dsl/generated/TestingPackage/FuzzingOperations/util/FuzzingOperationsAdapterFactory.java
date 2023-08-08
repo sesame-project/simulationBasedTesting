@@ -160,52 +160,8 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 				return createExternalResourceSetAdapter();
 			}
 			@Override
-			public Adapter caseResourceFuzzingOperation(ResourceFuzzingOperation object) {
-				return createResourceFuzzingOperationAdapter();
-			}
-			@Override
-			public Adapter caseStateFuzzingOperation(StateFuzzingOperation object) {
-				return createStateFuzzingOperationAdapter();
-			}
-			@Override
 			public Adapter caseNetworkFuzzingOperation(NetworkFuzzingOperation object) {
 				return createNetworkFuzzingOperationAdapter();
-			}
-			@Override
-			public Adapter caseLoadResourceOperation(LoadResourceOperation object) {
-				return createLoadResourceOperationAdapter();
-			}
-			@Override
-			public Adapter caseLoadType(LoadType object) {
-				return createLoadTypeAdapter();
-			}
-			@Override
-			public Adapter caseCPULoadType(CPULoadType object) {
-				return createCPULoadTypeAdapter();
-			}
-			@Override
-			public Adapter caseMemoryLoadType(MemoryLoadType object) {
-				return createMemoryLoadTypeAdapter();
-			}
-			@Override
-			public Adapter caseIOLoadType(IOLoadType object) {
-				return createIOLoadTypeAdapter();
-			}
-			@Override
-			public Adapter caseDiskLoadType(DiskLoadType object) {
-				return createDiskLoadTypeAdapter();
-			}
-			@Override
-			public Adapter caseShutdownStateOperaton(ShutdownStateOperaton object) {
-				return createShutdownStateOperatonAdapter();
-			}
-			@Override
-			public Adapter caseTimeTravelStateOperaton(TimeTravelStateOperaton object) {
-				return createTimeTravelStateOperatonAdapter();
-			}
-			@Override
-			public Adapter caseProcessKillerStateOperaton(ProcessKillerStateOperaton object) {
-				return createProcessKillerStateOperatonAdapter();
 			}
 			@Override
 			public Adapter caseBlackholeNetworkOperation(BlackholeNetworkOperation object) {
@@ -218,10 +174,6 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter casePacketLossNetworkOperation(PacketLossNetworkOperation object) {
 				return createPacketLossNetworkOperationAdapter();
-			}
-			@Override
-			public Adapter caseMultipleMessagesNetworkOperation(MultipleMessagesNetworkOperation object) {
-				return createMultipleMessagesNetworkOperationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -566,34 +518,6 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ResourceFuzzingOperation <em>Resource Fuzzing Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ResourceFuzzingOperation
-	 * @generated
-	 */
-	public Adapter createResourceFuzzingOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StateFuzzingOperation <em>State Fuzzing Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StateFuzzingOperation
-	 * @generated
-	 */
-	public Adapter createStateFuzzingOperationAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.NetworkFuzzingOperation <em>Network Fuzzing Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -604,132 +528,6 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNetworkFuzzingOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LoadResourceOperation <em>Load Resource Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LoadResourceOperation
-	 * @generated
-	 */
-	public Adapter createLoadResourceOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LoadType <em>Load Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LoadType
-	 * @generated
-	 */
-	public Adapter createLoadTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CPULoadType <em>CPU Load Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CPULoadType
-	 * @generated
-	 */
-	public Adapter createCPULoadTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.MemoryLoadType <em>Memory Load Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.MemoryLoadType
-	 * @generated
-	 */
-	public Adapter createMemoryLoadTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.IOLoadType <em>IO Load Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.IOLoadType
-	 * @generated
-	 */
-	public Adapter createIOLoadTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DiskLoadType <em>Disk Load Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DiskLoadType
-	 * @generated
-	 */
-	public Adapter createDiskLoadTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ShutdownStateOperaton <em>Shutdown State Operaton</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ShutdownStateOperaton
-	 * @generated
-	 */
-	public Adapter createShutdownStateOperatonAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.TimeTravelStateOperaton <em>Time Travel State Operaton</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.TimeTravelStateOperaton
-	 * @generated
-	 */
-	public Adapter createTimeTravelStateOperatonAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ProcessKillerStateOperaton <em>Process Killer State Operaton</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ProcessKillerStateOperaton
-	 * @generated
-	 */
-	public Adapter createProcessKillerStateOperatonAdapter() {
 		return null;
 	}
 
@@ -772,20 +570,6 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPacketLossNetworkOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.MultipleMessagesNetworkOperation <em>Multiple Messages Network Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.MultipleMessagesNetworkOperation
-	 * @generated
-	 */
-	public Adapter createMultipleMessagesNetworkOperationAdapter() {
 		return null;
 	}
 

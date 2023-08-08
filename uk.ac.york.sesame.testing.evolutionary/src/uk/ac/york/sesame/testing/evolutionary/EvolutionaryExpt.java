@@ -1,5 +1,6 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
@@ -24,6 +26,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationAppr
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
 import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging;
+import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging_Coverage;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.RepeatedRun;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEConditionsCrossover;
@@ -125,8 +128,9 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			} else {
 				crossover = new SESAMESwapAttacksFromTestsCrossover(crossoverRNG, crossoverProb, crossoverLogFile);
 			}
-
-			mutation = new SESAMESimpleMutation(mutationRNG, mutationLogFile, timingMutProb, paramMutProb, cg);
+			
+			FileWriter mutationLog = new FileWriter(mutationLogFile);
+			mutation = new SESAMESimpleMutation(mutationRNG, mutationLog, timingMutProb, paramMutProb, cg);
 
 			selection = new TournamentSelection<SESAMETestSolution>(5);
 			dominanceComparator = new DominanceComparator<>();
@@ -136,13 +140,23 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
 			// TODO: the algorithm - here NSGA should be selectable from the TestCampaign
 			// model
-
+	
 			TestGenerationApproach app = selectedCampaign.getApproach();
-			if (app instanceof NSGAEvolutionaryAlgorithm) {
+			
+			if ((app instanceof NSGAEvolutionaryAlgorithm) && !(app instanceof NSGAWithCoverageCells)) {
 				// TODO: read relevant parameters from the TestGenerationApproach here
 				algorithm = new NSGAII_ResultLogging(selectedCampaign, scenarioStr, problem, maxIterations,
 						populationSize, matingPoolSize, offspringPopulationSize, crossover, mutation, selection,
 						dominanceComparator, evaluator);
+			}
+			
+			if (app instanceof NSGAWithCoverageCells) {
+				NSGAWithCoverageCells nsgaCov = (NSGAWithCoverageCells)app;
+				boolean useMutationEnhancing = nsgaCov.isUseMutationEnhancingCoverage();
+				// TODO: read relevant parameters from nsgaCov here
+				algorithm = new NSGAII_ResultLogging_Coverage(selectedCampaign, scenarioStr, problem, maxIterations,
+						populationSize, matingPoolSize, offspringPopulationSize, crossover, mutation, selection,
+						dominanceComparator, evaluator, useMutationEnhancing);
 			}
 
 			if (app instanceof RepeatedExecution) {

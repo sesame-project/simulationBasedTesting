@@ -758,13 +758,31 @@ public interface TestingPackagePackage extends EPackage {
 	int NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Target Coverage Proportion</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS__TARGET_COVERAGE_PROPORTION = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Dimension Records</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 1;
+	int NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Use Mutation Enhancing Coverage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>NSGA With Coverage Cells</em>' class.
@@ -773,7 +791,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NSGA_WITH_COVERAGE_CELLS_FEATURE_COUNT = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 2;
+	int NSGA_WITH_COVERAGE_CELLS_FEATURE_COUNT = NSGA_EVOLUTIONARY_ALGORITHM_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>NSGA With Coverage Cells</em>' class.
@@ -785,14 +803,14 @@ public interface TestingPackagePackage extends EPackage {
 	int NSGA_WITH_COVERAGE_CELLS_OPERATION_COUNT = NSGA_EVOLUTIONARY_ALGORITHM_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionCountRecordImpl <em>Dimension Count Record</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl <em>Dimension Interval</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionCountRecordImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionCountRecord()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionInterval()
 	 * @generated
 	 */
-	int DIMENSION_COUNT_RECORD = 16;
+	int DIMENSION_INTERVAL = 16;
 
 	/**
 	 * The feature id for the '<em><b>Dim ID</b></em>' attribute.
@@ -801,7 +819,25 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DIMENSION_COUNT_RECORD__DIM_ID = 0;
+	int DIMENSION_INTERVAL__DIM_ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Min Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_INTERVAL__MIN_VALUE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Max Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_INTERVAL__MAX_VALUE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Count</b></em>' attribute.
@@ -810,25 +846,25 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DIMENSION_COUNT_RECORD__COUNT = 1;
+	int DIMENSION_INTERVAL__COUNT = 3;
 
 	/**
-	 * The number of structural features of the '<em>Dimension Count Record</em>' class.
+	 * The number of structural features of the '<em>Dimension Interval</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIMENSION_COUNT_RECORD_FEATURE_COUNT = 2;
+	int DIMENSION_INTERVAL_FEATURE_COUNT = 4;
 
 	/**
-	 * The number of operations of the '<em>Dimension Count Record</em>' class.
+	 * The number of operations of the '<em>Dimension Interval</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIMENSION_COUNT_RECORD_OPERATION_COUNT = 0;
+	int DIMENSION_INTERVAL_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl <em>Repeated Execution</em>}' class.
@@ -885,7 +921,6 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 */
 	int RESULT_SET_STATUS = 18;
-
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID <em>Dimension ID</em>}' enum.
@@ -1367,6 +1402,17 @@ public interface TestingPackagePackage extends EPackage {
 	EAttribute getNSGAWithCoverageCells_CoveragePerCell();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getTargetCoverageProportion <em>Target Coverage Proportion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Target Coverage Proportion</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getTargetCoverageProportion()
+	 * @see #getNSGAWithCoverageCells()
+	 * @generated
+	 */
+	EAttribute getNSGAWithCoverageCells_TargetCoverageProportion();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getDimensionRecords <em>Dimension Records</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1378,36 +1424,69 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getNSGAWithCoverageCells_DimensionRecords();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord <em>Dimension Count Record</em>}'.
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#isUseMutationEnhancingCoverage <em>Use Mutation Enhancing Coverage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Dimension Count Record</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord
+	 * @return the meta object for the attribute '<em>Use Mutation Enhancing Coverage</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#isUseMutationEnhancingCoverage()
+	 * @see #getNSGAWithCoverageCells()
 	 * @generated
 	 */
-	EClass getDimensionCountRecord();
+	EAttribute getNSGAWithCoverageCells_UseMutationEnhancingCoverage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord#getDimID <em>Dim ID</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval <em>Dimension Interval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dimension Interval</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval
+	 * @generated
+	 */
+	EClass getDimensionInterval();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getDimID <em>Dim ID</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Dim ID</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord#getDimID()
-	 * @see #getDimensionCountRecord()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getDimID()
+	 * @see #getDimensionInterval()
 	 * @generated
 	 */
-	EAttribute getDimensionCountRecord_DimID();
+	EAttribute getDimensionInterval_DimID();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord#getCount <em>Count</em>}'.
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getMinValue <em>Min Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getMinValue()
+	 * @see #getDimensionInterval()
+	 * @generated
+	 */
+	EAttribute getDimensionInterval_MinValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getMaxValue <em>Max Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Max Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getMaxValue()
+	 * @see #getDimensionInterval()
+	 * @generated
+	 */
+	EAttribute getDimensionInterval_MaxValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getCount <em>Count</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Count</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord#getCount()
-	 * @see #getDimensionCountRecord()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getCount()
+	 * @see #getDimensionInterval()
 	 * @generated
 	 */
-	EAttribute getDimensionCountRecord_Count();
+	EAttribute getDimensionInterval_Count();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution <em>Repeated Execution</em>}'.
@@ -1869,6 +1948,14 @@ public interface TestingPackagePackage extends EPackage {
 		EAttribute NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL = eINSTANCE.getNSGAWithCoverageCells_CoveragePerCell();
 
 		/**
+		 * The meta object literal for the '<em><b>Target Coverage Proportion</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NSGA_WITH_COVERAGE_CELLS__TARGET_COVERAGE_PROPORTION = eINSTANCE.getNSGAWithCoverageCells_TargetCoverageProportion();
+
+		/**
 		 * The meta object literal for the '<em><b>Dimension Records</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1877,14 +1964,22 @@ public interface TestingPackagePackage extends EPackage {
 		EReference NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS = eINSTANCE.getNSGAWithCoverageCells_DimensionRecords();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionCountRecordImpl <em>Dimension Count Record</em>}' class.
+		 * The meta object literal for the '<em><b>Use Mutation Enhancing Coverage</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionCountRecordImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionCountRecord()
 		 * @generated
 		 */
-		EClass DIMENSION_COUNT_RECORD = eINSTANCE.getDimensionCountRecord();
+		EAttribute NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE = eINSTANCE.getNSGAWithCoverageCells_UseMutationEnhancingCoverage();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl <em>Dimension Interval</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionInterval()
+		 * @generated
+		 */
+		EClass DIMENSION_INTERVAL = eINSTANCE.getDimensionInterval();
 
 		/**
 		 * The meta object literal for the '<em><b>Dim ID</b></em>' attribute feature.
@@ -1892,7 +1987,23 @@ public interface TestingPackagePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DIMENSION_COUNT_RECORD__DIM_ID = eINSTANCE.getDimensionCountRecord_DimID();
+		EAttribute DIMENSION_INTERVAL__DIM_ID = eINSTANCE.getDimensionInterval_DimID();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIMENSION_INTERVAL__MIN_VALUE = eINSTANCE.getDimensionInterval_MinValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIMENSION_INTERVAL__MAX_VALUE = eINSTANCE.getDimensionInterval_MaxValue();
 
 		/**
 		 * The meta object literal for the '<em><b>Count</b></em>' attribute feature.
@@ -1900,7 +2011,7 @@ public interface TestingPackagePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DIMENSION_COUNT_RECORD__COUNT = eINSTANCE.getDimensionCountRecord_Count();
+		EAttribute DIMENSION_INTERVAL__COUNT = eINSTANCE.getDimensionInterval_Count();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl <em>Repeated Execution</em>}' class.

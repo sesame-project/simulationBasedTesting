@@ -1,14 +1,10 @@
-/**
- */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.util;
+
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.*;
 
 /**
@@ -132,8 +128,8 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 				return createNSGAWithCoverageCellsAdapter();
 			}
 			@Override
-			public Adapter caseDimensionCountRecord(DimensionCountRecord object) {
-				return createDimensionCountRecordAdapter();
+			public Adapter caseDimensionInterval(DimensionInterval object) {
+				return createDimensionIntervalAdapter();
 			}
 			@Override
 			public Adapter caseRepeatedExecution(RepeatedExecution object) {
@@ -384,16 +380,16 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord <em>Dimension Count Record</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval <em>Dimension Interval</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval
 	 * @generated
 	 */
-	public Adapter createDimensionCountRecordAdapter() {
+	public Adapter createDimensionIntervalAdapter() {
 		return null;
 	}
 

@@ -1,6 +1,8 @@
 @namespace(uri="TestingMM", prefix="TestingMM")
 
 package TestingPackage;
+
+// MRS model is currently integrated into the model under the testing space
 //import "http://ExSceMM";
 
 // TestingSpace - which specifies the boundaries of the testing space
@@ -18,7 +20,6 @@ class TestingSpace {
 // TestingCampaign - specifies an experiment 
 // (evolutionary process, selected metrics/attacks, and any constraints upon the grammar for this run)
 
-// Generally there should be probabilities of including each attack in the model - for the testCampaign
 class TestCampaign {
 	attr String name;
 	ref Metrics.Metric[*] metrics;
@@ -26,10 +27,6 @@ class TestCampaign {
 	
 	// TODO: for some reason, elements under TestCampaign tend to be lost when the model is saved?
 	val ActivationGenerationMethod activationGeneration;
-	
-	//attr boolean useConditionBasedFuzzing;
-	//attr int conditionBasedFuzzingDepth;
-	
 	ref FuzzingOperations.FuzzingOperation[*] includedOperations;
 	val TestGenerationApproach[1] approach;
 	val Test[*]#parentCampaign performedTests;
@@ -37,7 +34,6 @@ class TestCampaign {
 	val ExecutionEndTrigger[1] endTrigger;
 }
 
-// This is analagous to a fuzzing CSV file in SAFEMUV - multiple attacks
 class Test {
 	attr String name;
 	val FuzzingOperations.FuzzingOperation[*]#containingTest operations;
@@ -107,13 +103,19 @@ class NSGAEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 	attr int iterations;
 }
 
+// Coverage-tracking / boosting GA
 class NSGAWithCoverageCells extends NSGAEvolutionaryAlgorithm {
 	attr int coveragePerCell;
-	val DimensionCountRecord[1..*]  dimensionRecords;
+	attr double targetCoverageProportion; 
+	val DimensionInterval[1..*]  dimensionRecords;
+	attr boolean useMutationEnhancingCoverage = false;
 }
 
-class DimensionCountRecord {
+// Dimension min-max and cell count for the coverage-tracking GA
+class DimensionInterval {
 	attr DimensionID dimID;
+	attr double minValue;
+	attr double maxValue;
 	attr int count;
 }
 
@@ -127,7 +129,6 @@ enum DimensionID {
 	O2_DELAY_COUNT = 7;
 	O3_DELETION_COUNT = 8;
 }
-
 
 class RepeatedExecution extends TestGenerationApproach {
 	ref Test[1] testToRepeat;
@@ -168,7 +169,7 @@ enum OfflineOperationTime {
 }
 
 class CustomFuzzingOperation extends FuzzingOperation {
-	// These parameters will be used for the fuzzing operation
+	// These parameters will be used for the custom fuzzing operation
 	val ValueSet[*] params;
 }
 
@@ -202,6 +203,7 @@ class FuzzTestingOperation extends FuzzingOperation {
 }
 
 class ComponentOperation extends FuzzTestingOperation {
+
 }
 
 class ComponentPropertyOperation extends FuzzTestingOperation {
@@ -266,55 +268,10 @@ class ExternalResourceSet extends ValueSet {
 }
 // End of Value Sets
 
-class ResourceFuzzingOperation extends FuzzingOperation {
-	
-}
-
-class StateFuzzingOperation extends FuzzingOperation {
-
-	
-}
 
 class NetworkFuzzingOperation extends FuzzingOperation {
 
 	
-}
-
-class LoadResourceOperation extends ResourceFuzzingOperation {
-	ref LoadType[1] loadType;
-}
-
-class LoadType {
-	attr int min;
-	attr int max;
-}
-
-class CPULoadType extends LoadType {
-	
-}
-
-class MemoryLoadType extends LoadType {
-
-}
-
-class IOLoadType extends LoadType {
-
-}
-
-class DiskLoadType extends LoadType {
-
-}
-
-class ShutdownStateOperaton extends StateFuzzingOperation {
-	
-}
-
-class TimeTravelStateOperaton extends StateFuzzingOperation {
-	val DoubleRange[1] timeTravelValue;
-}
-
-class ProcessKillerStateOperaton extends StateFuzzingOperation {
-	attr int processId;
 }
 
 class BlackholeNetworkOperation extends NetworkFuzzingOperation {
@@ -330,9 +287,10 @@ class PacketLossNetworkOperation extends NetworkFuzzingOperation {
 	val DoubleRange[1] frequency;
 }
 
-class MultipleMessagesNetworkOperation extends NetworkFuzzingOperation {
-	val IntRange[1] howManyClones;
-}
+// TODO: implement this operation
+//class MultipleMessagesNetworkOperation extends NetworkFuzzingOperation {
+//	val IntRange[1] howManyClones;
+//}
 
 }
 
@@ -358,7 +316,8 @@ abstract class Metric {
 	attr String name;
 	attr MetricOptimisationDirection dir;
 	ref MRSPackage.Variable[*] relatedVariables;
-	// valueIfNotReceived - this is if no metric message is ever received - this is applied for the optimisation algorithm
+	// valueIfNotReceived - this is stored as the output value if no metric message is ever received 
+	// this is then applied for the optimisation algorithm
 	val MetricDefault[0..1] valueIfNotReceived;	
 	// initValue is used as an intialisation value in computing the conditions
 	val MetricDefault[1] initValue;
@@ -380,11 +339,6 @@ class MetricInstance {
 
 abstract class PropertyMetric extends Metric {
 	ref MRSPackage.ComponentProperty[1] property;
-}
-
-// TODO: do we need ConditionPropertyMetric? - what actually is it?
-class ConditionalPropertyMetric extends PropertyMetric {
-	attr String condition;
 }
 
 class StreamMetric extends Metric {

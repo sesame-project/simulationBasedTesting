@@ -121,13 +121,13 @@ public interface TestingPackageFactory extends EFactory {
 	NSGAWithCoverageCells createNSGAWithCoverageCells();
 
 	/**
-	 * Returns a new object of class '<em>Dimension Count Record</em>'.
+	 * Returns a new object of class '<em>Dimension Interval</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Dimension Count Record</em>'.
+	 * @return a new object of class '<em>Dimension Interval</em>'.
 	 * @generated
 	 */
-	DimensionCountRecord createDimensionCountRecord();
+	DimensionInterval createDimensionInterval();
 
 	/**
 	 * Returns a new object of class '<em>Repeated Execution</em>'.

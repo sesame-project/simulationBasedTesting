@@ -36,7 +36,6 @@ import java.util.List;
  */
 @SuppressWarnings("serial")
 
-// TODO: rename this to NSGAII_JRH to something more generic: NSGAII_ResultLogging
 public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGeneticAlgorithm<S, List<S>> {
 	protected final int maxEvaluations;
 
