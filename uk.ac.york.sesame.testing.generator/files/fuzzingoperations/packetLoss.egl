@@ -4,6 +4,8 @@ var extraImports = new List();
 commonTemplate.populate("fuzzOp", fuzzOp);
 commonTemplate.populate("classNameMiddle", "Delay");
 commonTemplate.populate("extraImports", extraImports);
+commonTemplate.populate("useRandomSeed", true);
+
 %]
 [%= commonTemplate.process() %]
 

@@ -34,14 +34,8 @@ public class [%= className %] extends [%= superClassName() %] {
 		return "[%= fuzzOp.name %]-[%= fuzzOp.sequenceNumInTest %]";
 	}
 
-	[% 
-	var topic = fo.variableToAffect.name;
-	
-	if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { 
-		var startTime = fuzzOp.activation.startTime;
-		var endTime = fuzzOp.activation.endTime;
-	%]
-	
+	[%	var topic = fuzzOp.variableToAffect.name; %]
+
 	[* Constructor *]
 	public [%= className %]() {
 		[% if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { 
@@ -63,12 +57,11 @@ public class [%= className %] extends [%= superClassName() %] {
 		[% if (useRandomSeed) { %] 
 		this.rng = new Random(seed);
 		[% } %] 	
+		
+		[% if (extraConstructorMethodCall.isDefined()) { %]
+		[%= extraConstructorMethodCall %]();
+		[% } %]
 	}
-	
-
-	}
-	[% } %]
-	
 	
 	[% if (anyTypeOfCondition(fuzzOp)) { %] 
 	protected boolean evalStartCondition() {

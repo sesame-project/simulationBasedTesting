@@ -1,132 +1,34 @@
-[* TODO: factor out commmon content for operations *]
+[% var commonTemplate : Template = TemplateFactory.load("fuzzingoperations/fuzzOpCommon.egl");
 
-[% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase();%]
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Map.Entry;
-import java.util.Iterator;
+var imports = new List();
+imports.add("org.apache.flink.api.common.state.MapState");
+imports.add("org.apache.flink.api.common.state.MapStateDescriptor");
+imports.add("org.apache.flink.api.common.typeinfo.TypeHint");
+imports.add("org.apache.flink.api.common.typeinfo.TypeInformation");
+imports.add("org.apache.flink.configuration.Configuration");
+imports.add("org.apache.flink.streaming.api.TimerService");
 
-import java.util.List;
-import java.util.HashMap;
-import java.util.Random;
-import datatypes.*;
-//import datatypes.custom.*;
+commonTemplate.populate("fuzzOp", fuzzOp);
+commonTemplate.populate("classNameMiddle", "FlatMap");
+commonTemplate.populate("extraImports", imports);
+commonTemplate.populate("useRandomSeed", true);
+commonTemplate.populate("extraConstructorMethodCall", "setupDelayParams");
 
-import org.apache.flink.api.common.state.MapState;
-import org.apache.flink.api.common.state.MapStateDescriptor;
-import org.apache.flink.api.common.typeinfo.TypeHint;
-import org.apache.flink.api.common.typeinfo.TypeInformation;
-import org.apache.flink.configuration.Configuration;
-import org.apache.flink.streaming.api.TimerService;
+var stateExtraTag = fuzzOp.name + "-" + fuzzOp.sequenceNumInTest;
+%]
 
-import org.apache.flink.util.Collector;
-
-import org.json.simple.*;
-
-//import fuzzingoperations.custom.*;
-
-import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
-import uk.ac.york.sesame.testing.architecture.data.EventMessage;
-
-import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
-import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
-
-// TTS DELAY STEPPING
-
-public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassName() %] {
-
-	[% var varNames = new Set; %]
+[%= commonTemplate.process() %]
 
 	private static final long serialVersionUID = 1L;
 	private double delayTime;
 	Random rng;
-	
 	private final long STEP_SIZE_MILLIS = 10;
 	private long messageCount = 0;
-	
-	protected String getUniqueID() {
-		return "[%= fuzzOp.name %]-[%= fuzzOp.sequenceNumInTest %]";
-	}
-	
 	private MapState<Double,List<EventMessage>> queue;
 
-	[% if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { %]
-	public [%=fuzzOp.name%]Delay_[%= classNameExt %](String topic, double start, double end, double time, long seed) {
-		super(topic,start,end);
-		this.rng = new Random(seed);
-		// Fixed: delays are now measured in seconds not milliseconds
-		this.delayTime = time; 
-		System.out.println("Creating new latency delay operation, time seconds = " + time + ",delayTime = " + delayTime);
-	}
-	[% } %]
-	
-	[% if (fuzzOp.activation.isTypeOf(ConditionBasedActivation)) { 
-		var startCond = fuzzOp.activation.starting;
-		var endCond = fuzzOp.activation.ending;
-	%]
-	
-	public [%=fuzzOp.name%]Delay_[%= classNameExt %](String topic, double time, long seed) {
-		super(topic);
-		this.rng = new Random(seed);
-		this.delayTime = Math.round(time * 1000.0); 
-	}
-	
-	protected boolean evalStartCondition() {
-		boolean res = false;
-		try {
-			///// GENERATED CUSTOM CONDITION CODE START - STARTCOND
-			[% var startCondString = generateCondBoolean(startCond);
-			   var varList = getVarsForCond(fuzzOp, startCond); %]
-			[% for (v in varList) { %]
-				Double [%= v %] = (Double) varState.get("[%= v %]");
-				if ([%= v %] == null) {
-					[% var initValue = getInitValue(v); 
-					   if (initValue != null) { %]
-					   		[%= v %] = [%= getInitValue(v) %];
-					[% } else { %]    		
-					   		return false;
-					[% } %] 
-				}	
-		    [% } %]
-		    res = [%= startCondString %];
-			///// GENERATED CUSTOM CONDITION CODE END - STARTCOND
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return res;
-	}
-	
-	protected boolean evalEndCondition() {
-		boolean res = false;
-		try {
-			///// GENERATED CUSTOM CONDITION CODE START - ENDCOND
-			[% var endCondString = generateCondBoolean(endCond);
-			   var varList = getVarsForCond(fuzzOp, endCond); %]
-			[% for (v in varList) { %]
-				Double [%= v %] = (Double) varState.get("[%= v %]");
-				if ([%= v %] == null) {
-					[% var initValue = getInitValue(v); 
-					   if (initValue != null) { %]
-					   		[%= v %] = [%= getInitValue(v) %];
-					[% } else { %]    		
-					   		return false;
-					[% } %] 
-				}	
-		    [% } %]
-			res = [%= endCondString %];
-			///// GENERATED CUSTOM CONDITION CODE END - STARTCOND
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return res;
-	}
-	[% } %]
-	
 	public void open(Configuration parameters) throws Exception {
 		super.open(parameters);
-		String queueName = "queue-[%= classNameExt %]";
+		String queueName = "queue-[%= stateExtraTag %]";
 		this.queue = getRuntimeContext().getMapState(new MapStateDescriptor<>(queueName, 
 				TypeInformation.of(Double.class),
 				TypeInformation.of(new TypeHint<List<EventMessage>>() {})));
@@ -134,7 +36,6 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 	
 	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
 		if (value.getTopic().contains(topic) && isReadyNow()) {
-			//long currentTime = ctx.timestamp();
 			double simTime = SimCore.getInstance().getTime();
 			
 			[% if (fuzzOp.randomised) { %] 
@@ -154,7 +55,6 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 			currentPending.add(value);
 			queue.put(scheduledTime, currentPending);
 			System.out.println("Added message to queue at " + simTime + " - scheduled for " + scheduledTime);
-			//ctx.timerService().registerProcessingTimeTimer(stepTimer);
 		} else {
 			out.collect(value);
 		}
@@ -189,126 +89,7 @@ public class [%=fuzzOp.name%]Delay_[%= classNameExt %] extends [%= superClassNam
 		}
 	}
 	
-	public void onTimer(long timestamp, OnTimerContext ctx, Collector<EventMessage> out) {
-		checkForPendingRecords(out);
-	}
-	
 	public void preprocessing() {
 
 	}	
 }
-
-[% 
-operation superClassName() {
-	if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) {
-		return "TimeBasedFuzzingOperation";	
-	}
-
-	if (fuzzOp.activation.isTypeOf(ConditionBasedActivation)) {
-		return "ConditionBasedFuzzingOperation";	
-	}
-}
-
-operation generateBinLogicOp(binop) {
-	if (binop == BinaryLogicalOperation#AND) {
-		return "&&";
-	}
-	
-	if (binop == BinaryLogicalOperation#OR) {
-		return "||";
-	}
-}
-
-operation generateBinComp(binop) {
-	if (binop == BinaryComparisonOperation#LESS_THAN) {
-		return "<";
-	}
-	
-	if (binop == BinaryComparisonOperation#GREATER_THAN) {
-		return ">";
-	}
-	
-	if (binop == BinaryComparisonOperation#EQUALS) {
-		return "==";
-	}
-}
-
-operation generateCondElement(c) {
-	if (c.isTypeOf(CompositeCondition)) {
-		return "(" + generateCondElement(c.left) + ") " + generateBinLogicOp(c.binop) + " (" + generateCondElement(c.right) + ")";
-	}
-	
-	if (c.isTypeOf(BasicCondition)) {
-		return "(" + generateCondElement(c.left) + ") " + generateBinComp(c.bincomp) + " (" + generateCondElement(c.right) + ")";
-	}
-	
-	if (c.isTypeOf(ConditionVariable)) {
-		var vn = c.metric.name;
-		// Put named variable into global list
-		varNames.add(vn);
-		return vn;
-	}
-	
-	if (c.isTypeOf(ConditionInteger)) {
-		return c.value;
-	}
-}
-
-operation generateCondBoolean(cond) {
-	return generateCondElement(cond.c);
-}
-
-operation getVarsForCond(fuzzOp, cond) {
-	return varNames;
-}
-
-operation getInitValue(varName) {
-	var campaign = fuzzOp.containingTest.parentCampaign;
-    var metrics = campaign.conditionMetrics;
-    var initVal = null;
-    for (m in metrics) {
-        if (m.name == varName) {
-        	if (m.initValue != null) {
-        		initVal = m.initValue.defaultVal;
-        	}
-        }
-    }
-    return initVal;
-}
-
-operation generateProperty(prop) {
-	if (prop.isTypeOf(IntRange)) {
-		var v = (prop.lowerBound + prop.upperBound) / 2;
-		return "new Integer(" + v + ")";
-	}
-	
-	if (prop.isTypeOf(DoubleRange)) {
-		var v = (prop.lowerBound + prop.upperBound) / 2;
-		return "new Double(" + v + ")";
-	}
-	
-	if (prop.isTypeOf(PointRange)) {
-		var px = (prop.minPoint.x + prop.maxPoint.x) / 2;
-		var py = (prop.minPoint.y + prop.maxPoint.y) / 2;
-		var pz = (prop.minPoint.z + prop.maxPoint.z) / 2;
-		return "new Point3D(" + px + "," + py + "," + pz + ")";
-	}
-	
-	if (prop.isTypeOf(StringSet)) {
-		// Add the string to everything here
-		if (prop.choices.size() > 0) { 
-			var string = prop.choices.first();
-			return "new String(\"" + string + "\")";
-		} else {
-			return "new String(\"\")";
-		}
-	}
-
-	if (prop.isTypeOf(ExternalResourceSet)) {
-		var loc = prop.location;
-		return "new String(\"" + loc + "\")";
-	}
-}
-
-%]
-

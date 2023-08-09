@@ -2,6 +2,7 @@
 commonTemplate.populate("fuzzOp", fuzzOp);
 commonTemplate.populate("classNameMiddle", "FlatMap");
 commonTemplate.populate("extraImports", new List());
+commonTemplate.populate("useRandomSeed", true);
 %]
 
 [%= commonTemplate.process() %]
