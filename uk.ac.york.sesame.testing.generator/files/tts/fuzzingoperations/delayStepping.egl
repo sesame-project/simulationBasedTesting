@@ -7,6 +7,10 @@ imports.add("org.apache.flink.api.common.typeinfo.TypeHint");
 imports.add("org.apache.flink.api.common.typeinfo.TypeInformation");
 imports.add("org.apache.flink.configuration.Configuration");
 imports.add("org.apache.flink.streaming.api.TimerService");
+imports.add("java.util.List");
+imports.add("java.util.ArrayList");
+imports.add("java.util.Iterator");
+imports.add("java.util.Map.Entry");
 
 commonTemplate.populate("fuzzOp", fuzzOp);
 commonTemplate.populate("classNameMiddle", "FlatMap");
@@ -15,16 +19,19 @@ commonTemplate.populate("useRandomSeed", true);
 commonTemplate.populate("extraConstructorMethodCall", "setupDelayParams");
 
 var stateExtraTag = fuzzOp.name + "-" + fuzzOp.sequenceNumInTest;
+var delayTimeVal = fuzzOp.latency.lowerBound;
 %]
 
 [%= commonTemplate.process() %]
 
-	private static final long serialVersionUID = 1L;
 	private double delayTime;
-	Random rng;
 	private final long STEP_SIZE_MILLIS = 10;
 	private long messageCount = 0;
 	private MapState<Double,List<EventMessage>> queue;
+
+	private void setupDelayParams() {
+		this.delayTime = Math.round([%= delayTimeVal %] * 1000.0); 
+	} 
 
 	public void open(Configuration parameters) throws Exception {
 		super.open(parameters);
