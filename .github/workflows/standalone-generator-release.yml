@@ -1,0 +1,55 @@
+name: standalone-generator-release
+
+on:
+  push:
+    branches:
+      - generator-example-integration
+    tags:
+      - "[0-9].[0-9]+.[0-9]+"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: "temurin"
+
+      - name: Cache Maven Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('./uk.ac.york.sesame.testing.standalone.generator/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build new version
+        run: |
+          # create version string of current date and shortened commit sha
+          NEW_VERSION=$(date -I)_$(echo ${GITHUB_SHA} | cut -c1-8)
+          IS_PRE_RELEASE=true
+          # use tag as version if workflow was triggered by a new tag
+          if echo "${GITHUB_REF}" | grep -q "^refs/tags/.\+" > /dev/null; then NEW_VERSION="${GITHUB_REF#refs/tags/}"; IS_PRE_RELEASE=false; fi
+          # temporarily set new version in pom
+          cd "${GITHUB_WORKSPACE}/uk.ac.york.sesame.testing.standalone.generator"
+          mvn --batch-mode --errors --fail-at-end --show-version --file pom.xml versions:set -DgenerateBackupPoms=false -DnewVersion="${NEW_VERSION}"
+          # build new version release
+          mvn --batch-mode --errors --fail-at-end --show-version --file pom.xml package
+          # make variables available in later steps
+          echo "NEW_VERSION=${NEW_VERSION}" >> ${GITHUB_ENV}
+          echo "IS_PRE_RELEASE=${IS_PRE_RELEASE}" >> ${GITHUB_ENV}
+
+      # create a tag and release, and upload release zip as release asset
+      - name: Release new version
+        uses: softprops/action-gh-release@v1
+        with:
+          prerelease: ${{ env.IS_PRE_RELEASE }}
+          name: ${{ env.NEW_VERSION }}
+          tag_name: ${{ env.NEW_VERSION }}
+          generate_release_notes: true
+          files: "${GITHUB_WORKSPACE}/uk.ac.york.sesame.testing.standalone.generator/target/generator-${{ env.NEW_VERSION }}-release.zip"
