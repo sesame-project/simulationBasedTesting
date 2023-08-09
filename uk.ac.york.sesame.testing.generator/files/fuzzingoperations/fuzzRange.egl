@@ -64,5 +64,4 @@ commonTemplate.populate("extraImports", new List());
 			raise Unimplemented("Parsing method CSV is not yet implemented");
 		[% } %]	
 	}	
-	[% %]
 }
