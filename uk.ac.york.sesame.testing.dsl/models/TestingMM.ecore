@@ -136,7 +136,7 @@
           changeable="false" transient="true" eOpposite="#//Test/operations"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="recordedTimings" eType="#//FuzzingOperations/FixedTimeActivation"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="seed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="seed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="sequenceNumInTest" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OfflineFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation">

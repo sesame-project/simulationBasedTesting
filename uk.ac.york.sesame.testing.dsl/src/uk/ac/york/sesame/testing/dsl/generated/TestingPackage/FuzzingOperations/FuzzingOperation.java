@@ -357,12 +357,12 @@ public interface FuzzingOperation extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Seed</em>' attribute.
-	 * @see #setSeed(int)
+	 * @see #setSeed(long)
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getFuzzingOperation_Seed()
 	 * @model
 	 * @generated
 	 */
-	int getSeed();
+	long getSeed();
 
 	/**
 	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getSeed <em>Seed</em>}' attribute.
@@ -372,7 +372,7 @@ public interface FuzzingOperation extends EObject {
 	 * @see #getSeed()
 	 * @generated
 	 */
-	void setSeed(int value);
+	void setSeed(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Sequence Num In Test</b></em>' attribute.

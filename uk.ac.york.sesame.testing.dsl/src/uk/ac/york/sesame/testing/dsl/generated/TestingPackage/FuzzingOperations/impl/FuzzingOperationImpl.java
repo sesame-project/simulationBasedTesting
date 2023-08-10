@@ -277,7 +277,7 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SEED_EDEFAULT = 0;
+	protected static final long SEED_EDEFAULT = 0L;
 
 	/**
 	 * The cached value of the '{@link #getSeed() <em>Seed</em>}' attribute.
@@ -287,7 +287,7 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 * @ordered
 	 */
-	protected int seed = SEED_EDEFAULT;
+	protected long seed = SEED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSequenceNumInTest() <em>Sequence Num In Test</em>}' attribute.
@@ -717,7 +717,7 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getSeed() {
+	public long getSeed() {
 		return seed;
 	}
 
@@ -726,8 +726,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSeed(int newSeed) {
-		int oldSeed = seed;
+	public void setSeed(long newSeed) {
+		long oldSeed = seed;
 		seed = newSeed;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__SEED, oldSeed, seed));
@@ -912,7 +912,7 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				setRecordedTimings((FixedTimeActivation)newValue);
 				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
-				setSeed((Integer)newValue);
+				setSeed((Long)newValue);
 				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
 				setSequenceNumInTest((Integer)newValue);

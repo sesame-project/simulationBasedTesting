@@ -155,7 +155,7 @@ abstract class FuzzingOperation {
 	ref FuzzingOperation[0..1] fromTemplate;
 	readonly transient ref Test[0..1]#operations containingTest;
 	val FixedTimeActivation[0..1] recordedTimings; 
-	attr int seed;
+	attr long seed;
 	attr int sequenceNumInTest;
 }
 
