@@ -45,9 +45,10 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS = 5;
 	private static final long DEFAULT_WAIT_FOR_FINALISE_DELAY = 5;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
+	private static final double MODEL_SAVING_DELAY_IN_DEBUG_MODE = 0.5;
 
 	private static final boolean DUMMY_EVAL = false;
-	
+
 	private boolean conditionBased;
 
 	private Random rng;
@@ -172,7 +173,12 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			
 			System.out.print("Waiting to begin code generation...");
 			System.out.flush();
-			TestRunnerUtils.waitForSeconds(DEFAULT_MODEL_SAVING_DELAY);
+			
+			if (DEBUG_ACTUALLY_GENERATE_EGL) { 
+				TestRunnerUtils.waitForSeconds(DEFAULT_MODEL_SAVING_DELAY);
+			} else {
+				TestRunnerUtils.waitForSeconds(MODEL_SAVING_DELAY_IN_DEBUG_MODE);
+			}
 			
 			if (DEBUG_ACTUALLY_GENERATE_EGL) {
 				// This transform the testing space model into code - by invoking EGX/EGL

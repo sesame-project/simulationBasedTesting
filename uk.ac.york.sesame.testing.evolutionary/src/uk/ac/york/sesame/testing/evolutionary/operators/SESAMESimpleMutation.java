@@ -47,17 +47,17 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 	private static final double PROB_SELECT_START_OR_END = 0.5;
 
 	protected Random rng;
-	private FileWriter mutationLog;
-	private ConditionGenerator condGenerator;
+	protected FileWriter mutationLog;
+	protected ConditionGenerator condGenerator;
 
-	public SESAMESimpleMutation(Random rng, String mutationLogFileName, double probTemporalMut, double probParamMut,
+	public SESAMESimpleMutation(Random rng, FileWriter mutationLog, double probTemporalMut, double probParamMut,
 			ConditionGenerator cg) throws IOException {
 		this.rng = rng;
 		this.probTemporalMutation = probTemporalMut;
 		this.probParamMutation = probParamMut;
 		this.condGenerator = cg;
 
-		this.mutationLog = new FileWriter(mutationLogFileName);
+		this.mutationLog = mutationLog;
 		mutationLog.write("probTemporalMutation=" + probTemporalMut + "\n");
 		mutationLog.write("probParamMutation=" + probParamMut + "\n");
 	}
@@ -323,9 +323,6 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 			logWithoutError("Performing parameter mutation on " + sta.getName());
 			newParameters(sta);
 		}
-
-		// New participants is redundant, since there is a standard set of
-		// topics for the attack
 	}
 
 	public double getMutationProbability() {

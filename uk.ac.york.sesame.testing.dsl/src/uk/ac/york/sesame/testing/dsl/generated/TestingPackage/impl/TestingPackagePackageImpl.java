@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ActivationGenerationMethod;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivationGenerationMethod;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionCountRecord;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.EvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 
@@ -179,7 +179,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass dimensionCountRecordEClass = null;
+	private EClass dimensionIntervalEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -686,8 +686,17 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getNSGAWithCoverageCells_TargetCoverageProportion() {
+		return (EAttribute)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getNSGAWithCoverageCells_DimensionRecords() {
-		return (EReference)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(1);
+		return (EReference)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -695,8 +704,8 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDimensionCountRecord() {
-		return dimensionCountRecordEClass;
+	public EAttribute getNSGAWithCoverageCells_UseMutationEnhancingCoverage() {
+		return (EAttribute)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -704,8 +713,8 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDimensionCountRecord_DimID() {
-		return (EAttribute)dimensionCountRecordEClass.getEStructuralFeatures().get(0);
+	public EClass getDimensionInterval() {
+		return dimensionIntervalEClass;
 	}
 
 	/**
@@ -713,8 +722,35 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDimensionCountRecord_Count() {
-		return (EAttribute)dimensionCountRecordEClass.getEStructuralFeatures().get(1);
+	public EAttribute getDimensionInterval_DimID() {
+		return (EAttribute)dimensionIntervalEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDimensionInterval_MinValue() {
+		return (EAttribute)dimensionIntervalEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDimensionInterval_MaxValue() {
+		return (EAttribute)dimensionIntervalEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDimensionInterval_Count() {
+		return (EAttribute)dimensionIntervalEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -849,11 +885,15 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 
 		nsgaWithCoverageCellsEClass = createEClass(NSGA_WITH_COVERAGE_CELLS);
 		createEAttribute(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL);
+		createEAttribute(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__TARGET_COVERAGE_PROPORTION);
 		createEReference(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS);
+		createEAttribute(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE);
 
-		dimensionCountRecordEClass = createEClass(DIMENSION_COUNT_RECORD);
-		createEAttribute(dimensionCountRecordEClass, DIMENSION_COUNT_RECORD__DIM_ID);
-		createEAttribute(dimensionCountRecordEClass, DIMENSION_COUNT_RECORD__COUNT);
+		dimensionIntervalEClass = createEClass(DIMENSION_INTERVAL);
+		createEAttribute(dimensionIntervalEClass, DIMENSION_INTERVAL__DIM_ID);
+		createEAttribute(dimensionIntervalEClass, DIMENSION_INTERVAL__MIN_VALUE);
+		createEAttribute(dimensionIntervalEClass, DIMENSION_INTERVAL__MAX_VALUE);
+		createEAttribute(dimensionIntervalEClass, DIMENSION_INTERVAL__COUNT);
 
 		repeatedExecutionEClass = createEClass(REPEATED_EXECUTION);
 		createEReference(repeatedExecutionEClass, REPEATED_EXECUTION__TEST_TO_REPEAT);
@@ -976,11 +1016,15 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 
 		initEClass(nsgaWithCoverageCellsEClass, NSGAWithCoverageCells.class, "NSGAWithCoverageCells", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNSGAWithCoverageCells_CoveragePerCell(), ecorePackage.getEInt(), "coveragePerCell", null, 0, 1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNSGAWithCoverageCells_DimensionRecords(), this.getDimensionCountRecord(), null, "dimensionRecords", null, 1, -1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNSGAWithCoverageCells_TargetCoverageProportion(), ecorePackage.getEDouble(), "targetCoverageProportion", null, 0, 1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNSGAWithCoverageCells_DimensionRecords(), this.getDimensionInterval(), null, "dimensionRecords", null, 1, -1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNSGAWithCoverageCells_UseMutationEnhancingCoverage(), ecorePackage.getEBoolean(), "useMutationEnhancingCoverage", "false", 0, 1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dimensionCountRecordEClass, DimensionCountRecord.class, "DimensionCountRecord", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDimensionCountRecord_DimID(), this.getDimensionID(), "dimID", null, 0, 1, DimensionCountRecord.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDimensionCountRecord_Count(), ecorePackage.getEInt(), "count", null, 0, 1, DimensionCountRecord.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(dimensionIntervalEClass, DimensionInterval.class, "DimensionInterval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDimensionInterval_DimID(), this.getDimensionID(), "dimID", null, 0, 1, DimensionInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDimensionInterval_MinValue(), ecorePackage.getEDouble(), "minValue", null, 0, 1, DimensionInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDimensionInterval_MaxValue(), ecorePackage.getEDouble(), "maxValue", null, 0, 1, DimensionInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDimensionInterval_Count(), ecorePackage.getEInt(), "count", null, 0, 1, DimensionInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(repeatedExecutionEClass, RepeatedExecution.class, "RepeatedExecution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRepeatedExecution_TestToRepeat(), this.getTest(), null, "testToRepeat", null, 1, 1, RepeatedExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -52,8 +52,8 @@ public class TestRunnerUtils {
 		ExptHelper.runScriptNewWithBashTimeout(ABS_SCRIPT_DIR, "./log_topics.sh " + mainClass, 300);
 	}
 
-	public static void waitForSeconds(long timeDelaySeconds) {
-		long endTimeMillis = System.currentTimeMillis() + timeDelaySeconds * 1000;
+	public static void waitForSeconds(double timeDelaySeconds) {
+		long endTimeMillis = System.currentTimeMillis() + (long)((double)timeDelaySeconds * 1000);
 		while (System.currentTimeMillis() < endTimeMillis) {
 			try {
 				Thread.sleep(endTimeMillis - System.currentTimeMillis());

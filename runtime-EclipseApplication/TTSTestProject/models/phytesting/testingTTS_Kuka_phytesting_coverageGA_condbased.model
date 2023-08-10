@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="FuzzingOperations" xmlns:_2="StandardGrammar" xmlns:_3="MRSPackage" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_UrYTwGVlEe2P2ZFJWtv89A" defaultVal="100000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+    <res xsi:type="FileStreamResult" xmi:id="_-uTgoGBPEe27gLEnzzOoKw" filename="/tmp/fuzzopTimes"/>
+  </metrics>
+  <metrics xsi:type="StartEndTimingMetric" xmi:id="_0H_OgBWDEe6rMf8kHaf70A" name="startEndTiming"/>
+  <metrics xsi:type="StreamMetric" xmi:id="_2fP74GBMEe27gLEnzzOoKw" name="collisionOccurance" relatedVariables="_rT9X4GA7Ee27gLEnzzOoKw _u1ryMGA7Ee27gLEnzzOoKw _vyJacGA7Ee27gLEnzzOoKw" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_XG8XQGVlEe2P2ZFJWtv89A"/>
+    <streams xsi:type="InputStream" xmi:id="_NlsBEGBPEe27gLEnzzOoKw"/>
+    <res xsi:type="FileStreamResult" xmi:id="__NR7oGBPEe27gLEnzzOoKw" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_3FMQUHBMEe2Y6ZOMdkM14Q" name="jointExtremeR3200Link0Pos">
+    <valueIfNotReceived xmi:id="_3FMQUXBMEe2Y6ZOMdkM14Q"/>
+    <streams xsi:type="InputStream" xmi:id="_3FMQUnBMEe2Y6ZOMdkM14Q"/>
+    <res xsi:type="FileStreamResult" xmi:id="_3FMQU3BMEe2Y6ZOMdkM14Q" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_6F1W0HBMEe2Y6ZOMdkM14Q" name="jointExtremeR3200Link0Neg" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_6F1W0XBMEe2Y6ZOMdkM14Q"/>
+    <streams xsi:type="InputStream" xmi:id="_6F1W0nBMEe2Y6ZOMdkM14Q"/>
+    <res xsi:type="FileStreamResult" xmi:id="_6F1W03BMEe2Y6ZOMdkM14Q" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_zyBvEHBPEe2Y6ZOMdkM14Q" name="jointExtremeR3200Link1Pos" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_zyBvEXBPEe2Y6ZOMdkM14Q"/>
+    <streams xsi:type="InputStream" xmi:id="_zyBvEnBPEe2Y6ZOMdkM14Q"/>
+    <res xsi:type="FileStreamResult" xmi:id="_zyBvE3BPEe2Y6ZOMdkM14Q" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_0TD_kHBPEe2Y6ZOMdkM14Q" name="jointExtremeR3200Link1Neg" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_0TD_kXBPEe2Y6ZOMdkM14Q"/>
+    <streams xsi:type="InputStream" xmi:id="_0TD_knBPEe2Y6ZOMdkM14Q"/>
+    <res xsi:type="FileStreamResult" xmi:id="_0TD_k3BPEe2Y6ZOMdkM14Q" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="__GkGIHCWEe2Y6ZOMdkM14Q" name="entryToTriggerZone1" relatedVariables="_GaauYHPxEe2UJM1nMR_C1w _H39DYHPxEe2UJM1nMR_C1w _9bym4HQ6Ee2hxMAQETzTtw" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="__GkGIXCWEe2Y6ZOMdkM14Q"/>
+    <streams xsi:type="InputStream" xmi:id="__GkGInCWEe2Y6ZOMdkM14Q"/>
+    <res xsi:type="FileStreamResult" xmi:id="__GkGI3CWEe2Y6ZOMdkM14Q" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_BwKloHCXEe2Y6ZOMdkM14Q" name="entryToTriggerZone2" relatedVariables="_GaauYHPxEe2UJM1nMR_C1w _H39DYHPxEe2UJM1nMR_C1w _9bym4HQ6Ee2hxMAQETzTtw" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_BwKloXCXEe2Y6ZOMdkM14Q"/>
+    <streams xsi:type="InputStream" xmi:id="_BwKlonCXEe2Y6ZOMdkM14Q"/>
+    <res xsi:type="FileStreamResult" xmi:id="_BwKlo3CXEe2Y6ZOMdkM14Q" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_l0_9IHR5Ee2hxMAQETzTtw" name="entryToTriggerZone3" relatedVariables="_GaauYHPxEe2UJM1nMR_C1w _H39DYHPxEe2UJM1nMR_C1w _9bym4HQ6Ee2hxMAQETzTtw" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_l0_9IXR5Ee2hxMAQETzTtw"/>
+    <streams xsi:type="InputStream" xmi:id="_l0_9InR5Ee2hxMAQETzTtw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_l0_9I3R5Ee2hxMAQETzTtw" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="attackJointPosR3200ProductMove_Link1" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" isRelative="true">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_bJdhUN04EeyAL51MCA53dw" endTime="65.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_SlE2IPLIEeyyicYP_3f6ng" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_fCKeED_ZEe2sLoIc1V16Ug" name="attackJointPosR3200ProductMove_Link0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" isRelative="true">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_fCKeET_ZEe2sLoIc1V16Ug" endTime="65.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_fCKeEj_ZEe2sLoIc1V16Ug" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="coverageExperiment-condbased" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw _0H_OgBWDEe6rMf8kHaf70A" conditionMetrics="_6F1W0HBMEe2Y6ZOMdkM14Q _3FMQUHBMEe2Y6ZOMdkM14Q _0TD_kHBPEe2Y6ZOMdkM14Q _zyBvEHBPEe2Y6ZOMdkM14Q __GkGIHCWEe2Y6ZOMdkM14Q _BwKloHCXEe2Y6ZOMdkM14Q _l0_9IHR5Ee2hxMAQETzTtw" includedOperations="_lc6UoN0YEeyv8LH3vdSfnw _fCKeED_ZEe2sLoIc1V16Ug">
+    <approach xsi:type="TestingMM:NSGAWithCoverageCells" xmi:id="_1yDSAAV8Ee6E_7vjRe30sw" populationSize="10" iterations="1000" coveragePerCell="1"/>
+    <performedTests name="Test_001_28_06_2023_12_15_09">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR3200ProductMove_Link0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" isRelative="true">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_l0_9IHR5Ee2hxMAQETzTtw"/>
+                <right xsi:type="_2:ConditionVariable" metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+              </left>
+              <right xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionInteger" value="5"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition" binop="OR">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionInteger" value="10"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_l0_9IHR5Ee2hxMAQETzTtw"/>
+                <right xsi:type="_2:ConditionVariable" metric="_BwKloHCXEe2Y6ZOMdkM14Q"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <recordedTimings startTime="37.89" endTime="37.9"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.014161525756155702" upperBound="0.287190427763769"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="0.00999999999999801"/>
+      </metrics>
+      <metrics metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result name="collisionOccurance"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_002_28_06_2023_12_15_09">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR3200ProductMove_Link0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" isRelative="true">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition" binop="OR">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionVariable" metric="_BwKloHCXEe2Y6ZOMdkM14Q"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="_l0_9IHR5Ee2hxMAQETzTtw"/>
+                <right xsi:type="_2:ConditionInteger" value="9"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionVariable" metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionVariable" metric="_l0_9IHR5Ee2hxMAQETzTtw"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <recordedTimings startTime="12.6" endTime="49.78"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.07137063690621248" upperBound="0.268731746754771"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="37.18"/>
+      </metrics>
+      <metrics metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result name="collisionOccurance" value="6.0"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_003_28_06_2023_12_15_09">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR3200ProductMove_Link1" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" isRelative="true">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition" binop="OR">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_BwKloHCXEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionInteger" value="15"/>
+              </left>
+              <right xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionInteger" value="1"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition" binop="OR">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_BwKloHCXEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionVariable" metric="_BwKloHCXEe2Y6ZOMdkM14Q"/>
+              </left>
+              <right xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_BwKloHCXEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionVariable" metric="_BwKloHCXEe2Y6ZOMdkM14Q"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.2404134322714464" upperBound="0.23742933140977596"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR3200ProductMove_Link0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" isRelative="true">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition" binop="OR">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionInteger" value="10"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionInteger" value="8"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_BwKloHCXEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionInteger" value="20"/>
+              </left>
+              <right xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_l0_9IHR5Ee2hxMAQETzTtw"/>
+                <right xsi:type="_2:ConditionVariable" metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.10632214467566406" upperBound="0.020902802969546802"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result name="collisionOccurance"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_004_28_06_2023_12_15_09">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR3200ProductMove_Link1" variableToAffect="_BIPJ4Az1Ee2dUZBawpc2Eg" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" isRelative="true">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition" binop="OR">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionVariable" metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionInteger" value="2"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition" binop="OR">
+              <left xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionInteger" value="14"/>
+              </left>
+              <right xsi:type="_2:BasicCondition">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionVariable" metric="_l0_9IHR5Ee2hxMAQETzTtw"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.02470440792665618" upperBound="0.29085921596273406"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="attackJointPosR3200ProductMove_Link0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" isRelative="true">
+        <activation xsi:type="_1:ConditionBasedActivation">
+          <starting>
+            <c xsi:type="_2:CompositeCondition">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_BwKloHCXEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionVariable" metric="_l0_9IHR5Ee2hxMAQETzTtw"/>
+              </left>
+              <right xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="_l0_9IHR5Ee2hxMAQETzTtw"/>
+                <right xsi:type="_2:ConditionVariable" metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+              </right>
+            </c>
+          </starting>
+          <ending>
+            <c xsi:type="_2:CompositeCondition" binop="OR">
+              <left xsi:type="_2:BasicCondition">
+                <left metric="_BwKloHCXEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionInteger" value="13"/>
+              </left>
+              <right xsi:type="_2:BasicCondition" bincomp="GREATER_THAN">
+                <left metric="__GkGIHCWEe2Y6ZOMdkM14Q"/>
+                <right xsi:type="_2:ConditionVariable" metric="_l0_9IHR5Ee2hxMAQETzTtw"/>
+              </right>
+            </c>
+          </ending>
+        </activation>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.12778377150640777" upperBound="0.2964236581434285"/>
+      </operations>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="70"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jamesharbin/source/KukaCell-2022_12_05_newtriggerzones" launchDelaySeconds="10">
+    <variables xmi:id="_ZjJHUD8uEe2Lapf8udQiDQ" name="joints/R3200ProductMove/Link0/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_BIPJ4Az1Ee2dUZBawpc2Eg" name="joints/R3200ProductMove/Link1/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_j0F74EPSEe2tNsTzJ49AOg" name="joints/R3200ProductMove/Link3/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_jqLx8EPSEe2tNsTzJ49AOg" name="joints/R3200ProductMove/Link2/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_j64gYEPSEe2tNsTzJ49AOg" name="joints/R3200ProductMove/Link4/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_kBOY8EPSEe2tNsTzJ49AOg" name="joints/R3200ProductMove/Link5/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_kHs0YEPSEe2tNsTzJ49AOg" name="joints/R270073/Link0/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_6-tBUEPSEe2tNsTzJ49AOg" name="joints/R270073/Link1/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_7N9lUEPSEe2tNsTzJ49AOg" name="joints/R270073/Link2/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_7cnFUEPSEe2tNsTzJ49AOg" name="joints/R270073/Link3/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_7lYm0EPSEe2tNsTzJ49AOg" name="joints/R270073/Link4/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_7vJm0EPSEe2tNsTzJ49AOg" name="joints/R270073/Link5/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_CUuzsEPTEe2tNsTzJ49AOg" name="joints/R270072/Link0/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_Eix_oEPTEe2tNsTzJ49AOg" name="joints/R270072/Link1/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_EqysIEPTEe2tNsTzJ49AOg" name="joints/R270072/Link2/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_EyugIEPTEe2tNsTzJ49AOg" name="joints/R270072/Link3/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_E6DQIEPTEe2tNsTzJ49AOg" name="joints/R270072/Link4/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_FA6tIEPTEe2tNsTzJ49AOg" name="joints/R270072/Link5/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_rT9X4GA7Ee27gLEnzzOoKw" name="safetyzones/Z1" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_u1ryMGA7Ee27gLEnzzOoKw" name="safetyzones/Z2" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_vyJacGA7Ee27gLEnzzOoKw" name="safetyzones/Z3" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_GaauYHPxEe2UJM1nMR_C1w" name="safetyzones/Z4" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_H39DYHPxEe2UJM1nMR_C1w" name="safetyzones/Z5" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_9bym4HQ6Ee2hxMAQETzTtw" name="safetyzones/Z6" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="R3200" publisher="_BIPJ4Az1Ee2dUZBawpc2Eg _ZjJHUD8uEe2Lapf8udQiDQ _jqLx8EPSEe2tNsTzJ49AOg _j0F74EPSEe2tNsTzJ49AOg _j64gYEPSEe2tNsTzJ49AOg _kBOY8EPSEe2tNsTzJ49AOg"/>
+    <nodes xmi:id="_J3TToEPbEe2tNsTzJ49AOg" name="R270073" publisher="_kHs0YEPSEe2tNsTzJ49AOg _6-tBUEPSEe2tNsTzJ49AOg _7N9lUEPSEe2tNsTzJ49AOg _7cnFUEPSEe2tNsTzJ49AOg _7lYm0EPSEe2tNsTzJ49AOg _7vJm0EPSEe2tNsTzJ49AOg"/>
+    <nodes xmi:id="_KTdEIEPbEe2tNsTzJ49AOg" name="R320072" publisher="_BIPJ4Az1Ee2dUZBawpc2Eg"/>
+    <simulator xsi:type="_3:TTSSimulator" xmi:id="_G7808Az1Ee2dUZBawpc2Eg" hostname="localhost" port="8089"/>
+    <propertyType xmi:id="_EYa9sAz0Ee2dUZBawpc2Eg" name="doubleEncodedAsString" parsingMethod="STRING"/>
+    <propertyType xmi:id="_nV6N8GA7Ee27gLEnzzOoKw" name="SafetyZone"/>
+  </mrs>
+</TestingMM:TestingSpace>

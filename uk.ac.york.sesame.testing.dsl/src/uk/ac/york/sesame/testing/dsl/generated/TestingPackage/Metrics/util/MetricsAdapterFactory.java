@@ -100,10 +100,6 @@ public class MetricsAdapterFactory extends AdapterFactoryImpl {
 				return createPropertyMetricAdapter();
 			}
 			@Override
-			public Adapter caseConditionalPropertyMetric(ConditionalPropertyMetric object) {
-				return createConditionalPropertyMetricAdapter();
-			}
-			@Override
 			public Adapter caseStreamMetric(StreamMetric object) {
 				return createStreamMetricAdapter();
 			}
@@ -260,20 +256,6 @@ public class MetricsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPropertyMetricAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric <em>Conditional Property Metric</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric
-	 * @generated
-	 */
-	public Adapter createConditionalPropertyMetricAdapter() {
 		return null;
 	}
 

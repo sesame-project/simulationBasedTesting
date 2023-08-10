@@ -68,7 +68,7 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 			case TestingPackagePackage.RANDOM_TEST_GENERATION: return createRandomTestGeneration();
 			case TestingPackagePackage.NSGA_EVOLUTIONARY_ALGORITHM: return createNSGAEvolutionaryAlgorithm();
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS: return createNSGAWithCoverageCells();
-			case TestingPackagePackage.DIMENSION_COUNT_RECORD: return createDimensionCountRecord();
+			case TestingPackagePackage.DIMENSION_INTERVAL: return createDimensionInterval();
 			case TestingPackagePackage.REPEATED_EXECUTION: return createRepeatedExecution();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -224,9 +224,9 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DimensionCountRecord createDimensionCountRecord() {
-		DimensionCountRecordImpl dimensionCountRecord = new DimensionCountRecordImpl();
-		return dimensionCountRecord;
+	public DimensionInterval createDimensionInterval() {
+		DimensionIntervalImpl dimensionInterval = new DimensionIntervalImpl();
+		return dimensionInterval;
 	}
 
 	/**

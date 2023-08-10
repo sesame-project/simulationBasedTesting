@@ -1,12 +1,9 @@
-/**
- */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.util;
+
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.*;
 
 /**
@@ -173,9 +170,9 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TestingPackagePackage.DIMENSION_COUNT_RECORD: {
-				DimensionCountRecord dimensionCountRecord = (DimensionCountRecord)theEObject;
-				T result = caseDimensionCountRecord(dimensionCountRecord);
+			case TestingPackagePackage.DIMENSION_INTERVAL: {
+				DimensionInterval dimensionInterval = (DimensionInterval)theEObject;
+				T result = caseDimensionInterval(dimensionInterval);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -431,17 +428,17 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Dimension Count Record</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Dimension Interval</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Dimension Count Record</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Dimension Interval</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDimensionCountRecord(DimensionCountRecord object) {
+	public T caseDimensionInterval(DimensionInterval object) {
 		return null;
 	}
 
