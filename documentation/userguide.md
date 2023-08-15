@@ -1,6 +1,6 @@
 # User Guide
 This document describes using the SESAME simulation-based testing platform.
-It is assumed that at this point the users have already set and
+It is assumed that at this point the users have already set up and
 installed the platform. The user guide contains the following headings:
 
 - Starting the Child Eclipse (in order to run the SESAME Wizard)
@@ -106,13 +106,15 @@ the platform to use and the launching method. The port property should
 currently be 8089 for both simulators, typically the hostname should
 be "localhost".
 
-The selected type of information and parsing method also alters the
-internal operation of several fuzzing operations; for example,
-selecting the JSON ParsingMethod when using ROS allows the use of
-structured variables, while within raw variables, the STRING parsing
-method should be used.  These MRS variables are referenced when
-specifying the testing model *variablesToAffect* (e.g., fuzzing
-operations are selected to operate upon a particular variable).
+It is important for the MRS model to contain entries for simulator
+variables and their associated data types, for every simulator
+variable that the platform should subscribe to. Also, nodes should be
+introduced to represent each robot or simulator component that should
+be involved in fuzz testing, and the nodes set to transmit the
+relevant simulator variable. The defined MRS variables are referenced
+later when setting up the fuzzing operations in the testing model,
+setting *variablesToAffect* (e.g., fuzzing operations are selected to
+operate upon a particular variable).
 
 Examples for the MRS model structure for both ROS and KUKA/TTS are
 given below:
@@ -124,6 +126,16 @@ given below:
 #### Example for KUKA/TTS case study
 
 ![An example of the KUKA/TTS MRS model screenshot](./readme-images/kuka-tts-example-mrs.png)
+
+The selected type of information and parsing method also alters the
+internal operation of several fuzzing operations; for example,
+selecting the JSON ParsingMethod when using ROS allows the use of
+structured variables in fuzzing (extracting, for example, x and y
+fields from a PoseStamped message). When accessing variables that
+contain only a single numerical field, such as the joint values in the
+KUKA/TTS case study, the STRING parsing method should be used. The raw
+double values will be parsed as strings from the message within the
+fuzzing operations, and interpreted as doubles.
 
 ### Setting up Testing Model
 The metamodel for Testing is specified as UML here:
@@ -354,6 +366,36 @@ depth, then the violationCount$ variable will be incremented.  This
 value is emitted as the output value.  The final $violationCount$
 value will be logged as the output of the metric.
 
+### Starting Dockers (Windows Only)
+If using the testing platform on Windows, these steps will have to be
+performed every time you wish to use the testing platform.
+
+Start the Docker Desktop GUI application console.
+
+To start the Dockers, in the first Cygwin terminal, run:
+```
+cd ~/docker-yaml/kafka-stack-docker-compose
+docker-compose -f zk-single-kafka-single.yml up -d
+```
+
+In the second Cygwin terminal, wait one minute or so, and then run:
+```
+cd ~/docker-yaml/kafka-stack-docker-compose
+docker-compose -f zk-single-kafka-single.yml ps
+```
+
+Two containers (Kafka and Zookeeper) should be running correctly.
+Sometimes, especially on first reboot, they will not start correctly,
+or will shut down after the first minute, but will normally run
+properly at the second attempt. If one of them is listed as not
+running, restart them by running in the first terminal:
+
+```
+cd ~/docker-yaml/kafka-stack-docker-compose
+docker-compose -f zk-single-kafka-single.yml down
+docker-compose -f zk-single-kafka-single.yml up -d
+```
+
 ## Executing The Experiments
 The user should create an Eclipse Run Configuration for the generated
 Java class **ExptRunner\_NAME.java** for the name corresponding to the
@@ -407,3 +449,53 @@ result set are be displyed. Also, using a provided EGL script under
 **uk.ac.york.sesame.testing.generator** at
 **files/resultsAnalysis/resultsAnalysis.egl** allows the results and
 output metrics to be listed in the Eclipse console window.
+
+# Troubleshooting
+
+## Ensuring Kafka is started
+If there are problems when the simulation, i.e. if messages do not
+appear to flow and robots remain entirely static, it is possible that
+Kafka is not transmitting messages properly. Check that both Docker
+containers started properly via the following commands run in a Cygwin terminal:
+```
+cd ~/docker-yaml/kafka-stack-docker-compose
+docker-compose -f zk-single-kafka-single.yml ps
+```
+
+## Project Errors on Loading Eclipse
+When loading Eclipse, errors may occasionally appear in the
+**uk.ac.york.sesame.testing.architecture.tts** project. If that
+happens, right click on this project, select "Run Configurations",
+"Maven Clean" then "Maven Generate Sources".
+
+## Model Debugging
+If there are problems with the model or code generation:
+
+- Ensure that there is a metric code Java class properly defined under
+  package **metrics.custom**, for the name of the metric in the
+  Testing DSL appended with "Metric.java". So for example, with a
+  metric name MinimalDistance, the metric file should be
+  MinimalDistanceMetric.java. This may e.g. happen if you rename the
+  metric after generating the code via the SESAME Wizard.
+
+- Ensure that all fuzzing operations have an activation timing and
+  appropriate properties properly defined. Selecting "Validate" by
+  right-clicking on the model in the Exceed editor may help to spot
+  errors here.
+
+- If metric values are not appearing properly, check log files for the
+  individual tests simulation under the following path:
+  **C:\cygwin64\home\USERNAME\academic\sesame\WP6\uk.ac.york.sesame.testing.evolutionary\scripts**
+  The files will be named Test_XYZ\___.err. It is normal for an
+  exception to be logged at the end, but no Java internal exceptions
+  or the. This may be caused by errors in the metric, or in gRPC
+  communications.
+  
+- Timeouts before starting the simulation may need to be increased
+  under "TTSSimulator" in the MRS model
+  
+- The individual tests can be debugged by finding the Java source
+  files for the generated test runners e.g. Test_XYZ\..._.java, and
+  creating new Run/Debug Configurations to execute them.
+  
+  
