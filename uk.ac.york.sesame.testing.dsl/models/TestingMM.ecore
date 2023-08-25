@@ -99,6 +99,7 @@
     <eLiterals name="O1_FUZZRANGE_COUNT" value="6"/>
     <eLiterals name="O2_DELAY_COUNT" value="7"/>
     <eLiterals name="O3_DELETION_COUNT" value="8"/>
+    <eLiterals name="O0_TOTAL_COUNT" value="9"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RepeatedExecution" eSuperTypes="#//TestGenerationApproach">
     <eStructuralFeatures xsi:type="ecore:EReference" name="testToRepeat" lowerBound="1"

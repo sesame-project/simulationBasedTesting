@@ -9,8 +9,8 @@ import org.nd4j.linalg.api.iter.NdIndexIterator;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import uk.ac.york.sesame.testing.architecture.data.IntervalWithCount;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
-import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 
 public class GridCoverageChecker extends CoverageCheckingAlg {
 

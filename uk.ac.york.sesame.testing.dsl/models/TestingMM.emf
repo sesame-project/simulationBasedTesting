@@ -125,9 +125,11 @@ enum DimensionID {
 	T3_TIME_MIDPOINT_VAR = 3; 
 	P1_PARAMETER_MEAN = 4;
 	P2_PARAMETER_VARIANCE = 5;
+
 	O1_FUZZRANGE_COUNT = 6;
 	O2_DELAY_COUNT = 7;
 	O3_DELETION_COUNT = 8;
+	O0_TOTAL_COUNT = 9;
 }
 
 class RepeatedExecution extends TestGenerationApproach {

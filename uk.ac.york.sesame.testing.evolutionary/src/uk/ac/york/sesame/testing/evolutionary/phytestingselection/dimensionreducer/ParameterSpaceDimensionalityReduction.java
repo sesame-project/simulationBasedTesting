@@ -5,12 +5,12 @@ import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
-import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
+
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
-import uk.ac.york.sesame.testing.evolutionary.phytestingselection.NoOperations;
 
 /** Processes the Test to generate a set of coordinates for the parameter space **/
 public abstract class ParameterSpaceDimensionalityReduction {

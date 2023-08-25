@@ -10,20 +10,21 @@ import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.solution.Solution;
 
 import org.uma.jmetal.util.SolutionListUtils;
-import org.uma.jmetal.util.comparator.DominanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 
 import uk.ac.york.sesame.testing.architecture.data.IntervalWithCount;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ResultSetStatus;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationApproach;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEMutationBoostingCoverage;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESimpleMutation;
-import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
-import uk.ac.york.sesame.testing.evolutionary.phytestingselection.NoOperations;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker.CoverageCheckingAlg;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker.GridCoverageChecker;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.ParameterSpaceDimensionalityReduction;
@@ -38,7 +39,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.EnumMap;
 import java.util.List;
-import java.util.Random;
 
 /**
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
@@ -74,22 +74,12 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	protected int offspringPopulationSize;
 
 	private TestCampaign selectedCampaign;
+	
+	private List<DimensionInterval> dimensionRecords;
 
 	private String scenarioStr;
 
 	private ParameterSpaceDimensionalityReduction dimensionReducer;
-
-	/**
-	 * TODO: make this a subclass of NSGAII_ResultLogging
-	 */
-//	public NSGAII_ResultLogging_Coverage(TestCampaign selectedCampaign, String scenarioStr, Problem<S> problem, int populationSize, int matingPoolSize,
-//			int offspringPopulationSize, CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator,
-//			SelectionOperator<List<S>, S> selectionOperator, SolutionListEvaluator<S> evaluator) {
-//		this(selectedCampaign, scenarioStr, problem, maxEvaluations_FIXED, populationSize, matingPoolSize, offspringPopulationSize, crossoverOperator,
-//				mutationOperator, selectionOperator, new DominanceComparator<S>(), evaluator);
-//		this.selectedCampaign = selectedCampaign;
-//		this.evolutionaryHistory = new HashSet<S>();
-//	}
 
 	/**
 	 * Constructor
@@ -103,6 +93,8 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		this.maxEvaluations = maxEvaluations;
 		this.selectedCampaign = selectedCampaign;
 		setMaxPopulationSize(populationSize);
+			
+		lookupDimensionRecords();
 
 		this.crossoverOperator = crossoverOperator;
 		this.mutationOperator = mutationOperator;
@@ -141,6 +133,14 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		System.out.println("maxEvaluations = " + maxEvaluations);
 	}
 
+	private void lookupDimensionRecords() {
+		TestGenerationApproach app = this.selectedCampaign.getApproach();
+		if (app instanceof NSGAWithCoverageCells) {
+			NSGAWithCoverageCells ncc = (NSGAWithCoverageCells)app;
+			this.dimensionRecords = ncc.getDimensionRecords();
+		}
+	}
+	
 	@Override
 	protected void initProgress() {
 		evaluations = getMaxPopulationSize();
@@ -150,34 +150,32 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 	protected void updateProgress() {
 		evaluations += offspringPopulationSize;
 	}
+	
+	public IntervalWithCount createFromDSLInfo(DimensionInterval di) {
+		double lower = di.getMinValue();
+		double upper = di.getMaxValue();
+		int count = di.getCount();
+		return new IntervalWithCount(lower,upper,count);
+	}
+	
+	private CoverageCheckingAlg createChecker() {
+		EnumMap<DimensionID, IntervalWithCount> intervals = new EnumMap<DimensionID, IntervalWithCount>(DimensionID.class);
+		
+		for (DimensionInterval di : dimensionRecords) {
+			intervals.put(di.getDimID(), createFromDSLInfo(di));
+		}
+
+		CoverageCheckingAlg covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL, NEEDED_COVERAGE_PROPORTION);
+		return covChecker;
+	}
 
 	protected boolean isCoverageAchieved() {
-		// TODO: extract this information from the GA - pull in as parameters
-		// from the DimensionInterval from NSGAWithCoverageCells
-
-		// The GA is only using a subset of dimensions
-		EnumMap<DimensionID, IntervalWithCount> intervals = new EnumMap<DimensionID, IntervalWithCount>(
-				DimensionID.class);
-		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 1.0, 6));
-		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 0.5, 6));
-		//intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 1.0, 3));
-		intervals.put(DimensionID.P1_PARAMETER_MEAN, new IntervalWithCount(0.0, 1.0, 3));
-		//intervals.put(DimensionID.P2_PARAMETER_VARIANCE, new IntervalWithCount(0.0, 1.0, 2));
-		//intervals.put(DimensionID.O1_FUZZRANGE_COUNT, new IntervalWithCount(0.0, 2.0, 3));
-		
-
-		//////////////////////////////////////////////////////////////////////////
-
-		// Ensure a new coverage checker is created for this scan...
-		CoverageCheckingAlg covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL,
-				NEEDED_COVERAGE_PROPORTION);
+		// Ensure a new coverage checker is created for each scan...
+		CoverageCheckingAlg covChecker = createChecker();
 		
 		// TODO: is this OK? do we need a global coverage checker?
 		coverageMutationOperator.setCoverageChecker(covChecker);
 		coverageMutationOperator.setDimensionReducer(dimensionReducer);
-
-		// Ensure the population is added to the evolutionary history
-		//addToHistory(population);
 
 		// This should track everything over the entire evolutionary history, not
 		// just the current population

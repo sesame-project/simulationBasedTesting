@@ -20,6 +20,7 @@
       <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//DimensionID/O1_FUZZRANGE_COUNT"/>
       <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//DimensionID/O2_DELAY_COUNT"/>
       <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//DimensionID/O3_DELETION_COUNT"/>
+      <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//DimensionID/O0_TOTAL_COUNT"/>
     </genEnums>
     <genClasses ecoreClass="TestingMM.ecore#//TestingSpace">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//TestingSpace/name"/>

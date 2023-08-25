@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import uk.ac.york.sesame.testing.architecture.data.TimeInterval;
 import uk.ac.york.sesame.testing.architecture.data.TimeInterval.InvalidTimingPair;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.BlackholeNetworkOperation;
@@ -26,7 +27,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedTimeLimitedImpl;
 import uk.ac.york.sesame.testing.evolutionary.SESAMEFuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
-import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.FuzzOpLambdaFunction;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingTimingPair;

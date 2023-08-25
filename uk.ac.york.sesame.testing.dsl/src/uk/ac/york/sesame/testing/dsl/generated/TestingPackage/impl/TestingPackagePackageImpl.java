@@ -1044,6 +1044,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		addEEnumLiteral(dimensionIDEEnum, DimensionID.O1_FUZZRANGE_COUNT);
 		addEEnumLiteral(dimensionIDEEnum, DimensionID.O2_DELAY_COUNT);
 		addEEnumLiteral(dimensionIDEEnum, DimensionID.O3_DELETION_COUNT);
+		addEEnumLiteral(dimensionIDEEnum, DimensionID.O0_TOTAL_COUNT);
 
 		// Create resource
 		createResource(eNS_URI);
