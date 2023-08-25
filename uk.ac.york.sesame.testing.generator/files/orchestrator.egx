@@ -20,60 +20,46 @@ rule test2ClassTTS transform test: Testing!Test {
 rule packetLoss2FlatMap transform fuzzOp: Testing!PacketLossNetworkOperation {
 	guard : fuzzOp.containingTest != null
 	template : "fuzzingoperations/packetLoss.egl"
-	//target : "src/" + fuzzOp.name + "PacketLossFlatMap_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 	target : getClassNamePath(fuzzOp)
-	//target : fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 }
 
 rule blackHole2FlatMap transform fuzzOp: Testing!BlackholeNetworkOperation {
 	guard : fuzzOp.containingTest != null
 	template : "fuzzingoperations/blackHole.egl"
-	//target : "src/" + fuzzOp.name + "BlackHoleFlatMap_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 	target : getClassNamePath(fuzzOp)
-	//target : fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"	
 }
 
 rule fuzzRange2FlatMap transform fuzzOp: Testing!RandomValueFromSetOperation {
 	guard : fuzzOp.containingTest != null
 	template : "fuzzingoperations/fuzzRange.egl"
-	//target : "src/"+ fuzzOp.name + "FlatMap_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 	target : getClassNamePath(fuzzOp)
-	//target : fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 }
 
 rule customOp2FlatMap transform fuzzOp: Testing!CustomFuzzingOperation {
 	guard : fuzzOp.containingTest != null
 	template : "fuzzingoperations/customOp.egl"	
-	//target : "src/"+ fuzzOp.name + "CustomOp_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 	target : getClassNamePath(fuzzOp)
-	//target : fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 }
 
 // Delay when not using TTS - use timers for time-tracking 
 rule delayFlatMapTimers transform fuzzOp: Testing!LatencyNetworkOperation {
 	guard : (fuzzOp.containingTest != null) and Testing!TTSSimulator.all().isEmpty()
 	template : "fuzzingoperations/delay.egl"
-	//target : "src/"+ fuzzOp.name + "Delay_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 	target : getClassNamePath(fuzzOp)
-	//target : fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 }
 
 // Delay when using TTS and not stepping
 rule delayTTSStepping transform fuzzOp: Testing!LatencyNetworkOperation {
 	guard : (fuzzOp.containingTest != null) and Testing!TTSSimulator.all().notEmpty() and (Testing!TTSSimulator.all().first().useStepping == false)
 	template : "fuzzingoperations/delay.egl"	
-	//target : "src/"+ fuzzOp.name + "Delay_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 	target : getClassNamePath(fuzzOp)
-	//target : fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 }
 
 // Delay when using TTS and stepping
 rule delayTTSStepping transform fuzzOp: Testing!LatencyNetworkOperation {
 	guard : (fuzzOp.containingTest != null) and Testing!TTSSimulator.all().notEmpty() and (Testing!TTSSimulator.all().first().useStepping == true)
 	template : "tts/fuzzingoperations/delayStepping.egl"	
-	//target : "src/"+ fuzzOp.name + "Delay_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 	target : getClassNamePath(fuzzOp)
-	//target : fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
 }
 
 rule rangeClass transform testCampaign: Testing!TestCampaign {
