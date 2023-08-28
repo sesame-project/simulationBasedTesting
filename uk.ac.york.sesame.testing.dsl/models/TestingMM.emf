@@ -319,7 +319,7 @@ abstract class Metric {
 	// this is then applied for the optimisation algorithm
 	val MetricDefault[0..1] valueIfNotReceived;	
 	// initValue is used as an intialisation value in computing the conditions
-	val MetricDefault[1] initValue;
+	val MetricDefault[0..1] initValue;
 	attr boolean useInOptimisation;
 }
 

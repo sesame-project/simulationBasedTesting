@@ -1,18 +1,17 @@
 rule metricAsMultiStream transform metric: Testing!StreamMetric {
 	guard : metric.streams.size() == 2
 	template : "metrics/multiStream.egl"
-	target : "src/metrics/template/" + metric.name + "Metric.java"
+	target : "src/metrics/generated/" + metric.name + "Metric.java"
 }
 
 rule metricAsSingleStream transform metric: Testing!StreamMetric {
 	guard : metric.streams.size() == 1
 	template : "metrics/singleStream.egl"
-	target : "src/metrics/template/" + metric.name + "Metric.java"
+	target : "src/metrics/generated/" + metric.name + "Metric.java"
 }
 
 rule generateRunners transform campaign: Testing!TestCampaign {
 	parameters : Map {
-		"path" = path,
 		"testingModelPath" = testingModelPath,
 		"codeGenerationDirectory" = codeGenerationDirectory,
 		"orchestratorBasePath" = orchestratorBasePath
