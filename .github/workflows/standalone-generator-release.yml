@@ -52,4 +52,4 @@ jobs:
           name: ${{ env.NEW_VERSION }}
           tag_name: ${{ env.NEW_VERSION }}
           generate_release_notes: true
-          files: "${GITHUB_WORKSPACE}/uk.ac.york.sesame.testing.standalone.generator/target/generator-${{ env.NEW_VERSION }}-release.zip"
+          files: uk.ac.york.sesame.testing.standalone.generator/target/generator-${{ env.NEW_VERSION }}-release.zip
