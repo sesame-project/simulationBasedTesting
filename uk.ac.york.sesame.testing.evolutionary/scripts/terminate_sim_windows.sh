@@ -36,7 +36,11 @@ killall -9 lamp_manager_node
 
 killall -9 scan_unifier_node
 
-pkill -f TestRunner
+#pkill -f TestRunner
+# Search for test runner Java processes and kill them
+ps -afW | grep javaw | grep PROGRA | awk '{print $2}' | xargs /bin/kill -f
+
+
 pkill -9 -f DDDSimulatorProject
 
 exit 0
