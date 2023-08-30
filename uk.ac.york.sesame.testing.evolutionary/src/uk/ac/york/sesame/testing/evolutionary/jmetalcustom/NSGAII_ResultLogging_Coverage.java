@@ -115,7 +115,6 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		this.offspringPopulationSize = offspringPopulationSize;
 		this.scenarioStr = scenarioStr;
 		
-		this.dimensionReducer = new SESAMEStandardDimensionSetReducer();
 		this.evolutionaryHistory = new ArrayList<S>();
 		this.useCoverageEnhancing = useMutationEnhancingCoverage;
 		
@@ -155,7 +154,8 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		double lower = di.getMinValue();
 		double upper = di.getMaxValue();
 		int count = di.getCount();
-		return new IntervalWithCount(lower,upper,count);
+		int extraTag = di.getExtraData();
+		return new IntervalWithCount(lower,upper,count, extraTag);
 	}
 	
 	private CoverageCheckingAlg createChecker() {
@@ -164,7 +164,8 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		for (DimensionInterval di : dimensionRecords) {
 			intervals.put(di.getDimID(), createFromDSLInfo(di));
 		}
-
+		
+		this.dimensionReducer = new SESAMEStandardDimensionSetReducer(intervals);
 		CoverageCheckingAlg covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL, NEEDED_COVERAGE_PROPORTION);
 		return covChecker;
 	}
@@ -174,6 +175,7 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		CoverageCheckingAlg covChecker = createChecker();
 		
 		// TODO: is this OK? do we need a global coverage checker?
+		
 		coverageMutationOperator.setCoverageChecker(covChecker);
 		coverageMutationOperator.setDimensionReducer(dimensionReducer);
 

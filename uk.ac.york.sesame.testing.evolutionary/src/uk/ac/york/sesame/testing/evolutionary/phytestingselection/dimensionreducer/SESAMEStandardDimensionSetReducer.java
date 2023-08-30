@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
+import uk.ac.york.sesame.testing.architecture.data.IntervalWithCount;
 import uk.ac.york.sesame.testing.architecture.data.TimeInterval;
 import uk.ac.york.sesame.testing.architecture.data.TimeInterval.InvalidTimingPair;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ConditionBasedActivation;
@@ -34,13 +35,23 @@ import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingTimingP
 /** SESAME Standard Dimensional Reducer **/
 public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensionalityReduction {
 
+	EnumMap<DimensionID, IntervalWithCount> intervalData;
+
 	public class UnimplementedOperation extends Exception {
 		private static final long serialVersionUID = 1L;
 	}
 
+	public SESAMEStandardDimensionSetReducer(EnumMap<DimensionID, IntervalWithCount> intervals) {
+		this.intervalData = intervals;
+	}
+
+	public SESAMEStandardDimensionSetReducer() {
+		this.intervalData = new EnumMap<DimensionID, IntervalWithCount>(DimensionID.class);
+	}
+
 	public TimeInterval fuzzingOperationTimeRange(FuzzingOperation op, boolean asTemplate) throws InvalidTimingPair {
 		Activation a = op.getActivation();
-		
+
 		// With template, always use the time from the model - even for condition-based
 		if ((a instanceof FixedTimeActivation) || asTemplate) {
 			double s = ((FixedTimeActivation) a).getStartTime();
@@ -61,7 +72,7 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 
 		throw new MissingTimingPair(op);
 	}
-	
+
 	public TimeInterval normalisedFuzzOpTimeRange(FuzzingOperation op) throws InvalidTimingPair {
 		TimeInterval tOrig = fuzzingOperationTimeRange(op, false);
 		TimeInterval tTemplate = fuzzingOperationTimeRange(op.getFromTemplate(), true);
@@ -143,7 +154,7 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 
 		throw new UnknownSize();
 	}
-	
+
 	private double getLowerBound(ValueSet vr) throws UnknownSize {
 		if (vr instanceof DoubleRange) {
 			DoubleRange dr = (DoubleRange) vr;
@@ -152,12 +163,12 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 
 		throw new UnknownSize();
 	}
-	
+
 	private double getLowerBound(DoubleRange vr) {
 		DoubleRange dr = (DoubleRange) vr;
 		return dr.getLowerBound();
 	}
-	
+
 	private double getRelativeInRange(DoubleRange dr, double v) {
 		double rel = (v - dr.getLowerBound()) / (dr.getUpperBound() - dr.getLowerBound());
 		return rel;
@@ -171,13 +182,22 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 			RandomValueFromSetOperation template = (RandomValueFromSetOperation) op.getFromTemplate();
 			Iterator<ValueSet> itVS = rvfs.getValueSet().iterator();
 			Iterator<ValueSet> itParent = template.getValueSet().iterator();
+
+			int i = 0;
+			int targetValue = -1;
+			if (intervalData.containsKey(DimensionID.P1_PARAMETER_MEAN)) {
+				targetValue = intervalData.get(DimensionID.P1_PARAMETER_MEAN).getExtraTag();
+			}
+
 			while (itVS.hasNext() && itParent.hasNext()) {
-				try {
-					double dist = getValueSetSize(itVS.next());
-					double templateDist = getValueSetSize(itParent.next());
-					normalisedParams.add(dist / templateDist);
-				} catch (UnknownSize e) {
-					System.out.println("UNKNOWN SIZE for param from " + op.toString());
+				if (i == targetValue) {
+					try {
+						double dist = getValueSetSize(itVS.next());
+						double templateDist = getValueSetSize(itParent.next());
+						normalisedParams.add(dist / templateDist);
+					} catch (UnknownSize e) {
+						System.out.println("UNKNOWN SIZE for param from " + op.toString());
+					}
 				}
 			}
 		}
@@ -185,7 +205,7 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		// The impact is the lower bound for latency, so normalise to the range
 		if (op instanceof LatencyNetworkOperation) {
 			LatencyNetworkOperation lno = (LatencyNetworkOperation) op;
-			LatencyNetworkOperation lnoTemplate = (LatencyNetworkOperation)op.getFromTemplate();
+			LatencyNetworkOperation lnoTemplate = (LatencyNetworkOperation) op.getFromTemplate();
 			DoubleRange tpRange = lnoTemplate.getLatency();
 			double v = getLowerBound(lno.getLatency());
 			double res = getRelativeInRange(tpRange, v);
@@ -195,7 +215,7 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		// The impact is the lower bound for packet loss, so normalise to the range
 		if (op instanceof PacketLossNetworkOperation) {
 			PacketLossNetworkOperation lno = (PacketLossNetworkOperation) op;
-			PacketLossNetworkOperation lnoTemplate = (PacketLossNetworkOperation)op.getFromTemplate();
+			PacketLossNetworkOperation lnoTemplate = (PacketLossNetworkOperation) op.getFromTemplate();
 			DoubleRange tpRange = lnoTemplate.getFrequency();
 			double v = getLowerBound(lno.getFrequency());
 			double res = getRelativeInRange(tpRange, v);
@@ -234,7 +254,7 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 
 	private void setParameterDimensions(List<FuzzingOperation> ops, EnumMap<DimensionID, Double> m) {
 		List<Double> normalisedParams = new ArrayList<Double>();
-		//List<FuzzingOperation> ops = t.getOperations();
+		// List<FuzzingOperation> ops = t.getOperations();
 		for (FuzzingOperation op : ops) {
 			accumulateNormalisedParams(normalisedParams, op);
 		}
@@ -255,7 +275,7 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		int fuzzRangeCount = 0;
 		int delayCount = 0;
 		int deletionCount = 0;
-		
+
 		for (FuzzingOperation op : ops) {
 			if (op instanceof RandomValueFromSetOperation) {
 				fuzzRangeCount++;
@@ -280,26 +300,27 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 			m.put(DimensionID.O0_TOTAL_COUNT, Double.valueOf(totalCount));
 		}
 	}
-	
-	private EnumMap<DimensionID, Double> generateDimensionSets(List<FuzzingOperation> ops) throws MissingDimensionsInMap {
+
+	private EnumMap<DimensionID, Double> generateDimensionSets(List<FuzzingOperation> ops)
+			throws MissingDimensionsInMap {
 		EnumMap<DimensionID, Double> m = new EnumMap<DimensionID, Double>(DimensionID.class);
 		setTimingDimensions(ops, m);
 		setParameterDimensions(ops, m);
 		setOpVarDimensions(ops, m);
-		
+
 		// If there are no operations, no values will be returned for this case!
 		if (ops.size() > 0) {
 			checkAllDimensionsSet(m);
 		}
-		
+
 		return m;
 	}
-	
+
 	public boolean opHasTiming(FuzzingOperation op) {
 		Activation a = op.getActivation();
-		
-		if ((a instanceof ConditionBasedActivation) || (a instanceof ConditionBasedTimeLimited) || 
-				(a instanceof ConditionBasedActivationImpl) || (a instanceof ConditionBasedTimeLimitedImpl)) {
+
+		if ((a instanceof ConditionBasedActivation) || (a instanceof ConditionBasedTimeLimited)
+				|| (a instanceof ConditionBasedActivationImpl) || (a instanceof ConditionBasedTimeLimitedImpl)) {
 			FixedTimeActivation fta = op.getRecordedTimings();
 			if (fta == null) {
 				// No timing info recorded for condition-based operation
@@ -313,7 +334,7 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 			return true;
 		}
 	}
-	
+
 	public List<FuzzingOperation> filterOpsRemoveUnactivated(List<FuzzingOperation> ops) {
 		return ops.stream().filter(op -> opHasTiming(op)).collect(Collectors.toList());
 	}
@@ -324,13 +345,15 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		List<FuzzingOperation> ops = filterOpsRemoveUnactivated(opsUnfiltered);
 		System.out.println("OPHASTIMING: after filtering - " + t.getName() + " - " + ops.size() + " operations");
 		EnumMap<DimensionID, Double> m = generateDimensionSets(ops);
-		
+
 		return m;
 	}
 
-	public EnumMap<DimensionID, Double> generateDimensionSetsSpeculative(SESAMETestSolution sts) throws MissingDimensionsInMap {
+	public EnumMap<DimensionID, Double> generateDimensionSetsSpeculative(SESAMETestSolution sts)
+			throws MissingDimensionsInMap {
 		List<SESAMEFuzzingOperationWrapper> sfowList = sts.getVariables();
-		List<FuzzingOperation> ops = sfowList.stream().map(sfow -> sfow.getFuzzingOperation()).collect(Collectors.toList());
+		List<FuzzingOperation> ops = sfowList.stream().map(sfow -> sfow.getFuzzingOperation())
+				.collect(Collectors.toList());
 		EnumMap<DimensionID, Double> m = generateDimensionSets(ops);
 		return m;
 	}

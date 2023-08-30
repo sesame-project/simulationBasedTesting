@@ -117,6 +117,7 @@ class DimensionInterval {
 	attr double minValue;
 	attr double maxValue;
 	attr int count;
+	attr int extraData = -1;
 }
 
 enum DimensionID {
@@ -125,7 +126,7 @@ enum DimensionID {
 	T3_TIME_MIDPOINT_VAR = 3; 
 	P1_PARAMETER_MEAN = 4;
 	P2_PARAMETER_VARIANCE = 5;
-
+	
 	O1_FUZZRANGE_COUNT = 6;
 	O2_DELAY_COUNT = 7;
 	O3_DELETION_COUNT = 8;

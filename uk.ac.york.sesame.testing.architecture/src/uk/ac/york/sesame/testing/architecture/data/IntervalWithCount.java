@@ -6,6 +6,7 @@ public class IntervalWithCount {
 	private final double lower;
 	private final double upper;
 	private final int count;
+	private final int extraTag;
 	private final double diffPerCount;
 	
 	public class InvalidInterval extends RuntimeException {
@@ -17,10 +18,11 @@ public class IntervalWithCount {
 		private static final long serialVersionUID = 1L;
 	}
 	
-	public IntervalWithCount(double lower, double upper, int count) throws InvalidInterval {
+	public IntervalWithCount(double lower, double upper, int count, int extraTag) throws InvalidInterval {
 		this.lower = lower;
 		this.upper = upper;
 		this.count = count;
+		this.extraTag = extraTag;
 		this.diffPerCount = (upper - lower) / (double)count;
 		if (upper < lower) {
 			throw new InvalidInterval(lower, upper);
@@ -37,6 +39,10 @@ public class IntervalWithCount {
 	
 	public int getCount() {
 		return count;
+	}
+	
+	public int getExtraTag() {
+		return extraTag;
 	}
 	
 	public int getIndexOfCellForValue(double v) {

@@ -849,13 +849,22 @@ public interface TestingPackagePackage extends EPackage {
 	int DIMENSION_INTERVAL__COUNT = 3;
 
 	/**
+	 * The feature id for the '<em><b>Extra Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_INTERVAL__EXTRA_DATA = 4;
+
+	/**
 	 * The number of structural features of the '<em>Dimension Interval</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIMENSION_INTERVAL_FEATURE_COUNT = 4;
+	int DIMENSION_INTERVAL_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Dimension Interval</em>' class.
@@ -1489,6 +1498,17 @@ public interface TestingPackagePackage extends EPackage {
 	EAttribute getDimensionInterval_Count();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getExtraData <em>Extra Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Extra Data</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getExtraData()
+	 * @see #getDimensionInterval()
+	 * @generated
+	 */
+	EAttribute getDimensionInterval_ExtraData();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution <em>Repeated Execution</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2012,6 +2032,14 @@ public interface TestingPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DIMENSION_INTERVAL__COUNT = eINSTANCE.getDimensionInterval_Count();
+
+		/**
+		 * The meta object literal for the '<em><b>Extra Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIMENSION_INTERVAL__EXTRA_DATA = eINSTANCE.getDimensionInterval_ExtraData();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.RepeatedExecutionImpl <em>Repeated Execution</em>}' class.
