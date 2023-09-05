@@ -1,5 +1,6 @@
 package uk.ac.york.sesame.testing.architecture.data;
 
+import java.time.Instant;
 import java.util.Map;
 
 import org.apache.kafka.common.serialization.Deserializer;
@@ -15,6 +16,14 @@ public class EventMessage implements IData, Serializer, Deserializer {
 	String id;
 	Object value;
 	long timestamp;
+	// Records the wall-clock time of the arrival of this message
+	long IN_walltime;
+	
+	// This is only used for debugging specific operations, e.g. the ordering of delay operations
+	long debugSequenceNumber;
+	
+	// When using delay operations, records the start time of message
+	double simTimeIn; 
 	String topic;
 	String type;
 	
@@ -22,12 +31,49 @@ public class EventMessage implements IData, Serializer, Deserializer {
 		
 	}
 	
+	public void setDebugSequenceNumber(long seqnum) {
+		this.debugSequenceNumber = seqnum;
+	}
+	
+	public long getDebugSequenceNumber() {
+		return debugSequenceNumber;
+	}
+	
+	public void setSimTimeIn(double time) {
+		this.simTimeIn = time;
+	}
+	
+	public double getSimTimeIn() {
+		return simTimeIn;
+	}
+	
 	public EventMessage(EventMessage other) {
 		this.id = other.id;
 		this.value = other.value;
 		this.timestamp = other.timestamp;
+		this.IN_walltime = other.IN_walltime;
 		this.topic = other.topic;
 		this.type = other.type;
+	}
+	
+	private long getWallTime() {
+		Instant instant = Instant.now();
+		long timeStampMillis = instant.toEpochMilli();
+		return timeStampMillis;
+	}
+	
+	public void setIN_walltime(long specific) {
+		this.IN_walltime = specific;
+	}
+	
+	public long getIN_walltime() {
+		return this.IN_walltime;
+	}
+	
+	public void setIN_walltime_from_current() {
+		if (this.IN_walltime == 0) {
+			this.IN_walltime = getWallTime();
+		} 
 	}
 		
 	public String getTopic() {

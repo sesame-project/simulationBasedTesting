@@ -37,14 +37,14 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	private static final long DEFAULT_HARDCODED_DELAY = 100;
 	
-	private static final long DEFAULT_COMPILE_DELAY = 10;
-	private static final long DEFAULT_KILL_DELAY = 10;
-	private static final long DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS = 10;
+	private static final long DEFAULT_KILL_DELAY = 5;
+	private static final long DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS = 5;
 	private static final long DEFAULT_WAIT_FOR_FINALISE_DELAY = 5;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
+	private static final double MODEL_SAVING_DELAY_IN_DEBUG_MODE = 0.5;
 
 	private static final boolean DUMMY_EVAL = false;
-	
+
 	private boolean conditionBased;
 
 	private Random rng;
@@ -58,49 +58,32 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	
 	private ConditionGenerator condGenerator;
 
-	private Resource testSpaceModel;
+	private SESAMEModelLoader loader;
 	private TestCampaign selectedCampaign;
-	private TestingSpace testingSpace;
 	private MRS mrs;
 
 	private SESAMEEGLExecutor eglEx;
 	private String codeGenerationDirectory;
 
-	private SESAMEModelLoader loader;
-
-	// TODO: how to model the grammar
-	// Grammar<String> grammar;
-
-	// properties here have been removed - they are either redundant or set from the
-	// model
-
 	// Sets up a metric queue to listen for the given campaign
 	private MetricConsumer setupMetricListener(TestCampaign campaign, SESAMETestSolution sol) throws InvalidTestCampaign {
-//		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-		
 		List<TopicPartition> parts = new ArrayList<TopicPartition>();
 		MetricConsumer metricConsumer = new MetricConsumer(campaign, sol, parts);
 		return metricConsumer;
 	}
 
-	public SESAMEEvaluationProblem(String orchestratorBasePath, String spaceModelFileName, String campaignName, String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
+	public SESAMEEvaluationProblem(String orchestratorBasePath, SESAMEModelLoader loader, String spaceModelFileName, Resource testingSpaceModel, TestingSpace testingSpace, Optional<TestCampaign> tc_o, String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
 			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException, MissingGrammarFile {
-		this.spaceModelFileName = spaceModelFileName;
-		this.campaignName = campaignName;
 		this.codeGenerationDirectory = codeGenerationDirectory;
 		this.orchestratorBasePath = orchestratorBasePath;
 		this.conditionBased = conditionBased;
-		loader = new SESAMEModelLoader(spaceModelFileName);
-		testSpaceModel = loader.loadTestingSpace();
-		
-		Optional<TestCampaign> tc_o = loader.getTestCampaign(testSpaceModel, campaignName);
-			
+		this.spaceModelFileName = spaceModelFileName;
+		this.loader = loader;
+
 		// TODO: mrsModelFile is not currently used - until the bug is fixed and there
 		// is a seperate model again
 		//String __mrsModelFile = "testingMRS.model";
 		//eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
-		
-		testingSpace = loader.getTestingSpace(testSpaceModel);
 		mrs = testingSpace.getMrs();
 		rng = new Random();
 
@@ -129,7 +112,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	// TODO: this should be a method upon TestCampaign when it is figured out how
 	// to create them with the genmodel
 	public int getNumberOfMetricsInTestCampaign(TestCampaign tc) {
-		return tc.getMetrics().size();
+		return (int)tc.getMetrics().stream().filter(m -> m.isUseInOptimisation()).count();
 	}
 
 	public int getNumberOfObjectives() {
@@ -158,13 +141,21 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 			System.out.println("Running test for " + solution);
 			// This ensures that the new test is installed in the model
+			
+			solution.setOperationSequenceNums();
+			
 			solution.ensureModelUpdated(selectedCampaign);
 			loader.saveTestingSpace();
 			System.out.println("Model updated");
 			
 			System.out.print("Waiting to begin code generation...");
 			System.out.flush();
-			TestRunnerUtils.waitForSeconds(DEFAULT_MODEL_SAVING_DELAY);
+			
+			if (DEBUG_ACTUALLY_GENERATE_EGL) { 
+				TestRunnerUtils.waitForSeconds(DEFAULT_MODEL_SAVING_DELAY);
+			} else {
+				TestRunnerUtils.waitForSeconds(MODEL_SAVING_DELAY_IN_DEBUG_MODE);
+			}
 			
 			if (DEBUG_ACTUALLY_GENERATE_EGL) {
 				// This transform the testing space model into code - by invoking EGX/EGL
@@ -182,13 +173,13 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				// Invoke maven script to ensure that the project is rebuilt
 				TestRunnerUtils.compileProject(codeGenerationDirectory);
 				// It will wait for compilation of the compileProject automatically
-				System.out.println("Compilation done");
+				System.out.println("Compilation completed");
 
 				// Invokes the main method for this code
 				System.out.print("Launching test runner for " + mainClassName + "... (classpath " + codeGenerationDirectory + ")");
 				System.out.flush();
 				TestRunnerUtils.exec(mainClassName, codeGenerationDirectory);
-				System.out.println("Testrunner launched");		
+				System.out.println("Testrunner " + mainClassName + " launched");		
 				System.out.flush();
 										
 				if (RECORD_ROSBAG) {
@@ -228,7 +219,11 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				System.out.println("done");
 
 				// Send the end of simulation message
+				// TODO: for now the end of simulation message is used for both
+				// time tracking and start-end tracking
 				controlProducer.send(ControlMessage.CONTROL_COMMAND.END_SIMULATION);
+				// Send the time tracking message
+				//controlProducer.send(ControlMessage.CONTROL_COMMAND.GET_OPERATION_RECORDED_TIMINGS);
 				metricConsumer.notifyFinalise();
 				System.out.print("Finalising: Waiting for metrics to come back from test runner " + waitTimeSeconds + " seconds...");
 				TestRunnerUtils.waitForSeconds(DEFAULT_WAIT_FOR_FINALISE_DELAY);
@@ -385,9 +380,4 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	    int randomIndex = rng.nextInt(listSize);
 	    return FuzzingOperations.get(randomIndex);
 	}
-
-//	public void shutDownMetricListener() {
-//		metricConsumer.close();
-//		
-//	}
 }

@@ -13,6 +13,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LatencyNetworkOperation#getLatency <em>Latency</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LatencyNetworkOperation#isRandomised <em>Randomised</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getLatencyNetworkOperation()
@@ -41,5 +42,28 @@ public interface LatencyNetworkOperation extends NetworkFuzzingOperation {
 	 * @generated
 	 */
 	void setLatency(DoubleRange value);
+
+	/**
+	 * Returns the value of the '<em><b>Randomised</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Randomised</em>' attribute.
+	 * @see #setRandomised(boolean)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getLatencyNetworkOperation_Randomised()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isRandomised();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LatencyNetworkOperation#isRandomised <em>Randomised</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Randomised</em>' attribute.
+	 * @see #isRandomised()
+	 * @generated
+	 */
+	void setRandomised(boolean value);
 
 } // LatencyNetworkOperation

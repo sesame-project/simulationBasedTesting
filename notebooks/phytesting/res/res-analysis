@@ -1,0 +1,128 @@
+Time-based
+
+Campaign: coverageExperiment
+
+Using generation 210 as 220 collapsed down to 4 points!
+		
+ResultSet: NONDOM-20_06_2023_18_50_18-intermediate-210				
+						fuzzingOperationTimes	collisionOccurance			
+					
+Test:Test_103_20_06_2023_16_00_58		0.003			0.000			 1:attackJointPosR3200ProductMove_Link1([0.14-0.22])FixedTimeActivation:{62.5->62.5},
+Test:Test_158_20_06_2023_17_16_31		49.238			18.000			 2:attackJointPosR3200ProductMove_Link0([0.27-0.29])FixedTimeActivation:{53.1->53.5},attackJointPosR3200ProductMove_Link0([0.27-0.30])FixedTimeActivation:{3.5->52.3},
+Test:Test_202_20_06_2023_18_34_24		0.003			0.000			 1:attackJointPosR3200ProductMove_Link1([0.14-0.22])FixedTimeActivation:{62.5->62.5},
+Test:Test_027_20_06_2023_14_04_38 32.993 14.000 2:attackJointPosR3200ProductMove_Link0([0.27-0.29])FixedTimeActivation:{53.1->53.5},attackJointPosR3200ProductMove_Link0([0.27-0.30])FixedTimeActivation:{12.6->45.2},
+Test:Test_174_20_06_2023_17_47_19		15.089			10.000			 1:attackJointPosR3200ProductMove_Link1([-0.10-0.17])FixedTimeActivation:{16.7->31.8},
+Test:Test_161_20_06_2023_17_31_53		34.720			15.000			 2:attackJointPosR3200ProductMove_Link1([-0.17-0.12])FixedTimeActivation:{64.3->64.3},attackJointPosR3200ProductMove_Link0([-0.30-0.07])FixedTimeActivation:{25.2->59.9},
+Test:Test_209_20_06_2023_18_34_24		2.351			6.000			 1:attackJointPosR3200ProductMove_Link1([0.11-0.17])FixedTimeActivation:{43.1->45.4},
+Test:Test_201_20_06_2023_18_34_24		13.203			7.000			 1:attackJointPosR3200ProductMove_Link1([0.09-0.27])FixedTimeActivation:{13.0->26.2},
+Test:Test_187_20_06_2023_18_02_50		1.981			2.000			 1:attackJointPosR3200ProductMove_Link0([0.29-0.30])FixedTimeActivation:{34.7->36.7},
+Test:Test_137_20_06_2023_16_46_05		13.480			9.000			 1:attackJointPosR3200ProductMove_Link0([0.29-0.30])FixedTimeActivation:{27.3->40.8},
+
+ResultSet: NONDOM-20_06_2023_19_06_15-intermediate-220
+
+						fuzzingOperationTimes			collisionOccurance			
+					
+Test:Test_103_20_06_2023_16_00_58		0.003			0.000			 1:attackJointPosR3200ProductMove_Link1([0.14-0.22])FixedTimeActivation:{62.5->62.5},
+Test:Test_158_20_06_2023_17_16_31		49.238			18.000			 2:attackJointPosR3200ProductMove_Link0([0.27-0.29])FixedTimeActivation:{53.1->53.5},attackJointPosR3200ProductMove_Link0([0.27-0.30])FixedTimeActivation:{3.5->52.3},
+Test:Test_202_20_06_2023_18_34_24		0.003			0.000			 1:attackJointPosR3200ProductMove_Link1([0.14-0.22])FixedTimeActivation:{62.5->62.5},
+Test:Test_212_20_06_2023_18_50_18		0.050			15.000			 1:attackJointPosR3200ProductMove_Link1([-0.22-0.27])FixedTimeActivation:{64.4->64.4},
+Campaign: fixedConfigs
+
+Campaign: coverageBoostingExperiment
+
+ResultSet: NONDOM-25_06_2023_13_32_12-intermediate-110
+					
+						fuzzingOperationTimes			collisionOccurance			
+					
+Test:Test_063_25_06_2023_12_09_47		0.022			0.000			 1:attackJointPosR3200ProductMove_Link1([0.27-0.29])FixedTimeActivation:{42.9->42.9},
+Test:Test_072_25_06_2023_12_26_09		20.781			20.000			 1:attackJointPosR3200ProductMove_Link1([-0.02-0.27])FixedTimeActivation:{2.1->22.8},
+Test:Test_098_25_06_2023_12_59_00		1.993			7.000			 1:attackJointPosR3200ProductMove_Link1([0.10-0.23])FixedTimeActivation:{3.1->5.1},
+
+
+Second run for 220
+
+Test:Test_076_30_06_2023_10_43_52,15.154,17.000,1:attackJointPosR3200ProductMove_Link1([-0.07-0.21])FixedTimeActivation:{43.3->58.4},
+Test:Test_082_30_06_2023_10_58_32,0.005,0.000,1:attackJointPosR3200ProductMove_Link1([-0.07-0.21])FixedTimeActivation:{47.5->47.5},
+Test:Test_170_30_06_2023_12_59_39,6.765,6.000,1:attackJointPosR3200ProductMove_Link1([0.20-0.22])FixedTimeActivation:{39.3->46.0},
+Test:Test_159_30_06_2023_12_44_16,6.765,6.000,1:attackJointPosR3200ProductMove_Link1([0.11-0.16])FixedTimeActivation:{39.3->46.0},
+Test:Test_075_30_06_2023_10_43_52,3.916,1.000,2:attackJointPosR3200ProductMove_Link1([-0.11--0.10])FixedTimeActivation:{61.5->61.6},attackJointPosR3200ProductMove_Link0([0.26-0.30])FixedTimeActivation:{57.6->61.4},
+Test:Test_044_30_06_2023_10_00_08,5.703,2.000,1:attackJointPosR3200ProductMove_Link1([-0.10--0.01])FixedTimeActivation:{51.6->57.3},
+
+Selected subsets for 210
+
+lambda_0.0
+NAME 	TESTTAG 	T1_TIME_MIDPOINT_MEAN 	T2_TIME_LENGTH_MEAN 	T3_TIME_MIDPOINT_VAR 	P1_PARAMETER_MEAN 	P2_PARAMETER_VARIANCE 	O0_TOTAL_COUNT 	O1_FUZZRANGE_COUNT 	O2_DELAY_COUNT 	O3_DELETION_COUNT 	METRIC_Q
+26 	Test_027_20_06_2023_14_04_38 	1 	0.631954 	0.253792 	0.187541 	0.045894 	0.000041 	2.0 	2.0 	0.0 	0.0 	0.959091
+136 	Test_137_20_06_2023_16_46_05 	1 	0.523465 	0.207389 	0.000000 	0.013301 	0.000000 	1.0 	1.0 	0.0 	0.0 	0.909091
+157 	Test_158_20_06_2023_17_16_31 	1 	0.624207 	0.378752 	0.195288 	0.045894 	0.000041 	2.0 	2.0 	0.0 	0.0 	0.995455
+160 	Test_161_20_06_2023_17_31_53 	1 	0.821790 	0.267080 	0.167038 	0.547643 	0.004407 	2.0 	2.0 	0.0 	0.0 	0.972727
+173 	Test_174_20_06_2023_17_47_19 	1 	0.372400 	0.232132 	0.000000 	0.445226 	0.000000 	1.0 	1.0 	0.0 	0.0 	0.922727
+
+lambda_0.5
+
+157 	Test_158_20_06_2023_17_16_31 	1 	0.624207 	0.378752 	0.195288 	0.045894 	0.000041 	2.0 	2.0 	0.0 	0.0 	0.995455
+160 	Test_161_20_06_2023_17_31_53 	1 	0.821790 	0.267080 	0.167038 	0.547643 	0.004407 	2.0 	2.0 	0.0 	0.0 	0.972727
+173 	Test_174_20_06_2023_17_47_19 	1 	0.372400 	0.232132 	0.000000 	0.445226 	0.000000 	1.0 	1.0 	0.0 	0.0 	0.922727
+200 	Test_201_20_06_2023_18_34_24 	1 	0.301512 	0.203121 	0.000000 	0.292222 	0.000000 	1.0 	1.0 	0.0 	0.0 	0.877273
+208 	Test_209_20_06_2023_18_34_24 	1 	0.680639 	0.036177 	0.000000 	0.105931 	0.000000 	1.0 	1.0 	0.0 	0.0 	0.854545
+
+lambda_1.0
+
+102 	Test_103_20_06_2023_16_00_58 	1 	0.961082 	0.000044 	0.000000 	0.122587 	0.000000 	1.0 	1.0 	0.0 	0.0 	0.231818
+157 	Test_158_20_06_2023_17_16_31 	1 	0.624207 	0.378752 	0.195288 	0.045894 	0.000041 	2.0 	2.0 	0.0 	0.0 	0.995455
+160 	Test_161_20_06_2023_17_31_53 	1 	0.821790 	0.267080 	0.167038 	0.547643 	0.004407 	2.0 	2.0 	0.0 	0.0 	0.972727
+173 	Test_174_20_06_2023_17_47_19 	1 	0.372400 	0.232132 	0.000000 	0.445226 	0.000000 	1.0 	1.0 	0.0 	0.0 	0.922727
+186 	Test_187_20_06_2023_18_02_50 	1 	0.549837 	0.030482 	0.000000 	0.013301 	0.000000 	1.0 	1.0 	0.0 	0.0 	0.663636xsx
+
+Condition-based fuzzing at evaluation 210:
+
+Test:Test_006_03_07_2023_05_24_22               35.950                  19.000                   1:attackJointPosR3200ProductMove_Link1([-0.19-0.25])ConditionBasedActivation:{starting:((jointExtremeR3200Link1Neg) < (17)) || ((jointExtremeR3200Link1Neg) > (entryToTriggerZone3))},{ending:((jointExtremeR3200Link0Neg) < $
+Test:Test_104_03_07_2023_07_45_50               32.360                  7.000                    1:attackJointPosR3200ProductMove_Link1([0.17-0.25])ConditionBasedActivation:{starting:((jointExtremeR3200Link1Neg) > (entryToTriggerZone3)) || ((entryToTriggerZone2) > (10))},{ending:((jointExtremeR3200Link1Neg) < (entryT$
+Test:Test_045_03_07_2023_06_20_11               5.050                   3.000                    1:attackJointPosR3200ProductMove_Link0([-0.10-0.29])ConditionBasedActivation:{starting:((jointExtremeR3200Link1Pos) < (2)) || ((jointExtremeR3200Link1Neg) < (jointExtremeR3200Link1Neg))},{ending:((jointExtremeR3200Link1Ne$
+Test:Test_093_03_07_2023_07_31_24               4.890                   1.000                    1:attackJointPosR3200ProductMove_Link0([0.07-0.15])ConditionBasedActivation:{starting:((jointExtremeR3200Link1Pos) < (17)) || ((jointExtremeR3200Link1Neg) < (jointExtremeR3200Link1Neg))},{ending:((jointExtremeR3200Link1Ne$
+Test:Test_146_03_07_2023_08_44_04               4.900                   2.000                    1:attackJointPosR3200ProductMove_Link0([0.01-0.04])ConditionBasedActivation:{starting:((jointExtremeR3200Link1Pos) < (2)) || ((jointExtremeR3200Link1Neg) < (jointExtremeR3200Link1Neg))},{ending:((jointExtremeR3200Link1Neg$
+Test:Test_190_03_07_2023_09_43_13               0.000                   0.000                    1:attackJointPosR3200ProductMove_Link1([0.08-0.24])ConditionBasedActivation:{starting:((jointExtremeR3200Link1Pos) > (jointExtremeR3200Link0Pos)) || ((entryToTriggerZone1) > (9))},{ending:((jointExtremeR3200Link1Pos) < (1$
+
+Test_006 : 19 - ((jointExtremeR3200Link1Neg) < (17)) || ((jointExtremeR3200Link1Neg) > (entryToTriggerZone3))}
+Test_104 : 7  - ((jointExtremeR3200Link1Neg) > (entryToTriggerZone3)) || ((entryToTriggerZone2) > (10)
+Test_045 : 3  - ((jointExtremeR3200Link1Pos) < (2)) || ((jointExtremeR3200Link1Neg) < (jointExtremeR3200Link1Neg))},
+Test_146 : 2  - ((jointExtremeR3200Link1Pos) < (2)) || ((jointExtremeR3200Link1Neg) < (jointExtremeR3200Link1Neg))},{ending:((jointExtremeR3200Link1Neg
+
+evaluations,coverageProp
+20,0.037037037037037035
+30,0.046296296296296294
+40,0.046296296296296294
+50,0.05555555555555555
+60,0.05555555555555555
+70,0.05555555555555555
+80,0.05555555555555555
+90,0.05555555555555555
+100,0.06481481481481481
+110,0.06481481481481481
+120,0.06481481481481481
+130,0.07407407407407407
+140,0.07407407407407407
+150,0.07407407407407407
+160,0.07407407407407407
+170,0.08333333333333333
+180,0.09259259259259259
+190,0.09259259259259259
+200,0.10185185185185185
+210,0.10185185185185185
+220,0.10185185185185185
+230,0.10185185185185185
+240,0.1111111111111111
+250,0.1111111111111111
+260,0.1111111111111111
+270,0.12962962962962962
+280,0.1388888888888889
+290,0.1388888888888889
+300,0.1388888888888889
+310,0.1388888888888889
+320,0.1388888888888889
+330,0.1388888888888889
+340,0.1388888888888889
+350,0.1574074074074074
+360,0.1574074074074074
+370,0.1574074074074074
+380,0.1574074074074074

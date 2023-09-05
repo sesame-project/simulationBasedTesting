@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.FuzzingOperations="FuzzingOperations" xmlns:TestingMM.MRSPackage="MRSPackage" xmlns:TestingMM.Metrics="Metrics" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="TestingMM.Metrics:FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_UrYTwGVlEe2P2ZFJWtv89A" defaultVal="100000.0"/>
+    <initValue xmi:id="_dUV5YCPuEe60x8sBydmDLw"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_-uTgoGBPEe27gLEnzzOoKw" filename="/tmp/fuzzopTimes"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_2fP74GBMEe27gLEnzzOoKw" name="staticCollision" relatedVariables="_F4f2wCcfEe6mGo1DSB8Qmw _b2WOICcfEe6mGo1DSB8Qmw" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_XG8XQGVlEe2P2ZFJWtv89A"/>
+    <initValue xmi:id="_aVVxoCPuEe60x8sBydmDLw"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_NlsBEGBPEe27gLEnzzOoKw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="__NR7oGBPEe27gLEnzzOoKw" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_wGM5wCosEe6R141ANPxhuQ" name="dynamicCollision" relatedVariables="_F4f2wCcfEe6mGo1DSB8Qmw _b2WOICcfEe6mGo1DSB8Qmw" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_wGM5wSosEe6R141ANPxhuQ"/>
+    <initValue xmi:id="_wGM5wiosEe6R141ANPxhuQ"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_wGM5wyosEe6R141ANPxhuQ"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_wGM5xCosEe6R141ANPxhuQ" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_yVjtQCosEe6R141ANPxhuQ" name="cellTime" relatedVariables="_F4f2wCcfEe6mGo1DSB8Qmw _b2WOICcfEe6mGo1DSB8Qmw" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_yVjtQSosEe6R141ANPxhuQ"/>
+    <initValue xmi:id="_yVjtQiosEe6R141ANPxhuQ"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_yVjtQyosEe6R141ANPxhuQ"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_yVjtRCosEe6R141ANPxhuQ" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_3FMQUHBMEe2Y6ZOMdkM14Q" name="jointExtremeR3200Link0Pos">
+    <valueIfNotReceived xmi:id="_3FMQUXBMEe2Y6ZOMdkM14Q"/>
+    <initValue xmi:id="_bFYugCPuEe60x8sBydmDLw"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_3FMQUnBMEe2Y6ZOMdkM14Q"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_3FMQU3BMEe2Y6ZOMdkM14Q" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_6F1W0HBMEe2Y6ZOMdkM14Q" name="jointExtremeR3200Link0Neg" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_6F1W0XBMEe2Y6ZOMdkM14Q"/>
+    <initValue xmi:id="_bx52QCPuEe60x8sBydmDLw"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_6F1W0nBMEe2Y6ZOMdkM14Q"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_6F1W03BMEe2Y6ZOMdkM14Q" filename="/tmp/collisionOccurance"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_CTvKMKODEe2SY5_vP2qLCw" name="joint0Value">
+    <initValue xmi:id="_YPQw4KOEEe2SY5_vP2qLCw"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_Q4D50KOEEe2SY5_vP2qLCw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_R3170KOEEe2SY5_vP2qLCw" filename="/mnt/resources/metric-values/stepping-collision-test/joint0Val"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_fCKeED_ZEe2sLoIc1V16Ug" name="attackJointPosR3200ProductMove_Link0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_fCKeET_ZEe2sLoIc1V16Ug" startTime="100000.0" endTime="100001.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_fCKeEj_ZEe2sLoIc1V16Ug" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_iMvvkCPqEe60x8sBydmDLw">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_GLQd8CPuEe60x8sBydmDLw" endTime="100.0"/>
+    <frequency xmi:id="_XN-_ICPuEe60x8sBydmDLw" lowerBound="0.5" upperBound="0.5"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw _wGM5wCosEe6R141ANPxhuQ _yVjtQCosEe6R141ANPxhuQ" conditionMetrics="_6F1W0HBMEe2Y6ZOMdkM14Q _3FMQUHBMEe2Y6ZOMdkM14Q" includedOperations="_fCKeED_ZEe2sLoIc1V16Ug">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="30" iterations="1000"/>
+    <performedTests xmi:id="_4L2TwCpDEe6R141ANPxhuQ" name="Test_001_24_07_2023_17_35_16">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_4L2TwSpDEe6R141ANPxhuQ" name="attackJointPosR3200ProductMove_Link0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_4L2TwipDEe6R141ANPxhuQ" startTime="100000.32918231086" endTime="100000.62753533933"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_4L2TwypDEe6R141ANPxhuQ" propertyName="" lowerBound="-0.07378549548141614" upperBound="0.16833221097708564"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_4L2TxCpDEe6R141ANPxhuQ" name="Test_001_24_07_2023_17_46_29">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_4L260CpDEe6R141ANPxhuQ" name="attackJointPosR3200ProductMove_Link0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_4L260SpDEe6R141ANPxhuQ" startTime="100000.83511783926" endTime="100000.96323780311"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_4L260ipDEe6R141ANPxhuQ" propertyName="" lowerBound="-0.12467650136893352" upperBound="0.18065414548486533"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_4L260ypDEe6R141ANPxhuQ" name="Test_001_24_07_2023_17_55_53">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_4L261CpDEe6R141ANPxhuQ" name="attackJointPosR3200ProductMove_Link0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_4L3h4CpDEe6R141ANPxhuQ" startTime="100000.73215942322" endTime="100000.82535452845"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_4L3h4SpDEe6R141ANPxhuQ" propertyName="" lowerBound="0.1122411982833681" upperBound="0.28278102725311044"/>
+      </operations>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="150"/>
+  </campaigns>
+  <campaigns xmi:id="_bSfBcGWjEe2lzbEGtmyFug" name="fixedConfigs" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_bSfBcWWjEe2lzbEGtmyFug" populationSize="10" iterations="50"/>
+    <performedTests xmi:id="_SU2tgKO8Ee2y3t0hG6e6TA" name="Test_nullfuzzing"/>
+    <performedTests xmi:id="_03tPgB8sEe62ML4X9P60kQ" name="Test_fixedFuzzing10Sec_randomvalue">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_03tPgR8sEe62ML4X9P60kQ" name="attackJointPosR3200ProductMove_Link0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_03tPgh8sEe62ML4X9P60kQ" startTime="10.0" endTime="20.0"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_03tPgx8sEe62ML4X9P60kQ" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_1unzwCPqEe60x8sBydmDLw" name="Test_fixedFuzzing10Sec_packetloss">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_37eF0CPqEe60x8sBydmDLw" name="packetLossLink0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_7aYcsCPqEe60x8sBydmDLw" startTime="10.0" endTime="20.0"/>
+        <frequency xmi:id="_95XnoCPqEe60x8sBydmDLw" lowerBound="0.5" upperBound="0.5"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_mqyIECRhEe6jUq2LoBoE8g" name="Test_fixedFuzzing10Sec_delay">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_-vpPQCRhEe6jUq2LoBoE8g" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_BCh34CRiEe6jUq2LoBoE8g" startTime="10.0" endTime="20.0"/>
+        <latency xmi:id="_EU1WICRiEe6jUq2LoBoE8g" lowerBound="1.0" upperBound="1.0"/>
+      </operations>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_bSfBcmWjEe2lzbEGtmyFug" timeLimitSeconds="150"/>
+  </campaigns>
+  <campaigns xmi:id="_TZCBgGv8Ee2UnfZglnlwgQ" name="repeatDeterminism" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw _CTvKMKODEe2SY5_vP2qLCw" includedOperations="_fCKeED_ZEe2sLoIc1V16Ug">
+    <approach xsi:type="TestingMM:RepeatedExecution" xmi:id="_biauAGv9Ee2UnfZglnlwgQ" testToRepeat="_03tPgB8sEe62ML4X9P60kQ" repeatCount="10"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_TZCqEGv8Ee2UnfZglnlwgQ" timeLimitSeconds="20"/>
+  </campaigns>
+  <campaigns xmi:id="_WHt7IKO8Ee2y3t0hG6e6TA" name="repeatDeterminism-nullfuzzing" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw _CTvKMKODEe2SY5_vP2qLCw" conditionMetrics="_CTvKMKODEe2SY5_vP2qLCw" includedOperations="_fCKeED_ZEe2sLoIc1V16Ug">
+    <approach xsi:type="TestingMM:RepeatedExecution" xmi:id="_WHt7IaO8Ee2y3t0hG6e6TA" testToRepeat="_SU2tgKO8Ee2y3t0hG6e6TA" repeatCount="20"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_WHt7nqO8Ee2y3t0hG6e6TA" timeLimitSeconds="150"/>
+  </campaigns>
+  <campaigns xmi:id="__t0AwCPqEe60x8sBydmDLw" name="repeatDeterminism-packetloss" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw _CTvKMKODEe2SY5_vP2qLCw" conditionMetrics="_CTvKMKODEe2SY5_vP2qLCw" includedOperations="_fCKeED_ZEe2sLoIc1V16Ug">
+    <approach xsi:type="TestingMM:RepeatedExecution" xmi:id="__t0AwSPqEe60x8sBydmDLw" testToRepeat="_1unzwCPqEe60x8sBydmDLw" repeatCount="3"/>
+    <performedTests xmi:id="_VYrVQCPsEe60x8sBydmDLw" name="Test_fixedFuzzing10Sec_packetloss_repeat0">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_VYrVQSPsEe60x8sBydmDLw" name="packetLossLink0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_VYrVQiPsEe60x8sBydmDLw" startTime="10.0" endTime="20.0"/>
+        <frequency xmi:id="_VYrVQyPsEe60x8sBydmDLw" lowerBound="0.5" upperBound="0.5"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_mj4rUCRgEe6jUq2LoBoE8g" name="Test_fixedFuzzing10Sec_packetloss_repeat1">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_mj5SYCRgEe6jUq2LoBoE8g" name="packetLossLink0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_mj5SYSRgEe6jUq2LoBoE8g" startTime="10.0" endTime="20.0"/>
+        <frequency xmi:id="_mj5SYiRgEe6jUq2LoBoE8g" lowerBound="0.5" upperBound="0.5"/>
+      </operations>
+      <metrics xmi:id="_mj55cCRgEe6jUq2LoBoE8g" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_mj55cSRgEe6jUq2LoBoE8g" name="fuzzingOperationTimes" value="10.0"/>
+      </metrics>
+      <metrics xmi:id="_mj55ciRgEe6jUq2LoBoE8g" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_mj55cyRgEe6jUq2LoBoE8g" name="collisionOccurance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_mj55dCRgEe6jUq2LoBoE8g" name="Test_fixedFuzzing10Sec_packetloss_repeat2">
+      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_mj55dSRgEe6jUq2LoBoE8g" name="packetLossLink0" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_mj6ggCRgEe6jUq2LoBoE8g" startTime="10.0" endTime="20.0"/>
+        <frequency xmi:id="_mj6ggSRgEe6jUq2LoBoE8g" lowerBound="0.5" upperBound="0.5"/>
+      </operations>
+      <metrics xmi:id="_mj6ggiRgEe6jUq2LoBoE8g" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_mj6ggyRgEe6jUq2LoBoE8g" name="fuzzingOperationTimes" value="10.0"/>
+      </metrics>
+      <metrics xmi:id="_mj7HkCRgEe6jUq2LoBoE8g" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_mj7HkSRgEe6jUq2LoBoE8g" name="collisionOccurance"/>
+      </metrics>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="__t0A2iPqEe60x8sBydmDLw" timeLimitSeconds="50"/>
+  </campaigns>
+  <campaigns xmi:id="_8ilsYCRiEe6jUq2LoBoE8g" name="repeatDeterminism-delay" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw _CTvKMKODEe2SY5_vP2qLCw" conditionMetrics="_CTvKMKODEe2SY5_vP2qLCw" includedOperations="_fCKeED_ZEe2sLoIc1V16Ug">
+    <approach xsi:type="TestingMM:RepeatedExecution" xmi:id="_8imTcCRiEe6jUq2LoBoE8g" testToRepeat="_mqyIECRhEe6jUq2LoBoE8g" repeatCount="3"/>
+    <performedTests xmi:id="_sM9esCopEe6R141ANPxhuQ" name="Test_fixedFuzzing10Sec_delay_repeat0">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_sM9esSopEe6R141ANPxhuQ" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_sM9esiopEe6R141ANPxhuQ" startTime="10.0" endTime="20.0"/>
+        <latency xmi:id="_sM9esyopEe6R141ANPxhuQ" lowerBound="1.0" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_sM9etCopEe6R141ANPxhuQ" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_sM9etSopEe6R141ANPxhuQ" name="fuzzingOperationTimes" value="100000.0"/>
+      </metrics>
+      <metrics xmi:id="_sM9etiopEe6R141ANPxhuQ" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_sM9etyopEe6R141ANPxhuQ" name="collisionOccurance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_sM9euCopEe6R141ANPxhuQ" name="Test_fixedFuzzing10Sec_delay_repeat1">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_sM9euSopEe6R141ANPxhuQ" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_sM9euiopEe6R141ANPxhuQ" startTime="10.0" endTime="20.0"/>
+        <latency xmi:id="_sM9euyopEe6R141ANPxhuQ" lowerBound="1.0" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_sM9evCopEe6R141ANPxhuQ" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_sM9evSopEe6R141ANPxhuQ" name="fuzzingOperationTimes" value="10.0"/>
+      </metrics>
+      <metrics xmi:id="_sM9eviopEe6R141ANPxhuQ" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_sM9evyopEe6R141ANPxhuQ" name="collisionOccurance"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_sM9ewCopEe6R141ANPxhuQ" name="Test_fixedFuzzing10Sec_delay_repeat2">
+      <operations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_sM9ewSopEe6R141ANPxhuQ" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_sM9ewiopEe6R141ANPxhuQ" startTime="10.0" endTime="20.0"/>
+        <latency xmi:id="_sM9ewyopEe6R141ANPxhuQ" lowerBound="1.0" upperBound="1.0"/>
+      </operations>
+      <metrics xmi:id="_sM-FwCopEe6R141ANPxhuQ" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_sM-FwSopEe6R141ANPxhuQ" name="fuzzingOperationTimes" value="10.0"/>
+      </metrics>
+      <metrics xmi:id="_sM-FwiopEe6R141ANPxhuQ" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_sM-FwyopEe6R141ANPxhuQ" name="collisionOccurance"/>
+      </metrics>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_8imThSRiEe6jUq2LoBoE8g" timeLimitSeconds="50"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/mnt/resources/dl-temp/sesame/KukaCell-versions/KukaCell-2023-07-20" launchDelaySeconds="10">
+    <variables xmi:id="_ZjJHUD8uEe2Lapf8udQiDQ" name="joints/R3200ProductMove/Link0/R/position" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_F4f2wCcfEe6mGo1DSB8Qmw" name="safetyzones/Z1" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_b2WOICcfEe6mGo1DSB8Qmw" name="safetyzones/Z2" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="R3200" publisher="_ZjJHUD8uEe2Lapf8udQiDQ"/>
+    <simulator xsi:type="TestingMM.MRSPackage:TTSSimulator" xmi:id="_G7808Az1Ee2dUZBawpc2Eg" hostname="localhost" port="8089" useStepping="true"/>
+    <propertyType xmi:id="_EYa9sAz0Ee2dUZBawpc2Eg" name="doubleEncodedAsString" parsingMethod="STRING"/>
+    <propertyType xmi:id="_nV6N8GA7Ee27gLEnzzOoKw" name="SafetyZone"/>
+  </mrs>
+</TestingMM:TestingSpace>

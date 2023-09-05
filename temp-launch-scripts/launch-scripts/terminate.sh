@@ -31,4 +31,10 @@ killall -9 map_navigation_corridor_white.py
 killall -9 map_navigation_corridor_white*.py
 killall -9 map_navigation_corridor_white_autostart.py
 killall -9 virtual_uvc_meter
+killall -9 navigation.py
+killall -9 scan_unifier_node
 
+pkill -f auto_launch_locomotec3.sh
+pkill -f navigation_multi
+pkill -f lamp_manager
+pkill -f person_detector

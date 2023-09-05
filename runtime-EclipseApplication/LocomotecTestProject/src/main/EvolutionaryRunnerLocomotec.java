@@ -1,5 +1,7 @@
 package main;
 
+import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
+
 import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
 
 public class EvolutionaryRunnerLocomotec {
@@ -26,7 +28,7 @@ public class EvolutionaryRunnerLocomotec {
 		// Sets the space model file and the campaign to run here
 		
 		// PATHS HERE
-		final String spaceModelFileName = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/LocomotecTestProject/models/testingLocomotec2.model";
+		final String spaceModelFileName = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/LocomotecTestProject/models/testingLocomotec3.model";
 		final String CODE_GENERATION_DIRECTORY = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/LocomotecTestProject";
 		final String orchestratorBasePath = "/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.generator/";
 
@@ -37,7 +39,12 @@ public class EvolutionaryRunnerLocomotec {
 		final boolean conditionBased = false;
 		final int maxConditionDepth = 0;
 		
-		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, maxConditionDepth, grammarPath);
-		jmetalExpt.runExperiment();
+		EvolutionaryExpt jmetalExpt;
+		try {
+			jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, maxConditionDepth, grammarPath);
+			jmetalExpt.runExperiment();
+		} catch (EolModelLoadingException e) {
+			e.printStackTrace();
+		}
 	}
 }

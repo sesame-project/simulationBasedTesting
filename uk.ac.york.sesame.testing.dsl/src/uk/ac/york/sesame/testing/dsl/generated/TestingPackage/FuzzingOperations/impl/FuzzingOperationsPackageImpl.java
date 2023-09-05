@@ -12,14 +12,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.BlackholeNetworkOperation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CPULoadType;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ComponentOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ComponentPropertyOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ComponentSubPropertyOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedActivation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomOfflineFuzzingOperation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DiskLoadType;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DoubleRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ExternalResourceSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
@@ -27,31 +26,21 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.IOLoadType;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.IntRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LatencyNetworkOperation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LoadResourceOperation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LoadType;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.MemoryLoadType;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.MultipleMessagesNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.NetworkFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineOperationTime;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PacketLossNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PointRange;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ProcessKillerStateOperaton;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFuzzingOperation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ResourceFuzzingOperation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ShutdownStateOperaton;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StateFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringSet;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.TimeTravelStateOperaton;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet;
-
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.VariableOperation;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
@@ -127,6 +116,13 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	private EClass conditionBasedActivationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conditionBasedTimeLimitedEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -238,84 +234,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass resourceFuzzingOperationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass stateFuzzingOperationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass networkFuzzingOperationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass loadResourceOperationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass loadTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass cpuLoadTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass memoryLoadTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass ioLoadTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass diskLoadTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass shutdownStateOperatonEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass timeTravelStateOperatonEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass processKillerStateOperatonEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -337,13 +256,6 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	private EClass packetLossNetworkOperationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass multipleMessagesNetworkOperationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -584,8 +496,26 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFuzzingOperation_RecordedTimings() {
+		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getFuzzingOperation_Seed() {
-		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(15);
+		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFuzzingOperation_SequenceNumInTest() {
+		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(17);
 	}
 
 	/**
@@ -703,6 +633,42 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 */
 	public EAttribute getConditionBasedActivation_MaximumActivations() {
 		return (EAttribute)conditionBasedActivationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConditionBasedTimeLimited() {
+		return conditionBasedTimeLimitedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConditionBasedTimeLimited_Starting() {
+		return (EReference)conditionBasedTimeLimitedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConditionBasedTimeLimited_Length() {
+		return (EAttribute)conditionBasedTimeLimitedEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConditionBasedTimeLimited_MaximumActivations() {
+		return (EAttribute)conditionBasedTimeLimitedEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1007,152 +973,8 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getResourceFuzzingOperation() {
-		return resourceFuzzingOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getStateFuzzingOperation() {
-		return stateFuzzingOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getNetworkFuzzingOperation() {
 		return networkFuzzingOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getLoadResourceOperation() {
-		return loadResourceOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLoadResourceOperation_LoadType() {
-		return (EReference)loadResourceOperationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getLoadType() {
-		return loadTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getLoadType_Min() {
-		return (EAttribute)loadTypeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getLoadType_Max() {
-		return (EAttribute)loadTypeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCPULoadType() {
-		return cpuLoadTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getMemoryLoadType() {
-		return memoryLoadTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getIOLoadType() {
-		return ioLoadTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getDiskLoadType() {
-		return diskLoadTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getShutdownStateOperaton() {
-		return shutdownStateOperatonEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTimeTravelStateOperaton() {
-		return timeTravelStateOperatonEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTimeTravelStateOperaton_TimeTravelValue() {
-		return (EReference)timeTravelStateOperatonEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getProcessKillerStateOperaton() {
-		return processKillerStateOperatonEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getProcessKillerStateOperaton_ProcessId() {
-		return (EAttribute)processKillerStateOperatonEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1187,6 +1009,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getLatencyNetworkOperation_Randomised() {
+		return (EAttribute)latencyNetworkOperationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPacketLossNetworkOperation() {
 		return packetLossNetworkOperationEClass;
 	}
@@ -1198,24 +1029,6 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 */
 	public EReference getPacketLossNetworkOperation_Frequency() {
 		return (EReference)packetLossNetworkOperationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getMultipleMessagesNetworkOperation() {
-		return multipleMessagesNetworkOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMultipleMessagesNetworkOperation_HowManyClones() {
-		return (EReference)multipleMessagesNetworkOperationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1271,7 +1084,9 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__SUBSCRIBING_VARS);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__FROM_TEMPLATE);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__CONTAINING_TEST);
+		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__RECORDED_TIMINGS);
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__SEED);
+		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST);
 
 		offlineFuzzingOperationEClass = createEClass(OFFLINE_FUZZING_OPERATION);
 		createEAttribute(offlineFuzzingOperationEClass, OFFLINE_FUZZING_OPERATION__OPERATION_TIME);
@@ -1291,6 +1106,11 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEReference(conditionBasedActivationEClass, CONDITION_BASED_ACTIVATION__STARTING);
 		createEReference(conditionBasedActivationEClass, CONDITION_BASED_ACTIVATION__ENDING);
 		createEAttribute(conditionBasedActivationEClass, CONDITION_BASED_ACTIVATION__MAXIMUM_ACTIVATIONS);
+
+		conditionBasedTimeLimitedEClass = createEClass(CONDITION_BASED_TIME_LIMITED);
+		createEReference(conditionBasedTimeLimitedEClass, CONDITION_BASED_TIME_LIMITED__STARTING);
+		createEAttribute(conditionBasedTimeLimitedEClass, CONDITION_BASED_TIME_LIMITED__LENGTH);
+		createEAttribute(conditionBasedTimeLimitedEClass, CONDITION_BASED_TIME_LIMITED__MAXIMUM_ACTIVATIONS);
 
 		fuzzTestingOperationEClass = createEClass(FUZZ_TESTING_OPERATION);
 
@@ -1340,45 +1160,16 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		externalResourceSetEClass = createEClass(EXTERNAL_RESOURCE_SET);
 		createEAttribute(externalResourceSetEClass, EXTERNAL_RESOURCE_SET__LOCATION);
 
-		resourceFuzzingOperationEClass = createEClass(RESOURCE_FUZZING_OPERATION);
-
-		stateFuzzingOperationEClass = createEClass(STATE_FUZZING_OPERATION);
-
 		networkFuzzingOperationEClass = createEClass(NETWORK_FUZZING_OPERATION);
-
-		loadResourceOperationEClass = createEClass(LOAD_RESOURCE_OPERATION);
-		createEReference(loadResourceOperationEClass, LOAD_RESOURCE_OPERATION__LOAD_TYPE);
-
-		loadTypeEClass = createEClass(LOAD_TYPE);
-		createEAttribute(loadTypeEClass, LOAD_TYPE__MIN);
-		createEAttribute(loadTypeEClass, LOAD_TYPE__MAX);
-
-		cpuLoadTypeEClass = createEClass(CPU_LOAD_TYPE);
-
-		memoryLoadTypeEClass = createEClass(MEMORY_LOAD_TYPE);
-
-		ioLoadTypeEClass = createEClass(IO_LOAD_TYPE);
-
-		diskLoadTypeEClass = createEClass(DISK_LOAD_TYPE);
-
-		shutdownStateOperatonEClass = createEClass(SHUTDOWN_STATE_OPERATON);
-
-		timeTravelStateOperatonEClass = createEClass(TIME_TRAVEL_STATE_OPERATON);
-		createEReference(timeTravelStateOperatonEClass, TIME_TRAVEL_STATE_OPERATON__TIME_TRAVEL_VALUE);
-
-		processKillerStateOperatonEClass = createEClass(PROCESS_KILLER_STATE_OPERATON);
-		createEAttribute(processKillerStateOperatonEClass, PROCESS_KILLER_STATE_OPERATON__PROCESS_ID);
 
 		blackholeNetworkOperationEClass = createEClass(BLACKHOLE_NETWORK_OPERATION);
 
 		latencyNetworkOperationEClass = createEClass(LATENCY_NETWORK_OPERATION);
 		createEReference(latencyNetworkOperationEClass, LATENCY_NETWORK_OPERATION__LATENCY);
+		createEAttribute(latencyNetworkOperationEClass, LATENCY_NETWORK_OPERATION__RANDOMISED);
 
 		packetLossNetworkOperationEClass = createEClass(PACKET_LOSS_NETWORK_OPERATION);
 		createEReference(packetLossNetworkOperationEClass, PACKET_LOSS_NETWORK_OPERATION__FREQUENCY);
-
-		multipleMessagesNetworkOperationEClass = createEClass(MULTIPLE_MESSAGES_NETWORK_OPERATION);
-		createEReference(multipleMessagesNetworkOperationEClass, MULTIPLE_MESSAGES_NETWORK_OPERATION__HOW_MANY_CLONES);
 
 		// Create enums
 		offlineOperationTimeEEnum = createEEnum(OFFLINE_OPERATION_TIME);
@@ -1422,6 +1213,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		customOfflineFuzzingOperationEClass.getESuperTypes().add(this.getOfflineFuzzingOperation());
 		fixedTimeActivationEClass.getESuperTypes().add(this.getActivation());
 		conditionBasedActivationEClass.getESuperTypes().add(this.getActivation());
+		conditionBasedTimeLimitedEClass.getESuperTypes().add(this.getActivation());
 		fuzzTestingOperationEClass.getESuperTypes().add(this.getFuzzingOperation());
 		componentOperationEClass.getESuperTypes().add(this.getFuzzTestingOperation());
 		componentPropertyOperationEClass.getESuperTypes().add(this.getFuzzTestingOperation());
@@ -1435,21 +1227,10 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		pointRangeEClass.getESuperTypes().add(this.getValueRange());
 		stringSetEClass.getESuperTypes().add(this.getValueSet());
 		externalResourceSetEClass.getESuperTypes().add(this.getValueSet());
-		resourceFuzzingOperationEClass.getESuperTypes().add(this.getFuzzingOperation());
-		stateFuzzingOperationEClass.getESuperTypes().add(this.getFuzzingOperation());
 		networkFuzzingOperationEClass.getESuperTypes().add(this.getFuzzingOperation());
-		loadResourceOperationEClass.getESuperTypes().add(this.getResourceFuzzingOperation());
-		cpuLoadTypeEClass.getESuperTypes().add(this.getLoadType());
-		memoryLoadTypeEClass.getESuperTypes().add(this.getLoadType());
-		ioLoadTypeEClass.getESuperTypes().add(this.getLoadType());
-		diskLoadTypeEClass.getESuperTypes().add(this.getLoadType());
-		shutdownStateOperatonEClass.getESuperTypes().add(this.getStateFuzzingOperation());
-		timeTravelStateOperatonEClass.getESuperTypes().add(this.getStateFuzzingOperation());
-		processKillerStateOperatonEClass.getESuperTypes().add(this.getStateFuzzingOperation());
 		blackholeNetworkOperationEClass.getESuperTypes().add(this.getNetworkFuzzingOperation());
 		latencyNetworkOperationEClass.getESuperTypes().add(this.getNetworkFuzzingOperation());
 		packetLossNetworkOperationEClass.getESuperTypes().add(this.getNetworkFuzzingOperation());
-		multipleMessagesNetworkOperationEClass.getESuperTypes().add(this.getNetworkFuzzingOperation());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(fuzzingOperationEClass, FuzzingOperation.class, "FuzzingOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1468,7 +1249,9 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEReference(getFuzzingOperation_SubscribingVars(), theMRSPackagePackage.getVariable(), null, "subscribingVars", null, 0, -1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_FromTemplate(), this.getFuzzingOperation(), null, "fromTemplate", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_ContainingTest(), theTestingPackagePackage.getTest(), theTestingPackagePackage.getTest_Operations(), "containingTest", null, 0, 1, FuzzingOperation.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFuzzingOperation_Seed(), ecorePackage.getEInt(), "seed", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFuzzingOperation_RecordedTimings(), this.getFixedTimeActivation(), null, "recordedTimings", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFuzzingOperation_Seed(), ecorePackage.getELong(), "seed", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFuzzingOperation_SequenceNumInTest(), ecorePackage.getEInt(), "sequenceNumInTest", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(offlineFuzzingOperationEClass, OfflineFuzzingOperation.class, "OfflineFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOfflineFuzzingOperation_OperationTime(), this.getOfflineOperationTime(), "operationTime", null, 0, 1, OfflineFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1488,6 +1271,11 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEReference(getConditionBasedActivation_Starting(), theStandardGrammarPackage.getCondition(), null, "starting", null, 0, 1, ConditionBasedActivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConditionBasedActivation_Ending(), theStandardGrammarPackage.getCondition(), null, "ending", null, 0, 1, ConditionBasedActivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConditionBasedActivation_MaximumActivations(), ecorePackage.getEInt(), "maximumActivations", "1", 0, 1, ConditionBasedActivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(conditionBasedTimeLimitedEClass, ConditionBasedTimeLimited.class, "ConditionBasedTimeLimited", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConditionBasedTimeLimited_Starting(), theStandardGrammarPackage.getCondition(), null, "starting", null, 0, 1, ConditionBasedTimeLimited.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConditionBasedTimeLimited_Length(), ecorePackage.getEDouble(), "length", null, 0, 1, ConditionBasedTimeLimited.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConditionBasedTimeLimited_MaximumActivations(), ecorePackage.getEInt(), "maximumActivations", "1", 0, 1, ConditionBasedTimeLimited.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fuzzTestingOperationEClass, FuzzTestingOperation.class, "FuzzTestingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1537,45 +1325,16 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEClass(externalResourceSetEClass, ExternalResourceSet.class, "ExternalResourceSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExternalResourceSet_Location(), ecorePackage.getEString(), "location", null, 0, 1, ExternalResourceSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(resourceFuzzingOperationEClass, ResourceFuzzingOperation.class, "ResourceFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(stateFuzzingOperationEClass, StateFuzzingOperation.class, "StateFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(networkFuzzingOperationEClass, NetworkFuzzingOperation.class, "NetworkFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(loadResourceOperationEClass, LoadResourceOperation.class, "LoadResourceOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLoadResourceOperation_LoadType(), this.getLoadType(), null, "loadType", null, 1, 1, LoadResourceOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(loadTypeEClass, LoadType.class, "LoadType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLoadType_Min(), ecorePackage.getEInt(), "min", null, 0, 1, LoadType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLoadType_Max(), ecorePackage.getEInt(), "max", null, 0, 1, LoadType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(cpuLoadTypeEClass, CPULoadType.class, "CPULoadType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(memoryLoadTypeEClass, MemoryLoadType.class, "MemoryLoadType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(ioLoadTypeEClass, IOLoadType.class, "IOLoadType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(diskLoadTypeEClass, DiskLoadType.class, "DiskLoadType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(shutdownStateOperatonEClass, ShutdownStateOperaton.class, "ShutdownStateOperaton", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(timeTravelStateOperatonEClass, TimeTravelStateOperaton.class, "TimeTravelStateOperaton", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTimeTravelStateOperaton_TimeTravelValue(), this.getDoubleRange(), null, "timeTravelValue", null, 1, 1, TimeTravelStateOperaton.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(processKillerStateOperatonEClass, ProcessKillerStateOperaton.class, "ProcessKillerStateOperaton", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProcessKillerStateOperaton_ProcessId(), ecorePackage.getEInt(), "processId", null, 0, 1, ProcessKillerStateOperaton.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(blackholeNetworkOperationEClass, BlackholeNetworkOperation.class, "BlackholeNetworkOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(latencyNetworkOperationEClass, LatencyNetworkOperation.class, "LatencyNetworkOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLatencyNetworkOperation_Latency(), this.getDoubleRange(), null, "latency", null, 1, 1, LatencyNetworkOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLatencyNetworkOperation_Randomised(), ecorePackage.getEBoolean(), "randomised", "false", 0, 1, LatencyNetworkOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packetLossNetworkOperationEClass, PacketLossNetworkOperation.class, "PacketLossNetworkOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPacketLossNetworkOperation_Frequency(), this.getDoubleRange(), null, "frequency", null, 1, 1, PacketLossNetworkOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(multipleMessagesNetworkOperationEClass, MultipleMessagesNetworkOperation.class, "MultipleMessagesNetworkOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMultipleMessagesNetworkOperation_HowManyClones(), this.getIntRange(), null, "howManyClones", null, 1, 1, MultipleMessagesNetworkOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(offlineOperationTimeEEnum, OfflineOperationTime.class, "OfflineOperationTime");

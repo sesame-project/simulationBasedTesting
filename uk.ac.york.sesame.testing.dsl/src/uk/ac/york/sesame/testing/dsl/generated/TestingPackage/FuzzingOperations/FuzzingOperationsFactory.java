@@ -67,6 +67,15 @@ public interface FuzzingOperationsFactory extends EFactory {
 	ConditionBasedActivation createConditionBasedActivation();
 
 	/**
+	 * Returns a new object of class '<em>Condition Based Time Limited</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Condition Based Time Limited</em>'.
+	 * @generated
+	 */
+	ConditionBasedTimeLimited createConditionBasedTimeLimited();
+
+	/**
 	 * Returns a new object of class '<em>Fuzz Testing Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -193,24 +202,6 @@ public interface FuzzingOperationsFactory extends EFactory {
 	ExternalResourceSet createExternalResourceSet();
 
 	/**
-	 * Returns a new object of class '<em>Resource Fuzzing Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Resource Fuzzing Operation</em>'.
-	 * @generated
-	 */
-	ResourceFuzzingOperation createResourceFuzzingOperation();
-
-	/**
-	 * Returns a new object of class '<em>State Fuzzing Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State Fuzzing Operation</em>'.
-	 * @generated
-	 */
-	StateFuzzingOperation createStateFuzzingOperation();
-
-	/**
 	 * Returns a new object of class '<em>Network Fuzzing Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -218,87 +209,6 @@ public interface FuzzingOperationsFactory extends EFactory {
 	 * @generated
 	 */
 	NetworkFuzzingOperation createNetworkFuzzingOperation();
-
-	/**
-	 * Returns a new object of class '<em>Load Resource Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Load Resource Operation</em>'.
-	 * @generated
-	 */
-	LoadResourceOperation createLoadResourceOperation();
-
-	/**
-	 * Returns a new object of class '<em>Load Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Load Type</em>'.
-	 * @generated
-	 */
-	LoadType createLoadType();
-
-	/**
-	 * Returns a new object of class '<em>CPU Load Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>CPU Load Type</em>'.
-	 * @generated
-	 */
-	CPULoadType createCPULoadType();
-
-	/**
-	 * Returns a new object of class '<em>Memory Load Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Memory Load Type</em>'.
-	 * @generated
-	 */
-	MemoryLoadType createMemoryLoadType();
-
-	/**
-	 * Returns a new object of class '<em>IO Load Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>IO Load Type</em>'.
-	 * @generated
-	 */
-	IOLoadType createIOLoadType();
-
-	/**
-	 * Returns a new object of class '<em>Disk Load Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Disk Load Type</em>'.
-	 * @generated
-	 */
-	DiskLoadType createDiskLoadType();
-
-	/**
-	 * Returns a new object of class '<em>Shutdown State Operaton</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Shutdown State Operaton</em>'.
-	 * @generated
-	 */
-	ShutdownStateOperaton createShutdownStateOperaton();
-
-	/**
-	 * Returns a new object of class '<em>Time Travel State Operaton</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Time Travel State Operaton</em>'.
-	 * @generated
-	 */
-	TimeTravelStateOperaton createTimeTravelStateOperaton();
-
-	/**
-	 * Returns a new object of class '<em>Process Killer State Operaton</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Process Killer State Operaton</em>'.
-	 * @generated
-	 */
-	ProcessKillerStateOperaton createProcessKillerStateOperaton();
 
 	/**
 	 * Returns a new object of class '<em>Blackhole Network Operation</em>'.
@@ -326,15 +236,6 @@ public interface FuzzingOperationsFactory extends EFactory {
 	 * @generated
 	 */
 	PacketLossNetworkOperation createPacketLossNetworkOperation();
-
-	/**
-	 * Returns a new object of class '<em>Multiple Messages Network Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Multiple Messages Network Operation</em>'.
-	 * @generated
-	 */
-	MultipleMessagesNetworkOperation createMultipleMessagesNetworkOperation();
 
 	/**
 	 * Returns the package supported by this factory.

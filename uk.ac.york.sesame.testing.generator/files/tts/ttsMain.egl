@@ -5,12 +5,22 @@
 	var topicsNodesPublish = Node.all().publisher.flatten();
 	var topicsMetricsNeed = Metric.all().relatedVariables.flatten();
 	var allTopics = topicsNodesPublish.includingAll(topicsMetricsNeed).asSet();
+	
 	var fuzzingVars = new Set();
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
-	var sanitiseVariables = true;
+	var sanitiseVariables = false;
+	var recordDelay = true;	
 	
+	var sendBackToSimulator = true;
+	
+	var useStepping = simulator.useStepping;
+	var useGUI = simulator.useGUI;
+	
+	// This will activate sending back all topics in the MITM. Normally only the
+	// fuzzing variables should be sent back
+	var sendBackAllTopics = true;
 %]
 
 import java.util.ArrayList;
@@ -18,6 +28,7 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.time.Instant;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.MapFunction;
@@ -51,6 +62,34 @@ import metrics.custom.*;
 import metrics.fixed.*;
 
 public class [%= testNameString %]_TestRunner {
+
+	[% if (useGUI) { %]
+	private static final long MIN_DEBUG_STEP_TIME = 100;
+	[% } else {%]
+	private static final long MIN_DEBUG_STEP_TIME = 10;
+	[% } %]
+	
+	private static final boolean USE_STEP_RATE_LIMITING = true;
+
+	public static boolean extraDebugWait(long millisLastStep) {
+		if (USE_STEP_RATE_LIMITING) {
+			Instant instant = Instant.now();
+			long timeNow = instant.toEpochMilli();
+			long delay = timeNow - millisLastStep;
+			if (delay < MIN_DEBUG_STEP_TIME) {
+				try {
+					Thread.sleep(MIN_DEBUG_STEP_TIME - delay);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}	
+			return true;
+		} else {
+			// If not using rate limiting, exit immediately
+			return true;
+		}
+	}
+
 	public static void main(String[] args) {
 	
 		final String TESTNAME = "[%= testNameString %]";
@@ -59,7 +98,9 @@ public class [%= testNameString %]_TestRunner {
 		Configuration cfg = new Configuration();
 		int defaultLocalParallelism = 1;
 		cfg.setString("taskmanager.network.numberOfBuffers", "4096");
+		
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(defaultLocalParallelism, cfg);
+		env.setBufferTimeout(0);
 		
 		[%
 		// Build up map of all fuzzOps by name
@@ -74,11 +115,27 @@ public class [%= testNameString %]_TestRunner {
 			if (fuzzOp.variableToAffect != null) {
 				fuzzingVars.add(fuzzOp.variableToAffect);
 			}
-			
 		%]
 		[% } %]
 		
+		[* Java version of fuzzing topics to use in runtime checks to send back *]
+		List<String> fuzzingTopics = new ArrayList<String>();
+		[% for (v in fuzzingVars) { %]
+		fuzzingTopics.add("[%= v.name %]");
+		[% } %]
+		
+		[* If passive monitoring debug flag is enabled, don't send anything back to the
+		simulator *]
+		[%
+		for (debugFlag in test.debugFlags) {
+			if (debugFlag.isKindOf(PassiveMonitorOnly)) {
+				sendBackToSimulator = false; 
+			}
+		}
+		%]
+		
 		Properties properties = new Properties();
+<<<<<<< HEAD
 		String serverNamePort = "localhost:9092";
 		String osName = System.getProperty("os.name");
 
@@ -88,6 +145,10 @@ public class [%= testNameString %]_TestRunner {
 		}
 		
 		properties.setProperty("bootstrap.servers", serverNamePort);
+=======
+		properties.setProperty("bootstrap.servers", "localhost:9092");
+		properties.setProperty("max.in.flight.requests.per.connection", "1");
+>>>>>>> develop
 		properties.setProperty("group.id", "test");
 		
 		DataStream<ControlMessage> controlStream = env
@@ -128,6 +189,11 @@ public class [%= testNameString %]_TestRunner {
 		HashMap<String, Object> propsMap = new HashMap<String, Object>();
 		propsMap.put(ConnectionProperties.HOSTNAME, "[%=simulator.hostname %]");
 		propsMap.put(ConnectionProperties.PORT, [%=simulator.port %]);
+		// TODO: hardcoded step size for now
+		
+		[% if (useStepping) { %]
+		propsMap.put(ConnectionProperties.STEP_SIZE, 20);
+		[% } %]
 		cp.setProperties(propsMap);
 				
 		params.put("TTSProjectDir", "[%= launchFileLocation %]");
@@ -175,21 +241,59 @@ public class [%= testNameString %]_TestRunner {
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
+				
+				long millisLastStep = 0;
 				System.out.println("From out to sim starts");
+<<<<<<< HEAD
 				while (true) {
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance()
 							.consume("OUT-[%= testNameString %]");
+=======
+						
+				[% if (useStepping) { %]
+					while (ttsSim.stepSimulator() && extraDebugWait(millisLastStep)) {			
+				[% } else { %]
+					while (true) {
+				[% } %]			
+					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
+>>>>>>> develop
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = ttsSim.translateTopicNameForOutput(inTopic);
+						
+						long timestamp = record.value().getTimestamp();
+						EventMessage er = record.value();
+						
+						Instant instant = Instant.now();
+						long timeOut = instant.toEpochMilli();
+						long timeIn = er.getIN_walltime();
+						long millisWallDelay = timeOut - timeIn;
+						// Update last step time from now
+						millisLastStep = timeOut;
+												
 						[* TODO: only the fuzzingVars should be reflected back to the simulator! *]
 						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
-						ttsSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
+						[% if (recordDelay) { %]
+						System.out.println("delaytiming," + "," + timeIn + "," + timeOut + "," + millisWallDelay);
+						[% } %]
+						
+						[% if (sendBackToSimulator) { %]
+							[% if (not sendBackAllTopics) { %]
+							if (fuzzingTopics.contains(inTopic)) { 
+							[% } %]
+							ttsSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
+						
+							[* closing brace only inserted when sendBackAllTopics not used *]
+							[% if (not sendBackAllTopics) { %]
+							} 
+							[% } %]
+						[% } else { %]
+						// Not sending anything back to simulator - passive monitoring only
+						[% } %]
 					}
 				}
 			}
 		}; 
-		
 		from_out_to_sim.start();
 		
 		// Generate keyed streams
@@ -212,16 +316,19 @@ public class [%= testNameString %]_TestRunner {
 		
 		[* Stream metrics here *]
 		[% for (sMetric in Testing!StreamMetric.all()) { %]
-			[% if (sMetric.streams.size() == 2) {
+			[* Don't generate any mapping streams for direct message generation metrics *]
+			[% if (not sMetric.isKindOf(DirectMessageGenerationMetric)) { %]
+				[% if (sMetric.streams.size() == 2) {
 				var stream1 = sMetric.streams.get(0);
 				var stream2 = sMetric.streams.get(1); %]
 				ConnectedStreams<EventMessage, EventMessage> [%= sMetric.name %]combinedStream = [%= streamJavaName(sMetric,stream1) %].connect([%= streamJavaName(sMetric,stream2) %]);
 				DataStream<Double> [%= sMetric.name %]resStream = [%= sMetric.name %]combinedStream.process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
-			[% } %]
-			
-			[% if (sMetric.streams.size() == 1) { 
+				[% } %]
+				
+				[% if (sMetric.streams.size() == 1) { 
 				var stream = sMetric.streams.get(0); %]
 				DataStream<Double> [%= sMetric.name %]resStream = [%= streamJavaName(sMetric,stream) %].process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
+				[% } %]
 			[% } %]
 		[% } %]
 		
@@ -236,8 +343,14 @@ public class [%= testNameString %]_TestRunner {
 			// allMetrics has to include all the metrics, both those  used in the fuzzing experiment and the condition metrics
 			var allMetrics = campaignMetrics.includingAll(parentCampaign.conditionMetrics).asSet();
 		    for (sMetric in allMetrics.selectByKind(StreamMetric)) { %] 
-			// Generate a message stream for all metrics
+		    [% if (sMetric.isKindOf(DirectMessageGenerationMetric)) { %]
+		    [* For direct message generation metrics, create a metric message stream from a subclass of DirectMessageGenerationMetric, that directly produces metric messages *]
+		    // DIRECT MESSAGE GENERATION METRIC
+		    DataStream<MetricMessage> metricMsg[%= sMetric.name %] = eventsAndControlIn.process(new [%= sMetric.name %]Metric([%= additionalInfo(sMetric) %]));
+		    [% } else { %]
+			[* Map doubles from the metric message stream into the metric message stream to be unified later *]
 			DataStream<MetricMessage> metricMsg[%= sMetric.name %] = [%= sMetric.name %]resStream.map(d -> new MetricMessage("[%=test.name.firstToUpperCase() %]", "[%= sMetric.name %]", d));
+			[% } %]
 		[% } %]
 		
 		[% for (sMetric in allMetrics.selectByKind(StreamMetric)) { %]
@@ -346,55 +459,12 @@ operation streamJavaName(sMetric, stream) {
 		}
 }
 
-// TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap, RandomValueFromSetAttack and CustomFuzzingOperation are supported
-operation produceFOGenerationSignature(fo) {
-	var flatmap = "";
-	var aa = fo.activation;
-	
-	if (aa.isKindOf(Testing!FixedTimeActivation)) {
-		var startTime = aa.startTime;
-		var endTime = aa.endTime;
-		
-		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
-			var frequencyVal = fo.frequency.lowerBound;
-			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + "," + frequencyVal + ")";
-		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
-			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + ")";
-		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
-			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
-			var varName = null;
-			if (fo.variableToAffect != null) {
-			 	varName = fo.variableToAffect.name;
-			}
-			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
-			var delay = fo.latency.lowerBound;
-			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + delay + "," + fo.seed + ")";
-		}
-	}
-	
-	if (aa.isKindOf(Testing!ConditionBasedActivation)) {
-		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
-			var frequencyVal = fo.frequency.lowerBound;
-			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + "," + frequencyVal + ")";
-		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
-			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\")";
-		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
-			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
-			var varName = null;
-			if (fo.variableToAffect != null) {
-			 	varName = fo.variableToAffect.name;
-			}			 
-			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
-			var delay = fo.latency.lowerBound;
-			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + delay + "," + fo.seed + ")";
-		}
-	}
-	
-	return flatmap;
+operation produceFOGenerationSignature(fuzzOp) {
+	// For successful compilation, className must match the EGL generator for the fuzzing operation - 
+	// defined in fuzzOpCommon.egl and in the orchestrator.egx
+	var className = fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + fuzzOp.containingTest.name.firstToUpperCase();
+	var generateFO = "new " + className + "(); // TODO: add the timing/condition in a comment here";
+	return generateFO;
 }
 
 operation produceTimeString(fuzzOp) {
@@ -412,7 +482,11 @@ operation additionalInfo(sMetric) {
 	if (sMetric.isTypeOf(FuzzingOperationTimesMetric)) {
 		return "fuzzOpTimes";
 	} else {
-		return "";
+		if (sMetric.isTypeOf(StartEndTimingMetric)) {
+			return "TESTNAME";
+		} else {
+			return "";
+		}
 	}
 }
 

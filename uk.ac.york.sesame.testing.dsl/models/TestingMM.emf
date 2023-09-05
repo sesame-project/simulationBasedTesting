@@ -1,6 +1,8 @@
 @namespace(uri="TestingMM", prefix="TestingMM")
 
 package TestingPackage;
+
+// MRS model is currently integrated into the model under the testing space
 //import "http://ExSceMM";
 
 // TestingSpace - which specifies the boundaries of the testing space
@@ -18,7 +20,6 @@ class TestingSpace {
 // TestingCampaign - specifies an experiment 
 // (evolutionary process, selected metrics/attacks, and any constraints upon the grammar for this run)
 
-// Generally there should be probabilities of including each attack in the model - for the testCampaign
 class TestCampaign {
 	attr String name;
 	ref Metrics.Metric[*] metrics;
@@ -26,10 +27,6 @@ class TestCampaign {
 	
 	// TODO: for some reason, elements under TestCampaign tend to be lost when the model is saved?
 	val ActivationGenerationMethod activationGeneration;
-	
-	//attr boolean useConditionBasedFuzzing;
-	//attr int conditionBasedFuzzingDepth;
-	
 	ref FuzzingOperations.FuzzingOperation[*] includedOperations;
 	val TestGenerationApproach[1] approach;
 	val Test[*]#parentCampaign performedTests;
@@ -37,7 +34,6 @@ class TestCampaign {
 	val ExecutionEndTrigger[1] endTrigger;
 }
 
-// This is analagous to a fuzzing CSV file in SAFEMUV - multiple attacks
 class Test {
 	attr String name;
 	val FuzzingOperations.FuzzingOperation[*]#containingTest operations;
@@ -46,6 +42,15 @@ class Test {
 	// which other tests it was developed from
 	ref Test[*] developedFrom; 
 	readonly transient ref TestCampaign[1]#performedTests parentCampaign;
+	val TestDebuggingFlags[*] debugFlags;
+}
+
+abstract class TestDebuggingFlags {
+	
+}
+
+class PassiveMonitorOnly extends TestDebuggingFlags {
+	
 }
 
 // This selects either condition-based or time-based fuzzing for this test,
@@ -98,6 +103,40 @@ class NSGAEvolutionaryAlgorithm extends EvolutionaryAlgorithm {
 	attr int iterations;
 }
 
+// Coverage-tracking / boosting GA
+class NSGAWithCoverageCells extends NSGAEvolutionaryAlgorithm {
+	attr int coveragePerCell;
+	attr double targetCoverageProportion; 
+	val DimensionInterval[1..*]  dimensionRecords;
+	attr boolean useMutationEnhancingCoverage = false;
+}
+
+// Dimension min-max and cell count for the coverage-tracking GA
+class DimensionInterval {
+	attr DimensionID dimID;
+	attr double minValue;
+	attr double maxValue;
+	attr int count;
+}
+
+enum DimensionID {
+	T1_TIME_MIDPOINT_MEAN = 1;
+	T2_TIME_LENGTH_MEAN = 2;
+	T3_TIME_MIDPOINT_VAR = 3; 
+	P1_PARAMETER_MEAN = 4;
+	P2_PARAMETER_VARIANCE = 5;
+
+	O1_FUZZRANGE_COUNT = 6;
+	O2_DELAY_COUNT = 7;
+	O3_DELETION_COUNT = 8;
+	O0_TOTAL_COUNT = 9;
+}
+
+class RepeatedExecution extends TestGenerationApproach {
+	ref Test[1] testToRepeat;
+	attr int repeatCount;
+}
+
 package FuzzingOperations {
 
 abstract class FuzzingOperation {
@@ -117,7 +156,9 @@ abstract class FuzzingOperation {
 	ref MRSPackage.Variable[*] subscribingVars;
 	ref FuzzingOperation[0..1] fromTemplate;
 	readonly transient ref Test[0..1]#operations containingTest;
-	attr int seed;
+	val FixedTimeActivation[0..1] recordedTimings; 
+	attr long seed;
+	attr int sequenceNumInTest;
 }
 
 class OfflineFuzzingOperation extends FuzzingOperation {
@@ -130,7 +171,7 @@ enum OfflineOperationTime {
 }
 
 class CustomFuzzingOperation extends FuzzingOperation {
-	// These parameters will be used for the fuzzing operation
+	// These parameters will be used for the custom fuzzing operation
 	val ValueSet[*] params;
 }
 
@@ -153,11 +194,18 @@ class ConditionBasedActivation extends Activation {
 	attr int maximumActivations = 1;
 }
 
+class ConditionBasedTimeLimited extends Activation {
+	val StandardGrammar.Condition starting;
+	attr double length;
+	attr int maximumActivations = 1;
+}
+
 class FuzzTestingOperation extends FuzzingOperation {
 	
 }
 
 class ComponentOperation extends FuzzTestingOperation {
+
 }
 
 class ComponentPropertyOperation extends FuzzTestingOperation {
@@ -222,55 +270,10 @@ class ExternalResourceSet extends ValueSet {
 }
 // End of Value Sets
 
-class ResourceFuzzingOperation extends FuzzingOperation {
-	
-}
-
-class StateFuzzingOperation extends FuzzingOperation {
-
-	
-}
 
 class NetworkFuzzingOperation extends FuzzingOperation {
 
 	
-}
-
-class LoadResourceOperation extends ResourceFuzzingOperation {
-	ref LoadType[1] loadType;
-}
-
-class LoadType {
-	attr int min;
-	attr int max;
-}
-
-class CPULoadType extends LoadType {
-	
-}
-
-class MemoryLoadType extends LoadType {
-
-}
-
-class IOLoadType extends LoadType {
-
-}
-
-class DiskLoadType extends LoadType {
-
-}
-
-class ShutdownStateOperaton extends StateFuzzingOperation {
-	
-}
-
-class TimeTravelStateOperaton extends StateFuzzingOperation {
-	val DoubleRange[1] timeTravelValue;
-}
-
-class ProcessKillerStateOperaton extends StateFuzzingOperation {
-	attr int processId;
 }
 
 class BlackholeNetworkOperation extends NetworkFuzzingOperation {
@@ -279,15 +282,17 @@ class BlackholeNetworkOperation extends NetworkFuzzingOperation {
 
 class LatencyNetworkOperation extends NetworkFuzzingOperation {
 	val DoubleRange[1] latency;
+	attr boolean randomised = false;
 }
 
 class PacketLossNetworkOperation extends NetworkFuzzingOperation {
 	val DoubleRange[1] frequency;
 }
 
-class MultipleMessagesNetworkOperation extends NetworkFuzzingOperation {
-	val IntRange[1] howManyClones;
-}
+// TODO: implement this operation
+//class MultipleMessagesNetworkOperation extends NetworkFuzzingOperation {
+//	val IntRange[1] howManyClones;
+//}
 
 }
 
@@ -313,10 +318,12 @@ abstract class Metric {
 	attr String name;
 	attr MetricOptimisationDirection dir;
 	ref MRSPackage.Variable[*] relatedVariables;
-	// valueIfNotReceived - this is if no metric message is ever received - this is applied for the optimisation algorithm
+	// valueIfNotReceived - this is stored as the output value if no metric message is ever received 
+	// this is then applied for the optimisation algorithm
 	val MetricDefault[0..1] valueIfNotReceived;	
 	// initValue is used as an intialisation value in computing the conditions
 	val MetricDefault[1] initValue;
+	attr boolean useInOptimisation;
 }
 
 class MetricDefault {
@@ -336,18 +343,26 @@ abstract class PropertyMetric extends Metric {
 	ref MRSPackage.ComponentProperty[1] property;
 }
 
-class ConditionalPropertyMetric extends PropertyMetric {
-	attr String condition;
-}
-
 class StreamMetric extends Metric {
 	val SimStream[*] streams;
 	val StreamResult res; 
 }
 
-class FuzzingOperationTimesMetric extends StreamMetric {
+abstract class SpecialMetric extends StreamMetric {
+	
+}
+
+abstract class DirectMessageGenerationMetric extends StreamMetric {
+	
+}
+
+class StartEndTimingMetric extends DirectMessageGenerationMetric {
 	
 } 
+
+class FuzzingOperationTimesMetric extends SpecialMetric {
+	
+}
 
 abstract class StreamResult {
 	
@@ -483,5 +498,8 @@ package MRSPackage {
 	class TTSSimulator extends Simulator {
 		attr String hostname;
 		attr String port;
+		attr double stepSizeMillis = 20;
+		attr boolean useStepping = false;
+		attr boolean useGUI = false;
 	}
 }

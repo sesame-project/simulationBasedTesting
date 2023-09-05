@@ -20,6 +20,15 @@ enum StatusCode {
  */
 service SimlogAPI {
 
+    /**
+    * Sets the step of the simulation
+    */
+    rpc setStepSize(StepSizeRequest) returns (google.protobuf.Empty);
+
+    /**
+    * Steps the simulation
+    */
+    rpc step(StepRequest) returns (StepResponse);
 
     /**
      * Gets a topi descriptor
@@ -45,6 +54,20 @@ service SimlogAPI {
     rpc Publish(stream PubRequest) returns (google.protobuf.Empty);
 
 
+}
+
+message StepSizeRequest{
+    
+    int64 step = 1; 
+}
+
+message StepRequest{
+    
+}
+
+message StepResponse{
+    
+    int32 code = 1;
 }
 
 message InjectRequest{
@@ -99,6 +122,7 @@ message ROSMessage{
         JointTrajectoryPoint joint_trajectory_point = 8;
         Header timeStamp = 9;
         SafetyZone safety_zone = 10;
+        SafetyZoneCmd safety_zone_cmd = 11;
     }
 }
 
@@ -177,6 +201,7 @@ message SafetyZone{
     string object2 = 5;
 }
 
-
-
-
+message SafetyZoneCmd{
+    string zone = 1;
+    string cmd = 2;
+}

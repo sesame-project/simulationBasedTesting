@@ -49,6 +49,15 @@ public interface TestingPackageFactory extends EFactory {
 	Test createTest();
 
 	/**
+	 * Returns a new object of class '<em>Passive Monitor Only</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Passive Monitor Only</em>'.
+	 * @generated
+	 */
+	PassiveMonitorOnly createPassiveMonitorOnly();
+
+	/**
 	 * Returns a new object of class '<em>Time Based Activation Generation Method</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -101,6 +110,33 @@ public interface TestingPackageFactory extends EFactory {
 	 * @generated
 	 */
 	NSGAEvolutionaryAlgorithm createNSGAEvolutionaryAlgorithm();
+
+	/**
+	 * Returns a new object of class '<em>NSGA With Coverage Cells</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>NSGA With Coverage Cells</em>'.
+	 * @generated
+	 */
+	NSGAWithCoverageCells createNSGAWithCoverageCells();
+
+	/**
+	 * Returns a new object of class '<em>Dimension Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dimension Interval</em>'.
+	 * @generated
+	 */
+	DimensionInterval createDimensionInterval();
+
+	/**
+	 * Returns a new object of class '<em>Repeated Execution</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Repeated Execution</em>'.
+	 * @generated
+	 */
+	RepeatedExecution createRepeatedExecution();
 
 	/**
 	 * Returns the package supported by this factory.

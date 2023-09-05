@@ -16,6 +16,7 @@ public class ExptRunner_[%= campaign.name %] {
 		
 		// Setting paths
 		// The paths are now supplied from the Wizard - nothing needs to be configured here!
+<<<<<<< HEAD
 		
 		[* For Windows, replace the backslashes: need repeated backslashes for 
 		proper escaping... EGL must construct a regex internally?
@@ -31,6 +32,9 @@ public class ExptRunner_[%= campaign.name %] {
 		var codeGenerationDir_escaped = codeGenerationDirectory.replace(singleSlash, dualSlash);
 		var orchestratorBasePath_escaped = orchestratorBasePath.replace(singleSlash, dualSlash);
 		 %] 
+=======
+		// IProjectPath = [%= path %]
+>>>>>>> develop
 
 		// modelFile.toURI() - Fix for "a registered resource factory is needed" error on Windows
 		File modelFile = new File("[%= testingModelPath_escaped %]");
@@ -53,6 +57,7 @@ public class ExptRunner_[%= campaign.name %] {
 		final int conditionDepth = 0;
 		[% } %]
 		
+<<<<<<< HEAD
 		// Since EGL can't detect the OS, use dynamic OS detection to setup the path at runtime
 		final String grammarPath; 	 	
 		final String osName = System.getProperty("os.name");
@@ -64,6 +69,18 @@ public class ExptRunner_[%= campaign.name %] {
 			
 		EvolutionaryExpt jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, conditionDepth, grammarPath);
 		jmetalExpt.runExperiment();
+=======
+		[% } %] 	 	
+				
+		final String grammarPath = "[%= codeGenerationDirectory %]/grammar/sesame-standardgrammar-[%= campaign.name %].bnf";
+		EvolutionaryExpt jmetalExpt;
+		try {
+			jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, conditionDepth, grammarPath);
+			jmetalExpt.runExperiment();
+		} catch (EolModelLoadingException e) {
+			e.printStackTrace();
+		}
+>>>>>>> develop
 		[% } %]
 	}
 }

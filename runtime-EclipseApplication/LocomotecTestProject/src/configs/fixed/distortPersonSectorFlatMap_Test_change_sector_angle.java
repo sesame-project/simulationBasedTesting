@@ -20,6 +20,10 @@ public class distortPersonSectorFlatMap_Test_change_sector_angle extends TimeBas
 	private static final long serialVersionUID = 1L;
 	Random rng;
 
+	public String getUniqueID() {
+		return "NO-ID";
+	}
+	
 	public distortPersonSectorFlatMap_Test_change_sector_angle(String topic, double start, double end, long seed) {
 		super(topic,start,end);
 		this.rng = new Random(seed);

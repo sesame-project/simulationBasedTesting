@@ -1,3 +1,10 @@
+// For successful compilation, className must match the EGL generators for the fuzzing operation and test runner 
+// defined in fuzzOpCommon.egl, and in the ttsMain.egl rosMain.egl
+operation getClassNamePath(fuzzOp) {
+	var javaFile = fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + fuzzOp.containingTest.name.firstToUpperCase();
+	return "src/" + javaFile + ".java";
+}
+
 rule test2ClassROS transform test: Testing!Test {
 	guard : Testing!ROSSimulator.all().notEmpty()
 	template : "ros/rosMain.egl"
@@ -13,33 +20,46 @@ rule test2ClassTTS transform test: Testing!Test {
 rule packetLoss2FlatMap transform fuzzOp: Testing!PacketLossNetworkOperation {
 	guard : fuzzOp.containingTest != null
 	template : "fuzzingoperations/packetLoss.egl"
-	target : "src/" + fuzzOp.name + "PacketLossFlatMap_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"	
+	target : getClassNamePath(fuzzOp)
 }
 
 rule blackHole2FlatMap transform fuzzOp: Testing!BlackholeNetworkOperation {
 	guard : fuzzOp.containingTest != null
 	template : "fuzzingoperations/blackHole.egl"
-	target : "src/" + fuzzOp.name + "BlackHoleFlatMap_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"	
+	target : getClassNamePath(fuzzOp)
 }
 
 rule fuzzRange2FlatMap transform fuzzOp: Testing!RandomValueFromSetOperation {
 	guard : fuzzOp.containingTest != null
 	template : "fuzzingoperations/fuzzRange.egl"
-	target : "src/"+ fuzzOp.name + "FlatMap_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
+	target : getClassNamePath(fuzzOp)
 }
 
 rule customOp2FlatMap transform fuzzOp: Testing!CustomFuzzingOperation {
 	guard : fuzzOp.containingTest != null
 	template : "fuzzingoperations/customOp.egl"	
-	target : "src/"+ fuzzOp.name + "CustomOp_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
+	target : getClassNamePath(fuzzOp)
 }
 
+// Delay when not using TTS - use timers for time-tracking 
+rule delayFlatMapTimers transform fuzzOp: Testing!LatencyNetworkOperation {
+	guard : (fuzzOp.containingTest != null) and Testing!TTSSimulator.all().isEmpty()
+	template : "fuzzingoperations/delay.egl"
+	target : getClassNamePath(fuzzOp)
+}
 
-
-rule delayFlatMap transform fuzzOp: Testing!LatencyNetworkOperation {
-	guard : fuzzOp.containingTest != null
+// Delay when using TTS and not stepping
+rule delayTTSStepping transform fuzzOp: Testing!LatencyNetworkOperation {
+	guard : (fuzzOp.containingTest != null) and Testing!TTSSimulator.all().notEmpty() and (Testing!TTSSimulator.all().first().useStepping == false)
 	template : "fuzzingoperations/delay.egl"	
-	target : "src/"+ fuzzOp.name + "Delay_" + fuzzOp.containingTest.name.firstToUpperCase() + ".java"
+	target : getClassNamePath(fuzzOp)
+}
+
+// Delay when using TTS and stepping
+rule delayTTSStepping transform fuzzOp: Testing!LatencyNetworkOperation {
+	guard : (fuzzOp.containingTest != null) and Testing!TTSSimulator.all().notEmpty() and (Testing!TTSSimulator.all().first().useStepping == true)
+	template : "tts/fuzzingoperations/delayStepping.egl"	
+	target : getClassNamePath(fuzzOp)
 }
 
 rule rangeClass transform testCampaign: Testing!TestCampaign {

@@ -41,7 +41,11 @@
         eType="#//Test"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentCampaign" lowerBound="1"
         eType="#//TestCampaign" changeable="false" transient="true" eOpposite="#//TestCampaign/performedTests"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="debugFlags" upperBound="-1"
+        eType="#//TestDebuggingFlags" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TestDebuggingFlags" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PassiveMonitorOnly" eSuperTypes="#//TestDebuggingFlags"/>
   <eClassifiers xsi:type="ecore:EClass" name="ActivationGenerationMethod" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="TimeBasedActivationGenerationMethod"
       eSuperTypes="#//ActivationGenerationMethod"/>
@@ -70,6 +74,37 @@
   <eClassifiers xsi:type="ecore:EClass" name="NSGAEvolutionaryAlgorithm" eSuperTypes="#//EvolutionaryAlgorithm">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="populationSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="iterations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NSGAWithCoverageCells" eSuperTypes="#//NSGAEvolutionaryAlgorithm">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coveragePerCell" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetCoverageProportion"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dimensionRecords" lowerBound="1"
+        upperBound="-1" eType="#//DimensionInterval" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="useMutationEnhancingCoverage"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DimensionInterval">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dimID" eType="#//DimensionID"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DimensionID">
+    <eLiterals name="T1_TIME_MIDPOINT_MEAN" value="1"/>
+    <eLiterals name="T2_TIME_LENGTH_MEAN" value="2"/>
+    <eLiterals name="T3_TIME_MIDPOINT_VAR" value="3"/>
+    <eLiterals name="P1_PARAMETER_MEAN" value="4"/>
+    <eLiterals name="P2_PARAMETER_VARIANCE" value="5"/>
+    <eLiterals name="O1_FUZZRANGE_COUNT" value="6"/>
+    <eLiterals name="O2_DELAY_COUNT" value="7"/>
+    <eLiterals name="O3_DELETION_COUNT" value="8"/>
+    <eLiterals name="O0_TOTAL_COUNT" value="9"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RepeatedExecution" eSuperTypes="#//TestGenerationApproach">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testToRepeat" lowerBound="1"
+        eType="#//Test"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repeatCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eSubpackages name="FuzzingOperations" nsURI="FuzzingOperations" nsPrefix="">
     <eClassifiers xsi:type="ecore:EClass" name="FuzzingOperation" abstract="true">
@@ -100,7 +135,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="fromTemplate" eType="#//FuzzingOperations/FuzzingOperation"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="containingTest" eType="#//Test"
           changeable="false" transient="true" eOpposite="#//Test/operations"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="seed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="recordedTimings" eType="#//FuzzingOperations/FixedTimeActivation"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="seed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sequenceNumInTest" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OfflineFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationTime" eType="#//FuzzingOperations/OfflineOperationTime"/>
@@ -124,6 +162,13 @@
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ending" eType="#//StandardGrammar/Condition"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumActivations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+          defaultValueLiteral="1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionBasedTimeLimited" eSuperTypes="#//FuzzingOperations/Activation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="starting" eType="#//StandardGrammar/Condition"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumActivations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="1"/>
     </eClassifiers>
@@ -177,42 +222,17 @@
     <eClassifiers xsi:type="ecore:EClass" name="ExternalResourceSet" eSuperTypes="#//FuzzingOperations/ValueSet">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ResourceFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation"/>
-    <eClassifiers xsi:type="ecore:EClass" name="StateFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation"/>
     <eClassifiers xsi:type="ecore:EClass" name="NetworkFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation"/>
-    <eClassifiers xsi:type="ecore:EClass" name="LoadResourceOperation" eSuperTypes="#//FuzzingOperations/ResourceFuzzingOperation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="loadType" lowerBound="1"
-          eType="#//FuzzingOperations/LoadType"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="LoadType">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CPULoadType" eSuperTypes="#//FuzzingOperations/LoadType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MemoryLoadType" eSuperTypes="#//FuzzingOperations/LoadType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="IOLoadType" eSuperTypes="#//FuzzingOperations/LoadType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DiskLoadType" eSuperTypes="#//FuzzingOperations/LoadType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ShutdownStateOperaton" eSuperTypes="#//FuzzingOperations/StateFuzzingOperation"/>
-    <eClassifiers xsi:type="ecore:EClass" name="TimeTravelStateOperaton" eSuperTypes="#//FuzzingOperations/StateFuzzingOperation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="timeTravelValue" lowerBound="1"
-          eType="#//FuzzingOperations/DoubleRange" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ProcessKillerStateOperaton" eSuperTypes="#//FuzzingOperations/StateFuzzingOperation">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="processId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="BlackholeNetworkOperation" eSuperTypes="#//FuzzingOperations/NetworkFuzzingOperation"/>
     <eClassifiers xsi:type="ecore:EClass" name="LatencyNetworkOperation" eSuperTypes="#//FuzzingOperations/NetworkFuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="latency" lowerBound="1"
           eType="#//FuzzingOperations/DoubleRange" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="randomised" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="false"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PacketLossNetworkOperation" eSuperTypes="#//FuzzingOperations/NetworkFuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="frequency" lowerBound="1"
           eType="#//FuzzingOperations/DoubleRange" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MultipleMessagesNetworkOperation"
-        eSuperTypes="#//FuzzingOperations/NetworkFuzzingOperation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="howManyClones" lowerBound="1"
-          eType="#//FuzzingOperations/IntRange" containment="true"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Metrics" nsURI="Metrics" nsPrefix="">
@@ -232,6 +252,7 @@
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="initValue" lowerBound="1"
           eType="#//Metrics/MetricDefault" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="useInOptimisation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MetricDefault">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultVal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
@@ -250,16 +271,17 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
           eType="#//MRSPackage/ComponentProperty"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConditionalPropertyMetric" eSuperTypes="#//Metrics/PropertyMetric">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StreamMetric" eSuperTypes="#//Metrics/Metric">
       <eStructuralFeatures xsi:type="ecore:EReference" name="streams" upperBound="-1"
           eType="#//Metrics/SimStream" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="res" eType="#//Metrics/StreamResult"
           containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="FuzzingOperationTimesMetric" eSuperTypes="#//Metrics/StreamMetric"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SpecialMetric" abstract="true" eSuperTypes="#//Metrics/StreamMetric"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DirectMessageGenerationMetric" abstract="true"
+        eSuperTypes="#//Metrics/StreamMetric"/>
+    <eClassifiers xsi:type="ecore:EClass" name="StartEndTimingMetric" eSuperTypes="#//Metrics/DirectMessageGenerationMetric"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FuzzingOperationTimesMetric" eSuperTypes="#//Metrics/SpecialMetric"/>
     <eClassifiers xsi:type="ecore:EClass" name="StreamResult" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="FileStreamResult" eSuperTypes="#//Metrics/StreamResult">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="filename" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -380,6 +402,12 @@
     <eClassifiers xsi:type="ecore:EClass" name="TTSSimulator" eSuperTypes="#//MRSPackage/Simulator">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepSizeMillis" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+          defaultValueLiteral="20"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="useStepping" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="useGUI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="false"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

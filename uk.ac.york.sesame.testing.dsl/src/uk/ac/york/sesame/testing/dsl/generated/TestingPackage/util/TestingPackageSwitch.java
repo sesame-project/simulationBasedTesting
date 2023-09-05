@@ -1,12 +1,9 @@
-/**
- */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.util;
+
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.*;
 
 /**
@@ -84,6 +81,19 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TestingPackagePackage.TEST_DEBUGGING_FLAGS: {
+				TestDebuggingFlags testDebuggingFlags = (TestDebuggingFlags)theEObject;
+				T result = caseTestDebuggingFlags(testDebuggingFlags);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.PASSIVE_MONITOR_ONLY: {
+				PassiveMonitorOnly passiveMonitorOnly = (PassiveMonitorOnly)theEObject;
+				T result = casePassiveMonitorOnly(passiveMonitorOnly);
+				if (result == null) result = caseTestDebuggingFlags(passiveMonitorOnly);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case TestingPackagePackage.ACTIVATION_GENERATION_METHOD: {
 				ActivationGenerationMethod activationGenerationMethod = (ActivationGenerationMethod)theEObject;
 				T result = caseActivationGenerationMethod(activationGenerationMethod);
@@ -151,6 +161,28 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS: {
+				NSGAWithCoverageCells nsgaWithCoverageCells = (NSGAWithCoverageCells)theEObject;
+				T result = caseNSGAWithCoverageCells(nsgaWithCoverageCells);
+				if (result == null) result = caseNSGAEvolutionaryAlgorithm(nsgaWithCoverageCells);
+				if (result == null) result = caseEvolutionaryAlgorithm(nsgaWithCoverageCells);
+				if (result == null) result = caseTestGenerationApproach(nsgaWithCoverageCells);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.DIMENSION_INTERVAL: {
+				DimensionInterval dimensionInterval = (DimensionInterval)theEObject;
+				T result = caseDimensionInterval(dimensionInterval);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.REPEATED_EXECUTION: {
+				RepeatedExecution repeatedExecution = (RepeatedExecution)theEObject;
+				T result = caseRepeatedExecution(repeatedExecution);
+				if (result == null) result = caseTestGenerationApproach(repeatedExecution);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -197,6 +229,36 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTest(Test object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Test Debugging Flags</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Test Debugging Flags</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTestDebuggingFlags(TestDebuggingFlags object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Passive Monitor Only</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Passive Monitor Only</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePassiveMonitorOnly(PassiveMonitorOnly object) {
 		return null;
 	}
 
@@ -347,6 +409,51 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNSGAEvolutionaryAlgorithm(NSGAEvolutionaryAlgorithm object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>NSGA With Coverage Cells</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>NSGA With Coverage Cells</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNSGAWithCoverageCells(NSGAWithCoverageCells object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dimension Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dimension Interval</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDimensionInterval(DimensionInterval object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Repeated Execution</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Repeated Execution</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRepeatedExecution(RepeatedExecution object) {
 		return null;
 	}
 

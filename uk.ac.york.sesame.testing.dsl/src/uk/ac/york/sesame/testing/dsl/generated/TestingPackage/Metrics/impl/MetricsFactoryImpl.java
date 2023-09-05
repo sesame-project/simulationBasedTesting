@@ -62,8 +62,8 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 			case MetricsPackage.METRIC_DEFAULT: return createMetricDefault();
 			case MetricsPackage.VARIABLE_METRIC: return createVariableMetric();
 			case MetricsPackage.METRIC_INSTANCE: return createMetricInstance();
-			case MetricsPackage.CONDITIONAL_PROPERTY_METRIC: return createConditionalPropertyMetric();
 			case MetricsPackage.STREAM_METRIC: return createStreamMetric();
+			case MetricsPackage.START_END_TIMING_METRIC: return createStartEndTimingMetric();
 			case MetricsPackage.FUZZING_OPERATION_TIMES_METRIC: return createFuzzingOperationTimesMetric();
 			case MetricsPackage.FILE_STREAM_RESULT: return createFileStreamResult();
 			default:
@@ -156,9 +156,9 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionalPropertyMetric createConditionalPropertyMetric() {
-		ConditionalPropertyMetricImpl conditionalPropertyMetric = new ConditionalPropertyMetricImpl();
-		return conditionalPropertyMetric;
+	public StreamMetric createStreamMetric() {
+		StreamMetricImpl streamMetric = new StreamMetricImpl();
+		return streamMetric;
 	}
 
 	/**
@@ -166,9 +166,9 @@ public class MetricsFactoryImpl extends EFactoryImpl implements MetricsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StreamMetric createStreamMetric() {
-		StreamMetricImpl streamMetric = new StreamMetricImpl();
-		return streamMetric;
+	public StartEndTimingMetric createStartEndTimingMetric() {
+		StartEndTimingMetricImpl startEndTimingMetric = new StartEndTimingMetricImpl();
+		return startEndTimingMetric;
 	}
 
 	/**

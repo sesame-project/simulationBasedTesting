@@ -45,6 +45,7 @@ import uk.ac.york.sesame.testing.architecture.data.*;
 
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
+import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 
 import metrics.custom.*;
 import metrics.fixed.*;
@@ -53,6 +54,8 @@ public class [%= testNameString %]_TestRunner {
 	public static void main(String[] args) {
 	
 		final String TESTNAME = "[%= testNameString %]";
+		
+		final boolean QUIT_MIDDLEWARE_ON_TOPIC_SUBSCRIPTION_FAILURE = true;
 		
 		// JRH: needed to increase the number of buffers used
 		Configuration cfg = new Configuration();
@@ -133,14 +136,21 @@ public class [%= testNameString %]_TestRunner {
 		
 		System.out.println("Simulator run period completed - connecting to topics");
 		rosSim.connect(cp);
-		
-		[* rosSim.recordSimState("[%=  testNameString %]"); - handed in SESAMEEvaluationProblem *]
-		
+				
 		[% for (aTopic in allTopics) { %]
 		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
 			public void run() {
-				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
-				rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
+				try {
+					System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
+					rosSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN");
+				} catch (SubscriptionFailure e) {
+					if (QUIT_MIDDLEWARE_ON_TOPIC_SUBSCRIPTION_FAILURE) {
+						System.out.println("Subscription to [%=aTopic.name.replace("/","_")%] Failed - Exiting Middleware");
+						System.exit(1);
+					} else {
+						System.out.println("Subscription to [%=aTopic.name.replace("/","_")%] Failed - Continuing");
+					}
+				}
 			}
 		};
 		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
@@ -149,11 +159,19 @@ public class [%= testNameString %]_TestRunner {
 		Thread time_subscriber = new Thread() {
 			public void run() {
 				System.out.println("updateTime starting");
-				rosSim.updateTime();
+				try {
+					rosSim.updateTime();
+				} catch (SubscriptionFailure e) {
+					if (QUIT_MIDDLEWARE_ON_TOPIC_SUBSCRIPTION_FAILURE) {
+						System.out.println("Subscription to time failed - Exiting Middleware");
+						System.exit(1);
+					} else {
+						System.out.println("Subscription to time failed - Continuing");
+					}
+				}
 			}
 		};
 		time_subscriber.start();
-
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {

@@ -20,9 +20,21 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.LongSerializer;
 
+import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
+
 public class DataStreamManager {
+	
+	private long POLL_TIMEOUT = 100;
+	private long POLL_TIMEOUT_EARLY = 1000;
+	private static final double TIME_EARLY_THRESHOLD = 1.0;
+	
+	//private final long POLL_TIMEOUT = 0;
+	// Zero will return immediately if there are no pending records available, allowing us to go onto the
+	// next step:
+	// https://kafka.apache.org/24/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html
 
 	private static final DataStreamManager INSTANCE = new DataStreamManager();
+	
 	private static KafkaProducer<Long, EventMessage> kafkaProducer;
 	private static KafkaConsumer<Long, EventMessage> kafkaConsumer;
 	private static HashMap<String, KafkaConsumer<Long, EventMessage>> consumers;
@@ -78,10 +90,18 @@ public class DataStreamManager {
 		String kafkaTopic = topicName.replace("/", ".").replace("[", "");
 //		KafkaProducer<Long, EventMessage> kafkaProducer = DataStreamManager.getInstance().getKafkaProducer();
 		eventMessage.setId(UUID.randomUUID().toString());
-		Instant instant = Instant.now();
-		long timeStampMillis = instant.toEpochMilli();
-		eventMessage.setTimestamp(timeStampMillis);
-//		eventMessage.setTopic(kafkaTopic);
+		
+		// JRH: only replace the event timestamp if they have not
+		// been set by simulator low-level timestamps
+		if (eventMessage.timestamp == 0) {
+			Instant instant = Instant.now();
+			long timeStampMillis = instant.toEpochMilli();
+			eventMessage.setTimestamp(timeStampMillis);
+		}
+		
+		// Ensure the IN_walltime is set
+		eventMessage.setIN_walltime_from_current();
+		
 		ProducerRecord<Long, EventMessage> record = new ProducerRecord<Long, EventMessage>(kafkaTopic, 1L,
 				eventMessage);
 		try {
@@ -107,7 +127,11 @@ public class DataStreamManager {
 			consumers.put(kafkaTopic, consumer);
 		}
 		consumer.subscribe(Collections.singletonList(kafkaTopic));
-		final ConsumerRecords<Long, EventMessage> consumerRecords = consumer.poll(Duration.ofMillis(1000));
+		long duration = POLL_TIMEOUT;
+		if (SimCore.getInstance().getTime() < TIME_EARLY_THRESHOLD) {
+			duration = POLL_TIMEOUT_EARLY;
+		}
+		final ConsumerRecords<Long, EventMessage> consumerRecords = consumer.poll(Duration.ofMillis(duration));
 		return consumerRecords;
 	}
 }

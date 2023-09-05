@@ -1,14 +1,10 @@
-/**
- */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.util;
+
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.*;
 
 /**
@@ -80,6 +76,14 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 				return createTestAdapter();
 			}
 			@Override
+			public Adapter caseTestDebuggingFlags(TestDebuggingFlags object) {
+				return createTestDebuggingFlagsAdapter();
+			}
+			@Override
+			public Adapter casePassiveMonitorOnly(PassiveMonitorOnly object) {
+				return createPassiveMonitorOnlyAdapter();
+			}
+			@Override
 			public Adapter caseActivationGenerationMethod(ActivationGenerationMethod object) {
 				return createActivationGenerationMethodAdapter();
 			}
@@ -118,6 +122,18 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseNSGAEvolutionaryAlgorithm(NSGAEvolutionaryAlgorithm object) {
 				return createNSGAEvolutionaryAlgorithmAdapter();
+			}
+			@Override
+			public Adapter caseNSGAWithCoverageCells(NSGAWithCoverageCells object) {
+				return createNSGAWithCoverageCellsAdapter();
+			}
+			@Override
+			public Adapter caseDimensionInterval(DimensionInterval object) {
+				return createDimensionIntervalAdapter();
+			}
+			@Override
+			public Adapter caseRepeatedExecution(RepeatedExecution object) {
+				return createRepeatedExecutionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -178,6 +194,34 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTestAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestDebuggingFlags <em>Test Debugging Flags</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestDebuggingFlags
+	 * @generated
+	 */
+	public Adapter createTestDebuggingFlagsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.PassiveMonitorOnly <em>Passive Monitor Only</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.PassiveMonitorOnly
+	 * @generated
+	 */
+	public Adapter createPassiveMonitorOnlyAdapter() {
 		return null;
 	}
 
@@ -318,6 +362,48 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNSGAEvolutionaryAlgorithmAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells <em>NSGA With Coverage Cells</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells
+	 * @generated
+	 */
+	public Adapter createNSGAWithCoverageCellsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval <em>Dimension Interval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval
+	 * @generated
+	 */
+	public Adapter createDimensionIntervalAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution <em>Repeated Execution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution
+	 * @generated
+	 */
+	public Adapter createRepeatedExecutionAdapter() {
 		return null;
 	}
 

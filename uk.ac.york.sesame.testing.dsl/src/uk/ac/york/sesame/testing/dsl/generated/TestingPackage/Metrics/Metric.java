@@ -22,6 +22,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variabl
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getRelatedVariables <em>Related Variables</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getValueIfNotReceived <em>Value If Not Received</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#getInitValue <em>Init Value</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#isUseInOptimisation <em>Use In Optimisation</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getMetric()
@@ -131,5 +132,27 @@ public interface Metric extends EObject {
 	 * @generated
 	 */
 	void setInitValue(MetricDefault value);
+
+	/**
+	 * Returns the value of the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Use In Optimisation</em>' attribute.
+	 * @see #setUseInOptimisation(boolean)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getMetric_UseInOptimisation()
+	 * @model
+	 * @generated
+	 */
+	boolean isUseInOptimisation();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#isUseInOptimisation <em>Use In Optimisation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Use In Optimisation</em>' attribute.
+	 * @see #isUseInOptimisation()
+	 * @generated
+	 */
+	void setUseInOptimisation(boolean value);
 
 } // Metric

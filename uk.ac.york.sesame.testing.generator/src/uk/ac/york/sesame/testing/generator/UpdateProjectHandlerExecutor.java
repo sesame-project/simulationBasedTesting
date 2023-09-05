@@ -41,8 +41,6 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
-import uk.ac.york.sesame.testing.evolutionary.utilities.PathDefinitions;
-
 public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 
 	private ExecutionEvent event;

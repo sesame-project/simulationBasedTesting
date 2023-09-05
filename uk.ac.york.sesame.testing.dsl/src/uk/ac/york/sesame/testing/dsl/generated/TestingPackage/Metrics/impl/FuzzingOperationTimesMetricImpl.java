@@ -14,7 +14,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPac
  *
  * @generated
  */
-public class FuzzingOperationTimesMetricImpl extends StreamMetricImpl implements FuzzingOperationTimesMetric {
+public class FuzzingOperationTimesMetricImpl extends SpecialMetricImpl implements FuzzingOperationTimesMetric {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

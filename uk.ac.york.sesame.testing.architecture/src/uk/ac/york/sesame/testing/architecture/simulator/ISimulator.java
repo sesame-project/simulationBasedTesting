@@ -12,8 +12,10 @@ public interface ISimulator {
 	
 	public String translateTopicNameForOutput(String origTopicName);
 	
-	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic);
-	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean forFuzzing);
+	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) throws SubscriptionFailure;
+	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean forFuzzing) throws SubscriptionFailure;
+	
+	public boolean stepSimulator();
 	
 	public void publishToTopic(String topicName, String topicType, String message);
 	public HashMap<String,?> getCreatedTopicsByTopicName();
@@ -25,6 +27,6 @@ public interface ISimulator {
 	public ICommandInvoker getICommandInvoker();
 	public void run(HashMap<String, String> params);
 	public void redirectTopics(ArrayList<Topic> topics);
-	public void updateTime();
+	public void updateTime() throws SubscriptionFailure;
 	
 }

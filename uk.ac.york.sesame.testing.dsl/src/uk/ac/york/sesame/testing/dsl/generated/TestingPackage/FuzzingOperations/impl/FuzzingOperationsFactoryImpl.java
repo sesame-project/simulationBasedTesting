@@ -62,6 +62,7 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 			case FuzzingOperationsPackage.CUSTOM_OFFLINE_FUZZING_OPERATION: return createCustomOfflineFuzzingOperation();
 			case FuzzingOperationsPackage.FIXED_TIME_ACTIVATION: return createFixedTimeActivation();
 			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION: return createConditionBasedActivation();
+			case FuzzingOperationsPackage.CONDITION_BASED_TIME_LIMITED: return createConditionBasedTimeLimited();
 			case FuzzingOperationsPackage.FUZZ_TESTING_OPERATION: return createFuzzTestingOperation();
 			case FuzzingOperationsPackage.COMPONENT_OPERATION: return createComponentOperation();
 			case FuzzingOperationsPackage.COMPONENT_PROPERTY_OPERATION: return createComponentPropertyOperation();
@@ -76,22 +77,10 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 			case FuzzingOperationsPackage.POINT_RANGE: return createPointRange();
 			case FuzzingOperationsPackage.STRING_SET: return createStringSet();
 			case FuzzingOperationsPackage.EXTERNAL_RESOURCE_SET: return createExternalResourceSet();
-			case FuzzingOperationsPackage.RESOURCE_FUZZING_OPERATION: return createResourceFuzzingOperation();
-			case FuzzingOperationsPackage.STATE_FUZZING_OPERATION: return createStateFuzzingOperation();
 			case FuzzingOperationsPackage.NETWORK_FUZZING_OPERATION: return createNetworkFuzzingOperation();
-			case FuzzingOperationsPackage.LOAD_RESOURCE_OPERATION: return createLoadResourceOperation();
-			case FuzzingOperationsPackage.LOAD_TYPE: return createLoadType();
-			case FuzzingOperationsPackage.CPU_LOAD_TYPE: return createCPULoadType();
-			case FuzzingOperationsPackage.MEMORY_LOAD_TYPE: return createMemoryLoadType();
-			case FuzzingOperationsPackage.IO_LOAD_TYPE: return createIOLoadType();
-			case FuzzingOperationsPackage.DISK_LOAD_TYPE: return createDiskLoadType();
-			case FuzzingOperationsPackage.SHUTDOWN_STATE_OPERATON: return createShutdownStateOperaton();
-			case FuzzingOperationsPackage.TIME_TRAVEL_STATE_OPERATON: return createTimeTravelStateOperaton();
-			case FuzzingOperationsPackage.PROCESS_KILLER_STATE_OPERATON: return createProcessKillerStateOperaton();
 			case FuzzingOperationsPackage.BLACKHOLE_NETWORK_OPERATION: return createBlackholeNetworkOperation();
 			case FuzzingOperationsPackage.LATENCY_NETWORK_OPERATION: return createLatencyNetworkOperation();
 			case FuzzingOperationsPackage.PACKET_LOSS_NETWORK_OPERATION: return createPacketLossNetworkOperation();
-			case FuzzingOperationsPackage.MULTIPLE_MESSAGES_NETWORK_OPERATION: return createMultipleMessagesNetworkOperation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -175,6 +164,16 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	public ConditionBasedActivation createConditionBasedActivation() {
 		ConditionBasedActivationImpl conditionBasedActivation = new ConditionBasedActivationImpl();
 		return conditionBasedActivation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConditionBasedTimeLimited createConditionBasedTimeLimited() {
+		ConditionBasedTimeLimitedImpl conditionBasedTimeLimited = new ConditionBasedTimeLimitedImpl();
+		return conditionBasedTimeLimited;
 	}
 
 	/**
@@ -322,119 +321,9 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceFuzzingOperation createResourceFuzzingOperation() {
-		ResourceFuzzingOperationImpl resourceFuzzingOperation = new ResourceFuzzingOperationImpl();
-		return resourceFuzzingOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StateFuzzingOperation createStateFuzzingOperation() {
-		StateFuzzingOperationImpl stateFuzzingOperation = new StateFuzzingOperationImpl();
-		return stateFuzzingOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public NetworkFuzzingOperation createNetworkFuzzingOperation() {
 		NetworkFuzzingOperationImpl networkFuzzingOperation = new NetworkFuzzingOperationImpl();
 		return networkFuzzingOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LoadResourceOperation createLoadResourceOperation() {
-		LoadResourceOperationImpl loadResourceOperation = new LoadResourceOperationImpl();
-		return loadResourceOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LoadType createLoadType() {
-		LoadTypeImpl loadType = new LoadTypeImpl();
-		return loadType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CPULoadType createCPULoadType() {
-		CPULoadTypeImpl cpuLoadType = new CPULoadTypeImpl();
-		return cpuLoadType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MemoryLoadType createMemoryLoadType() {
-		MemoryLoadTypeImpl memoryLoadType = new MemoryLoadTypeImpl();
-		return memoryLoadType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IOLoadType createIOLoadType() {
-		IOLoadTypeImpl ioLoadType = new IOLoadTypeImpl();
-		return ioLoadType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DiskLoadType createDiskLoadType() {
-		DiskLoadTypeImpl diskLoadType = new DiskLoadTypeImpl();
-		return diskLoadType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ShutdownStateOperaton createShutdownStateOperaton() {
-		ShutdownStateOperatonImpl shutdownStateOperaton = new ShutdownStateOperatonImpl();
-		return shutdownStateOperaton;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TimeTravelStateOperaton createTimeTravelStateOperaton() {
-		TimeTravelStateOperatonImpl timeTravelStateOperaton = new TimeTravelStateOperatonImpl();
-		return timeTravelStateOperaton;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ProcessKillerStateOperaton createProcessKillerStateOperaton() {
-		ProcessKillerStateOperatonImpl processKillerStateOperaton = new ProcessKillerStateOperatonImpl();
-		return processKillerStateOperaton;
 	}
 
 	/**
@@ -465,16 +354,6 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	public PacketLossNetworkOperation createPacketLossNetworkOperation() {
 		PacketLossNetworkOperationImpl packetLossNetworkOperation = new PacketLossNetworkOperationImpl();
 		return packetLossNetworkOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MultipleMessagesNetworkOperation createMultipleMessagesNetworkOperation() {
-		MultipleMessagesNetworkOperationImpl multipleMessagesNetworkOperation = new MultipleMessagesNetworkOperationImpl();
-		return multipleMessagesNetworkOperation;
 	}
 
 	/**

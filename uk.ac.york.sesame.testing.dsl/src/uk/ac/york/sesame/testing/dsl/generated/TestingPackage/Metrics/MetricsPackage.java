@@ -197,13 +197,22 @@ public interface MetricsPackage extends EPackage {
 	int METRIC__INIT_VALUE = 4;
 
 	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METRIC__USE_IN_OPTIMISATION = 5;
+
+	/**
 	 * The number of structural features of the '<em>Metric</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METRIC_FEATURE_COUNT = 5;
+	int METRIC_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Metric</em>' class.
@@ -305,6 +314,15 @@ public interface MetricsPackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIABLE_METRIC__INIT_VALUE = METRIC__INIT_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_METRIC__USE_IN_OPTIMISATION = METRIC__USE_IN_OPTIMISATION;
 
 	/**
 	 * The feature id for the '<em><b>Chosen Variables</b></em>' reference.
@@ -435,6 +453,15 @@ public interface MetricsPackage extends EPackage {
 	int PROPERTY_METRIC__INIT_VALUE = METRIC__INIT_VALUE;
 
 	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_METRIC__USE_IN_OPTIMISATION = METRIC__USE_IN_OPTIMISATION;
+
+	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -462,97 +489,6 @@ public interface MetricsPackage extends EPackage {
 	int PROPERTY_METRIC_OPERATION_COUNT = METRIC_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.ConditionalPropertyMetricImpl <em>Conditional Property Metric</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.ConditionalPropertyMetricImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getConditionalPropertyMetric()
-	 * @generated
-	 */
-	int CONDITIONAL_PROPERTY_METRIC = 8;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__NAME = PROPERTY_METRIC__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dir</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__DIR = PROPERTY_METRIC__DIR;
-
-	/**
-	 * The feature id for the '<em><b>Related Variables</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__RELATED_VARIABLES = PROPERTY_METRIC__RELATED_VARIABLES;
-
-	/**
-	 * The feature id for the '<em><b>Value If Not Received</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__VALUE_IF_NOT_RECEIVED = PROPERTY_METRIC__VALUE_IF_NOT_RECEIVED;
-
-	/**
-	 * The feature id for the '<em><b>Init Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__INIT_VALUE = PROPERTY_METRIC__INIT_VALUE;
-
-	/**
-	 * The feature id for the '<em><b>Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__PROPERTY = PROPERTY_METRIC__PROPERTY;
-
-	/**
-	 * The feature id for the '<em><b>Condition</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC__CONDITION = PROPERTY_METRIC_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Conditional Property Metric</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC_FEATURE_COUNT = PROPERTY_METRIC_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Conditional Property Metric</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_PROPERTY_METRIC_OPERATION_COUNT = PROPERTY_METRIC_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StreamMetricImpl <em>Stream Metric</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -560,7 +496,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getStreamMetric()
 	 * @generated
 	 */
-	int STREAM_METRIC = 9;
+	int STREAM_METRIC = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -608,6 +544,15 @@ public interface MetricsPackage extends EPackage {
 	int STREAM_METRIC__INIT_VALUE = METRIC__INIT_VALUE;
 
 	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STREAM_METRIC__USE_IN_OPTIMISATION = METRIC__USE_IN_OPTIMISATION;
+
+	/**
 	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -644,14 +589,14 @@ public interface MetricsPackage extends EPackage {
 	int STREAM_METRIC_OPERATION_COUNT = METRIC_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.FuzzingOperationTimesMetricImpl <em>Fuzzing Operation Times Metric</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.SpecialMetricImpl <em>Special Metric</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.FuzzingOperationTimesMetricImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getFuzzingOperationTimesMetric()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.SpecialMetricImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getSpecialMetric()
 	 * @generated
 	 */
-	int FUZZING_OPERATION_TIMES_METRIC = 10;
+	int SPECIAL_METRIC = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -660,7 +605,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_TIMES_METRIC__NAME = STREAM_METRIC__NAME;
+	int SPECIAL_METRIC__NAME = STREAM_METRIC__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Dir</b></em>' attribute.
@@ -669,7 +614,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_TIMES_METRIC__DIR = STREAM_METRIC__DIR;
+	int SPECIAL_METRIC__DIR = STREAM_METRIC__DIR;
 
 	/**
 	 * The feature id for the '<em><b>Related Variables</b></em>' reference list.
@@ -678,7 +623,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_TIMES_METRIC__RELATED_VARIABLES = STREAM_METRIC__RELATED_VARIABLES;
+	int SPECIAL_METRIC__RELATED_VARIABLES = STREAM_METRIC__RELATED_VARIABLES;
 
 	/**
 	 * The feature id for the '<em><b>Value If Not Received</b></em>' containment reference.
@@ -687,7 +632,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_TIMES_METRIC__VALUE_IF_NOT_RECEIVED = STREAM_METRIC__VALUE_IF_NOT_RECEIVED;
+	int SPECIAL_METRIC__VALUE_IF_NOT_RECEIVED = STREAM_METRIC__VALUE_IF_NOT_RECEIVED;
 
 	/**
 	 * The feature id for the '<em><b>Init Value</b></em>' containment reference.
@@ -696,7 +641,16 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_TIMES_METRIC__INIT_VALUE = STREAM_METRIC__INIT_VALUE;
+	int SPECIAL_METRIC__INIT_VALUE = STREAM_METRIC__INIT_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIAL_METRIC__USE_IN_OPTIMISATION = STREAM_METRIC__USE_IN_OPTIMISATION;
 
 	/**
 	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
@@ -705,7 +659,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_TIMES_METRIC__STREAMS = STREAM_METRIC__STREAMS;
+	int SPECIAL_METRIC__STREAMS = STREAM_METRIC__STREAMS;
 
 	/**
 	 * The feature id for the '<em><b>Res</b></em>' containment reference.
@@ -714,7 +668,307 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_TIMES_METRIC__RES = STREAM_METRIC__RES;
+	int SPECIAL_METRIC__RES = STREAM_METRIC__RES;
+
+	/**
+	 * The number of structural features of the '<em>Special Metric</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIAL_METRIC_FEATURE_COUNT = STREAM_METRIC_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Special Metric</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIAL_METRIC_OPERATION_COUNT = STREAM_METRIC_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.DirectMessageGenerationMetricImpl <em>Direct Message Generation Metric</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.DirectMessageGenerationMetricImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getDirectMessageGenerationMetric()
+	 * @generated
+	 */
+	int DIRECT_MESSAGE_GENERATION_METRIC = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_MESSAGE_GENERATION_METRIC__NAME = STREAM_METRIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Dir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_MESSAGE_GENERATION_METRIC__DIR = STREAM_METRIC__DIR;
+
+	/**
+	 * The feature id for the '<em><b>Related Variables</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_MESSAGE_GENERATION_METRIC__RELATED_VARIABLES = STREAM_METRIC__RELATED_VARIABLES;
+
+	/**
+	 * The feature id for the '<em><b>Value If Not Received</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_MESSAGE_GENERATION_METRIC__VALUE_IF_NOT_RECEIVED = STREAM_METRIC__VALUE_IF_NOT_RECEIVED;
+
+	/**
+	 * The feature id for the '<em><b>Init Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_MESSAGE_GENERATION_METRIC__INIT_VALUE = STREAM_METRIC__INIT_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_MESSAGE_GENERATION_METRIC__USE_IN_OPTIMISATION = STREAM_METRIC__USE_IN_OPTIMISATION;
+
+	/**
+	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_MESSAGE_GENERATION_METRIC__STREAMS = STREAM_METRIC__STREAMS;
+
+	/**
+	 * The feature id for the '<em><b>Res</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_MESSAGE_GENERATION_METRIC__RES = STREAM_METRIC__RES;
+
+	/**
+	 * The number of structural features of the '<em>Direct Message Generation Metric</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_MESSAGE_GENERATION_METRIC_FEATURE_COUNT = STREAM_METRIC_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Direct Message Generation Metric</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_MESSAGE_GENERATION_METRIC_OPERATION_COUNT = STREAM_METRIC_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StartEndTimingMetricImpl <em>Start End Timing Metric</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StartEndTimingMetricImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getStartEndTimingMetric()
+	 * @generated
+	 */
+	int START_END_TIMING_METRIC = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_END_TIMING_METRIC__NAME = DIRECT_MESSAGE_GENERATION_METRIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Dir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_END_TIMING_METRIC__DIR = DIRECT_MESSAGE_GENERATION_METRIC__DIR;
+
+	/**
+	 * The feature id for the '<em><b>Related Variables</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_END_TIMING_METRIC__RELATED_VARIABLES = DIRECT_MESSAGE_GENERATION_METRIC__RELATED_VARIABLES;
+
+	/**
+	 * The feature id for the '<em><b>Value If Not Received</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_END_TIMING_METRIC__VALUE_IF_NOT_RECEIVED = DIRECT_MESSAGE_GENERATION_METRIC__VALUE_IF_NOT_RECEIVED;
+
+	/**
+	 * The feature id for the '<em><b>Init Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_END_TIMING_METRIC__INIT_VALUE = DIRECT_MESSAGE_GENERATION_METRIC__INIT_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_END_TIMING_METRIC__USE_IN_OPTIMISATION = DIRECT_MESSAGE_GENERATION_METRIC__USE_IN_OPTIMISATION;
+
+	/**
+	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_END_TIMING_METRIC__STREAMS = DIRECT_MESSAGE_GENERATION_METRIC__STREAMS;
+
+	/**
+	 * The feature id for the '<em><b>Res</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_END_TIMING_METRIC__RES = DIRECT_MESSAGE_GENERATION_METRIC__RES;
+
+	/**
+	 * The number of structural features of the '<em>Start End Timing Metric</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_END_TIMING_METRIC_FEATURE_COUNT = DIRECT_MESSAGE_GENERATION_METRIC_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Start End Timing Metric</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_END_TIMING_METRIC_OPERATION_COUNT = DIRECT_MESSAGE_GENERATION_METRIC_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.FuzzingOperationTimesMetricImpl <em>Fuzzing Operation Times Metric</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.FuzzingOperationTimesMetricImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getFuzzingOperationTimesMetric()
+	 * @generated
+	 */
+	int FUZZING_OPERATION_TIMES_METRIC = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION_TIMES_METRIC__NAME = SPECIAL_METRIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Dir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION_TIMES_METRIC__DIR = SPECIAL_METRIC__DIR;
+
+	/**
+	 * The feature id for the '<em><b>Related Variables</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION_TIMES_METRIC__RELATED_VARIABLES = SPECIAL_METRIC__RELATED_VARIABLES;
+
+	/**
+	 * The feature id for the '<em><b>Value If Not Received</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION_TIMES_METRIC__VALUE_IF_NOT_RECEIVED = SPECIAL_METRIC__VALUE_IF_NOT_RECEIVED;
+
+	/**
+	 * The feature id for the '<em><b>Init Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION_TIMES_METRIC__INIT_VALUE = SPECIAL_METRIC__INIT_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Use In Optimisation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION_TIMES_METRIC__USE_IN_OPTIMISATION = SPECIAL_METRIC__USE_IN_OPTIMISATION;
+
+	/**
+	 * The feature id for the '<em><b>Streams</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION_TIMES_METRIC__STREAMS = SPECIAL_METRIC__STREAMS;
+
+	/**
+	 * The feature id for the '<em><b>Res</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION_TIMES_METRIC__RES = SPECIAL_METRIC__RES;
 
 	/**
 	 * The number of structural features of the '<em>Fuzzing Operation Times Metric</em>' class.
@@ -723,7 +977,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_TIMES_METRIC_FEATURE_COUNT = STREAM_METRIC_FEATURE_COUNT + 0;
+	int FUZZING_OPERATION_TIMES_METRIC_FEATURE_COUNT = SPECIAL_METRIC_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Fuzzing Operation Times Metric</em>' class.
@@ -732,7 +986,7 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_TIMES_METRIC_OPERATION_COUNT = STREAM_METRIC_OPERATION_COUNT + 0;
+	int FUZZING_OPERATION_TIMES_METRIC_OPERATION_COUNT = SPECIAL_METRIC_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StreamResultImpl <em>Stream Result</em>}' class.
@@ -742,7 +996,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getStreamResult()
 	 * @generated
 	 */
-	int STREAM_RESULT = 11;
+	int STREAM_RESULT = 13;
 
 	/**
 	 * The number of structural features of the '<em>Stream Result</em>' class.
@@ -770,7 +1024,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getFileStreamResult()
 	 * @generated
 	 */
-	int FILE_STREAM_RESULT = 12;
+	int FILE_STREAM_RESULT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Filename</b></em>' attribute.
@@ -807,7 +1061,7 @@ public interface MetricsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getMetricOptimisationDirection()
 	 * @generated
 	 */
-	int METRIC_OPTIMISATION_DIRECTION = 13;
+	int METRIC_OPTIMISATION_DIRECTION = 15;
 
 
 	/**
@@ -906,6 +1160,17 @@ public interface MetricsPackage extends EPackage {
 	EReference getMetric_InitValue();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#isUseInOptimisation <em>Use In Optimisation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Use In Optimisation</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric#isUseInOptimisation()
+	 * @see #getMetric()
+	 * @generated
+	 */
+	EAttribute getMetric_UseInOptimisation();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault <em>Metric Default</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1001,27 +1266,6 @@ public interface MetricsPackage extends EPackage {
 	EReference getPropertyMetric_Property();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric <em>Conditional Property Metric</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Conditional Property Metric</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric
-	 * @generated
-	 */
-	EClass getConditionalPropertyMetric();
-
-	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric#getCondition <em>Condition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Condition</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric#getCondition()
-	 * @see #getConditionalPropertyMetric()
-	 * @generated
-	 */
-	EAttribute getConditionalPropertyMetric_Condition();
-
-	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StreamMetric <em>Stream Metric</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1052,6 +1296,36 @@ public interface MetricsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getStreamMetric_Res();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.SpecialMetric <em>Special Metric</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Special Metric</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.SpecialMetric
+	 * @generated
+	 */
+	EClass getSpecialMetric();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.DirectMessageGenerationMetric <em>Direct Message Generation Metric</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Direct Message Generation Metric</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.DirectMessageGenerationMetric
+	 * @generated
+	 */
+	EClass getDirectMessageGenerationMetric();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StartEndTimingMetric <em>Start End Timing Metric</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Start End Timing Metric</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StartEndTimingMetric
+	 * @generated
+	 */
+	EClass getStartEndTimingMetric();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FuzzingOperationTimesMetric <em>Fuzzing Operation Times Metric</em>}'.
@@ -1208,6 +1482,14 @@ public interface MetricsPackage extends EPackage {
 		EReference METRIC__INIT_VALUE = eINSTANCE.getMetric_InitValue();
 
 		/**
+		 * The meta object literal for the '<em><b>Use In Optimisation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METRIC__USE_IN_OPTIMISATION = eINSTANCE.getMetric_UseInOptimisation();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricDefaultImpl <em>Metric Default</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1288,24 +1570,6 @@ public interface MetricsPackage extends EPackage {
 		EReference PROPERTY_METRIC__PROPERTY = eINSTANCE.getPropertyMetric_Property();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.ConditionalPropertyMetricImpl <em>Conditional Property Metric</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.ConditionalPropertyMetricImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getConditionalPropertyMetric()
-		 * @generated
-		 */
-		EClass CONDITIONAL_PROPERTY_METRIC = eINSTANCE.getConditionalPropertyMetric();
-
-		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONDITIONAL_PROPERTY_METRIC__CONDITION = eINSTANCE.getConditionalPropertyMetric_Condition();
-
-		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StreamMetricImpl <em>Stream Metric</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1330,6 +1594,36 @@ public interface MetricsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference STREAM_METRIC__RES = eINSTANCE.getStreamMetric_Res();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.SpecialMetricImpl <em>Special Metric</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.SpecialMetricImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getSpecialMetric()
+		 * @generated
+		 */
+		EClass SPECIAL_METRIC = eINSTANCE.getSpecialMetric();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.DirectMessageGenerationMetricImpl <em>Direct Message Generation Metric</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.DirectMessageGenerationMetricImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getDirectMessageGenerationMetric()
+		 * @generated
+		 */
+		EClass DIRECT_MESSAGE_GENERATION_METRIC = eINSTANCE.getDirectMessageGenerationMetric();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StartEndTimingMetricImpl <em>Start End Timing Metric</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.StartEndTimingMetricImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl#getStartEndTimingMetric()
+		 * @generated
+		 */
+		EClass START_END_TIMING_METRIC = eINSTANCE.getStartEndTimingMetric();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.FuzzingOperationTimesMetricImpl <em>Fuzzing Operation Times Metric</em>}' class.

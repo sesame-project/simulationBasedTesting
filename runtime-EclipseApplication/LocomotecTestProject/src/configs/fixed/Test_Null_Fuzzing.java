@@ -27,7 +27,7 @@ import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.*;
 
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
-
+import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 import metrics.custom.*;
 import metrics.fixed.*;
 
@@ -98,28 +98,48 @@ public class Test_Null_Fuzzing {
 		Thread subscriber_thread__virtual_uvc_meter_s1_measurements = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _virtual_uvc_meter_s1_measurements Starts");
-				rosSim.consumeFromTopic("/virtual_uvc_meter_s1/measurements", "std_msgs/Float64MultiArray", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/virtual_uvc_meter_s1/measurements", "std_msgs/Float64MultiArray", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		subscriber_thread__virtual_uvc_meter_s1_measurements.start();
 		Thread subscriber_thread__base_scan = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _base_scan Starts");
-				rosSim.consumeFromTopic("/base_scan", "sensor_msgs/LaserScan", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/base_scan", "sensor_msgs/LaserScan", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		subscriber_thread__base_scan.start();
 		Thread subscriber_thread__amcl_pose = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _amcl_pose Starts");
-				rosSim.consumeFromTopic("/amcl_pose", "geometry_msgs/PoseWithCovarianceStamped", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/amcl_pose", "geometry_msgs/PoseWithCovarianceStamped", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		subscriber_thread__amcl_pose.start();
 		Thread subscriber_thread__virtual_uvc_meter_p1_measurements = new Thread() {
 			public void run() {
 				System.out.println("Subscriber _virtual_uvc_meter_p1_measurements Starts");
-				rosSim.consumeFromTopic("/virtual_uvc_meter_p1/measurements", "std_msgs/Float64MultiArray", true, "IN");
+				try {
+					rosSim.consumeFromTopic("/virtual_uvc_meter_p1/measurements", "std_msgs/Float64MultiArray", true, "IN");
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		subscriber_thread__virtual_uvc_meter_p1_measurements.start();
@@ -127,7 +147,12 @@ public class Test_Null_Fuzzing {
 		Thread time_subscriber = new Thread() {
 			public void run() {
 				System.out.println("updateTime starting");
-				rosSim.updateTime();
+				try {
+					rosSim.updateTime();
+				} catch (SubscriptionFailure e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 		time_subscriber.start();

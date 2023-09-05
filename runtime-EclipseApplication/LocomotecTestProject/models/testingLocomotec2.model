@@ -46,29 +46,11 @@
     <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_qf-oIEVeEe21kZ_DgzCBrA" propertyName="perception_msgs/DetectedObjectList.object.sector.center_angle" lowerBound="-0.2" upperBound="0.2"/>
     <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_q9g4sEVeEe21kZ_DgzCBrA" propertyName="perception_msgs/DetectedObjectList.object.sector.opening_angle" lowerBound="-0.01" upperBound="0.01"/>
   </possibleFuzzingOperations>
-  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _IbT50BSTEe2NuvfcagGJYw _qYdz4ET7Ee21kZ_DgzCBrA" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg" includedOperations="_EpCRIEVeEe21kZ_DgzCBrA _QKc88ET9Ee21kZ_DgzCBrA">
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _IbT50BSTEe2NuvfcagGJYw _qYdz4ET7Ee21kZ_DgzCBrA" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg" includedOperations="_QKc88ET9Ee21kZ_DgzCBrA _EpCRIEVeEe21kZ_DgzCBrA">
     <activationGeneration xsi:type="TestingMM:TimeBasedActivationGenerationMethod" xmi:id="_3bXdcDx_Ee2btv-8bZumyw"/>
     <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="6" iterations="32"/>
-    <performedTests xmi:id="_4BzkYElOEe2gd6o3OOp2pw" name="Test_change_sector_angle">
-      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_4BzkYUlOEe2gd6o3OOp2pw" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" isRelative="true">
-        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_4B0LcElOEe2gd6o3OOp2pw" endTime="1000.0"/>
-        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_4B0LcUlOEe2gd6o3OOp2pw" propertyName="perception_msgs/DetectedObjectList/object/sector/center_angle" lowerBound="0.5" upperBound="0.6"/>
-        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_4B0LcklOEe2gd6o3OOp2pw" propertyName="perception_msgs/DetectedObjectList/object/sector/opening_angle" lowerBound="-7.27069275226002E-4" upperBound="0.007847721301729954"/>
-      </operations>
-    </performedTests>
-    <performedTests xmi:id="_skmxkEmsEe2d4oxCIpFMdg" name="Test_001_11_10_2022_12_26_14">
-      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_skmxkUmsEe2d4oxCIpFMdg" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
-        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_skmxkkmsEe2d4oxCIpFMdg" startTime="77.46273178807131" endTime="118.676155172894"/>
-        <frequency xmi:id="_skmxk0msEe2d4oxCIpFMdg" lowerBound="0.4" upperBound="0.7"/>
-      </operations>
-    </performedTests>
-    <performedTests xmi:id="_skmxlEmsEe2d4oxCIpFMdg" name="Test_001_11_10_2022_12_26_28">
-      <operations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_skmxlUmsEe2d4oxCIpFMdg" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA">
-        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_skmxlkmsEe2d4oxCIpFMdg" startTime="114.36785346784337" endTime="117.56099056229135"/>
-        <frequency xmi:id="_skmxl0msEe2d4oxCIpFMdg" lowerBound="0.4" upperBound="0.7"/>
-      </operations>
-    </performedTests>
-    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="180"/>
+    <performedTests xmi:id="_mZEfUDI-Ee6qronNLW3EKg" name="Test_001_03_08_2023_22_41_44"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="500"/>
   </campaigns>
   <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_locomotec2.sh" launchDelaySeconds="10" customTerminateFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/terminate.sh">
     <variables xmi:id="_NzG5gCkOEe2rWIgPkXJ7Hg" name="/base_scan" type="_DwpnoCjCEe26Ivhf6XyfHA"/>

@@ -31,15 +31,18 @@ public class collisionOccuranceMetric extends BatchedRateMetric {
 		super.open(parameters, "collisionOccuranceMetric");
 		violationCount = getRuntimeContext().getState(new ValueStateDescriptor<>("violationCount", Long.class));
 	}
-
-	public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
-		return topic.contains("Z1") || topic.contains("Z2") || topic.contains("Z3");
+	
+	private boolean topicMatches(String topic) {
+		//return topic.contains("Z1") || topic.contains("Z2") || topic.contains("Z3");
+		return true;
 	}
 
 	public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
+		
 		String completionTopicName = "safetyzone";
 		String topic = msg.getTopic();
 		if (topic.contains(completionTopicName) && topicMatches(topic)) {
+
 			System.out.println("ZZZ SAFETYZONE processElement1 - " + topic);
 			if (msg.getValue() instanceof String) {
 				String s = (String) msg.getValue();

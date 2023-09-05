@@ -52,5 +52,9 @@ public class distortBaseScanCustomOp_Test_001_07_09_2022_12_29_20 extends TimeBa
 	public void preprocessing() {
 		fuzzOpInternal.customPreprocessing(getParameters());
 	}
+	
+	public String getUniqueID() {
+		return "NO-ID";
+	}
 }
 

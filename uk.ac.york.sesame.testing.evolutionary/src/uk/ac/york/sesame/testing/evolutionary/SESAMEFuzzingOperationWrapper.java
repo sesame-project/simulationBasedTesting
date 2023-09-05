@@ -1,5 +1,6 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
+import java.security.SecureRandom;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Random;
@@ -23,6 +24,7 @@ public class SESAMEFuzzingOperationWrapper {
 	private Tree<String> storedStartTree;
 	private Tree<String> storedEndTree;
 	private static Random rng = new Random();
+	private static SecureRandom secRandom = new SecureRandom();
 
 	public Tree<String> getStoredStartTree() {
 		return storedStartTree;
@@ -240,11 +242,11 @@ public class SESAMEFuzzingOperationWrapper {
 
 	// Generates a solution with a timing reduction of the original fuzzing
 	// operation
-	public static SESAMEFuzzingOperationWrapper reductionOfOperation(SESAMETestSolution sol,
-			FuzzingOperation original) {
+	public static SESAMEFuzzingOperationWrapper reductionOfOperation(SESAMETestSolution sol, FuzzingOperation original) {
 		FuzzingOperation newA = EcoreUtil.copy(original);
 		newA.setFromTemplate(original);
 		reduceAttackActivationsTiming(newA, original.getActivation());
+		newA.setSeed(secRandom.nextLong());
 
 		try {
 			reduceOperationSpecific(newA, original);
@@ -255,6 +257,10 @@ public class SESAMEFuzzingOperationWrapper {
 	}
 
 	public FuzzingOperation getAttack() {
+		return t;
+	}
+	
+	public FuzzingOperation getFuzzingOperation() {
 		return t;
 	}
 

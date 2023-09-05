@@ -114,6 +114,13 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case FuzzingOperationsPackage.CONDITION_BASED_TIME_LIMITED: {
+				ConditionBasedTimeLimited conditionBasedTimeLimited = (ConditionBasedTimeLimited)theEObject;
+				T result = caseConditionBasedTimeLimited(conditionBasedTimeLimited);
+				if (result == null) result = caseActivation(conditionBasedTimeLimited);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case FuzzingOperationsPackage.FUZZ_TESTING_OPERATION: {
 				FuzzTestingOperation fuzzTestingOperation = (FuzzTestingOperation)theEObject;
 				T result = caseFuzzTestingOperation(fuzzTestingOperation);
@@ -229,90 +236,10 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FuzzingOperationsPackage.RESOURCE_FUZZING_OPERATION: {
-				ResourceFuzzingOperation resourceFuzzingOperation = (ResourceFuzzingOperation)theEObject;
-				T result = caseResourceFuzzingOperation(resourceFuzzingOperation);
-				if (result == null) result = caseFuzzingOperation(resourceFuzzingOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.STATE_FUZZING_OPERATION: {
-				StateFuzzingOperation stateFuzzingOperation = (StateFuzzingOperation)theEObject;
-				T result = caseStateFuzzingOperation(stateFuzzingOperation);
-				if (result == null) result = caseFuzzingOperation(stateFuzzingOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case FuzzingOperationsPackage.NETWORK_FUZZING_OPERATION: {
 				NetworkFuzzingOperation networkFuzzingOperation = (NetworkFuzzingOperation)theEObject;
 				T result = caseNetworkFuzzingOperation(networkFuzzingOperation);
 				if (result == null) result = caseFuzzingOperation(networkFuzzingOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.LOAD_RESOURCE_OPERATION: {
-				LoadResourceOperation loadResourceOperation = (LoadResourceOperation)theEObject;
-				T result = caseLoadResourceOperation(loadResourceOperation);
-				if (result == null) result = caseResourceFuzzingOperation(loadResourceOperation);
-				if (result == null) result = caseFuzzingOperation(loadResourceOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.LOAD_TYPE: {
-				LoadType loadType = (LoadType)theEObject;
-				T result = caseLoadType(loadType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.CPU_LOAD_TYPE: {
-				CPULoadType cpuLoadType = (CPULoadType)theEObject;
-				T result = caseCPULoadType(cpuLoadType);
-				if (result == null) result = caseLoadType(cpuLoadType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.MEMORY_LOAD_TYPE: {
-				MemoryLoadType memoryLoadType = (MemoryLoadType)theEObject;
-				T result = caseMemoryLoadType(memoryLoadType);
-				if (result == null) result = caseLoadType(memoryLoadType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.IO_LOAD_TYPE: {
-				IOLoadType ioLoadType = (IOLoadType)theEObject;
-				T result = caseIOLoadType(ioLoadType);
-				if (result == null) result = caseLoadType(ioLoadType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.DISK_LOAD_TYPE: {
-				DiskLoadType diskLoadType = (DiskLoadType)theEObject;
-				T result = caseDiskLoadType(diskLoadType);
-				if (result == null) result = caseLoadType(diskLoadType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.SHUTDOWN_STATE_OPERATON: {
-				ShutdownStateOperaton shutdownStateOperaton = (ShutdownStateOperaton)theEObject;
-				T result = caseShutdownStateOperaton(shutdownStateOperaton);
-				if (result == null) result = caseStateFuzzingOperation(shutdownStateOperaton);
-				if (result == null) result = caseFuzzingOperation(shutdownStateOperaton);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.TIME_TRAVEL_STATE_OPERATON: {
-				TimeTravelStateOperaton timeTravelStateOperaton = (TimeTravelStateOperaton)theEObject;
-				T result = caseTimeTravelStateOperaton(timeTravelStateOperaton);
-				if (result == null) result = caseStateFuzzingOperation(timeTravelStateOperaton);
-				if (result == null) result = caseFuzzingOperation(timeTravelStateOperaton);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.PROCESS_KILLER_STATE_OPERATON: {
-				ProcessKillerStateOperaton processKillerStateOperaton = (ProcessKillerStateOperaton)theEObject;
-				T result = caseProcessKillerStateOperaton(processKillerStateOperaton);
-				if (result == null) result = caseStateFuzzingOperation(processKillerStateOperaton);
-				if (result == null) result = caseFuzzingOperation(processKillerStateOperaton);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -337,14 +264,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				T result = casePacketLossNetworkOperation(packetLossNetworkOperation);
 				if (result == null) result = caseNetworkFuzzingOperation(packetLossNetworkOperation);
 				if (result == null) result = caseFuzzingOperation(packetLossNetworkOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.MULTIPLE_MESSAGES_NETWORK_OPERATION: {
-				MultipleMessagesNetworkOperation multipleMessagesNetworkOperation = (MultipleMessagesNetworkOperation)theEObject;
-				T result = caseMultipleMessagesNetworkOperation(multipleMessagesNetworkOperation);
-				if (result == null) result = caseNetworkFuzzingOperation(multipleMessagesNetworkOperation);
-				if (result == null) result = caseFuzzingOperation(multipleMessagesNetworkOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -454,6 +373,21 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConditionBasedActivation(ConditionBasedActivation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Based Time Limited</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Based Time Limited</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionBasedTimeLimited(ConditionBasedTimeLimited object) {
 		return null;
 	}
 
@@ -683,36 +617,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Resource Fuzzing Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Resource Fuzzing Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseResourceFuzzingOperation(ResourceFuzzingOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>State Fuzzing Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>State Fuzzing Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStateFuzzingOperation(StateFuzzingOperation object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Network Fuzzing Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -724,141 +628,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNetworkFuzzingOperation(NetworkFuzzingOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Load Resource Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Load Resource Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLoadResourceOperation(LoadResourceOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Load Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Load Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLoadType(LoadType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CPU Load Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CPU Load Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCPULoadType(CPULoadType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Memory Load Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Memory Load Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMemoryLoadType(MemoryLoadType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IO Load Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IO Load Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIOLoadType(IOLoadType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Disk Load Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Disk Load Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDiskLoadType(DiskLoadType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Shutdown State Operaton</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Shutdown State Operaton</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseShutdownStateOperaton(ShutdownStateOperaton object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Time Travel State Operaton</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Time Travel State Operaton</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTimeTravelStateOperaton(TimeTravelStateOperaton object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Process Killer State Operaton</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Process Killer State Operaton</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseProcessKillerStateOperaton(ProcessKillerStateOperaton object) {
 		return null;
 	}
 
@@ -904,21 +673,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePacketLossNetworkOperation(PacketLossNetworkOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Multiple Messages Network Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Multiple Messages Network Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMultipleMessagesNetworkOperation(MultipleMessagesNetworkOperation object) {
 		return null;
 	}
 

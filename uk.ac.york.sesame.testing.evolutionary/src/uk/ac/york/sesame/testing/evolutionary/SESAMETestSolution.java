@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.uma.jmetal.solution.*;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
@@ -66,6 +67,11 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 	public SESAMETestSolution(TestCampaign selectedCampaign, String overrideName) {
 		this.selectedCampaign = selectedCampaign;
 		setupInternalType(this);
+		t.setName(overrideName);
+	}
+	
+	public SESAMETestSolution(TestCampaign selectedCampaign, Test fixed, String overrideName) {
+		t = EcoreUtil.copy(fixed);
 		t.setName(overrideName);
 	}
 	
@@ -279,5 +285,15 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 		Test parentT = parent.getInternalType();
 		EList<Test> developedFrom = t.getDevelopedFrom();
 		developedFrom.add(parentT);
+	}
+
+	public void setOperationSequenceNums() {
+		Test t = this.getInternalType();
+		int i = 0;
+		EList<FuzzingOperation> ops = t.getOperations();
+		for (FuzzingOperation o : ops) {
+			o.setSequenceNumInTest(i);
+			i++;
+		}
 	}
 }

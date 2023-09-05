@@ -217,8 +217,8 @@ public class TestRunnerUtils {
 		ExptHelper.runScriptNew(ABS_SCRIPT_DIR, "./clear_kafka.sh");
 	}
 
-	public static void waitForSeconds(long timeDelaySeconds) {
-		long endTimeMillis = System.currentTimeMillis() + timeDelaySeconds * 1000;
+	public static void waitForSeconds(double timeDelaySeconds) {
+		long endTimeMillis = System.currentTimeMillis() + (long)((double)timeDelaySeconds * 1000);
 		while (System.currentTimeMillis() < endTimeMillis) {
 			try {
 				Thread.sleep(endTimeMillis - System.currentTimeMillis());

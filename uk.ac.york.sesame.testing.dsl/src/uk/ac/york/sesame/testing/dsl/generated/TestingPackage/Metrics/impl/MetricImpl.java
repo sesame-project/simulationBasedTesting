@@ -37,6 +37,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPac
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getRelatedVariables <em>Related Variables</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getValueIfNotReceived <em>Value If Not Received</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#getInitValue <em>Init Value</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricImpl#isUseInOptimisation <em>Use In Optimisation</em>}</li>
  * </ul>
  *
  * @generated
@@ -111,6 +112,26 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected MetricDefault initValue;
+
+	/**
+	 * The default value of the '{@link #isUseInOptimisation() <em>Use In Optimisation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUseInOptimisation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USE_IN_OPTIMISATION_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUseInOptimisation() <em>Use In Optimisation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUseInOptimisation()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean useInOptimisation = USE_IN_OPTIMISATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -276,6 +297,27 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isUseInOptimisation() {
+		return useInOptimisation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUseInOptimisation(boolean newUseInOptimisation) {
+		boolean oldUseInOptimisation = useInOptimisation;
+		useInOptimisation = newUseInOptimisation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetricsPackage.METRIC__USE_IN_OPTIMISATION, oldUseInOptimisation, useInOptimisation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -305,6 +347,8 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 				return getValueIfNotReceived();
 			case MetricsPackage.METRIC__INIT_VALUE:
 				return getInitValue();
+			case MetricsPackage.METRIC__USE_IN_OPTIMISATION:
+				return isUseInOptimisation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -334,6 +378,9 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 			case MetricsPackage.METRIC__INIT_VALUE:
 				setInitValue((MetricDefault)newValue);
 				return;
+			case MetricsPackage.METRIC__USE_IN_OPTIMISATION:
+				setUseInOptimisation((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -361,6 +408,9 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 			case MetricsPackage.METRIC__INIT_VALUE:
 				setInitValue((MetricDefault)null);
 				return;
+			case MetricsPackage.METRIC__USE_IN_OPTIMISATION:
+				setUseInOptimisation(USE_IN_OPTIMISATION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -383,6 +433,8 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 				return valueIfNotReceived != null;
 			case MetricsPackage.METRIC__INIT_VALUE:
 				return initValue != null;
+			case MetricsPackage.METRIC__USE_IN_OPTIMISATION:
+				return useInOptimisation != USE_IN_OPTIMISATION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -401,6 +453,8 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 		result.append(name);
 		result.append(", dir: ");
 		result.append(dir);
+		result.append(", useInOptimisation: ");
+		result.append(useInOptimisation);
 		result.append(')');
 		return result.toString();
 	}

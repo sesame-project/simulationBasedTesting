@@ -1,9 +1,5 @@
 package uk.ac.york.sesame.testing.architecture.ros;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -15,15 +11,13 @@ import org.eclipse.epsilon.emc.emf.EmfModel;
 import org.eclipse.epsilon.emc.plainxml.PlainXmlModel;
 import org.eclipse.epsilon.eol.launch.EolRunConfiguration;
 import org.eclipse.epsilon.eol.models.IModel;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import edu.wpi.rail.jrosbridge.JRosbridge.WebSocketType;
 import edu.wpi.rail.jrosbridge.Ros;
 import edu.wpi.rail.jrosbridge.Topic;
 import edu.wpi.rail.jrosbridge.callback.TopicCallback;
 import edu.wpi.rail.jrosbridge.messages.Message;
+import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
@@ -121,7 +115,7 @@ public class ROSSimulator implements ISimulator {
 	 * This is for ROS Topics
 	 */
 	@Override
-	public synchronized void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean shouldFuzz) {
+	public synchronized void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean shouldFuzz) throws SubscriptionFailure {
 		System.out.println("TopicName: " + topicName);
 
 		Topic topic;
@@ -130,6 +124,8 @@ public class ROSSimulator implements ISimulator {
 		} else {
 			topic = (Topic)createTopic(topicName, topicType);
 		}
+		
+		try {
 		
 		// shouldFuzz is ignored for ROS interface
 		topic.subscribe(new TopicCallback() {
@@ -151,9 +147,13 @@ public class ROSSimulator implements ISimulator {
 				}
 			}
 		});
+		} catch (NullPointerException e) {
+			System.out.println("ROS subscription failed - exiting middleware");
+			throw new SubscriptionFailure();
+		}
 	}
 	
-	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
+	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) throws SubscriptionFailure {
 		consumeFromTopic(topicName, topicType, publishToKafka, kafkaTopic, false);
 	}
 	
@@ -208,8 +208,9 @@ public class ROSSimulator implements ISimulator {
 	}
 
 	@Override
-	public void updateTime() {
+	public void updateTime() throws SubscriptionFailure {
 		Topic topic = (Topic) createTopic("/clock", "rosgraph_msgs/Clock");
+		try {
 		topic.subscribe(new TopicCallback() {
 			@Override
 			public void handleMessage(Message message) {
@@ -225,7 +226,13 @@ public class ROSSimulator implements ISimulator {
 				SimCore.getInstance().setTime(time);
 			}
 		});
-		// TODO: can we take this loop out?
-		//while(true) {}
+		} catch (NullPointerException e) {
+			System.out.println("ROS subscription failed - exiting middleware");
+			throw new SubscriptionFailure();
+		}
+	}
+
+	public boolean stepSimulator() {
+		return true;	
 	}
 }    

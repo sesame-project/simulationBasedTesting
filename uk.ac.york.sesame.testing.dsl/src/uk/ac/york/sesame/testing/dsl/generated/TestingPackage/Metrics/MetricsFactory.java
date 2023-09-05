@@ -67,15 +67,6 @@ public interface MetricsFactory extends EFactory {
 	MetricInstance createMetricInstance();
 
 	/**
-	 * Returns a new object of class '<em>Conditional Property Metric</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conditional Property Metric</em>'.
-	 * @generated
-	 */
-	ConditionalPropertyMetric createConditionalPropertyMetric();
-
-	/**
 	 * Returns a new object of class '<em>Stream Metric</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,6 +74,15 @@ public interface MetricsFactory extends EFactory {
 	 * @generated
 	 */
 	StreamMetric createStreamMetric();
+
+	/**
+	 * Returns a new object of class '<em>Start End Timing Metric</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Start End Timing Metric</em>'.
+	 * @generated
+	 */
+	StartEndTimingMetric createStartEndTimingMetric();
 
 	/**
 	 * Returns a new object of class '<em>Fuzzing Operation Times Metric</em>'.

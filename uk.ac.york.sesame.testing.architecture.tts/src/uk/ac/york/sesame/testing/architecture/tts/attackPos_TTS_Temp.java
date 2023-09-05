@@ -34,5 +34,9 @@ public class attackPos_TTS_Temp extends TimeBasedFuzzingOperation {
 				out.collect(value);
 			}
 
+	}
+
+	public String getUniqueID() {
+		return "NO-ID";
 	}	
 }
