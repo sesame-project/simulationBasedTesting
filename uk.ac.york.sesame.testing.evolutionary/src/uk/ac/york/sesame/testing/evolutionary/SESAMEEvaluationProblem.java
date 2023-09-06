@@ -38,6 +38,11 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final boolean FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE = true;
 	
 	private static final boolean RECORD_ROSBAG = true;
+	
+	// Variable probability of inclusion? - needs to be specified from the Attack
+	// and TestCampaign
+	// TODO: this needs to be specified in the DSL, for now, just using 50% for all attacks
+	private final double INCLUDE_FuzzingOperation_PROB = 0.5;
 
 	private static final long DEFAULT_HARDCODED_DELAY = 100;
 	
@@ -314,12 +319,9 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		}
 	}
 
-	// Variable probability of inclusion? - needs to be specified from the Attack
-	// and TestCampaign
-	// TODO: this needs to be specified as an extension point, for now, just using
-	// 50% for all attacks
+
 	public boolean shouldIncludeFuzzingOperation(FuzzingOperation a) {
-		final double INCLUDE_FuzzingOperation_PROB = 0.5;
+		
 		double v = rng.nextDouble();
 		return (v < INCLUDE_FuzzingOperation_PROB);
 	}
