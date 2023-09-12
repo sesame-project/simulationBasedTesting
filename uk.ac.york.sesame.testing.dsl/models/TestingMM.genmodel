@@ -75,7 +75,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGAWithCoverageCells/coveragePerCell"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGAWithCoverageCells/targetCoverageProportion"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//NSGAWithCoverageCells/dimensionRecords"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGAWithCoverageCells/useMutationEnhancingCoverage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//NSGAWithCoverageCells/coverageBoostingStrategy"/>
+    </genClasses>
+    <genClasses ecoreClass="TestingMM.ecore#//NSGACoverageBoostingStrategy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGACoverageBoostingStrategy/useBoostingOnceEveryGenerations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGACoverageBoostingStrategy/useBoostingOnceEveryIterations"/>
     </genClasses>
     <genClasses ecoreClass="TestingMM.ecore#//DimensionInterval">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//DimensionInterval/dimID"/>

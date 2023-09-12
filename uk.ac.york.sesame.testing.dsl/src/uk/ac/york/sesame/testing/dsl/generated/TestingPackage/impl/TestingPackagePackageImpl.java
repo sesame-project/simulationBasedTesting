@@ -30,6 +30,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPac
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.PassiveMonitorOnly;
@@ -173,6 +174,13 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * @generated
 	 */
 	private EClass nsgaWithCoverageCellsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nsgaCoverageBoostingStrategyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -704,8 +712,35 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNSGAWithCoverageCells_UseMutationEnhancingCoverage() {
-		return (EAttribute)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(3);
+	public EReference getNSGAWithCoverageCells_CoverageBoostingStrategy() {
+		return (EReference)nsgaWithCoverageCellsEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNSGACoverageBoostingStrategy() {
+		return nsgaCoverageBoostingStrategyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNSGACoverageBoostingStrategy_UseBoostingOnceEveryGenerations() {
+		return (EAttribute)nsgaCoverageBoostingStrategyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNSGACoverageBoostingStrategy_UseBoostingOnceEveryIterations() {
+		return (EAttribute)nsgaCoverageBoostingStrategyEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -896,7 +931,11 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		createEAttribute(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL);
 		createEAttribute(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__TARGET_COVERAGE_PROPORTION);
 		createEReference(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS);
-		createEAttribute(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE);
+		createEReference(nsgaWithCoverageCellsEClass, NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY);
+
+		nsgaCoverageBoostingStrategyEClass = createEClass(NSGA_COVERAGE_BOOSTING_STRATEGY);
+		createEAttribute(nsgaCoverageBoostingStrategyEClass, NSGA_COVERAGE_BOOSTING_STRATEGY__USE_BOOSTING_ONCE_EVERY_GENERATIONS);
+		createEAttribute(nsgaCoverageBoostingStrategyEClass, NSGA_COVERAGE_BOOSTING_STRATEGY__USE_BOOSTING_ONCE_EVERY_ITERATIONS);
 
 		dimensionIntervalEClass = createEClass(DIMENSION_INTERVAL);
 		createEAttribute(dimensionIntervalEClass, DIMENSION_INTERVAL__DIM_ID);
@@ -1028,7 +1067,11 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		initEAttribute(getNSGAWithCoverageCells_CoveragePerCell(), ecorePackage.getEInt(), "coveragePerCell", null, 0, 1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNSGAWithCoverageCells_TargetCoverageProportion(), ecorePackage.getEDouble(), "targetCoverageProportion", null, 0, 1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNSGAWithCoverageCells_DimensionRecords(), this.getDimensionInterval(), null, "dimensionRecords", null, 1, -1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNSGAWithCoverageCells_UseMutationEnhancingCoverage(), ecorePackage.getEBoolean(), "useMutationEnhancingCoverage", "false", 0, 1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNSGAWithCoverageCells_CoverageBoostingStrategy(), this.getNSGACoverageBoostingStrategy(), null, "coverageBoostingStrategy", null, 0, 1, NSGAWithCoverageCells.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(nsgaCoverageBoostingStrategyEClass, NSGACoverageBoostingStrategy.class, "NSGACoverageBoostingStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNSGACoverageBoostingStrategy_UseBoostingOnceEveryGenerations(), ecorePackage.getEInt(), "useBoostingOnceEveryGenerations", "2", 0, 1, NSGACoverageBoostingStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNSGACoverageBoostingStrategy_UseBoostingOnceEveryIterations(), ecorePackage.getEInt(), "useBoostingOnceEveryIterations", "2", 0, 1, NSGACoverageBoostingStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dimensionIntervalEClass, DimensionInterval.class, "DimensionInterval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDimensionInterval_DimID(), this.getDimensionID(), "dimID", null, 0, 1, DimensionInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

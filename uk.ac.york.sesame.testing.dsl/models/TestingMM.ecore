@@ -81,8 +81,14 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dimensionRecords" lowerBound="1"
         upperBound="-1" eType="#//DimensionInterval" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="useMutationEnhancingCoverage"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coverageBoostingStrategy"
+        eType="#//NSGACoverageBoostingStrategy" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NSGACoverageBoostingStrategy">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="useBoostingOnceEveryGenerations"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="2"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="useBoostingOnceEveryIterations"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DimensionInterval">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dimID" eType="#//DimensionID"/>

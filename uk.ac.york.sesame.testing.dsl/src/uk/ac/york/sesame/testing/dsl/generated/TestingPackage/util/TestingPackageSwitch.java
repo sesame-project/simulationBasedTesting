@@ -170,6 +170,12 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TestingPackagePackage.NSGA_COVERAGE_BOOSTING_STRATEGY: {
+				NSGACoverageBoostingStrategy nsgaCoverageBoostingStrategy = (NSGACoverageBoostingStrategy)theEObject;
+				T result = caseNSGACoverageBoostingStrategy(nsgaCoverageBoostingStrategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case TestingPackagePackage.DIMENSION_INTERVAL: {
 				DimensionInterval dimensionInterval = (DimensionInterval)theEObject;
 				T result = caseDimensionInterval(dimensionInterval);
@@ -424,6 +430,21 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNSGAWithCoverageCells(NSGAWithCoverageCells object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>NSGA Coverage Boosting Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>NSGA Coverage Boosting Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNSGACoverageBoostingStrategy(NSGACoverageBoostingStrategy object) {
 		return null;
 	}
 

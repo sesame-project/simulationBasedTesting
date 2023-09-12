@@ -121,6 +121,15 @@ public interface TestingPackageFactory extends EFactory {
 	NSGAWithCoverageCells createNSGAWithCoverageCells();
 
 	/**
+	 * Returns a new object of class '<em>NSGA Coverage Boosting Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>NSGA Coverage Boosting Strategy</em>'.
+	 * @generated
+	 */
+	NSGACoverageBoostingStrategy createNSGACoverageBoostingStrategy();
+
+	/**
 	 * Returns a new object of class '<em>Dimension Interval</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

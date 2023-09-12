@@ -68,6 +68,7 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 			case TestingPackagePackage.RANDOM_TEST_GENERATION: return createRandomTestGeneration();
 			case TestingPackagePackage.NSGA_EVOLUTIONARY_ALGORITHM: return createNSGAEvolutionaryAlgorithm();
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS: return createNSGAWithCoverageCells();
+			case TestingPackagePackage.NSGA_COVERAGE_BOOSTING_STRATEGY: return createNSGACoverageBoostingStrategy();
 			case TestingPackagePackage.DIMENSION_INTERVAL: return createDimensionInterval();
 			case TestingPackagePackage.REPEATED_EXECUTION: return createRepeatedExecution();
 			default:
@@ -217,6 +218,16 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	public NSGAWithCoverageCells createNSGAWithCoverageCells() {
 		NSGAWithCoverageCellsImpl nsgaWithCoverageCells = new NSGAWithCoverageCellsImpl();
 		return nsgaWithCoverageCells;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NSGACoverageBoostingStrategy createNSGACoverageBoostingStrategy() {
+		NSGACoverageBoostingStrategyImpl nsgaCoverageBoostingStrategy = new NSGACoverageBoostingStrategyImpl();
+		return nsgaCoverageBoostingStrategy;
 	}
 
 	/**

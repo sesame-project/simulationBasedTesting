@@ -128,6 +128,10 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 				return createNSGAWithCoverageCellsAdapter();
 			}
 			@Override
+			public Adapter caseNSGACoverageBoostingStrategy(NSGACoverageBoostingStrategy object) {
+				return createNSGACoverageBoostingStrategyAdapter();
+			}
+			@Override
 			public Adapter caseDimensionInterval(DimensionInterval object) {
 				return createDimensionIntervalAdapter();
 			}
@@ -376,6 +380,20 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNSGAWithCoverageCellsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy <em>NSGA Coverage Boosting Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy
+	 * @generated
+	 */
+	public Adapter createNSGACoverageBoostingStrategyAdapter() {
 		return null;
 	}
 

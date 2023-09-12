@@ -17,6 +17,7 @@ import org.uma.jmetal.util.comparator.DominanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution;
@@ -152,11 +153,14 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			
 			if (app instanceof NSGAWithCoverageCells) {
 				NSGAWithCoverageCells nsgaCov = (NSGAWithCoverageCells)app;
-				boolean useMutationEnhancing = nsgaCov.isUseMutationEnhancingCoverage();
+				Optional<NSGACoverageBoostingStrategy> strat_o = Optional.empty();
+				if (nsgaCov.getCoverageBoostingStrategy() != null) {
+					strat_o = Optional.of(nsgaCov.getCoverageBoostingStrategy());
+				};
 				// TODO: read relevant parameters from nsgaCov here
 				algorithm = new NSGAII_ResultLogging_Coverage(selectedCampaign, scenarioStr, problem, maxIterations,
 						populationSize, matingPoolSize, offspringPopulationSize, crossover, mutation, selection,
-						dominanceComparator, evaluator, useMutationEnhancing);
+						dominanceComparator, evaluator, nsgaCov, strat_o);
 			}
 
 			if (app instanceof RepeatedExecution) {

@@ -29,6 +29,10 @@ public class IntervalWithCount {
 		}
 	}
 	
+	public String toString() {
+		return "[" + this.lower + "," + this.upper + "]:" + this.count + " - extraTag = " + extraTag; 
+	}
+	
 	public double getLength() {
 		return upper - lower;
 	}
