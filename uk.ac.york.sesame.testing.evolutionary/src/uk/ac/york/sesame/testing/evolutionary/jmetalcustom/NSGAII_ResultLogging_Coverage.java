@@ -7,10 +7,16 @@ import org.uma.jmetal.operator.mutation.MutationOperator;
 import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.RankingAndCrowdingSelection;
 import org.uma.jmetal.problem.Problem;
+import org.uma.jmetal.qualityindicator.impl.Epsilon;
+import org.uma.jmetal.qualityindicator.impl.InvertedGenerationalDistance;
+import org.uma.jmetal.qualityindicator.impl.hypervolume.impl.PISAHypervolume;
 import org.uma.jmetal.solution.Solution;
 
 import org.uma.jmetal.util.SolutionListUtils;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
+import org.uma.jmetal.util.front.Front;
+import org.uma.jmetal.util.front.impl.ArrayFront;
+import org.uma.jmetal.util.point.PointSolution;
 
 import uk.ac.york.sesame.testing.architecture.data.IntervalWithCount;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
@@ -32,6 +38,7 @@ import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreduc
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.SESAMEStandardDimensionSetReducer;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -438,6 +445,23 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		}
 		fw.close();
 	}
+	
+	// TODO: should the reference front be this one, or another to compare with
+	public void logQualityIndicators(String refFrontFile, String outputFile, boolean hyperPlaneOnly) throws IOException {
+		List<S> currentFront = SolutionListUtils.getNonDominatedSolutions(getPopulation());
+		Front refFront = new ArrayFront(refFrontFile);
+	    String outputString = "Hypervolume     : " + new PISAHypervolume<S>(refFront).evaluate(currentFront) + "\n";
+	    if (!hyperPlaneOnly) {
+	    	outputString += "Epsilon         : " + new Epsilon<S>(refFront).evaluate(currentFront) + "\n" ;
+	    	outputString += "IGD             : " + new InvertedGenerationalDistance<S>(refFront).evaluate(currentFront) + "\n";
+	    }
+//	    outputString += "Hypervolume (N) : " + new PISAHypervolume<PointSolution>(refFront).evaluate(ps) + "\n";
+//	    outputString += "Epsilon (N)     : " + new Epsilon<PointSolution>(refFront).evaluate(ps) + "\n" ;
+//	    outputString += "IGD (N)         : " + new InvertedGenerationalDistance<PointSolution>(normalizedReferenceFront).evaluate(normalizedPopulation) + "\n";
+		FileWriter fw = new FileWriter(outputFile);
+	    fw.write(outputString);
+	    fw.close();
+	}
 
 	private void logPopulationRefsToModel(TestCampaign selectedCampaign, String scenarioStr, boolean nonDom,
 			boolean isFinalResults) {
@@ -487,5 +511,4 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		logPopulationMetrics(scenarioStr, nonDomFile, true);
 		logPopulationRefsToModel(selectedCampaign, scenarioStr, true, isFinal);
 	}
-
 }

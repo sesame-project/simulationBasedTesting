@@ -12,10 +12,16 @@ import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.TournamentSelection;
+import org.uma.jmetal.solution.Solution;
 import org.uma.jmetal.util.AbstractAlgorithmRunner;
+import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.comparator.DominanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
+import org.uma.jmetal.util.fileoutput.SolutionListOutput;
+import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
+import org.uma.jmetal.util.front.Front;
+import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
@@ -129,7 +135,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			} else {
 				crossover = new SESAMESwapAttacksFromTestsCrossover(crossoverRNG, crossoverProb, crossoverLogFile);
 			}
-			
+
 			FileWriter mutationLog = new FileWriter(mutationLogFile);
 			mutation = new SESAMESimpleMutation(mutationRNG, mutationLog, timingMutProb, paramMutProb, cg);
 
@@ -141,23 +147,25 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
 			// TODO: the algorithm - here NSGA should be selectable from the TestCampaign
 			// model
-	
+
 			TestGenerationApproach app = selectedCampaign.getApproach();
 			
+			
+
 			if ((app instanceof NSGAEvolutionaryAlgorithm) && !(app instanceof NSGAWithCoverageCells)) {
 				// TODO: read relevant parameters from the TestGenerationApproach here
 				algorithm = new NSGAII_ResultLogging(selectedCampaign, scenarioStr, problem, maxIterations,
 						populationSize, matingPoolSize, offspringPopulationSize, crossover, mutation, selection,
 						dominanceComparator, evaluator);
 			}
-			
+
 			if (app instanceof NSGAWithCoverageCells) {
-				NSGAWithCoverageCells nsgaCov = (NSGAWithCoverageCells)app;
+				NSGAWithCoverageCells nsgaCov = (NSGAWithCoverageCells) app;
 				Optional<NSGACoverageBoostingStrategy> strat_o = Optional.empty();
 				if (nsgaCov.getCoverageBoostingStrategy() != null) {
 					strat_o = Optional.of(nsgaCov.getCoverageBoostingStrategy());
 				};
-				// TODO: read relevant parameters from nsgaCov here
+		
 				algorithm = new NSGAII_ResultLogging_Coverage(selectedCampaign, scenarioStr, problem, maxIterations,
 						populationSize, matingPoolSize, offspringPopulationSize, crossover, mutation, selection,
 						dominanceComparator, evaluator, nsgaCov, strat_o);
@@ -184,12 +192,45 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
 				String nonDomFinalFile = "jmetal-nondom-csv-results.res";
 
-				((NSGAII_ResultLogging) algorithm).logFinalSolutionsCustom("jmetal-finalPopNonDom.res",
-						"jmetal-finalPop.res");
-				((NSGAII_ResultLogging) algorithm).logMetricsForOutput("jmetal-final-csv-results.res", nonDomFinalFile,
-						true);
-
 				// Log the results to the model
+
+				Front outputFront;
+
+				if (algorithm instanceof NSGAII_ResultLogging) {
+					((NSGAII_ResultLogging) algorithm).logFinalSolutionsCustom("jmetal-finalPopNonDom.res",
+							"jmetal-finalPop.res");
+					((NSGAII_ResultLogging) algorithm).logMetricsForOutput("jmetal-final-csv-results.res",
+							nonDomFinalFile, true);
+					// outputFront = ((NSGAII_ResultLogging) algorithm).getFrontFromSolutions();
+					//((NSGAII_ResultLogging) algorithm).logQualityIndicators(qualityIndicatorsFile);
+				}
+
+				if (algorithm instanceof NSGAII_ResultLogging_Coverage) {
+
+					
+					((NSGAII_ResultLogging_Coverage) algorithm).logFinalSolutionsCustom("jmetal-finalPopNonDom.res",
+							"jmetal-finalPop.res");
+					((NSGAII_ResultLogging_Coverage) algorithm).logMetricsForOutput("jmetal-final-csv-results.res",
+							nonDomFinalFile, true);
+
+					/////////////////// FRONT COMPARISONS /////////////////////////////////////////////////////////////
+					NSGAWithCoverageCells nsgaCov = (NSGAWithCoverageCells)app;
+					String refFrontFile = "FUN-coveragetracking.pf";
+					String qualityIndicatorsFileBoosting = "qualityInds-coverageBoosting.res";
+					String qualityIndicatorsFileTracking = "qualityInds-coverageTracking.res";
+					
+					// Let's use the coverage tracking as the reference front 
+					if (nsgaCov.getCoverageBoostingStrategy() != null) {
+						// Using coverage boosting ... so log the front difference to the relative front
+						printFinalSolutionSet(algorithm.getResult(), "VAR-coverageboosting.res", "FUN-coverageboosting.pf");
+						((NSGAII_ResultLogging_Coverage)algorithm).logQualityIndicators(refFrontFile, qualityIndicatorsFileBoosting, false);	
+					} else {
+						// Using coverage tracking - log the relative front
+						printFinalSolutionSet(algorithm.getResult(), "VAR-coveragetracking.res", refFrontFile);
+						// Log the hyperplane volume only for coverage tracking
+						((NSGAII_ResultLogging_Coverage)algorithm).logQualityIndicators(refFrontFile, qualityIndicatorsFileTracking, true);
+					}
+				}
 
 				// This is necessary to ensure the final model results for the resultset are
 				// properly saved
@@ -222,4 +263,16 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			e.printStackTrace();
 		}
 	}
+	
+	  public static void printFinalSolutionSet(List<? extends Solution<?>> population, String varFile, String funFile) {
+
+		    new SolutionListOutput(population)
+		        .setVarFileOutputContext(new DefaultFileOutputContext(varFile, ","))
+		        .setFunFileOutputContext(new DefaultFileOutputContext(funFile, ","))
+		        .print();
+
+		    JMetalLogger.logger.info("Random seed: " + JMetalRandom.getInstance().getSeed());
+		    JMetalLogger.logger.info("Objectives values have been written to file " + funFile);
+		    JMetalLogger.logger.info("Variables values have been written to file " + varFile);
+	  }
 }
