@@ -23,6 +23,7 @@ import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
 import org.uma.jmetal.util.front.Front;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells;
@@ -161,7 +162,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
 			if (app instanceof NSGAWithCoverageCells) {
 				NSGAWithCoverageCells nsgaCov = (NSGAWithCoverageCells) app;
-				Optional<NSGACoverageBoostingStrategy> strat_o = Optional.empty();
+				Optional<CoverageBoostingStrategy> strat_o = Optional.empty();
 				if (nsgaCov.getCoverageBoostingStrategy() != null) {
 					strat_o = Optional.of(nsgaCov.getCoverageBoostingStrategy());
 				};

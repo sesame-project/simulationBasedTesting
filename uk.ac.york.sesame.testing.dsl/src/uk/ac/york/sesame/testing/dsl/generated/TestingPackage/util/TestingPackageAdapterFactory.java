@@ -128,8 +128,16 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 				return createNSGAWithCoverageCellsAdapter();
 			}
 			@Override
-			public Adapter caseNSGACoverageBoostingStrategy(NSGACoverageBoostingStrategy object) {
-				return createNSGACoverageBoostingStrategyAdapter();
+			public Adapter caseCoverageBoostingStrategy(CoverageBoostingStrategy object) {
+				return createCoverageBoostingStrategyAdapter();
+			}
+			@Override
+			public Adapter caseFixedNSGACoverageBoostingStrategy(FixedNSGACoverageBoostingStrategy object) {
+				return createFixedNSGACoverageBoostingStrategyAdapter();
+			}
+			@Override
+			public Adapter caseLinearNSGACoverageBoostingStrategy(LinearNSGACoverageBoostingStrategy object) {
+				return createLinearNSGACoverageBoostingStrategyAdapter();
 			}
 			@Override
 			public Adapter caseDimensionInterval(DimensionInterval object) {
@@ -384,16 +392,44 @@ public class TestingPackageAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy <em>NSGA Coverage Boosting Strategy</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingStrategy <em>Coverage Boosting Strategy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingStrategy
 	 * @generated
 	 */
-	public Adapter createNSGACoverageBoostingStrategyAdapter() {
+	public Adapter createCoverageBoostingStrategyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FixedNSGACoverageBoostingStrategy <em>Fixed NSGA Coverage Boosting Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FixedNSGACoverageBoostingStrategy
+	 * @generated
+	 */
+	public Adapter createFixedNSGACoverageBoostingStrategyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.LinearNSGACoverageBoostingStrategy <em>Linear NSGA Coverage Boosting Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.LinearNSGACoverageBoostingStrategy
+	 * @generated
+	 */
+	public Adapter createLinearNSGACoverageBoostingStrategyAdapter() {
 		return null;
 	}
 

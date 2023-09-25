@@ -82,12 +82,23 @@ class NSGAWithCoverageCells extends NSGAEvolutionaryAlgorithm {
 	attr int coveragePerCell;
 	attr double targetCoverageProportion;
 	val DimensionInterval[+] dimensionRecords;
-	val NSGACoverageBoostingStrategy coverageBoostingStrategy;
+	val CoverageBoostingStrategy coverageBoostingStrategy;
 }
 
-class NSGACoverageBoostingStrategy {
+abstract class CoverageBoostingStrategy {
+	op boolean elementShouldUseCoverageBoosting(int i, int genNum, int boostingCountThisGeneration);
+}
+
+class FixedNSGACoverageBoostingStrategy extends CoverageBoostingStrategy {
 	attr int useBoostingOnceEveryGenerations = 2;
 	attr int useBoostingOnceEveryIterations = 2;
+}
+
+class LinearNSGACoverageBoostingStrategy extends CoverageBoostingStrategy {
+	attr int useBoostingOnceEveryGenerations = 2;
+	attr int startingBoostingCount;
+	attr int endingBoostingCount;
+	attr int countDropEveryGeneration;
 }
 
 class DimensionInterval {

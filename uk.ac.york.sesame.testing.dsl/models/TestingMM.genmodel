@@ -77,9 +77,22 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//NSGAWithCoverageCells/dimensionRecords"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//NSGAWithCoverageCells/coverageBoostingStrategy"/>
     </genClasses>
-    <genClasses ecoreClass="TestingMM.ecore#//NSGACoverageBoostingStrategy">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGACoverageBoostingStrategy/useBoostingOnceEveryGenerations"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//NSGACoverageBoostingStrategy/useBoostingOnceEveryIterations"/>
+    <genClasses image="false" ecoreClass="TestingMM.ecore#//CoverageBoostingStrategy">
+      <genOperations ecoreOperation="TestingMM.ecore#//CoverageBoostingStrategy/elementShouldUseCoverageBoosting">
+        <genParameters ecoreParameter="TestingMM.ecore#//CoverageBoostingStrategy/elementShouldUseCoverageBoosting/i"/>
+        <genParameters ecoreParameter="TestingMM.ecore#//CoverageBoostingStrategy/elementShouldUseCoverageBoosting/genNum"/>
+        <genParameters ecoreParameter="TestingMM.ecore#//CoverageBoostingStrategy/elementShouldUseCoverageBoosting/boostingCountThisGeneration"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="TestingMM.ecore#//FixedNSGACoverageBoostingStrategy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FixedNSGACoverageBoostingStrategy/useBoostingOnceEveryGenerations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FixedNSGACoverageBoostingStrategy/useBoostingOnceEveryIterations"/>
+    </genClasses>
+    <genClasses ecoreClass="TestingMM.ecore#//LinearNSGACoverageBoostingStrategy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//LinearNSGACoverageBoostingStrategy/useBoostingOnceEveryGenerations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//LinearNSGACoverageBoostingStrategy/startingBoostingCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//LinearNSGACoverageBoostingStrategy/endingBoostingCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//LinearNSGACoverageBoostingStrategy/countDropEveryGeneration"/>
     </genClasses>
     <genClasses ecoreClass="TestingMM.ecore#//DimensionInterval">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//DimensionInterval/dimID"/>

@@ -5,6 +5,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -803,14 +804,51 @@ public interface TestingPackagePackage extends EPackage {
 	int NSGA_WITH_COVERAGE_CELLS_OPERATION_COUNT = NSGA_EVOLUTIONARY_ALGORITHM_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGACoverageBoostingStrategyImpl <em>NSGA Coverage Boosting Strategy</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.CoverageBoostingStrategyImpl <em>Coverage Boosting Strategy</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGACoverageBoostingStrategyImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getNSGACoverageBoostingStrategy()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.CoverageBoostingStrategyImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getCoverageBoostingStrategy()
 	 * @generated
 	 */
-	int NSGA_COVERAGE_BOOSTING_STRATEGY = 16;
+	int COVERAGE_BOOSTING_STRATEGY = 16;
+
+	/**
+	 * The number of structural features of the '<em>Coverage Boosting Strategy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COVERAGE_BOOSTING_STRATEGY_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Element Should Use Coverage Boosting</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COVERAGE_BOOSTING_STRATEGY___ELEMENT_SHOULD_USE_COVERAGE_BOOSTING__INT_INT_INT = 0;
+
+	/**
+	 * The number of operations of the '<em>Coverage Boosting Strategy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COVERAGE_BOOSTING_STRATEGY_OPERATION_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.FixedNSGACoverageBoostingStrategyImpl <em>Fixed NSGA Coverage Boosting Strategy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.FixedNSGACoverageBoostingStrategyImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getFixedNSGACoverageBoostingStrategy()
+	 * @generated
+	 */
+	int FIXED_NSGA_COVERAGE_BOOSTING_STRATEGY = 17;
 
 	/**
 	 * The feature id for the '<em><b>Use Boosting Once Every Generations</b></em>' attribute.
@@ -819,7 +857,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NSGA_COVERAGE_BOOSTING_STRATEGY__USE_BOOSTING_ONCE_EVERY_GENERATIONS = 0;
+	int FIXED_NSGA_COVERAGE_BOOSTING_STRATEGY__USE_BOOSTING_ONCE_EVERY_GENERATIONS = COVERAGE_BOOSTING_STRATEGY_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Use Boosting Once Every Iterations</b></em>' attribute.
@@ -828,25 +866,107 @@ public interface TestingPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NSGA_COVERAGE_BOOSTING_STRATEGY__USE_BOOSTING_ONCE_EVERY_ITERATIONS = 1;
+	int FIXED_NSGA_COVERAGE_BOOSTING_STRATEGY__USE_BOOSTING_ONCE_EVERY_ITERATIONS = COVERAGE_BOOSTING_STRATEGY_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>NSGA Coverage Boosting Strategy</em>' class.
+	 * The number of structural features of the '<em>Fixed NSGA Coverage Boosting Strategy</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NSGA_COVERAGE_BOOSTING_STRATEGY_FEATURE_COUNT = 2;
+	int FIXED_NSGA_COVERAGE_BOOSTING_STRATEGY_FEATURE_COUNT = COVERAGE_BOOSTING_STRATEGY_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>NSGA Coverage Boosting Strategy</em>' class.
+	 * The operation id for the '<em>Element Should Use Coverage Boosting</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NSGA_COVERAGE_BOOSTING_STRATEGY_OPERATION_COUNT = 0;
+	int FIXED_NSGA_COVERAGE_BOOSTING_STRATEGY___ELEMENT_SHOULD_USE_COVERAGE_BOOSTING__INT_INT_INT = COVERAGE_BOOSTING_STRATEGY___ELEMENT_SHOULD_USE_COVERAGE_BOOSTING__INT_INT_INT;
+
+	/**
+	 * The number of operations of the '<em>Fixed NSGA Coverage Boosting Strategy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_NSGA_COVERAGE_BOOSTING_STRATEGY_OPERATION_COUNT = COVERAGE_BOOSTING_STRATEGY_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.LinearNSGACoverageBoostingStrategyImpl <em>Linear NSGA Coverage Boosting Strategy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.LinearNSGACoverageBoostingStrategyImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getLinearNSGACoverageBoostingStrategy()
+	 * @generated
+	 */
+	int LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY = 18;
+
+	/**
+	 * The feature id for the '<em><b>Use Boosting Once Every Generations</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY__USE_BOOSTING_ONCE_EVERY_GENERATIONS = COVERAGE_BOOSTING_STRATEGY_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Starting Boosting Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY__STARTING_BOOSTING_COUNT = COVERAGE_BOOSTING_STRATEGY_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Ending Boosting Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY__ENDING_BOOSTING_COUNT = COVERAGE_BOOSTING_STRATEGY_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Count Drop Every Generation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY__COUNT_DROP_EVERY_GENERATION = COVERAGE_BOOSTING_STRATEGY_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Linear NSGA Coverage Boosting Strategy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY_FEATURE_COUNT = COVERAGE_BOOSTING_STRATEGY_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Element Should Use Coverage Boosting</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY___ELEMENT_SHOULD_USE_COVERAGE_BOOSTING__INT_INT_INT = COVERAGE_BOOSTING_STRATEGY___ELEMENT_SHOULD_USE_COVERAGE_BOOSTING__INT_INT_INT;
+
+	/**
+	 * The number of operations of the '<em>Linear NSGA Coverage Boosting Strategy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY_OPERATION_COUNT = COVERAGE_BOOSTING_STRATEGY_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl <em>Dimension Interval</em>}' class.
@@ -856,7 +976,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionInterval()
 	 * @generated
 	 */
-	int DIMENSION_INTERVAL = 17;
+	int DIMENSION_INTERVAL = 19;
 
 	/**
 	 * The feature id for the '<em><b>Dim ID</b></em>' attribute.
@@ -929,7 +1049,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getRepeatedExecution()
 	 * @generated
 	 */
-	int REPEATED_EXECUTION = 18;
+	int REPEATED_EXECUTION = 20;
 
 	/**
 	 * The feature id for the '<em><b>Test To Repeat</b></em>' reference.
@@ -975,7 +1095,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getResultSetStatus()
 	 * @generated
 	 */
-	int RESULT_SET_STATUS = 19;
+	int RESULT_SET_STATUS = 21;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID <em>Dimension ID</em>}' enum.
@@ -985,7 +1105,7 @@ public interface TestingPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getDimensionID()
 	 * @generated
 	 */
-	int DIMENSION_ID = 20;
+	int DIMENSION_ID = 22;
 
 
 	/**
@@ -1490,36 +1610,110 @@ public interface TestingPackagePackage extends EPackage {
 	EReference getNSGAWithCoverageCells_CoverageBoostingStrategy();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy <em>NSGA Coverage Boosting Strategy</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingStrategy <em>Coverage Boosting Strategy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>NSGA Coverage Boosting Strategy</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy
+	 * @return the meta object for class '<em>Coverage Boosting Strategy</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingStrategy
 	 * @generated
 	 */
-	EClass getNSGACoverageBoostingStrategy();
+	EClass getCoverageBoostingStrategy();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy#getUseBoostingOnceEveryGenerations <em>Use Boosting Once Every Generations</em>}'.
+	 * Returns the meta object for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingStrategy#elementShouldUseCoverageBoosting(int, int, int) <em>Element Should Use Coverage Boosting</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Element Should Use Coverage Boosting</em>' operation.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingStrategy#elementShouldUseCoverageBoosting(int, int, int)
+	 * @generated
+	 */
+	EOperation getCoverageBoostingStrategy__ElementShouldUseCoverageBoosting__int_int_int();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FixedNSGACoverageBoostingStrategy <em>Fixed NSGA Coverage Boosting Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fixed NSGA Coverage Boosting Strategy</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FixedNSGACoverageBoostingStrategy
+	 * @generated
+	 */
+	EClass getFixedNSGACoverageBoostingStrategy();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FixedNSGACoverageBoostingStrategy#getUseBoostingOnceEveryGenerations <em>Use Boosting Once Every Generations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Use Boosting Once Every Generations</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy#getUseBoostingOnceEveryGenerations()
-	 * @see #getNSGACoverageBoostingStrategy()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FixedNSGACoverageBoostingStrategy#getUseBoostingOnceEveryGenerations()
+	 * @see #getFixedNSGACoverageBoostingStrategy()
 	 * @generated
 	 */
-	EAttribute getNSGACoverageBoostingStrategy_UseBoostingOnceEveryGenerations();
+	EAttribute getFixedNSGACoverageBoostingStrategy_UseBoostingOnceEveryGenerations();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy#getUseBoostingOnceEveryIterations <em>Use Boosting Once Every Iterations</em>}'.
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FixedNSGACoverageBoostingStrategy#getUseBoostingOnceEveryIterations <em>Use Boosting Once Every Iterations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Use Boosting Once Every Iterations</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy#getUseBoostingOnceEveryIterations()
-	 * @see #getNSGACoverageBoostingStrategy()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FixedNSGACoverageBoostingStrategy#getUseBoostingOnceEveryIterations()
+	 * @see #getFixedNSGACoverageBoostingStrategy()
 	 * @generated
 	 */
-	EAttribute getNSGACoverageBoostingStrategy_UseBoostingOnceEveryIterations();
+	EAttribute getFixedNSGACoverageBoostingStrategy_UseBoostingOnceEveryIterations();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.LinearNSGACoverageBoostingStrategy <em>Linear NSGA Coverage Boosting Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Linear NSGA Coverage Boosting Strategy</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.LinearNSGACoverageBoostingStrategy
+	 * @generated
+	 */
+	EClass getLinearNSGACoverageBoostingStrategy();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.LinearNSGACoverageBoostingStrategy#getUseBoostingOnceEveryGenerations <em>Use Boosting Once Every Generations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Use Boosting Once Every Generations</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.LinearNSGACoverageBoostingStrategy#getUseBoostingOnceEveryGenerations()
+	 * @see #getLinearNSGACoverageBoostingStrategy()
+	 * @generated
+	 */
+	EAttribute getLinearNSGACoverageBoostingStrategy_UseBoostingOnceEveryGenerations();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.LinearNSGACoverageBoostingStrategy#getStartingBoostingCount <em>Starting Boosting Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Starting Boosting Count</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.LinearNSGACoverageBoostingStrategy#getStartingBoostingCount()
+	 * @see #getLinearNSGACoverageBoostingStrategy()
+	 * @generated
+	 */
+	EAttribute getLinearNSGACoverageBoostingStrategy_StartingBoostingCount();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.LinearNSGACoverageBoostingStrategy#getEndingBoostingCount <em>Ending Boosting Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ending Boosting Count</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.LinearNSGACoverageBoostingStrategy#getEndingBoostingCount()
+	 * @see #getLinearNSGACoverageBoostingStrategy()
+	 * @generated
+	 */
+	EAttribute getLinearNSGACoverageBoostingStrategy_EndingBoostingCount();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.LinearNSGACoverageBoostingStrategy#getCountDropEveryGeneration <em>Count Drop Every Generation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Count Drop Every Generation</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.LinearNSGACoverageBoostingStrategy#getCountDropEveryGeneration()
+	 * @see #getLinearNSGACoverageBoostingStrategy()
+	 * @generated
+	 */
+	EAttribute getLinearNSGACoverageBoostingStrategy_CountDropEveryGeneration();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval <em>Dimension Interval</em>}'.
@@ -2070,14 +2264,32 @@ public interface TestingPackagePackage extends EPackage {
 		EReference NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY = eINSTANCE.getNSGAWithCoverageCells_CoverageBoostingStrategy();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGACoverageBoostingStrategyImpl <em>NSGA Coverage Boosting Strategy</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.CoverageBoostingStrategyImpl <em>Coverage Boosting Strategy</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGACoverageBoostingStrategyImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getNSGACoverageBoostingStrategy()
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.CoverageBoostingStrategyImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getCoverageBoostingStrategy()
 		 * @generated
 		 */
-		EClass NSGA_COVERAGE_BOOSTING_STRATEGY = eINSTANCE.getNSGACoverageBoostingStrategy();
+		EClass COVERAGE_BOOSTING_STRATEGY = eINSTANCE.getCoverageBoostingStrategy();
+
+		/**
+		 * The meta object literal for the '<em><b>Element Should Use Coverage Boosting</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COVERAGE_BOOSTING_STRATEGY___ELEMENT_SHOULD_USE_COVERAGE_BOOSTING__INT_INT_INT = eINSTANCE.getCoverageBoostingStrategy__ElementShouldUseCoverageBoosting__int_int_int();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.FixedNSGACoverageBoostingStrategyImpl <em>Fixed NSGA Coverage Boosting Strategy</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.FixedNSGACoverageBoostingStrategyImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getFixedNSGACoverageBoostingStrategy()
+		 * @generated
+		 */
+		EClass FIXED_NSGA_COVERAGE_BOOSTING_STRATEGY = eINSTANCE.getFixedNSGACoverageBoostingStrategy();
 
 		/**
 		 * The meta object literal for the '<em><b>Use Boosting Once Every Generations</b></em>' attribute feature.
@@ -2085,7 +2297,7 @@ public interface TestingPackagePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NSGA_COVERAGE_BOOSTING_STRATEGY__USE_BOOSTING_ONCE_EVERY_GENERATIONS = eINSTANCE.getNSGACoverageBoostingStrategy_UseBoostingOnceEveryGenerations();
+		EAttribute FIXED_NSGA_COVERAGE_BOOSTING_STRATEGY__USE_BOOSTING_ONCE_EVERY_GENERATIONS = eINSTANCE.getFixedNSGACoverageBoostingStrategy_UseBoostingOnceEveryGenerations();
 
 		/**
 		 * The meta object literal for the '<em><b>Use Boosting Once Every Iterations</b></em>' attribute feature.
@@ -2093,7 +2305,49 @@ public interface TestingPackagePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NSGA_COVERAGE_BOOSTING_STRATEGY__USE_BOOSTING_ONCE_EVERY_ITERATIONS = eINSTANCE.getNSGACoverageBoostingStrategy_UseBoostingOnceEveryIterations();
+		EAttribute FIXED_NSGA_COVERAGE_BOOSTING_STRATEGY__USE_BOOSTING_ONCE_EVERY_ITERATIONS = eINSTANCE.getFixedNSGACoverageBoostingStrategy_UseBoostingOnceEveryIterations();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.LinearNSGACoverageBoostingStrategyImpl <em>Linear NSGA Coverage Boosting Strategy</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.LinearNSGACoverageBoostingStrategyImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.TestingPackagePackageImpl#getLinearNSGACoverageBoostingStrategy()
+		 * @generated
+		 */
+		EClass LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY = eINSTANCE.getLinearNSGACoverageBoostingStrategy();
+
+		/**
+		 * The meta object literal for the '<em><b>Use Boosting Once Every Generations</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY__USE_BOOSTING_ONCE_EVERY_GENERATIONS = eINSTANCE.getLinearNSGACoverageBoostingStrategy_UseBoostingOnceEveryGenerations();
+
+		/**
+		 * The meta object literal for the '<em><b>Starting Boosting Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY__STARTING_BOOSTING_COUNT = eINSTANCE.getLinearNSGACoverageBoostingStrategy_StartingBoostingCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Ending Boosting Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY__ENDING_BOOSTING_COUNT = eINSTANCE.getLinearNSGACoverageBoostingStrategy_EndingBoostingCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Count Drop Every Generation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY__COUNT_DROP_EVERY_GENERATION = eINSTANCE.getLinearNSGACoverageBoostingStrategy_CountDropEveryGeneration();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl <em>Dimension Interval</em>}' class.

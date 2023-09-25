@@ -85,12 +85,12 @@ public interface NSGAWithCoverageCells extends NSGAEvolutionaryAlgorithm {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Coverage Boosting Strategy</em>' containment reference.
-	 * @see #setCoverageBoostingStrategy(NSGACoverageBoostingStrategy)
+	 * @see #setCoverageBoostingStrategy(CoverageBoostingStrategy)
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getNSGAWithCoverageCells_CoverageBoostingStrategy()
 	 * @model containment="true"
 	 * @generated
 	 */
-	NSGACoverageBoostingStrategy getCoverageBoostingStrategy();
+	CoverageBoostingStrategy getCoverageBoostingStrategy();
 
 	/**
 	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells#getCoverageBoostingStrategy <em>Coverage Boosting Strategy</em>}' containment reference.
@@ -100,6 +100,6 @@ public interface NSGAWithCoverageCells extends NSGAEvolutionaryAlgorithm {
 	 * @see #getCoverageBoostingStrategy()
 	 * @generated
 	 */
-	void setCoverageBoostingStrategy(NSGACoverageBoostingStrategy value);
+	void setCoverageBoostingStrategy(CoverageBoostingStrategy value);
 
 } // NSGAWithCoverageCells

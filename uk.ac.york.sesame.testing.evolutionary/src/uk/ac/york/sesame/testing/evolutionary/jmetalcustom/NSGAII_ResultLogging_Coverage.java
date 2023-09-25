@@ -20,6 +20,7 @@ import org.uma.jmetal.util.point.PointSolution;
 
 import uk.ac.york.sesame.testing.architecture.data.IntervalWithCount;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy;
@@ -87,7 +88,7 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 
 	private ParameterSpaceDimensionalityReduction dimensionReducer;
 
-	private Optional<NSGACoverageBoostingStrategy> coverageBoostingStrategy_o;
+	private Optional<CoverageBoostingStrategy> coverageBoostingStrategy_o;
 
 	private NSGAWithCoverageCells nsgaCov;
 
@@ -99,7 +100,7 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 			int maxEvaluations, int populationSize, int matingPoolSize, int offspringPopulationSize,
 			CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator,
 			SelectionOperator<List<S>, S> selectionOperator, Comparator<S> dominanceComparator,
-			SolutionListEvaluator<S> evaluator, NSGAWithCoverageCells nsgaCov, Optional<NSGACoverageBoostingStrategy> coverageBoostingStrategy_o) {
+			SolutionListEvaluator<S> evaluator, NSGAWithCoverageCells nsgaCov, Optional<CoverageBoostingStrategy> coverageBoostingStrategy_o) {
 		super(problem);
 		this.maxEvaluations = maxEvaluations;
 		this.selectedCampaign = selectedCampaign;
@@ -284,6 +285,7 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		checkNumberOfParents(matingPool, numberOfParents);
 
 		int generationNum = evaluations / getMaxPopulationSize();
+		int boostingThisGeneration = 0;
 
 		List<S> offspringPopulation = new ArrayList<>(offspringPopulationSize);
 		for (int i = 0; i < matingPool.size(); i += numberOfParents) {
@@ -296,8 +298,9 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 
 			for (S s : offspring) {
 				SESAMETestSolution sts = (SESAMETestSolution)s;
-				if (shouldUseCoverageMutation(i, generationNum)) {
+				if (shouldUseCoverageMutation(i, generationNum, boostingThisGeneration)) {
 					coverageMutationOperator.execute(sts);
+					boostingThisGeneration += 1;
 				} else {
 					mutationOperator.execute(s);
 				}
@@ -309,16 +312,15 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		return offspringPopulation;
 	}
 
-	private boolean shouldUseCoverageMutation(int i, int genNum) {
+	private boolean shouldUseCoverageMutation(int i, int genNum, int boostingCountThisGeneration) {
 		if (!coverageBoostingStrategy_o.isPresent()) {
 			return false;
 		} else {
-			NSGACoverageBoostingStrategy strat = coverageBoostingStrategy_o.get();
-			if ((genNum % strat.getUseBoostingOnceEveryGenerations()) == 0) {
-				return ((i % strat.getUseBoostingOnceEveryIterations())) == 0;
-			} else {
-				return false;
-			}
+			CoverageBoostingStrategy strat = coverageBoostingStrategy_o.get();
+			return strat.elementShouldUseCoverageBoosting(i, genNum, boostingCountThisGeneration);
+// 			The operation given below is as custom methods in the generated code - dispatched acoording to the type, e.g.
+//			/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.dsl/src/uk/ac/york/sesame/testing/dsl/generated/TestingPackage/impl/FixedNSGACoverageBoostingStrategyImpl.java
+//			/home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.dsl/src/uk/ac/york/sesame/testing/dsl/generated/TestingPackage/impl/LinearNSGACoverageBoostingStrategyImpl.java
 		}
 	}
 

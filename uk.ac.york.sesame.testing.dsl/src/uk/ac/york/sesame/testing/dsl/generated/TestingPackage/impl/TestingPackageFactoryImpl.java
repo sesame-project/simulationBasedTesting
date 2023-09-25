@@ -68,7 +68,8 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 			case TestingPackagePackage.RANDOM_TEST_GENERATION: return createRandomTestGeneration();
 			case TestingPackagePackage.NSGA_EVOLUTIONARY_ALGORITHM: return createNSGAEvolutionaryAlgorithm();
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS: return createNSGAWithCoverageCells();
-			case TestingPackagePackage.NSGA_COVERAGE_BOOSTING_STRATEGY: return createNSGACoverageBoostingStrategy();
+			case TestingPackagePackage.FIXED_NSGA_COVERAGE_BOOSTING_STRATEGY: return createFixedNSGACoverageBoostingStrategy();
+			case TestingPackagePackage.LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY: return createLinearNSGACoverageBoostingStrategy();
 			case TestingPackagePackage.DIMENSION_INTERVAL: return createDimensionInterval();
 			case TestingPackagePackage.REPEATED_EXECUTION: return createRepeatedExecution();
 			default:
@@ -225,9 +226,19 @@ public class TestingPackageFactoryImpl extends EFactoryImpl implements TestingPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NSGACoverageBoostingStrategy createNSGACoverageBoostingStrategy() {
-		NSGACoverageBoostingStrategyImpl nsgaCoverageBoostingStrategy = new NSGACoverageBoostingStrategyImpl();
-		return nsgaCoverageBoostingStrategy;
+	public FixedNSGACoverageBoostingStrategy createFixedNSGACoverageBoostingStrategy() {
+		FixedNSGACoverageBoostingStrategyImpl fixedNSGACoverageBoostingStrategy = new FixedNSGACoverageBoostingStrategyImpl();
+		return fixedNSGACoverageBoostingStrategy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LinearNSGACoverageBoostingStrategy createLinearNSGACoverageBoostingStrategy() {
+		LinearNSGACoverageBoostingStrategyImpl linearNSGACoverageBoostingStrategy = new LinearNSGACoverageBoostingStrategyImpl();
+		return linearNSGACoverageBoostingStrategy;
 	}
 
 	/**

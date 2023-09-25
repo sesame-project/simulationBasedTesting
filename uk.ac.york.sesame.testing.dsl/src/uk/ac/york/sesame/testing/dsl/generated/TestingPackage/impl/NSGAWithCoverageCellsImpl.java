@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
@@ -97,7 +97,7 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 	 * @generated
 	 * @ordered
 	 */
-	protected NSGACoverageBoostingStrategy coverageBoostingStrategy;
+	protected CoverageBoostingStrategy coverageBoostingStrategy;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -177,7 +177,7 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NSGACoverageBoostingStrategy getCoverageBoostingStrategy() {
+	public CoverageBoostingStrategy getCoverageBoostingStrategy() {
 		return coverageBoostingStrategy;
 	}
 
@@ -186,8 +186,8 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCoverageBoostingStrategy(NSGACoverageBoostingStrategy newCoverageBoostingStrategy, NotificationChain msgs) {
-		NSGACoverageBoostingStrategy oldCoverageBoostingStrategy = coverageBoostingStrategy;
+	public NotificationChain basicSetCoverageBoostingStrategy(CoverageBoostingStrategy newCoverageBoostingStrategy, NotificationChain msgs) {
+		CoverageBoostingStrategy oldCoverageBoostingStrategy = coverageBoostingStrategy;
 		coverageBoostingStrategy = newCoverageBoostingStrategy;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY, oldCoverageBoostingStrategy, newCoverageBoostingStrategy);
@@ -201,7 +201,7 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCoverageBoostingStrategy(NSGACoverageBoostingStrategy newCoverageBoostingStrategy) {
+	public void setCoverageBoostingStrategy(CoverageBoostingStrategy newCoverageBoostingStrategy) {
 		if (newCoverageBoostingStrategy != coverageBoostingStrategy) {
 			NotificationChain msgs = null;
 			if (coverageBoostingStrategy != null)
@@ -271,7 +271,7 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 				getDimensionRecords().addAll((Collection<? extends DimensionInterval>)newValue);
 				return;
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY:
-				setCoverageBoostingStrategy((NSGACoverageBoostingStrategy)newValue);
+				setCoverageBoostingStrategy((CoverageBoostingStrategy)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -295,7 +295,7 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 				getDimensionRecords().clear();
 				return;
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY:
-				setCoverageBoostingStrategy((NSGACoverageBoostingStrategy)null);
+				setCoverageBoostingStrategy((CoverageBoostingStrategy)null);
 				return;
 		}
 		super.eUnset(featureID);
