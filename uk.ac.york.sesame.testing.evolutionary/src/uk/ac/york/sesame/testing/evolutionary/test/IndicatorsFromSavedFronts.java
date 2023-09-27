@@ -7,7 +7,6 @@ import java.util.List;
 import org.uma.jmetal.qualityindicator.QualityIndicator;
 import org.uma.jmetal.qualityindicator.impl.Epsilon;
 import org.uma.jmetal.qualityindicator.impl.InvertedGenerationalDistance;
-import org.uma.jmetal.qualityindicator.impl.hypervolume.Hypervolume;
 import org.uma.jmetal.qualityindicator.impl.hypervolume.impl.PISAHypervolume;
 import org.uma.jmetal.qualityindicator.impl.hypervolume.impl.WFGHypervolume;
 import org.uma.jmetal.util.front.Front;
@@ -41,15 +40,10 @@ public class IndicatorsFromSavedFronts {
 			System.out.println("Fronts NOT NORMALIZED before computing the indicators");
 		}
 		
-		if (INVERT_FIRST_DIMENSIONS) {
-			trackingFront = invertSomeDimensions(trackingFront, INVERT_DIM_COUNT);
-			boostingFront = invertSomeDimensions(boostingFront, INVERT_DIM_COUNT);
-		}
-		
 		List<QualityIndicator<List<PointSolution>, Double>> bFindicatorList = new ArrayList<QualityIndicator<List<PointSolution>, Double>>();
 		List<QualityIndicator<List<PointSolution>, Double>> tFindicatorList = new ArrayList<QualityIndicator<List<PointSolution>, Double>>();
 		
-		QualityIndicator<List<PointSolution>, Double> hypervol = new WFGHypervolume<PointSolution>(trackingFront);
+		QualityIndicator<List<PointSolution>, Double> hypervol = new PISAHypervolume<PointSolution>(trackingFront);
 		QualityIndicator<List<PointSolution>, Double> eps = new Epsilon<PointSolution>(trackingFront);
 		QualityIndicator<List<PointSolution>, Double> igd = new InvertedGenerationalDistance<PointSolution>(trackingFront);
 
@@ -97,9 +91,12 @@ public class IndicatorsFromSavedFronts {
 			
 			try {
 				// Run normlised version
-				calculateIndicators(boostingFrontFile, trackingFrontFile, true);
-				// Run normlised version
+				//calculateIndicators(boostingFrontFile, trackingFrontFile, true);
+				// Run not normlised version
 				calculateIndicators(boostingFrontFile, trackingFrontFile, false);
+				
+				System.out.println("Comparing same file for sanity check...");
+				calculateIndicators(trackingFrontFile, trackingFrontFile, false);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}

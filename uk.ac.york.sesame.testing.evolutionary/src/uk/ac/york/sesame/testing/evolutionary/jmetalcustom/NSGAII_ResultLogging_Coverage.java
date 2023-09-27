@@ -284,7 +284,12 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 
 		checkNumberOfParents(matingPool, numberOfParents);
 
-		int generationNum = evaluations / getMaxPopulationSize();
+		// JRH: need to subtract one from the generaiton num, since the first
+		// generation does not do reproduction
+		int generationNum = (evaluations / getMaxPopulationSize()) - 1;
+		
+		System.out.println("coverageBoostingDebug: evaluations = " + evaluations + " - maxPopulationSize = " + getMaxPopulationSize());
+		
 		int boostingThisGeneration = 0;
 
 		List<S> offspringPopulation = new ArrayList<>(offspringPopulationSize);

@@ -32,8 +32,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long serialVersionUID = 1L;
 
-	private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = true;
-	private static final boolean DEBUG_ACTUALLY_RUN = true;
+	private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = false;
+	private static final boolean DEBUG_ACTUALLY_RUN = false;
 	
 	private static final boolean FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE = true;
 	
@@ -47,7 +47,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
 	private static final double MODEL_SAVING_DELAY_IN_DEBUG_MODE = 0.5;
 
-	private static final boolean DUMMY_EVAL = false;
+	private static final boolean DUMMY_EVAL = true;
 
 	private boolean conditionBased;
 
