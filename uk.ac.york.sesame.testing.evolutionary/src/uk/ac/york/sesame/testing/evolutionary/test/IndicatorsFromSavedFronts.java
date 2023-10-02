@@ -95,8 +95,8 @@ public class IndicatorsFromSavedFronts {
 				// Run not normlised version
 				calculateIndicators(boostingFrontFile, trackingFrontFile, false);
 				
-				System.out.println("Comparing same file for sanity check...");
-				calculateIndicators(trackingFrontFile, trackingFrontFile, false);
+//				System.out.println("Comparing same file for sanity check...");
+//				calculateIndicators(trackingFrontFile, trackingFrontFile, false);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
