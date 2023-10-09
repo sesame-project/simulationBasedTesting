@@ -25,7 +25,7 @@ import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 public class DataStreamManager {
 	
 	private long POLL_TIMEOUT = 100;
-	private long POLL_TIMEOUT_EARLY = 1000;
+	private long POLL_TIMEOUT_EARLY = 300;
 	private static final double TIME_EARLY_THRESHOLD = 1.0;
 	
 	//private final long POLL_TIMEOUT = 0;
