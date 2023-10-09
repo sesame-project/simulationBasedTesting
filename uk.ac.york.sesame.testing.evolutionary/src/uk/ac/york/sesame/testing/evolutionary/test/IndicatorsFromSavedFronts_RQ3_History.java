@@ -19,34 +19,20 @@ import org.uma.jmetal.util.point.PointSolution;
 
 public class IndicatorsFromSavedFronts_RQ3_History {
 
-	private static boolean INVERT_FIRST_DIMENSIONS = false;
-	private static int INVERT_DIM_COUNT = 2;
-
-	public static void calculateIndicatorsForGen(FileWriter fw, int iterCount, String partialFrontFile,	String refFrontFile, boolean normalise) throws IOException {
+	public static void calculateIndicatorsForGen(FileWriter fw, int iterCount, String partialFrontFile,
+			String refFrontFile) throws IOException {
 
 		Front partialFront = new ArrayFront(partialFrontFile);
 		Front refFront = new ArrayFront(refFrontFile);
 
 		fw.write(iterCount + ",");
 
-		if (normalise) {
-			FrontNormalizer frontNormalizer = new FrontNormalizer(refFront);
-			refFront = frontNormalizer.normalize(refFront);
-			partialFront = frontNormalizer.normalize(partialFront);
-			System.out.println("Iter count: " + iterCount + " Fronts are NORMALIZED before computing the indicators");
-			if (INVERT_FIRST_DIMENSIONS) {
-				System.out.println("Inverting first " + INVERT_DIM_COUNT + " dimensions");
-				refFront = invertSomeDimensions(refFront, INVERT_DIM_COUNT);
-				partialFront = invertSomeDimensions(partialFront, INVERT_DIM_COUNT);
-			}
-		} else {
-			System.out.println("Iteration count " + iterCount + ": Fronts NOT NORMALIZED before computing the indicators");
-		}
+		System.out.println("Iteration count " + iterCount + ": Fronts NOT NORMALIZED before computing the indicators");
 
 		List<QualityIndicator<List<PointSolution>, Double>> bFindicatorList = new ArrayList<QualityIndicator<List<PointSolution>, Double>>();
 		List<QualityIndicator<List<PointSolution>, Double>> tFindicatorList = new ArrayList<QualityIndicator<List<PointSolution>, Double>>();
 
-		QualityIndicator<List<PointSolution>, Double> hypervol = new WFGHypervolume<PointSolution>(refFront);
+		QualityIndicator<List<PointSolution>, Double> hypervol = new PISAHypervolume<PointSolution>(refFront);
 		QualityIndicator<List<PointSolution>, Double> eps = new Epsilon<PointSolution>(refFront);
 		QualityIndicator<List<PointSolution>, Double> igd = new InvertedGenerationalDistance<PointSolution>(refFront);
 
@@ -71,22 +57,84 @@ public class IndicatorsFromSavedFronts_RQ3_History {
 		fw.write("\n");
 	}
 
-	public static Front invertSomeDimensions(Front front, int dimsToInvert) {
-		int numberOfDimensions = front.getPoint(0).getDimension();
-		Front invertedFront = new ArrayFront(front.getNumberOfPoints(), numberOfDimensions);
+	/*
+	 * all nondominated points regarding the first 'noObjectives' dimensions are
+	 * collected; the points referenced by 'front[0..noPoints-1]' are considered;
+	 * 'front' is resorted, such that 'front[0..n-1]' contains the nondominated
+	 * points; n is returned
+	 */
+	private static int filterNondominatedSet(Front f, int noPoints, int noObjectives) {
+		int i, j;
+		int n;
 
-		for (int i = 0; i < front.getNumberOfPoints(); i++) {
-			for (int j = 0; j < dimsToInvert; j++) {
-				if (front.getPoint(i).getValue(j) <= 1.0 && front.getPoint(i).getValue(j) >= 0.0) {
-					invertedFront.getPoint(i).setValue(j, 1.0 - front.getPoint(i).getValue(j));
-				} else if (front.getPoint(i).getValue(j) > 1.0) {
-					invertedFront.getPoint(i).setValue(j, 0.0);
-				} else if (front.getPoint(i).getValue(j) < 0.0) {
-					invertedFront.getPoint(i).setValue(j, 1.0);
+		double[][] front = f.getMatrix();
+		
+		n = noPoints;
+		i = 0;
+		while (i < n) {
+			j = i + 1;
+			while (j < n) {
+				if (dominates(front[i], front[j], noObjectives)) {
+					/* remove point 'j' */
+					n--;
+					swap(front, j, n);
+				} else if (dominates(front[j], front[i], noObjectives)) {
+					/*
+					 * remove point 'i'; ensure that the point copied to index 'i' is considered in
+					 * the next outer loop (thus, decrement i)
+					 */
+					n--;
+					swap(front, i, n);
+					i--;
+					break;
+				} else {
+					j++;
 				}
 			}
+			i++;
 		}
-		return invertedFront;
+		return n;
+	}
+
+	/*
+	 * returns true if 'point1' dominates 'points2' with respect to the to the first
+	 * 'noObjectives' objectives
+	 */
+	private static boolean dominates(double point1[], double point2[], int noObjectives) {
+		int i;
+		int betterInAnyObjective;
+
+		betterInAnyObjective = 0;
+		for (i = 0; i < noObjectives && point1[i] >= point2[i]; i++) {
+			if (point1[i] > point2[i]) {
+				betterInAnyObjective = 1;
+			}
+		}
+
+		return ((i >= noObjectives) && (betterInAnyObjective > 0));
+	}
+
+	private static void swap(double[][] front, int i, int j) {
+		double[] temp;
+		temp = front[i];
+		front[i] = front[j];
+		front[j] = temp;
+	}
+	
+	private static void testNonDominatedPoints(String dir, String fileName) throws FileNotFoundException {
+		Front front = new ArrayFront(dir + "/" + fileName);
+		int noPoints = front.getNumberOfPoints();
+		int noObjectives = front.getPointDimensions();
+		System.out.println("Front " + fileName + " number of points = " + noPoints);
+		System.out.println("Front " + fileName + " number of dimensions = " + noObjectives);
+		int pointCountNonDom = filterNondominatedSet(front, noPoints, noObjectives);
+		
+		int diff = noPoints - pointCountNonDom;
+		if (diff == 0) { 
+			System.out.println(fileName + ": No non-dominated points: original points " + noPoints + " - non-dominated points " + pointCountNonDom);
+		} else {
+			System.out.println(fileName + ": SOME DOMINATED POINTS: original points " + noPoints + " - non-dominated points " + pointCountNonDom);			
+		}
 	}
 
 	public static void main(String[] args) {
@@ -94,12 +142,25 @@ public class IndicatorsFromSavedFronts_RQ3_History {
 		String outputCSVFile = baseDir + "locomotec-RQ3HistoryQI.csv";
 
 		try {
+			testNonDominatedPoints("/home/jharbin/academic/sesame/WP6/notebooks/locomotec/python/", "condbased_res1000_neg.pf");
+			testNonDominatedPoints("/home/jharbin/academic/sesame/WP6/notebooks/locomotec/python/", "condbased_history750.pf");
+			testNonDominatedPoints("/home/jharbin/academic/sesame/WP6/notebooks/locomotec/python/", "condbased_res1000.pf");
+			
 			FileWriter fw = new FileWriter(outputCSVFile);
-			boolean normalised = false;
-			calculateIndicatorsForGen(fw, 250, baseDir + "condbased_history250.pf", baseDir + "condbased_res1000.pf", normalised);
-			calculateIndicatorsForGen(fw, 500, baseDir + "condbased_history500.pf", baseDir + "condbased_res1000.pf", normalised);
-			calculateIndicatorsForGen(fw, 750, baseDir + "condbased_history750.pf", baseDir + "condbased_res1000.pf", normalised);
-			calculateIndicatorsForGen(fw, 1000,baseDir + "condbased_res1000.pf",    baseDir + "condbased_res1000.pf", normalised);
+			System.out.println("========================= ALL VALUES POSITIVE ======================================");
+			calculateIndicatorsForGen(fw, 250, baseDir + "condbased_history250.pf", baseDir + "condbased_res1000.pf");
+			calculateIndicatorsForGen(fw, 500, baseDir + "condbased_history500.pf", baseDir + "condbased_res1000.pf");
+			calculateIndicatorsForGen(fw, 750, baseDir + "condbased_history750.pf", baseDir + "condbased_res1000.pf");
+			calculateIndicatorsForGen(fw, 1000, baseDir + "condbased_res1000.pf", baseDir + "condbased_res1000.pf");
+			
+			System.out.println("========================= MAXIMISATION VALUES NEGATIVE =========================");
+			calculateIndicatorsForGen(fw, 250, baseDir + "condbased_history250_neg.pf", baseDir + "condbased_res1000_neg.pf");
+			calculateIndicatorsForGen(fw, 500, baseDir + "condbased_history500_neg.pf", baseDir + "condbased_res1000_neg.pf");
+			calculateIndicatorsForGen(fw, 750, baseDir + "condbased_history750_neg.pf", baseDir + "condbased_res1000_neg.pf");
+			calculateIndicatorsForGen(fw, 1000, baseDir + "condbased_res1000_neg.pf", baseDir + "condbased_res1000_neg.pf");
+			
+			//calculateIndicatorsForGen(fw, 9999, baseDir + "condbased_res1000_removedpoints.pf", baseDir + "condbased_res1000_removedpoints.pf");
+
 			fw.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

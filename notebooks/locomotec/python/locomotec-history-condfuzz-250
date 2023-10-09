@@ -1,5 +1,4 @@
 Testing                                         uvMissSurface           uvDisinfectionS1        uvDisinfectionS2        uvDisinfectionS3        uvExposureForHuman_p1   uvExcessHuman           fuzzOpTimes              FuzzingOpCount
-Test:Test_041_18_11_2022_21_04_02		0.720			21.406			2.980			12.879			0.372			0.000			0.000			 1
 Test:Test_089_18_11_2022_23_03_58		1.836			21.977			1.864			9.754			10.969			7.969			143.418			 2
 Test:Test_091_18_11_2022_23_34_06		11.100			0.000			0.000			0.000			0.000			0.000			128.243			 1
 Test:Test_211_19_11_2022_05_40_36		0.000			20.463			6.208			8.469			13.031			10.031			135.349			 2
