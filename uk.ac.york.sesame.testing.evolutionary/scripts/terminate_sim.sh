@@ -39,4 +39,6 @@ killall -9 scan_unifier_node
 pkill -f TestRunner
 pkill -9 -f DDDSimulatorProject
 
+docker stop $(docker ps -a -q)
+
 exit 0
