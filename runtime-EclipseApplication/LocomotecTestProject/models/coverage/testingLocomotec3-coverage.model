@@ -69,6 +69,32 @@
       <dimensionRecords xmi:id="_dzosYEPKEe6DJ-w9ipeyGg" dimID="T2_TIME_LENGTH_MEAN" maxValue="1.0" count="4"/>
       <dimensionRecords xmi:id="_m9HZYEPKEe6DJ-w9ipeyGg" dimID="P1_PARAMETER_MEAN" maxValue="1.0" count="4" extraData="0"/>
     </approach>
+    <performedTests name="Test_001_06_10_2023_03_59_14">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" seed="7471827092779905526" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="28.60337931716483" endTime="88.34679653703104"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.07079557597595951" upperBound="0.15932336728239327"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="0.006055473582719647" upperBound="0.009182552707632395"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_yJqqcGK3Ee2BjPek2mKnzA" seed="8593839380219248529">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="139.62502545870043" endTime="159.6047102543966"/>
+        <latency lowerBound="1.485153344559297" upperBound="3.6584287002046687"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_002_06_10_2023_03_59_14">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortPersonSector" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_EpCRIEVeEe21kZ_DgzCBrA" seed="-499591882808970229" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="67.34574653259729" endTime="134.96005085488565"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.center_angle" lowerBound="-0.05499281312288115" upperBound="0.15576920601554425"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="perception_msgs/DetectedObjectList.objects[0].object.sector.opening_angle" lowerBound="-0.0037653231143093555" upperBound="0.005723285508762021"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="personDetectionDelay" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_yJqqcGK3Ee2BjPek2mKnzA" seed="190657027390527110">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="22.832463935874543" endTime="76.53288825654005"/>
+        <latency lowerBound="3.68367590707859" upperBound="4.793470068306961"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="personDetectionPacketLoss" variableToAffect="_TeAYYET9Ee21kZ_DgzCBrA" fromTemplate="_QKc88ET9Ee21kZ_DgzCBrA" seed="495060947295134428">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="53.68984625912386" endTime="118.82765229320779"/>
+        <frequency lowerBound="0.44255840597239826" upperBound="0.9610335238216082"/>
+      </operations>
+    </performedTests>
     <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="160"/>
   </campaigns>
   <campaigns xmi:id="_bnv24EO6Ee6DJ-w9ipeyGg" name="coverageBoosting" metrics="_qYdz4ET7Ee21kZ_DgzCBrA _69xA8F_QEe2iJNiHhmRZ1Q _hrtGEPZBEeypkdw9q4st1A" conditionMetrics="_HeP5sDNVEe2BrK8BAi5Xqg" includedOperations="_yJqqcGK3Ee2BjPek2mKnzA _QKc88ET9Ee21kZ_DgzCBrA _EpCRIEVeEe21kZ_DgzCBrA">
