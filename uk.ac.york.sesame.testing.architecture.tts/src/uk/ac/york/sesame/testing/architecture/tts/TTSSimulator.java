@@ -40,6 +40,8 @@ public class TTSSimulator implements ISimulator {
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	private static final boolean DEBUG_DISPLAY_CLOCK_MESSAGE = true;
+
+	private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 40000;
 	//private static final boolean SUBSCRIBE_TO_CLOCK = true;
 
 	static DataStreamManager dsm = DataStreamManager.getInstance();
@@ -119,23 +121,40 @@ public class TTSSimulator implements ISimulator {
 
 	@Override
 	public ICommandInvoker getICommandInvoker() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	public void runExtraScript(String workingDir) {
+		// TODO: Test if file exists here
+		// TODO: hardcoded test ID here
+		String testID = "Test_001";
+		String cmd = "cd " + workingDir + " && ./start-extras.sh " + testID;
+		ExptHelper.runScriptNewThread(workingDir, cmd);
+	}
+	
 	@Override
 	public void run(HashMap<String, String> params) {
 		// For run, we need to use the TTS simulator path and the "dist" directory
 		String workingDir = params.get("TTSProjectDir") + "/dist/";
 
 		long delayMsec = DEFAULT_TTS_LAUNCH_DELAY_MS;
+		long extrasWaitdelayMsec = DEFAULT_EXTRAS_WAIT_DELAY_MS;
 		if (params.containsKey("launchDelayMsec")) {
 			delayMsec = Long.parseLong(params.get("launchDelayMsec"));
 		}
+				
+		runExtraScript(workingDir);
 
-		// TODO: this needs an option for setting a custom JVM here?
-		//String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		// Need to wait the delay after the EDDI launched
+		try {
+			Thread.sleep(extrasWaitdelayMsec);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		// TODO: could use an option for setting a custom JVM here?
 		String cmd = "xterm -e /usr/lib/jvm/java-11-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		
 		ExptHelper.runScriptNewThread(workingDir, cmd);
 
 		// Need to wait the delay
