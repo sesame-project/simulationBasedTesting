@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option java_package = "com.ttsnetwork.simulator3";
+option java_multiple_files = true;
+
+package com.ttsnetwork.simulator3;
+
+/**
+ * Simulation service.
+ */
+service SimServerAPI {
+
+    /**
+    * Steps the simulation
+    */
+    rpc step(StepRequest) returns (SimStatus);
+    
+    rpc start(StartRequest) returns (SimStatus);
+    
+    rpc stop(google.protobuf.Empty) returns (SimStatus);
+    
+    rpc pause(google.protobuf.Empty) returns (SimStatus);
+    
+    rpc subscribe(google.protobuf.Empty) returns (stream SimStatus);
+    
+}
+
+
+message StepRequest{
+    
+    int64 deltaTime = 1; 
+}
+
+message StartRequest{
+    
+    int64 deltaTime = 1; 
+}
+
+
+message SimStatus{
+    
+    int64 clock = 1;
+    
+    int64 deltaTime = 2;
+    
+    bool alive = 3;
+    
+    bool playing = 4;
+    
+    int32 exitCode = 5;
+    
+}
+

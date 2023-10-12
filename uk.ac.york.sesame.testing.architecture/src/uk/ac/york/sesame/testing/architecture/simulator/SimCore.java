@@ -58,6 +58,11 @@ public final class SimCore {
 		this.time = time;
 	}
 	
+	public void setTimeNS(long timeNS) {
+		double time = timeNS / 1000000000;
+		this.time = time;
+	}
+	
 	private void outputTimingLog(String s) {
 		try {
 			outputTimingLog.write(s);

@@ -4,104 +4,93 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.Optional;
-
-import org.eclipse.epsilon.common.util.StringProperties;
-import org.eclipse.epsilon.emc.emf.EmfModel;
-import org.eclipse.epsilon.emc.plainxml.PlainXmlModel;
-import org.eclipse.epsilon.eol.launch.EolRunConfiguration;
-import org.eclipse.epsilon.eol.models.IModel;
+import java.util.UUID;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.Status;
-import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
-import simlog.server.*;
+
+import com.ttsnetwork.simlog.*;
 
 import com.google.protobuf.Empty;
-import com.googlecode.protobuf.format.JsonFormat;
+import com.google.protobuf.Value;
 
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
-import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.simulator.ICommandInvoker;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertyGetter;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertySetter;
 import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
-import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
 
 public class TTSSimulator implements ISimulator {
 
 	private static final long DEFAULT_TTS_LAUNCH_DELAY_MS = 20000;
-	
-	private static boolean GET_TIME_FROM_MESSAGES = true;
-
-	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
-	private static final boolean DEBUG_DISPLAY_CLOCK_MESSAGE = true;
-
 	private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 40000;
-	//private static final boolean SUBSCRIBE_TO_CLOCK = true;
+	
+	private final String subscriberUUID = UUID.randomUUID().toString();
 
 	static DataStreamManager dsm = DataStreamManager.getInstance();
 	
-	//StepObserver so;
-
-	private static StreamObserver<PubRequest> publisher;
-	HashMap<String, ROSObserver> createdTopics = new HashMap<String, ROSObserver>();
-
+	HashMap<String, TopicInfo> createdTopics = new HashMap<String, TopicInfo>();
+	
 	private static SimlogAPIGrpc.SimlogAPIStub asyncStub;
 	private static SimlogAPIGrpc.SimlogAPIBlockingStub blockingStub;
 	ManagedChannel channel;
 	ManagedChannel channelSync;
+	
+	StreamObserver<PubRequest> pubChannel;
+	private GRPCController simController;
 
-	//private boolean canSendToSimulator = false;
-
-	@Override
 	public List<String> getTopics() {
-		return new ArrayList(createdTopics.keySet());
+		return new ArrayList<String>(createdTopics.keySet());
 	}
-
-	@Override
+	
 	public Object createTopic(String topicName, String topicType) {
-		ROSObserver ro = new ROSObserver(topicName);
-		createdTopics.put(topicName, ro);
-		System.out.println(ro);
-		return ro;
+		String path = SimPathTranslator.getSimPathForTopicName(topicName);
+		TopicInfoRequest tirq = TopicInfoRequest.newBuilder().setPath(path).build();
+		TopicInfo ti = blockingStub.getTopicInfo(tirq);
+		createdTopics.put(topicName, ti);
+		System.out.println("TopicInfo = " + ti);
+		return ti;
 	}
-
-	@Override
+	
 	public Object connect(ConnectionProperties params) {
 		HashMap<String, Object> p = params.getProperties();
-		String host = params.getProperties().get(params.HOSTNAME).toString();
-		int port = Integer.parseInt(params.getProperties().get(params.PORT).toString());
-		String target = host + ":" + String.valueOf(port);
-		channel = ManagedChannelBuilder.forTarget(target).usePlaintext().build();
-		channelSync = ManagedChannelBuilder.forTarget(target).usePlaintext().build();
+		String host = p.get(ConnectionProperties.HOSTNAME).toString();
+		int portController = Integer.parseInt(p.get(ConnectionProperties.PORT).toString());
+		int portSimLog = portController + 1;
 		
-		blockingStub = SimlogAPIGrpc.newBlockingStub(channelSync);
+		String targetSimLog = host + ":" + String.valueOf(portSimLog);
+		String targetController = host + ":" + String.valueOf(portController);
+		
+		String subscriberName = "simTesting";
+				
+		channel = ManagedChannelBuilder.forTarget(targetSimLog).usePlaintext().build();
+		channelSync = ManagedChannelBuilder.forTarget(targetSimLog).usePlaintext().build();
+		
+		// Provides connection to the SimServer API here for handling stepping
+		this.simController = new GRPCController(targetController);
+		
+		blockingStub = SimlogAPIGrpc.newBlockingStub(channelSync).withWaitForReady();
 		asyncStub = SimlogAPIGrpc.newStub(channel);
-
-		// Activate stepping if the STEP_SIZE parameter is supplied
-		if (params.getProperties().containsKey(params.STEP_SIZE)) {
-			System.out.println("TTSimulator: setting step size");
-			int stepSizeMillis = Integer.parseInt(params.getProperties().get(params.STEP_SIZE).toString());
-			StepSizeRequest stepRQ = StepSizeRequest.newBuilder().setStep(stepSizeMillis).build();
-			blockingStub.setStepSize(stepRQ);
-		}
 		
-		try {
-			// Wait is needed to prevent gRPC connection errors
-			// This was originally 500 ms, then increasing to 1000sec for batch mode
-			Thread.sleep(1000);
-			System.out.println("TTSimulator: wait to set step size completed");		
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.pubChannel = asyncStub.publish(new EmptyObserver());
 		
-
+        Subscriber s = Subscriber.newBuilder().setName(subscriberName).setUuid(subscriberUUID).build();
+        SimStreamObserver sso = new SimStreamObserver(this.simController);
+        asyncStub.createSubscriber(s, sso);
+		
+		// V2 no longer uses a fixed step size!
+		
+		// TODO for V2:
+		// 1) connection to the simlog server via SimServerAPI
+		// 2) sequencing of the stepping and waiting with a semaphore for the stream response message
+		
+		// Where are SafetyZone messages now?
+		// SimlogStepTopic in Diego's own SimlogClient not present?
+		
+        // Waiting is no longer necessary; using withWaitForReady above!
 		
 		System.out.println("TTSimulator: connection ready");
 		return asyncStub;
@@ -144,8 +133,8 @@ public class TTSSimulator implements ISimulator {
 		}
 				
 		runExtraScript(workingDir);
-
 		// Need to wait the delay after the EDDI launched
+		
 		try {
 			Thread.sleep(extrasWaitdelayMsec);
 		} catch (InterruptedException e) {
@@ -157,7 +146,7 @@ public class TTSSimulator implements ISimulator {
 		
 		ExptHelper.runScriptNewThread(workingDir, cmd);
 
-		// Need to wait the delay
+		// Need to wait the delay after launching the simulator
 		try {
 			Thread.sleep(delayMsec);
 		} catch (InterruptedException e) {
@@ -165,107 +154,61 @@ public class TTSSimulator implements ISimulator {
 		}
 	}
 
-	@Override
-	public HashMap<String, ?> getCreatedTopicsByTopicName() {
+	public HashMap<String,TopicInfo> getCreatedTopicsByTopicName(String topic) {
 		return createdTopics;
 	}
 
-	/**
-	 * If the topic name ends in IN, then remove the IN. Otherwise, append OUT to
-	 * the topic name
-	 **/
 	public String translateTopicNameForOutput(String origTopicName) {
-		String subsTopicName = origTopicName.replace(".", "/");
-		if (subsTopicName.endsWith("/in")) {
-			return (subsTopicName.substring(0, subsTopicName.length() - 3) + "/shadow");
-		} else {
-			return subsTopicName + "/shadow";
-		}
-	}
-
-	/*
-	 * This is for ROS Topics with fuzzing
-	 */
-	public void consumeFromTopicForFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
-		String topicNameIn = topicName + "/in";
-		String topicNameShadow = topicName + "/shadow";
-		
-		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-		TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(topicNameShadow).build();	
-
-		InjectRequest requ = InjectRequest.newBuilder().setInjected(shadowTopic).setTarget(inTopic).build();
-
-		try {
-			ROSObserver roInject = new ROSObserver(topicNameIn);
-			roInject.setTopic(kafkaTopic);
-			System.out.println("Setting up injection to : " + inTopic);
-			asyncStub.inject(requ, roInject);			
-		} catch (StatusRuntimeException e) {
-			System.out.println("RPC failed: {0}" + e.getStatus());
-			return;
-		}
+		return SimPathTranslator.translateTopicNameForOutput(origTopicName);
 	}
 	
-	private void consumeFromTopicWithoutFuzzing(String topicName, String topicType, Boolean publishToKafka,	String kafkaTopic) {
-		String topicNameIn;
-		// TODO: think of better way to handle this - variable specific information?
-		if (topicName.contains("safetyzone")) {
-			topicNameIn = topicName;
-		} else {
-			topicNameIn = topicName + "/in";
-		}
-		
-		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-
-		try {
-			ROSObserver ro = new ROSObserver(topicNameIn);
-			ro.setTopic(kafkaTopic);
-			System.out.println("Setting up subscription to : " + inTopic);
-			asyncStub.subscribe(inTopic, ro);
-		} catch (StatusRuntimeException e) {
-			System.out.println("RPC failed: {0}" + e.getStatus());
-			return;
-		}
+	private void subscribePath(String path) {
+        try {
+            System.out.println("Subscribing to " + path);
+            SubscriptionRequest td = SubscriptionRequest.newBuilder().setPath(path).setSubscriberUUID(this.subscriberUUID).build();
+            blockingStub.subscribe(td);
+        } catch (Throwable ex) {
+            System.out.println("subscribePath returned error message: " + ex.getMessage());
+            ex.printStackTrace();
+        }
 	}
 
-	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
-		// Assume that fuzzing is NOT selected when the argument is ommitted
-		consumeFromTopic(topicName, topicType, publishToKafka, kafkaTopic, false);
+	public void subscribeForFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
+		// V2: set up the injection
+		String topicTarget = SimPathTranslator.getSimPathForTopicName(topicName);
+		// TODO: check the prefix
+		String prefix="out";
+		InjectRequest req = InjectRequest.newBuilder().setTargetPath(topicTarget).setShadowPathPrefix(prefix).build();
+        InjectResponse rsp = blockingStub.inject(req);
+        subscribePath(rsp.getShadowPathOut());
+	}
+	
+	public void subscribeNoFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
+		String path = SimPathTranslator.getSimPathForTopicName(topicName);
+		subscribePath(path);
 	}
 	
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean shouldFuzz) {
 		if (shouldFuzz) {
-			consumeFromTopicForFuzzing(topicName, topicType, publishToKafka, kafkaTopic);
+			subscribeForFuzzing(topicName, topicType, publishToKafka, kafkaTopic);
 		} else {
-			consumeFromTopicWithoutFuzzing(topicName, topicType, publishToKafka, kafkaTopic);
+			subscribeNoFuzzing(topicName, topicType, publishToKafka, kafkaTopic);
 		}
+	}
+	
+	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
+		consumeFromTopic(topicName, topicType, publishToKafka, kafkaTopic, false); 
 	}
 
 	@Override
 	public void publishToTopic(String topicName, String topicType, String message) {
-		String path = topicName;
-		System.out.println("PUBLISH TO: " + path);
-		String value = message;
-		if (publisher == null) {
-			publisher = asyncStub.publish(new StreamObserver<Empty>() {
-
-				@Override
-				public void onNext(Empty v) {
-				}
-
-				@Override
-				public void onError(Throwable thrwbl) {
-				}
-
-				@Override
-				public void onCompleted() {
-				}
-			});
-		}
-		TopicDescriptor td = TopicDescriptor.newBuilder().setMsgType(topicType).setPath(path).build();
-		ROSMessage m = ROSMessage.newBuilder().setType(topicType).setValue(String.valueOf(value)).build();
-		PubRequest pr = PubRequest.newBuilder().setTopic(td).setData(m).build();
-		publisher.onNext(pr);
+		// TODO: need to set the value appropriately for the type here
+		// currently it only works for NUMBER
+		double value = Double.parseDouble(message.toString());
+        SimlogMessage msg = SimlogMessage.newBuilder().setValue(Value.newBuilder().setNumberValue(value).build())
+        		.setType(ValueType.NUMBER).build();
+        PubRequest r = PubRequest.newBuilder().setTopic(topicName).setData(msg).build();
+        pubChannel.onNext(r);
 	}
 
 	@Override
@@ -279,184 +222,39 @@ public class TTSSimulator implements ISimulator {
 
 	@Override
 	public void redirectTopics(ArrayList<uk.ac.york.sesame.testing.architecture.data.Topic> topics) {
-		HashMap<IModel, StringProperties> models = new HashMap<IModel, StringProperties>();
-		StringProperties mrsModelProperties = new StringProperties();
-		mrsModelProperties.setProperty(EmfModel.PROPERTY_NAME, "MRS");
-		mrsModelProperties.setProperty(EmfModel.PROPERTY_FILE_BASED_METAMODEL_URI,
-				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/ExSceMM.ecore");
-		mrsModelProperties.setProperty(EmfModel.PROPERTY_MODEL_URI,
-				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/exampleExSce.model");
-		models.put(new EmfModel(), mrsModelProperties);
-		StringProperties launchModelProperties = new StringProperties();
-		launchModelProperties.setProperty(PlainXmlModel.PROPERTY_NAME, "LAUNCH");
-		launchModelProperties.setProperty(PlainXmlModel.PROPERTY_URI,
-				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/files/turtle_example.launch");
-		launchModelProperties.setProperty(PlainXmlModel.PROPERTY_STOREONDISPOSAL, "true");
-		models.put(new PlainXmlModel(), launchModelProperties);
 
-		EolRunConfiguration runConfig = EolRunConfiguration.Builder().withScript(
-				"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/files/updateXMLLaunchfiles.eol")
-				.withModels(models).withParameter("Thread", Thread.class).build();
-
-		runConfig.parameters.put("topics", topics);
-		runConfig.run();
-		try {
-			runConfig.dispose();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
-	private boolean subscribeToClock() {
-		return !GET_TIME_FROM_MESSAGES;
-	}
-	
-	private void updateTimeHack() {
-		String clockIN = "model/clock";
-		String clockOut_Fake = clockIN + "/shadow";
-		
-		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(clockIN).build();
-		TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(clockOut_Fake).build();	
-		InjectRequest requ = InjectRequest.newBuilder().setInjected(shadowTopic).setTarget(inTopic).build();
-		
-		ROSObserver roClock = new ROSObserver("model/clock");
-		asyncStub.inject(requ, roClock);
-	}
-	
+	// V2: updateTime redundant - time now called updated from GRPCController
 	public void updateTime() {
-		if (subscribeToClock()) {
-			TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("model/clock").build();
-			ClockObserver co = new ClockObserver();
-			asyncStub.subscribe(clockTopic, co);
-			//updateTimeHack();
-		}
-	}
-
-	private class ClockObserver implements StreamObserver<ROSMessage> {
-
-		public ClockObserver() {
-
-		}
-
-		public void onNext(ROSMessage m) {
-			System.out.println("ClockObserver received value with header timestamp " + m.getTimeStamp());
-			Header h = m.getTimeStamp();
-			time t = h.getStamp();
-			double time = ((double)t.getNsec()) / 1e9;
-			System.out.println("Timestamp recovered from clock message = " + time);
-			SimCore.getInstance().setTime(time);
-		}
-
-		@Override
-		public void onError(Throwable t) {
-			System.err.println("ClockObserver failed: " + Status.fromThrowable(t));
-		}
-
-		@Override
-		public void onCompleted() {
-			System.out.println("ClockObserver finished");
-		}
-	}
-
-	private class ROSObserver implements StreamObserver<ROSMessage> {
-		private String path;
-		private boolean debugThisMessage;
-		private Optional<String> kafkaTopic = Optional.empty();
-
-		public ROSObserver(String p) {
-			this.path = p;
-		}
-
-		public void setDebug(boolean debug) {
-			this.debugThisMessage = debug;
-		}
-
-		public void setTopic(String givenTopic) {
-			this.kafkaTopic = Optional.of(givenTopic);
-		}
 		
-		private void setSimulatorTimeFromMessage(ROSMessage m, EventMessage em) {
-			Header timeStamp_H = m.getTimeStamp();
-			time tSecNsec = timeStamp_H.getStamp();
-			long sec = tSecNsec.getSec();
-			long nsec = tSecNsec.getNsec();
-			double time = ((double)nsec) / 1e9;
-			System.out.println("Timestamp recovered from message = " + time);
-			
-			SimCore.getInstance().setTime(time);
-			em.setTimestamp(nsec);
-		}
-
-		@Override
-		public void onNext(ROSMessage m) {
-			System.out.println(path + ":message received value=" + m.getValue());
-			if (DEBUG_DISPLAY_INBOUND_MESSAGES || debugThisMessage) {
-				System.out.println("message: " + m);
-			}
-			EventMessage em = new EventMessage();
-			
-			String type = m.getType();
-			String topic = path;
-
-			if (GET_TIME_FROM_MESSAGES) {
-				if (!topic.contains("safetyzone")) {
-					setSimulatorTimeFromMessage(m, em);
-				}
-			}
-
-			em.setType(type);
-			em.setTopic(topic);
-			
-			
-			// If there is an empty ROSMessage text value, as in the 
-			// safetyzone messages, the EventMessage value is set to
-			// the JSON representation of the protobuf ROS message
-			String val = m.getValue();
-			if (val == null || val.isEmpty()) {
-				JsonFormat jsf = new JsonFormat();
-				String jsonString = jsf.printToString(m);
-				em.setValue(jsonString);
-			} else {
-				em.setValue(val);
-			}
-
-			if (kafkaTopic.isPresent()) {
-				String kTopicName = kafkaTopic.get();
-				if (DEBUG_DISPLAY_INBOUND_MESSAGES || debugThisMessage) {
-					System.out.println(em);
-				}
-				dsm.publish(kTopicName, em);
-			}
-		}
-
-		@Override
-		public void onError(Throwable t) {
-			System.err.println(path + ":failed: " + Status.fromThrowable(t));
-		}
-
-		@Override
-		public void onCompleted() {
-			System.out.println(path + ":finished");
-		}
 	}
 	
 	public boolean stepSimulator() {
-		StepRequest rq = StepRequest.newBuilder().build();
-		try {
-		StepResponse response = blockingStub.step(rq);
-		return responseIsOK(response);	
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+		// V2 - make dynamic step call using t
+		simController.step();
+		System.out.println("Stepping");
+		simController.waitForReady();
+		return true;
 	}
 
-	private boolean responseIsOK(StepResponse response) {
-		if (response.getCode() < 0) {
-			return false;
-		} else {
-			return true;
-		}
+	public HashMap<String, ?> getCreatedTopicsByTopicName() {
+		return createdTopics;
 	}
+	
+    private static class EmptyObserver implements StreamObserver<Empty> {
+
+        @Override
+        public void onNext(Empty v) {
+        }
+
+        @Override
+        public void onError(Throwable thrwbl) {
+            thrwbl.printStackTrace();
+        }
+
+        @Override
+        public void onCompleted() {
+        }
+    };
 }
