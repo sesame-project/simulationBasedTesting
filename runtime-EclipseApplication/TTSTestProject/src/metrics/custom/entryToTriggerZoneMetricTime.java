@@ -9,12 +9,10 @@ import org.apache.flink.api.common.state.ValueStateDescriptor;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.util.Collector;
 
-import simlog.server.ROSMessage;
-import simlog.server.SafetyZone;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
-import uk.ac.york.sesame.testing.architecture.tts.ROSMessageConversion;
+import uk.ac.york.sesame.testing.architecture.tts.customtypes.SafetyZone;
 
 public abstract class entryToTriggerZoneMetricTime extends Metric {
 
@@ -45,23 +43,15 @@ public abstract class entryToTriggerZoneMetricTime extends Metric {
 		String topic = msg.getTopic();
 		String extraString = getExtraString();
 		if (topic.contains(completionTopicName) && topic.contains(extraString)) {
+			SafetyZone sv = (SafetyZone)msg.getValue();
+			float level = sv.getLevel();
+			String object1 = sv.getObject1();
+			String object2 = sv.getObject2();
+			String zoneID = sv.getZoneID();
+			System.out.println("safetyzone message zone " + zoneID + ",object1 = " + object1 + ",object2=" + object2 + " level " + level);
 
-			if (msg.getValue() instanceof String) {
-				String s = (String) msg.getValue();
-				Optional<ROSMessage> rosmsg_o = ROSMessageConversion.fromJsonString(s);
-				if (rosmsg_o.isPresent()) {
-					ROSMessage rosmsg = rosmsg_o.get();
-					SafetyZone sv = rosmsg.getSafetyZone();
-					float level = sv.getLevel();
-					String object1 = sv.getObject1();
-					String object2 = sv.getObject2();
-					String zoneID = sv.getZone();
-					System.out.println("safetyzone message zone " + zoneID + ",object1 = " + object1 + ",object2=" + object2 + " level " + level);
-
-					if (zoneIDMatches(zoneID, object1, object2)) {
-						setTimeTarget();
-					}
-				}
+			if (zoneIDMatches(zoneID, object1, object2)) {
+				setTimeTarget();
 			}
 		}
 		
