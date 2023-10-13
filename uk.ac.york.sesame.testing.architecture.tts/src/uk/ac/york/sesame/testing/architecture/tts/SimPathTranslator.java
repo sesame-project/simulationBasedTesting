@@ -1,6 +1,9 @@
 package uk.ac.york.sesame.testing.architecture.tts;
 
 class SimPathTranslator {
+	
+	private static int uniquePrefixCount = 0;
+	
 	static String getSimPathForTopicName(String topicName) {
 		return "SIM://" + topicName;
 	}
@@ -28,5 +31,10 @@ class SimPathTranslator {
 		} else {
 			return subsTopicName + "/shadow";
 		}
+	}
+
+	public static String getUniqueExt() {
+		int p = uniquePrefixCount++;
+		return Integer.toString(p);
 	}
 }

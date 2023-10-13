@@ -1,5 +1,6 @@
 package uk.ac.york.sesame.testing.architecture.tts;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -79,17 +80,7 @@ public class TTSSimulator implements ISimulator {
 		
         Subscriber s = Subscriber.newBuilder().setName(subscriberName).setUuid(subscriberUUID).build();
         SimStreamObserver sso = new SimStreamObserver(this.simController);
-        asyncStub.createSubscriber(s, sso);
-		
-		// V2 no longer uses a fixed step size!
-		
-		// TODO for V2:
-		// 1) connection to the simlog server via SimServerAPI
-		// 2) sequencing of the stepping and waiting with a semaphore for the stream response message
-		
-		// Where are SafetyZone messages now?
-		// SimlogStepTopic in Diego's own SimlogClient not present?
-		
+        asyncStub.createSubscriber(s, sso);	
         // Waiting is no longer necessary; using withWaitForReady above!
 		
 		System.out.println("TTSimulator: connection ready");
@@ -113,12 +104,16 @@ public class TTSSimulator implements ISimulator {
 		return null;
 	}
 
-	public void runExtraScript(String workingDir) {
-		// TODO: Test if file exists here
-		// TODO: hardcoded test ID here
-		String testID = "Test_001";
-		String cmd = "cd " + workingDir + " && ./start-extras.sh " + testID;
-		ExptHelper.runScriptNewThread(workingDir, cmd);
+	public void runExtraScript(String workingDir, String testID) {
+		String extrasFile = "start-extras.sh";
+		String extrasPath = workingDir + "/" + extrasFile;
+		
+		if ((new File(extrasPath)).exists()) {
+			String cmd = "cd " + workingDir + " && ./start-extras.sh " + testID;
+			ExptHelper.runScriptNewThread(workingDir, cmd);
+		} else {
+			System.out.println("Could not find extras script at " + extrasPath + ":ignoring");
+		}
 	}
 	
 	@Override
@@ -128,11 +123,19 @@ public class TTSSimulator implements ISimulator {
 
 		long delayMsec = DEFAULT_TTS_LAUNCH_DELAY_MS;
 		long extrasWaitdelayMsec = DEFAULT_EXTRAS_WAIT_DELAY_MS;
+		
+		// Override launch delay parameter if supplied
 		if (params.containsKey("launchDelayMsec")) {
 			delayMsec = Long.parseLong(params.get("launchDelayMsec"));
 		}
+		
+		// Override extras delay parameter if supplied
+		if (params.containsKey("extrasWaitdelayMsec")) {
+			extrasWaitdelayMsec = Long.parseLong(params.get("extrasWaitdelayMsec"));
+		}
 				
-		runExtraScript(workingDir);
+		String testID = params.get("testID");
+		runExtraScript(workingDir, testID);
 		// Need to wait the delay after the EDDI launched
 		
 		try {
@@ -176,8 +179,8 @@ public class TTSSimulator implements ISimulator {
 	public void subscribeForFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
 		// V2: set up the injection
 		String topicTarget = SimPathTranslator.getSimPathForTopicName(topicName);
-		// TODO: check the prefix
-		String prefix="out";
+		// TODO: check the prefix - Diego will change to allow no prefix
+		String prefix="out" + SimPathTranslator.getUniqueExt();
 		InjectRequest req = InjectRequest.newBuilder().setTargetPath(topicTarget).setShadowPathPrefix(prefix).build();
         InjectResponse rsp = blockingStub.inject(req);
         subscribePath(rsp.getShadowPathOut());
