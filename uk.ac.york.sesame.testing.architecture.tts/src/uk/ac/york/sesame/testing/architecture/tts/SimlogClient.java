@@ -20,7 +20,7 @@ import com.ttsnetwork.simlog.ValueType;
 import static com.ttsnetwork.simlog.ValueType.BOOL;
 import static com.ttsnetwork.simlog.ValueType.NUMBER;
 import static com.ttsnetwork.simlog.ValueType.STRING;
-import com.ttsnetwork.simlogdatasource.SimlogStepTopic;
+//import com.ttsnetwork.simlogdatasource.SimlogStepTopic;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -169,7 +169,8 @@ public class SimlogClient {
             if (injectors.containsKey(m.getHeader().getPath())) {
                 injectors.get(m.getHeader().getPath()).onNext(m);
             }
-            if (SimlogStepTopic.TOPIC_NAME.equals(m.getHeader().getPath())) {
+            String fixedStepTopic = SimPathTranslator.getStepTopicName();
+            if (fixedStepTopic.equals(m.getHeader().getPath())) {
                 lines.add("----------  Step " + (int) m.getValue().getNumberValue() + " ----------");
                 cl.countDown();
             } else {
@@ -210,6 +211,7 @@ public class SimlogClient {
 
     public static void main(String[] a) throws InterruptedException, IOException {
         SimlogClient c = new SimlogClient();
+        String fixedStepTopic = SimPathTranslator.getStepTopicName();
         Thread.sleep(1000);
         c.queryTopic("SIM://joints/Kuka.j1/R/out");
         System.out.println("===============================");
@@ -217,12 +219,12 @@ public class SimlogClient {
         System.out.println("===============================");
         c.queryTopic("SIM://joints/Kuka.pippo");
         System.out.println("===============================");
-        c.queryTopic(SimlogStepTopic.TOPIC_NAME);
+        c.queryTopic(fixedStepTopic);
         System.out.println("===============================");
         c.subscribe("SIM://KukaTask/j2command");
         c.subscribe("SIM://joints/Kuka.j1/R/out");
         c.subscribe("SIM://joints/Kuka.j2/R/out");
-        c.subscribe(SimlogStepTopic.TOPIC_NAME);
+        c.subscribe(fixedStepTopic);
         c.injectOnNumber("SIM://joints/Kuka.j1/R/in", "KukaTask/j1Shadow", v -> 50 * v.doubleValue());
         c.injectOnNumber("SIM://joints/Kuka.j2/R/in", "KukaTask/j2Shadow", v -> -1.5 * v.doubleValue());
         c.injectOnNumber("SIM://joints/R3.L2/R/in", "Column/J3", v -> 2.0 * v.doubleValue());

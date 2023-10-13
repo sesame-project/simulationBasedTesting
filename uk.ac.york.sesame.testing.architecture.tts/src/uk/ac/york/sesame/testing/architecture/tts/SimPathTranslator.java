@@ -5,6 +5,10 @@ class SimPathTranslator {
 		return "SIM://" + topicName;
 	}
 	
+	static String getStepTopicName() {
+		return "SIM://step";
+	}
+	
 	static String getTopicNameForSimPath(String pathName) throws InvalidPath {
 		if (pathName.contains("SIM://")) {
 			return pathName.substring(6, pathName.length() - 6);
