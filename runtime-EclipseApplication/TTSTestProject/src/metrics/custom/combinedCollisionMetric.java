@@ -8,6 +8,7 @@ import org.apache.flink.util.Collector;
 
 import simlog.server.ROSMessage;
 import simlog.server.SafetyZone;
+
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.tts.ROSMessageConversion;
 
@@ -27,9 +28,11 @@ public abstract class combinedCollisionMetric extends BatchedRateMetric {
 		return 300;
 	}
 
-	public void open(Configuration parameters) throws Exception {
-		super.open(parameters, "collisionOccuranceMetric");
-		violationCount = getRuntimeContext().getState(new ValueStateDescriptor<>("violationCount", Long.class));
+	public void open(Configuration parameters, String extraTag) throws Exception {
+		super.open(parameters, extraTag);
+		String stateName = "violationCount-" + extraTag;
+		System.out.println("combinedCollisionMetric - setting up " + stateName);
+		violationCount = getRuntimeContext().getState(new ValueStateDescriptor<>(stateName, Long.class));
 	}
 	
 	protected abstract boolean topicMatches(String topic);

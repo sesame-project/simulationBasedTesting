@@ -1,5 +1,7 @@
 package metrics.custom;
 
+import org.apache.flink.configuration.Configuration;
+
 public class staticCollisionMetric extends combinedCollisionMetric {
 	private static final long serialVersionUID = 1L;
 
@@ -8,6 +10,11 @@ public class staticCollisionMetric extends combinedCollisionMetric {
 	}
 
 	protected boolean isObjectMatching(String object1, String object2) {
-		return false;
+		return true;
 	}
+	
+	public void open(Configuration parameters) throws Exception {
+		super.open(parameters, "static");
+	}
+	
 }
