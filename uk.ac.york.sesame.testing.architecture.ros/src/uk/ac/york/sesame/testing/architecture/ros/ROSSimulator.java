@@ -32,7 +32,7 @@ public class ROSSimulator implements ISimulator {
 
 	protected static final boolean USE_FRACTIONAL_TIME = true;
 
-	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = false;
+	private boolean DEBUG_DISPLAY_INBOUND_MESSAGES = false;
 	
 	static Ros ros;
 	static DataStreamManager dsm = DataStreamManager.getInstance();
@@ -43,6 +43,10 @@ public class ROSSimulator implements ISimulator {
 	public List<String> getTopics() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void debugEnsureDisplayMessages() {
+		DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	}
 
 	@Override
@@ -83,15 +87,12 @@ public class ROSSimulator implements ISimulator {
 
 	@Override
 	public void run(HashMap<String, String> params) {
-		//boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 		String launchFilePath = params.get("launchPath");
 		Path launchFileP = Paths.get(launchFilePath);
 		Path containingDir = launchFileP.getParent();
 		String workingDir = containingDir.toString();
 		
 		System.out.println("workingDir = " + workingDir + ",launchFilePath = " + launchFilePath);
-		String args = "";
-		//ExptHelper.runScriptNewWithBash(workingDir, launchFilePath);
 		ExptHelper.runScriptNewThread(workingDir, launchFilePath);
 	}
 

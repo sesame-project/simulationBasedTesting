@@ -9,7 +9,7 @@
 		<dependency>
 			<groupId>edu.wpi.rail</groupId>
 			<artifactId>jrosbridge</artifactId>
-			<version>0.2.0</version>
+			<version>0.2.2-JRH</version>
 		</dependency>
 		<dependency>
 			<groupId>uk.ac.york.sesame.testing.architecture</groupId>
