@@ -211,7 +211,8 @@ public class TTSSimulator implements ISimulator {
         SimlogMessage msg = SimlogMessage.newBuilder().setValue(Value.newBuilder().setNumberValue(value).build())
         		.setType(ValueType.NUMBER).build();
         PubRequest r = PubRequest.newBuilder().setTopic(topicName).setData(msg).build();
-        pubChannel.onNext(r);
+        //pubChannel.onNext(r);
+        blockingStub.publishSynch(r);
 	}
 
 	@Override

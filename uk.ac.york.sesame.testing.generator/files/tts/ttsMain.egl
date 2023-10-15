@@ -206,27 +206,34 @@ public class [%= testNameString %]_TestRunner {
 		[* CUSTOM TTS CODE - END *]
 		[% } %]
 				
-		[% for (aTopic in allTopics) { %]
-		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
+		[% for (aTopic in allTopics) { 
+		var javaSafeName = aTopic.name.replace("/", "_");
+		// Replace literal period - need to escape the string 
+		javaSafeName = javaSafeName.replace("\\.", "_");
+		%]
+		
+		Thread subscriber_thread_[%= javaSafeName %] = new Thread() {
 			public void run() {
-				System.out.println("Subscriber [%=aTopic.name.replace("/","_")%] Starts");
+				System.out.println("Subscriber [%= javaSafeName %] Starts");
 				[% if (fuzzingVars.contains(aTopic)) { %]
-				ttsSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN", true);
+				ttsSim.consumeFromTopic("[%= aTopic.name%]", "[%= aTopic.type.name %]", true, "IN", true);
 				[% } else { %]
-				ttsSim.consumeFromTopic("[%=aTopic.name%]", "[%=aTopic.type.name %]", true, "IN", false);
+				ttsSim.consumeFromTopic("[%= aTopic.name%]", "[%= aTopic.type.name %]", true, "IN", false);
 				[% } %]
 			}
 		};
-		subscriber_thread_[%=aTopic.name.replace("/","_")%].start();
+		subscriber_thread_[%= javaSafeName %].start();
 		[% } %]
 
-		Thread time_subscriber = new Thread() {
-			public void run() {
-				System.out.println("updateTime starting");
-				ttsSim.updateTime();
-			}
-		};
-		time_subscriber.start();
+		// time is now handled with the stepping mechanism
+		//
+		//Thread time_subscriber = new Thread() {
+		//	public void run() {
+		//		System.out.println("updateTime starting");
+		//		ttsSim.updateTime();
+		//	}
+		//};
+		//time_subscriber.start();
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
