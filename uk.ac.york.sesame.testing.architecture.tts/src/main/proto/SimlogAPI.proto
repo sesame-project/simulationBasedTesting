@@ -63,7 +63,12 @@ service SimlogAPI {
     /**
     * Executes a single write
     */
-    rpc PublishSynch(PubRequest) returns (google.protobuf.Empty);
+    rpc Write(PubRequest) returns (google.protobuf.Empty);
+   
+    /**
+     * Executes a single synchronous read
+     */
+    rpc Read(ReadRequest) returns (ReadResponse);
 
 
 }
@@ -152,6 +157,18 @@ message Header {
     google.protobuf.Timestamp timestamp = 1;
     
     string path = 2;
+}
+
+message ReadRequest {
+    
+    repeated string path = 1;
+    
+}
+
+message ReadResponse {
+    
+    repeated SimlogMessage messages = 1;
+    
 }
 
 

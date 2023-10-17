@@ -130,7 +130,7 @@ public class SimlogClient {
                 .setTopic(topic)
                 .setData(msg)
                 .build();
-        blockingStub.publishSynch(r);
+        blockingStub.write(r);
     }
 
     private static class TDO implements StreamObserver<SimlogMessage> {

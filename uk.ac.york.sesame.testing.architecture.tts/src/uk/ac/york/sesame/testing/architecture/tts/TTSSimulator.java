@@ -177,20 +177,23 @@ public class TTSSimulator implements ISimulator {
 	}
 
 	public void subscribeForFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
-		// V2: set up the injection
-		String topicTarget = SimPathTranslator.getSimPathForTopicName(topicName);
-		// TODO: check the prefix - Diego will change to allow no prefix
-		String prefix="out" + SimPathTranslator.getUniqueExt();
+		// V2: do the injection on IN
+		String topicTarget = SimPathTranslator.getSimPathForTopicName(topicName) + "/in";
+		// Unique prefix removed - Diego changed to allow same prefix
+		//String prefix="testingShadows" + SimPathTranslator.getUniqueExt();
+		String prefix="testingShadows";
+		System.out.println("subscribeForFuzzing: topicTarget=" + topicTarget + ":prefix = " + prefix);
 		InjectRequest req = InjectRequest.newBuilder().setTargetPath(topicTarget).setShadowPathPrefix(prefix).build();
         InjectResponse rsp = blockingStub.inject(req);
         subscribePath(rsp.getShadowPathOut());
 	}
 	
 	public void subscribeNoFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
-		String path = SimPathTranslator.getSimPathForTopicName(topicName);
+		String path = SimPathTranslator.getSimPathForTopicName(topicName) + "/out";
 		subscribePath(path);
 	}
 	
+	// topicName shuold always be raw - no in/out or "SIM://" at start
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean shouldFuzz) {
 		if (shouldFuzz) {
 			subscribeForFuzzing(topicName, topicType, publishToKafka, kafkaTopic);
@@ -212,7 +215,7 @@ public class TTSSimulator implements ISimulator {
         		.setType(ValueType.NUMBER).build();
         PubRequest r = PubRequest.newBuilder().setTopic(topicName).setData(msg).build();
         //pubChannel.onNext(r);
-        blockingStub.publishSynch(r);
+        blockingStub.write(r);
 	}
 
 	@Override

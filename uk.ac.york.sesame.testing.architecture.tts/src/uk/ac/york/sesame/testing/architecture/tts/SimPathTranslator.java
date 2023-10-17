@@ -2,14 +2,14 @@ package uk.ac.york.sesame.testing.architecture.tts;
 
 class SimPathTranslator {
 	
-	private static int uniquePrefixCount = 0;
+	//private static int uniquePrefixCount = 0;
 	
 	static String getSimPathForTopicName(String topicName) {
 		return "SIM://" + topicName;
 	}
 	
 	static String getStepTopicName() {
-		return "SIM://step";
+		return "SIMLOG://step";
 	}
 	
 	static String getTopicNameForSimPath(String pathName) throws InvalidPath {
@@ -33,8 +33,9 @@ class SimPathTranslator {
 		}
 	}
 
-	public static String getUniqueExt() {
-		int p = uniquePrefixCount++;
-		return Integer.toString(p);
-	}
+	// This is temporary - removed with Diego's new API changes for a unique internal prefix
+//	public static String getUniqueExt() {
+//		int p = uniquePrefixCount++;
+//		return Integer.toString(p);
+//	}
 }
