@@ -559,6 +559,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getCustomFuzzingOperation_CustomProcessClass() {
+		return (EAttribute)customFuzzingOperationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCustomOfflineFuzzingOperation() {
 		return customOfflineFuzzingOperationEClass;
 	}
@@ -1093,6 +1102,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		customFuzzingOperationEClass = createEClass(CUSTOM_FUZZING_OPERATION);
 		createEReference(customFuzzingOperationEClass, CUSTOM_FUZZING_OPERATION__PARAMS);
+		createEAttribute(customFuzzingOperationEClass, CUSTOM_FUZZING_OPERATION__CUSTOM_PROCESS_CLASS);
 
 		customOfflineFuzzingOperationEClass = createEClass(CUSTOM_OFFLINE_FUZZING_OPERATION);
 
@@ -1258,6 +1268,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		initEClass(customFuzzingOperationEClass, CustomFuzzingOperation.class, "CustomFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCustomFuzzingOperation_Params(), this.getValueSet(), null, "params", null, 0, -1, CustomFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCustomFuzzingOperation_CustomProcessClass(), ecorePackage.getEString(), "customProcessClass", null, 0, 1, CustomFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(customOfflineFuzzingOperationEClass, CustomOfflineFuzzingOperation.class, "CustomOfflineFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

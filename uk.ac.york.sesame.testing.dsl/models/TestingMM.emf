@@ -160,12 +160,15 @@ package FuzzingOperations {
 
 	class CustomFuzzingOperation extends FuzzingOperation {
 		val ValueSet[*] params;
+		attr String customProcessClass;
 	}
 
 	class CustomOfflineFuzzingOperation extends OfflineFuzzingOperation {
+	
 	}
 
 	abstract class Activation {
+	
 	}
 
 	class FixedTimeActivation extends Activation {

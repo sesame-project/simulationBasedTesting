@@ -628,13 +628,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int CUSTOM_FUZZING_OPERATION__PARAMS = FUZZING_OPERATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Custom Process Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__CUSTOM_PROCESS_CLASS = FUZZING_OPERATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Custom Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CUSTOM_FUZZING_OPERATION_FEATURE_COUNT = FUZZING_OPERATION_FEATURE_COUNT + 1;
+	int CUSTOM_FUZZING_OPERATION_FEATURE_COUNT = FUZZING_OPERATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Custom Fuzzing Operation</em>' class.
@@ -3847,6 +3856,17 @@ public interface FuzzingOperationsPackage extends EPackage {
 	EReference getCustomFuzzingOperation_Params();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation#getCustomProcessClass <em>Custom Process Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Custom Process Class</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation#getCustomProcessClass()
+	 * @see #getCustomFuzzingOperation()
+	 * @generated
+	 */
+	EAttribute getCustomFuzzingOperation_CustomProcessClass();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomOfflineFuzzingOperation <em>Custom Offline Fuzzing Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4627,6 +4647,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CUSTOM_FUZZING_OPERATION__PARAMS = eINSTANCE.getCustomFuzzingOperation_Params();
+
+		/**
+		 * The meta object literal for the '<em><b>Custom Process Class</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CUSTOM_FUZZING_OPERATION__CUSTOM_PROCESS_CLASS = eINSTANCE.getCustomFuzzingOperation_CustomProcessClass();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.CustomOfflineFuzzingOperationImpl <em>Custom Offline Fuzzing Operation</em>}' class.
