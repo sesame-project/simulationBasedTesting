@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="FuzzingOperations" xmlns:_2="MRSPackage" xmi:id="_VMYbMGKhEe6npZ9UVoAbbA" name="PALScenarios">
+  <metrics xsi:type="FuzzingOperationTimesMetric" xmi:id="_elQPEGKhEe6npZ9UVoAbbA" name="fuzzingOperationTimes" dir="LOWEST">
+    <valueIfNotReceived xmi:id="_n6yO0GPEEe6tFd556H5rIA" defaultVal="10000.0"/>
+    <initValue xmi:id="_kBwHwGPEEe6tFd556H5rIA"/>
+    <streams xsi:type="InputStream" xmi:id="_-uoSsGPHEe6tFd556H5rIA"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_gJ0ZIGKhEe6npZ9UVoAbbA" name="robotCollision">
+    <initValue xmi:id="_rM-_YGPEEe6tFd556H5rIA"/>
+    <streams xsi:type="InputStream" xmi:id="_U3zlwGPHEe6tFd556H5rIA"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_syB20GKhEe6npZ9UVoAbbA" name="distanceFromTargetTiago1" dir="LOWEST" relatedVariables="_yLhuQGKlEe6npZ9UVoAbbA">
+    <initValue xmi:id="_vz8jcGPEEe6tFd556H5rIA"/>
+    <streams xsi:type="InputStream" xmi:id="_VjhcQGPHEe6tFd556H5rIA"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_v0iNEGw6Ee6NTJHqpVnHDQ" name="distanceFromTargetPMB2_1" dir="LOWEST" relatedVariables="_yLhuQGKlEe6npZ9UVoAbbA">
+    <initValue xmi:id="_v0iNEWw6Ee6NTJHqpVnHDQ"/>
+    <streams xsi:type="InputStream" xmi:id="_v0iNEmw6Ee6NTJHqpVnHDQ"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_7R6D8GKlEe6npZ9UVoAbbA" name="tiago1_AlterVel" variableToAffect="_yLhuQGKlEe6npZ9UVoAbbA">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_ylHDgGPEEe6tFd556H5rIA" endTime="100.0"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:CustomFuzzingOperation" xmi:id="_YnVoAG2KEe6NTJHqpVnHDQ" name="distortBaseScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" customProcessClass="distortBaseScan">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_GlMCcG2QEe6NTJHqpVnHDQ" endTime="100.0"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:CustomFuzzingOperation" xmi:id="_mt7nAG6BEe6upaW3FMquwA" name="distortBaseScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" customProcessClass="distortBaseScan">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_mt7nAW6BEe6upaW3FMquwA" endTime="100.0"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_j6G3EGKlEe6npZ9UVoAbbA" name="scenario1" metrics="_syB20GKhEe6npZ9UVoAbbA _elQPEGKhEe6npZ9UVoAbbA _v0iNEGw6Ee6NTJHqpVnHDQ" includedOperations="_mt7nAG6BEe6upaW3FMquwA">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_gxFoQGPEEe6tFd556H5rIA" populationSize="16" iterations="160"/>
+    <performedTests name="Test_001_19_10_2023_18_37_21">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_mt7nAG6BEe6upaW3FMquwA" seed="-8323797476863571249" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="32.63147110207248" endTime="60.06854596860124"/>
+      </operations>
+      <metrics metric="_syB20GKhEe6npZ9UVoAbbA">
+        <result name="distanceFromTargetTiago1" value="6.048387281021076"/>
+      </metrics>
+      <metrics metric="_elQPEGKhEe6npZ9UVoAbbA">
+        <result name="fuzzingOperationTimes" value="27.43707486652876"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_002_19_10_2023_18_37_21">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_mt7nAG6BEe6upaW3FMquwA" seed="5097335384725288637" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="87.32387187976862" endTime="95.39474456265485"/>
+      </operations>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_1H2GAGPEEe6tFd556H5rIA" timeLimitSeconds="100"/>
+  </campaigns>
+  <mrs xmi:id="_ejhz8GKlEe6npZ9UVoAbbA" launchFileLocation="/home/jharbin/academic/pal/run_pal.sh" launchDelaySeconds="15">
+    <variables xmi:id="_yLhuQGKlEe6npZ9UVoAbbA" name="/tiago_1/ground_truth_odom" type="_vjgjwGwUEe6ELdyKyNpbFQ"/>
+    <variables xmi:id="_sw6EAGw6Ee6NTJHqpVnHDQ" name="/pmb2_1/ground_truth_odom" type="_vjgjwGwUEe6ELdyKyNpbFQ"/>
+    <variables xmi:id="_cRGkAG2KEe6NTJHqpVnHDQ" name="/omni_base_1/scan" type="_7sM48G2KEe6NTJHqpVnHDQ"/>
+    <variables xmi:id="_u_FIYG6CEe6upaW3FMquwA" name="/tiago_1/scan" type="_7sM48G2KEe6NTJHqpVnHDQ"/>
+    <nodes xmi:id="_tJySsGKlEe6npZ9UVoAbbA" name="tiago_1" publisher="_yLhuQGKlEe6npZ9UVoAbbA _cRGkAG2KEe6NTJHqpVnHDQ _u_FIYG6CEe6upaW3FMquwA"/>
+    <nodes xmi:id="_p2BAMGw6Ee6NTJHqpVnHDQ" name="pmb2_1"/>
+    <nodes xmi:id="_SGqhkG2QEe6NTJHqpVnHDQ" name="omni_base_1" publisher="_cRGkAG2KEe6NTJHqpVnHDQ"/>
+    <simulator xsi:type="_2:ROSSimulator" xmi:id="_wSX0QGKlEe6npZ9UVoAbbA" hostname="localhost" port="9090"/>
+    <propertyType xmi:id="_W0fm0GPFEe6tFd556H5rIA" name="linear">
+      <parameters xmi:id="_ZdaJ0GPFEe6tFd556H5rIA" name="X" type="_cWvHYGPFEe6tFd556H5rIA"/>
+      <parameters xmi:id="_belXYGPFEe6tFd556H5rIA" name="Y" type="_cWvHYGPFEe6tFd556H5rIA"/>
+      <parameters xmi:id="_ef1h4GPFEe6tFd556H5rIA" name="Z" type="_cWvHYGPFEe6tFd556H5rIA"/>
+    </propertyType>
+    <propertyType xmi:id="_cWvHYGPFEe6tFd556H5rIA" name="float64"/>
+    <propertyType xmi:id="_kHlNgGPFEe6tFd556H5rIA" name="geometry_msgs/Twist">
+      <parameters xmi:id="_mPTvAGPFEe6tFd556H5rIA" name="linear" type="_u5c0oGPFEe6tFd556H5rIA">
+        <subparameters xmi:id="_n8tsAGPFEe6tFd556H5rIA" name="X" type="_cWvHYGPFEe6tFd556H5rIA"/>
+        <subparameters xmi:id="_pO9-EGPFEe6tFd556H5rIA" name="Y" type="_cWvHYGPFEe6tFd556H5rIA"/>
+        <subparameters xmi:id="_qOceEGPFEe6tFd556H5rIA" name="Z" type="_cWvHYGPFEe6tFd556H5rIA"/>
+      </parameters>
+    </propertyType>
+    <propertyType xmi:id="_u5c0oGPFEe6tFd556H5rIA" name="geometry_msgs/Point"/>
+    <propertyType xmi:id="_vjgjwGwUEe6ELdyKyNpbFQ" name="nav_msgs/Odometry"/>
+    <propertyType xmi:id="_7sM48G2KEe6NTJHqpVnHDQ" name="sensor_msgs/LaserScan"/>
+  </mrs>
+</TestingMM:TestingSpace>
