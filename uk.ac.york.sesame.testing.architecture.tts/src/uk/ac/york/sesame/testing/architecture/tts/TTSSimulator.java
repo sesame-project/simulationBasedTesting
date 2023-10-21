@@ -186,6 +186,10 @@ public class TTSSimulator implements ISimulator {
 		InjectRequest req = InjectRequest.newBuilder().setTargetPath(topicTarget).setShadowPathPrefix(prefix).build();
         InjectResponse rsp = blockingStub.inject(req);
         subscribePath(rsp.getShadowPathOut());
+        
+        // TODO: always use returned topics from the injection request
+        // there will currently have SIMLOG:// but this is not a fixed convention
+        
 	}
 	
 	public void subscribeNoFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
