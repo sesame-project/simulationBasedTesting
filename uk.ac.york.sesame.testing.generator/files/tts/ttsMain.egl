@@ -20,7 +20,7 @@
 	
 	// This will activate sending back all topics in the MITM. Normally only the
 	// fuzzing variables should be sent back
-	var sendBackAllTopics = true;
+	var sendBackAllTopics = false;
 %]
 
 import java.util.ArrayList;
@@ -212,20 +212,26 @@ public class [%= testNameString %]_TestRunner {
 		javaSafeName = javaSafeName.replace("\\.", "_");
 		%]
 		
+		[* V2 change to API - there are no longer individual streams since
+		  everything is handled centrally, therefore no need for subscription threads anymore 
+		
 		Thread subscriber_thread_[%= javaSafeName %] = new Thread() {
-			public void run() {
-				System.out.println("Subscriber [%= javaSafeName %] Starts");
+			public void run() { *]
+				System.out.println("Subscriber [%= javaSafeName %] Starts"); 
 				[% if (fuzzingVars.contains(aTopic)) { %]
 				ttsSim.consumeFromTopic("[%= aTopic.name%]", "[%= aTopic.type.name %]", true, "IN", true);
 				[% } else { %]
 				ttsSim.consumeFromTopic("[%= aTopic.name%]", "[%= aTopic.type.name %]", true, "IN", false);
 				[% } %]
+				[*
 			}
 		};
 		subscriber_thread_[%= javaSafeName %].start();
+		*]
 		[% } %]
+				
 
-		// time is now handled with the stepping mechanism
+		[* V2 change - time is now handled with the stepping mechanism
 		//
 		//Thread time_subscriber = new Thread() {
 		//	public void run() {
@@ -234,6 +240,7 @@ public class [%= testNameString %]_TestRunner {
 		//	}
 		//};
 		//time_subscriber.start();
+		*]
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
@@ -241,11 +248,7 @@ public class [%= testNameString %]_TestRunner {
 				long millisLastStep = 0;
 				System.out.println("From out to sim starts");
 						
-				[% if (useStepping) { %]
-					while (ttsSim.stepSimulator() && extraDebugWait(millisLastStep)) {			
-				[% } else { %]
-					while (true) {
-				[% } %]			
+				while (ttsSim.simIsAlive()) {
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
@@ -281,6 +284,9 @@ public class [%= testNameString %]_TestRunner {
 						// Not sending anything back to simulator - passive monitoring only
 						[% } %]
 					}
+					[% if (useStepping) { %]
+						ttsSim.stepSimulator();
+					[% } %] 
 				}
 			}
 		}; 

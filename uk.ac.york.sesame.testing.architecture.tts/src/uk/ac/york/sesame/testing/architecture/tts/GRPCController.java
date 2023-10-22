@@ -28,6 +28,8 @@ public class GRPCController {
     
     private SimCore testingPlatformCore;
     private CountDownLatch cl;
+    
+    private boolean simIsAlive = true;
 
     public GRPCController(String targetController) {
         ManagedChannel channel = ManagedChannelBuilder.forTarget(targetController).usePlaintext().build();
@@ -45,9 +47,13 @@ public class GRPCController {
         StepRequest sr = StepRequest.newBuilder().setDeltaTime(50).build();
         SimStatus rsp = server.step(sr);
         System.out.println("--------- Step: --------------");
-        boolean isAlive = rsp.getAlive();
+        simIsAlive = rsp.getAlive();
         print(rsp);
-        return isAlive;
+        return simIsAlive;
+    }
+    
+    boolean simIsAlive() {
+    	return simIsAlive;
     }
 
     void start() {
@@ -82,6 +88,17 @@ public class GRPCController {
     public synchronized void notifyStepMessage() {
     	cl.countDown();
     }
+    
+	public void waitForReady() {
+        try {
+        	System.out.println("Waiting for ready");
+			this.cl.await();
+		// TODO: Check with Diego - can this InterruptedException cause a problem here?
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+        this.cl = new CountDownLatch(1);
+	}
 
     private class StatusObs implements StreamObserver<SimStatus> {
 
@@ -110,14 +127,4 @@ public class GRPCController {
             System.out.println(":finished");
         }
     }
-
-	public void waitForReady() {
-        try {
-			this.cl.await();
-		// TODO: can this InterruptedException cause a problem here?
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-        this.cl = new CountDownLatch(1);
-	}
 }

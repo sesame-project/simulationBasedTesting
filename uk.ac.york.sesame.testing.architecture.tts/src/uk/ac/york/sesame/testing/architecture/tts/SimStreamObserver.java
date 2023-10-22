@@ -17,11 +17,8 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 
-	// TODO: Diego needs to set this
-	private final Object SimlogStepTopic_TOPIC_NAME = "<STEP>";
+	private final String SimlogStepTopic_TOPIC_NAME = SimPathTranslator.getStepTopicName();
 
-	private volatile List<String> lines = new ArrayList<>();
-	
 	private GRPCController simController;
 
 	// Map<String, Injector> injectors = new HashMap<>();
@@ -61,16 +58,13 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 		String topicPath = m.getHeader().getPath();
 
 		if (isStepMessage(m)) {
-			lines.add("----------  Step " + (int) m.getValue().getNumberValue() + " ----------");
+			System.out.println("----------  Received Step " + (int) m.getValue().getNumberValue() + " ----------");
 			// Notify the GRPC controller that we now received a message
 			simController.notifyStepMessage();
 		} else {
 			if (DEBUG_DISPLAY_INBOUND_MESSAGES) {
-				System.out.println(topicPath + ":message received value=" + m.getValue());
+				System.out.println(String.format("%s\t%s\t%s", m.getHeader().getPath(), toString(m.getHeader().getTimestamp()), toString(m.getType(), m.getValue())));
 			}
-
-			lines.add(String.format("%s\t%s\t%s", m.getHeader().getPath(), toString(m.getHeader().getTimestamp()),
-					toString(m.getType(), m.getValue())));
 
 			try {
 				String topic = SimPathTranslator.getTopicNameForSimPath(topicPath);

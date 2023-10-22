@@ -81,8 +81,17 @@ public class TTSSimulator implements ISimulator {
         Subscriber s = Subscriber.newBuilder().setName(subscriberName).setUuid(subscriberUUID).build();
         SimStreamObserver sso = new SimStreamObserver(this.simController);
         asyncStub.createSubscriber(s, sso);	
-        // Waiting is no longer necessary; using withWaitForReady above!
+
+        // Although using withWaitForReady above, need to wait before accessing the stepping topic
 		
+        try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        subscribePath(SimPathTranslator.getStepTopicName());
+        
 		System.out.println("TTSimulator: connection ready");
 		return asyncStub;
 	}
@@ -175,6 +184,10 @@ public class TTSSimulator implements ISimulator {
             ex.printStackTrace();
         }
 	}
+	
+	public boolean simIsAlive() {
+		return simController.simIsAlive();
+	}
 
 	public void subscribeForFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
 		// V2: do the injection on IN
@@ -186,8 +199,7 @@ public class TTSSimulator implements ISimulator {
 		InjectRequest req = InjectRequest.newBuilder().setTargetPath(topicTarget).setShadowPathPrefix(prefix).build();
         InjectResponse rsp = blockingStub.inject(req);
         subscribePath(rsp.getShadowPathOut());
-        
-        // TODO: always use returned topics from the injection request
+        // V2: always use returned paths from the injection request
         // there will currently have SIMLOG:// but this is not a fixed convention
         
 	}
@@ -244,7 +256,6 @@ public class TTSSimulator implements ISimulator {
 	public boolean stepSimulator() {
 		// V2 - make dynamic step call using t
 		simController.step();
-		System.out.println("Stepping");
 		simController.waitForReady();
 		return true;
 	}
