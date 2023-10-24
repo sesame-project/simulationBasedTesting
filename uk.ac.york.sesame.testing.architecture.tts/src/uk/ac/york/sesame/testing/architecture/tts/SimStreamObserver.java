@@ -1,8 +1,5 @@
 package uk.ac.york.sesame.testing.architecture.tts;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.Value;
 import com.ttsnetwork.simlog.SimlogMessage;
@@ -21,8 +18,6 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 
 	private GRPCController simController;
 
-	// Map<String, Injector> injectors = new HashMap<>();
-
 	public SimStreamObserver(GRPCController simController) {
 		this.simController = simController;
 	}
@@ -39,8 +34,10 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 			return "" + v.getNumberValue();
 		case STRING:
 			return "" + v.getStringValue();
+		case UNRECOGNIZED_TYPE:
+			return "<UNRECOGNIZED_TYPE>" + v.toString();
 		}
-		return "UNDEFINED";
+		return "<UNDEF>" + v.toString();
 	}
 
 	private boolean isStepMessage(SimlogMessage m) {

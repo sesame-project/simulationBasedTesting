@@ -113,13 +113,21 @@ public class TTSSimulator implements ISimulator {
 		return null;
 	}
 
-	public void runExtraScript(String workingDir, String testID) {
+	public void runExtraScriptIfExists(String workingDir, String testID, long extrasWaitdelayMsec) {
 		String extrasFile = "start-extras.sh";
 		String extrasPath = workingDir + "/" + extrasFile;
 		
 		if ((new File(extrasPath)).exists()) {
 			String cmd = "cd " + workingDir + " && ./start-extras.sh " + testID;
 			ExptHelper.runScriptNewThread(workingDir, cmd);
+			
+			// Need to wait the delay after the EDDI launched
+			try {
+				Thread.sleep(extrasWaitdelayMsec);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
 		} else {
 			System.out.println("Could not find extras script at " + extrasPath + ":ignoring");
 		}
@@ -127,8 +135,9 @@ public class TTSSimulator implements ISimulator {
 	
 	@Override
 	public void run(HashMap<String, String> params) {
-		// For run, we need to use the TTS simulator path and the "dist" directory
+		// For run path, we need to use the TTS simulator path and the "dist" directory
 		String workingDir = params.get("TTSProjectDir") + "/dist/";
+		String testID = params.get("testID");
 
 		long delayMsec = DEFAULT_TTS_LAUNCH_DELAY_MS;
 		long extrasWaitdelayMsec = DEFAULT_EXTRAS_WAIT_DELAY_MS;
@@ -142,16 +151,8 @@ public class TTSSimulator implements ISimulator {
 		if (params.containsKey("extrasWaitdelayMsec")) {
 			extrasWaitdelayMsec = Long.parseLong(params.get("extrasWaitdelayMsec"));
 		}
-				
-		String testID = params.get("testID");
-		runExtraScript(workingDir, testID);
-		// Need to wait the delay after the EDDI launched
 		
-		try {
-			Thread.sleep(extrasWaitdelayMsec);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		runExtraScriptIfExists(workingDir, testID, extrasWaitdelayMsec);
 		
 		// TODO: could use an option for setting a custom JVM here?
 		String cmd = "xterm -e /usr/lib/jvm/java-11-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
