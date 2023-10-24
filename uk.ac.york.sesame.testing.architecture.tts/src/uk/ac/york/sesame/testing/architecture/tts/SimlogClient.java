@@ -44,6 +44,7 @@ public class SimlogClient {
 
     private SimlogAPIGrpc.SimlogAPIBlockingStub blockingStub;
     private SimlogAPIGrpc.SimlogAPIStub asynchStub;
+    private static SimPathTranslator pathTranslator = new SimPathTranslator();  
 
     private volatile TDO sub;
 
@@ -169,7 +170,7 @@ public class SimlogClient {
             if (injectors.containsKey(m.getHeader().getPath())) {
                 injectors.get(m.getHeader().getPath()).onNext(m);
             }
-            String fixedStepTopic = SimPathTranslator.getStepTopicName();
+            String fixedStepTopic = pathTranslator.getStepTopicName();
             if (fixedStepTopic.equals(m.getHeader().getPath())) {
                 lines.add("----------  Step " + (int) m.getValue().getNumberValue() + " ----------");
                 cl.countDown();
@@ -211,7 +212,7 @@ public class SimlogClient {
 
     public static void main(String[] a) throws InterruptedException, IOException {
         SimlogClient c = new SimlogClient();
-        String fixedStepTopic = SimPathTranslator.getStepTopicName();
+        String fixedStepTopic = pathTranslator.getStepTopicName();
         Thread.sleep(1000);
         c.queryTopic("SIM://joints/Kuka.j1/R/out");
         System.out.println("===============================");

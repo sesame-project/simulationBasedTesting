@@ -48,6 +48,9 @@ public class GRPCController {
         SimStatus rsp = server.step(sr);
         System.out.println("--------- Step: --------------");
         simIsAlive = rsp.getAlive();
+        // Ask Diego: should we get time from this or the StatusObs below
+        long timeMS = rsp.getClock();
+        updateTimeMS(timeMS);
         print(rsp);
         return simIsAlive;
     }
@@ -81,8 +84,9 @@ public class GRPCController {
         asynchStub.subscribe(Empty.getDefaultInstance(), new StatusObs());
     }
     
-    private void updateTime(long timeNS) {
-    	testingPlatformCore.setTime(0.0);
+    private void updateTimeMS(long timeMS) {
+    	double time = ((double)timeMS) / 1000.0;
+    	testingPlatformCore.setTime(time);
 	}
     
     public synchronized void notifyStepMessage() {
@@ -107,14 +111,12 @@ public class GRPCController {
 
         @Override
         public void onNext(SimStatus m) {
-            System.out.println("Status:");
-            System.out.println("Clock:" + m.getClock());
-            System.out.println("Alive:" + m.getAlive());
-            System.out.println("Playing:" + m.getPlaying());
-            System.out.println("Exit code:" + m.getExitCode());
-            
-            long time = m.getClock();
-            updateTime(time);
+            System.out.println("GRPC Controller: Clock:" + m.getClock());
+            //System.out.println("Alive:" + m.getAlive());
+            //System.out.println("Playing:" + m.getPlaying());
+            //System.out.println("Exit code:" + m.getExitCode());
+            long timeMS = m.getClock();
+            updateTimeMS(timeMS);
         }
 
         @Override

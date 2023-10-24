@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.UUID;
 
@@ -22,6 +23,7 @@ import uk.ac.york.sesame.testing.architecture.simulator.ICommandInvoker;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertyGetter;
 import uk.ac.york.sesame.testing.architecture.simulator.IPropertySetter;
 import uk.ac.york.sesame.testing.architecture.simulator.ISimulator;
+import uk.ac.york.sesame.testing.architecture.simulator.InvalidTopic;
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
 
 public class TTSSimulator implements ISimulator {
@@ -30,6 +32,7 @@ public class TTSSimulator implements ISimulator {
 	private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 40000;
 	
 	private final String subscriberUUID = UUID.randomUUID().toString();
+	private SimPathTranslator pathTranslator = new SimPathTranslator();  
 
 	static DataStreamManager dsm = DataStreamManager.getInstance();
 	
@@ -48,7 +51,7 @@ public class TTSSimulator implements ISimulator {
 	}
 	
 	public Object createTopic(String topicName, String topicType) {
-		String path = SimPathTranslator.getSimPathForTopicName(topicName);
+		String path = pathTranslator.getSimPathForTopicName(topicName);
 		TopicInfoRequest tirq = TopicInfoRequest.newBuilder().setPath(path).build();
 		TopicInfo ti = blockingStub.getTopicInfo(tirq);
 		createdTopics.put(topicName, ti);
@@ -79,18 +82,20 @@ public class TTSSimulator implements ISimulator {
 		this.pubChannel = asyncStub.publish(new EmptyObserver());
 		
         Subscriber s = Subscriber.newBuilder().setName(subscriberName).setUuid(subscriberUUID).build();
-        SimStreamObserver sso = new SimStreamObserver(this.simController);
+        SimStreamObserver sso = new SimStreamObserver(this.simController, this.pathTranslator);
         asyncStub.createSubscriber(s, sso);	
+        
+        simController.subscribe();
 
-        // Although using withWaitForReady above, need to wait before accessing the stepping topic
-		
-        try {
+        // Although using withWaitForReady above, need to wait before accessing the stepping topic?
+		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        subscribePath(SimPathTranslator.getStepTopicName());
+		
+        subscribePath("<NO-TOPIC>", pathTranslator.getStepTopicName(), Optional.empty());
         
 		System.out.println("TTSimulator: connection ready");
 		return asyncStub;
@@ -171,15 +176,17 @@ public class TTSSimulator implements ISimulator {
 		return createdTopics;
 	}
 
-	public String translateTopicNameForOutput(String origTopicName) {
-		return SimPathTranslator.translateTopicNameForOutput(origTopicName);
+	public String translateTopicNameForOutput(String origTopicName) throws InvalidTopic {
+		return pathTranslator.getOutboundPathForTopicName(origTopicName);
 	}
 	
-	private void subscribePath(String path) {
+	private void subscribePath(String topicName, String path, Optional<String> pathInjectorOut) {
         try {
             System.out.println("Subscribing to " + path);
             SubscriptionRequest td = SubscriptionRequest.newBuilder().setPath(path).setSubscriberUUID(this.subscriberUUID).build();
             blockingStub.subscribe(td);
+           	pathTranslator.registerTopicPathMapping(topicName, path, pathInjectorOut);
+            
         } catch (Throwable ex) {
             System.out.println("subscribePath returned error message: " + ex.getMessage());
             ex.printStackTrace();
@@ -192,22 +199,21 @@ public class TTSSimulator implements ISimulator {
 
 	public void subscribeForFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
 		// V2: do the injection on IN
-		String topicTarget = SimPathTranslator.getSimPathForTopicName(topicName) + "/in";
+		String topicTarget = pathTranslator.getSimPathForTopicName(topicName) + "/in";
 		// Unique prefix removed - Diego changed to allow same prefix
 		//String prefix="testingShadows" + SimPathTranslator.getUniqueExt();
 		String prefix="testingShadows";
 		System.out.println("subscribeForFuzzing: topicTarget=" + topicTarget + ":prefix = " + prefix);
 		InjectRequest req = InjectRequest.newBuilder().setTargetPath(topicTarget).setShadowPathPrefix(prefix).build();
         InjectResponse rsp = blockingStub.inject(req);
-        subscribePath(rsp.getShadowPathOut());
         // V2: always use returned paths from the injection request
         // there will currently have SIMLOG:// but this is not a fixed convention
-        
+        subscribePath(topicName, rsp.getShadowPathOut(), Optional.of(rsp.getShadowPathIn()));
 	}
 	
 	public void subscribeNoFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
-		String path = SimPathTranslator.getSimPathForTopicName(topicName) + "/out";
-		subscribePath(path);
+		String path = pathTranslator.getSimPathForTopicName(topicName) + "/out";
+		subscribePath(topicName, path, Optional.empty());
 	}
 	
 	// topicName shuold always be raw - no in/out or "SIM://" at start
@@ -231,7 +237,6 @@ public class TTSSimulator implements ISimulator {
         SimlogMessage msg = SimlogMessage.newBuilder().setValue(Value.newBuilder().setNumberValue(value).build())
         		.setType(ValueType.NUMBER).build();
         PubRequest r = PubRequest.newBuilder().setTopic(topicName).setData(msg).build();
-        //pubChannel.onNext(r);
         blockingStub.write(r);
 	}
 

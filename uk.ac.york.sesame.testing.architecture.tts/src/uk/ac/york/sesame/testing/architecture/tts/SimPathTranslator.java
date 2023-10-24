@@ -1,41 +1,49 @@
 package uk.ac.york.sesame.testing.architecture.tts;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+import uk.ac.york.sesame.testing.architecture.simulator.InvalidTopic;
+
 class SimPathTranslator {
 	
-	//private static int uniquePrefixCount = 0;
+	private Map<String,String> inboundTopics = new HashMap<String,String>();
+	private Map<String,String> outboundTopics = new HashMap<String,String>();
 	
-	static String getSimPathForTopicName(String topicName) {
+	String getSimPathForTopicName(String topicName) {
 		return "SIM://" + topicName;
 	}
 	
-	static String getStepTopicName() {
+	String getStepTopicName() {
 		return "SIMLOG://step";
 	}
 	
-	static String getTopicNameForSimPath(String pathName) throws InvalidPath {
-		if (pathName.contains("SIM://")) {
-			return pathName.substring(6, pathName.length() - 6);
+	/** This is used for raw messages coming INTO the testing platform
+	from the simulator **/
+	String getTopicNameForInboundPath(String path) throws InvalidPath {
+		if (inboundTopics.containsKey(path)) {
+			return inboundTopics.get(path);
 		} else {
-			throw new InvalidPath(pathName);
+			throw new InvalidPath(path);
 		}
 	}	
 	
-	/**
-	 * If the topic name ends in IN, then remove the IN. Otherwise, append OUT to
-	 * the topic name
-	 **/
-	static String translateTopicNameForOutput(String origTopicName) {
-		String subsTopicName = origTopicName.replace(".", "/");
-		if (subsTopicName.endsWith("/in")) {
-			return (subsTopicName.substring(0, subsTopicName.length() - 3) + "/shadow");
+	/** This is used for fuzzed messages being sent OUT of the testing platform
+	// back to the simulator **/
+	String getOutboundPathForTopicName(String topic) throws InvalidTopic {
+		if (outboundTopics.containsKey(topic)) {
+			return outboundTopics.get(topic);
 		} else {
-			return subsTopicName + "/shadow";
+			throw new InvalidTopic(topic);
+		}
+	}	
+	
+	public void registerTopicPathMapping(String topicName, String inBoundPath, Optional<String> outboundPath) {
+		inboundTopics.put(inBoundPath, topicName);
+		if (outboundPath.isPresent()) {
+			String op = outboundPath.get();
+			outboundTopics.put(topicName, op);
 		}
 	}
-
-	// This is temporary - removed with Diego's new API changes for a unique internal prefix
-//	public static String getUniqueExt() {
-//		int p = uniquePrefixCount++;
-//		return Integer.toString(p);
-//	}
 }

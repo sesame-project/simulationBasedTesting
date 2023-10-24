@@ -11,16 +11,19 @@
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
 	var sanitiseVariables = false;
-	var recordDelay = true;	
-	
-	var sendBackToSimulator = true;
+	var recordDelay = false;
 	
 	var useStepping = simulator.useStepping;
 	var useGUI = simulator.useGUI;
-	
-	// This will activate sending back all topics in the MITM. Normally only the
-	// fuzzing variables should be sent back
-	var sendBackAllTopics = false;
+
+// FOR V2: sendBackToSimulator always true, as it must be done for the
+// stepping protocol. Only fuzzing vars are send back, as they must be 
+// using injection to have an appropriate path to send back
+
+// var sendBackToSimulator = true;	
+// This will activate sending back all topics in the MITM. Normally only the
+// fuzzing variables should be sent back
+// var sendBackAllTopics = false;
 %]
 
 import java.util.ArrayList;
@@ -55,7 +58,7 @@ import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.*;
 
 import uk.ac.york.sesame.testing.architecture.tts.TTSSimulator;
-import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
+import uk.ac.york.sesame.testing.architecture.simulator.*;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 
 
@@ -142,8 +145,7 @@ public class [%= testNameString %]_TestRunner {
 		
 		DataStream<ControlMessage> controlStream = env
 					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
-		
-		
+				
 		DataStream<EventMessage> streamOrig = env
 			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
 			
@@ -252,40 +254,33 @@ public class [%= testNameString %]_TestRunner {
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
-						String outTopic = ttsSim.translateTopicNameForOutput(inTopic);
-						
-						long timestamp = record.value().getTimestamp();
-						EventMessage er = record.value();
-						
-						Instant instant = Instant.now();
-						long timeOut = instant.toEpochMilli();
-						long timeIn = er.getIN_walltime();
-						long millisWallDelay = timeOut - timeIn;
-						// Update last step time from now
-						millisLastStep = timeOut;
-												
-						[* TODO: only the fuzzingVars should be reflected back to the simulator! *]
-						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
+						String outTopic;
+						try {
+							outTopic = ttsSim.translateTopicNameForOutput(inTopic);
+							long timestamp = record.value().getTimestamp();
+							EventMessage er = record.value();
+							Instant instant = Instant.now();
+							long timeOut = instant.toEpochMilli();
+							long timeIn = er.getIN_walltime();
+							long millisWallDelay = timeOut - timeIn;
+							// Update last step time from now
+							millisLastStep = timeOut;
+							System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
 						[% if (recordDelay) { %]
-						System.out.println("delaytiming," + "," + timeIn + "," + timeOut + "," + millisWallDelay);
+							System.out.println("delaytiming," + "," + timeIn + "," + timeOut + "," + millisWallDelay);
 						[% } %]
 						
-						[% if (sendBackToSimulator) { %]
-							[% if (not sendBackAllTopics) { %]
-							if (fuzzingTopics.contains(inTopic)) { 
-							[% } %]
+						[* Only the fuzzingVars should be reflected back to the simulator! *]
+						if (fuzzingTopics.contains(inTopic)) { 
 							ttsSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
-						
-							[* closing brace only inserted when sendBackAllTopics not used *]
-							[% if (not sendBackAllTopics) { %]
-							} 
-							[% } %]
-						[% } else { %]
-						// Not sending anything back to simulator - passive monitoring only
-						[% } %]
+						}
+						} catch (InvalidTopic e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}	
 					}
 					[% if (useStepping) { %]
-						ttsSim.stepSimulator();
+					ttsSim.stepSimulator();
 					[% } %] 
 				}
 			}

@@ -14,12 +14,15 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 
-	private final String SimlogStepTopic_TOPIC_NAME = SimPathTranslator.getStepTopicName();
+	private final String SimlogStepTopic_TOPIC_NAME;
 
 	private GRPCController simController;
+	private SimPathTranslator pathTranslator;
 
-	public SimStreamObserver(GRPCController simController) {
+	public SimStreamObserver(GRPCController simController, SimPathTranslator pathTranslator) {
 		this.simController = simController;
+		this.pathTranslator = pathTranslator;
+		this.SimlogStepTopic_TOPIC_NAME = pathTranslator.getStepTopicName();
 	}
 
 	private String toString(Timestamp ts) {
@@ -38,6 +41,25 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 			return "<UNRECOGNIZED_TYPE>" + v.toString();
 		}
 		return "<UNDEF>" + v.toString();
+	}
+	
+	/** 
+	 * V2 - Currently, TTS messages are unpacked to strings. A better way would
+	 * be to handle them as the underlying Object types
+	 * **/
+	private String unpackProtocolValue(ValueType t, Value v) throws UndefinedType {
+		switch (t) {
+		case BOOL:
+			return Boolean.toString(v.getBoolValue());
+		case NUMBER:
+			return Double.toString(v.getNumberValue());
+		case STRING:
+			return v.getStringValue();
+			// TODO: implement other types - including structs for SafetyZone message parsing
+		default:
+			throw new UndefinedType(t,v);
+			
+		}
 	}
 
 	private boolean isStepMessage(SimlogMessage m) {
@@ -64,14 +86,19 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 			}
 
 			try {
-				String topic = SimPathTranslator.getTopicNameForSimPath(topicPath);
+				String topic = pathTranslator.getTopicNameForInboundPath(topicPath);
 				em.setType(typeString);
 				em.setTopic(topic);
+				String unpackedValue = unpackProtocolValue(m.getType(), m.getValue());
+				System.out.println("unpackedValue = " + unpackedValue);
+				em.setValue(unpackedValue);
 				String kTopicName = HARDCODED_KAFKA_TOPIC;
 				// Put the testing platform EventMessage into the Kafka IN queue
 				TTSSimulator.dsm.publish(kTopicName, em);
 			} catch (InvalidPath ip) {
-
+				ip.printStackTrace();
+			} catch (UndefinedType ut) {
+				ut.printStackTrace();
 			}
 		}
 	}
