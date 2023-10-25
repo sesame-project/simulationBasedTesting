@@ -254,37 +254,29 @@ public class [%= testNameString %]_TestRunner {
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
-						String outTopic;
-						try {
-							outTopic = ttsSim.translateTopicNameForOutput(inTopic);
-							long timestamp = record.value().getTimestamp();
+						[* Only the fuzzingVars can be reflected back to the simulator!
+						   In V2, we only have an injection topic known for these *]
+						if (fuzzingTopics.contains(inTopic)) { 
 							EventMessage er = record.value();
+				[% if (recordDelay) { %]
+							long timestamp = er.getTimestamp();
 							Instant instant = Instant.now();
 							long timeOut = instant.toEpochMilli();
 							long timeIn = er.getIN_walltime();
 							long millisWallDelay = timeOut - timeIn;
 							// Update last step time from now
 							millisLastStep = timeOut;
-							System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
-						[% if (recordDelay) { %]
 							System.out.println("delaytiming," + "," + timeIn + "," + timeOut + "," + millisWallDelay);
-						[% } %]
-						
-						[* Only the fuzzingVars should be reflected back to the simulator! *]
-						if (fuzzingTopics.contains(inTopic)) { 
-							ttsSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
+				[% } %]
+							ttsSim.publishToTopic(inTopic, er.getType(), er.getValue().toString());
 						}
-						} catch (InvalidTopic e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}	
 					}
 					[% if (useStepping) { %]
 					ttsSim.stepSimulator();
 					[% } %] 
 				}
 			}
-		}; 
+		};
 		from_out_to_sim.start();
 		
 		// Generate keyed streams

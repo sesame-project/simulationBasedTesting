@@ -233,11 +233,18 @@ public class TTSSimulator implements ISimulator {
 	public void publishToTopic(String topicName, String topicType, String message) {
 		// TODO: need to set the value appropriately for the type here
 		// currently it only works for NUMBER
-		double value = Double.parseDouble(message.toString());
-        SimlogMessage msg = SimlogMessage.newBuilder().setValue(Value.newBuilder().setNumberValue(value).build())
-        		.setType(ValueType.NUMBER).build();
-        PubRequest r = PubRequest.newBuilder().setTopic(topicName).setData(msg).build();
-        blockingStub.write(r);
+		String outPath;
+		try {
+			outPath = translateTopicNameForOutput(topicName);
+			System.out.println("OUT TO TTS SIM: topicName = " + topicName + " -> " + outPath);
+			double value = Double.parseDouble(message.toString());
+	        SimlogMessage msg = SimlogMessage.newBuilder().setValue(Value.newBuilder().setNumberValue(value).build())
+	        		.setType(ValueType.NUMBER).build();
+	        PubRequest r = PubRequest.newBuilder().setTopic(outPath).setData(msg).build();
+	        blockingStub.write(r);
+		} catch (InvalidTopic e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
