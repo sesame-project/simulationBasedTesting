@@ -1,6 +1,7 @@
 package metrics.custom;
 
 import datatypes.custom.Point3D;
+import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
 public class distanceFromTargetPMB2_1Metric extends distanceToGivenPoint {
 
@@ -10,8 +11,7 @@ public class distanceFromTargetPMB2_1Metric extends distanceToGivenPoint {
 		return new Point3D(-8.493,2.2252,0.0);
 	}
 
-	@Override
-	protected String getTopicTarget() {
-		return "/pmb2_1/ground_truth_odom";
+	protected boolean topicMatches(EventMessage msg) {
+		return msg.getTopic().contains("/pmb2_1/ground_truth_odom");
 	}
 }

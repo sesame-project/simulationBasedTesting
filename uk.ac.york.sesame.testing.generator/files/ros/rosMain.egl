@@ -8,7 +8,7 @@
 	topicsNodesPublish.println();
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
-	var sanitiseVariables = true;
+	var sanitiseVariables = false;
 %]
 
 import java.util.ArrayList;

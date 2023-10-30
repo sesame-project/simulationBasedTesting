@@ -8,13 +8,16 @@ import org.json.simple.JSONValue;
 import datatypes.custom.Point3D;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.metrics.Metric;
+import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 
-public abstract class distanceToGivenPoint extends Metric {
+public abstract class timeReachingGivenPoint extends Metric {
 
 	private static final long serialVersionUID = 1L;
 	
 	protected abstract Point3D getGivenPoint();
+	protected abstract double getDistThreshold();
+	protected abstract boolean getMissionPhaseMatches();
 	protected abstract boolean topicMatches(EventMessage msg);
 	
     public void open(Configuration parameters) throws Exception {
@@ -31,7 +34,14 @@ public abstract class distanceToGivenPoint extends Metric {
     		Double z = (Double)ParsingUtils.getField(jo, "pose.pose.position.z");
     		Point3D current = new Point3D(x,y,z);
     		double dist = current.distanceToOther(getGivenPoint());
-    		System.out.println("dist=" + dist);
+    		
+    		if (dist < getDistThreshold() && getMissionPhaseMatches()) {
+    			double timeNow = SimCore.getInstance().getTime();
+    			// TODO: should only tag the first touch of the target
+    			System.out.println("timeReachingGivenPoint reached threshold: timeNow=" + timeNow + ",dist=" + dist);
+    			out.collect(timeNow);
+    		}
+    		
     		out.collect(dist);
     	}
     }
