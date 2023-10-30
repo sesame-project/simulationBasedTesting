@@ -14,9 +14,12 @@ import org.eclipse.epsilon.eol.models.IModel;
 
 import edu.wpi.rail.jrosbridge.JRosbridge.WebSocketType;
 import edu.wpi.rail.jrosbridge.Ros;
+import edu.wpi.rail.jrosbridge.Service;
 import edu.wpi.rail.jrosbridge.Topic;
 import edu.wpi.rail.jrosbridge.callback.TopicCallback;
 import edu.wpi.rail.jrosbridge.messages.Message;
+import edu.wpi.rail.jrosbridge.services.ServiceRequest;
+import edu.wpi.rail.jrosbridge.services.ServiceResponse;
 import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
@@ -36,7 +39,6 @@ public class ROSSimulator implements ISimulator {
 	
 	static Ros ros;
 	static DataStreamManager dsm = DataStreamManager.getInstance();
-	// FIXME: Maybe this needs to be part of the architecture
 	HashMap<String,Topic> createdTopics = new HashMap<String,Topic>();
 	
 	@Override
@@ -83,6 +85,17 @@ public class ROSSimulator implements ISimulator {
 	public ICommandInvoker getICommandInvoker() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/** Test code for setting the dynamic parameters in ROS **/
+	public void __testSetDynamicParameter(String componentName, String paramName, double paramVal) {
+		String srvName = componentName + "/set_parameters";
+		String srvType = "dynamic_reconfigure/Reconfigure";
+		Service srv = new Service(this.ros, srvName, srvType);
+		String content = "{\"config\": { \"bools\": [], \"ints\": [], \"strs\": [], \"doubles\": [{\"name\": \""+ paramName + "\", \"value\": " + String.valueOf(paramVal) + "}], \"groups\": []}}}";
+		System.out.println(content);
+		ServiceRequest rq = new ServiceRequest(content);
+		srv.callService(rq, new ROSServiceCallback(paramName, paramVal));
 	}
 
 	@Override
