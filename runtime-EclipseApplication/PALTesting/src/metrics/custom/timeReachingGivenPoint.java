@@ -41,8 +41,6 @@ public abstract class timeReachingGivenPoint extends Metric {
     			System.out.println("timeReachingGivenPoint reached threshold: timeNow=" + timeNow + ",dist=" + dist);
     			out.collect(timeNow);
     		}
-    		
-    		out.collect(dist);
     	}
     }
 }
