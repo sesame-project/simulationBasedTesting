@@ -157,8 +157,6 @@ public class TTSSimulator implements ISimulator {
 			extrasWaitdelayMsec = Long.parseLong(params.get("extrasWaitdelayMsec"));
 		}
 		
-		runExtraScriptIfExists(workingDir, testID, extrasWaitdelayMsec);
-		
 		// TODO: could use an option for setting a custom JVM here?
 		String cmd = "xterm -e /usr/lib/jvm/java-11-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
 		
@@ -170,6 +168,9 @@ public class TTSSimulator implements ISimulator {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		// Now launch the EDDI or other extras after
+		runExtraScriptIfExists(workingDir, testID, extrasWaitdelayMsec);
 	}
 
 	public HashMap<String,TopicInfo> getCreatedTopicsByTopicName(String topic) {

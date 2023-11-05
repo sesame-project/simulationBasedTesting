@@ -189,6 +189,7 @@ public class [%= testNameString %]_TestRunner {
 				
 		params.put("TTSProjectDir", "[%= launchFileLocation %]");
 		params.put("launchDelayMsec", "[%= launchDelayMsec %]");
+		params.put("testID", TESTNAME);
 		
 		// Preprocessing before simulation starts
 		System.out.println("Preprocessing Phase before Simulator Start");
