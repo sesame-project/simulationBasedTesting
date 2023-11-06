@@ -1,8 +1,8 @@
 [%
 	//var campaignName = "coverageBoostingExperiment";
-	var campaignName = "coverageExperiment";
+	var campaignName = "firstExperiment";
 	var filterResultSetString1 = "NONDOM";
-	var filterResultSetString2 = "intermediate-210";
+	var filterResultSetString2 = "intermediate-750";
 	//var targetType = Testing!ResultSetStatus#INTERMEDIATE;
 	var targetType = Testing!ResultSetStatus#INTERMEDIATE;
 	

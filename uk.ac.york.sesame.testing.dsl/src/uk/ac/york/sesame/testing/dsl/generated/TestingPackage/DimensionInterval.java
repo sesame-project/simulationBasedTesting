@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getMinValue <em>Min Value</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getMaxValue <em>Max Value</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getCount <em>Count</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getExtraData <em>Extra Data</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getDimensionInterval()
@@ -114,5 +115,28 @@ public interface DimensionInterval extends EObject {
 	 * @generated
 	 */
 	void setCount(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Extra Data</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extra Data</em>' attribute.
+	 * @see #setExtraData(int)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage#getDimensionInterval_ExtraData()
+	 * @model default="-1"
+	 * @generated
+	 */
+	int getExtraData();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval#getExtraData <em>Extra Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Extra Data</em>' attribute.
+	 * @see #getExtraData()
+	 * @generated
+	 */
+	void setExtraData(int value);
 
 } // DimensionInterval

@@ -1,0 +1,76 @@
+Short conditions:
+
+Test:Test_864_20_11_2022_17_45_55		3.08			20.50			0.62			12.88			0.16			0.00			20.84
+1:personDetectionPacketLossAll([0.00-0.00])ConditionBasedActivation:
+start:distS3 > distS2 && distS3 < 15
+ending:distS3 < 4 && distStart < distStart (not activated),
+
+Test:Test_832_20_11_2022_15_57_50		0.00			21.66			5.92			11.43			9.27			6.27			36.19
+1:distortPersonSector([1.47-1.49])ConditionBasedActivation:
+start:distS3 < 8) || distS2 > distS2
+ending:distS1 < distPerson && distS3 < distPerson
+
+Test:Test_631_20_11_2022_04_19_51		2.04			19.81			1.66			9.01			8.25			5.25			99.92			 
+1:distortPersonSector([0.90-1.18])ConditionBasedActivation:
+start:distPerson > distS1 || distS2 < distS2
+ending:distS2 < distPerson && distS2 > distPerson,
+
+2:personDetectionPacketLossAll([0.00-0.00])ConditionBasedActivation:
+start:distStart > 15 && distanceS2 < 15
+endin:distS3 < 1 && distStart < distPerson
+
+Test:Test_877_20_11_2022_18_22_09		0.00			22.29			5.86			11.34			11.15			8.15			67.21
+1:distortPersonSector([1.47-1.50])ConditionBasedActivation:
+start:distPerson > 6 || distStart > distS3
+endin:distS3<distPerson && distS2 > distPerson
+
+Test:Test_983_21_11_2022_01_08_19		4.61			12.25			0.32			2.46			0.09			0.00			63.65
+1:personDetectionPacketLossAll([0.00-0.00])ConditionBasedActivation:
+start:distS3 < distS1 && distPerson < 7
+endin:distS3 < 1 && distStart > distPerson
+
+Can we say all the short conditions (except 631's second condition) involve a relative comparison - usually of the surface parameters?
+
+Test_001 -
+1:personDetectionPacketLoss([0.42-0.63])ConditionBasedActivation:
+start:distPerson < distS3 && distPerson < distPerson
+endin:distStart > 5 || distS3 > distS3
+
+2:personDetectionPacketLossAll([0.00-0.00])ConditionBasedActivation
+start:distStart > distS1 || distS3 > 19
+endin:distS2 > distS2 && distPerson < 4
+
+Test_822 - 
+1:distortPersonSector([1.16-1.35])ConditionBasedActivation:
+start:distPerson > distS1 || distStart > distS3
+endin:distS3 < distPerson && distS2 > distPerson
+
+2:personDetectionPacketLossAll([0.00-0.00])ConditionBasedActivation:
+start:distS3 > distS2 && distS2 < 15
+endin:distS3 < 4 && distStart < distStart
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Extreme values
+
+Test_957_20_11_2022_23_16_10		11.10			0.00			0.00			0.00			0.00			0.00			124.89
+1:distortPersonSector[-1.30--1.28]) ConditionBasedActivation:
+start: distS3 < distS1 || distPerson > distS2
+endin: distPerson > 11 && distStart < distS1
+
+2:personDetectionPacketLossAll[0.00-0.00]ConditionBasedActivation:
+start: distStart > distS1 || distStart>2
+endin: distS2 > dist2 && distPerson<4 (not activated)
+
+Test:Test_455_19_11_2022_18_21_08		4.72			10.88			1.62			1.06			18.68			15.68			266.67
+2:distortPersonSector[0.59-1.09]ConditionBasedActivation:
+
+start:distStart < 9 && distS1 > 17
+endin:distPerson<distPerson && distStart < distS1
+
+distortPersonSector[1.26-1.47]ConditionBasedActivation:
+start:distS2 > 15 || distStart < distS1
+endin:distPerson<distPerson && distPerson > distanceFromPerson
+
+

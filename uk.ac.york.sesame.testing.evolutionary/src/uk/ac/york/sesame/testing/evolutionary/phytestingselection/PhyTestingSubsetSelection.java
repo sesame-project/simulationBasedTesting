@@ -54,10 +54,9 @@ public abstract class PhyTestingSubsetSelection {
 		////////////////////////////// DEBUG - these are used for debugging the coverage checking 
 		EnumMap<DimensionID, IntervalWithCount> intervals = new EnumMap<DimensionID, IntervalWithCount>(
 				DimensionID.class);
-		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 1.0, 4));
-		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 0.5, 3));
-		//intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 1.0, 2));
-		intervals.put(DimensionID.P1_PARAMETER_MEAN, new IntervalWithCount(0.0, 1.0, 3));
+		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 1.0, 4, 0));
+		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 0.5, 3, 0));
+		intervals.put(DimensionID.P1_PARAMETER_MEAN, new IntervalWithCount(0.0, 1.0, 3, 0));
 		
 		final int MIN_COVERAGE_PER_CELL = 1;
 		final double NEEDED_COVERAGE_PROPORTION = 1.0;

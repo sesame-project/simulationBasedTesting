@@ -54,7 +54,7 @@ public class [%= className %] extends [%= superClassName() %] {
 		[% } %]
 		
 		[% if (useRandomSeed) { %] 
-		this.rng = new Random([%= fuzzOp.seed %]);
+		this.rng = new Random([%= fuzzOp.seed %]L);
 		[% } %] 	
 		
 		[% if (extraConstructorMethodCall.isDefined()) { %]
