@@ -138,7 +138,6 @@ public class [%= testNameString %]_TestRunner {
 		%]
 		
 		Properties properties = new Properties();
-<<<<<<< HEAD
 		String serverNamePort = "localhost:9092";
 		String osName = System.getProperty("os.name");
 
@@ -148,23 +147,11 @@ public class [%= testNameString %]_TestRunner {
 		}
 		
 		properties.setProperty("bootstrap.servers", serverNamePort);
-=======
-		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("max.in.flight.requests.per.connection", "1");
->>>>>>> develop
 		properties.setProperty("group.id", "test");
 		
-		DataStream<ControlMessage> controlStream = env
-<<<<<<< HEAD
-					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages-[%= testNameString %]", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
-		
-		
-=======
-					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
-				
->>>>>>> tts-integration
-		DataStream<EventMessage> streamOrig = env
-			.addSource(new FlinkKafkaConsumer<EventMessage>("IN-[%= testNameString %]", new EventMessageSchema(), properties)).returns(EventMessage.class);
+		DataStream<ControlMessage> controlStream = env.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages-[%= testNameString %]", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
+		DataStream<EventMessage> streamOrig = env.addSource(new FlinkKafkaConsumer<EventMessage>("IN-[%= testNameString %]", new EventMessageSchema(), properties)).returns(EventMessage.class);
 			
 		[% if (sanitiseVariables) { %]
 			DataStream<EventMessage> stream = streamOrig.flatMap(new SanitiseFuzzingValues());
