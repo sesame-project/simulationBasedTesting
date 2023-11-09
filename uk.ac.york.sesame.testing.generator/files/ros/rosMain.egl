@@ -6,6 +6,9 @@
 	var topicsMetricsNeed = Metric.all().relatedVariables.flatten();
 	var allTopics = topicsNodesPublish.includingAll(topicsMetricsNeed).asSet();
 	topicsNodesPublish.println();
+	
+	var fuzzingVars = new Set();
+	
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
 	var sanitiseVariables = false;
@@ -70,8 +73,12 @@ public class [%= testNameString %]_TestRunner {
 		for (fuzzOp in test.operations) {
 			var fuzzOpName = "fuzzOp" + fuzzOpCount;
 			fuzzOpCount++;
-			allFuzzOps.put(fuzzOpName, fuzzOp); %]
-		[% } %]
+			allFuzzOps.put(fuzzOpName, fuzzOp);
+			
+			if (fuzzOp.variableToAffect != null) {
+				fuzzingVars.add(fuzzOp.variableToAffect);
+			}
+		} %]
 		
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
@@ -176,8 +183,7 @@ public class [%= testNameString %]_TestRunner {
 			public void run() {
 				System.out.println("From out to sim starts");
 				while (true) {
-					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance()
-							.consume("OUT");
+					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = rosSim.translateTopicNameForOutput(inTopic);

@@ -22,7 +22,7 @@ public abstract class distanceFromHumanMetric extends Metric {
 	private ValueState<Point3D> humanLoc;
 
 	protected abstract boolean topicMatches(EventMessage msg);
-
+ 
 	protected abstract String extraStateTag();
 
 	public void open(Configuration parameters) throws Exception {

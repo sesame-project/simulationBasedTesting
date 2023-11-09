@@ -9,21 +9,22 @@ import org.apache.flink.configuration.Configuration;
 import org.apache.flink.util.Collector;
 
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
-import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 
 /** This class will only trigger on the FIRST status change for a robot **/
-public abstract class statusChangeTimeMetric extends Metric {
+public abstract class statusChangeTimeMetric extends BatchedRateMetric {
 
 	static final AtomicLong NEXT_ID = new AtomicLong(0);
-	final long id = NEXT_ID.getAndIncrement();
+	final static long id = NEXT_ID.getAndIncrement();
 	
 	private static final long serialVersionUID = 1L;
 	
 	private ValueState<Double> triggerTime;
 	
+	private static final double EMIT_THRESHOLD = 0.1;
+	
 	public statusChangeTimeMetric() {
-
+		super(EMIT_THRESHOLD);
 	}
 	
 	public void open(Configuration parameters) throws Exception {
@@ -31,6 +32,7 @@ public abstract class statusChangeTimeMetric extends Metric {
 		// store distinct copies of the trigger state for Flink
 		String triggerStateName = "statusChangeTime-" + Long.valueOf(id).toString();
 		triggerTime = getRuntimeContext().getState(new ValueStateDescriptor<>(triggerStateName, Double.class));
+		super.open(parameters, Long.valueOf(id).toString());
 	}
 	
 	public abstract String getRobotString();
@@ -43,8 +45,12 @@ public abstract class statusChangeTimeMetric extends Metric {
 		if (topic.contains(completionTopicName) && topic.contains(extraString)) {
 			String val = (String)msg.getValue();
 			if (val.contains(getContentString())) {
-				emitDelaySinceTriggerTime(out);
+				setTimeTarget();
 			}
+		}
+		
+		if (isReadyNow()) {
+			emitDelaySinceTriggerTime(out); 
 		}
 	}
 
@@ -60,7 +66,7 @@ public abstract class statusChangeTimeMetric extends Metric {
 		double time = SimCore.getInstance().getTime();
 		if (triggerTime.value() == null) {
 			triggerTime.update(time);
-			System.out.println("");
+			System.out.println(this.getClass().getCanonicalName() + "setTimeTarget: set to " + time);
 		}
 	}
 }

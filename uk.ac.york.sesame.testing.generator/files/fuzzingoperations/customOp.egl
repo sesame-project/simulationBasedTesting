@@ -1,7 +1,8 @@
 [% var commonTemplate : Template = TemplateFactory.load("fuzzingoperations/fuzzOpCommon.egl");
 
 var extraImports = new List();
-extraImports.add("fuzzingoperations.custom.*;");
+extraImports.add("fuzzingoperations.custom.*");
+extraImports.add("uk.ac.york.sesame.testing.architecture.data.DataRange");
 
 commonTemplate.populate("fuzzOp", fuzzOp);
 commonTemplate.populate("classNameMiddle", "Delay");
@@ -37,7 +38,17 @@ var customProcessName = fuzzOp.customProcessClass;
 	
 	private Map<String,Object> getParameters() {
 		Map<String,Object> params = new HashMap<String,Object>();
-		// TODO: generate parameters here from the fuzzing operation definition
+		[% for (v in fuzzOp.params) { 
+				var pName = v.propertyName;
+				// TODO: support other data types here in the fuzzing operation definition
+				if (v.isKindOf(DoubleRange)) { %]
+					params.put("[%= pName %]", new DataRange([%= v.lowerBound %], [%= v.upperBound %]));
+				[% }
+				if (v.isKindOf(IntRange)) { %]
+					params.put("[%= pName %]", new DataRange([%= v.lowerBound %], [%= v.upperBound %]));				
+				[% }
+		} %]
+
 		return params;
 	}
 	

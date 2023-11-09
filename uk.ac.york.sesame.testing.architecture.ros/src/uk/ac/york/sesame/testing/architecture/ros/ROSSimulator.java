@@ -32,7 +32,7 @@ public class ROSSimulator implements ISimulator {
 
 	protected static final boolean USE_FRACTIONAL_TIME = true;
 
-	private boolean DEBUG_DISPLAY_INBOUND_MESSAGES = false;
+	private boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	
 	static Ros ros;
 	static DataStreamManager dsm = DataStreamManager.getInstance();

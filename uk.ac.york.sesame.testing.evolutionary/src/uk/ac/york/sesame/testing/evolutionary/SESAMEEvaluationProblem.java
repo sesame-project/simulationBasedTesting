@@ -47,6 +47,12 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
 	private static final double MODEL_SAVING_DELAY_IN_DEBUG_MODE = 0.5;
 
+	// Variable probability of inclusion? - needs to be specified from the Attack
+	// and TestCampaign
+	// TODO: this needs to be specified as an extension point, for now, just using
+	// 50% for all attacks
+	final double INCLUDE_FuzzingOperation_PROB = 0.4;
+	
 	private static final boolean DUMMY_EVAL = false;
 
 	private boolean conditionBased;
@@ -314,12 +320,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		}
 	}
 
-	// Variable probability of inclusion? - needs to be specified from the Attack
-	// and TestCampaign
-	// TODO: this needs to be specified as an extension point, for now, just using
-	// 50% for all attacks
+
 	public boolean shouldIncludeFuzzingOperation(FuzzingOperation a) {
-		final double INCLUDE_FuzzingOperation_PROB = 0.5;
 		double v = rng.nextDouble();
 		return (v < INCLUDE_FuzzingOperation_PROB);
 	}
@@ -331,8 +333,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		// Created with FuzzingOperations specified within the space
 		// TODO: FuzzingOperations can be a "subset" of each of the selected FuzzingOperations
 		int i = 0;
-		System.out.println("createSolution");
-
 		SESAMETestSolution sol = new SESAMETestSolution(selectedCampaign);
 
 		EList<FuzzingOperation> FuzzingOperationsInCampaign = selectedCampaign.getIncludedOperations();
