@@ -46,6 +46,7 @@ public class TTSSimulator implements ISimulator {
 	
 	StreamObserver<PubRequest> pubChannel;
 	private GRPCController simController;
+	private String testID;
 
 	public List<String> getTopics() {
 		return new ArrayList<String>(createdTopics.keySet());
@@ -83,7 +84,8 @@ public class TTSSimulator implements ISimulator {
 		this.pubChannel = asyncStub.publish(new EmptyObserver());
 		
         Subscriber s = Subscriber.newBuilder().setName(subscriberName).setUuid(subscriberUUID).build();
-        SimStreamObserver sso = new SimStreamObserver(this.simController, this.pathTranslator);
+               
+        SimStreamObserver sso = new SimStreamObserver(this.simController, this.pathTranslator, this.testID);
         asyncStub.createSubscriber(s, sso);	
         
         simController.subscribe();
@@ -121,7 +123,8 @@ public class TTSSimulator implements ISimulator {
 	
 	private void runWindows(HashMap<String, String> params, String simulatorDistDir, long delayMsec) {
 		// TODO: should the model contain an option for setting a custom JVM here?
-		String cmdLine = "cd " + simulatorDistDir + " && '/cygdrive/c/Progra~1/Java/jdk1.8.0_361/bin/java.exe' -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		//String cmdLine = "cd " + simulatorDistDir + " && '/cygdrive/c/Progra~1/Java/jdk1.8.0_361/bin/java.exe' -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		String cmdLine = "cd " + simulatorDistDir + " && '/cygdrive/c/Progra~1/Java/jdk-11.0.17/bin/java.exe' -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
 		ExptHelperWindows.runScriptNewThread("", cmdLine, "");
 	}
 	
@@ -155,7 +158,7 @@ public class TTSSimulator implements ISimulator {
 	public void run(HashMap<String, String> params) {
 		// For run path, we need to use the TTS simulator path and the "dist" directory
 		String workingDir = params.get("TTSProjectDir") + "/dist/";
-		String testID = params.get("testID");
+		testID = params.get("testID");
 
 		long delayMsec = DEFAULT_TTS_LAUNCH_DELAY_MS;
 		long extrasWaitdelayMsec = DEFAULT_EXTRAS_WAIT_DELAY_MS;
@@ -232,7 +235,7 @@ public class TTSSimulator implements ISimulator {
 		subscribePath(topicName, path, Optional.empty());
 	}
 	
-	// topicName shuold always be raw - no in/out or "SIM://" at start
+	// topicName should always be raw - no in/out or "SIM://" at start
 	public void consumeFromTopic(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic, boolean shouldFuzz) {
 		if (shouldFuzz) {
 			subscribeForFuzzing(topicName, topicType, publishToKafka, kafkaTopic);

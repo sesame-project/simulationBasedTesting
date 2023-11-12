@@ -24,7 +24,6 @@ import org.uma.jmetal.util.front.Front;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingStrategy;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution;

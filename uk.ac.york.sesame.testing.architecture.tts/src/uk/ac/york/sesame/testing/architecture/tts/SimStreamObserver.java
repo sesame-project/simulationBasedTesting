@@ -10,7 +10,8 @@ import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
 public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 
-	private static final String HARDCODED_KAFKA_TOPIC = "IN";
+	private static final String HARDCODED_KAFKA_TOPIC_ORIG = "IN";
+	private final String HARDCODED_KAFKA_TOPIC;
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 
@@ -19,10 +20,13 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 	private GRPCController simController;
 	private SimPathTranslator pathTranslator;
 
-	public SimStreamObserver(GRPCController simController, SimPathTranslator pathTranslator) {
+	public SimStreamObserver(GRPCController simController, SimPathTranslator pathTranslator, String testID) {
 		this.simController = simController;
 		this.pathTranslator = pathTranslator;
 		this.SimlogStepTopic_TOPIC_NAME = pathTranslator.getStepTopicName();
+		// For the Windows branch, Kafka topic name is created by appending the 
+		// name of the test to the original topic ID
+		this.HARDCODED_KAFKA_TOPIC = HARDCODED_KAFKA_TOPIC_ORIG + "-" + testID;
 	}
 
 	private String toString(Timestamp ts) {

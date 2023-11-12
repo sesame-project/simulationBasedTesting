@@ -224,11 +224,13 @@ public class [%= testNameString %]_TestRunner {
 		
 		Thread subscriber_thread_[%= javaSafeName %] = new Thread() {
 			public void run() { *]
-				System.out.println("Subscriber [%= javaSafeName %] Starts"); 
+				System.out.println("Subscriber [%= javaSafeName %] Starts");
+				// The Kafka topic name is now set in SimStreamObserver. These topics are
+				// required for the interface, but are no longer used here.
 				[% if (fuzzingVars.contains(aTopic)) { %]
-				ttsSim.consumeFromTopic("[%= aTopic.name%]", "[%= aTopic.type.name %]", true, "IN", true);
+				ttsSim.consumeFromTopic("[%= aTopic.name%]", "[%= aTopic.type.name %]", true, "(kafka topic removed)", true);
 				[% } else { %]
-				ttsSim.consumeFromTopic("[%= aTopic.name%]", "[%= aTopic.type.name %]", true, "IN", false);
+				ttsSim.consumeFromTopic("[%= aTopic.name%]", "[%= aTopic.type.name %]", true, "(kafka topic removed)", false);
 				[% } %]
 				[*
 			}
