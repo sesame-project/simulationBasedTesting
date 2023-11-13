@@ -17,8 +17,8 @@ public class TestRunnerUtils {
 	}
 	
     public static String ABS_SCRIPT_DIR = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
-    public static boolean USE_MAVEN_COMPILATION = false;
-    public static boolean USE_MAVEN_EXECUTION = false;
+    public static boolean USE_MAVEN_COMPILATION = true;
+    public static boolean USE_MAVEN_EXECUTION = true;
 
     public static Optional<OperatingSystem> detectOS() {
 		String osName = System.getProperty("os.name");
@@ -48,19 +48,13 @@ public class TestRunnerUtils {
 		ExptHelper.startCmd(ABS_SCRIPT_DIR, "./execute_testrunner_xterm.sh " +  mainClass + " " + codeGenerationDir);
 	}
 	
-//	private static void mavenExecution(String mainClass, String codeGenerationDir) {
-//		//String PROJECT_DIR = PathDefinitions.getPath
-//		MavenCli cli = new MavenCli();
-//		String projectDirectory = codeGenerationDir;
-//		// TODO: need to customise the classpath here?
-//		System.out.println("Starting Maven Execution...");
-//		cli.doMain(new String[] { "exec:java", "-Dexec.mainClass=\"" + mainClass + "\""}, projectDirectory, System.out, System.err);
-//		System.out.println("Maven Execution Done...");
-//	}
+	private static void mavenExecution(String mainClass, String codeGenerationDir) {
+
+	}
 		
 	public static void exec(String mainClass, String codeGenerationDir) throws IOException {
 		if (USE_MAVEN_EXECUTION) {
-			//mavenExecution(mainClass, codeGenerationDir);
+			mavenExecution(mainClass, codeGenerationDir);
 		} else {
 			Optional<OperatingSystem> os_o = detectOS();
 			if (os_o.isPresent()) {
@@ -100,14 +94,7 @@ public class TestRunnerUtils {
 //	}
 	
 	public static void compileProjectMaven(String projectDir) throws IOException {
-		// Use MavenCLI to perform the compilation here
-//		MavenCli cli = new MavenCli();
-//		String invokerDirectory = projectDir;
-//		System.setProperty("maven.multiModuleProjectDirectory", projectDir);
-//		printDependencyTreeCustom(cli, projectDir, "aether");		
-//		System.out.println("Maven compilation starting...");
-//		cli.doMain(new String [] { "compile" }, projectDir, System.out, System.err);
-//		System.out.println("Maven compilation done");
+
 	}
 	
 	public static void compileProject(String projectDir) throws IOException {

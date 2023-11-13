@@ -7,13 +7,14 @@ import java.util.Optional;
 import java.util.Random;
 
 import org.apache.kafka.common.TopicPartition;
-
+import org.apache.maven.shared.invoker.MavenInvocationException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.uma.jmetal.problem.Problem;
 
 import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
+import uk.ac.york.sesame.testing.evolutionary.utilities.MavenInvokerForProject;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
@@ -64,6 +65,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	private SESAMEEGLExecutor eglEx;
 	private String codeGenerationDirectory;
+	
+	private MavenInvokerForProject mavenInvoker;
 
 	// Sets up a metric queue to listen for the given campaign
 	private MetricConsumer setupMetricListener(TestCampaign campaign, SESAMETestSolution sol) throws InvalidTestCampaign {
@@ -79,6 +82,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		this.conditionBased = conditionBased;
 		this.spaceModelFileName = spaceModelFileName;
 		this.loader = loader;
+		
+		this.mavenInvoker = new MavenInvokerForProject(codeGenerationDirectory);
 
 		// TODO: mrsModelFile is not currently used - until the bug is fixed and there
 		// is a seperate model again
@@ -171,14 +176,14 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			if (DEBUG_ACTUALLY_RUN) {
 				System.out.println("Starting compilation");
 				// Invoke maven script to ensure that the project is rebuilt
-				TestRunnerUtils.compileProject(codeGenerationDirectory);
+				mavenInvoker.compileProject();
 				// It will wait for compilation of the compileProject automatically
 				System.out.println("Compilation completed");
 
 				// Invokes the main method for this code
 				System.out.print("Launching test runner for " + mainClassName + "... (classpath " + codeGenerationDirectory + ")");
 				System.out.flush();
-				TestRunnerUtils.exec(mainClassName, codeGenerationDirectory);
+				mavenInvoker.exec(mainClassName);
 				System.out.println("Testrunner " + mainClassName + " launched");		
 				System.out.flush();
 										
@@ -252,13 +257,13 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 			}
 
-		} catch (IOException e) {
-			e.printStackTrace();
 		} catch (NumberFormatException e) {
 			System.out.println("Probably a metric returned something non-numeric");
 			e.printStackTrace();
 		} catch (InvalidTestCampaign e) {
 			System.out.println("Invalid test campaign selected");
+			e.printStackTrace();
+		} catch (MavenInvocationException e) {
 			e.printStackTrace();
 		}
 	}
