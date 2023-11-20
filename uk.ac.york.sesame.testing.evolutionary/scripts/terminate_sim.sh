@@ -44,4 +44,6 @@ pkill -9 -f DDDSimulatorProject
 # For EDDI docker containers
 docker ps -aq | xargs docker stop | xargs docker rm
 
+taskkill /F /IM java.exe
+
 exit 0
