@@ -183,7 +183,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				// Invokes the main method for this code
 				System.out.print("Launching test runner for " + mainClassName + "... (classpath " + codeGenerationDirectory + ")");
 				System.out.flush();
-				mavenInvoker.exec(mainClassName);
+				Thread testRunnerThread = mavenInvoker.execJava(mainClassName);
+				
 				System.out.println("Testrunner " + mainClassName + " launched");		
 				System.out.flush();
 										
@@ -237,6 +238,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				// Ensure that the model is updated with the metric results
 				metricConsumer.finaliseUpdates();				
 
+				testRunnerThread.interrupt();
+				
 				String customTerminateScript = mrs.getCustomTerminateFileLocation();
 				if (customTerminateScript != null) {
 					System.out.println("Running custom termination script " + customTerminateScript);
