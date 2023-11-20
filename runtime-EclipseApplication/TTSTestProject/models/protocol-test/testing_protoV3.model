@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="FuzzingOperations" xmlns:_2="MRSPackage" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_UrYTwGVlEe2P2ZFJWtv89A" defaultVal="100000.0"/>
+    <initValue xmi:id="_dUV5YCPuEe60x8sBydmDLw"/>
+    <streams xsi:type="InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+    <res xsi:type="FileStreamResult" xmi:id="_-uTgoGBPEe27gLEnzzOoKw" filename="/tmp/fuzzopTimes"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_CTvKMKODEe2SY5_vP2qLCw" name="joint3Value" relatedVariables="_-VoHkHKTEe62doUDIkQMLw">
+    <initValue xmi:id="_YPQw4KOEEe2SY5_vP2qLCw"/>
+    <streams xsi:type="InputStream" xmi:id="_Q4D50KOEEe2SY5_vP2qLCw"/>
+    <res xsi:type="FileStreamResult" xmi:id="_R3170KOEEe2SY5_vP2qLCw" filename="/tmp/joint3Value"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_fCKeED_ZEe2sLoIc1V16Ug" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" isRelative="true">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_fCKeET_ZEe2sLoIc1V16Ug" endTime="30.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_fCKeEj_ZEe2sLoIc1V16Ug" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_0jyaEHKTEe62doUDIkQMLw" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" isRelative="true">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_0jyaEXKTEe62doUDIkQMLw" startTime="5.0" endTime="20.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_0jyaEnKTEe62doUDIkQMLw" propertyName="" lowerBound="-0.5" upperBound="0.5"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _CTvKMKODEe2SY5_vP2qLCw" includedOperations="_fCKeED_ZEe2sLoIc1V16Ug _0jyaEHKTEe62doUDIkQMLw">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="30" iterations="1000"/>
+    <performedTests name="Test_001_20_11_2023_04_19_21">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-4331681318256170185" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="17.263490833937134" endTime="28.83411633497586"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.13225360475001724" upperBound="0.21132832049339073"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="465986939787252069" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="12.035019853335676" endTime="18.228462265360495"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.4587329322213951" upperBound="-0.05966821071545564"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="17.764067913063545"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_002_20_11_2023_04_19_21">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="7911078737083840119" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="14.241747594818792" endTime="15.36039673277258"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.4288542068202704" upperBound="-0.17702894760517407"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="1.1186491379537884"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_003_20_11_2023_04_19_21">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="546097932870957856" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="21.694375011536582" endTime="22.299994877971162"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.24621795919740724" upperBound="0.29625966462188874"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="-4948381256165482858" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="18.289297549115474" endTime="18.52259530919288"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.4737306411719927" upperBound="0.49008585167847135"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="0.8389176265119858"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_004_20_11_2023_04_19_21">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="6199372747271346281" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="23.13583297083101" endTime="28.02245531125399"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.2907263160589188" upperBound="0.29744827081227176"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="6148996234577177264" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="19.017721823394723" endTime="19.42417486122823"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.1655738261403248" upperBound="0.12155527908960817"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="5.293075378256486"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_005_20_11_2023_04_19_21">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-7837062983293192094" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="2.4773669267315923" endTime="6.381027245389002"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.14073762514710833" upperBound="0.19500412316491736"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="3.9036603186574097"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_006_20_11_2023_04_19_21">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="-3909040801983399103" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="13.80240015866439" endTime="19.550860659294088"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.46170198010948427" upperBound="0.0834009769302303"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="5.748460500629697"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_007_20_11_2023_04_19_21">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-486598129063997497" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="25.172169940925524" endTime="26.588555822251468"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.17905841068328543" upperBound="0.2049583304806921"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="1.4163858813259438"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_008_20_11_2023_04_19_21">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="-2652334880882534620" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="6.538132974402824" endTime="19.408655300790205"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.18061758823053486" upperBound="0.24140847632127485"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="12.87052232638738"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_009_20_11_2023_04_19_21">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-4426690353600212973" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="10.700181053164265" endTime="28.07642921517754"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.1820585374596529" upperBound="0.29338170332230873"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="17.376248162013276"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_010_20_11_2023_04_19_21">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-5045316932393742684" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="7.798987547798913" endTime="9.527936732338661"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.18228663013291907" upperBound="0.257415826584017"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="1.728949184539748"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_011_20_11_2023_04_31_38" developedFrom="//@campaigns.0/@performedTests.6 //@campaigns.0/@performedTests.2">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-486598129063997497" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="24.702158255408666" endTime="28.6804186628938"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.01977891362194739" upperBound="0.22519896102406795"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="-4948381256165482858" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="15.933105062101507" endTime="17.628291653067738"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.4737306411719927" upperBound="0.49008585167847135"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="5.6734469984513645"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_012_20_11_2023_04_31_38" developedFrom="//@campaigns.0/@performedTests.6 //@campaigns.0/@performedTests.2">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="546097932870957856" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="21.694375011536582" endTime="22.299994877971162"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.24621795919740724" upperBound="0.29625966462188874"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="0.60561986643458"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_013_20_11_2023_04_31_38" developedFrom="//@campaigns.0/@performedTests.6 //@campaigns.0/@performedTests.9">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-486598129063997497" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="11.530314025760191" endTime="21.72891138305925"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.17905841068328543" upperBound="0.2049583304806921"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="10.198597357299057"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_014_20_11_2023_04_31_38" developedFrom="//@campaigns.0/@performedTests.6 //@campaigns.0/@performedTests.9">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-5045316932393742684" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="12.460019660837357" endTime="19.498855450422766"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.13090125290096047" upperBound="-0.03891034724109231"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="7.038835789585409"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_015_20_11_2023_04_31_38" developedFrom="//@campaigns.0/@performedTests.2 //@campaigns.0/@performedTests.9">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="546097932870957856" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="22.903426526751968" endTime="26.29857216040993"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.12289686975483693" upperBound="0.20481887689347972"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="3.395145633657961"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_016_20_11_2023_04_31_38" developedFrom="//@campaigns.0/@performedTests.2 //@campaigns.0/@performedTests.9">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="-4948381256165482858" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="17.896936579150186" endTime="17.954075554755704"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.3923378945069481" upperBound="0.469051388681718"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-5045316932393742684" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="25.823800246417445" endTime="28.100315010195857"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.18228663013291907" upperBound="0.257415826584017"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="2.33365373938393"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_017_20_11_2023_04_31_38" developedFrom="//@campaigns.0/@performedTests.2 //@campaigns.0/@performedTests.9">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="546097932870957856" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="21.694375011536582" endTime="22.299994877971162"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.2710400230060985" upperBound="0.08972179131075497"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="-4948381256165482858" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="12.958516441089808" endTime="15.190328942116722"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.20929453067360748" upperBound="0.23860335369572028"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="2.837432367461494"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_018_20_11_2023_04_31_38" developedFrom="//@campaigns.0/@performedTests.2 //@campaigns.0/@performedTests.9">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-5045316932393742684" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="9.079963496433107" endTime="9.836412651755865"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.2871371602668649" upperBound="0.29439130167422817"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="0.7564491553227572"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_019_20_11_2023_04_31_38" developedFrom="//@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.2">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="6199372747271346281" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="22.778484173686856" endTime="26.85758688354298"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.2907263160589188" upperBound="0.29744827081227176"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="6148996234577177264" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="10.837793595481504" endTime="10.960185140470092"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.026023013925778438" upperBound="0.39484386081643336"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="-4948381256165482858" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="8.57183897266301" endTime="11.51870608493407"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.18341442383755147" upperBound="0.15767214056604223"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="7.148361367115772"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_020_20_11_2023_04_31_38" developedFrom="//@campaigns.0/@performedTests.3 //@campaigns.0/@performedTests.2">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="546097932870957856" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="5.27266502973813" endTime="26.167168181287018"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.24621795919740724" upperBound="0.29625966462188874"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_20_11_2023_04_45_30">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="1860162782772495327" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="13.263405034841808" endTime="17.56442257953244"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.20073613242357086" upperBound="0.21427510983032"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_20_11_2023_05_01_40">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-9064234687809356461" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="7.083648399484547" endTime="15.423949632077736"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.026865351484578304" upperBound="0.1997440941744472"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_20_11_2023_05_03_47">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-2628912659569247298" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="24.311567047258563" endTime="25.214971464285966"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.1986738946417806" upperBound="0.23010899116274297"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="8667551423558779385" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="16.077825317763086" endTime="18.872329014726184"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.464733277125261" upperBound="0.4823452374347186"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="3.6979081139905006"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_002_20_11_2023_05_03_47">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="8256618536055333987" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="10.436278635938905" endTime="27.68359619115693"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.1746499550672489" upperBound="0.2857967952925081"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="17.247317555218025"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_003_20_11_2023_05_03_47">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-5310935859007837054" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="25.975876510629572" endTime="26.584036014196847"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.08960923147074101" upperBound="0.09201264706470669"/>
+      </operations>
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="-697383063058584344" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="18.423086810996367" endTime="18.972656063562823"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.053800874167466595" upperBound="0.2949991994944223"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="1.1577287561337322"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_004_20_11_2023_05_03_47">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="-9159574130256154119" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="6.574705466106549" endTime="8.523883380033789"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.34558031649754284" upperBound="0.45113336375738733"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="1.9491779139272403"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_005_20_11_2023_05_03_47">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="-1499275207590779097" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="13.566214238790055" endTime="19.755806850557413"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.4319220634401342" upperBound="0.05257533413813009"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="6.189592611767358"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_006_20_11_2023_05_03_47">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ2" variableToAffect="_ycNpkHKTEe62doUDIkQMLw" fromTemplate="_0jyaEHKTEe62doUDIkQMLw" seed="4866630462357181578" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="16.77686571503008" endTime="16.8240919239484"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="-0.014246809998502252" upperBound="0.030709345413749638"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="0.04722620891832108"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_007_20_11_2023_05_03_47">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="6446772192062488589" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="22.62012593875152" endTime="27.210576561645542"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.22453674945705954" upperBound="0.256214950389947"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="4.590450622894021"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_008_20_11_2023_05_03_47">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="2307273741849300401" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="26.393502414759794" endTime="28.003913424941633"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.1942510000521691" upperBound="0.2702738527406734"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="1.6104110101818385"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_009_20_11_2023_05_03_47">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-2853322184637163431" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="15.339817779179544" endTime="15.820629329990714"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.1911852601817317" upperBound="0.24574665307624954"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="0.4808115508111701"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_010_20_11_2023_05_03_47">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-1958075696411008741" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="4.651323856934081" endTime="26.70049596062509"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.16923744846910954" upperBound="0.28270237027972"/>
+      </operations>
+      <metrics metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result name="fuzzingOperationTimes" value="22.04917210369101"/>
+      </metrics>
+      <metrics metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result name="joint3Value" value="-0.057066395734330096"/>
+      </metrics>
+    </performedTests>
+    <performedTests name="Test_011_20_11_2023_05_15_52" developedFrom="//@campaigns.0/@performedTests.30 //@campaigns.0/@performedTests.27">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="fuzzKukaJ1" variableToAffect="_0-_zcGpQEe6dmoOMO3oWLA" fromTemplate="_fCKeED_ZEe2sLoIc1V16Ug" seed="-2853322184637163431" isRelative="true">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="15.339817779179544" endTime="15.820629329990714"/>
+        <valueSet xsi:type="_1:DoubleRange" propertyName="" lowerBound="0.10286914028093014" upperBound="0.11741137337636387"/>
+      </operations>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="50"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/James/protocol-test/Proto_V3" launchDelaySeconds="15">
+    <variables xmi:id="_0-_zcGpQEe6dmoOMO3oWLA" name="joints/Kuka.j1/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_ycNpkHKTEe62doUDIkQMLw" name="joints/Kuka.j2/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_-VoHkHKTEe62doUDIkQMLw" name="joints/Kuka.j3/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="Kuka" publisher="_0-_zcGpQEe6dmoOMO3oWLA _ycNpkHKTEe62doUDIkQMLw _-VoHkHKTEe62doUDIkQMLw"/>
+    <simulator xsi:type="_2:TTSSimulator" xmi:id="_G7808Az1Ee2dUZBawpc2Eg" hostname="localhost" port="8089" stepSizeMillis="50.0" useStepping="true"/>
+    <propertyType xmi:id="_EYa9sAz0Ee2dUZBawpc2Eg" name="doubleEncodedAsString" parsingMethod="STRING"/>
+    <propertyType xmi:id="_nV6N8GA7Ee27gLEnzzOoKw" name="SafetyZone"/>
+  </mrs>
+</TestingMM:TestingSpace>
