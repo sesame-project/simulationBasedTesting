@@ -19,6 +19,7 @@ public abstract class statusChangeTimeMetric extends BatchedRateMetric {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private ValueState<Boolean> lastStatus;
 	private ValueState<Double> triggerTime;
 	
 	private static final double EMIT_THRESHOLD = 0.1;
@@ -31,22 +32,38 @@ public abstract class statusChangeTimeMetric extends BatchedRateMetric {
 		// Since this metric has multiple instances - from multiple conditions, need to
 		// store distinct copies of the trigger state for Flink
 		String triggerStateName = "statusChangeTime-" + Long.valueOf(id).toString();
+		String lastValueStateName = "lastStatus-" + Long.valueOf(id).toString();
+		
 		triggerTime = getRuntimeContext().getState(new ValueStateDescriptor<>(triggerStateName, Double.class));
+		lastStatus = getRuntimeContext().getState(new ValueStateDescriptor<>(lastValueStateName, Boolean.class));
 		super.open(parameters, Long.valueOf(id).toString());
 	}
 	
 	public abstract String getRobotString();
 	public abstract String getContentString();
+	public abstract String getCompletionTopicName();
 	
 	public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
-		String completionTopicName = "status";
+
 		String topic = msg.getTopic();
 		String extraString = getRobotString();
+		String completionTopicName = getCompletionTopicName();
+		
+		// Assume that the prevStatus is false - this will mean that LoadedFalse
+		// will not trigger until completing a delivery and returning to false 
+		boolean prevStatus = false;
+		if (lastStatus != null) {
+			prevStatus = lastStatus.value();
+		}
+		
 		if (topic.contains(completionTopicName) && topic.contains(extraString)) {
 			String val = (String)msg.getValue();
-			if (val.contains(getContentString())) {
+			boolean currentStatus = val.contains(getContentString());
+			if (currentStatus != prevStatus) {
 				setTimeTarget();
 			}
+			
+			lastStatus.update(currentStatus);
 		}
 		
 		if (isReadyNow()) {

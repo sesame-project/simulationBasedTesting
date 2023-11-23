@@ -10,5 +10,9 @@ public class CV_Omni_Delivering_TimeMetric extends statusChangeTimeMetric {
 	public String getContentString() {
 		return "delivering";
 	}
+
+	public String getCompletionTopicName() {
+		return "status";
+	}
 }
 

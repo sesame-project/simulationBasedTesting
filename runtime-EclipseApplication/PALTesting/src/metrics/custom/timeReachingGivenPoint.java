@@ -26,32 +26,33 @@ public abstract class timeReachingGivenPoint extends Metric {
 	protected abstract boolean topicMatches(EventMessage msg);
 	protected abstract boolean shouldSendNow();
 	
-	protected MapState<String,String> robotStatus;
+	protected MapState<String,Boolean> loadedStatus;
 	
 	protected ValueState<Double> sendTime;
 	
     public void open(Configuration parameters) throws Exception {
-    	robotStatus = getRuntimeContext().getMapState(new MapStateDescriptor<>("visitTiagoTime", String.class, String.class));
+    	loadedStatus = getRuntimeContext().getMapState(new MapStateDescriptor<>("visitTiagoTime", String.class, Boolean.class));
     	super.open(parameters);
     }
     
+    private void checkStatusMessageForRobot(String robotName, String topic, String status) throws Exception {
+		if (topic.contains(robotName + "/conserts/pal/loaded")) {
+			if (status.contains("true")) {
+				loadedStatus.put(robotName, true);
+			} else {
+				loadedStatus.put(robotName, false);
+			}
+			System.out.println("Setting status for " + robotName + ":" + status);
+		}
+    }
+    
     private void checkRobotStatus(EventMessage msg) throws Exception { 
-    	String topic = msg.getTopic();
-    	
-    	if (topic.contains("status")) {
-    	System.out.println("Found status message: " + msg.getValue());
-    		
-    		if (topic.contains("/pmb2_1/status")) {
-    			String status = (String)msg.getValue();
-    			robotStatus.put("pmb2_1", status);
-    			System.out.println("Setting status for pmb2_1: " + status);
-    		}
-    	
-    		if (topic.contains("/omni_base_1/status")) {
-    			String status = (String)msg.getValue();
-    			robotStatus.put("omni_base_1", status);
-    			System.out.println("Setting status for omni_base_1: " + status);
-    		}
+    	String topic = msg.getTopic();  	
+    	if (topic.contains("loaded")) {
+    		String status = (String)msg.getValue();
+    		System.out.println("Found status message: " + status);    	
+    		checkStatusMessageForRobot("pmb2_1", topic, status);
+    		checkStatusMessageForRobot("omni_base_1", topic, status);
     	}
     }
       

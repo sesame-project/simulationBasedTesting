@@ -10,5 +10,9 @@ public class CV_Omni_Collecting_TimeMetric extends statusChangeTimeMetric {
 	public String getContentString() {
 		return "collecting";
 	}
+
+	public String getCompletionTopicName() {
+		return "status";
+	}
 }
 

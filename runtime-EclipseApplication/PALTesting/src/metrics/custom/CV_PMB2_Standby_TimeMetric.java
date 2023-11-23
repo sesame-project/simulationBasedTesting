@@ -11,5 +11,9 @@ public class CV_PMB2_Standby_TimeMetric extends statusChangeTimeMetric {
 	public String getContentString() {
 		return "standby";
 	}
+	
+	public String getCompletionTopicName() {
+		return "status";
+	}
 }
 

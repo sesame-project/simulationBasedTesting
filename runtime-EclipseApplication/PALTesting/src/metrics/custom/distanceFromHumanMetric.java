@@ -20,6 +20,7 @@ public abstract class distanceFromHumanMetric extends Metric {
 	private static final long serialVersionUID = 1L;
 
 	private ValueState<Point3D> humanLoc;
+	private ValueState<Double> minValue;
 
 	protected abstract boolean topicMatches(EventMessage msg);
  
@@ -28,6 +29,8 @@ public abstract class distanceFromHumanMetric extends Metric {
 	public void open(Configuration parameters) throws Exception {
 		humanLoc = getRuntimeContext()
 				.getState(new ValueStateDescriptor<>("humanLoc-" + extraStateTag(), Point3D.class));
+		minValue = getRuntimeContext()
+				.getState(new ValueStateDescriptor<>("minValue-" + extraStateTag(), Double.class));
 	}
 	
 	private void extractHumanLocation(EventMessage msg) {
@@ -48,6 +51,22 @@ public abstract class distanceFromHumanMetric extends Metric {
 		}
 	}
 	
+	private void returnIfMin(Collector<Double> out, Double dist) {
+		try {
+			if (minValue.value() == null) {
+				out.collect(dist);
+				minValue.update(dist);
+			} else {
+				if (dist < minValue.value()) {
+					out.collect(dist);
+					minValue.update(dist);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private void returnDistanceIfReady(EventMessage msg, Collector<Double> out) {
 		Object value = msg.getValue();
 		try {
@@ -61,7 +80,7 @@ public abstract class distanceFromHumanMetric extends Metric {
 				Point3D lastHumanPos = humanLoc.value();
 				double dist = currentRobot.distanceToOther(lastHumanPos);
 				System.out.println("currentRobot to lastHumanPos: dist=" + dist);
-				out.collect(dist);
+				returnIfMin(out,dist);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -26,6 +26,7 @@ public abstract class distanceFromOtherRobot extends Metric {
  
 	protected abstract String extraStateTag();
 	protected abstract String otherRobotTopic();
+	protected abstract boolean shouldPublish(double val);
 
 	public void open(Configuration parameters) throws Exception {
 		targetRobotLoc = getRuntimeContext().getState(new ValueStateDescriptor<>("targetRobotLoc-" + extraStateTag(), Point3D.class));
@@ -68,8 +69,10 @@ public abstract class distanceFromOtherRobot extends Metric {
 					Point3D currentRobot = currentRobot_o.get();
 					Point3D lastHumanPos = targetRobotLoc.value();
 					double dist = currentRobot.distanceToOther(lastHumanPos);
-					System.out.println("currentRobot to lastHumanPos: dist=" + dist);
-					out.collect(dist);
+					if (shouldPublish(dist)) {
+						System.out.println("currentRobot to lastHumanPos: dist=" + dist);
+						out.collect(dist);
+					}
 				}
 			}
 		} catch (IOException e) {

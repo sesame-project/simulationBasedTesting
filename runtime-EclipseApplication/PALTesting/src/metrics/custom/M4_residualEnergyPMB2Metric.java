@@ -2,15 +2,15 @@ package metrics.custom;
 
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
-public class CV_DistanceFromHumanOmniMetric extends distanceFromHumanMetric {
+public class M4_residualEnergyPMB2Metric extends M4_residualEnergyMetric {
 
 	private static final long serialVersionUID = 1L;
 
 	protected boolean topicMatches(EventMessage msg) {
-		return msg.getTopic().contains("omni_base_1");
+		return false;
 	}
 
 	protected String extraStateTag() {
-		return "distanceHumanOmni";
+		return "PMB2Energy";
 	}
 }
