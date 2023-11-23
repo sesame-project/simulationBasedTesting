@@ -32,7 +32,7 @@ var delayTimeVal = fuzzOp.latency.lowerBound;
 	
 	private void setupDelayParams() {
 		this.delayTime = Math.round([%= delayTimeVal %] * 1000.0); 
-	} 
+	}
 		
 	public void open(Configuration parameters) throws Exception {
 		super.open(parameters);

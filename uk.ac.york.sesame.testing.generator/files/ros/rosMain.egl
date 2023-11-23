@@ -125,6 +125,7 @@ public class [%= testNameString %]_TestRunner {
 		// JRH: moved the simulation launcher outside of the thread to the main code
 		HashMap<String, String> params = new HashMap<String,String>();
 		params.put("launchPath", "[%=launchFileLocation%]");
+		params.put("testID", TESTNAME);
 		
 		// Preprocessing before simulation starts
 		System.out.println("Preprocessing Phase");

@@ -1,5 +1,6 @@
 package uk.ac.york.sesame.testing.architecture.ros;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
 public class ROSSimulator implements ISimulator {
 
 	protected static final boolean USE_FRACTIONAL_TIME = true;
+
+	private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 1000;
 
 	private boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	
@@ -84,16 +87,49 @@ public class ROSSimulator implements ISimulator {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+
+	public void runExtraScriptIfExists(String workingDir, String testID, long extrasWaitdelayMsec) {
+		String extrasFile = "start-extras.sh";
+		String extrasPath = workingDir + "/" + extrasFile;
+		
+		if ((new File(extrasPath)).exists()) {
+			String cmd = "cd " + workingDir + " && ./start-extras.sh " + testID;
+			ExptHelper.runScriptNewThread(workingDir, cmd);
+			
+			// Need to wait the delay after the EDDI launched
+			try {
+				Thread.sleep(extrasWaitdelayMsec);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+		} else {
+			System.out.println("Could not find extras script at " + extrasPath + ":ignoring");
+		}
+	}
 
 	@Override
 	public void run(HashMap<String, String> params) {
 		String launchFilePath = params.get("launchPath");
 		Path launchFileP = Paths.get(launchFilePath);
 		Path containingDir = launchFileP.getParent();
+		
+		long extrasWaitdelayMsec = DEFAULT_EXTRAS_WAIT_DELAY_MS;
+		
 		String workingDir = containingDir.toString();
+		String testID = params.get("testID");
 		
 		System.out.println("workingDir = " + workingDir + ",launchFilePath = " + launchFilePath);
 		ExptHelper.runScriptNewThread(workingDir, launchFilePath);
+		
+		// Override extras delay parameter if supplied
+		if (params.containsKey("extrasWaitdelayMsec")) {
+			extrasWaitdelayMsec = Long.parseLong(params.get("extrasWaitdelayMsec"));
+		}
+		
+		// Now launch the EDDI or other extras after
+		runExtraScriptIfExists(workingDir, testID, extrasWaitdelayMsec);
 	}
 
 	@Override

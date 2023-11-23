@@ -51,7 +51,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	// and TestCampaign
 	// TODO: this needs to be specified as an extension point, for now, just using
 	// 50% for all attacks
-	final double INCLUDE_FuzzingOperation_PROB = 0.4;
+	final double INCLUDE_FuzzingOperation_PROB = 0.5;
 	
 	private static final boolean DUMMY_EVAL = false;
 
@@ -303,6 +303,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			solution.setObjective(i, v);
 		}
 		
+		solution.setOperationSequenceNums();
 		solution.ensureModelUpdated(selectedCampaign); 
 		loader.saveTestingSpace();
 		try {
