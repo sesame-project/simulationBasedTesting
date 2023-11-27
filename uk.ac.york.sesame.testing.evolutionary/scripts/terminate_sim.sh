@@ -42,4 +42,7 @@ pkill -9 -f DDDSimulatorProject
 # For EDDI docker containers
 docker ps -aq | xargs docker stop | xargs docker rm
 
+# Terminate WSL docker containers
+wsl -e /home/jharbin/kill-eddi.sh
+
 exit 0
