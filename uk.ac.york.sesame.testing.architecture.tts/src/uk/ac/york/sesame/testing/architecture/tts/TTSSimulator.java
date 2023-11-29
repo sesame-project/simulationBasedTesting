@@ -30,7 +30,7 @@ import uk.ac.york.sesame.testing.architecture.utilities.ExptHelperWindows;
 public class TTSSimulator implements ISimulator {
 
 	private static final long DEFAULT_TTS_LAUNCH_DELAY_MS = 20000;
-	private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 40000;
+	private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 6000;
 	
 	private final String subscriberUUID = UUID.randomUUID().toString();
 	private SimPathTranslator pathTranslator = new SimPathTranslator();  
@@ -134,13 +134,13 @@ public class TTSSimulator implements ISimulator {
 		ExptHelper.runScriptNewThread(workingDir, cmd);
 	}
 
-	public void runExtraScriptIfExists(String workingDir, String testID, long extrasWaitdelayMsec) {
+	public static void runExtraScriptIfExists(String workingDir, String testID, long extrasWaitdelayMsec) {
 		String extrasFile = "start-extras.sh";
-		String extrasPath = workingDir + "/" + extrasFile;
+		String extrasPath = "C:\\cygwin64" + workingDir.replace("/", "\\") + "\\" + extrasFile;
 		
 		if ((new File(extrasPath)).exists()) {
-			String cmd = "cd " + workingDir + " && ./start-extras.sh " + testID;
-			ExptHelper.runScriptNewThread(workingDir, cmd);
+			String cmdLine = "cd " + workingDir + " && ./" + extrasFile + " " + testID;
+			ExptHelperWindows.runScriptNewThread("", cmdLine, "");
 			
 			// Need to wait the delay after the EDDI launched
 			try {
@@ -150,7 +150,7 @@ public class TTSSimulator implements ISimulator {
 			}
 			
 		} else {
-			System.out.println("Could not find extras script at " + extrasPath + ":ignoring");
+			System.out.println("Could not find extras script at " + extrasPath + " - ignoring");
 		}
 	}
 	

@@ -39,10 +39,9 @@ killall -9 scan_unifier_node
 pkill -f TestRunner
 pkill -9 -f DDDSimulatorProject
 
-# For EDDI docker containers
-docker ps -aq | xargs docker stop | xargs docker rm
-
 # Terminate WSL docker containers
-wsl -e /home/jharbin/kill-eddi.sh
+echo "Terminating EDDI docker containers"
+wsl -e /home/jharbin/simtesting-wsl-support/eddi-docker/kill-eddi.sh
+echo "...done"
 
 exit 0

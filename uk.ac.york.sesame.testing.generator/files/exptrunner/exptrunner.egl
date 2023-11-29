@@ -2,6 +2,7 @@ package main;
 
 import java.io.File;
 import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
+import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 
 public class ExptRunner_[%= campaign.name %] {
 	public static void main(String [] args) {
