@@ -17,4 +17,8 @@ public class CV_Interrobot_Distance_Omni_Tiago extends distanceFromOtherRobot {
 	protected String extraStateTag() {
 		return "distanceHumanOmni";
 	}
+	
+    protected boolean shouldPublish(double val) {
+        return true;
+    }
 }

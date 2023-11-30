@@ -17,4 +17,9 @@ public class CV_Interrobot_Distance_PMB2_Tiago extends distanceFromOtherRobot {
 	protected String extraStateTag() {
 		return "distanceHumanPMB2";
 	}
+	
+    protected boolean shouldPublish(double val) {
+        return true;
+        // The condvars always publish their value
+    }
 }
