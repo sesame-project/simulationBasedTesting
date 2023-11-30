@@ -10,6 +10,10 @@ public abstract class Metric extends CoProcessFunction<EventMessage, ControlMess
 
 	private static final long serialVersionUID = 1L;
 	
+	protected void metricLog(String str) {
+		System.out.println(this.getClass().getCanonicalName() + ":" + str);
+	}
+	
 	// Default is no response to control message
 	public void processElement2(ControlMessage controlMsg, CoProcessFunction<EventMessage, ControlMessage, Double>.Context arg1, Collector<Double> arg2) throws Exception {
 		
