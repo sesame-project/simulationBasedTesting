@@ -1,0 +1,17 @@
+"xhost + local" - to enable Eclipse showing to GUI
+
+Need to manually install Maven utilities - m2e etc
+
+Import the projects:
+JGEA
+jrosbridge
+uk.ac.york.sesame.example.ros.bridge
+uk.ac.york.sesame.testing.architecture
+uk.ac.york.sesame.testing.architecture.ros
+uk.ac.york.sesame.testing.architecture.tts
+uk.ac.york.sesame.testing.dsl
+uk.ac.york.sesame.testing.evolutionary
+
+Need to build these projects and install
+
+Then try a bridging system to test rosbridge with the surroundings
