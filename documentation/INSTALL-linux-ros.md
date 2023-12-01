@@ -72,7 +72,7 @@ package)" and right-click one of the generated test runners, e.g
   everything before main.EvolutionaryRunnerPALTesting...), press
   Ctrl-C to copy it.
 
-- Paste it into the file
+- Using a text editor, paste this classpath contents into the file
   **GITHUB_ROOT/uk.ac.york.sesame.testing.evolutionary/scripts/classpath**.
   It should list all classes on one line. 
   
