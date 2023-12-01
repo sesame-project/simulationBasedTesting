@@ -1,10 +1,9 @@
 # Additional instructions for ROS use cases
-Ensure the following additional packages are installed:
+Ensure the following additional packages are installed (substitute
+VERSION for your ROS version):
 
 ```
-apt-get install ros-melodic-turtlebot3-*
-apt-get install ros-melodic-turtlesim-*
-apt-get install ros-melodic-rosbridge-server
+apt-get install ros-VERSION-rosbridge-server
 ```
 
 ## Patching for jrosbridge
@@ -23,8 +22,9 @@ issue](https://gitlab.com/pal-robotics/sesame/dockers/-/issues/6).
 This is needed in the order for the project to have the changed
 timings and allow ROSBridge to connect
 
-- You can load the project to test it without using the first-stage
-  code generation.
+- You can load a pre-made example project from Git (including metrics
+  and custom fuzzing operations) to test the simulation testing
+  platform, without using the first-stage code generation.
 
 - Select to Import Maven Project, Import the "PALTesting" project from
 ```
@@ -37,8 +37,9 @@ GITHUB_ROOT/runtime-EclipseApplication
 - Check the project builds correctly... you may have to use
   "Project"..."Clean" to clear out the projects and rebuild.
   
-- Load the model from "models/TestingPAL-passivemonitor.model". This
-  is just to passively monitor the case study (no fuzzing).
+- Load the testing model from
+  "models/TestingPAL-passivemonitor.model". This model is just to
+  passively monitor the case study (no fuzzing).
 
 - Go to the MRS node and select "Launch File Location". Set it to:
 ```
@@ -55,8 +56,8 @@ ln -s $GITHUB_ROOT/runtime-EclipseApplication/PALTesting ~/eclipse-workspace/PAL
 ```
 
 - Open "src/main/EvolutionaryRunnerPALTestingNullFuzzing.java", check
-  the paths within it (some, e.g. *spaceModelFile* and *grammarPath* may
-  need updating to use correct USERNAME)
+  the paths within it are correct (some, e.g. *spaceModelFileName* and
+  *grammarPath* may need updating to use correct USERNAME)
   
 ## Setting the classpath
 
@@ -93,5 +94,3 @@ To clear the Kafka queues:
 ```
 GITHUB_ROOT/uk.ac.york.sesame.testing.evolutionary/scripts/clear_kafka.sh
 ```
-  
-  

@@ -9,12 +9,11 @@ Install the following packages by running these commands upon a terminal:
 sudo apt-get install maven openjdk-11-jdk openjdk-11-jre procps
 ```
 
-If using ROS use cases, install the following additional packages:
+If using ROS use cases, install the following additional packages
+(substitute VERSION for your ROS version):
 
 ```
-apt-get install ros-melodic-turtlebot3-*
-apt-get install ros-melodic-turtlesim-*
-apt-get install ros-melodic-rosbridge-server
+apt-get install ros-VERSION-rosbridge-server
 ```
 
 Download Apache Kafka - here using version 2.13-3.1.0 from https://kafka.apache.org/downloads
