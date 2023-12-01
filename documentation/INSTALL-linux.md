@@ -47,7 +47,7 @@ Install Eclipse (here using 2022-12) by using Eclipse Installer from eclipse.org
 ### Install Modelling Tools
 - Start Eclipse
 - Select “Help” / “Install New Software”
-- Select the update link for your Eclipse version e.g. “Work With” - “2022-12 - \url{http://download.eclipse.org/releases/2022-12}”
+- Select the update link for your Eclipse version e.g. “Work With” - “2022-12 - **http://download.eclipse.org/releases/2022-12**
 - Select “Modeling” and check all beneath it in the check box
 - Select “Next” twice
 - Accept the license
@@ -56,12 +56,12 @@ Install Eclipse (here using 2022-12) by using Eclipse Installer from eclipse.org
 
 - Restart Eclipse
 - Select “Help” / “Install New Software”
-- Select the update site for Epsilon - \url{http://download.eclipse.org/epsilon/updates/2.4/}
+- Select the update site for Epsilon - **http://download.eclipse.org/epsilon/updates/2.4/**
 - Install all items under ``Epsilon Core'' and ``Epsilon EMF Integration''
 
 - Restart Eclipse
 - Select “Help” / “Install New Software”
-- Select the update site for Emfatic - \url{http://download.eclipse.org/emfatic/update/}
+- Select the update site for Emfatic - **http://download.eclipse.org/emfatic/update/**
 
 ### Installing Simulation-Based Testing Framework Packages
 
