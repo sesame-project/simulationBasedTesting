@@ -46,6 +46,9 @@ GITHUB_ROOT/runtime-EclipseApplication/PALTesting/pal-docker/scripts/run_pal_cud
 ```
 (not GITHUB_ROOT literally, sustitute its contents there)
 
+- Open the selected launch file script and check the path to
+  *pal_docker.sh*, and the Docker image name.
+
 - Create a symlink for "eclipse-workspace/PALTesting".
 ```
 ln -s $GITHUB_ROOT/runtime-EclipseApplication/PALTesting ~/eclipse-workspace/PALTesting
