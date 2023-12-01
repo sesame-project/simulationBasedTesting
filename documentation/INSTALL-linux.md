@@ -1,4 +1,4 @@
-# Installing the testing platform for Linux with KUKA/TTS use case
+# Installing the testing platform for Linux
 
 These instructions are designed for Ubuntu Linux (tested on Ubuntu
 18.04 and 20.04), but may work on later Ubuntu releases:
