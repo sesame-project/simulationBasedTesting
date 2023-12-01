@@ -1,5 +1,5 @@
 # Additional instructions for ROS use cases
-Install the following additional packages for ROS:
+Ensure the following additional packages are installed:
 
 ```
 apt-get install ros-melodic-turtlebot3-*
@@ -9,92 +9,86 @@ apt-get install ros-melodic-rosbridge-server
 
 ## Patching for jrosbridge
 
-This applies when using the ROS interface for the testing platform.
+(This should no longer be necessary now there is an included
+"jrosbridge" branch)
 
-Because of a problem with jrosbridge (that is used for connecting the
-ROS interface to the testing platform), it is necessary to patch a
-certain system package for jrosbridge to work on recent Ubuntu versions.
-For more information on why this is necessary, please see
-[here](https://github.com/RobotWebTools/rosbridge_suite/issues/488)
+But if it is needed, [follow the patching process here ROS use cases](./INSTALL-linux-ros-jrosbridge.md)
 
-Please go to the directory **REPO_BASE_PATH/patches** and run the
-commands below. (Note this assumes the Python version used for the
-rosbridge python components is Python 2.7, it may be a later version
-in ROS versions beyond ROS Melodic).
+## Testing the PAL Case Study
 
+- Ensure a PAL Simulation docker is ready, based on cuda-v5 or
+later. The Docker has to have the changed launch script order
+mentioned in [this Gitlab
+issue](https://gitlab.com/pal-robotics/sesame/dockers/-/issues/6).
+This is needed in the order for the project to have the changed
+timings and allow ROSBridge to connect
+
+- You can load the project to test it without using the first-stage
+  code generation.
+
+- Select to Import Maven Project, Import the "PALTesting" project from
+```
+GITHUB_ROOT/runtime-EclipseApplication
 ```
 
-export PATCH_DIR=/usr/lib/python2.7/dist-packages/autobahn/websocket
-sudo cp ./python_protocol_patch.py $PATCH_DIR
-cd $PATCH_DIR
-sudo cp protocol.py protocol.py.orig
-sudo patch < python_protocol_patch.py
+- The project may come up named "testAutoGen", rename it to "PALTesting" using
+  right-click "Refactor"..."Rename"
+
+- Check the project builds correctly... you may have to use
+  "Project"..."Clean" to clear out the projects and rebuild.
+  
+- Load the model from "models/TestingPAL-passivemonitor.model". This
+  is just to passively monitor the case study (no fuzzing).
+
+- Go to the MRS node and select "Launch File Location". Set it to:
+```
+GITHUB_ROOT/runtime-EclipseApplication/PALTesting/pal-docker/scripts/run_pal_cuda_v5_passive.sh
+```
+(not GITHUB_ROOT literally, sustitute its contents there)
+
+- Create a symlink for "eclipse-workspace/PALTesting".
+```
+ln -s $GITHUB_ROOT/runtime-EclipseApplication/PALTesting ~/eclipse-workspace/PALTesting
 ```
 
-To restore everything  its previous state, please use the following
-commands:
+- Open "src/main/EvolutionaryRunnerPALTestingNullFuzzing.java", check
+  the paths within it (some, e.g. *spaceModelFile* and *grammarPath* may
+  need updating to use correct USERNAME)
+  
+## Setting the classpath
 
+The first time running the platform on a new PC, the classpath will
+need to be set to launch the test runners, or they will not launch
+properly. To find the suitable classpath, go to "src/(default
+package)" and right-click one of the generated test runners, e.g
+*Test_xxx.java*. Select "Run As"..."Run Configurations", and select
+"Show Command Line"
+
+- Select the classpath (the contents of -*classpath* variable,
+  everything before main.EvolutionaryRunnerPALTesting...), press
+  Ctrl-C to copy it.
+
+- Paste it into the file
+  **GITHUB_ROOT/uk.ac.york.sesame.testing.evolutionary/scripts/classpath**.
+  It should list all classes on one line. 
+  
+## Running null fuzzing test
+
+After setting the classpath, running
+*EvolutionaryRunnerPALTestingNullFuzzing.java* should execute a null
+fuzzing test repeatedly, logging the metrics under Test Campaign
+**nullFuzzing-passive**.
+
+## To clear Kafka and stop simulations
+
+If a stray simulation is left running, terminate it with the script:
 ```
-PATCH_DIR=/usr/lib/python2.7/dist-packages/autobahn/websocket
-cd $PATCH_DIR
-sudo cp protocol.py.orig protocol.py
+GITHUB_ROOT/uk.ac.york.sesame.testing.evolutionary/scripts/terminate_sim.sh
 ```
-
-## Running the TurtleSim Case Study
-
-- Ensure the Turtlesim example itself runs properly as described
-  [here](http://wiki.ros.org/turtlesim):
-
-- Pull the latest from the "development-release-aug2022" branch
-
-- In the parent Eclipse:
-
-- Ensure the variable **REPO_BASE_PATH** in the project
-uk.ac.york.testing.evolutionary.utilities file, PathDefinitions.java
-is set to the absolute path of the root directory in which you checked
-out this repository
-
-- The same for **REPO_BASE_PATH** in the project
-uk.ac.york.testing.generator, file ModelPathDefinitions.java (again,
-this should be set to the absolute path of the root directory in which
-you checked out this repository)
-
-- Then for all the listed SESAME projects (except for
-uk.ac.york.sesame.testing.generator), right-click on each of them,
-select "Run As"... "Maven Install". This makes sure updated JARs are
-built for all of them.
-
-- Enter the child Eclipse by right-clicking on selecting the
-uk.ac.york.sesame.testing.generator project, and selecting
-
-- Create a new "testTurtle" Java project and copy the models and code
-files for the development branch from:
-[runtime-EclipseApplication/testTurtle](https://github.com/sesame-project/simulationBasedTesting/tree/development-release-aug2022/runtime-EclipseApplication/testTurtle)
-into this project, including "src", "models" and "pom.xml". If you
-checked out the development-release-aug2022 branch, this can be found
-under your local system on
-$REPO_BASE_PATH/runtime-EclipseApplication/testTurtle.
-
-- Copy the ROS launch file
-[test.launch](https://github.com/sesame-project/simulationBasedTesting/blob/development-release-aug2022/temp-launch-scripts/launch-scripts/test.launch)
-into: $HOME/catkin_ws/src/turtle_custom_launch/launch/test.launch
-
-- Change the MRS launch file path path to your filesystem in
-testTurtle.model (in "TestingSpace", "MRS", "Launch File Location") to
-the correct path on your system.
-
-- Try generating the code based upon the model testTurtle.model
-
-- Execute the new test runner for ExptRunner_firstExperiment.  This
-should start the simulator.
-
-- When it starts, select the "Reading from keyboard" xterm and
-use the arrow keys to drive it; when fuzzing is active the
-velocities will be replaced by random values.
-
-Try cleaning and rebuilding the project in case of any problems.
-
-If you reload the child Eclipse, you may find that you get "Problems
-encountered..." on loading the model. In this case, right-click on the
-project, select "Generate SESAME Code" and then when the wizard
-pops up, choose "Cancel". This will re-register the metamodels.
+  
+To clear the Kafka queues:
+```
+GITHUB_ROOT/uk.ac.york.sesame.testing.evolutionary/scripts/clear_kafka.sh
+```
+  
+  
