@@ -231,7 +231,11 @@ public class TTSSimulator implements ISimulator {
 	}
 	
 	public void subscribeNoFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
-		String path = pathTranslator.getSimPathForTopicName(topicName) + "/out";
+		// Should ignore out for safetyzone?
+		String path = pathTranslator.getSimPathForTopicName(topicName);
+		if (!topicType.contains("SafetyZone")) {
+			path = path + "/out";
+		}
 		subscribePath(topicName, path, Optional.empty());
 	}
 	

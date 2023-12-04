@@ -1,5 +1,10 @@
 package uk.ac.york.sesame.testing.architecture.tts;
 
+import java.util.Map;
+import java.util.Optional;
+
+import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.google.protobuf.Struct;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.Value;
 import com.ttsnetwork.simlog.SimlogMessage;
@@ -32,6 +37,18 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 	private String toString(Timestamp ts) {
 		return String.format("%6d:%03d", ts.getSeconds(), ts.getNanos() / 1000000);
 	}
+	
+	private String structToString(ValueType t, Value v) {
+		Struct s = v.getStructValue();
+		Map<String,Value> fields = s.getFieldsMap();
+		// TODO: only handles collision zone so far
+		if (fields.containsKey("zone")) {
+			String zone = (String)fields.get("zone").getStringValue();
+			return "COLLISION-" + zone;
+		} else {
+			return "UNDEF-STRUCT";
+		}
+	}
 
 	private String toString(ValueType t, Value v) {
 		switch (t) {
@@ -41,6 +58,8 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 			return "" + v.getNumberValue();
 		case STRING:
 			return "" + v.getStringValue();
+		case STRUCT:
+			return structToString(t,v);
 		case UNRECOGNIZED_TYPE:
 			return "<UNRECOGNIZED_TYPE>" + v.toString();
 		}
@@ -59,7 +78,8 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 			return Double.toString(v.getNumberValue());
 		case STRING:
 			return v.getStringValue();
-			// TODO: implement other types - including structs for SafetyZone message parsing
+		case STRUCT:
+			return structToString(t,v);
 		default:
 			throw new UndefinedType(t,v);
 			
@@ -109,6 +129,7 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 
 	public void onError(Throwable t) {
 		System.err.println("Beddamatre " + t);
+		t.printStackTrace();
 	}
 
 	public void onCompleted() {
