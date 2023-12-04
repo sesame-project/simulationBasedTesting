@@ -39,6 +39,9 @@ killall -9 scan_unifier_node
 pkill -f TestRunner
 pkill -9 -f DDDSimulatorProject
 
+# Kill TestRunners properly on windows
+wmic process where "commandline LIKE '%%TestRunner%%'" delete
+
 # Terminate WSL docker containers
 echo "Terminating EDDI docker containers"
 wsl -e /home/jharbin/simtesting-wsl-support/eddi-docker/kill-eddi.sh
