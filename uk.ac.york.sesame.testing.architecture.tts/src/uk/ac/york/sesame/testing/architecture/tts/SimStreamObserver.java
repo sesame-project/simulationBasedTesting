@@ -44,7 +44,10 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 		// TODO: only handles collision zone so far
 		if (fields.containsKey("zone")) {
 			String zone = (String)fields.get("zone").getStringValue();
-			return "COLLISION-" + zone;
+			Double level = (Double)fields.get("level").getNumberValue();
+			String object1 = (String)fields.get("object1").getStringValue();
+			String object2 = (String)fields.get("object2").getStringValue();
+			return "COLLISION-" + zone + object1 + "-" + object2 + ":level=" + level;
 		} else {
 			return "UNDEF-STRUCT";
 		}
