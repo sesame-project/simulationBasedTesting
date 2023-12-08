@@ -9,6 +9,10 @@ import uk.ac.york.sesame.testing.architecture.simulator.InvalidTopic;
 class SimPathTranslator {
 	
 	private Map<String,String> inboundTopics = new HashMap<String,String>();
+	
+	// Used to store the types used - to resolve structs etc.
+	private Map<String,String> inboundTypes = new HashMap<String,String>();
+	
 	private Map<String,String> outboundTopics = new HashMap<String,String>();
 	
 	String getSimPathForTopicName(String topicName) {
@@ -39,11 +43,21 @@ class SimPathTranslator {
 		}
 	}	
 	
-	public void registerTopicPathMapping(String topicName, String inBoundPath, Optional<String> outboundPath) {
+	public void registerTopicPathMapping(String topicName, String topicType, String inBoundPath, Optional<String> outboundPath) {
 		inboundTopics.put(inBoundPath, topicName);
+		inboundTypes.put(inBoundPath, topicType);
+		
 		if (outboundPath.isPresent()) {
 			String op = outboundPath.get();
 			outboundTopics.put(topicName, op);
+		}
+	}
+
+	public String getTypeForInboundPath(String path) throws InvalidPath {
+		if (inboundTypes.containsKey(path)) {
+			return inboundTypes.get(path);
+		} else {
+			throw new InvalidPath(path);
 		}
 	}
 }

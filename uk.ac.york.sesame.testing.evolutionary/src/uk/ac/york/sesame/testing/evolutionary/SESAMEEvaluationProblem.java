@@ -30,13 +30,13 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = true;
 	private static final boolean DEBUG_ACTUALLY_RUN = true;
-	
+
 	private static final boolean FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE = true;
-	
+
 	private static final boolean RECORD_ROSBAG = true;
 
 	private static final long DEFAULT_HARDCODED_DELAY = 100;
-	
+
 	private static final long DEFAULT_KILL_DELAY = 5;
 	private static final long DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS = 5;
 	private static final long DEFAULT_WAIT_FOR_FINALISE_DELAY = 5;
@@ -44,6 +44,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final double MODEL_SAVING_DELAY_IN_DEBUG_MODE = 0.5;
 
 	private static final boolean DUMMY_EVAL = false;
+
+	private static final boolean USE_METRIC_TIME_END_TIME = true;
 
 	private boolean conditionBased;
 
@@ -55,7 +57,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private String spaceModelFileName;
 	private String campaignName;
 	private String orchestratorBasePath;
-	
+
 	private ConditionGenerator condGenerator;
 
 	private SESAMEModelLoader loader;
@@ -66,13 +68,16 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private String codeGenerationDirectory;
 
 	// Sets up a metric queue to listen for the given campaign
-	private MetricConsumer setupMetricListener(TestCampaign campaign, SESAMETestSolution sol) throws InvalidTestCampaign {
+	private MetricConsumer setupMetricListener(TestCampaign campaign, SESAMETestSolution sol)
+			throws InvalidTestCampaign {
 		List<TopicPartition> parts = new ArrayList<TopicPartition>();
 		MetricConsumer metricConsumer = new MetricConsumer(campaign, sol, parts);
 		return metricConsumer;
 	}
 
-	public SESAMEEvaluationProblem(String orchestratorBasePath, SESAMEModelLoader loader, String spaceModelFileName, Resource testingSpaceModel, TestingSpace testingSpace, Optional<TestCampaign> tc_o, String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
+	public SESAMEEvaluationProblem(String orchestratorBasePath, SESAMEModelLoader loader, String spaceModelFileName,
+			Resource testingSpaceModel, TestingSpace testingSpace, Optional<TestCampaign> tc_o,
+			String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
 			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException, MissingGrammarFile {
 		this.codeGenerationDirectory = codeGenerationDirectory;
 		this.orchestratorBasePath = orchestratorBasePath;
@@ -82,25 +87,26 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 		// TODO: mrsModelFile is not currently used - until the bug is fixed and there
 		// is a seperate model again
-		//String __mrsModelFile = "testingMRS.model";
-		//eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
+		// String __mrsModelFile = "testingMRS.model";
+		// eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile,
+		// campaignName, codeGenerationDirectory);
 		mrs = testingSpace.getMrs();
 		rng = new Random();
 
 		if (tc_o.isPresent()) {
 			selectedCampaign = tc_o.get();
-			//setupMetricListener(selectedCampaign);
-			//setupControlProducer();
+			// setupMetricListener(selectedCampaign);
+			// setupControlProducer();
 			condGenerator = new ConditionGenerator(grammarPath, selectedCampaign, conditionDepth);
 		} else {
 			throw new InvalidTestCampaign(campaignName);
 		}
 	}
-	
+
 	public TestCampaign getCampaign() {
 		return selectedCampaign;
 	}
-	
+
 	public ConditionGenerator getCondGenerator() {
 		return condGenerator;
 	}
@@ -112,7 +118,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	// TODO: this should be a method upon TestCampaign when it is figured out how
 	// to create them with the genmodel
 	public int getNumberOfMetricsInTestCampaign(TestCampaign tc) {
-		return (int)tc.getMetrics().stream().filter(m -> m.isUseInOptimisation()).count();
+		return (int) tc.getMetrics().stream().filter(m -> m.isUseInOptimisation()).count();
 	}
 
 	public int getNumberOfObjectives() {
@@ -126,7 +132,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	public String getName() {
 		return "SESAMEEvaluationProblem";
 	}
-	
+
 	public void ensureFinalModelSaved() {
 		loader.saveTestingSpace();
 	}
@@ -141,31 +147,33 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 			System.out.println("Running test for " + solution);
 			// This ensures that the new test is installed in the model
-			
+
 			solution.setOperationSequenceNums();
-			
+
 			solution.ensureModelUpdated(selectedCampaign);
 			loader.saveTestingSpace();
 			System.out.println("Model updated");
-			
+
 			System.out.print("Waiting to begin code generation...");
 			System.out.flush();
-			
-			if (DEBUG_ACTUALLY_GENERATE_EGL) { 
+
+			if (DEBUG_ACTUALLY_GENERATE_EGL) {
 				TestRunnerUtils.waitForSeconds(DEFAULT_MODEL_SAVING_DELAY);
 			} else {
 				TestRunnerUtils.waitForSeconds(MODEL_SAVING_DELAY_IN_DEBUG_MODE);
 			}
-			
+
 			if (DEBUG_ACTUALLY_GENERATE_EGL) {
 				// This transform the testing space model into code - by invoking EGX/EGL
-				// The MRS model file is currently redundant due to the temporary approach of merging the models
+				// The MRS model file is currently redundant due to the temporary approach of
+				// merging the models
 				String __mrsModelFile = "testingMRS.model";
 				System.out.println("orchestratorBasePath = " + orchestratorBasePath);
-				eglEx = new SESAMEEGLExecutor(orchestratorBasePath, spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
+				eglEx = new SESAMEEGLExecutor(orchestratorBasePath, spaceModelFileName, __mrsModelFile, campaignName,
+						codeGenerationDirectory);
 				eglEx.run();
 			}
-			
+
 			System.out.println("code generation done");
 
 			if (DEBUG_ACTUALLY_RUN) {
@@ -176,24 +184,25 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				System.out.println("Compilation completed");
 
 				// Invokes the main method for this code
-				System.out.print("Launching test runner for " + mainClassName + "... (classpath " + codeGenerationDirectory + ")");
+				System.out.print("Launching test runner for " + mainClassName + "... (classpath "
+						+ codeGenerationDirectory + ")");
 				System.out.flush();
 				TestRunnerUtils.exec(mainClassName, codeGenerationDirectory);
-				System.out.println("Testrunner " + mainClassName + " launched");		
+				System.out.println("Testrunner " + mainClassName + " launched");
 				System.out.flush();
-										
+
 				if (RECORD_ROSBAG) {
 					Optional<String> recordLauncherFile_o = getRecordLocationForMRS();
 					if (recordLauncherFile_o.isPresent()) {
-						String recordLauncherFile = recordLauncherFile_o.get();				
+						String recordLauncherFile = recordLauncherFile_o.get();
 						// TODO: this should be generalised so it is either specified in the
-						// 	model or the recording is based on the simulation type
+						// model or the recording is based on the simulation type
 						System.out.println("Rosbag recording started via " + recordLauncherFile + "...");
 						TestRunnerUtils.recordSim(recordLauncherFile, solution.getName());
 						System.out.flush();
 					}
 				}
-				
+
 				System.out.flush();
 
 				// Need to wait for simulation completion here...
@@ -202,35 +211,42 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				ExecutionEndTrigger et;
 				long waitTimeSeconds = DEFAULT_HARDCODED_DELAY;
 				et = selectedCampaign.getEndTrigger();
+				
 
 				// Wait for the time given in the model under the test
 				if (et instanceof TimeBasedEnd) {
-					waitTimeSeconds = ((TimeBasedEnd)et).getTimeLimitSeconds();
-					System.out.print("Using selected fixed time delay...");		
+					waitTimeSeconds = ((TimeBasedEnd) et).getTimeLimitSeconds();
+					System.out.print("Using selected fixed time delay...");
 					System.out.flush();
 				} else {
 					System.out.print("Using hardcoded delay...");
 				}
-				
-				waitTimeSeconds = waitTimeSeconds - DEFAULT_WAIT_FOR_FINALISE_DELAY;
-				
-				System.out.print("Waiting " + waitTimeSeconds + " seconds...");
-				TestRunnerUtils.waitForSeconds(waitTimeSeconds);
-				System.out.println("done");
+
+				if (!USE_METRIC_TIME_END_TIME) {
+					waitTimeSeconds = waitTimeSeconds - DEFAULT_WAIT_FOR_FINALISE_DELAY;
+					metricConsumer.setLastValidTimestamp(waitTimeSeconds);					
+					System.out.print("Waiting " + waitTimeSeconds + " seconds...");
+					TestRunnerUtils.waitForSeconds(waitTimeSeconds);
+					System.out.println("done");
+				} else {
+					metricConsumer.setLastValidTimestamp(waitTimeSeconds);		
+					waitUntilMetricTime(metricConsumer, waitTimeSeconds, waitTimeSeconds * 4);
+				}
 
 				// Send the end of simulation message
 				// TODO: for now the end of simulation message is used for both
 				// time tracking and start-end tracking
 				controlProducer.send(ControlMessage.CONTROL_COMMAND.END_SIMULATION);
 				// Send the time tracking message
-				//controlProducer.send(ControlMessage.CONTROL_COMMAND.GET_OPERATION_RECORDED_TIMINGS);
+				// controlProducer.send(ControlMessage.CONTROL_COMMAND.GET_OPERATION_RECORDED_TIMINGS);
 				metricConsumer.notifyFinalise();
-				System.out.print("Finalising: Waiting for metrics to come back from test runner " + waitTimeSeconds + " seconds...");
+				System.out.print("Finalising: Waiting for metrics to come back from test runner " + waitTimeSeconds
+						+ " seconds...");
 				TestRunnerUtils.waitForSeconds(DEFAULT_WAIT_FOR_FINALISE_DELAY);
 				System.out.println("done");
-				
+
 				// Ensure that the model is updated with the metric results
-				metricConsumer.finaliseUpdates();				
+				metricConsumer.finaliseUpdates();
 
 				String customTerminateScript = mrs.getCustomTerminateFileLocation();
 				if (customTerminateScript != null) {
@@ -238,18 +254,17 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					TestRunnerUtils.runCustomTerminateScript(customTerminateScript);
 					TestRunnerUtils.waitForSeconds(DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS);
 				}
-				
+
 				System.out.println("Running standard termination script");
 				TestRunnerUtils.killProcesses();
-				
+
 				TestRunnerUtils.clearKafka();
 				System.out.print("Waiting for simulation processes to be killed...");
 				System.out.flush();
 				TestRunnerUtils.waitForSeconds(DEFAULT_KILL_DELAY);
 				System.out.print("done");
-				
-				metricConsumer.close();
 
+				metricConsumer.close();
 			}
 
 		} catch (IOException e) {
@@ -260,6 +275,28 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		} catch (InvalidTestCampaign e) {
 			System.out.println("Invalid test campaign selected");
 			e.printStackTrace();
+		}
+	}
+
+	private void waitUntilMetricTime(MetricConsumer metricConsumer, double waitTime, double worstCaseTimeSeconds) {
+		long worstCaseEndTime = System.currentTimeMillis() + (long) ((double) worstCaseTimeSeconds * 1000);
+		boolean metricDone = false;
+		while (!metricDone && (System.currentTimeMillis() < worstCaseEndTime)) {
+			try {
+				Thread.sleep(500);
+				
+			} catch (InterruptedException e) {
+			}
+			
+		double metricTime = metricConsumer.getTimestamp();
+		System.out.print(".");
+		metricDone = (metricTime > waitTime);
+		}
+		
+		if (metricDone) {
+			System.out.println("Done");
+		} else {
+			System.out.println("Ending due to no response at twice worst case time");
 		}
 	}
 
@@ -278,8 +315,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			System.out.println("Dummy evaluation of solution " + solution + " - metric " + i + " is " + v);
 			solution.setObjective(i, v);
 		}
-		
-		solution.ensureModelUpdated(selectedCampaign); 
+
+		solution.ensureModelUpdated(selectedCampaign);
 		loader.saveTestingSpace();
 		try {
 			Thread.sleep(1000);
@@ -287,11 +324,11 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void evaluate(SESAMETestSolution solution) {
 		if (!DUMMY_EVAL) {
 			performSESAMETest(solution);
-		} else {	
+		} else {
 			dummyEval(solution);
 		}
 	}
@@ -311,7 +348,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		// from TestCampaign
 
 		// Created with FuzzingOperations specified within the space
-		// TODO: FuzzingOperations can be a "subset" of each of the selected FuzzingOperations
+		// TODO: FuzzingOperations can be a "subset" of each of the selected
+		// FuzzingOperations
 		int i = 0;
 		System.out.println("createSolution");
 
@@ -320,7 +358,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		EList<FuzzingOperation> FuzzingOperationsInCampaign = selectedCampaign.getIncludedOperations();
 		for (FuzzingOperation a : FuzzingOperationsInCampaign) {
 			if (shouldIncludeFuzzingOperation(a)) {
-				// FuzzingOperations produced as a "subset" of each of the selected FuzzingOperations
+				// FuzzingOperations produced as a "subset" of each of the selected
+				// FuzzingOperations
 				// TODO: this should be configurable somehow
 				if (conditionBased) {
 					SESAMEFuzzingOperationWrapper sta;
@@ -332,16 +371,16 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					} catch (ParamError e) {
 						e.printStackTrace();
 					}
-					
+
 				} else {
 					// Time-based fuzzing
 					SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a);
 					sol.addContents(i++, sta);
 				}
-				
+
 			}
 		}
-		
+
 		// If we haven't picked any, pick one
 		if (sol.getNumberOfVariables() == 0 && FuzzingOperationsInCampaign.size() > 0) {
 			FuzzingOperation baseFuzzingOperation = getRandomFuzzingOperation(FuzzingOperationsInCampaign);
@@ -356,7 +395,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					} else {
 						e.printStackTrace();
 					}
-					
+
 				} catch (ParamError e) {
 					if (FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE) {
 						throw new SolutionCreationFailed(e);
@@ -364,20 +403,20 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 						e.printStackTrace();
 					}
 				}
-				
+
 			} else {
-				SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, baseFuzzingOperation);
+				SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol,
+						baseFuzzingOperation);
 				sol.addContents(i++, sta);
 			}
 		}
-		
+
 		return sol;
 	}
 
-	private FuzzingOperation getRandomFuzzingOperation(EList<FuzzingOperation> FuzzingOperations)
-	{
-	    int listSize = FuzzingOperations.size();
-	    int randomIndex = rng.nextInt(listSize);
-	    return FuzzingOperations.get(randomIndex);
+	private FuzzingOperation getRandomFuzzingOperation(EList<FuzzingOperation> FuzzingOperations) {
+		int listSize = FuzzingOperations.size();
+		int randomIndex = rng.nextInt(listSize);
+		return FuzzingOperations.get(randomIndex);
 	}
 }

@@ -6,7 +6,11 @@ public class SafetyZone {
 	private String object2;
 	private String zoneID;
 	
-	SafetyZone(String zoneID, String object1, String object2, float level) {
+	SafetyZone() {
+		
+	}
+	
+	public SafetyZone(String zoneID, String object1, String object2, float level) {
 		this.zoneID = zoneID;
 		this.object1 = object1;
 		this.object2 = object2;

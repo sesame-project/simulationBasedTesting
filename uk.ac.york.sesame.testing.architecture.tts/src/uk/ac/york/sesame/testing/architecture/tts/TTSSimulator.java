@@ -98,7 +98,7 @@ public class TTSSimulator implements ISimulator {
 			e.printStackTrace();
 		}
 		
-        subscribePath("<NO-TOPIC>", pathTranslator.getStepTopicName(), Optional.empty());
+        subscribePath("<NO-TOPIC>", "step", pathTranslator.getStepTopicName(), Optional.empty());
         
 		System.out.println("TTSimulator: connection ready");
 		return asyncStub;
@@ -199,12 +199,12 @@ public class TTSSimulator implements ISimulator {
 		return pathTranslator.getOutboundPathForTopicName(origTopicName);
 	}
 	
-	private void subscribePath(String topicName, String path, Optional<String> pathInjectorOut) {
+	private void subscribePath(String topicName, String topicType, String path, Optional<String> pathInjectorOut) {
         try {
             System.out.println("Subscribing to " + path);
             SubscriptionRequest td = SubscriptionRequest.newBuilder().setPath(path).setSubscriberUUID(this.subscriberUUID).build();
             blockingStub.subscribe(td);
-           	pathTranslator.registerTopicPathMapping(topicName, path, pathInjectorOut);
+           	pathTranslator.registerTopicPathMapping(topicName, topicType, path, pathInjectorOut);
             
         } catch (Throwable ex) {
             System.out.println("subscribePath returned error message: " + ex.getMessage());
@@ -227,16 +227,18 @@ public class TTSSimulator implements ISimulator {
         InjectResponse rsp = blockingStub.inject(req);
         // V2: always use returned paths from the injection request
         // there will currently have SIMLOG:// but this is not a fixed convention
-        subscribePath(topicName, rsp.getShadowPathOut(), Optional.of(rsp.getShadowPathIn()));
+        subscribePath(topicName, topicType, rsp.getShadowPathOut(), Optional.of(rsp.getShadowPathIn()));
 	}
 	
 	public void subscribeNoFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
 		// Should ignore out for safetyzone?
 		String path = pathTranslator.getSimPathForTopicName(topicName);
-		if (!topicType.contains("SafetyZone")) {
+		// TODO: Safetyzone/EDDI output topics require no appended /out suffix!
+		// TODO: better solution - nature should be set in DSL
+		if (!(topicType.contains("SafetyZone") || topicName.contains("guarantee"))) {
 			path = path + "/out";
 		}
-		subscribePath(topicName, path, Optional.empty());
+		subscribePath(topicName, topicType, path, Optional.empty());
 	}
 	
 	// topicName should always be raw - no in/out or "SIM://" at start

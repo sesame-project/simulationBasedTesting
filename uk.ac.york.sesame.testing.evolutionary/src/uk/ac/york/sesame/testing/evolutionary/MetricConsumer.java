@@ -62,6 +62,10 @@ public class MetricConsumer implements Runnable {
 
 	// This holds the current test solution being evaluated
 	private final SESAMETestSolution currentSolution;
+	
+	private double lastValidTimestamp = Double.MAX_VALUE;
+
+	private double lastTimestampSeen;
 
 	private void setupMetricLookup() {
 		EList<Metric> metrics = selectedCampaign.getMetrics();
@@ -87,6 +91,8 @@ public class MetricConsumer implements Runnable {
 		this.clientId = properties.getProperty(ConsumerConfig.CLIENT_ID_CONFIG);
 		this.partitions = partitions;
 		this.currentSolution = sol;
+		this.lastTimestampSeen = 0.0;
+		
 		this.consumer = new KafkaConsumer<>(properties);
 		if (selectedCampaign == null) {
 			throw new InvalidTestCampaign(InvalidTestCampaign.INVALIDITY_REASON.NULL_OBJECT);
@@ -101,7 +107,11 @@ public class MetricConsumer implements Runnable {
 
 		setupMetricLookup();
 	}
-
+	
+	public void setLastValidTimestamp(double lastValidTimestamp) {
+		this.lastValidTimestamp = lastValidTimestamp;
+	}
+	
 	@Override
 	public void run() {
 		try {
@@ -124,12 +134,20 @@ public class MetricConsumer implements Runnable {
 					logger.info("C : {}, Record received topic : {}, partition : {}, key : {}, value : {}, offset : {}",
 							clientId, record.topic(), record.partition(), record.key(), record.value(),
 							record.offset());
-					System.out.println(record.value());
+					
 					MetricMessage msg = record.value();
-					System.out.println("msg = " + msg.toString());
+					updateTimestamp(msg.getTimestamp());
+					
 					String metricID = msg.getMetricName();
 					Double val = (Double) msg.getValue();
-					System.out.println("MetricConsumer received metric: " + metricID + " - value " + val);
+					
+					if (!metricID.contains("time")) {
+						System.out.println(record.value());
+						System.out.println("msg = " + msg.toString());
+						System.out.println("MetricConsumer received metric: " + metricID + " - value " + val);
+					} else {
+						System.out.print("T");
+					}
 
 					storeArrivingMessage(msg);
 				}
@@ -146,11 +164,23 @@ public class MetricConsumer implements Runnable {
 		}
 	}
 
+	private void updateTimestamp(double timestamp) {
+		if (timestamp > this.lastTimestampSeen) {
+			this.lastTimestampSeen = timestamp;
+		}
+	}
+
 	private void storeArrivingMessage(MetricMessage msg) {
 		String targetMetricID = msg.getMetricName();
 		// This assumes that the last message is the only one we obtain
 		// the metric from
-		metricMessages.put(targetMetricID, msg);
+		if (metricTimestampValid(msg.getTimestamp()) || targetMetricID.contains("fuzzingOperationTimes")) {
+			metricMessages.put(targetMetricID, msg);
+		}
+	}
+
+	private boolean metricTimestampValid(double thisTimestamp) {
+		return (thisTimestamp < this.lastValidTimestamp);
 	}
 
 	public void close() {
@@ -292,5 +322,9 @@ public class MetricConsumer implements Runnable {
 	public void notifyFinalise() {
 		// Nothing to be done here now - just wait for messages coming back
 
+	}
+	
+	public double getTimestamp() {
+		return lastTimestampSeen;
 	}
 }
