@@ -296,7 +296,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		if (metricDone) {
 			System.out.println("Done");
 		} else {
-			System.out.println("Ending due to no response at twice worst case time");
+			System.out.println("Ending due to no response at worst case cutoff time");
 		}
 	}
 

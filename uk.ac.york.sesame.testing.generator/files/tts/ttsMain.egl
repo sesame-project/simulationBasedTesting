@@ -213,7 +213,11 @@ public class [%= testNameString %]_TestRunner {
 		[* CUSTOM TTS CODE - END *]
 		[% } %]
 				
-		[% for (aTopic in allTopics) { 
+		[% for (aTopic in allTopics) {
+		   if (not aTopic.name.startsWith("___")) { %]
+		   
+		[%
+		// skip subscription to variable with underscores... allow them to be added to model until TTS var ready
 		var javaSafeName = aTopic.name.replace("/", "_");
 		// Replace literal period - need to escape the string 
 		javaSafeName = javaSafeName.replace("\\.", "_");
@@ -237,7 +241,9 @@ public class [%= testNameString %]_TestRunner {
 		};
 		subscriber_thread_[%= javaSafeName %].start();
 		*]
-		[% } %]
+		[%
+		 } 
+		 } %]
 				
 
 		[* V2 change - time is now handled with the stepping mechanism
