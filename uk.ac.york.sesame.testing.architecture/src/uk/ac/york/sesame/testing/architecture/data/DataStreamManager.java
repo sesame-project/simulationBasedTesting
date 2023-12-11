@@ -38,6 +38,7 @@ public class DataStreamManager {
 	private static KafkaProducer<Long, EventMessage> kafkaProducer;
 	private static KafkaConsumer<Long, EventMessage> kafkaConsumer;
 	private static HashMap<String, KafkaConsumer<Long, EventMessage>> consumers;
+	private final SimCore simCore = SimCore.getInstance();
 	Properties props = new Properties();
 
 	public static KafkaProducer<Long, EventMessage> getKafkaProducer() {
@@ -91,6 +92,8 @@ public class DataStreamManager {
 //		KafkaProducer<Long, EventMessage> kafkaProducer = DataStreamManager.getInstance().getKafkaProducer();
 		eventMessage.setId(UUID.randomUUID().toString());
 		
+		simCore.incrementInCount();
+		
 		// JRH: only replace the event timestamp if they have not
 		// been set by simulator low-level timestamps
 		if (eventMessage.timestamp == 0) {
@@ -132,6 +135,25 @@ public class DataStreamManager {
 			duration = POLL_TIMEOUT_EARLY;
 		}
 		final ConsumerRecords<Long, EventMessage> consumerRecords = consumer.poll(Duration.ofMillis(duration));
+		return consumerRecords;
+	}
+	
+	public ConsumerRecords<Long,EventMessage> pollNewMessages(String topicName, long durationMillis) {
+		KafkaConsumer<Long, EventMessage> consumer;
+		if (consumers.containsKey(topicName)) {
+			consumer = consumers.get(topicName);
+		} else {
+			Properties kafkaProps = new Properties();
+			kafkaProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, props.getProperty("kafka.consumer.bootstrap.servers"));
+			kafkaProps.put(ConsumerConfig.GROUP_ID_CONFIG, "KafkaConsumer");
+			kafkaProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
+			kafkaProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, EventMessage.class.getName());
+			kafkaProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+			consumer = new KafkaConsumer<>(kafkaProps);
+			consumer.subscribe(Collections.singletonList(topicName));
+			consumers.put(topicName, consumer);
+		}
+		final ConsumerRecords<Long, EventMessage> consumerRecords = consumer.poll(Duration.ofMillis(durationMillis));
 		return consumerRecords;
 	}
 }
