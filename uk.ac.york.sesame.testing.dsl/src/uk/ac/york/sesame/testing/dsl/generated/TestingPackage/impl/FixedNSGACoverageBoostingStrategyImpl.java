@@ -12,8 +12,9 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FixedNSGACoverageB
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Fixed
- * NSGA Coverage Boosting Strategy</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Fixed NSGA Coverage Boosting Strategy</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -24,12 +25,11 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *
  * @generated
  */
-public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrategyImpl
-		implements FixedNSGACoverageBoostingStrategy {
+public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrategyImpl implements FixedNSGACoverageBoostingStrategy {
 	/**
 	 * The default value of the '{@link #getUseBoostingOnceEveryGenerations() <em>Use Boosting Once Every Generations</em>}' attribute.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUseBoostingOnceEveryGenerations()
 	 * @generated
 	 * @ordered
@@ -48,8 +48,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 
 	/**
 	 * The default value of the '{@link #getUseBoostingOnceEveryIterations() <em>Use Boosting Once Every Iterations</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUseBoostingOnceEveryIterations()
 	 * @generated
 	 * @ordered
@@ -58,8 +58,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 
 	/**
 	 * The cached value of the '{@link #getUseBoostingOnceEveryIterations() <em>Use Boosting Once Every Iterations</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getUseBoostingOnceEveryIterations()
 	 * @generated
 	 * @ordered
@@ -67,7 +67,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 	protected int useBoostingOnceEveryIterations = USE_BOOSTING_ONCE_EVERY_ITERATIONS_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected FixedNSGACoverageBoostingStrategyImpl() {
@@ -75,7 +76,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -84,7 +86,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public int getUseBoostingOnceEveryGenerations() {
@@ -92,7 +95,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setUseBoostingOnceEveryGenerations(int newUseBoostingOnceEveryGenerations) {
@@ -103,7 +107,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public int getUseBoostingOnceEveryIterations() {
@@ -111,7 +116,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setUseBoostingOnceEveryIterations(int newUseBoostingOnceEveryIterations) {
@@ -122,7 +128,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -137,7 +144,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -154,7 +162,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -171,7 +180,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -186,7 +196,8 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -202,15 +213,4 @@ public class FixedNSGACoverageBoostingStrategyImpl extends CoverageBoostingStrat
 		return result.toString();
 	}
 
-	/**
-	 * JRH implemented code
-	 */
-	public boolean elementShouldUseCoverageBoosting(int i, int genNum, int boostingCountThisGeneration) {
-		if ((genNum % useBoostingOnceEveryGenerations) == 0) {
-			return ((i % useBoostingOnceEveryIterations)) == 0;
-		} else {
-			return false;
-		}
-	}
-
-} // FixedNSGACoverageBoostingStrategyImpl
+} //FixedNSGACoverageBoostingStrategyImpl

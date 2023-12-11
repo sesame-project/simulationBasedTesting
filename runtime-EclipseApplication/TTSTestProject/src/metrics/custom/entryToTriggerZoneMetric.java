@@ -15,7 +15,7 @@ public abstract class entryToTriggerZoneMetric extends Metric {
 
 	}
 
-	private Optional<Double> metricValueForLevel(float level) {
+	private Optional<Double> metricValueForLevel(double level) {
 		if (level < 300) {
 			double val = level / 300 * 10;
 			return Optional.of(val);
@@ -32,7 +32,7 @@ public abstract class entryToTriggerZoneMetric extends Metric {
 		String extraString = getExtraString();
 		if (topic.contains(completionTopicName) && topic.contains(extraString)) {
 			SafetyZone sv = (SafetyZone)msg.getValue();
-			float level = sv.getLevel();
+			double level = sv.getLevel();
 			String object1 = sv.getObject1();
 			String object2 = sv.getObject2();
 			String zoneID = sv.getZoneID();

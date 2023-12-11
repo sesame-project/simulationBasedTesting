@@ -42,7 +42,7 @@ public class collisionOccuranceMetric extends BatchedRateMetric {
 			if (msg.getValue() instanceof String) {
 				String s = (String) msg.getValue();
 				SafetyZone sv = (SafetyZone)msg.getValue();
-				float level = sv.getLevel();
+				double level = sv.getLevel();
 				String object1 = sv.getObject1();
 				String object2 = sv.getObject2();
 				String zoneID = sv.getZoneID();

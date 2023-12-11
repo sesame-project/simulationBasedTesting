@@ -321,26 +321,4 @@ public class LinearNSGACoverageBoostingStrategyImpl extends CoverageBoostingStra
 		return result.toString();
 	}
 
-	@Override
-	/*
-	 * JRH: custom code for linear boosting decline
-	 */
-	public boolean elementShouldUseCoverageBoosting(int i, int genNum, int boostingCountThisGeneration) {
-		int dynamicBoostingThisGen = startingBoostingCount;
-		
-		// We only want to decrement the boosting count for every generation when boosting is active
-		dynamicBoostingThisGen = startingBoostingCount - (genNum / useBoostingOnceEveryGenerations) * countDropEveryGeneration;
-				
-		// Ensure it does not drop below endingBoostingCount
-		dynamicBoostingThisGen = Math.max(endingBoostingCount, dynamicBoostingThisGen);
-
-		if ((genNum % useBoostingOnceEveryGenerations) == 0) {
-			// Only do boosting for the dynamic number of boosting elements
-			System.out.println("coverageBoostingDebug: genNum = " + genNum + " - boostingCountThisGeneration = " + dynamicBoostingThisGen);
-			return (boostingCountThisGeneration < dynamicBoostingThisGen);
-		} else {
-			return false;
-		}
-	}
-
 } //LinearNSGACoverageBoostingStrategyImpl

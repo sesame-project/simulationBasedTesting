@@ -44,7 +44,7 @@ public abstract class entryToTriggerZoneMetricTime extends Metric {
 		String extraString = getExtraString();
 		if (topic.contains(completionTopicName) && topic.contains(extraString)) {
 			SafetyZone sv = (SafetyZone)msg.getValue();
-			float level = sv.getLevel();
+			double level = sv.getLevel();
 			String object1 = sv.getObject1();
 			String object2 = sv.getObject2();
 			String zoneID = sv.getZoneID();

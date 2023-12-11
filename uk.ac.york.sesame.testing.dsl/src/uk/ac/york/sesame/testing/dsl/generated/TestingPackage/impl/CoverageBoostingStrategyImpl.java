@@ -43,10 +43,13 @@ public abstract class CoverageBoostingStrategyImpl extends MinimalEObjectImpl.Co
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public abstract boolean elementShouldUseCoverageBoosting(int i, int genNum, int boostingCountThisGeneration);
-
+	public boolean elementShouldUseCoverageBoosting(int i, int genNum, int boostingCountThisGeneration) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
