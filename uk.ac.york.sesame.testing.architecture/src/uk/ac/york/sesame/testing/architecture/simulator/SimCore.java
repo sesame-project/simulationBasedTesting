@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 import uk.ac.york.sesame.testing.architecture.data.TimeInterval;
 import uk.ac.york.sesame.testing.architecture.data.TimeInterval.InvalidTimingPair;
@@ -21,6 +22,10 @@ public final class SimCore {
     private static SimCore INSTANCE;
     
     private String testName;
+    
+    private AtomicLong msgInCount = new AtomicLong();
+    private AtomicLong msgOutCount = new AtomicLong();
+    private AtomicLong msgDelayedCount = new AtomicLong();
     
     // This records any outstanding start times - cleared when the operation ends
     private ConcurrentHashMap<String, Double> fuzzingStartTimes = new ConcurrentHashMap<String,Double>();
@@ -144,5 +149,34 @@ public final class SimCore {
 
 	public double getTotalFuzzingSeconds() {
 		return totalFuzzingSecondCount;
+	}
+
+	public synchronized void incrementInCount() {
+		msgInCount.incrementAndGet();
+	}
+	
+	public synchronized void incrementOutCount() {
+		msgOutCount.incrementAndGet();
+	}
+	
+	public synchronized void registerPendingDelayedMessage() {
+		msgDelayedCount.incrementAndGet();
+	}
+	
+	public synchronized void registerDelayedMessageReleased() {
+		msgDelayedCount.decrementAndGet();
+	}
+	
+	public synchronized boolean messageCountBalanced() {
+		long inV = msgInCount.longValue();
+		long outV = msgOutCount.longValue();
+		long delayV = msgDelayedCount.longValue();
+		boolean balanced = (inV == (outV + delayV));
+		if (balanced) {
+			System.out.println("Checking message balance: " + String.valueOf(inV) + " == " + String.valueOf(outV) + " + " + String.valueOf(delayV));
+		} else {
+			System.out.println("Checking message balance: " + String.valueOf(inV) + "!=" + String.valueOf(outV) + " + " + String.valueOf(delayV));
+		}
+		return balanced;
 	}
 }

@@ -36,6 +36,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final boolean RECORD_ROSBAG = true;
 
 	private static final long DEFAULT_HARDCODED_DELAY = 100;
+	
+	private static final double FIXED_WORST_CASE_END_TIME = 100.0;
 
 	private static final long DEFAULT_KILL_DELAY = 5;
 	private static final long DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS = 5;
@@ -229,8 +231,9 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					TestRunnerUtils.waitForSeconds(waitTimeSeconds);
 					System.out.println("done");
 				} else {
+					double WORST_CASE_END_TIME = Math.max(waitTimeSeconds * 2, FIXED_WORST_CASE_END_TIME);
 					metricConsumer.setLastValidTimestamp(waitTimeSeconds);		
-					waitUntilMetricTime(metricConsumer, waitTimeSeconds, waitTimeSeconds * 4);
+					waitUntilMetricTime(metricConsumer, waitTimeSeconds, WORST_CASE_END_TIME);
 				}
 
 				// Send the end of simulation message

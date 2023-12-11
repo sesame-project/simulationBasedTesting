@@ -1,9 +1,6 @@
 package uk.ac.york.sesame.testing.architecture.tts;
 
 import java.util.Map;
-import java.util.Optional;
-
-import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.Value;
@@ -140,7 +137,7 @@ public class SimStreamObserver implements StreamObserver<SimlogMessage> {
 	}
 
 	public void onError(Throwable t) {
-		System.err.println("Beddamatre " + t);
+		System.err.println("Error: " + t);
 		t.printStackTrace();
 	}
 

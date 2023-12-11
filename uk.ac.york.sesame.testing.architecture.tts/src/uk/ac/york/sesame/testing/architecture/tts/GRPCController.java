@@ -46,7 +46,7 @@ public class GRPCController {
     boolean step() {
         StepRequest sr = StepRequest.newBuilder().setDeltaTime(50).build();
         SimStatus rsp = server.step(sr);
-        System.out.println("--------- Step: --------------");
+        System.out.println("--SBT Calling Step: --------------");
         simIsAlive = rsp.getAlive();
         // Ask Diego: should we get time from this or the StatusObs below
         long timeMS = rsp.getClock();
