@@ -87,6 +87,8 @@ public class [%= testNameString %]_TestRunner {
 		DataStream<ControlMessage> controlStream = env
 					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
 		
+		env.setParallelism(1);
+	    env.setMaxParallelism(1);
 		
 		DataStream<EventMessage> streamOrig = env
 			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);

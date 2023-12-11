@@ -1,34 +1,18 @@
 package datatypes.custom;
 
-import java.util.Objects;
-
-import org.apache.flink.statefun.sdk.java.TypeName;
-import org.apache.flink.statefun.sdk.java.types.SimpleType;
-import org.apache.flink.statefun.sdk.java.types.Type;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class Point3D {
-	private Double x;
-	private Double y;
-	private Double z;
-	
-	private static final ObjectMapper mapper = new ObjectMapper();
+	private double x;
+	private double y;
+	private double z;
 	
 	public Point3D() {
 
 	}
 	
-    public Point3D(
-            @JsonProperty("x") Double x,
-            @JsonProperty("y") Double y,
-            @JsonProperty("z") Double z
-    		) {
-
-        this.x = Objects.requireNonNull(x);
-        this.y = Objects.requireNonNull(y);
-        this.z = Objects.requireNonNull(z);
+    public Point3D(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
     
     public double getX() {
@@ -42,11 +26,20 @@ public class Point3D {
     public double getZ() {
     	return z;
     }
-	
-	public static final Type<Point3D> TYPE = SimpleType.simpleImmutableTypeFrom(
-            TypeName.typeNameFromString("uk.ac.york.sesame.testing.aircraft/Point3D"),
-            val -> mapper.writeValueAsBytes(val),
-            bytes -> mapper.readValue(bytes,Point3D.class));
+    
+    // Needed for Flink to serialize according to POJO
+    // 
+    public void setX(double x) {
+    	this.x = x; 
+    }
+    
+    public void setY(double y) {
+    	this.y = y; 
+    }
+    
+    public void setZ(double z) {
+    	this.z = z; 
+    }
 	
 	public double distanceSqrToOther(Point3D other) {
 		double diff_x = other.x - this.x;
@@ -54,7 +47,10 @@ public class Point3D {
 		double diff_z = other.z - this.z;
 		double distSqr = diff_x*diff_x + diff_y*diff_y + diff_z*diff_z;
 		return distSqr;
-		
+	}
+	
+	public String toString() {
+		return "[" + this.x + "," + this.y + "," + this.z + "]";
 	}
 	
 	public double distanceToOther(Point3D other) {
