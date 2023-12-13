@@ -50,8 +50,7 @@ commonTemplate.populate("useRandomSeed", true);
 				double time = SimCore.getInstance().getTime();
 				System.out.println("fuzzRangeLog," + time + "," + origVal + "," + fuzzedVal + "\n");
 				[% } else { %]
-				valueOut.setValue(newValue.toString());
-				System.out.println("fuzzRangeLog," + time + "," + origVal + "," + fuzzedVal + "\n");
+				valueOut.setValue(Double.toString(newValue));	
 				[% } %]
 				
 	      		[% } %]

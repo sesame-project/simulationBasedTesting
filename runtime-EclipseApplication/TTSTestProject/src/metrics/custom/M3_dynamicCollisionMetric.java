@@ -26,14 +26,14 @@ public class M3_dynamicCollisionMetric extends BatchedRateMetric {
 	}
 	
 	public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
-		String completionTopicName = "SafetyZone";
+		String completionTopicName = "Collision_850";
 		String topic = msg.getTopic();
 		if (topic.contains(completionTopicName)) {
 			HashMap<String,Object> safetyZone = (HashMap<String, Object>) msg.getValue();
 			String zone = (String)safetyZone.get("zoneID");
 			Double level = (Double)safetyZone.get("level");
 		
-			if (zone.contains("Collsion_R850") && (level > LEVEL_THRESHOLD_FOR_INSERTION)) {
+			if (zone.contains("SZ") && (level > LEVEL_THRESHOLD_FOR_INSERTION)) {
 				System.out.println("Dynamic collision in M3_dynamicCollisionMetric - emitting metric from " + zone + "-" + level);
 				out.collect(1.0);
 			}

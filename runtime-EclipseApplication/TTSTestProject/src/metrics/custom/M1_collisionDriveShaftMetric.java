@@ -44,7 +44,7 @@ public class M1_collisionDriveShaftMetric extends BatchedRateMetric {
 			if (zone.contains("GSZ") && (level > LEVEL_THRESHOLD_FOR_COLLISION)) {
 				System.out.println("Safetyzone message in collsionDriveShaft=" + zone + "-" + level);
 					
-				if (violationMax.value() < level) {
+				if (level > violationMax.value()) {
 					violationMax.update(level);
 					System.out.println("violationMax increased to " + level);
 					out.collect(level);
