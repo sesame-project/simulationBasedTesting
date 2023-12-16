@@ -301,9 +301,9 @@ public class NullFuzzing_Test_repeat0_TestRunner {
 			
 				DataStream<Double> fuzzingOperationTimesresStream = eventsAndControlIn.process(new fuzzingOperationTimesMetric(fuzzOpTimes));
 			
-				DataStream<Double> M1_timeReachingTargetEitherresStream = eventsAndControlIn.process(new M1_timeReachingTargetEitherMetric());
+				DataStream<Double> M1_timeReachingTargetEitherresStream = eventsAndControlIn.process(new M2_timeReachingTargetMetric());
 			
-				DataStream<Double> M2_distanceFromHumanOmniresStream = eventsAndControlIn.process(new M2_distanceFromHumanOmniMetric());
+				DataStream<Double> M2_distanceFromHumanOmniresStream = eventsAndControlIn.process(new M4_distanceFromHumanOmniMetric());
 			
 				DataStream<Double> M2_distanceFromHumanPMB2resStream = eventsAndControlIn.process(new M2_distanceFromHumanPMB2Metric());
 			

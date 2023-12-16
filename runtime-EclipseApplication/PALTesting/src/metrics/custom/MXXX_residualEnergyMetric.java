@@ -12,7 +12,7 @@ import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.metrics.Metric;
 import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 
-public abstract class M3_residualEnergyMetric extends Metric {
+public abstract class MXXX_residualEnergyMetric extends Metric {
 
 	private static final long serialVersionUID = 1L;
 

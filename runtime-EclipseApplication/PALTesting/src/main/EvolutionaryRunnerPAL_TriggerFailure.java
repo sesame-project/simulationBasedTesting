@@ -4,7 +4,7 @@ import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 
 import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
 
-public class EvolutionaryRunnerPALTesting {
+public class EvolutionaryRunnerPAL_TriggerFailure {
 	//	JMetal manages a population of Test models - containing a single test
 	//	These models are referenced by TestModelSolution - which references a particular model
 	//
@@ -34,7 +34,7 @@ public class EvolutionaryRunnerPALTesting {
 
 		String grammarPath = "/home/jharbin/eclipse-workspace/PALTesting/grammar/pal-scenarios.bnf";
 		
-		String campaignToRun = "scenario1";
+		String campaignToRun = "testFailureTrigger";
 
 		final boolean conditionBased = false;
 		final int maxConditionDepth = 0;

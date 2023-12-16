@@ -1,6 +1,6 @@
 package metrics.custom;
 
-public class CV_Omni_LoadedFalse_TimeMetric2 extends statusChangeTimeMetric {
+public class CV_Omni_LoadedFalse_TimeMetric extends statusChangeTimeMetric {
 	private static final long serialVersionUID = 1L;
 
 	public String getRobotString() {

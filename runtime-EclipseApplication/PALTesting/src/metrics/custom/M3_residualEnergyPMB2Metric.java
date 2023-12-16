@@ -2,7 +2,7 @@ package metrics.custom;
 
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
-public class M3_residualEnergyPMB2Metric extends M3_residualEnergyMetric {
+public class M3_residualEnergyPMB2Metric extends MXXX_residualEnergyMetric {
 
 	private static final long serialVersionUID = 1L;
 

@@ -12,7 +12,7 @@ import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 // TODO: this is now set to the PMB2's target location - so this will track
 // the timing to point 1. In case of a delivery failure by PMB2 and the EDDI intervening 
 // for the Omni to take over, this should show an advantage for this metric
-public class M1_timeReachingTargetEitherMetric extends timeReachingGivenPoint {
+public class M2_timeReachingTargetMetric extends timeReachingGivenPoint {
 
 	private static final long serialVersionUID = 1L;
 	
