@@ -5,6 +5,7 @@ import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 public class M4_DistanceFromHumanOmniMetric extends distanceFromHumanMetric {
 
 	private static final long serialVersionUID = 1L;
+	
 
 	protected boolean topicMatches(EventMessage msg) {
 		return msg.getTopic().contains("omni_base_1");

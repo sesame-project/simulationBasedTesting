@@ -54,6 +54,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getRecordedTimings <em>Recorded Timings</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getSeed <em>Seed</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getSequenceNumInTest <em>Sequence Num In Test</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getInclusionProbability <em>Inclusion Probability</em>}</li>
  * </ul>
  *
  * @generated
@@ -308,6 +309,26 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected int sequenceNumInTest = SEQUENCE_NUM_IN_TEST_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getInclusionProbability() <em>Inclusion Probability</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInclusionProbability()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double INCLUSION_PROBABILITY_EDEFAULT = 1.0;
+
+	/**
+	 * The cached value of the '{@link #getInclusionProbability() <em>Inclusion Probability</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInclusionProbability()
+	 * @generated
+	 * @ordered
+	 */
+	protected double inclusionProbability = INCLUSION_PROBABILITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -759,6 +780,27 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public double getInclusionProbability() {
+		return inclusionProbability;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInclusionProbability(double newInclusionProbability) {
+		double oldInclusionProbability = inclusionProbability;
+		inclusionProbability = newInclusionProbability;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__INCLUSION_PROBABILITY, oldInclusionProbability, inclusionProbability));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -849,6 +891,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return getSeed();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
 				return getSequenceNumInTest();
+			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUSION_PROBABILITY:
+				return getInclusionProbability();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -917,6 +961,9 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
 				setSequenceNumInTest((Integer)newValue);
 				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUSION_PROBABILITY:
+				setInclusionProbability((Double)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -980,6 +1027,9 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
 				setSequenceNumInTest(SEQUENCE_NUM_IN_TEST_EDEFAULT);
 				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUSION_PROBABILITY:
+				setInclusionProbability(INCLUSION_PROBABILITY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1028,6 +1078,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return seed != SEED_EDEFAULT;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
 				return sequenceNumInTest != SEQUENCE_NUM_IN_TEST_EDEFAULT;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUSION_PROBABILITY:
+				return inclusionProbability != INCLUSION_PROBABILITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1058,6 +1110,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 		result.append(seed);
 		result.append(", sequenceNumInTest: ");
 		result.append(sequenceNumInTest);
+		result.append(", inclusionProbability: ");
+		result.append(inclusionProbability);
 		result.append(')');
 		return result.toString();
 	}

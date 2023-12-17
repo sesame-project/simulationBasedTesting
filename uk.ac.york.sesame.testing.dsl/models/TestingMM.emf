@@ -147,6 +147,7 @@ package FuzzingOperations {
 		val FixedTimeActivation recordedTimings;
 		attr long seed;
 		attr int sequenceNumInTest;
+		attr double inclusionProbability = 1;
 	}
 
 	class OfflineFuzzingOperation extends FuzzingOperation {

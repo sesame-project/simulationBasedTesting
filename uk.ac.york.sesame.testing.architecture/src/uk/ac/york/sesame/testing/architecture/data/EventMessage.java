@@ -56,6 +56,12 @@ public class EventMessage implements IData, Serializer, Deserializer {
 		this.type = other.type;
 	}
 	
+	public EventMessage(String topicName, String topicType, Object val) {
+		this.topic = topicName;
+		this.type = topicType;
+		this.value = val;
+	}
+	
 	private long getWallTime() {
 		Instant instant = Instant.now();
 		long timeStampMillis = instant.toEpochMilli();

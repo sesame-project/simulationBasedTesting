@@ -321,10 +321,10 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		}
 	}
 
-
 	public boolean shouldIncludeFuzzingOperation(FuzzingOperation a) {
+		double prob = a.getInclusionProbability();
 		double v = rng.nextDouble();
-		return (v < INCLUDE_FuzzingOperation_PROB);
+		return (v < prob);
 	}
 
 	public SESAMETestSolution createSolution() {
@@ -357,7 +357,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a);
 					sol.addContents(i++, sta);
 				}
-				
 			}
 		}
 		
@@ -402,6 +401,5 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	public void shutDownMetricListener() {
 		metricConsumer.close();
-		
 	}
 }
