@@ -77,7 +77,8 @@ public abstract class timeReachingGivenPoint extends Metric {
     				double timeNow = SimCore.getInstance().getTime();
     				// This makes sure we only tag the first touch of the target
     				if (shouldSendNow()) {
-    					System.out.println("timeReachingGivenPoint reached threshold: timeNow=" + timeNow + ",dist=" + dist);
+    					System.out.println(this.getClass().getName() + " reached threshold: time= " + 
+    				                    timeNow + ",dist=" + dist);
     					out.collect(timeNow);
     					sendTime.update(timeNow);
     				}
@@ -85,5 +86,6 @@ public abstract class timeReachingGivenPoint extends Metric {
     		}
     	}
     }
-
 }
+
+

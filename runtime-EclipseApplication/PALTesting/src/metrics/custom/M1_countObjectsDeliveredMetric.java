@@ -33,6 +33,9 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 	protected MapState<String,Integer> objectCountForRobot;
 	protected MapState<String,Boolean> loadedStatus;
 	
+	// Failedstatus tracks the failed status of the PMB2 during Scenario 2
+	protected MapState<String,Boolean> failedStatus;
+	
 	// Key is a String of the point - to ensure it is the same
 	// Value is a comma-separated string of object IDs O1,O2 etc rather than a set
 	protected MapState<String, String> waypointDeliveryState;
@@ -42,6 +45,7 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 	
 	private ValueState<Boolean> pmb2LoadedState;
 	private ValueState<Boolean> omniLoadedState;
+	
 	 
     private static double SEND_RATE_LIMIT_TIME = 5.0;
 	
@@ -139,9 +143,15 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 		return (topic.contains("/pmb2_1/ground_truth_odom") || topic.contains("/omni_base_1/ground_truth_odom"));
 	}
 
-	/** This is the minimum distance to a target **/
+	/** This is the minimum distance to a target..
+	 * originally goal tolerance - doubled from 0.05 for extra tolerance **/
 	protected double getDistThreshold() {
-		return 0.8;
+		return 0.1;
+	}
+	
+	/** Minimal speed required to register delivery **/
+	private double getSpeedThresholdSquared() {
+		return 0.01;
 	}
 
 	protected boolean shouldSendNow() {
@@ -152,11 +162,28 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 			return false;
 		}
 	}
+	
+	private void checkFailureStatus(EventMessage msg) throws Exception {
+		String topic = msg.getTopic();
+		if (topic.contains("performance")) {
+			String val = msg.getValue().toString();
+			
+			if (val.contains("help") || val.contains("rtd") || val.contains("alarm")) {
+				Optional<String> robot_o = getRobotName(topic);
+				if (robot_o.isPresent()) {
+					String robot = robot_o.get();
+					failedStatus.put(robot, true);
+				}
+			}
+		}
+	}
        
     public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
     	
     	pmbLoadedTracker.checkMessage(msg);
     	omniLoadedTracker.checkMessage(msg);
+    	
+    	checkFailureStatus(msg);
     	
     	if (positionTopicMatches(msg)) {
     		Object value = msg.getValue();
@@ -169,15 +196,21 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 				Double x = (Double)ParsingUtils.getField(jo, "pose.pose.position.x");
 				Double y = (Double)ParsingUtils.getField(jo, "pose.pose.position.y");
 				Double z = (Double)ParsingUtils.getField(jo, "pose.pose.position.z");
+				
+				Double vx = (Double)ParsingUtils.getField(jo, "twist.twist.linear.x");
+				Double vy = (Double)ParsingUtils.getField(jo, "twist.twist.linear.y");
+				Double vz = (Double)ParsingUtils.getField(jo, "twist.twist.linear.z");
     		
 				Point3D current = new Point3D(x,y,z);
+				Point3D velocity = new Point3D(vx,vy,vz);
+				double speedSquared = velocity.magnitudeSquared();
+				
 				// List of target points to scan
 				for (Point3D targetPoint : getTargetPoints()) {
 					double dist = current.distanceToOther(targetPoint);
 					
-					// Check distance
-					// TODO: Also need to check the robot VELOCITY here to see if it's stopped!
-    				if (dist < getDistThreshold()) {
+					// Check distance and speed here to see if it's stopped
+    				if (dist < getDistThreshold() && (speedSquared < getSpeedThresholdSquared())) {
 						double timeNow = SimCore.getInstance().getTime();
 						checkObjectDelivery(robotName, targetPoint, timeNow, dist, out);
 					}
@@ -185,6 +218,8 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
     		}
     	}
     }
+
+
 
 	private Point3D[] getTargetPoints() {
 		return new Point3D[] { new Point3D(-3.359, 3.207, 0 ), new Point3D(-5.35,3.39,0.0) };

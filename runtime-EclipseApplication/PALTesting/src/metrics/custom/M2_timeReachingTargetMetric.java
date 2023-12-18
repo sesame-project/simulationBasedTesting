@@ -17,27 +17,8 @@ public class M2_timeReachingTargetMetric extends timeReachingGivenPoint {
 	private static final long serialVersionUID = 1L;
 	
 	protected Optional<Point3D> getGivenPoint(EventMessage msg) {
-		String topic = msg.getTopic();
-		if (topic.contains("pmb2_1/ground_truth_odom")) {
-			// PMB2 target location
-			//return Optional.of(new Point3D(-3.36,3.21,0.0));
-			
-			// Using top point
-			return Optional.of(new Point3D(-7.382,3.24,0.0));
-		}  
-		
-		if (topic.contains("omni_base_1/ground_truth_odom")) {
-			// Using top point
-			return Optional.of(new Point3D(-7.382,3.24,0.0));
-			
-			
-			// Also PMB2 target location
-			//return Optional.of(new Point3D(-3.36,3.21,0.0));
-			// Old target location here
-			//return Optional.of(new Point3D(-5.372,3.27,0.0));
-		} 
-		
-		return Optional.empty();
+		// Using the first point
+		return Optional.of(new Point3D(-3.359,3.207,0.0));
 	}
 	
 	public void open(Configuration parameters) throws Exception {
@@ -52,7 +33,7 @@ public class M2_timeReachingTargetMetric extends timeReachingGivenPoint {
 	}
 
 	protected double getDistThreshold() {
-		return 0.8;
+		return 0.1;
 	}
 
 	/** Check that the robots are actually delivering first! **/
