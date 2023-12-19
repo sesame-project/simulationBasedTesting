@@ -48,7 +48,7 @@ public abstract class timeReachingGivenPoint extends Metric {
     
     private void checkRobotStatus(EventMessage msg) throws Exception { 
     	String topic = msg.getTopic();  	
-    	if (topic.contains("loaded")) {
+    	if (topic.contains("/conserts/pal/loaded")) {
     		String status = (String)msg.getValue();
     		System.out.println("Found status message: " + status);    	
     		checkStatusMessageForRobot("pmb2_1", topic, status);

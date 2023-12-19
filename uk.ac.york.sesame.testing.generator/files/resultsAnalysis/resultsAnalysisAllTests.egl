@@ -1,5 +1,5 @@
 [%
-var campaignName = "nullFuzzing-passive"; 
+var campaignName = "scenario2-eddi"; 
 
 var targetType = Testing!ResultSetStatus#INTERMEDIATE;
 	
@@ -8,7 +8,7 @@ var testSpace = Testing!TestingSpace.all().first();
 for (campaign in testSpace.campaigns) {
 	if (campaign.name.equals(campaignName)) {
 		var firstTest = campaign.performedTests.first();
-		%][%= "TestID\t\t\t\t\t\t\t\t" + getAllMetrics(firstTest, true) %]
+		%][%= "TestID\t\t\t\t\t\t" + getAllMetrics(firstTest, true) %]
 		[% 	for (test in campaign.performedTests) { 
 		%]Test:[%= test.name + "\t\t" %][%= getAllMetrics(test, false) %] [%= getOperations(test.operations) %]
 		[%

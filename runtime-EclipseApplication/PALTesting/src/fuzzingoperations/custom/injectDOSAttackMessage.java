@@ -14,7 +14,8 @@ public class injectDOSAttackMessage implements CustomFuzzingOperation, Serializa
 
 	private static final long serialVersionUID = 1L;
 	private boolean sentYet = false;
-	private double triggerTime = 80.0;
+	// Now using the fuzzing operations start time to trigger it
+	private double triggerTime = 0.0;
 	
 	public injectDOSAttackMessage() {
 

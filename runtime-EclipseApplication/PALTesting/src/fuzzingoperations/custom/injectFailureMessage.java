@@ -14,7 +14,7 @@ public class injectFailureMessage implements CustomFuzzingOperation, Serializabl
 
 	private static final long serialVersionUID = 1L;
 	private boolean sentYet = false;
-	private double triggerTime = 80.0;
+	private double earliestTriggerLimit = 80.0;
 	
 	public injectFailureMessage() {
 
@@ -31,7 +31,7 @@ public class injectFailureMessage implements CustomFuzzingOperation, Serializabl
 	
 	public void customProcess(Map<String, Object> params, EventMessage value, Context ctx, Collector<EventMessage> out) {
 		double timeStamp = SimCore.getInstance().getTime();
-		if (timeStamp > triggerTime) {
+		if (timeStamp > earliestTriggerLimit) {
 			if (!sentYet) {
 				EventMessage triggerMsg = createCustomMessage();
 				out.collect(triggerMsg);

@@ -2,6 +2,7 @@ package uk.ac.york.sesame.testing.evolutionary.operators;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
@@ -25,5 +26,4 @@ abstract public class SESAMECrossoverOperation implements CrossoverOperator<SESA
 			e.printStackTrace();
 		}
 	}
-	
 }

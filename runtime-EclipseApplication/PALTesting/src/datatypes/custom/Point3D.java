@@ -49,6 +49,16 @@ public class Point3D {
 		return distSqr;
 	}
 	
+	public double magnitudeSquared() {
+		double sq = this.x * this.x + this.y * this.y + this.z * this.z;
+		return sq;
+	}
+	
+	public double magnitude() {
+		double sq = this.x * this.x + this.y * this.y + this.z * this.z;
+		return sq;
+	}
+	
 	public String toString() {
 		return "[" + this.x + "," + this.y + "," + this.z + "]";
 	}

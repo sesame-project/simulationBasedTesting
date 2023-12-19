@@ -33,7 +33,7 @@ public class ROSSimulator implements ISimulator {
 
 	protected static final boolean USE_FRACTIONAL_TIME = true;
 
-	private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 1000;
+	private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 10000;
 
 	private boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	

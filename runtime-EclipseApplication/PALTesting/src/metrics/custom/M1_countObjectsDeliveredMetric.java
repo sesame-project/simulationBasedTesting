@@ -1,10 +1,8 @@
 package metrics.custom;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Optional;
-import java.util.Set;
 
 import org.apache.flink.api.common.state.MapState;
 import org.apache.flink.api.common.state.MapStateDescriptor;
@@ -28,6 +26,8 @@ import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 
 	private static final long serialVersionUID = 1L;
+	
+	//private int EXPECTED_DELIVERIES_PER_WAYPO
 	
 	// Gives the count of object on a particular robot
 	protected MapState<String,Integer> objectCountForRobot;
@@ -129,7 +129,8 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 		omniLoadedState = getRuntimeContext().getState(new ValueStateDescriptor<>("M1-omniloadedStatus", Boolean.class));
 		loadedStatus = getRuntimeContext().getMapState(new MapStateDescriptor<>("M1-loadedStatusMap", String.class, Boolean.class));
 		waypointDeliveryState = getRuntimeContext().getMapState(new MapStateDescriptor<>("M1-waypointdeliverystate", String.class, String.class));
-		objectCountForRobot = getRuntimeContext().getMapState(new MapStateDescriptor<>("objectCountTracker", String.class, Integer.class));
+		objectCountForRobot = getRuntimeContext().getMapState(new MapStateDescriptor<>("M1-objectCountTracker", String.class, Integer.class));
+		failedStatus = getRuntimeContext().getMapState(new MapStateDescriptor<>("M1-failedStatusTracker", String.class, Boolean.class));
 		
 		pmbLoadedTracker = new LoadedChangeTracker("pmb2_1", pmb2LoadedState);
 		omniLoadedTracker = new LoadedChangeTracker("omni_base_1", omniLoadedState);
@@ -144,14 +145,14 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 	}
 
 	/** This is the minimum distance to a target..
-	 * originally goal tolerance - doubled from 0.05 for extra tolerance **/
+	 * originally goal tolerance - x4 from 0.05 for extra tolerance **/
 	protected double getDistThreshold() {
-		return 0.1;
+		return 0.2;
 	}
 	
 	/** Minimal speed required to register delivery **/
 	private double getSpeedThresholdSquared() {
-		return 0.01;
+		return 0.025;
 	}
 
 	protected boolean shouldSendNow() {
@@ -163,7 +164,7 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 		}
 	}
 	
-	private void checkFailureStatus(EventMessage msg) throws Exception {
+	private void setFailureStatus(EventMessage msg) throws Exception {
 		String topic = msg.getTopic();
 		if (topic.contains("performance")) {
 			String val = msg.getValue().toString();
@@ -177,13 +178,22 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 			}
 		}
 	}
+	
+	private boolean getFailedStatus(String robotName) throws Exception {
+		if (failedStatus.contains(robotName)) {
+			return failedStatus.get(robotName);
+		} else {
+			return false;
+		}
+	}
+
        
     public void processElement1(EventMessage msg, Context ctx, Collector<Double> out) throws Exception {
     	
     	pmbLoadedTracker.checkMessage(msg);
     	omniLoadedTracker.checkMessage(msg);
     	
-    	checkFailureStatus(msg);
+    	setFailureStatus(msg);
     	
     	if (positionTopicMatches(msg)) {
     		Object value = msg.getValue();
@@ -219,10 +229,12 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
     	}
     }
 
-
-
 	private Point3D[] getTargetPoints() {
-		return new Point3D[] { new Point3D(-3.359, 3.207, 0 ), new Point3D(-5.35,3.39,0.0) };
+		return new Point3D[] { 
+				new Point3D(-3.359, 3.207, 0.0 ),
+				new Point3D(-5.35,  3.39, 0.0),
+				new Point3D(-7.382, 3.24, 0.0)
+		};
 	}
 
 	private Optional<String> getRobotName(String topic) {
@@ -241,16 +253,17 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 		// Register the delivery of object n to waypoint
 		try {
 			boolean robotIsLoaded = getLoadedStatus(robotName);
+			boolean robotIsFailed = getFailedStatus(robotName);
 			String targetPoint = targetPoint3D.toString();
 					
-			if (objectCountForRobot.contains(robotName) && robotIsLoaded) {
+			if (objectCountForRobot.contains(robotName) && robotIsLoaded && !robotIsFailed) {
 				metricLog("registerObjectDelivery - loaded robot looking for " + robotName);
 				int objectIDForRobot = objectCountForRobot.get(robotName);
 				String objString = "O" + String.valueOf(objectIDForRobot);
 
 				String objs;
 				if (!waypointDeliveryState.contains(targetPoint)) {
-					objs = ""; 
+					objs = "";
 				} else {
 					objs = waypointDeliveryState.get(targetPoint);
 				}
