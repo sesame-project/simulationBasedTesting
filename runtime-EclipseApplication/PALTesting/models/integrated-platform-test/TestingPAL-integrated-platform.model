@@ -70,43 +70,43 @@
   <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_26XpAJl5Ee6Cw-FOG_QDjw" name="failureTrigger" variableToAffect="_sw6EAGw6Ee6NTJHqpVnHDQ" fromTemplate="_26XpAJl5Ee6Cw-FOG_QDjw" customProcessClass="injectFailureMessage">
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_26XpAZl5Ee6Cw-FOG_QDjw" startTime="66.0" endTime="126.0"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_-EP1wJl5Ee6Cw-FOG_QDjw" name="uncertaintyTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_-EP1wJl5Ee6Cw-FOG_QDjw" includeInTiming="false" customProcessClass="distortBaseScan">
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_-EP1wJl5Ee6Cw-FOG_QDjw" name="uncertaintyTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_-EP1wJl5Ee6Cw-FOG_QDjw" customProcessClass="distortBaseScan">
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_-EP1wZl5Ee6Cw-FOG_QDjw" endTime="100.0"/>
     <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_-EP1wpl5Ee6Cw-FOG_QDjw" propertyName="rangeFactor" upperBound="0.5"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_YnVoAG2KEe6NTJHqpVnHDQ" name="distortBaseScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_YnVoAG2KEe6NTJHqpVnHDQ" name="distortBaseScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" customProcessClass="distortBaseScan">
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_GlMCcG2QEe6NTJHqpVnHDQ" startTime="60.0" endTime="300.0"/>
     <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_WHqpcJW_Ee6LodbHz5gkog" propertyName="rangeFactor" upperBound="0.5"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_mt7nAG6BEe6upaW3FMquwA" name="distortBaseScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_mt7nAG6BEe6upaW3FMquwA" name="distortBaseScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" customProcessClass="distortBaseScan">
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_mt7nAW6BEe6upaW3FMquwA" startTime="60.0" endTime="300.0"/>
     <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_YeBc0JW_Ee6LodbHz5gkog" propertyName="rangeFactor" upperBound="0.5"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_kXVr0HOfEe68xv21uncMBA" name="distortBaseScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:CustomFuzzingOperation" xmi:id="_kXVr0HOfEe68xv21uncMBA" name="distortBaseScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" customProcessClass="distortBaseScan">
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_kXVr0XOfEe68xv21uncMBA" startTime="60.0" endTime="300.0"/>
     <params xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_Ysv1UJW_Ee6LodbHz5gkog" propertyName="rangeFactor" upperBound="0.5"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_K6PlYHOqEe68xv21uncMBA" name="packetLossLaserScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" inclusionProbability="0.2">
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_K6PlYHOqEe68xv21uncMBA" name="packetLossLaserScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" >
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_Vy04gHOqEe68xv21uncMBA" startTime="60.0" endTime="300.0"/>
     <frequency xmi:id="_dXxQoHOqEe68xv21uncMBA" upperBound="1.0"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_Rbym0HOqEe68xv21uncMBA" name="packetLossLaserScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" inclusionProbability="0.2">
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_Rbym0HOqEe68xv21uncMBA" name="packetLossLaserScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" >
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_XekBkHOqEe68xv21uncMBA" startTime="60.0" endTime="300.0"/>
     <frequency xmi:id="_eYxaoHOqEe68xv21uncMBA" upperBound="1.0"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_UEGs4HOqEe68xv21uncMBA" name="packetLossLaserScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" inclusionProbability="0.2">
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:PacketLossNetworkOperation" xmi:id="_UEGs4HOqEe68xv21uncMBA" name="packetLossLaserScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" >
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_bZbUoHOqEe68xv21uncMBA" startTime="60.0" endTime="300.0"/>
     <frequency xmi:id="_fO80sHOqEe68xv21uncMBA" upperBound="1.0"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_BLt1IHOrEe68xv21uncMBA" name="delayBaseScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" inclusionProbability="0.2">
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_BLt1IHOrEe68xv21uncMBA" name="delayBaseScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" >
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_DuOOIHOrEe68xv21uncMBA" startTime="60.0" endTime="300.0"/>
     <latency xmi:id="_EygVoHOrEe68xv21uncMBA" upperBound="2.0"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_GPQngHOrEe68xv21uncMBA" name="delayBaseScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" inclusionProbability="0.2">
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_GPQngHOrEe68xv21uncMBA" name="delayBaseScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" >
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_GPQngXOrEe68xv21uncMBA" startTime="60.0" endTime="300.0"/>
     <latency xmi:id="_GPQngnOrEe68xv21uncMBA" upperBound="2.0"/>
   </possibleFuzzingOperations>
-  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_LhkOoHOrEe68xv21uncMBA" name="delayBaseScanTiago1" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" inclusionProbability="0.2">
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:LatencyNetworkOperation" xmi:id="_LhkOoHOrEe68xv21uncMBA" name="delayBaseScanTiago1" variableToAffect="_u_FIYG6CEe6upaW3FMquwA">
     <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_LhkOoXOrEe68xv21uncMBA" startTime="60.0" endTime="300.0"/>
     <latency xmi:id="_LhkOonOrEe68xv21uncMBA" upperBound="2.0"/>
   </possibleFuzzingOperations>
