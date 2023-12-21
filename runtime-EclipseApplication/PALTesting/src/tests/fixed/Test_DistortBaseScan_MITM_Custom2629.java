@@ -270,18 +270,6 @@ public class Test_DistortBaseScan_MITM_Custom2629 {
 			
 				DataStream<Double> M3_residualEnergyOmniresStream = eventsAndControlIn.process(new M4_residualEnergyOmniMetric());
 			
-				DataStream<Double> CV_PMB2_Standby_TimeresStream = eventsAndControlIn.process(new CV_PMB2_Standby_TimeMetric());
-			
-				DataStream<Double> CV_PMB2_Collecting_TimeresStream = eventsAndControlIn.process(new CV_PMB2_Collecting_TimeMetric());
-			
-				DataStream<Double> CV_PMB2_Delivering_TimeresStream = eventsAndControlIn.process(new CV_PMB2_Delivering_TimeMetric());
-			
-				DataStream<Double> CV_Omni_Standby_TimeresStream = eventsAndControlIn.process(new CV_Omni_Standby_TimeMetric());
-			
-				DataStream<Double> CV_Omni_Collecting_TimeresStream = eventsAndControlIn.process(new CV_Omni_Collecting_TimeMetric());
-			
-				DataStream<Double> CV_Omni_Delivering_TimeresStream = eventsAndControlIn.process(new CV_Omni_Delivering_TimeMetric());
-			
 				DataStream<Double> CV_DistanceFromHumanOmniresStream = eventsAndControlIn.process(new CV_DistanceFromHumanOmniMetric());
 			
 				DataStream<Double> CV_DistanceFromHumanPMB2resStream = eventsAndControlIn.process(new CV_DistanceFromHumanPMB2Metric());

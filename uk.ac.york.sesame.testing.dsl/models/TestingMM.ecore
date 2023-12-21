@@ -167,6 +167,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="inclusionProbability"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
           defaultValueLiteral="1"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="includeInTiming" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OfflineFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationTime" eType="#//FuzzingOperations/OfflineOperationTime"/>

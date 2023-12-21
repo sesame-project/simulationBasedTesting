@@ -148,6 +148,7 @@ package FuzzingOperations {
 		attr long seed;
 		attr int sequenceNumInTest;
 		attr double inclusionProbability = 1;
+		attr boolean includeInTiming = true;
 	}
 
 	class OfflineFuzzingOperation extends FuzzingOperation {

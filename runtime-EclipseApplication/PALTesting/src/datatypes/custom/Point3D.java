@@ -63,6 +63,10 @@ public class Point3D {
 		return "[" + this.x + "," + this.y + "," + this.z + "]";
 	}
 	
+	public String toCSV() {
+		return this.x + "," + this.y + "," + this.z;
+	}
+	
 	public double distanceToOther(Point3D other) {
 		return Math.sqrt(distanceSqrToOther(other));
 	}

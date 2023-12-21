@@ -39,6 +39,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getSeed <em>Seed</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getSequenceNumInTest <em>Sequence Num In Test</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getInclusionProbability <em>Inclusion Probability</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#isIncludeInTiming <em>Include In Timing</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getFuzzingOperation()
@@ -419,5 +420,28 @@ public interface FuzzingOperation extends EObject {
 	 * @generated
 	 */
 	void setInclusionProbability(double value);
+
+	/**
+	 * Returns the value of the '<em><b>Include In Timing</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Include In Timing</em>' attribute.
+	 * @see #setIncludeInTiming(boolean)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getFuzzingOperation_IncludeInTiming()
+	 * @model default="true"
+	 * @generated
+	 */
+	boolean isIncludeInTiming();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#isIncludeInTiming <em>Include In Timing</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Include In Timing</em>' attribute.
+	 * @see #isIncludeInTiming()
+	 * @generated
+	 */
+	void setIncludeInTiming(boolean value);
 
 } // FuzzingOperation

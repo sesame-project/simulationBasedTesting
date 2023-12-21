@@ -213,7 +213,9 @@ public class [%= testNameString %]_TestRunner {
 		List<Double> fuzzOpTimes = new ArrayList<Double>(); 
 		
 		[% for (fuzzOp in test.operations) { %]
-			[%= produceTimeString(fuzzOp) %]
+			[% if (fuzzOp.includeInTiming) { %]
+				[%= produceTimeString(fuzzOp) %]
+			[% } %]
 		[% } %]
 		
 		

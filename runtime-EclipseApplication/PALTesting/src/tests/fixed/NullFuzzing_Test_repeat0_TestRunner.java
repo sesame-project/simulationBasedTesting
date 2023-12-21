@@ -312,19 +312,7 @@ public class NullFuzzing_Test_repeat0_TestRunner {
 				DataStream<Double> M4_residualEnergyPMB2resStream = eventsAndControlIn.process(new M4_residualEnergyPMB2Metric());
 			
 				DataStream<Double> M4_residualEnergyOmniresStream = eventsAndControlIn.process(new M4_residualEnergyOmniMetric());
-			
-				DataStream<Double> CV_PMB2_Standby_TimeresStream = eventsAndControlIn.process(new CV_PMB2_Standby_TimeMetric());
-			
-				DataStream<Double> CV_PMB2_Collecting_TimeresStream = eventsAndControlIn.process(new CV_PMB2_Collecting_TimeMetric());
-			
-				DataStream<Double> CV_PMB2_Delivering_TimeresStream = eventsAndControlIn.process(new CV_PMB2_Delivering_TimeMetric());
-			
-				DataStream<Double> CV_Omni_Standby_TimeresStream = eventsAndControlIn.process(new CV_Omni_Standby_TimeMetric());
-			
-				DataStream<Double> CV_Omni_Collecting_TimeresStream = eventsAndControlIn.process(new CV_Omni_Collecting_TimeMetric());
-			
-				DataStream<Double> CV_Omni_Delivering_TimeresStream = eventsAndControlIn.process(new CV_Omni_Delivering_TimeMetric());
-			
+				
 				DataStream<Double> CV_DistanceFromHumanOmniresStream = eventsAndControlIn.process(new CV_DistanceFromHumanOmniMetric());
 			
 				DataStream<Double> CV_DistanceFromHumanPMB2resStream = eventsAndControlIn.process(new CV_DistanceFromHumanPMB2Metric());
@@ -338,26 +326,11 @@ public class NullFuzzing_Test_repeat0_TestRunner {
 			DataStream<MetricMessage> metricMsgCV_DistanceFromHumanOmni = CV_DistanceFromHumanOmniresStream.map(d -> new MetricMessage("NullFuzzing_Test_repeat0", "CV_DistanceFromHumanOmni", d));
  
 			// Generate a message stream for all metrics
-			DataStream<MetricMessage> metricMsgCV_PMB2_Collecting_Time = CV_PMB2_Collecting_TimeresStream.map(d -> new MetricMessage("NullFuzzing_Test_repeat0", "CV_PMB2_Collecting_Time", d));
- 
-			// Generate a message stream for all metrics
-			DataStream<MetricMessage> metricMsgCV_Omni_Standby_Time = CV_Omni_Standby_TimeresStream.map(d -> new MetricMessage("NullFuzzing_Test_repeat0", "CV_Omni_Standby_Time", d));
- 
-			// Generate a message stream for all metrics
-			DataStream<MetricMessage> metricMsgCV_Omni_Delivering_Time = CV_Omni_Delivering_TimeresStream.map(d -> new MetricMessage("NullFuzzing_Test_repeat0", "CV_Omni_Delivering_Time", d));
- 
-			// Generate a message stream for all metrics
 			DataStream<MetricMessage> metricMsgM2_distanceFromHumanOmni = M2_distanceFromHumanOmniresStream.map(d -> new MetricMessage("NullFuzzing_Test_repeat0", "M2_distanceFromHumanOmni", d));
  
 			// Generate a message stream for all metrics
 			DataStream<MetricMessage> metricMsgCV_DistanceFromHumanPMB2 = CV_DistanceFromHumanPMB2resStream.map(d -> new MetricMessage("NullFuzzing_Test_repeat0", "CV_DistanceFromHumanPMB2", d));
- 
-			// Generate a message stream for all metrics
-			DataStream<MetricMessage> metricMsgCV_Omni_Collecting_Time = CV_Omni_Collecting_TimeresStream.map(d -> new MetricMessage("NullFuzzing_Test_repeat0", "CV_Omni_Collecting_Time", d));
- 
-			// Generate a message stream for all metrics
-			DataStream<MetricMessage> metricMsgCV_PMB2_Delivering_Time = CV_PMB2_Delivering_TimeresStream.map(d -> new MetricMessage("NullFuzzing_Test_repeat0", "CV_PMB2_Delivering_Time", d));
- 
+
 			// Generate a message stream for all metrics
 			DataStream<MetricMessage> metricMsgM1_timeReachingTargetEither = M1_timeReachingTargetEitherresStream.map(d -> new MetricMessage("NullFuzzing_Test_repeat0", "M1_timeReachingTargetEither", d));
  
@@ -366,9 +339,6 @@ public class NullFuzzing_Test_repeat0_TestRunner {
  
 			// Generate a message stream for all metrics
 			DataStream<MetricMessage> metricMsgM3_Interrobot_Distance_PMB2_Omni = M3_Interrobot_Distance_PMB2_OmniresStream.map(d -> new MetricMessage("NullFuzzing_Test_repeat0", "M3_Interrobot_Distance_PMB2_Omni", d));
- 
-			// Generate a message stream for all metrics
-			DataStream<MetricMessage> metricMsgCV_PMB2_Standby_Time = CV_PMB2_Standby_TimeresStream.map(d -> new MetricMessage("NullFuzzing_Test_repeat0", "CV_PMB2_Standby_Time", d));
  
 			// Generate a message stream for all metrics
 			DataStream<MetricMessage> metricMsgfuzzingOperationTimes = fuzzingOperationTimesresStream.map(d -> new MetricMessage("NullFuzzing_Test_repeat0", "fuzzingOperationTimes", d));
@@ -389,17 +359,11 @@ public class NullFuzzing_Test_repeat0_TestRunner {
 		DataStream<MetricMessage> allMetrics = 		
 		metricMsgCV_DistanceFromHumanOmni
 		
-		.union(metricMsgCV_PMB2_Collecting_Time)
-		.union(metricMsgCV_Omni_Standby_Time)
-		.union(metricMsgCV_Omni_Delivering_Time)
 		.union(metricMsgM2_distanceFromHumanOmni)
 		.union(metricMsgCV_DistanceFromHumanPMB2)
-		.union(metricMsgCV_Omni_Collecting_Time)
-		.union(metricMsgCV_PMB2_Delivering_Time)
 		.union(metricMsgM1_timeReachingTargetEither)
 		.union(metricMsgM2_distanceFromHumanPMB2)
 		.union(metricMsgM3_Interrobot_Distance_PMB2_Omni)
-		.union(metricMsgCV_PMB2_Standby_Time)
 		.union(metricMsgfuzzingOperationTimes)
 	
 ;

@@ -5,6 +5,7 @@ killall -9 rosrun
 killall -9 rostopic
 killall -9 turtlesim_node
 killall -9 roslaunch
+killall -9 rosbag
 killall -9 python
 killall -9 python2
 killall -9 python2.7
@@ -40,5 +41,6 @@ pkill -f TestRunner
 pkill -9 -f DDDSimulatorProject
 
 docker stop $(docker ps -a -q)
+killall -9 rosbag
 
 exit 0

@@ -23,12 +23,11 @@ import uk.ac.york.sesame.testing.architecture.utilities.ParsingUtils;
 // Then when crossing a target point and loaded, increment the delivered count
 // Only send at limited rate, e.g. max once per 0.1 seconds
 
-public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
+public class M1_countObjectsMissedMetric extends BatchedRateMetric {
 
 	private static final long serialVersionUID = 1L;
 	
-	
-	//private int EXPECTED_DELIVERIES_PER_WAYPO
+	private int EXPECTED_DELIVERIES_PER_WAYPOINT = 2;
 	
 	// Gives the count of object on a particular robot
 	protected MapState<String,Integer> objectCountForRobot;
@@ -87,7 +86,7 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 	transient LoadedChangeTracker pmbLoadedTracker;
 	transient LoadedChangeTracker omniLoadedTracker;
 
-	public M1_countObjectsDeliveredMetric() {
+	public M1_countObjectsMissedMetric() {
 		super(SEND_RATE_LIMIT_TIME);
 		//targetPoints = new ArrayList<Point3D>();
 		// Add a waypoint - need both 1 and 2
@@ -217,13 +216,14 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 				double speedSquared = velocity.magnitudeSquared();
 				
 				// List of target points to scan
-				for (Point3D targetPoint : getTargetPoints()) {
+				Point3D [] targetPoints = getTargetPoints();
+				for (Point3D targetPoint : targetPoints) {
 					double dist = current.distanceToOther(targetPoint);
 					
 					// Check distance and speed here to see if it's stopped
     				if (dist < getDistThreshold() && (speedSquared < getSpeedThresholdSquared())) {
 						double timeNow = SimCore.getInstance().getTime();
-						checkObjectDelivery(robotName, targetPoint, timeNow, dist, out);
+						checkObjectDelivery(targetPoints, robotName, targetPoint, timeNow, dist, out);
 					}
 				}
     		}
@@ -250,7 +250,7 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 		return Optional.empty();
 	}
 
-	private void checkObjectDelivery(String robotName, Point3D targetPoint3D, double timeNow, double dist, Collector<Double> out) {
+	private void checkObjectDelivery(Point3D [] targetPoints, String robotName, Point3D targetPoint3D, double timeNow, double dist, Collector<Double> out) {
 		// Register the delivery of object n to waypoint
 		try {
 			boolean robotIsLoaded = getLoadedStatus(robotName);
@@ -276,25 +276,35 @@ public class M1_countObjectsDeliveredMetric extends BatchedRateMetric {
 				waypointDeliveryState.put(targetPoint, objs);
 				// Ensure we only send the total on the first item - if trouble, send of every entry
 				// to the zone
-				sendObjectTotal(out);
+				sendObjectTotal(targetPoints, out);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void sendObjectTotal(Collector<Double> out) throws Exception {
-		int totalForWaypoints = 0;
-		for (Entry<String, String> me : waypointDeliveryState.entries()) {
-			String objString = me.getValue();
-			int size = countObjects(objString);
-			totalForWaypoints += size;
-			metricLog("Waypoint " + me.getKey() + " has " + objString + ": count as " + size + " objects");
+	private void sendObjectTotal(Point3D [] targetPoints, Collector<Double> out) throws Exception {
+		int totalMissing = 0;
+		
+		for (Point3D p : targetPoints) {
+			String target = p.toString();
+			String objString = waypointDeliveryState.get(target);
+			if (objString != null) {
+				int amountsThisWaypoint = countObjects(objString);
+				int missingThisWaypoint = Math.max((EXPECTED_DELIVERIES_PER_WAYPOINT - amountsThisWaypoint), 0);
+				totalMissing += missingThisWaypoint;
+				metricLog("Waypoint " + target + " has " + objString + ": missing " + missingThisWaypoint + " objects");
+			} else {
+				// No objects at waypoint
+				int missingThisWaypoint = EXPECTED_DELIVERIES_PER_WAYPOINT;
+				totalMissing += missingThisWaypoint;
+				metricLog("Waypoint " + target + " has no objects : missing " + missingThisWaypoint + "!");
+			}
 		}
 		
-		metricLog("Sending out object total " + totalForWaypoints);
+		metricLog("Sending out object total " + totalMissing);
 		if (isReadyNow()) {
-			out.collect((double)totalForWaypoints);
+			out.collect((double)totalMissing);
 		}
 	}
 
