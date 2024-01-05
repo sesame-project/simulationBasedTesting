@@ -62,6 +62,8 @@ public class StandardGrammarFactoryImpl extends EFactoryImpl implements Standard
 			case StandardGrammarPackage.CONDITION_INTEGER: return createConditionInteger();
 			case StandardGrammarPackage.CONDITION_VARIABLE: return createConditionVariable();
 			case StandardGrammarPackage.CONDITION: return createCondition();
+			case StandardGrammarPackage.CONTAINS_VARIABLE: return createContainsVariable();
+			case StandardGrammarPackage.CONTAINS_INTEGER: return createContainsInteger();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -149,6 +151,26 @@ public class StandardGrammarFactoryImpl extends EFactoryImpl implements Standard
 	public Condition createCondition() {
 		ConditionImpl condition = new ConditionImpl();
 		return condition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ContainsVariable createContainsVariable() {
+		ContainsVariableImpl containsVariable = new ContainsVariableImpl();
+		return containsVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ContainsInteger createContainsInteger() {
+		ContainsIntegerImpl containsInteger = new ContainsIntegerImpl();
+		return containsInteger;
 	}
 
 	/**

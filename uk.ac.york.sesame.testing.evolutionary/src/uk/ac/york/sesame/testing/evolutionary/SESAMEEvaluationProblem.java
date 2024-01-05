@@ -350,6 +350,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 						e.printStackTrace();
 					} catch (ParamError e) {
 						e.printStackTrace();
+					} catch (ConstraintsNotMet e) {
+						e.printStackTrace();
 					}
 					
 				} else {
@@ -376,6 +378,12 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					}
 					
 				} catch (ParamError e) {
+					if (FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE) {
+						throw new SolutionCreationFailed(e);
+					} else {
+						e.printStackTrace();
+					}
+				} catch (ConstraintsNotMet e) {
 					if (FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE) {
 						throw new SolutionCreationFailed(e);
 					} else {

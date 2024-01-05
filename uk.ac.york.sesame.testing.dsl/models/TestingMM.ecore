@@ -169,6 +169,8 @@
           defaultValueLiteral="1"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="includeInTiming" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="conditionConstraints"
+          upperBound="-1" eType="#//StandardGrammar/ConditionConstraint" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OfflineFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationTime" eType="#//FuzzingOperations/OfflineOperationTime"/>
@@ -363,6 +365,15 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="c" lowerBound="1" eType="#//StandardGrammar/ConditionElement"
           containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionConstraint" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ContainsVariable" eSuperTypes="#//StandardGrammar/ConditionConstraint">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="metric" lowerBound="1"
+          eType="#//Metrics/Metric"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ContainsInteger" eSuperTypes="#//StandardGrammar/ConditionConstraint">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="MRSPackage" nsURI="MRSPackage" nsPrefix="">

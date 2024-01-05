@@ -15,8 +15,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.emf.ecore.util.InternalEList;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
@@ -25,6 +27,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionConstraint;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
@@ -56,6 +59,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getSequenceNumInTest <em>Sequence Num In Test</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getInclusionProbability <em>Inclusion Probability</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#isIncludeInTiming <em>Include In Timing</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getConditionConstraints <em>Condition Constraints</em>}</li>
  * </ul>
  *
  * @generated
@@ -350,6 +354,16 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected boolean includeInTiming = INCLUDE_IN_TIMING_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getConditionConstraints() <em>Condition Constraints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConditionConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConditionConstraint> conditionConstraints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -843,6 +857,18 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ConditionConstraint> getConditionConstraints() {
+		if (conditionConstraints == null) {
+			conditionConstraints = new EObjectContainmentEList<ConditionConstraint>(ConditionConstraint.class, this, FuzzingOperationsPackage.FUZZING_OPERATION__CONDITION_CONSTRAINTS);
+		}
+		return conditionConstraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -868,6 +894,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return eBasicSetContainer(null, FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST, msgs);
 			case FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS:
 				return basicSetRecordedTimings(null, msgs);
+			case FuzzingOperationsPackage.FUZZING_OPERATION__CONDITION_CONSTRAINTS:
+				return ((InternalEList<?>)getConditionConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -937,6 +965,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return getInclusionProbability();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUDE_IN_TIMING:
 				return isIncludeInTiming();
+			case FuzzingOperationsPackage.FUZZING_OPERATION__CONDITION_CONSTRAINTS:
+				return getConditionConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1011,6 +1041,10 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUDE_IN_TIMING:
 				setIncludeInTiming((Boolean)newValue);
 				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__CONDITION_CONSTRAINTS:
+				getConditionConstraints().clear();
+				getConditionConstraints().addAll((Collection<? extends ConditionConstraint>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1080,6 +1114,9 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUDE_IN_TIMING:
 				setIncludeInTiming(INCLUDE_IN_TIMING_EDEFAULT);
 				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__CONDITION_CONSTRAINTS:
+				getConditionConstraints().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1132,6 +1169,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return inclusionProbability != INCLUSION_PROBABILITY_EDEFAULT;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUDE_IN_TIMING:
 				return includeInTiming != INCLUDE_IN_TIMING_EDEFAULT;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__CONDITION_CONSTRAINTS:
+				return conditionConstraints != null && !conditionConstraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

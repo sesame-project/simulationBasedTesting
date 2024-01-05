@@ -147,8 +147,9 @@ package FuzzingOperations {
 		val FixedTimeActivation recordedTimings;
 		attr long seed;
 		attr int sequenceNumInTest;
-		attr double inclusionProbability = 1;
+		attr double inclusionProbability = "1";
 		attr boolean includeInTiming = true;
+		val StandardGrammar.ConditionConstraint[*] conditionConstraints;
 	}
 
 	class OfflineFuzzingOperation extends FuzzingOperation {
@@ -166,11 +167,9 @@ package FuzzingOperations {
 	}
 
 	class CustomOfflineFuzzingOperation extends OfflineFuzzingOperation {
-	
 	}
 
 	abstract class Activation {
-	
 	}
 
 	class FixedTimeActivation extends Activation {
@@ -391,6 +390,18 @@ package StandardGrammar {
 		val ConditionElement[1] c;
 	}
 
+	abstract class ConditionConstraint {
+		
+	}
+	
+	class ContainsVariable extends ConditionConstraint {
+		ref Metrics.Metric[1] metric;
+	}
+	
+	class ContainsInteger extends ConditionConstraint {
+		attr int minValue;
+		attr int maxValue;
+	}	
 }
 
 @namespace(uri="MRSPackage", prefix="")

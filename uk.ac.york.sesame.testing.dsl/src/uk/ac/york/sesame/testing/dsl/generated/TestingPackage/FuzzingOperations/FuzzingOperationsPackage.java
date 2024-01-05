@@ -248,13 +248,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int FUZZING_OPERATION__INCLUDE_IN_TIMING = 19;
 
 	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION__CONDITION_CONSTRAINTS = 20;
+
+	/**
 	 * The number of structural features of the '<em>Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_FEATURE_COUNT = 20;
+	int FUZZING_OPERATION_FEATURE_COUNT = 21;
 
 	/**
 	 * The number of operations of the '<em>Fuzzing Operation</em>' class.
@@ -454,6 +463,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int OFFLINE_FUZZING_OPERATION__INCLUDE_IN_TIMING = FUZZING_OPERATION__INCLUDE_IN_TIMING;
+
+	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_FUZZING_OPERATION__CONDITION_CONSTRAINTS = FUZZING_OPERATION__CONDITION_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Operation Time</b></em>' attribute.
@@ -671,6 +689,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_FUZZING_OPERATION__INCLUDE_IN_TIMING = FUZZING_OPERATION__INCLUDE_IN_TIMING;
+
+	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__CONDITION_CONSTRAINTS = FUZZING_OPERATION__CONDITION_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Params</b></em>' containment reference list.
@@ -897,6 +924,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_OFFLINE_FUZZING_OPERATION__INCLUDE_IN_TIMING = OFFLINE_FUZZING_OPERATION__INCLUDE_IN_TIMING;
+
+	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_FUZZING_OPERATION__CONDITION_CONSTRAINTS = OFFLINE_FUZZING_OPERATION__CONDITION_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Operation Time</b></em>' attribute.
@@ -1300,6 +1336,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int FUZZ_TESTING_OPERATION__INCLUDE_IN_TIMING = FUZZING_OPERATION__INCLUDE_IN_TIMING;
 
 	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_OPERATION__CONDITION_CONSTRAINTS = FUZZING_OPERATION__CONDITION_CONSTRAINTS;
+
+	/**
 	 * The number of structural features of the '<em>Fuzz Testing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1508,6 +1553,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int COMPONENT_OPERATION__INCLUDE_IN_TIMING = FUZZ_TESTING_OPERATION__INCLUDE_IN_TIMING;
 
 	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_OPERATION__CONDITION_CONSTRAINTS = FUZZ_TESTING_OPERATION__CONDITION_CONSTRAINTS;
+
+	/**
 	 * The number of structural features of the '<em>Component Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1714,6 +1768,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_PROPERTY_OPERATION__INCLUDE_IN_TIMING = FUZZ_TESTING_OPERATION__INCLUDE_IN_TIMING;
+
+	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_OPERATION__CONDITION_CONSTRAINTS = FUZZ_TESTING_OPERATION__CONDITION_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Property To Affect</b></em>' reference.
@@ -1931,6 +1994,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT_SUB_PROPERTY_OPERATION__INCLUDE_IN_TIMING = FUZZ_TESTING_OPERATION__INCLUDE_IN_TIMING;
+
+	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_OPERATION__CONDITION_CONSTRAINTS = FUZZ_TESTING_OPERATION__CONDITION_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Property To Affect</b></em>' reference.
@@ -2159,6 +2231,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int VARIABLE_OPERATION__INCLUDE_IN_TIMING = FUZZ_TESTING_OPERATION__INCLUDE_IN_TIMING;
 
 	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_OPERATION__CONDITION_CONSTRAINTS = FUZZ_TESTING_OPERATION__CONDITION_CONSTRAINTS;
+
+	/**
 	 * The feature id for the '<em><b>Sub Parameters</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2376,6 +2457,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int RANDOM_VALUE_FUZZING_OPERATION__INCLUDE_IN_TIMING = COMPONENT_OPERATION__INCLUDE_IN_TIMING;
 
 	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FUZZING_OPERATION__CONDITION_CONSTRAINTS = COMPONENT_OPERATION__CONDITION_CONSTRAINTS;
+
+	/**
 	 * The number of structural features of the '<em>Random Value Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2582,6 +2672,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_VALUE_FROM_SET_OPERATION__INCLUDE_IN_TIMING = RANDOM_VALUE_FUZZING_OPERATION__INCLUDE_IN_TIMING;
+
+	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_OPERATION__CONDITION_CONSTRAINTS = RANDOM_VALUE_FUZZING_OPERATION__CONDITION_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Value Set</b></em>' containment reference list.
@@ -3196,6 +3295,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int NETWORK_FUZZING_OPERATION__INCLUDE_IN_TIMING = FUZZING_OPERATION__INCLUDE_IN_TIMING;
 
 	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_FUZZING_OPERATION__CONDITION_CONSTRAINTS = FUZZING_OPERATION__CONDITION_CONSTRAINTS;
+
+	/**
 	 * The number of structural features of the '<em>Network Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3404,6 +3512,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int BLACKHOLE_NETWORK_OPERATION__INCLUDE_IN_TIMING = NETWORK_FUZZING_OPERATION__INCLUDE_IN_TIMING;
 
 	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_OPERATION__CONDITION_CONSTRAINTS = NETWORK_FUZZING_OPERATION__CONDITION_CONSTRAINTS;
+
+	/**
 	 * The number of structural features of the '<em>Blackhole Network Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3610,6 +3727,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int LATENCY_NETWORK_OPERATION__INCLUDE_IN_TIMING = NETWORK_FUZZING_OPERATION__INCLUDE_IN_TIMING;
+
+	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_OPERATION__CONDITION_CONSTRAINTS = NETWORK_FUZZING_OPERATION__CONDITION_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Latency</b></em>' containment reference.
@@ -3836,6 +3962,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int PACKET_LOSS_NETWORK_OPERATION__INCLUDE_IN_TIMING = NETWORK_FUZZING_OPERATION__INCLUDE_IN_TIMING;
+
+	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_OPERATION__CONDITION_CONSTRAINTS = NETWORK_FUZZING_OPERATION__CONDITION_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Frequency</b></em>' containment reference.
@@ -4104,6 +4239,17 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFuzzingOperation_IncludeInTiming();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getConditionConstraints <em>Condition Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Condition Constraints</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getConditionConstraints()
+	 * @see #getFuzzingOperation()
+	 * @generated
+	 */
+	EReference getFuzzingOperation_ConditionConstraints();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineFuzzingOperation <em>Offline Fuzzing Operation</em>}'.
@@ -4919,6 +5065,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FUZZING_OPERATION__INCLUDE_IN_TIMING = eINSTANCE.getFuzzingOperation_IncludeInTiming();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUZZING_OPERATION__CONDITION_CONSTRAINTS = eINSTANCE.getFuzzingOperation_ConditionConstraints();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.OfflineFuzzingOperationImpl <em>Offline Fuzzing Operation</em>}' class.

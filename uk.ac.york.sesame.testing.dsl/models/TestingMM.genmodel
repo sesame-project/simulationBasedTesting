@@ -139,6 +139,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/sequenceNumInTest"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/inclusionProbability"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/includeInTiming"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/FuzzingOperation/conditionConstraints"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation/operationTime"/>
@@ -305,6 +306,15 @@
       <genClasses ecoreClass="TestingMM.ecore#//StandardGrammar/Condition">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//StandardGrammar/Condition/name"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//StandardGrammar/Condition/c"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//StandardGrammar/ConditionConstraint"/>
+      <genClasses ecoreClass="TestingMM.ecore#//StandardGrammar/ContainsVariable">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TestingMM.ecore#//StandardGrammar/ContainsVariable/metric"/>
+      </genClasses>
+      <genClasses ecoreClass="TestingMM.ecore#//StandardGrammar/ContainsInteger">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//StandardGrammar/ContainsInteger/minValue"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//StandardGrammar/ContainsInteger/maxValue"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="MRSPackage" disposableProviderFactory="true" ecorePackage="TestingMM.ecore#//MRSPackage">

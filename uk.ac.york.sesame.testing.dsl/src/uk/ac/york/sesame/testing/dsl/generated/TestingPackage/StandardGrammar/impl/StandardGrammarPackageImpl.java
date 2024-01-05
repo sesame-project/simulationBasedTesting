@@ -31,10 +31,13 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Bi
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionConstraint;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionElement;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionExpr;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionInteger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionVariable;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ContainsInteger;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ContainsVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage;
 
@@ -97,6 +100,27 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * @generated
 	 */
 	private EClass conditionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conditionConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass containsVariableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass containsIntegerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -353,6 +377,60 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getConditionConstraint() {
+		return conditionConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContainsVariable() {
+		return containsVariableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getContainsVariable_Metric() {
+		return (EReference)containsVariableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContainsInteger() {
+		return containsIntegerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getContainsInteger_MinValue() {
+		return (EAttribute)containsIntegerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getContainsInteger_MaxValue() {
+		return (EAttribute)containsIntegerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getBinaryComparisonOperation() {
 		return binaryComparisonOperationEEnum;
 	}
@@ -418,6 +496,15 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		createEAttribute(conditionEClass, CONDITION__NAME);
 		createEReference(conditionEClass, CONDITION__C);
 
+		conditionConstraintEClass = createEClass(CONDITION_CONSTRAINT);
+
+		containsVariableEClass = createEClass(CONTAINS_VARIABLE);
+		createEReference(containsVariableEClass, CONTAINS_VARIABLE__METRIC);
+
+		containsIntegerEClass = createEClass(CONTAINS_INTEGER);
+		createEAttribute(containsIntegerEClass, CONTAINS_INTEGER__MIN_VALUE);
+		createEAttribute(containsIntegerEClass, CONTAINS_INTEGER__MAX_VALUE);
+
 		// Create enums
 		binaryComparisonOperationEEnum = createEEnum(BINARY_COMPARISON_OPERATION);
 		binaryLogicalOperationEEnum = createEEnum(BINARY_LOGICAL_OPERATION);
@@ -458,6 +545,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		basicConditionEClass.getESuperTypes().add(this.getConditionElement());
 		conditionIntegerEClass.getESuperTypes().add(this.getConditionExpr());
 		conditionVariableEClass.getESuperTypes().add(this.getConditionExpr());
+		containsVariableEClass.getESuperTypes().add(this.getConditionConstraint());
+		containsIntegerEClass.getESuperTypes().add(this.getConditionConstraint());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(conditionElementEClass, ConditionElement.class, "ConditionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -483,6 +572,15 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCondition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCondition_C(), this.getConditionElement(), null, "c", null, 1, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(conditionConstraintEClass, ConditionConstraint.class, "ConditionConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(containsVariableEClass, ContainsVariable.class, "ContainsVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getContainsVariable_Metric(), theMetricsPackage.getMetric(), null, "metric", null, 1, 1, ContainsVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(containsIntegerEClass, ContainsInteger.class, "ContainsInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getContainsInteger_MinValue(), ecorePackage.getEInt(), "minValue", null, 0, 1, ContainsInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContainsInteger_MaxValue(), ecorePackage.getEInt(), "maxValue", null, 0, 1, ContainsInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(binaryComparisonOperationEEnum, BinaryComparisonOperation.class, "BinaryComparisonOperation");

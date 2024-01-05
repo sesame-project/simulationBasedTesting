@@ -11,15 +11,10 @@ import it.units.malelab.jgea.representation.tree.Tree;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.*;
 import uk.ac.york.sesame.testing.evolutionary.grammar.*;
-import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
-import uk.ac.york.sesame.testing.evolutionary.grammar.GrammarBasedSubtreeMutation;
-import uk.ac.york.sesame.testing.evolutionary.grammar.GrammarConverter;
-import uk.ac.york.sesame.testing.evolutionary.grammar.GrowGrammarTreeFactory;
 
 public class ConditionGenerator {
 	
-	
-
+	private static final int MAX_GEN_TRIES_CONSTRAINTS = 500;
 	private Random rng;
 	private int maxGrammarHeight;
 	private Grammar<String> grammar;
@@ -69,6 +64,46 @@ public class ConditionGenerator {
 		return genTree;
 	}
 	
+	public Tree<String> generateOneWithConstraints(int depth, List<ConditionConstraint> ccs) throws ConversionFailed, ConstraintsNotMet {
+		int tryCount = 0;
+		while (tryCount++ < MAX_GEN_TRIES_CONSTRAINTS) {
+			Tree<String> t = generateOne(depth);
+			if (meetsAllConstraints(t, ccs)) {
+				return t;
+			} else {
+				System.out.println("Try " + tryCount + " Failed constraints: " + t.toString());
+			}
+		}
+		throw new ConstraintsNotMet();
+	}
+	
+	public Tree<String> generateOneWithConstraints(List<ConditionConstraint> ccs) throws ConversionFailed, ConstraintsNotMet {
+		return generateOneWithConstraints(maxGrammarHeight, ccs);
+	}
+	
+	private boolean meetsAllConstraints(Tree<String> t, List<ConditionConstraint> ccs) {
+		boolean ok = true;
+		for (ConditionConstraint cc : ccs) {
+			ok = ok && meetsConstraint(t, cc); 
+		}
+		return ok;
+	}
+	
+	private boolean meetsConstraint(Tree<String> t, ConditionConstraint cc) {
+		GrammarTreeScanner scanner = new GrammarTreeScanner(cc);
+		try {
+			boolean res = scanner.scan(t);
+			if (res == false) {
+				System.out.println("Tree failed constraint: " + cc.toString() + " - " + t.toString());
+			}
+			return res;
+			
+		} catch (UnrecognisedTreeNode e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 	public Tree<String> generateOne() throws ConversionFailed {
 		return generateOne(maxGrammarHeight);
 	}

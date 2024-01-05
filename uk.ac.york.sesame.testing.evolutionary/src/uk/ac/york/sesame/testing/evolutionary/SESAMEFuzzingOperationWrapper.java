@@ -2,6 +2,7 @@ package uk.ac.york.sesame.testing.evolutionary;
 
 import java.security.SecureRandom;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -13,6 +14,7 @@ import it.units.malelab.jgea.representation.tree.Tree;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionConstraint;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarFactory;
 import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 import uk.ac.york.sesame.testing.evolutionary.utilities.RandomFunctions;
@@ -213,15 +215,19 @@ public class SESAMEFuzzingOperationWrapper {
 			reduceDoubleRange(cfoN.getLatency(), cfoO.getLatency());
 		}
 	}
-
+	
 	// Generates a solution with condition-based fuzzing
 	public static SESAMEFuzzingOperationWrapper reductionOfOperation(SESAMETestSolution sol, FuzzingOperation original,
-			ConditionGenerator cg) throws ConversionFailed, ParamError {
+			ConditionGenerator cg) throws ConversionFailed, ParamError, ConstraintsNotMet {
 		FuzzingOperation newA = EcoreUtil.copy(original);
+		List<ConditionConstraint> ccs = original.getConditionConstraints();
 
 		newA.setFromTemplate(original);
-		Tree<String> startTree = cg.generateOne();
+		Tree<String> startTree = cg.generateOneWithConstraints(ccs);
+		
+		// TODO: currently only the start condition is constrained.
 		Tree<String> endTree = cg.generateOne();
+		
 		// Store the starting and ending trees with this individual
 		System.out.println("startTree = " + startTree);
 		System.out.println("endTree = " + endTree);

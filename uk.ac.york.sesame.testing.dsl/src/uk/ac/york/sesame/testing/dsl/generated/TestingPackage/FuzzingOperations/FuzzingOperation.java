@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionConstraint;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 
 /**
@@ -40,6 +41,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getSequenceNumInTest <em>Sequence Num In Test</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getInclusionProbability <em>Inclusion Probability</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#isIncludeInTiming <em>Include In Timing</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getConditionConstraints <em>Condition Constraints</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getFuzzingOperation()
@@ -443,5 +445,17 @@ public interface FuzzingOperation extends EObject {
 	 * @generated
 	 */
 	void setIncludeInTiming(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Condition Constraints</em>' containment reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getFuzzingOperation_ConditionConstraints()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ConditionConstraint> getConditionConstraints();
 
 } // FuzzingOperation

@@ -541,6 +541,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFuzzingOperation_ConditionConstraints() {
+		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOfflineFuzzingOperation() {
 		return offlineFuzzingOperationEClass;
 	}
@@ -1116,6 +1125,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST);
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__INCLUSION_PROBABILITY);
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__INCLUDE_IN_TIMING);
+		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__CONDITION_CONSTRAINTS);
 
 		offlineFuzzingOperationEClass = createEClass(OFFLINE_FUZZING_OPERATION);
 		createEAttribute(offlineFuzzingOperationEClass, OFFLINE_FUZZING_OPERATION__OPERATION_TIME);
@@ -1284,6 +1294,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEAttribute(getFuzzingOperation_SequenceNumInTest(), ecorePackage.getEInt(), "sequenceNumInTest", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFuzzingOperation_InclusionProbability(), ecorePackage.getEDouble(), "inclusionProbability", "1", 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFuzzingOperation_IncludeInTiming(), ecorePackage.getEBoolean(), "includeInTiming", "true", 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFuzzingOperation_ConditionConstraints(), theStandardGrammarPackage.getConditionConstraint(), null, "conditionConstraints", null, 0, -1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(offlineFuzzingOperationEClass, OfflineFuzzingOperation.class, "OfflineFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOfflineFuzzingOperation_OperationTime(), this.getOfflineOperationTime(), "operationTime", null, 0, 1, OfflineFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
