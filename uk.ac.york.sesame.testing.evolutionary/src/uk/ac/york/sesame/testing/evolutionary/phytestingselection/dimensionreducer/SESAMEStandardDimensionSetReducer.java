@@ -17,6 +17,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.BlackholeNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DoubleRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
@@ -252,9 +253,10 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		}
 	}
 
-	private void setParameterDimensions(List<FuzzingOperation> ops, EnumMap<DimensionID, Double> m) {
+	private boolean setParameterDimensions(List<FuzzingOperation> ops, EnumMap<DimensionID, Double> m) {
 		List<Double> normalisedParams = new ArrayList<Double>();
-		// List<FuzzingOperation> ops = t.getOperations();
+		boolean hasParams = false;
+
 		for (FuzzingOperation op : ops) {
 			accumulateNormalisedParams(normalisedParams, op);
 		}
@@ -264,17 +266,22 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 
 		if (paramMean.isPresent()) {
 			m.put(DimensionID.P1_PARAMETER_MEAN, paramMean.getAsDouble());
+			hasParams = true;
 		}
 
 		if (paramVar.isPresent()) {
 			m.put(DimensionID.P2_PARAMETER_VARIANCE, paramVar.getAsDouble());
+			hasParams = true;
 		}
+		
+		return hasParams;
 	}
 
 	private void setOpVarDimensions(List<FuzzingOperation> ops, EnumMap<DimensionID, Double> m) {
 		int fuzzRangeCount = 0;
 		int delayCount = 0;
 		int deletionCount = 0;
+		int customOpCount = 0;
 
 		for (FuzzingOperation op : ops) {
 			if (op instanceof RandomValueFromSetOperation) {
@@ -292,8 +299,12 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 			if (op instanceof BlackholeNetworkOperation) {
 				deletionCount++;
 			}
+			
+			if (op instanceof CustomFuzzingOperation) {
+				customOpCount++;
+			}
 
-			int totalCount = fuzzRangeCount + delayCount + deletionCount;
+			int totalCount = fuzzRangeCount + delayCount + deletionCount + customOpCount;
 			m.put(DimensionID.O1_FUZZRANGE_COUNT, Double.valueOf(fuzzRangeCount));
 			m.put(DimensionID.O2_DELAY_COUNT, Double.valueOf(delayCount));
 			m.put(DimensionID.O3_DELETION_COUNT, Double.valueOf(deletionCount));
@@ -305,12 +316,15 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 			throws MissingDimensionsInMap {
 		EnumMap<DimensionID, Double> m = new EnumMap<DimensionID, Double>(DimensionID.class);
 		setTimingDimensions(ops, m);
-		setParameterDimensions(ops, m);
+		boolean hasParams = setParameterDimensions(ops, m);
 		setOpVarDimensions(ops, m);
 
 		// If there are no operations, no values will be returned for this case!
 		if (ops.size() > 0) {
-			checkAllDimensionsSet(m);
+			// If there are no params for the included operations, e.g. in a 
+			// parameterless custom operation, naturally the param dimensions will
+			// never be set. Need to check for this case
+			checkAllDimensionsSet(m, ops, hasParams);
 		}
 
 		return m;

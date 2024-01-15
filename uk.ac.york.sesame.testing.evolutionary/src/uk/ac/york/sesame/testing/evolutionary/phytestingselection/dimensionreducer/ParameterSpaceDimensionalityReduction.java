@@ -3,11 +3,13 @@ package uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionredu
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
@@ -19,9 +21,16 @@ public abstract class ParameterSpaceDimensionalityReduction {
 	public abstract EnumMap<DimensionID, Double> generateDimensionSetsForParams(Test t) throws MissingDimensionsInMap;
 	public abstract EnumMap<DimensionID, Double> generateDimensionSetsSpeculative(SESAMETestSolution sts) throws MissingDimensionsInMap;
 	
-	protected void checkAllDimensionsSet(EnumMap<DimensionID, Double> m) throws MissingDimensionsInMap {
+	protected void checkAllDimensionsSet(EnumMap<DimensionID, Double> m, List<FuzzingOperation> ops, boolean hasParams) throws MissingDimensionsInMap {
 		// check the dimensional values are all set properly for the test
 		EnumSet<DimensionID> allDimensions = EnumSet.allOf(DimensionID.class);
+		
+		
+		if (!hasParams) {
+			allDimensions.remove(DimensionID.P1_PARAMETER_MEAN);
+			allDimensions.remove(DimensionID.P2_PARAMETER_VARIANCE);
+		}
+		
 		Set<DimensionID> missingDimensions = new HashSet<DimensionID>();
 		for (DimensionID d : allDimensions) {
 			if (!(m.containsKey(d))) {

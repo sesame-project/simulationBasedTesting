@@ -133,7 +133,6 @@ public class NSGAII_ResultLogging_Coverage<S extends Solution<?>> extends Abstra
 		this.coverageBoostingStrategy_o = coverageBoostingStrategy_o;		
 		this.minCoveragePerCell = nsgaCov.getCoveragePerCell();
 		this.neededCoverageProportion = nsgaCov.getTargetCoverageProportion();
-
 		
 		try {
 			String dateString = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
