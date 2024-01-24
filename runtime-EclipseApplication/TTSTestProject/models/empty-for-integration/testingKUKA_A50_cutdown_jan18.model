@@ -1,0 +1,895 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.FuzzingOperations="FuzzingOperations" xmlns:TestingMM.MRSPackage="MRSPackage" xmlns:TestingMM.Metrics="Metrics" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="TestingMM.Metrics:FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_UrYTwGVlEe2P2ZFJWtv89A" defaultVal="100000.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_-uTgoGBPEe27gLEnzzOoKw" filename="/tmp/fuzzopTimes"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_2fP74GBMEe27gLEnzzOoKw" name="M1_collisionDriveShaft" relatedVariables="_SeztsJHgEe6o1sMdrDWWPg _LkHVgJgMEe6r2ua3NAxXTg _NSAasJgMEe6r2ua3NAxXTg _PHsJ8JgMEe6r2ua3NAxXTg _Q5qd4JgMEe6r2ua3NAxXTg _Q5qd4ZgMEe6r2ua3NAxXTg _Q5qd4pgMEe6r2ua3NAxXTg _Q5qd45gMEe6r2ua3NAxXTg" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_XG8XQGVlEe2P2ZFJWtv89A"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_NlsBEGBPEe27gLEnzzOoKw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="__NR7oGBPEe27gLEnzzOoKw" filename="/tmp/collisionDriveShaft"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_CTvKMKODEe2SY5_vP2qLCw" name="M2_shaftInsertionTime" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_3X_j4JmfEe6KX-fTwC_Dng" defaultVal="100.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_Q4D50KOEEe2SY5_vP2qLCw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_R3170KOEEe2SY5_vP2qLCw" filename="/tmp/shaftInsertion"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_FD2hYKODEe2SY5_vP2qLCw" name="M3_dynamicCollision">
+    <valueIfNotReceived xmi:id="_8RaJ4JmfEe6KX-fTwC_Dng"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_Uy_eUKOEEe2SY5_vP2qLCw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_VQlZQKOEEe2SY5_vP2qLCw" filename="/tmp/dynamicCollision"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_9Uu30JSsEe6LjrY2ReETfQ" name="M4_EDDIWarningTime" relatedVariables="_SeztsJHgEe6o1sMdrDWWPg _8ln4AJUNEe6le6QThR1CCw _VpjFkJcpEe6yvJOQ5FCyNQ">
+    <valueIfNotReceived xmi:id="_9Uve4JSsEe6LjrY2ReETfQ" defaultVal="-99999.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_9Uve4ZSsEe6LjrY2ReETfQ"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_9Uve4pSsEe6LjrY2ReETfQ" filename="/tmp/eddiWarningTime"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_WMI1QJS4Ee6LjrY2ReETfQ" name="time">
+    <valueIfNotReceived xmi:id="_WMI1QZS4Ee6LjrY2ReETfQ" defaultVal="1000.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_WMI1QpS4Ee6LjrY2ReETfQ"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_WMI1Q5S4Ee6LjrY2ReETfQ" filename="/tmp/shaftInsertionTime"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_bJdhUN04EeyAL51MCA53dw" endTime="15.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IPLIEeyyicYP_3f6ng" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_xc7IAJMaEe6MN9fzQ8_Elg" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_xc7IAZMaEe6MN9fzQ8_Elg" endTime="15.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_xc7IApMaEe6MN9fzQ8_Elg" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_X2YtsJNREe62CIiytqvkDA" name="jointPosKR22_Link3" variableToAffect="_Xl2JkJNMEe62CIiytqvkDA" messagesToAllComponenents="false" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_X2YtsZNREe62CIiytqvkDA" endTime="15.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_X2YtspNREe62CIiytqvkDA" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_dGi_wJNREe62CIiytqvkDA" name="jointPosKR22_Link4" variableToAffect="_Xl2JkZNMEe62CIiytqvkDA" messagesToAllComponenents="false" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_dGi_wZNREe62CIiytqvkDA" endTime="15.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_dGi_wpNREe62CIiytqvkDA" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_gsB4sJNREe62CIiytqvkDA" name="jointPosKR22_Link5" variableToAffect="_Xl2JkZNMEe62CIiytqvkDA" messagesToAllComponenents="false" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_gsB4sZNREe62CIiytqvkDA" endTime="15.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_gsB4spNREe62CIiytqvkDA" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_ipUr0JNREe62CIiytqvkDA" name="jointPosKR22_Link6" variableToAffect="_Xl2JkZNMEe62CIiytqvkDA" messagesToAllComponenents="false" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_ipUr0ZNREe62CIiytqvkDA" endTime="15.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_ipUr0pNREe62CIiytqvkDA" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_k5tF4JjqEe6RV7-RGUgxgg" name="jointPosKR22_850_Link1" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_k5tF4ZjqEe6RV7-RGUgxgg" endTime="15.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_k5tF4pjqEe6RV7-RGUgxgg" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_py3NMJjqEe6RV7-RGUgxgg" name="jointPosKR22_850_Link2" variableToAffect="_7deZMI4zEe68Vf1HSLeZ6Q" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_py3NMZjqEe6RV7-RGUgxgg" endTime="15.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_py3NMpjqEe6RV7-RGUgxgg" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="firstExperiment" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw _9Uu30JSsEe6LjrY2ReETfQ _WMI1QJS4Ee6LjrY2ReETfQ _CTvKMKODEe2SY5_vP2qLCw _FD2hYKODEe2SY5_vP2qLCw" includedOperations="_lc6UoN0YEeyv8LH3vdSfnw _xc7IAJMaEe6MN9fzQ8_Elg _X2YtsJNREe62CIiytqvkDA _dGi_wJNREe62CIiytqvkDA _gsB4sJNREe62CIiytqvkDA _ipUr0JNREe62CIiytqvkDA">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="10" iterations="100"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="15"/>
+  </campaigns>
+  <campaigns xmi:id="_OxEMIJNKEe62CIiytqvkDA" name="nullFuzzing" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw _CTvKMKODEe2SY5_vP2qLCw _FD2hYKODEe2SY5_vP2qLCw _9Uu30JSsEe6LjrY2ReETfQ _WMI1QJS4Ee6LjrY2ReETfQ">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_OxEMIZNKEe62CIiytqvkDA" populationSize="20" iterations="200"/>
+    <performedTests xmi:id="_6iDCwJsYEe6CwdnpanVxSw" name="Test_001_15_12_2023_07_43_18">
+      <metrics xmi:id="_6iDp0JsYEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_6iDp0ZsYEe6CwdnpanVxSw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_6iDp0psYEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_6iEQ4JsYEe6CwdnpanVxSw" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_6iEQ4ZsYEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6iEQ4psYEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.5"/>
+      </metrics>
+      <metrics xmi:id="_6iEQ45sYEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6iFfAJsYEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_6iFfAZsYEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_6iGGEJsYEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-3000.0"/>
+      </metrics>
+      <metrics xmi:id="_6iGGEZsYEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_6iGGEpsYEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_6iGtIJsYEe6CwdnpanVxSw" name="Test_002_15_12_2023_07_43_18">
+      <metrics xmi:id="_6kRQUJsYEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_6kRQUZsYEe6CwdnpanVxSw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_6kR3YJsYEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_6kR3YZsYEe6CwdnpanVxSw" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_6kR3YpsYEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kR3Y5sYEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.5"/>
+      </metrics>
+      <metrics xmi:id="_6kSecJsYEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kSecZsYEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_6kSecpsYEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_6kSec5sYEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_6kSedJsYEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_6kTFgJsYEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_6kTFgZsYEe6CwdnpanVxSw" name="Test_003_15_12_2023_07_43_18">
+      <metrics xmi:id="_6kTFgpsYEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_6kTFg5sYEe6CwdnpanVxSw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_6kTskJsYEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_6kTskZsYEe6CwdnpanVxSw" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_6kTskpsYEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kTsk5sYEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.5"/>
+      </metrics>
+      <metrics xmi:id="_6kTslJsYEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kUToJsYEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_6kUToZsYEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_6kUTopsYEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_6kUTo5sYEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_6kUTpJsYEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_6kU6sJsYEe6CwdnpanVxSw" name="Test_004_15_12_2023_07_43_18">
+      <metrics xmi:id="_6kU6sZsYEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_6kU6spsYEe6CwdnpanVxSw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_6kVhwJsYEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_6kVhwZsYEe6CwdnpanVxSw" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_6kVhwpsYEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kVhw5sYEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.5"/>
+      </metrics>
+      <metrics xmi:id="_6kVhxJsYEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kWI0JsYEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_6kWI0ZsYEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_6kWI0psYEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_6kWI05sYEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_6kWI1JsYEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_6kWv4JsYEe6CwdnpanVxSw" name="Test_005_15_12_2023_07_43_18">
+      <metrics xmi:id="_6kWv4ZsYEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_6kXW8JsYEe6CwdnpanVxSw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_6kXW8ZsYEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_6kXW8psYEe6CwdnpanVxSw" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_6kXW85sYEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kXW9JsYEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.5"/>
+      </metrics>
+      <metrics xmi:id="_6kX-AJsYEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kX-AZsYEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_6kX-ApsYEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_6kX-A5sYEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_6kX-BJsYEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_6kYlEJsYEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_6kYlEZsYEe6CwdnpanVxSw" name="Test_006_15_12_2023_07_43_18">
+      <metrics xmi:id="_6kYlEpsYEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_6kYlE5sYEe6CwdnpanVxSw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_6kZMIJsYEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_6kZMIZsYEe6CwdnpanVxSw" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_6kZMIpsYEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kZMI5sYEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.5"/>
+      </metrics>
+      <metrics xmi:id="_6kZMJJsYEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kZzMJsYEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_6kZzMZsYEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_6kbBUJsYEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_6kbBUZsYEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_6kboYJsYEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_6kboYZsYEe6CwdnpanVxSw" name="Test_007_15_12_2023_07_43_18">
+      <metrics xmi:id="_6kboYpsYEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_6kcPcJsYEe6CwdnpanVxSw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_6kcPcZsYEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_6kcPcpsYEe6CwdnpanVxSw" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_6kc2gJsYEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kc2gZsYEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.5"/>
+      </metrics>
+      <metrics xmi:id="_6kc2gpsYEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kc2g5sYEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_6kc2hJsYEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_6kddkJsYEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_6kddkZsYEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_6kddkpsYEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_6kddk5sYEe6CwdnpanVxSw" name="Test_008_15_12_2023_07_43_18">
+      <metrics xmi:id="_6kddlJsYEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_6keEoJsYEe6CwdnpanVxSw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_6keEoZsYEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_6keEopsYEe6CwdnpanVxSw" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_6keEo5sYEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kersJsYEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.5"/>
+      </metrics>
+      <metrics xmi:id="_6kersZsYEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kerspsYEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_6kers5sYEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_6kertJsYEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_6kfSwJsYEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_6kfSwZsYEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_6kfSwpsYEe6CwdnpanVxSw" name="Test_009_15_12_2023_07_43_18">
+      <metrics xmi:id="_6kfSw5sYEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_6kf50JsYEe6CwdnpanVxSw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_6kf50ZsYEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_6kf50psYEe6CwdnpanVxSw" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_6kf505sYEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kf51JsYEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.5"/>
+      </metrics>
+      <metrics xmi:id="_6kf51ZsYEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kgg4JsYEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_6kgg4ZsYEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_6kgg4psYEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_6kgg45sYEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_6kgg5JsYEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_6khH8JsYEe6CwdnpanVxSw" name="Test_010_15_12_2023_07_43_18">
+      <metrics xmi:id="_6khH8ZsYEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_6khH8psYEe6CwdnpanVxSw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_6khH85sYEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_6khvAJsYEe6CwdnpanVxSw" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_6khvAZsYEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6khvApsYEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.5"/>
+      </metrics>
+      <metrics xmi:id="_6khvA5sYEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kiWEJsYEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_6kiWEZsYEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_6kiWEpsYEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_6kiWE5sYEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_6kiWFJsYEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_6ki9IJsYEe6CwdnpanVxSw" name="Test_011_15_12_2023_08_03_25" developedFrom="_6kfSwpsYEe6CwdnpanVxSw _6kTFgZsYEe6CwdnpanVxSw">
+      <metrics xmi:id="_6ki9IZsYEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_6ki9IpsYEe6CwdnpanVxSw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_6kjkMJsYEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_6kjkMZsYEe6CwdnpanVxSw" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_6kjkMpsYEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kjkM5sYEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.5"/>
+      </metrics>
+      <metrics xmi:id="_6kjkNJsYEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kkLQJsYEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_6kkLQZsYEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_6kkLQpsYEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_6kkyUJsYEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_6kkyUZsYEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_6kkyUpsYEe6CwdnpanVxSw" name="Test_012_15_12_2023_08_03_25" developedFrom="_6kfSwpsYEe6CwdnpanVxSw _6kTFgZsYEe6CwdnpanVxSw">
+      <metrics xmi:id="_6klZYJsYEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_6klZYZsYEe6CwdnpanVxSw" name="fuzzingOperationTimes"/>
+      </metrics>
+      <metrics xmi:id="_6klZYpsYEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_6kmAcJsYEe6CwdnpanVxSw" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_6kmAcZsYEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kmAcpsYEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.5"/>
+      </metrics>
+      <metrics xmi:id="_6kmAc5sYEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_6kmngJsYEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_6kmngZsYEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_6kmngpsYEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_6kmng5sYEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_6knOkJsYEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_OxEMIpNKEe62CIiytqvkDA" timeLimitSeconds="15"/>
+  </campaigns>
+  <campaigns xmi:id="_XoT1UJm7Ee6KX-fTwC_Dng" name="knownCollision" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw _CTvKMKODEe2SY5_vP2qLCw _FD2hYKODEe2SY5_vP2qLCw _9Uu30JSsEe6LjrY2ReETfQ _WMI1QJS4Ee6LjrY2ReETfQ">
+    <approach xsi:type="TestingMM:RepeatedExecution" xmi:id="_f0t2EJm7Ee6KX-fTwC_Dng" testToRepeat="_brq9EJm7Ee6KX-fTwC_Dng" repeatCount="1"/>
+    <performedTests xmi:id="_brq9EJm7Ee6KX-fTwC_Dng" name="Test_knownCollision">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_brq9EZm7Ee6KX-fTwC_Dng" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="5600186275507292782" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_brq9Epm7Ee6KX-fTwC_Dng" startTime="6.0" endTime="8.0"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_brq9E5m7Ee6KX-fTwC_Dng" propertyName="" lowerBound="-0.4" upperBound="0.4"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_HhqQoJsVEe6CwdnpanVxSw" name="Test_knownCollision_repeat0">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_HhqQoZsVEe6CwdnpanVxSw" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="5600186275507292782" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_HhqQopsVEe6CwdnpanVxSw" startTime="6.0" endTime="8.0"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_HhqQo5sVEe6CwdnpanVxSw" propertyName="" lowerBound="-0.4" upperBound="0.4"/>
+      </operations>
+      <metrics xmi:id="_HhqQpJsVEe6CwdnpanVxSw" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_HhqQpZsVEe6CwdnpanVxSw" name="fuzzingOperationTimes" value="2.0"/>
+      </metrics>
+      <metrics xmi:id="_HhqQppsVEe6CwdnpanVxSw" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_HhqQp5sVEe6CwdnpanVxSw" name="M1_collisionDriveShaft" value="8.0"/>
+      </metrics>
+      <metrics xmi:id="_HhqQqJsVEe6CwdnpanVxSw" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_HhqQqZsVEe6CwdnpanVxSw" name="M2_shaftInsertionTime" value="6.15"/>
+      </metrics>
+      <metrics xmi:id="_HhqQqpsVEe6CwdnpanVxSw" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_HhqQq5sVEe6CwdnpanVxSw" name="M3_dynamicCollision"/>
+      </metrics>
+      <metrics xmi:id="_HhqQrJsVEe6CwdnpanVxSw" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_HhqQrZsVEe6CwdnpanVxSw" name="M4_EDDIWarningTime" value="-2000.0"/>
+      </metrics>
+      <metrics xmi:id="_HhqQrpsVEe6CwdnpanVxSw" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_HhqQr5sVEe6CwdnpanVxSw" name="time" value="14.9"/>
+      </metrics>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_XoT1Upm7Ee6KX-fTwC_Dng" timeLimitSeconds="15"/>
+  </campaigns>
+  <campaigns xmi:id="_sE5cAJnAEe6KX-fTwC_Dng" name="knownDynamic" metrics="_FD2hYKODEe2SY5_vP2qLCw _WMI1QJS4Ee6LjrY2ReETfQ">
+    <approach xsi:type="TestingMM:RepeatedExecution" xmi:id="_sE5cAZnAEe6KX-fTwC_Dng" testToRepeat="_sE5cApnAEe6KX-fTwC_Dng" repeatCount="1"/>
+    <performedTests xmi:id="_sE5cApnAEe6KX-fTwC_Dng" name="Test_knownDynamic">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_sE5cA5nAEe6KX-fTwC_Dng" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="5600186275507292782">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_sE5cBJnAEe6KX-fTwC_Dng" startTime="1.0" endTime="15.0"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_sE5cBZnAEe6KX-fTwC_Dng" propertyName="" lowerBound="0.524" upperBound="0.525"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_wDiUcJnDEe6KX-fTwC_Dng" name="jointPosKR22_850_Link1" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="5600186275507292782">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_wDiUcZnDEe6KX-fTwC_Dng" startTime="1.0" endTime="15.0"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_wDiUcpnDEe6KX-fTwC_Dng" propertyName="" lowerBound="-0.524" upperBound="-0.524"/>
+      </operations>
+    </performedTests>
+    <performedTests xmi:id="_HhqQsJsVEe6CwdnpanVxSw" name="Test_knownDynamic_repeat0">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_HhqQsZsVEe6CwdnpanVxSw" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="5600186275507292782">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_HhqQspsVEe6CwdnpanVxSw" startTime="1.0" endTime="15.0"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_HhqQs5sVEe6CwdnpanVxSw" propertyName="" lowerBound="0.524" upperBound="0.525"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_HhqQtJsVEe6CwdnpanVxSw" name="jointPosKR22_850_Link1" variableToAffect="_ZjJHUD8uEe2Lapf8udQiDQ" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="5600186275507292782" sequenceNumInTest="1">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_HhqQtZsVEe6CwdnpanVxSw" startTime="1.0" endTime="15.0"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_HhqQtpsVEe6CwdnpanVxSw" propertyName="" lowerBound="-0.524" upperBound="-0.524"/>
+      </operations>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_sE5cBpnAEe6KX-fTwC_Dng" timeLimitSeconds="15"/>
+  </campaigns>
+  <campaigns xmi:id="_8aqJMLX-Ee6MsafhywqBtQ" name="resMisplacement" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw _CTvKMKODEe2SY5_vP2qLCw _FD2hYKODEe2SY5_vP2qLCw _9Uu30JSsEe6LjrY2ReETfQ _WMI1QJS4Ee6LjrY2ReETfQ">
+    <approach xsi:type="TestingMM:RepeatedExecution" xmi:id="_8aqJMbX-Ee6MsafhywqBtQ" repeatCount="10"/>
+    <performedTests xmi:id="_1ZM0ULn-Ee6HUJU6MraeEA" name="Test_014_18_01_2024_05_54_18_repeat0">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZOCcLn-Ee6HUJU6MraeEA" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="447373260969569149" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZOpgLn-Ee6HUJU6MraeEA" startTime="7.295362652996314" endTime="7.392607443160675"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZOpgbn-Ee6HUJU6MraeEA" propertyName="" lowerBound="-0.22405204188750583" upperBound="0.2456154129662832"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZP3oLn-Ee6HUJU6MraeEA" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-1153334767793172164" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZP3obn-Ee6HUJU6MraeEA" startTime="4.163945364168027" endTime="8.488205622140374"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZP3orn-Ee6HUJU6MraeEA" propertyName="" lowerBound="0.19098091948971013" upperBound="0.23428054763518996"/>
+      </operations>
+      <metrics xmi:id="_1ZQesLn-Ee6HUJU6MraeEA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_1ZQesbn-Ee6HUJU6MraeEA" name="fuzzingOperationTimes" value="4.421505048136708"/>
+      </metrics>
+      <metrics xmi:id="_1ZQesrn-Ee6HUJU6MraeEA" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_1ZQes7n-Ee6HUJU6MraeEA" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_1ZQetLn-Ee6HUJU6MraeEA" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_1ZRFwLn-Ee6HUJU6MraeEA" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_1ZRFwbn-Ee6HUJU6MraeEA" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_1ZRFwrn-Ee6HUJU6MraeEA" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_1ZRFw7n-Ee6HUJU6MraeEA" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1ZRFxLn-Ee6HUJU6MraeEA" name="M2_shaftInsertionTime" value="100.0"/>
+      </metrics>
+      <metrics xmi:id="_1ZRs0Ln-Ee6HUJU6MraeEA" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1ZRs0bn-Ee6HUJU6MraeEA" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_1ZRs0rn-Ee6HUJU6MraeEA" name="Test_014_18_01_2024_05_54_18_repeat1">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZS68Ln-Ee6HUJU6MraeEA" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="447373260969569149" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZTiALn-Ee6HUJU6MraeEA" startTime="7.295362652996314" endTime="7.392607443160675"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZTiAbn-Ee6HUJU6MraeEA" propertyName="" lowerBound="-0.22405204188750583" upperBound="0.2456154129662832"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZUwILn-Ee6HUJU6MraeEA" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-1153334767793172164" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZUwIbn-Ee6HUJU6MraeEA" startTime="4.163945364168027" endTime="8.488205622140374"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZUwIrn-Ee6HUJU6MraeEA" propertyName="" lowerBound="0.19098091948971013" upperBound="0.23428054763518996"/>
+      </operations>
+      <metrics xmi:id="_1ZVXMLn-Ee6HUJU6MraeEA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_1ZVXMbn-Ee6HUJU6MraeEA" name="fuzzingOperationTimes" value="4.421505048136708"/>
+      </metrics>
+      <metrics xmi:id="_1ZVXMrn-Ee6HUJU6MraeEA" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_1ZVXM7n-Ee6HUJU6MraeEA" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_1ZVXNLn-Ee6HUJU6MraeEA" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_1ZV-QLn-Ee6HUJU6MraeEA" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_1ZV-Qbn-Ee6HUJU6MraeEA" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_1ZV-Qrn-Ee6HUJU6MraeEA" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_1ZV-Q7n-Ee6HUJU6MraeEA" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1ZV-RLn-Ee6HUJU6MraeEA" name="M2_shaftInsertionTime" value="100.0"/>
+      </metrics>
+      <metrics xmi:id="_1ZWlULn-Ee6HUJU6MraeEA" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1ZWlUbn-Ee6HUJU6MraeEA" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_1ZWlUrn-Ee6HUJU6MraeEA" name="Test_014_18_01_2024_05_54_18_repeat2">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZXzcLn-Ee6HUJU6MraeEA" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="447373260969569149" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZYagLn-Ee6HUJU6MraeEA" startTime="7.295362652996314" endTime="7.392607443160675"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZYagbn-Ee6HUJU6MraeEA" propertyName="" lowerBound="-0.22405204188750583" upperBound="0.2456154129662832"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZZooLn-Ee6HUJU6MraeEA" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-1153334767793172164" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZZoobn-Ee6HUJU6MraeEA" startTime="4.163945364168027" endTime="8.488205622140374"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZaPsLn-Ee6HUJU6MraeEA" propertyName="" lowerBound="0.19098091948971013" upperBound="0.23428054763518996"/>
+      </operations>
+      <metrics xmi:id="_1ZaPsbn-Ee6HUJU6MraeEA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_1ZaPsrn-Ee6HUJU6MraeEA" name="fuzzingOperationTimes" value="4.421505048136708"/>
+      </metrics>
+      <metrics xmi:id="_1ZaPs7n-Ee6HUJU6MraeEA" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_1ZaPtLn-Ee6HUJU6MraeEA" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_1Za2wLn-Ee6HUJU6MraeEA" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_1Za2wbn-Ee6HUJU6MraeEA" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_1Za2wrn-Ee6HUJU6MraeEA" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_1Za2w7n-Ee6HUJU6MraeEA" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_1Za2xLn-Ee6HUJU6MraeEA" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1Zbd0Ln-Ee6HUJU6MraeEA" name="M2_shaftInsertionTime" value="100.0"/>
+      </metrics>
+      <metrics xmi:id="_1Zbd0bn-Ee6HUJU6MraeEA" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1Zbd0rn-Ee6HUJU6MraeEA" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_1Zbd07n-Ee6HUJU6MraeEA" name="Test_014_18_01_2024_05_54_18_repeat3">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1Zcr8Ln-Ee6HUJU6MraeEA" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="447373260969569149" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZdTALn-Ee6HUJU6MraeEA" startTime="7.295362652996314" endTime="7.392607443160675"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZdTAbn-Ee6HUJU6MraeEA" propertyName="" lowerBound="-0.22405204188750583" upperBound="0.2456154129662832"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZehILn-Ee6HUJU6MraeEA" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-1153334767793172164" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZehIbn-Ee6HUJU6MraeEA" startTime="4.163945364168027" endTime="8.488205622140374"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZfIMLn-Ee6HUJU6MraeEA" propertyName="" lowerBound="0.19098091948971013" upperBound="0.23428054763518996"/>
+      </operations>
+      <metrics xmi:id="_1ZfIMbn-Ee6HUJU6MraeEA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_1ZfIMrn-Ee6HUJU6MraeEA" name="fuzzingOperationTimes" value="4.421505048136708"/>
+      </metrics>
+      <metrics xmi:id="_1ZfIM7n-Ee6HUJU6MraeEA" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_1ZfINLn-Ee6HUJU6MraeEA" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_1ZfvQLn-Ee6HUJU6MraeEA" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_1ZfvQbn-Ee6HUJU6MraeEA" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_1ZfvQrn-Ee6HUJU6MraeEA" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_1ZfvQ7n-Ee6HUJU6MraeEA" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_1ZfvRLn-Ee6HUJU6MraeEA" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1ZgWULn-Ee6HUJU6MraeEA" name="M2_shaftInsertionTime" value="100.0"/>
+      </metrics>
+      <metrics xmi:id="_1ZgWUbn-Ee6HUJU6MraeEA" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1ZgWUrn-Ee6HUJU6MraeEA" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_1ZgWU7n-Ee6HUJU6MraeEA" name="Test_014_18_01_2024_05_54_18_repeat4">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZiLgLn-Ee6HUJU6MraeEA" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="447373260969569149" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZiLgbn-Ee6HUJU6MraeEA" startTime="7.295362652996314" endTime="7.392607443160675"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZiLgrn-Ee6HUJU6MraeEA" propertyName="" lowerBound="-0.22405204188750583" upperBound="0.2456154129662832"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZkAsLn-Ee6HUJU6MraeEA" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-1153334767793172164" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZkAsbn-Ee6HUJU6MraeEA" startTime="4.163945364168027" endTime="8.488205622140374"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZkAsrn-Ee6HUJU6MraeEA" propertyName="" lowerBound="0.19098091948971013" upperBound="0.23428054763518996"/>
+      </operations>
+      <metrics xmi:id="_1ZknwLn-Ee6HUJU6MraeEA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_1Zknwbn-Ee6HUJU6MraeEA" name="fuzzingOperationTimes" value="4.421505048136708"/>
+      </metrics>
+      <metrics xmi:id="_1Zknwrn-Ee6HUJU6MraeEA" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_1Zknw7n-Ee6HUJU6MraeEA" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_1ZknxLn-Ee6HUJU6MraeEA" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_1ZlO0Ln-Ee6HUJU6MraeEA" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_1ZlO0bn-Ee6HUJU6MraeEA" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_1ZlO0rn-Ee6HUJU6MraeEA" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_1ZlO07n-Ee6HUJU6MraeEA" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1ZlO1Ln-Ee6HUJU6MraeEA" name="M2_shaftInsertionTime" value="100.0"/>
+      </metrics>
+      <metrics xmi:id="_1ZlO1bn-Ee6HUJU6MraeEA" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1Zl14Ln-Ee6HUJU6MraeEA" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_1Zl14bn-Ee6HUJU6MraeEA" name="Test_014_18_01_2024_05_54_18_repeat5">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZnEALn-Ee6HUJU6MraeEA" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="447373260969569149" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZnrELn-Ee6HUJU6MraeEA" startTime="7.295362652996314" endTime="7.392607443160675"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZnrEbn-Ee6HUJU6MraeEA" propertyName="" lowerBound="-0.22405204188750583" upperBound="0.2456154129662832"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1Zo5MLn-Ee6HUJU6MraeEA" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-1153334767793172164" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZpgQLn-Ee6HUJU6MraeEA" startTime="4.163945364168027" endTime="8.488205622140374"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZpgQbn-Ee6HUJU6MraeEA" propertyName="" lowerBound="0.19098091948971013" upperBound="0.23428054763518996"/>
+      </operations>
+      <metrics xmi:id="_1ZpgQrn-Ee6HUJU6MraeEA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_1ZqHULn-Ee6HUJU6MraeEA" name="fuzzingOperationTimes" value="4.421505048136708"/>
+      </metrics>
+      <metrics xmi:id="_1ZqHUbn-Ee6HUJU6MraeEA" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_1ZqHUrn-Ee6HUJU6MraeEA" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_1ZqHU7n-Ee6HUJU6MraeEA" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_1ZqHVLn-Ee6HUJU6MraeEA" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_1ZqHVbn-Ee6HUJU6MraeEA" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_1ZquYLn-Ee6HUJU6MraeEA" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_1ZquYbn-Ee6HUJU6MraeEA" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1ZquYrn-Ee6HUJU6MraeEA" name="M2_shaftInsertionTime" value="100.0"/>
+      </metrics>
+      <metrics xmi:id="_1ZquY7n-Ee6HUJU6MraeEA" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1ZquZLn-Ee6HUJU6MraeEA" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_1ZrVcLn-Ee6HUJU6MraeEA" name="Test_014_18_01_2024_05_54_18_repeat6">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZsjkLn-Ee6HUJU6MraeEA" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="447373260969569149" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZtKoLn-Ee6HUJU6MraeEA" startTime="7.295362652996314" endTime="7.392607443160675"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZtKobn-Ee6HUJU6MraeEA" propertyName="" lowerBound="-0.22405204188750583" upperBound="0.2456154129662832"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZuYwLn-Ee6HUJU6MraeEA" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-1153334767793172164" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1Zu_0Ln-Ee6HUJU6MraeEA" startTime="4.163945364168027" endTime="8.488205622140374"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1Zu_0bn-Ee6HUJU6MraeEA" propertyName="" lowerBound="0.19098091948971013" upperBound="0.23428054763518996"/>
+      </operations>
+      <metrics xmi:id="_1Zu_0rn-Ee6HUJU6MraeEA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_1Zu_07n-Ee6HUJU6MraeEA" name="fuzzingOperationTimes" value="4.421505048136708"/>
+      </metrics>
+      <metrics xmi:id="_1Zu_1Ln-Ee6HUJU6MraeEA" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_1Zvm4Ln-Ee6HUJU6MraeEA" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_1Zvm4bn-Ee6HUJU6MraeEA" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_1Zvm4rn-Ee6HUJU6MraeEA" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_1Zvm47n-Ee6HUJU6MraeEA" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_1Zvm5Ln-Ee6HUJU6MraeEA" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_1Zvm5bn-Ee6HUJU6MraeEA" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1ZwN8Ln-Ee6HUJU6MraeEA" name="M2_shaftInsertionTime" value="100.0"/>
+      </metrics>
+      <metrics xmi:id="_1ZwN8bn-Ee6HUJU6MraeEA" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1ZwN8rn-Ee6HUJU6MraeEA" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_1ZwN87n-Ee6HUJU6MraeEA" name="Test_014_18_01_2024_05_54_18_repeat7">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1ZyDILn-Ee6HUJU6MraeEA" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="447373260969569149" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1ZyDIbn-Ee6HUJU6MraeEA" startTime="7.295362652996314" endTime="7.392607443160675"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1ZyDIrn-Ee6HUJU6MraeEA" propertyName="" lowerBound="-0.22405204188750583" upperBound="0.2456154129662832"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1Zz4ULn-Ee6HUJU6MraeEA" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-1153334767793172164" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1Zz4Ubn-Ee6HUJU6MraeEA" startTime="4.163945364168027" endTime="8.488205622140374"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1Zz4Urn-Ee6HUJU6MraeEA" propertyName="" lowerBound="0.19098091948971013" upperBound="0.23428054763518996"/>
+      </operations>
+      <metrics xmi:id="_1Zz4U7n-Ee6HUJU6MraeEA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_1Z0fYLn-Ee6HUJU6MraeEA" name="fuzzingOperationTimes" value="4.421505048136708"/>
+      </metrics>
+      <metrics xmi:id="_1Z0fYbn-Ee6HUJU6MraeEA" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_1Z0fYrn-Ee6HUJU6MraeEA" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_1Z0fY7n-Ee6HUJU6MraeEA" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_1Z0fZLn-Ee6HUJU6MraeEA" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_1Z1GcLn-Ee6HUJU6MraeEA" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_1Z1Gcbn-Ee6HUJU6MraeEA" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_1Z1Gcrn-Ee6HUJU6MraeEA" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1Z1Gc7n-Ee6HUJU6MraeEA" name="M2_shaftInsertionTime" value="100.0"/>
+      </metrics>
+      <metrics xmi:id="_1Z1GdLn-Ee6HUJU6MraeEA" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1Z1tgLn-Ee6HUJU6MraeEA" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_1Z1tgbn-Ee6HUJU6MraeEA" name="Test_014_18_01_2024_05_54_18_repeat8">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1Z27oLn-Ee6HUJU6MraeEA" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="447373260969569149" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1Z3isLn-Ee6HUJU6MraeEA" startTime="7.295362652996314" endTime="7.392607443160675"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1Z3isbn-Ee6HUJU6MraeEA" propertyName="" lowerBound="-0.22405204188750583" upperBound="0.2456154129662832"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1Z4w0Ln-Ee6HUJU6MraeEA" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-1153334767793172164" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1Z5X4Ln-Ee6HUJU6MraeEA" startTime="4.163945364168027" endTime="8.488205622140374"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1Z5X4bn-Ee6HUJU6MraeEA" propertyName="" lowerBound="0.19098091948971013" upperBound="0.23428054763518996"/>
+      </operations>
+      <metrics xmi:id="_1Z5X4rn-Ee6HUJU6MraeEA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_1Z5X47n-Ee6HUJU6MraeEA" name="fuzzingOperationTimes" value="4.421505048136708"/>
+      </metrics>
+      <metrics xmi:id="_1Z5-8Ln-Ee6HUJU6MraeEA" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_1Z5-8bn-Ee6HUJU6MraeEA" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_1Z5-8rn-Ee6HUJU6MraeEA" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_1Z5-87n-Ee6HUJU6MraeEA" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_1Z5-9Ln-Ee6HUJU6MraeEA" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_1Z5-9bn-Ee6HUJU6MraeEA" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_1Z6mALn-Ee6HUJU6MraeEA" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1Z6mAbn-Ee6HUJU6MraeEA" name="M2_shaftInsertionTime" value="100.0"/>
+      </metrics>
+      <metrics xmi:id="_1Z6mArn-Ee6HUJU6MraeEA" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1Z6mA7n-Ee6HUJU6MraeEA" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_1Z6mBLn-Ee6HUJU6MraeEA" name="Test_014_18_01_2024_05_54_18_repeat9">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1Z8bMLn-Ee6HUJU6MraeEA" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="447373260969569149" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1Z9CQLn-Ee6HUJU6MraeEA" startTime="7.295362652996314" endTime="7.392607443160675"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1Z9CQbn-Ee6HUJU6MraeEA" propertyName="" lowerBound="-0.22405204188750583" upperBound="0.2456154129662832"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_1Z-QYLn-Ee6HUJU6MraeEA" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-1153334767793172164" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_1Z-3cLn-Ee6HUJU6MraeEA" startTime="4.163945364168027" endTime="8.488205622140374"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_1Z-3cbn-Ee6HUJU6MraeEA" propertyName="" lowerBound="0.19098091948971013" upperBound="0.23428054763518996"/>
+      </operations>
+      <metrics xmi:id="_1Z-3crn-Ee6HUJU6MraeEA" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_1Z-3c7n-Ee6HUJU6MraeEA" name="fuzzingOperationTimes" value="4.421505048136708"/>
+      </metrics>
+      <metrics xmi:id="_1Z-3dLn-Ee6HUJU6MraeEA" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_1Z_egLn-Ee6HUJU6MraeEA" name="M1_collisionDriveShaft"/>
+      </metrics>
+      <metrics xmi:id="_1Z_egbn-Ee6HUJU6MraeEA" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_1Z_egrn-Ee6HUJU6MraeEA" name="M4_EDDIWarningTime" value="-1000.0"/>
+      </metrics>
+      <metrics xmi:id="_1Z_eg7n-Ee6HUJU6MraeEA" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_1Z_ehLn-Ee6HUJU6MraeEA" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_1aAFkLn-Ee6HUJU6MraeEA" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1aAFkbn-Ee6HUJU6MraeEA" name="M2_shaftInsertionTime" value="100.0"/>
+      </metrics>
+      <metrics xmi:id="_1aAFkrn-Ee6HUJU6MraeEA" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_1aAFk7n-Ee6HUJU6MraeEA" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_8aqJRrX-Ee6MsafhywqBtQ" timeLimitSeconds="15"/>
+  </campaigns>
+  <campaigns xmi:id="_JCVFILoBEe6HUJU6MraeEA" name="resCollision" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw _CTvKMKODEe2SY5_vP2qLCw _FD2hYKODEe2SY5_vP2qLCw _9Uu30JSsEe6LjrY2ReETfQ _WMI1QJS4Ee6LjrY2ReETfQ">
+    <approach xsi:type="TestingMM:RepeatedExecution" xmi:id="_JCVFIboBEe6HUJU6MraeEA" repeatCount="10"/>
+    <performedTests xmi:id="_0cdaMLr5Ee60f_i_xhzhlg" name="Test_021_18_01_2024_06_14_33_repeat0">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0cdaMbr5Ee60f_i_xhzhlg" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="7057671568333489384" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0cdaMrr5Ee60f_i_xhzhlg" startTime="10.71496863233463" endTime="12.472000901395802"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0cdaM7r5Ee60f_i_xhzhlg" propertyName="" lowerBound="0.035234443359061285" upperBound="0.17979143016917276"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0cdaNLr5Ee60f_i_xhzhlg" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-2272015483048772251" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0cdaNbr5Ee60f_i_xhzhlg" startTime="5.800015070088774" endTime="9.437584669051628"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0cdaNrr5Ee60f_i_xhzhlg" propertyName="" lowerBound="-0.1647312472883583" upperBound="0.20392309730424185"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0cdaN7r5Ee60f_i_xhzhlg" name="jointPosKR22_Link3" variableToAffect="_Xl2JkJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_X2YtsJNREe62CIiytqvkDA" seed="-1478530713093194777" sequenceNumInTest="2" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0cdaOLr5Ee60f_i_xhzhlg" startTime="13.595242119127867" endTime="14.171710352664393"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0cdaObr5Ee60f_i_xhzhlg" propertyName="" lowerBound="0.10736517283240421" upperBound="0.20843175519566337"/>
+      </operations>
+      <metrics xmi:id="_0cdaOrr5Ee60f_i_xhzhlg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_0cdaO7r5Ee60f_i_xhzhlg" name="fuzzingOperationTimes" value="5.971070101560551"/>
+      </metrics>
+      <metrics xmi:id="_0cdaPLr5Ee60f_i_xhzhlg" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_0cdaPbr5Ee60f_i_xhzhlg" name="M1_collisionDriveShaft" value="20.0"/>
+      </metrics>
+      <metrics xmi:id="_0cdaPrr5Ee60f_i_xhzhlg" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_0cdaP7r5Ee60f_i_xhzhlg" name="M4_EDDIWarningTime" value="-2000.0"/>
+      </metrics>
+      <metrics xmi:id="_0cdaQLr5Ee60f_i_xhzhlg" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_0cdaQbr5Ee60f_i_xhzhlg" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_0cdaQrr5Ee60f_i_xhzhlg" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_0cdaQ7r5Ee60f_i_xhzhlg" name="M2_shaftInsertionTime" value="6.2"/>
+      </metrics>
+      <metrics xmi:id="_0cdaRLr5Ee60f_i_xhzhlg" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_0cdaRbr5Ee60f_i_xhzhlg" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_0cdaRrr5Ee60f_i_xhzhlg" name="Test_021_18_01_2024_06_14_33_repeat1">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0cdaR7r5Ee60f_i_xhzhlg" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="7057671568333489384" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0cdaSLr5Ee60f_i_xhzhlg" startTime="10.71496863233463" endTime="12.472000901395802"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0cdaSbr5Ee60f_i_xhzhlg" propertyName="" lowerBound="0.035234443359061285" upperBound="0.17979143016917276"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0cdaSrr5Ee60f_i_xhzhlg" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-2272015483048772251" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0cdaS7r5Ee60f_i_xhzhlg" startTime="5.800015070088774" endTime="9.437584669051628"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0cdaTLr5Ee60f_i_xhzhlg" propertyName="" lowerBound="-0.1647312472883583" upperBound="0.20392309730424185"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0cdaTbr5Ee60f_i_xhzhlg" name="jointPosKR22_Link3" variableToAffect="_Xl2JkJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_X2YtsJNREe62CIiytqvkDA" seed="-1478530713093194777" sequenceNumInTest="2" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0cdaTrr5Ee60f_i_xhzhlg" startTime="13.595242119127867" endTime="14.171710352664393"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0cdaT7r5Ee60f_i_xhzhlg" propertyName="" lowerBound="0.10736517283240421" upperBound="0.20843175519566337"/>
+      </operations>
+      <metrics xmi:id="_0cdaULr5Ee60f_i_xhzhlg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_0cdaUbr5Ee60f_i_xhzhlg" name="fuzzingOperationTimes" value="5.971070101560551"/>
+      </metrics>
+      <metrics xmi:id="_0cdaUrr5Ee60f_i_xhzhlg" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_0cdaU7r5Ee60f_i_xhzhlg" name="M1_collisionDriveShaft" value="20.0"/>
+      </metrics>
+      <metrics xmi:id="_0cdaVLr5Ee60f_i_xhzhlg" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_0cdaVbr5Ee60f_i_xhzhlg" name="M4_EDDIWarningTime" value="0.6000000000000005"/>
+      </metrics>
+      <metrics xmi:id="_0cdaVrr5Ee60f_i_xhzhlg" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_0cdaV7r5Ee60f_i_xhzhlg" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_0cdaWLr5Ee60f_i_xhzhlg" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_0cdaWbr5Ee60f_i_xhzhlg" name="M2_shaftInsertionTime" value="6.9"/>
+      </metrics>
+      <metrics xmi:id="_0cdaWrr5Ee60f_i_xhzhlg" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_0cdaW7r5Ee60f_i_xhzhlg" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_0cdaXLr5Ee60f_i_xhzhlg" name="Test_021_18_01_2024_06_14_33_repeat2">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0cdaXbr5Ee60f_i_xhzhlg" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="7057671568333489384" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0cdaXrr5Ee60f_i_xhzhlg" startTime="10.71496863233463" endTime="12.472000901395802"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0cdaX7r5Ee60f_i_xhzhlg" propertyName="" lowerBound="0.035234443359061285" upperBound="0.17979143016917276"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0cdaYLr5Ee60f_i_xhzhlg" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-2272015483048772251" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0ceBQLr5Ee60f_i_xhzhlg" startTime="5.800015070088774" endTime="9.437584669051628"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0ceBQbr5Ee60f_i_xhzhlg" propertyName="" lowerBound="-0.1647312472883583" upperBound="0.20392309730424185"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0ceBQrr5Ee60f_i_xhzhlg" name="jointPosKR22_Link3" variableToAffect="_Xl2JkJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_X2YtsJNREe62CIiytqvkDA" seed="-1478530713093194777" sequenceNumInTest="2" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0ceBQ7r5Ee60f_i_xhzhlg" startTime="13.595242119127867" endTime="14.171710352664393"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0ceBRLr5Ee60f_i_xhzhlg" propertyName="" lowerBound="0.10736517283240421" upperBound="0.20843175519566337"/>
+      </operations>
+      <metrics xmi:id="_0ceBRbr5Ee60f_i_xhzhlg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_0ceBRrr5Ee60f_i_xhzhlg" name="fuzzingOperationTimes" value="5.971070101560551"/>
+      </metrics>
+      <metrics xmi:id="_0ceBR7r5Ee60f_i_xhzhlg" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_0ceBSLr5Ee60f_i_xhzhlg" name="M1_collisionDriveShaft" value="20.0"/>
+      </metrics>
+      <metrics xmi:id="_0ceBSbr5Ee60f_i_xhzhlg" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_0ceBSrr5Ee60f_i_xhzhlg" name="M4_EDDIWarningTime" value="0.6500000000000004"/>
+      </metrics>
+      <metrics xmi:id="_0ceBS7r5Ee60f_i_xhzhlg" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_0ceBTLr5Ee60f_i_xhzhlg" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_0ceBTbr5Ee60f_i_xhzhlg" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_0ceBTrr5Ee60f_i_xhzhlg" name="M2_shaftInsertionTime" value="6.9"/>
+      </metrics>
+      <metrics xmi:id="_0ceBT7r5Ee60f_i_xhzhlg" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_0ceBULr5Ee60f_i_xhzhlg" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_0ceBUbr5Ee60f_i_xhzhlg" name="Test_021_18_01_2024_06_14_33_repeat3">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0ceBUrr5Ee60f_i_xhzhlg" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="7057671568333489384" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0ceBU7r5Ee60f_i_xhzhlg" startTime="10.71496863233463" endTime="12.472000901395802"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0ceBVLr5Ee60f_i_xhzhlg" propertyName="" lowerBound="0.035234443359061285" upperBound="0.17979143016917276"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0ceBVbr5Ee60f_i_xhzhlg" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-2272015483048772251" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0ceBVrr5Ee60f_i_xhzhlg" startTime="5.800015070088774" endTime="9.437584669051628"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0ceBV7r5Ee60f_i_xhzhlg" propertyName="" lowerBound="-0.1647312472883583" upperBound="0.20392309730424185"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0ceBWLr5Ee60f_i_xhzhlg" name="jointPosKR22_Link3" variableToAffect="_Xl2JkJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_X2YtsJNREe62CIiytqvkDA" seed="-1478530713093194777" sequenceNumInTest="2" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0ceBWbr5Ee60f_i_xhzhlg" startTime="13.595242119127867" endTime="14.171710352664393"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0ceBWrr5Ee60f_i_xhzhlg" propertyName="" lowerBound="0.10736517283240421" upperBound="0.20843175519566337"/>
+      </operations>
+      <metrics xmi:id="_0ceBW7r5Ee60f_i_xhzhlg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_0ceBXLr5Ee60f_i_xhzhlg" name="fuzzingOperationTimes" value="5.971070101560551"/>
+      </metrics>
+      <metrics xmi:id="_0ceBXbr5Ee60f_i_xhzhlg" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_0ceBXrr5Ee60f_i_xhzhlg" name="M1_collisionDriveShaft" value="20.0"/>
+      </metrics>
+      <metrics xmi:id="_0ceBX7r5Ee60f_i_xhzhlg" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_0ceBYLr5Ee60f_i_xhzhlg" name="M4_EDDIWarningTime" value="0.5500000000000007"/>
+      </metrics>
+      <metrics xmi:id="_0ceBYbr5Ee60f_i_xhzhlg" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_0ceBYrr5Ee60f_i_xhzhlg" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_0ceBY7r5Ee60f_i_xhzhlg" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_0ceBZLr5Ee60f_i_xhzhlg" name="M2_shaftInsertionTime" value="6.9"/>
+      </metrics>
+      <metrics xmi:id="_0ceBZbr5Ee60f_i_xhzhlg" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_0ceBZrr5Ee60f_i_xhzhlg" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_0ceBZ7r5Ee60f_i_xhzhlg" name="Test_021_18_01_2024_06_14_33_repeat4">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0ceBaLr5Ee60f_i_xhzhlg" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="7057671568333489384" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0ceBabr5Ee60f_i_xhzhlg" startTime="10.71496863233463" endTime="12.472000901395802"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0ceBarr5Ee60f_i_xhzhlg" propertyName="" lowerBound="0.035234443359061285" upperBound="0.17979143016917276"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0ceBa7r5Ee60f_i_xhzhlg" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-2272015483048772251" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0ceBbLr5Ee60f_i_xhzhlg" startTime="5.800015070088774" endTime="9.437584669051628"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0ceBbbr5Ee60f_i_xhzhlg" propertyName="" lowerBound="-0.1647312472883583" upperBound="0.20392309730424185"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0ceBbrr5Ee60f_i_xhzhlg" name="jointPosKR22_Link3" variableToAffect="_Xl2JkJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_X2YtsJNREe62CIiytqvkDA" seed="-1478530713093194777" sequenceNumInTest="2" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0ceBb7r5Ee60f_i_xhzhlg" startTime="13.595242119127867" endTime="14.171710352664393"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0ceBcLr5Ee60f_i_xhzhlg" propertyName="" lowerBound="0.10736517283240421" upperBound="0.20843175519566337"/>
+      </operations>
+      <metrics xmi:id="_0ceBcbr5Ee60f_i_xhzhlg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_0ceBcrr5Ee60f_i_xhzhlg" name="fuzzingOperationTimes" value="5.971070101560551"/>
+      </metrics>
+      <metrics xmi:id="_0ceBc7r5Ee60f_i_xhzhlg" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_0ceBdLr5Ee60f_i_xhzhlg" name="M1_collisionDriveShaft" value="20.0"/>
+      </metrics>
+      <metrics xmi:id="_0ceBdbr5Ee60f_i_xhzhlg" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_0ceBdrr5Ee60f_i_xhzhlg" name="M4_EDDIWarningTime" value="0.25"/>
+      </metrics>
+      <metrics xmi:id="_0ceBd7r5Ee60f_i_xhzhlg" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_0ceBeLr5Ee60f_i_xhzhlg" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_0ceBebr5Ee60f_i_xhzhlg" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_0ceBerr5Ee60f_i_xhzhlg" name="M2_shaftInsertionTime" value="6.9"/>
+      </metrics>
+      <metrics xmi:id="_0ceBe7r5Ee60f_i_xhzhlg" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_0ceBfLr5Ee60f_i_xhzhlg" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <performedTests xmi:id="_0ceBfbr5Ee60f_i_xhzhlg" name="Test_021_18_01_2024_06_14_33_repeat5">
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0ceBfrr5Ee60f_i_xhzhlg" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" fromTemplate="_lc6UoN0YEeyv8LH3vdSfnw" seed="7057671568333489384" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0ceBf7r5Ee60f_i_xhzhlg" startTime="10.71496863233463" endTime="12.472000901395802"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0ceBgLr5Ee60f_i_xhzhlg" propertyName="" lowerBound="0.035234443359061285" upperBound="0.17979143016917276"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0ceBgbr5Ee60f_i_xhzhlg" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_xc7IAJMaEe6MN9fzQ8_Elg" seed="-2272015483048772251" sequenceNumInTest="1" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0ceBgrr5Ee60f_i_xhzhlg" startTime="5.800015070088774" endTime="9.437584669051628"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0ceBg7r5Ee60f_i_xhzhlg" propertyName="" lowerBound="-0.1647312472883583" upperBound="0.20392309730424185"/>
+      </operations>
+      <operations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_0ceBhLr5Ee60f_i_xhzhlg" name="jointPosKR22_Link3" variableToAffect="_Xl2JkJNMEe62CIiytqvkDA" messagesToAllComponenents="false" fromTemplate="_X2YtsJNREe62CIiytqvkDA" seed="-1478530713093194777" sequenceNumInTest="2" isRelative="true">
+        <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_0ceBhbr5Ee60f_i_xhzhlg" startTime="13.595242119127867" endTime="14.171710352664393"/>
+        <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_0ceBhrr5Ee60f_i_xhzhlg" propertyName="" lowerBound="0.10736517283240421" upperBound="0.20843175519566337"/>
+      </operations>
+      <metrics xmi:id="_0ceBh7r5Ee60f_i_xhzhlg" metric="_hrtGEPZBEeypkdw9q4st1A">
+        <result xmi:id="_0ceBiLr5Ee60f_i_xhzhlg" name="fuzzingOperationTimes" value="5.971070101560551"/>
+      </metrics>
+      <metrics xmi:id="_0ceBibr5Ee60f_i_xhzhlg" metric="_2fP74GBMEe27gLEnzzOoKw">
+        <result xmi:id="_0ceBirr5Ee60f_i_xhzhlg" name="M1_collisionDriveShaft" value="20.0"/>
+      </metrics>
+      <metrics xmi:id="_0ceBi7r5Ee60f_i_xhzhlg" metric="_9Uu30JSsEe6LjrY2ReETfQ">
+        <result xmi:id="_0ceBjLr5Ee60f_i_xhzhlg" name="M4_EDDIWarningTime" value="0.5500000000000007"/>
+      </metrics>
+      <metrics xmi:id="_0ceBjbr5Ee60f_i_xhzhlg" metric="_WMI1QJS4Ee6LjrY2ReETfQ">
+        <result xmi:id="_0ceBjrr5Ee60f_i_xhzhlg" name="time" value="14.9"/>
+      </metrics>
+      <metrics xmi:id="_0ceBj7r5Ee60f_i_xhzhlg" metric="_CTvKMKODEe2SY5_vP2qLCw">
+        <result xmi:id="_0ceBkLr5Ee60f_i_xhzhlg" name="M2_shaftInsertionTime" value="6.9"/>
+      </metrics>
+      <metrics xmi:id="_0ceBkbr5Ee60f_i_xhzhlg" metric="_FD2hYKODEe2SY5_vP2qLCw">
+        <result xmi:id="_0ceBkrr5Ee60f_i_xhzhlg" name="M3_dynamicCollision"/>
+      </metrics>
+    </performedTests>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_JCVF4LoBEe6HUJU6MraeEA" timeLimitSeconds="15"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/James/A50DigitalTwinSource_7.0" launchDelaySeconds="15">
+    <variables xmi:id="_yspcwI4zEe68Vf1HSLeZ6Q" name="joints/KR_50.Link1/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_ZjJHUD8uEe2Lapf8udQiDQ" name="joints/KR22_850.Link1/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_7deZMI4zEe68Vf1HSLeZ6Q" name="joints/KR22_850.Link2/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_8UBmsI4zEe68Vf1HSLeZ6Q" name="joints/KR22_850.Link3/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_9JWsMI4zEe68Vf1HSLeZ6Q" name="joints/KR22_850.Link4/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_-DLQII4zEe68Vf1HSLeZ6Q" name="joints/KR22_850.Link5/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_-8onsI4zEe68Vf1HSLeZ6Q" name="joints/KR22_850.Link6/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_CtCXMI40Ee68Vf1HSLeZ6Q" name="joints/Gripper_850.GripA/T" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_w6HSsI40Ee68Vf1HSLeZ6Q" name="joints/Drive_Unit_RGT.zAxis/T" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_atI6MI40Ee68Vf1HSLeZ6Q" name="joints/KR22_825.Link1/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_VogTIJNMEe62CIiytqvkDA" name="joints/KR22_825.Link2/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_Xl2JkJNMEe62CIiytqvkDA" name="joints/KR22_825.Link3/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_Xl2JkZNMEe62CIiytqvkDA" name="joints/KR22_825.Link4/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_SENTsJNREe62CIiytqvkDA" name="joints/KR22_825.Link5/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_T6h8IJNREe62CIiytqvkDA" name="joints/KR22_825.Link6/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_5C0pwY41Ee68Vf1HSLeZ6Q" name="joints/Gripper_825.GripB/T" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_R5KtsI41Ee68Vf1HSLeZ6Q" name="joints/Drive_Unit_LFT.xAxis/T" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_SeztsJHgEe6o1sMdrDWWPg" name="SafetyZone1/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_LkHVgJgMEe6r2ua3NAxXTg" name="SafetyZone2/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_NSAasJgMEe6r2ua3NAxXTg" name="SafetyZone3/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_PHsJ8JgMEe6r2ua3NAxXTg" name="SafetyZone4/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_Q5qd4JgMEe6r2ua3NAxXTg" name="SafetyZone5/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_Q5qd4ZgMEe6r2ua3NAxXTg" name="SafetyZone6/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_Q5qd4pgMEe6r2ua3NAxXTg" name="SafetyZone7/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_Q5qd45gMEe6r2ua3NAxXTg" name="SafetyZone8/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_Sx3eMJgjEe6r2ua3NAxXTg" name="Collision_850/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_8ln4AJUNEe6le6QThR1CCw" name="Consert_Robot_Left/guarantee_plug_driveshaft_high_reliability" type="_aiHrEJMYEe6MN9fzQ8_Elg"/>
+    <variables xmi:id="_VpjFkJcpEe6yvJOQ5FCyNQ" name="Consert_Robot_Left/guarantee_plug_driveshaft_medium_reliability" type="_aiHrEJMYEe6MN9fzQ8_Elg"/>
+    <nodes xmi:id="_RKopMI40Ee68Vf1HSLeZ6Q" name="KR22_825" publisher="_atI6MI40Ee68Vf1HSLeZ6Q _VogTIJNMEe62CIiytqvkDA _Xl2JkJNMEe62CIiytqvkDA _Xl2JkZNMEe62CIiytqvkDA _SENTsJNREe62CIiytqvkDA _T6h8IJNREe62CIiytqvkDA"/>
+    <nodes xmi:id="_Kkc0UJHiEe6o1sMdrDWWPg" name="safetyzonesShaft" publisher="_SeztsJHgEe6o1sMdrDWWPg"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="KR22_850" publisher="_ZjJHUD8uEe2Lapf8udQiDQ _7deZMI4zEe68Vf1HSLeZ6Q _8UBmsI4zEe68Vf1HSLeZ6Q _9JWsMI4zEe68Vf1HSLeZ6Q _-DLQII4zEe68Vf1HSLeZ6Q _-8onsI4zEe68Vf1HSLeZ6Q"/>
+    <nodes xmi:id="_J3TToEPbEe2tNsTzJ49AOg" name="KR_50" publisher="_yspcwI4zEe68Vf1HSLeZ6Q"/>
+    <nodes xmi:id="_9p2UsI40Ee68Vf1HSLeZ6Q" name="Gripper_825" publisher="_5C0pwY41Ee68Vf1HSLeZ6Q"/>
+    <nodes xmi:id="_KTdEIEPbEe2tNsTzJ49AOg" name="Gripper_850" publisher="_CtCXMI40Ee68Vf1HSLeZ6Q"/>
+    <nodes xmi:id="_N-F0sI40Ee68Vf1HSLeZ6Q" name="Drive_Unit_RGT" publisher="_w6HSsI40Ee68Vf1HSLeZ6Q"/>
+    <nodes xmi:id="_PNRvMI41Ee68Vf1HSLeZ6Q" name="Drive_Unit_LFT" publisher="_R5KtsI41Ee68Vf1HSLeZ6Q"/>
+    <nodes xmi:id="_6HUpkJUNEe6le6QThR1CCw" name="EDDI" publisher="_8ln4AJUNEe6le6QThR1CCw"/>
+    <nodes xmi:id="_cMOVQJgiEe6r2ua3NAxXTg" name="safetyzonesInterrobot" publisher="_Sx3eMJgjEe6r2ua3NAxXTg"/>
+    <simulator xsi:type="TestingMM.MRSPackage:TTSSimulator" xmi:id="_G7808Az1Ee2dUZBawpc2Eg" hostname="localhost" port="8089" stepSizeMillis="50.0" useStepping="true"/>
+    <propertyType xmi:id="_EYa9sAz0Ee2dUZBawpc2Eg" name="doubleEncodedAsString" parsingMethod="STRING"/>
+    <propertyType xmi:id="_nV6N8GA7Ee27gLEnzzOoKw" name="SafetyZone"/>
+    <propertyType xmi:id="_aiHrEJMYEe6MN9fzQ8_Elg" name="boolean"/>
+  </mrs>
+</TestingMM:TestingSpace>

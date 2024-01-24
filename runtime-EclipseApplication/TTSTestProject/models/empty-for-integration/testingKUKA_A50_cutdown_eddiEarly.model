@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestingMM="TestingMM" xmlns:TestingMM.FuzzingOperations="FuzzingOperations" xmlns:TestingMM.MRSPackage="MRSPackage" xmlns:TestingMM.Metrics="Metrics" xmi:id="_dUuskN0YEeyv8LH3vdSfnw" name="fullSpace">
+  <metrics xsi:type="TestingMM.Metrics:FuzzingOperationTimesMetric" xmi:id="_hrtGEPZBEeypkdw9q4st1A" name="fuzzingOperationTimes" dir="LOWEST" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_UrYTwGVlEe2P2ZFJWtv89A" defaultVal="100000.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_taSNEPZBEeypkdw9q4st1A"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_-uTgoGBPEe27gLEnzzOoKw" filename="/tmp/fuzzopTimes"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_2fP74GBMEe27gLEnzzOoKw" name="M1_collisionDriveShaft" relatedVariables="_SeztsJHgEe6o1sMdrDWWPg _LkHVgJgMEe6r2ua3NAxXTg _NSAasJgMEe6r2ua3NAxXTg _PHsJ8JgMEe6r2ua3NAxXTg _Q5qd4JgMEe6r2ua3NAxXTg _Q5qd4ZgMEe6r2ua3NAxXTg _Q5qd4pgMEe6r2ua3NAxXTg _Q5qd45gMEe6r2ua3NAxXTg" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_XG8XQGVlEe2P2ZFJWtv89A"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_NlsBEGBPEe27gLEnzzOoKw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="__NR7oGBPEe27gLEnzzOoKw" filename="/tmp/collisionDriveShaft"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_CTvKMKODEe2SY5_vP2qLCw" name="M2_shaftInsertionTime" useInOptimisation="true">
+    <valueIfNotReceived xmi:id="_3X_j4JmfEe6KX-fTwC_Dng" defaultVal="100.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_Q4D50KOEEe2SY5_vP2qLCw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_R3170KOEEe2SY5_vP2qLCw" filename="/tmp/shaftInsertion"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_9Uu30JSsEe6LjrY2ReETfQ" name="M4_EDDIWarningTime" relatedVariables="_SeztsJHgEe6o1sMdrDWWPg _8ln4AJUNEe6le6QThR1CCw _VpjFkJcpEe6yvJOQ5FCyNQ _B6s1gJrQEe6CwdnpanVxSw _PbpSAJrQEe6CwdnpanVxSw">
+    <valueIfNotReceived xmi:id="_9Uve4JSsEe6LjrY2ReETfQ" defaultVal="-99999.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_9Uve4ZSsEe6LjrY2ReETfQ"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_9Uve4pSsEe6LjrY2ReETfQ" filename="/tmp/eddiWarningTime"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_WMI1QJS4Ee6LjrY2ReETfQ" name="time">
+    <valueIfNotReceived xmi:id="_WMI1QZS4Ee6LjrY2ReETfQ" defaultVal="1000.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_WMI1QpS4Ee6LjrY2ReETfQ"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_WMI1Q5S4Ee6LjrY2ReETfQ" filename="/tmp/shaftInsertionTime"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_Yg3X0JrVEe6CwdnpanVxSw" name="M5_KR22Aligned" relatedVariables="_B6s1gJrQEe6CwdnpanVxSw">
+    <valueIfNotReceived xmi:id="_Yg3X0ZrVEe6CwdnpanVxSw" defaultVal="100.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_Yg3X0prVEe6CwdnpanVxSw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_Yg3X05rVEe6CwdnpanVxSw" filename="/tmp/shaftInsertion"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_davQ0JrVEe6CwdnpanVxSw" name="M6_KR22CorrectPosition" relatedVariables="_PbpSAJrQEe6CwdnpanVxSw">
+    <valueIfNotReceived xmi:id="_davQ0ZrVEe6CwdnpanVxSw" defaultVal="100.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_davQ0prVEe6CwdnpanVxSw"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_davQ05rVEe6CwdnpanVxSw" filename="/tmp/shaftInsertion"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_w8gYILYwEe6p4czI9LppnA" name="M7_EDDIWarningTimeHighOnly" relatedVariables="_SeztsJHgEe6o1sMdrDWWPg _8ln4AJUNEe6le6QThR1CCw _VpjFkJcpEe6yvJOQ5FCyNQ _B6s1gJrQEe6CwdnpanVxSw _PbpSAJrQEe6CwdnpanVxSw">
+    <valueIfNotReceived xmi:id="_w8gYIbYwEe6p4czI9LppnA" defaultVal="-99999.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_w8gYIrYwEe6p4czI9LppnA"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_w8gYI7YwEe6p4czI9LppnA" filename="/tmp/eddiWarningTime"/>
+  </metrics>
+  <metrics xsi:type="TestingMM.Metrics:StreamMetric" xmi:id="_zexgkLYwEe6p4czI9LppnA" name="M8_EDDIWarningTimeMediumOnly" relatedVariables="_SeztsJHgEe6o1sMdrDWWPg _8ln4AJUNEe6le6QThR1CCw _VpjFkJcpEe6yvJOQ5FCyNQ _B6s1gJrQEe6CwdnpanVxSw _PbpSAJrQEe6CwdnpanVxSw">
+    <valueIfNotReceived xmi:id="_zexgkbYwEe6p4czI9LppnA" defaultVal="-99999.0"/>
+    <streams xsi:type="TestingMM.Metrics:InputStream" xmi:id="_zexgkrYwEe6p4czI9LppnA"/>
+    <res xsi:type="TestingMM.Metrics:FileStreamResult" xmi:id="_zexgk7YwEe6p4czI9LppnA" filename="/tmp/eddiWarningTime"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_lc6UoN0YEeyv8LH3vdSfnw" name="jointPosKR22_Link1" variableToAffect="_atI6MI40Ee68Vf1HSLeZ6Q" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_bJdhUN04EeyAL51MCA53dw" startTime="3.0" endTime="6.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_SlE2IPLIEeyyicYP_3f6ng" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_xc7IAJMaEe6MN9fzQ8_Elg" name="jointPosKR22_Link2" variableToAffect="_VogTIJNMEe62CIiytqvkDA" messagesToAllComponenents="false" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_xc7IAZMaEe6MN9fzQ8_Elg" startTime="3.0" endTime="6.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_xc7IApMaEe6MN9fzQ8_Elg" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_X2YtsJNREe62CIiytqvkDA" name="jointPosKR22_Link3" variableToAffect="_Xl2JkJNMEe62CIiytqvkDA" messagesToAllComponenents="false" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_X2YtsZNREe62CIiytqvkDA" startTime="3.0" endTime="6.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_X2YtspNREe62CIiytqvkDA" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_dGi_wJNREe62CIiytqvkDA" name="jointPosKR22_Link4" variableToAffect="_Xl2JkZNMEe62CIiytqvkDA" messagesToAllComponenents="false" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_dGi_wZNREe62CIiytqvkDA" startTime="3.0" endTime="6.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_dGi_wpNREe62CIiytqvkDA" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_gsB4sJNREe62CIiytqvkDA" name="jointPosKR22_Link5" variableToAffect="_Xl2JkZNMEe62CIiytqvkDA" messagesToAllComponenents="false" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_gsB4sZNREe62CIiytqvkDA" startTime="3.0" endTime="6.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_gsB4spNREe62CIiytqvkDA" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <possibleFuzzingOperations xsi:type="TestingMM.FuzzingOperations:RandomValueFromSetOperation" xmi:id="_ipUr0JNREe62CIiytqvkDA" name="jointPosKR22_Link6" variableToAffect="_Xl2JkZNMEe62CIiytqvkDA" messagesToAllComponenents="false" isRelative="true">
+    <activation xsi:type="TestingMM.FuzzingOperations:FixedTimeActivation" xmi:id="_ipUr0ZNREe62CIiytqvkDA" startTime="3.0" endTime="6.0"/>
+    <valueSet xsi:type="TestingMM.FuzzingOperations:DoubleRange" xmi:id="_ipUr0pNREe62CIiytqvkDA" propertyName="" lowerBound="-0.3" upperBound="0.3"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_fwXokN0YEeyv8LH3vdSfnw" name="eddiEarly" metrics="_hrtGEPZBEeypkdw9q4st1A _2fP74GBMEe27gLEnzzOoKw _9Uu30JSsEe6LjrY2ReETfQ _WMI1QJS4Ee6LjrY2ReETfQ _CTvKMKODEe2SY5_vP2qLCw _Yg3X0JrVEe6CwdnpanVxSw _davQ0JrVEe6CwdnpanVxSw _w8gYILYwEe6p4czI9LppnA _zexgkLYwEe6p4czI9LppnA" includedOperations="_lc6UoN0YEeyv8LH3vdSfnw _xc7IAJMaEe6MN9fzQ8_Elg _X2YtsJNREe62CIiytqvkDA _dGi_wJNREe62CIiytqvkDA _gsB4sJNREe62CIiytqvkDA _ipUr0JNREe62CIiytqvkDA">
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_r6TDoN1sEeyxr5U7GK-iSA" populationSize="20" iterations="100"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_fuhVwAdaEe2PWqC4wkW0SQ" timeLimitSeconds="10"/>
+  </campaigns>
+  <mrs xmi:id="_0gnr8OIcEeynuZg3j0KLEQ" launchFileLocation="/home/James/A50DigitalTwinSource_7.0" launchDelaySeconds="15">
+    <variables xmi:id="_yspcwI4zEe68Vf1HSLeZ6Q" name="joints/KR_50.Link1/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_ZjJHUD8uEe2Lapf8udQiDQ" name="joints/KR22_850.Link1/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_7deZMI4zEe68Vf1HSLeZ6Q" name="joints/KR22_850.Link2/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_8UBmsI4zEe68Vf1HSLeZ6Q" name="joints/KR22_850.Link3/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_9JWsMI4zEe68Vf1HSLeZ6Q" name="joints/KR22_850.Link4/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_-DLQII4zEe68Vf1HSLeZ6Q" name="joints/KR22_850.Link5/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_-8onsI4zEe68Vf1HSLeZ6Q" name="joints/KR22_850.Link6/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_CtCXMI40Ee68Vf1HSLeZ6Q" name="joints/Gripper_850.GripA/T" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_w6HSsI40Ee68Vf1HSLeZ6Q" name="joints/Drive_Unit_RGT.zAxis/T" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_atI6MI40Ee68Vf1HSLeZ6Q" name="joints/KR22_825.Link1/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_VogTIJNMEe62CIiytqvkDA" name="joints/KR22_825.Link2/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_Xl2JkJNMEe62CIiytqvkDA" name="joints/KR22_825.Link3/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_Xl2JkZNMEe62CIiytqvkDA" name="joints/KR22_825.Link4/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_SENTsJNREe62CIiytqvkDA" name="joints/KR22_825.Link5/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_T6h8IJNREe62CIiytqvkDA" name="joints/KR22_825.Link6/R" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_5C0pwY41Ee68Vf1HSLeZ6Q" name="joints/Gripper_825.GripB/T" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_R5KtsI41Ee68Vf1HSLeZ6Q" name="joints/Drive_Unit_LFT.xAxis/T" type="_EYa9sAz0Ee2dUZBawpc2Eg"/>
+    <variables xmi:id="_SeztsJHgEe6o1sMdrDWWPg" name="SafetyZone1/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_LkHVgJgMEe6r2ua3NAxXTg" name="SafetyZone2/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_NSAasJgMEe6r2ua3NAxXTg" name="SafetyZone3/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_PHsJ8JgMEe6r2ua3NAxXTg" name="SafetyZone4/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_Q5qd4JgMEe6r2ua3NAxXTg" name="SafetyZone5/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_Q5qd4ZgMEe6r2ua3NAxXTg" name="SafetyZone6/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_Q5qd4pgMEe6r2ua3NAxXTg" name="SafetyZone7/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_Q5qd45gMEe6r2ua3NAxXTg" name="SafetyZone8/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_Sx3eMJgjEe6r2ua3NAxXTg" name="Collision_850/events" type="_nV6N8GA7Ee27gLEnzzOoKw"/>
+    <variables xmi:id="_8ln4AJUNEe6le6QThR1CCw" name="Consert_Robot_Left/guarantee_plug_driveshaft_high_reliability" type="_aiHrEJMYEe6MN9fzQ8_Elg"/>
+    <variables xmi:id="_VpjFkJcpEe6yvJOQ5FCyNQ" name="Consert_Robot_Left/guarantee_plug_driveshaft_medium_reliability" type="_aiHrEJMYEe6MN9fzQ8_Elg"/>
+    <variables xmi:id="_B6s1gJrQEe6CwdnpanVxSw" name="KR22_left/sim_aligned_centerpoint" type="_aiHrEJMYEe6MN9fzQ8_Elg"/>
+    <variables xmi:id="_PbpSAJrQEe6CwdnpanVxSw" name="KR22_left/sim_kr22_correct_position" type="_aiHrEJMYEe6MN9fzQ8_Elg"/>
+    <nodes xmi:id="_RKopMI40Ee68Vf1HSLeZ6Q" name="KR22_825" publisher="_atI6MI40Ee68Vf1HSLeZ6Q _VogTIJNMEe62CIiytqvkDA _Xl2JkJNMEe62CIiytqvkDA _Xl2JkZNMEe62CIiytqvkDA _SENTsJNREe62CIiytqvkDA _T6h8IJNREe62CIiytqvkDA"/>
+    <nodes xmi:id="_Kkc0UJHiEe6o1sMdrDWWPg" name="safetyzonesShaft" publisher="_SeztsJHgEe6o1sMdrDWWPg"/>
+    <nodes xmi:id="_Ez_MwOIdEeynuZg3j0KLEQ" name="KR22_850" publisher="_ZjJHUD8uEe2Lapf8udQiDQ _7deZMI4zEe68Vf1HSLeZ6Q _8UBmsI4zEe68Vf1HSLeZ6Q _9JWsMI4zEe68Vf1HSLeZ6Q _-DLQII4zEe68Vf1HSLeZ6Q _-8onsI4zEe68Vf1HSLeZ6Q"/>
+    <nodes xmi:id="_J3TToEPbEe2tNsTzJ49AOg" name="KR_50" publisher="_yspcwI4zEe68Vf1HSLeZ6Q"/>
+    <nodes xmi:id="_9p2UsI40Ee68Vf1HSLeZ6Q" name="Gripper_825" publisher="_5C0pwY41Ee68Vf1HSLeZ6Q"/>
+    <nodes xmi:id="_KTdEIEPbEe2tNsTzJ49AOg" name="Gripper_850" publisher="_CtCXMI40Ee68Vf1HSLeZ6Q"/>
+    <nodes xmi:id="_N-F0sI40Ee68Vf1HSLeZ6Q" name="Drive_Unit_RGT" publisher="_w6HSsI40Ee68Vf1HSLeZ6Q"/>
+    <nodes xmi:id="_PNRvMI41Ee68Vf1HSLeZ6Q" name="Drive_Unit_LFT" publisher="_R5KtsI41Ee68Vf1HSLeZ6Q"/>
+    <nodes xmi:id="_6HUpkJUNEe6le6QThR1CCw" name="EDDI" publisher="_8ln4AJUNEe6le6QThR1CCw"/>
+    <nodes xmi:id="_cMOVQJgiEe6r2ua3NAxXTg" name="safetyzonesInterrobot" publisher="_Sx3eMJgjEe6r2ua3NAxXTg"/>
+    <simulator xsi:type="TestingMM.MRSPackage:TTSSimulator" xmi:id="_G7808Az1Ee2dUZBawpc2Eg" hostname="localhost" port="8089" stepSizeMillis="50.0" useStepping="true"/>
+    <propertyType xmi:id="_EYa9sAz0Ee2dUZBawpc2Eg" name="doubleEncodedAsString" parsingMethod="STRING"/>
+    <propertyType xmi:id="_nV6N8GA7Ee27gLEnzzOoKw" name="SafetyZone"/>
+    <propertyType xmi:id="_aiHrEJMYEe6MN9fzQ8_Elg" name="boolean"/>
+  </mrs>
+</TestingMM:TestingSpace>
