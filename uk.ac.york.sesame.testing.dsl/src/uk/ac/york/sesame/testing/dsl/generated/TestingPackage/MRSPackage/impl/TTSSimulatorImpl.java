@@ -21,6 +21,9 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimu
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TTSSimulatorImpl#getHostname <em>Hostname</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TTSSimulatorImpl#getPort <em>Port</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TTSSimulatorImpl#getStepSizeMillis <em>Step Size Millis</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TTSSimulatorImpl#isUseStepping <em>Use Stepping</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TTSSimulatorImpl#isUseGUI <em>Use GUI</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,6 +68,66 @@ public class TTSSimulatorImpl extends SimulatorImpl implements TTSSimulator {
 	 * @ordered
 	 */
 	protected String port = PORT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStepSizeMillis() <em>Step Size Millis</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStepSizeMillis()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double STEP_SIZE_MILLIS_EDEFAULT = 20.0;
+
+	/**
+	 * The cached value of the '{@link #getStepSizeMillis() <em>Step Size Millis</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStepSizeMillis()
+	 * @generated
+	 * @ordered
+	 */
+	protected double stepSizeMillis = STEP_SIZE_MILLIS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isUseStepping() <em>Use Stepping</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUseStepping()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USE_STEPPING_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUseStepping() <em>Use Stepping</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUseStepping()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean useStepping = USE_STEPPING_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isUseGUI() <em>Use GUI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUseGUI()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USE_GUI_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUseGUI() <em>Use GUI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUseGUI()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean useGUI = USE_GUI_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -132,6 +195,69 @@ public class TTSSimulatorImpl extends SimulatorImpl implements TTSSimulator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public double getStepSizeMillis() {
+		return stepSizeMillis;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStepSizeMillis(double newStepSizeMillis) {
+		double oldStepSizeMillis = stepSizeMillis;
+		stepSizeMillis = newStepSizeMillis;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MRSPackagePackage.TTS_SIMULATOR__STEP_SIZE_MILLIS, oldStepSizeMillis, stepSizeMillis));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isUseStepping() {
+		return useStepping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUseStepping(boolean newUseStepping) {
+		boolean oldUseStepping = useStepping;
+		useStepping = newUseStepping;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MRSPackagePackage.TTS_SIMULATOR__USE_STEPPING, oldUseStepping, useStepping));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isUseGUI() {
+		return useGUI;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUseGUI(boolean newUseGUI) {
+		boolean oldUseGUI = useGUI;
+		useGUI = newUseGUI;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MRSPackagePackage.TTS_SIMULATOR__USE_GUI, oldUseGUI, useGUI));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -139,6 +265,12 @@ public class TTSSimulatorImpl extends SimulatorImpl implements TTSSimulator {
 				return getHostname();
 			case MRSPackagePackage.TTS_SIMULATOR__PORT:
 				return getPort();
+			case MRSPackagePackage.TTS_SIMULATOR__STEP_SIZE_MILLIS:
+				return getStepSizeMillis();
+			case MRSPackagePackage.TTS_SIMULATOR__USE_STEPPING:
+				return isUseStepping();
+			case MRSPackagePackage.TTS_SIMULATOR__USE_GUI:
+				return isUseGUI();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,6 +288,15 @@ public class TTSSimulatorImpl extends SimulatorImpl implements TTSSimulator {
 				return;
 			case MRSPackagePackage.TTS_SIMULATOR__PORT:
 				setPort((String)newValue);
+				return;
+			case MRSPackagePackage.TTS_SIMULATOR__STEP_SIZE_MILLIS:
+				setStepSizeMillis((Double)newValue);
+				return;
+			case MRSPackagePackage.TTS_SIMULATOR__USE_STEPPING:
+				setUseStepping((Boolean)newValue);
+				return;
+			case MRSPackagePackage.TTS_SIMULATOR__USE_GUI:
+				setUseGUI((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -175,6 +316,15 @@ public class TTSSimulatorImpl extends SimulatorImpl implements TTSSimulator {
 			case MRSPackagePackage.TTS_SIMULATOR__PORT:
 				setPort(PORT_EDEFAULT);
 				return;
+			case MRSPackagePackage.TTS_SIMULATOR__STEP_SIZE_MILLIS:
+				setStepSizeMillis(STEP_SIZE_MILLIS_EDEFAULT);
+				return;
+			case MRSPackagePackage.TTS_SIMULATOR__USE_STEPPING:
+				setUseStepping(USE_STEPPING_EDEFAULT);
+				return;
+			case MRSPackagePackage.TTS_SIMULATOR__USE_GUI:
+				setUseGUI(USE_GUI_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -191,6 +341,12 @@ public class TTSSimulatorImpl extends SimulatorImpl implements TTSSimulator {
 				return HOSTNAME_EDEFAULT == null ? hostname != null : !HOSTNAME_EDEFAULT.equals(hostname);
 			case MRSPackagePackage.TTS_SIMULATOR__PORT:
 				return PORT_EDEFAULT == null ? port != null : !PORT_EDEFAULT.equals(port);
+			case MRSPackagePackage.TTS_SIMULATOR__STEP_SIZE_MILLIS:
+				return stepSizeMillis != STEP_SIZE_MILLIS_EDEFAULT;
+			case MRSPackagePackage.TTS_SIMULATOR__USE_STEPPING:
+				return useStepping != USE_STEPPING_EDEFAULT;
+			case MRSPackagePackage.TTS_SIMULATOR__USE_GUI:
+				return useGUI != USE_GUI_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -209,6 +365,12 @@ public class TTSSimulatorImpl extends SimulatorImpl implements TTSSimulator {
 		result.append(hostname);
 		result.append(", port: ");
 		result.append(port);
+		result.append(", stepSizeMillis: ");
+		result.append(stepSizeMillis);
+		result.append(", useStepping: ");
+		result.append(useStepping);
+		result.append(", useGUI: ");
+		result.append(useGUI);
 		result.append(')');
 		return result.toString();
 	}

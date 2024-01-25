@@ -344,6 +344,117 @@ public interface StandardGrammarPackage extends EPackage {
 	int CONDITION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionConstraintImpl <em>Condition Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionConstraintImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionConstraint()
+	 * @generated
+	 */
+	int CONDITION_CONSTRAINT = 7;
+
+	/**
+	 * The number of structural features of the '<em>Condition Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_CONSTRAINT_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Condition Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_CONSTRAINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ContainsVariableImpl <em>Contains Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ContainsVariableImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getContainsVariable()
+	 * @generated
+	 */
+	int CONTAINS_VARIABLE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Metric</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINS_VARIABLE__METRIC = CONDITION_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Contains Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINS_VARIABLE_FEATURE_COUNT = CONDITION_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Contains Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINS_VARIABLE_OPERATION_COUNT = CONDITION_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ContainsIntegerImpl <em>Contains Integer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ContainsIntegerImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getContainsInteger()
+	 * @generated
+	 */
+	int CONTAINS_INTEGER = 9;
+
+	/**
+	 * The feature id for the '<em><b>Min Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINS_INTEGER__MIN_VALUE = CONDITION_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Max Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINS_INTEGER__MAX_VALUE = CONDITION_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Contains Integer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINS_INTEGER_FEATURE_COUNT = CONDITION_CONSTRAINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Contains Integer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINS_INTEGER_OPERATION_COUNT = CONDITION_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparisonOperation <em>Binary Comparison Operation</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -351,7 +462,7 @@ public interface StandardGrammarPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryComparisonOperation()
 	 * @generated
 	 */
-	int BINARY_COMPARISON_OPERATION = 7;
+	int BINARY_COMPARISON_OPERATION = 10;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryLogicalOperation <em>Binary Logical Operation</em>}' enum.
@@ -361,7 +472,7 @@ public interface StandardGrammarPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getBinaryLogicalOperation()
 	 * @generated
 	 */
-	int BINARY_LOGICAL_OPERATION = 8;
+	int BINARY_LOGICAL_OPERATION = 11;
 
 
 	/**
@@ -543,6 +654,69 @@ public interface StandardGrammarPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCondition_C();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionConstraint <em>Condition Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Condition Constraint</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionConstraint
+	 * @generated
+	 */
+	EClass getConditionConstraint();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ContainsVariable <em>Contains Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Contains Variable</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ContainsVariable
+	 * @generated
+	 */
+	EClass getContainsVariable();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ContainsVariable#getMetric <em>Metric</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Metric</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ContainsVariable#getMetric()
+	 * @see #getContainsVariable()
+	 * @generated
+	 */
+	EReference getContainsVariable_Metric();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ContainsInteger <em>Contains Integer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Contains Integer</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ContainsInteger
+	 * @generated
+	 */
+	EClass getContainsInteger();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ContainsInteger#getMinValue <em>Min Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Min Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ContainsInteger#getMinValue()
+	 * @see #getContainsInteger()
+	 * @generated
+	 */
+	EAttribute getContainsInteger_MinValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ContainsInteger#getMaxValue <em>Max Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Max Value</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ContainsInteger#getMaxValue()
+	 * @see #getContainsInteger()
+	 * @generated
+	 */
+	EAttribute getContainsInteger_MaxValue();
 
 	/**
 	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparisonOperation <em>Binary Comparison Operation</em>}'.
@@ -736,6 +910,60 @@ public interface StandardGrammarPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONDITION__C = eINSTANCE.getCondition_C();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionConstraintImpl <em>Condition Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ConditionConstraintImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getConditionConstraint()
+		 * @generated
+		 */
+		EClass CONDITION_CONSTRAINT = eINSTANCE.getConditionConstraint();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ContainsVariableImpl <em>Contains Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ContainsVariableImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getContainsVariable()
+		 * @generated
+		 */
+		EClass CONTAINS_VARIABLE = eINSTANCE.getContainsVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Metric</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTAINS_VARIABLE__METRIC = eINSTANCE.getContainsVariable_Metric();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ContainsIntegerImpl <em>Contains Integer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.ContainsIntegerImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.StandardGrammarPackageImpl#getContainsInteger()
+		 * @generated
+		 */
+		EClass CONTAINS_INTEGER = eINSTANCE.getContainsInteger();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTAINS_INTEGER__MIN_VALUE = eINSTANCE.getContainsInteger_MinValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTAINS_INTEGER__MAX_VALUE = eINSTANCE.getContainsInteger_MaxValue();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.BinaryComparisonOperation <em>Binary Comparison Operation</em>}' enum.

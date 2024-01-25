@@ -1,0 +1,4 @@
+./run_standalone_generator_params.sh /home/jharbin/academic/sesame/WP6/ /home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.standalone.generator/models/testingKUKA_A50_cutdown_eddiEarly.model /tmp/codegen1/
+./run_standalone_generator_params.sh /home/jharbin/academic/sesame/WP6/ /home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.standalone.generator/models/testingKUKA_A50_cutdown_jan18.model /tmp/codegen2/
+./run_standalone_generator_params.sh /home/jharbin/academic/sesame/WP6/ /home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.standalone.generator/models/TestingPAL.model /tmp/codegen3/
+./run_standalone_generator_params.sh /home/jharbin/academic/sesame/WP6/ /home/jharbin/academic/sesame/WP6/uk.ac.york.sesame.testing.standalone.generator/models/TestingPAL-custom-2566.model /tmp/codegen4/

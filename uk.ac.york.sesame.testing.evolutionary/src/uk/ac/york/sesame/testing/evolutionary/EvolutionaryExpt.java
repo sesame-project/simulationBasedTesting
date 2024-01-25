@@ -152,7 +152,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			
 			if (app instanceof NSGAWithCoverageCells) {
 				NSGAWithCoverageCells nsgaCov = (NSGAWithCoverageCells)app;
-				boolean useMutationEnhancing = nsgaCov.isUseMutationEnhancingCoverage();
+				boolean useMutationEnhancing = false;//nsgaCov.isUseMutationEnhancingCoverage();
 				// TODO: read relevant parameters from nsgaCov here
 				algorithm = new NSGAII_ResultLogging_Coverage(selectedCampaign, scenarioStr, problem, maxIterations,
 						populationSize, matingPoolSize, offspringPopulationSize, crossover, mutation, selection,

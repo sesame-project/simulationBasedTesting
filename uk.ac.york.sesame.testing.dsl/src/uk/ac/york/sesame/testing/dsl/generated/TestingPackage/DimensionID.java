@@ -96,7 +96,15 @@ public enum DimensionID implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	O3_DELETION_COUNT(8, "O3_DELETION_COUNT", "O3_DELETION_COUNT");
+	O3_DELETION_COUNT(8, "O3_DELETION_COUNT", "O3_DELETION_COUNT"), /**
+	 * The '<em><b>O0 TOTAL COUNT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #O0_TOTAL_COUNT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	O0_TOTAL_COUNT(9, "O0_TOTAL_COUNT", "O0_TOTAL_COUNT");
 
 	/**
 	 * The '<em><b>T1 TIME MIDPOINT MEAN</b></em>' literal value.
@@ -187,6 +195,17 @@ public enum DimensionID implements Enumerator {
 	public static final int O3_DELETION_COUNT_VALUE = 8;
 
 	/**
+	 * The '<em><b>O0 TOTAL COUNT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #O0_TOTAL_COUNT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int O0_TOTAL_COUNT_VALUE = 9;
+
+	/**
 	 * An array of all the '<em><b>Dimension ID</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -202,6 +221,7 @@ public enum DimensionID implements Enumerator {
 			O1_FUZZRANGE_COUNT,
 			O2_DELAY_COUNT,
 			O3_DELETION_COUNT,
+			O0_TOTAL_COUNT,
 		};
 
 	/**
@@ -266,6 +286,7 @@ public enum DimensionID implements Enumerator {
 			case O1_FUZZRANGE_COUNT_VALUE: return O1_FUZZRANGE_COUNT;
 			case O2_DELAY_COUNT_VALUE: return O2_DELAY_COUNT;
 			case O3_DELETION_COUNT_VALUE: return O3_DELETION_COUNT;
+			case O0_TOTAL_COUNT_VALUE: return O0_TOTAL_COUNT;
 		}
 		return null;
 	}

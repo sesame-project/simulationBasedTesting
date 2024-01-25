@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation#getParams <em>Params</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation#getCustomProcessClass <em>Custom Process Class</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getCustomFuzzingOperation()
@@ -34,4 +35,26 @@ public interface CustomFuzzingOperation extends FuzzingOperation {
 	 * @generated
 	 */
 	EList<ValueSet> getParams();
+
+	/**
+	 * Returns the value of the '<em><b>Custom Process Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Custom Process Class</em>' attribute.
+	 * @see #setCustomProcessClass(String)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getCustomFuzzingOperation_CustomProcessClass()
+	 * @model
+	 * @generated
+	 */
+	String getCustomProcessClass();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation#getCustomProcessClass <em>Custom Process Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Custom Process Class</em>' attribute.
+	 * @see #getCustomProcessClass()
+	 * @generated
+	 */
+	void setCustomProcessClass(String value);
 } // CustomFuzzingOperation

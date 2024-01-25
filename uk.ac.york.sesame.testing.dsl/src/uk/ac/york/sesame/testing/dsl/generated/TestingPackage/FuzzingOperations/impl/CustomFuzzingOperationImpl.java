@@ -3,11 +3,13 @@
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl;
 
 import java.util.Collection;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation;
@@ -23,6 +25,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.CustomFuzzingOperationImpl#getParams <em>Params</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.CustomFuzzingOperationImpl#getCustomProcessClass <em>Custom Process Class</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,6 +40,25 @@ public class CustomFuzzingOperationImpl extends FuzzingOperationImpl implements 
 	 * @ordered
 	 */
 	protected EList<ValueSet> params;
+
+	/**
+	 * The default value of the '{@link #getCustomProcessClass() <em>Custom Process Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCustomProcessClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CUSTOM_PROCESS_CLASS_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getCustomProcessClass() <em>Custom Process Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCustomProcessClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected String customProcessClass = CUSTOM_PROCESS_CLASS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,6 +96,27 @@ public class CustomFuzzingOperationImpl extends FuzzingOperationImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getCustomProcessClass() {
+		return customProcessClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCustomProcessClass(String newCustomProcessClass) {
+		String oldCustomProcessClass = customProcessClass;
+		customProcessClass = newCustomProcessClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION__CUSTOM_PROCESS_CLASS, oldCustomProcessClass, customProcessClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -93,6 +136,8 @@ public class CustomFuzzingOperationImpl extends FuzzingOperationImpl implements 
 		switch (featureID) {
 			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION__PARAMS:
 				return getParams();
+			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION__CUSTOM_PROCESS_CLASS:
+				return getCustomProcessClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,6 +155,9 @@ public class CustomFuzzingOperationImpl extends FuzzingOperationImpl implements 
 				getParams().clear();
 				getParams().addAll((Collection<? extends ValueSet>)newValue);
 				return;
+			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION__CUSTOM_PROCESS_CLASS:
+				setCustomProcessClass((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -125,6 +173,9 @@ public class CustomFuzzingOperationImpl extends FuzzingOperationImpl implements 
 			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION__PARAMS:
 				getParams().clear();
 				return;
+			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION__CUSTOM_PROCESS_CLASS:
+				setCustomProcessClass(CUSTOM_PROCESS_CLASS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -139,8 +190,26 @@ public class CustomFuzzingOperationImpl extends FuzzingOperationImpl implements 
 		switch (featureID) {
 			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION__PARAMS:
 				return params != null && !params.isEmpty();
+			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION__CUSTOM_PROCESS_CLASS:
+				return CUSTOM_PROCESS_CLASS_EDEFAULT == null ? customProcessClass != null : !CUSTOM_PROCESS_CLASS_EDEFAULT.equals(customProcessClass);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (customProcessClass: ");
+		result.append(customProcessClass);
+		result.append(')');
+		return result.toString();
 	}
 
 } //CustomFuzzingOperationImpl
