@@ -23,7 +23,7 @@ public class injectDOSAttackMessage implements CustomFuzzingOperation, Serializa
 	
 	public EventMessage createCustomMessage() {
 		String topicType = "std_msgs/Bool";
-		// This gets translated to pause_navigation during out-to-sim
+		// This gets translated during out-to-sim
 		String topicName = "/pmb2_1/conserts/forth/dosIN";
 		String value = "{\"data\": true }";
 		EventMessage em = new EventMessage(topicName, topicType, value);

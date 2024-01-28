@@ -12,11 +12,11 @@ import uk.ac.york.sesame.testing.evolutionary.phytestingselection.PhyTestingSubs
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.*;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.metricquality.*;
 
-public class PhyTestingSubsetSelectionRunner {
+public class PhyTestingSubsetSelectionRunner_backup {
 	public static void main(String[] args) {
 		///////////////////////////////////// SET PARAMETERS HERE ////////////////////////////////////////////////////////
-		String fileName = "/home/jharbin/academic/sesame/WP6/simulationBasedTesting/runtime-EclipseApplication/PALTesting/models/test/TestingPAL-coverage.model";
-		String campaignName = "scenario2-eddi-timebased-faults-coverage";
+		String fileName = "/home/jharbin/academic/sesame/WP6/runtime-EclipseApplication/TTSTestProject/models/phytesting/results/testingTTS_Kuka_phytesting_coverageGA_condbased_jul03.model";
+		String campaignName = "coverageExperiment-condbased";
 		boolean isFinal = false;
 		String searchString1 = "NONDOM";
 		String searchString2 = "intermediate-210";

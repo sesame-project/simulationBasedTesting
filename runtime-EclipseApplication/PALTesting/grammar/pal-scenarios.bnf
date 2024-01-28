@@ -1,6 +1,6 @@
 <compcond> ::= <compcond> <logicop> <compcond> | <basic_cond>
 <basic_cond> ::= <var> <bincomp> <expr>
-<var> ::= CV_Omni_LoadedFalse_Time | CV_Omni_LoadedTrue_Time | CV_PMB2_LoadedFalse_Time | CV_PMB2_LoadedTrue_Time | CV_DistanceFromPillarOmni | CV_DistanceFromPillarPMB2 |
+<var> ::= CV_Omni_LoadedFalse_Time | CV_Omni_LoadedTrue_Time | CV_PMB2_LoadedFalse_Time | CV_PMB2_LoadedTrue_Time | CV_PMB2_Door1_Dist | CV_PMB2_Door2_Dist 
 <bincomp> ::= .LESS_THAN | .GREATER_THAN
 <logicop> ::= .AND | .OR
 <expr> ::= <var> | <int>

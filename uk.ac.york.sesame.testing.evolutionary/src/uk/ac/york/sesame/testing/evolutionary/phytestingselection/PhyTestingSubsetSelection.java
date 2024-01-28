@@ -26,7 +26,7 @@ import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
 public abstract class PhyTestingSubsetSelection {
 
-	private static final boolean DEBUG_REGISTER_CELLS = true;
+	private static final boolean DEBUG_REGISTER_CELLS = false;
 
 	// This returns whether the given test should be included in the output results
 	// Can filter based upon whether it is in the Pareto front, generation number
@@ -123,14 +123,15 @@ public abstract class PhyTestingSubsetSelection {
 		}
 	}
 
-	public void writeOutResultsTabSep(List<Test> specificTests) {
-		DecimalFormat df = new DecimalFormat("#.##");
-		
+	public void writeOutResultsTabSep(List<Test> specificTests, EnumSet<DimensionID> chosenDimensions) {
+		DecimalFormat df = new DecimalFormat("#.##");		
 		EnumSet<DimensionID> allDimensions = EnumSet.allOf(DimensionID.class);
 		System.out.print("NAME\tTESTTAG\t");
 		for (DimensionID d : allDimensions) {
+			if (chosenDimensions.contains(d)) {
 			String dname = d.toString().substring(0,7);
 			System.out.print(dname + "\t");
+			}
 		}
 		System.out.println("METRIC_Q");
 		
@@ -139,8 +140,10 @@ public abstract class PhyTestingSubsetSelection {
 			Double qv = qualityMappings.get(t);
 			System.out.print(t.getName() + "\t" + getTestResultTag(t).toString() + "\t");
 			for (DimensionID d : paramValuesForConfig.keySet()) {
+				if (chosenDimensions.contains(d)) {
 				Double v = paramValuesForConfig.get(d);
 				System.out.print(df.format(v) + "\t");
+				}
 			}
 			System.out.println(df.format(qv));
 		}
@@ -159,13 +162,15 @@ public abstract class PhyTestingSubsetSelection {
 		return 0;
 	}
 
-	public void writeOutResultsCSV(String filePathOut, List<Test> specificTests) throws IOException {
+	public void writeOutResultsCSV(String filePathOut, List<Test> specificTests, EnumSet<DimensionID> chosenDimensions) throws IOException {
 		FileWriter fout = new FileWriter(filePathOut);
 		EnumSet<DimensionID> allDimensions = EnumSet.allOf(DimensionID.class);
 		fout.write("NAME,TESTTAG,");
 		for (DimensionID d : allDimensions) {
-			String dname = d.toString();
-			fout.write(dname + ",");
+			if (chosenDimensions.contains(d)) {
+				String dname = d.toString();
+				fout.write(dname + ",");
+			}
 		}
 		fout.write("METRIC_Q\n");
 		
@@ -174,19 +179,30 @@ public abstract class PhyTestingSubsetSelection {
 			Double qv = qualityMappings.get(t);
 			fout.write(t.getName() + "," + getTestResultTag(t).toString() + ",");
 			for (DimensionID d : paramValuesForConfig.keySet()) {
-				Double v = paramValuesForConfig.get(d);
-				fout.write(v + ",");
+				if (chosenDimensions.contains(d)) {
+					Double v = paramValuesForConfig.get(d);
+					fout.write(v + ",");
+				}
 			}
 			fout.write(qv + "\n");
 		}
 		fout.close();
 	}
 	
+	public void writeOutResultsTabSep(EnumSet<DimensionID> chosenDimensions) {
+		writeOutResultsTabSep(testsToInclude, chosenDimensions);
+	}
+	
+	// Assume all dimensions if not set
 	public void writeOutResultsTabSep() {
-		writeOutResultsTabSep(testsToInclude);
+		writeOutResultsTabSep(testsToInclude, EnumSet.allOf(DimensionID.class));
+	}
+	
+	public void writeOutResultsCSV(String filePathOut, EnumSet<DimensionID> chosenDimensions) throws IOException {
+		writeOutResultsCSV(filePathOut, testsToInclude, chosenDimensions);
 	}
 	
 	public void writeOutResultsCSV(String filePathOut) throws IOException {
-		writeOutResultsCSV(filePathOut, testsToInclude);
+		writeOutResultsCSV(filePathOut, testsToInclude, EnumSet.allOf(DimensionID.class));
 	}
 }

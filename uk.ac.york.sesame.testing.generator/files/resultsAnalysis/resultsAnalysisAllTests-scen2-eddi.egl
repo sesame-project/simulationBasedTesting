@@ -1,7 +1,7 @@
 [%
-var campaignName = "scenario2-eddi-condbased"; 
+var campaignName = "scenario2-eddi-timebased-faults"; 
 
-var targetType = Testing!ResultSetStatus#FINAL;
+var targetType = Testing!ResultSetStatus#INTERMEDIATE;
 	
 var testSpace = Testing!TestingSpace.all().first();
 
