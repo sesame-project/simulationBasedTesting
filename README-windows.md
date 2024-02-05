@@ -30,7 +30,6 @@ Enterprise or Education 21H2 (build 19044) or higher.
 Kafka message logs over large experiments. If there is a problem with
 space on the system drive, it may be possible to move Docker
 containers for Kakfa to another drive.
-**TODO: link the moving of Docker for Kafka in another section**
 
 ## Install Docker Desktop
 
@@ -69,12 +68,54 @@ If you get an error messagebox coming up during installation
 OK to continue. It is an internal Cygwin error message and should not
 affect the rest of the installation.
 
-## Install Eclipse
+## Install the testing platform via Git under cygwin
 
-Install Eclipse (2022-09 here)
-Install Modelling, Epsilon and Emfatic as shown
+- Open Cygwin Terminal from the start menu
+```
+mkdir -p ~/academic/sesame/WP6
+git clone https://www.github.com/sesame-project/simulationBasedTesting
+git checkout windows-stepping
+```
 
-# Installing OpenJDK8 and OpenJDK11
+## Install Eclipse and Modelling Tools
+### Install Eclipse
+
+Install Eclipse (here using 2022-12) by using Eclipse Installer from eclipse.org
+
+### Install Modelling Tools
+- Start Eclipse
+- Select “Help” / “Install New Software”
+- Select the update link for your Eclipse version e.g. “Work With” - “2022-12 - **http://download.eclipse.org/releases/2022-12**
+- Select “Modeling” and check all beneath it in the check box
+- Select “Next” twice
+- Accept the license
+- Wait for install to complete (indicated on “Installing Software” on lower right status bar) - it may freeze at 49\% for a while
+- Select “Restart” to apply updates
+
+- Restart Eclipse
+- Select “Help” / “Install New Software”
+- Select the update site for Epsilon - **http://download.eclipse.org/epsilon/updates/2.4/**
+- Install all items under ``Epsilon Core'' and ``Epsilon EMF Integration''
+
+- Restart Eclipse
+- Select “Help” / “Install New Software”
+- Select the update site for Emfatic - **http://download.eclipse.org/emfatic/update/**
+
+### Installing Simulation-Based Testing Framework Packages
+
+- Then import the Maven projects using ``File'' / ``Import'' / ``Maven'' / ``Existing Maven Projects''.
+- Select the GITHUB_ROOT (here **C:\cygwin64\home\USERNAME\academic\sesame\simulationBasedTesting) and the projects
+  underneath it shown below:
+  
+  ```
+JGEA
+uk.ac.york.sesame.testing.architecture
+uk.ac.york.sesame.testing.architecture.tts
+uk.ac.york.sesame.testing.dsl
+uk.ac.york.sesame.testing.evolutionary
+```
+
+## Installing OpenJDK8 and OpenJDK11
 
 Two JDKs (in addition to those used internally for compilation by
 Eclipse are needed). JDK11 is required becuase Apache Flink is not
@@ -85,46 +126,38 @@ about March 2023.
 We now use OpenJDK on Windows to avoid dependencies on the Sun JDK and
 associated licensing issues:
 
-## OpenJDK8
-
+### OpenJDK8
 - Download JDK8 (from Eclipse Adoptium): https://adoptium.net/de/download/
 - During local testing, we used the version JDK8.0.372.7-hotspot
 - It will install to this path: **C:\Program Files\Eclipse Adoptium\jdk-8.0.372.7-hotspot**
 
-## OpenJDK11
-
+### OpenJDK11
 - Install the following version from the OpenJDK archive: https://jdk.java.net/archive/
 - Choose to install to this location: **C:\Program Files\Java\jdk-11.0.2**
 
-# Install the testing platform via Git under cygwin
-
-Upon a 
-mkdir -p ~/academic/sesame/WP6
-git checkout ...simulationBasedTesting...
-
-
-## Install Maven tarball under Cygwin
+### Install Maven tarball under Cygwin
 maven-3.9.0 from apache.maven...
 install at ~/source/maven-3.9.0
 
-## Set up the projects and install the Maven projects
-Import all maven projects, Maven install (in order)
+## Setting paths
 
-## Setting classpath
-This time, the classpath has to be set in execute_windows.bat
-replacing the contents of the -classpath argument.
+- Set the REPO_BASE_PATH in the Eclipse project **uk.ac.york.sesame.testing.evolutionary** and the file *utilities/PathDefinitions.java*:
+- Set it to GITHUB_ROOT e.g. it you installed to "sesame" in your home directory, the line should read:
+```
+private static String REPO_BASE_PATH = "/home/USERNAME/sesame/simulationBasedTesting/"
+```
 
-(I haven't managed to yet read this from a file, as this is now over
-1024 chars and can't be set as a variable)
-Argument files - do not work - maybe it's this:
-https://stackoverflow.com/questions/59661651/unable-to-run-java-program-with-a-classpath-in-a-file-and-usage-of-on-the-cli
+- Also, set the REPO_BASE_PATH in the Eclipse project **uk.ac.york.sesame.testing.generator** and the file *src/ModelPathDefinitions.java*:
+- Set it to GITHUB_ROOT e.g. it you installed to "sesame" in your home directory, the line should read:
 
-The path of the JDK1.8 need to be set in TTSSimulator.java
+Also, the path of the JDK1.8 needs to be set in *src/TTSSimulator.java* in Eclipse project **uk.ac.york.sesame.testing.tts**
 e.g. /cygdrive/c/Progra~1/Java/jdk1.8.0_361
-(should put the JDK path in the model?)
+
+Check *src/TTSSimulator.java* for any other paths.
 
 ## Install TTS distribution under Cygwin
-**TODO: unpack the archive under ~/KukaCell**
+
+Unpack your TTS cell distribution under **C:\cygwin64\ **
 
 ## Installing and starting Kafka Dockers
 Apache Kafka is a message bus that is used for communications between
@@ -172,23 +205,9 @@ docker-compose -f zk-single-kafka-single.yml down
 docker-compose -f zk-single-kafka-single.yml up -d
 ```
 
-
-
-
 ## Troubleshooting
 
 If you get "registered resource factory is needed** on loading the
 models, probably forgot to set the REPO\_BASE\_PATH in
 ModelPathDefinition.java to the correct value?
-
-## Enhancements to ease installation process
-
-* If the JDK11 is at any other location, need to override JAVA_HOME instead? this is used in scripts
-* JDK8 location currently needs to be hardcoded into TTSSimulator.java - better way
-* How to get the IP address automatically?
-
-* Can Cygwin/WSL custom install packages be automated
-
-TODO: Use the following repository and modify the auto-installation scripts to work with it: 
-https://github.com/rtwolf/cygwin-auto-install
 
