@@ -107,7 +107,7 @@ Install Eclipse (here using 2022-12) by using Eclipse Installer from eclipse.org
 - Select the GITHUB_ROOT (here **C:\cygwin64\home\USERNAME\academic\sesame\simulationBasedTesting) and the projects
   underneath it shown below:
   
-  ```
+```
 JGEA
 uk.ac.york.sesame.testing.architecture
 uk.ac.york.sesame.testing.architecture.tts
