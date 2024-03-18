@@ -47,21 +47,21 @@ public abstract class PhyTestingSubsetSelection {
 	private HashMap<Test, TestResultTags> testTags = new HashMap<Test,TestResultTags>();
 	
 	// This is used for debugging the coverage checker grid assignment
-	private CoverageCheckingAlg _covChecker;
+	//private CoverageCheckingAlg _covChecker;
 	
 	public PhyTestingSubsetSelection(ParameterSpaceDimensionalityReduction dsc, MetricQualityValue mqv) {
 		
 		////////////////////////////// DEBUG - these are used for debugging the coverage checking 
-		EnumMap<DimensionID, IntervalWithCount> intervals = new EnumMap<DimensionID, IntervalWithCount>(
-				DimensionID.class);
-		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 1.0, 4, 0));
-		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 0.5, 3, 0));
-		intervals.put(DimensionID.P1_PARAMETER_MEAN, new IntervalWithCount(0.0, 1.0, 3, 0));
+//		EnumMap<DimensionID, IntervalWithCount> intervals = new EnumMap<DimensionID, IntervalWithCount>(
+//				DimensionID.class);
+//		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 1.0, 4, 0));
+//		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 0.5, 3, 0));
+//		intervals.put(DimensionID.P1_PARAMETER_MEAN, new IntervalWithCount(0.0, 1.0, 3, 0));
 		
 		final int MIN_COVERAGE_PER_CELL = 1;
 		final double NEEDED_COVERAGE_PROPORTION = 1.0;
 		
-		this._covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL, NEEDED_COVERAGE_PROPORTION);
+		//this._covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL, NEEDED_COVERAGE_PROPORTION);
 		
 		this.dsc = dsc;
 		this.mqv = mqv;
@@ -110,9 +110,9 @@ public abstract class PhyTestingSubsetSelection {
 					parameterSpaceMappings.put(t, paramValuesForConfig);
 					qualityMappings.put(t, qualityValue);
 					
-					if (DEBUG_REGISTER_CELLS) {
-						_covChecker.register(t, paramValuesForConfig);
-					}
+//					if (DEBUG_REGISTER_CELLS) {
+//						_covChecker.register(t, paramValuesForConfig);
+//					}
 					
 
 				}

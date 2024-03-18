@@ -1,5 +1,6 @@
 package uk.ac.york.sesame.testing.evolutionary.phytestingselection.metricquality;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -25,7 +26,8 @@ public class SESAMEMetricQualityValues extends MetricQualityValue {
 	    	String targetName = targetM.getName();
 	    	for (MetricInstance mi : metrics) {
 	    		if (mi.getMetric().getName().equals(targetName)) {
-	    			return mi.getResult().getValue();
+	    			double mval = mi.getResult().getValue();
+	    			return mval;
 	    		} 
 	    	}
 			MetricDefault md = targetM.getValueIfNotReceived();
@@ -47,6 +49,7 @@ public class SESAMEMetricQualityValues extends MetricQualityValue {
 	    public int compare(Test o1, Test o2) {
 	        for (Comparator<Test> comparator : comparators) {
 	            int comparison = comparator.compare(o1, o2);
+	            //System.out.println("debug comparators: " + comparator.toString() + " = " + comparison);
 	            if (comparison != 0) return comparison;
 	        }
 	        return 0;
@@ -75,7 +78,14 @@ public class SESAMEMetricQualityValues extends MetricQualityValue {
 			int r = 0;
 			for (Test t : testsSorted) {
 				rankings.put(t.getName(),r);
+				
+				// Debug print the metrics and ranking
+				for (Metric metric : this.sortedMetrics) {
+					double mval = compareWithMetrics.getTargetMetric(t, metric);
+					System.out.print(metric.getName() + " = " + mval + ",");
+				}
 				System.out.println("SESAMEMetricQualityValues: Test " + t.getName() + " - ranking " + r);
+				
 				r++;
 			}
 		}
@@ -96,11 +106,19 @@ public class SESAMEMetricQualityValues extends MetricQualityValue {
 	}
 	
 	private List<Metric> getNamedMetrics(List<String> metricNames) {
-		EList<Metric> metrics = selectedCampaign.getMetrics();
-		List<Metric> res = metrics.stream()
-				.filter(m -> metricNames.contains(m.getName()))
-				.collect(Collectors.toList());
-		return res;
+		EList<Metric> allMetrics = selectedCampaign.getMetrics();
+		List<Metric> selectedMetrics = new ArrayList<Metric>();
+		
+		// Fixed to ensure scanning multiple metrics in proper order?
+		for (String metricName : metricNames) {
+			for (Metric m : allMetrics) {
+				if (m.getName().equals(metricName)) {
+					selectedMetrics.add(m);
+				}
+			}
+		}
+		
+		return selectedMetrics;
 	}
 
 	public void setCampaign(TestCampaign selectedCampaign) {
