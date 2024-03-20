@@ -30,7 +30,9 @@ import uk.ac.york.sesame.testing.architecture.utilities.ExptHelperWindows;
 public class TTSSimulator implements ISimulator {
 
 	private static final long DEFAULT_TTS_LAUNCH_DELAY_MS = 20000;
-	private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 10000;
+	//private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 10000;
+	// Changed from original value of 10000 when testing EDDI startup delays
+	private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 20000;
 
 	private final String subscriberUUID = UUID.randomUUID().toString();
 	private SimPathTranslator pathTranslator = new SimPathTranslator();
@@ -61,10 +63,10 @@ public class TTSSimulator implements ISimulator {
 		return ti;
 	}
 
-	public void ensureConsumerSetup(String testID) {
-		String consumerTopic = "OUT-" + ("testID");
-		DataStreamManager.getInstance().setupConsumer(consumerTopic);
-	}
+//	public void ensureConsumerSetup(String testID) {
+//		String consumerTopic = "OUT-" + ("testID");
+//		DataStreamManager.getInstance().setupConsumer(consumerTopic);
+//	}
 
 	public Object connect(ConnectionProperties params) {
 		HashMap<String, Object> p = params.getProperties();
@@ -93,7 +95,6 @@ public class TTSSimulator implements ISimulator {
 		if (p.containsKey("extraWaitForConsumer")) {
 			// Wait for the consumer to be ready first here!
 			try {
-
 				System.out.print("Waiting for consumer to be ready before creating SimStreamObserver...");
 				Thread.sleep(10000);
 				System.out.println("done");
@@ -260,7 +261,7 @@ public class TTSSimulator implements ISimulator {
 		String path = pathTranslator.getSimPathForTopicName(topicName);
 		// TODO: Safetyzone/EDDI output topics require no appended /out suffix!
 		// TODO: better solution - nature should be set in DSL
-		if (!(topicType.contains("SafetyZone") || topicName.contains("guarantee"))) {
+		if (!(topicType.contains("SafetyZone") || topicName.contains("guarantee") || topicName.contains("KR22_left"))) {
 			path = path + "/out";
 		}
 		subscribePath(topicName, topicType, path, Optional.empty());

@@ -34,12 +34,12 @@ public class TestRunnerUtils {
 		return Optional.empty(); 
     }
 
-    public static void execWindows(String mainClass, String codeGenerationDir) throws IOException {
+    public static void execWindows(String mainClass, String codeGenerationDir, String testID) throws IOException {
 		String workingDir = PathDefinitions.getPath(PathDefinitions.PathSpec.AUTO_RUNNER_SCRIPTS);
 		// Change to using batch file
 		//String cmdLine = "~/source/academic/sesame/WP6/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/scripts/execute_w.bat";
 		String cmdLine = "C:\\cygwin64\\home\\James\\academic\\sesame\\WP6\\simulationBasedTesting\\uk.ac.york.sesame.testing.evolutionary\\scripts\\execute_windows.bat";
-		String args [] = { mainClass, codeGenerationDir };
+		String args [] = { mainClass, codeGenerationDir, testID };
 		ExptHelperWindows.runBatchFileNewThread(cmdLine, workingDir, args);
 		System.out.println("Launched Windows process via batch file");
 	}
@@ -58,7 +58,7 @@ public class TestRunnerUtils {
 //		System.out.println("Maven Execution Done...");
 //	}
 		
-	public static void exec(String mainClass, String codeGenerationDir) throws IOException {
+	public static void exec(String mainClass, String codeGenerationDir, String testID) throws IOException {
 		if (USE_MAVEN_EXECUTION) {
 			//mavenExecution(mainClass, codeGenerationDir);
 		} else {
@@ -66,7 +66,7 @@ public class TestRunnerUtils {
 			if (os_o.isPresent()) {
 				OperatingSystem os = os_o.get();
 				if (os == OperatingSystem.OS_WINDOWS) {
-					execWindows(mainClass, codeGenerationDir);
+					execWindows(mainClass, codeGenerationDir, testID);
 				}
 				
 				if (os == OperatingSystem.OS_LINUX) {

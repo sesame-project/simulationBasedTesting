@@ -269,7 +269,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		    new SolutionListOutput(population)
 		        .setVarFileOutputContext(new DefaultFileOutputContext(varFile, ","))
 		        .setFunFileOutputContext(new DefaultFileOutputContext(funFile, ","))
-		        .print();
+		        .print(); 
 
 		    JMetalLogger.logger.info("Random seed: " + JMetalRandom.getInstance().getSeed());
 		    JMetalLogger.logger.info("Objectives values have been written to file " + funFile);

@@ -7,7 +7,7 @@ import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 public class TestRunner {
 	public static void main(String[] args) {
 		try {
-			TestRunnerUtils.exec("Test_29_05_2022_02_02_43TestingTestSuiteRunner", "/home/jharbin/eclipse-workspace/localAutoGen/");
+			TestRunnerUtils.exec("Test_29_05_2022_02_02_43TestingTestSuiteRunner", "/home/jharbin/eclipse-workspace/localAutoGen/", "Testnull");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -142,6 +142,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	public void performSESAMETest(SESAMETestSolution solution) {
 		try {
 			String mainClassName = solution.getMainClassName();
+			String testID = solution.getName();
 			MetricConsumer metricConsumer = setupMetricListener(selectedCampaign, solution);
 			ControlProducer controlProducer = new ControlProducer(solution);
 			Thread t = new Thread(metricConsumer);
@@ -189,7 +190,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				System.out.print("Launching test runner for " + mainClassName + "... (classpath "
 						+ codeGenerationDirectory + ")");
 				System.out.flush();
-				TestRunnerUtils.exec(mainClassName, codeGenerationDirectory);
+				TestRunnerUtils.exec(mainClassName, codeGenerationDirectory, testID);
 				System.out.println("Testrunner " + mainClassName + " launched");
 				System.out.flush();
 
