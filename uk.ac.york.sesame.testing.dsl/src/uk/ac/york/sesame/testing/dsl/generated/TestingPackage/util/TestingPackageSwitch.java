@@ -1,12 +1,9 @@
-/**
- */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.util;
+
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.*;
 
 /**
@@ -170,6 +167,26 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = caseNSGAEvolutionaryAlgorithm(nsgaWithCoverageCells);
 				if (result == null) result = caseEvolutionaryAlgorithm(nsgaWithCoverageCells);
 				if (result == null) result = caseTestGenerationApproach(nsgaWithCoverageCells);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.COVERAGE_BOOSTING_STRATEGY: {
+				CoverageBoostingStrategy coverageBoostingStrategy = (CoverageBoostingStrategy)theEObject;
+				T result = caseCoverageBoostingStrategy(coverageBoostingStrategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.FIXED_NSGA_COVERAGE_BOOSTING_STRATEGY: {
+				FixedNSGACoverageBoostingStrategy fixedNSGACoverageBoostingStrategy = (FixedNSGACoverageBoostingStrategy)theEObject;
+				T result = caseFixedNSGACoverageBoostingStrategy(fixedNSGACoverageBoostingStrategy);
+				if (result == null) result = caseCoverageBoostingStrategy(fixedNSGACoverageBoostingStrategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestingPackagePackage.LINEAR_NSGA_COVERAGE_BOOSTING_STRATEGY: {
+				LinearNSGACoverageBoostingStrategy linearNSGACoverageBoostingStrategy = (LinearNSGACoverageBoostingStrategy)theEObject;
+				T result = caseLinearNSGACoverageBoostingStrategy(linearNSGACoverageBoostingStrategy);
+				if (result == null) result = caseCoverageBoostingStrategy(linearNSGACoverageBoostingStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -427,6 +444,51 @@ public class TestingPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNSGAWithCoverageCells(NSGAWithCoverageCells object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Coverage Boosting Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Coverage Boosting Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCoverageBoostingStrategy(CoverageBoostingStrategy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fixed NSGA Coverage Boosting Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fixed NSGA Coverage Boosting Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFixedNSGACoverageBoostingStrategy(FixedNSGACoverageBoostingStrategy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Linear NSGA Coverage Boosting Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Linear NSGA Coverage Boosting Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLinearNSGACoverageBoostingStrategy(LinearNSGACoverageBoostingStrategy object) {
 		return null;
 	}
 

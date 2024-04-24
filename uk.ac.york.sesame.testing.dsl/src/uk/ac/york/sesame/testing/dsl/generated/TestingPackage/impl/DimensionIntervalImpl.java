@@ -25,6 +25,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl#getMinValue <em>Min Value</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl#getMaxValue <em>Max Value</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl#getCount <em>Count</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.DimensionIntervalImpl#getExtraData <em>Extra Data</em>}</li>
  * </ul>
  *
  * @generated
@@ -109,6 +110,26 @@ public class DimensionIntervalImpl extends MinimalEObjectImpl.Container implemen
 	 * @ordered
 	 */
 	protected int count = COUNT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getExtraData() <em>Extra Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtraData()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int EXTRA_DATA_EDEFAULT = -1;
+
+	/**
+	 * The cached value of the '{@link #getExtraData() <em>Extra Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtraData()
+	 * @generated
+	 * @ordered
+	 */
+	protected int extraData = EXTRA_DATA_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -218,6 +239,27 @@ public class DimensionIntervalImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getExtraData() {
+		return extraData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtraData(int newExtraData) {
+		int oldExtraData = extraData;
+		extraData = newExtraData;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.DIMENSION_INTERVAL__EXTRA_DATA, oldExtraData, extraData));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -229,6 +271,8 @@ public class DimensionIntervalImpl extends MinimalEObjectImpl.Container implemen
 				return getMaxValue();
 			case TestingPackagePackage.DIMENSION_INTERVAL__COUNT:
 				return getCount();
+			case TestingPackagePackage.DIMENSION_INTERVAL__EXTRA_DATA:
+				return getExtraData();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -252,6 +296,9 @@ public class DimensionIntervalImpl extends MinimalEObjectImpl.Container implemen
 				return;
 			case TestingPackagePackage.DIMENSION_INTERVAL__COUNT:
 				setCount((Integer)newValue);
+				return;
+			case TestingPackagePackage.DIMENSION_INTERVAL__EXTRA_DATA:
+				setExtraData((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -277,6 +324,9 @@ public class DimensionIntervalImpl extends MinimalEObjectImpl.Container implemen
 			case TestingPackagePackage.DIMENSION_INTERVAL__COUNT:
 				setCount(COUNT_EDEFAULT);
 				return;
+			case TestingPackagePackage.DIMENSION_INTERVAL__EXTRA_DATA:
+				setExtraData(EXTRA_DATA_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -297,6 +347,8 @@ public class DimensionIntervalImpl extends MinimalEObjectImpl.Container implemen
 				return maxValue != MAX_VALUE_EDEFAULT;
 			case TestingPackagePackage.DIMENSION_INTERVAL__COUNT:
 				return count != COUNT_EDEFAULT;
+			case TestingPackagePackage.DIMENSION_INTERVAL__EXTRA_DATA:
+				return extraData != EXTRA_DATA_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -319,6 +371,8 @@ public class DimensionIntervalImpl extends MinimalEObjectImpl.Container implemen
 		result.append(maxValue);
 		result.append(", count: ");
 		result.append(count);
+		result.append(", extraData: ");
+		result.append(extraData);
 		result.append(')');
 		return result.toString();
 	}

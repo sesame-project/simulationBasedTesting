@@ -1,12 +1,11 @@
 package uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
-import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
 
 /** This one reduces the dimensions to just 0.5 in every dimension **/

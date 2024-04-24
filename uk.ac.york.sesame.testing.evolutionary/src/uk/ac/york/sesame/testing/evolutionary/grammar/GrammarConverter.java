@@ -28,11 +28,15 @@ public class GrammarConverter {
 			e.toString();
 			e.printStackTrace();
 			throw new ConversionFailed(e);
+		} catch (UnrecognisedVariable uve) {
+			System.out.println("Conversion of grammar tree failed - missing condition variable " + uve.getVarName());
+			uve.printStackTrace();
+			throw new ConversionFailed(uve);
 		}
 		return c;
 	}	
 
-	protected ConditionVariable createVariable(String varName) {
+	protected ConditionVariable createVariable(String varName) throws UnrecognisedVariable {
 		ConditionVariable v = factory.createConditionVariable();
 		EList<Metric> ms = testCampaign.getConditionMetrics();
 		
@@ -43,10 +47,14 @@ public class GrammarConverter {
 			}
 		}
 		
-		return v;		
+		if (v.getMetric() == null) {
+			throw new UnrecognisedVariable(varName);
+		} else {
+			return v;
+		}
 	}
 	
-	public ConditionElement convert(Tree<String> stringTree) throws UnrecognisedBinOp, UnrecognisedLiteral, UnrecognisedComparison, UnrecognisedTreeNode {
+	public ConditionElement convert(Tree<String> stringTree) throws UnrecognisedBinOp, UnrecognisedLiteral, UnrecognisedComparison, UnrecognisedTreeNode, UnrecognisedVariable {
 		
 		if (DEBUG_GRAMMER_CONVERT) {
 			System.out.print("convert - Tree...\n");
@@ -117,7 +125,7 @@ public class GrammarConverter {
 		
 	}
 	
-	private ConditionVariable convertVariable(Tree<String> t) {
+	private ConditionVariable convertVariable(Tree<String> t) throws UnrecognisedVariable {
 		if (t.content().equals("<var>")) {
 			return createVariable(t.child(0).content());
 		} else {
@@ -127,7 +135,7 @@ public class GrammarConverter {
 		
 	}
 	
-	private ConditionExpr convertExpr(Tree<String> t) throws UnrecognisedLiteral {
+	private ConditionExpr convertExpr(Tree<String> t) throws UnrecognisedLiteral, UnrecognisedVariable {
 		if (t.child(0).content().equals("<var>")) {
 			return convertVariable(t);
 		}

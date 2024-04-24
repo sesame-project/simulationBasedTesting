@@ -24,9 +24,9 @@ import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreduc
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.metricquality.MetricQualityValue;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
-public class PhyTestingSubsetSelection {
+public abstract class PhyTestingSubsetSelection {
 
-	private static final boolean DEBUG_REGISTER_CELLS = true;
+	private static final boolean DEBUG_REGISTER_CELLS = false;
 
 	// This returns whether the given test should be included in the output results
 	// Can filter based upon whether it is in the Pareto front, generation number
@@ -47,40 +47,27 @@ public class PhyTestingSubsetSelection {
 	private HashMap<Test, TestResultTags> testTags = new HashMap<Test,TestResultTags>();
 	
 	// This is used for debugging the coverage checker grid assignment
-	private CoverageCheckingAlg _covChecker;
+	//private CoverageCheckingAlg _covChecker;
 	
 	public PhyTestingSubsetSelection(ParameterSpaceDimensionalityReduction dsc, MetricQualityValue mqv) {
 		
-		EnumMap<DimensionID, IntervalWithCount> intervals = new EnumMap<DimensionID, IntervalWithCount>(
-				DimensionID.class);
-		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 1.0, 4));
-		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 0.5, 3));
-		//intervals.put(DimensionID.T3_TIME_MIDPOINT_VAR, new IntervalWithCount(0.0, 1.0, 2));
-		intervals.put(DimensionID.P1_PARAMETER_MEAN, new IntervalWithCount(0.0, 1.0, 3));
+		////////////////////////////// DEBUG - these are used for debugging the coverage checking 
+//		EnumMap<DimensionID, IntervalWithCount> intervals = new EnumMap<DimensionID, IntervalWithCount>(
+//				DimensionID.class);
+//		intervals.put(DimensionID.T1_TIME_MIDPOINT_MEAN, new IntervalWithCount(0.0, 1.0, 4, 0));
+//		intervals.put(DimensionID.T2_TIME_LENGTH_MEAN, new IntervalWithCount(0.0, 0.5, 3, 0));
+//		intervals.put(DimensionID.P1_PARAMETER_MEAN, new IntervalWithCount(0.0, 1.0, 3, 0));
 		
 		final int MIN_COVERAGE_PER_CELL = 1;
 		final double NEEDED_COVERAGE_PROPORTION = 1.0;
 		
-		this._covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL,
-				NEEDED_COVERAGE_PROPORTION);
+		//this._covChecker = new GridCoverageChecker(intervals, MIN_COVERAGE_PER_CELL, NEEDED_COVERAGE_PROPORTION);
 		
 		this.dsc = dsc;
 		this.mqv = mqv;
 	}
 	
-	private boolean isInFinalFront(TestCampaign selectedCampaign, Test t) {
-		EList<CampaignResultSet> rs = selectedCampaign.getResultSets();
-		for (CampaignResultSet r : rs) {
-			if (r.getStatus() == ResultSetStatus.FINAL) {
-				if (r.getName().contains("NONDOM")) {
-					if (r.getResults().contains(t)) {
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
+	protected abstract boolean isTagged(TestCampaign selectedCampaign, Test t);
 
 	public void loadModelToResults(String modelFileName, String campaignName)
 			throws InvalidTestCampaign, EolModelLoadingException {
@@ -107,7 +94,7 @@ public class PhyTestingSubsetSelection {
 				
 				// Check in the campaign if it is in the final Pareto front, or
 				// not - if so, set the tags appropriately
-				if (isInFinalFront(selectedCampaign, t)) {
+				if (isTagged(selectedCampaign, t)) {
 					 testTags.put(t, TestResultTags.IN_FINAL_PARETO_FRONT);
 				}
 			}
@@ -123,9 +110,9 @@ public class PhyTestingSubsetSelection {
 					parameterSpaceMappings.put(t, paramValuesForConfig);
 					qualityMappings.put(t, qualityValue);
 					
-					if (DEBUG_REGISTER_CELLS) {
-						_covChecker.register(t, paramValuesForConfig);
-					}
+//					if (DEBUG_REGISTER_CELLS) {
+//						_covChecker.register(t, paramValuesForConfig);
+//					}
 					
 
 				}
@@ -136,14 +123,15 @@ public class PhyTestingSubsetSelection {
 		}
 	}
 
-	public void writeOutResultsTabSep(List<Test> specificTests) {
-		DecimalFormat df = new DecimalFormat("#.##");
-		
+	public void writeOutResultsTabSep(List<Test> specificTests, EnumSet<DimensionID> chosenDimensions) {
+		DecimalFormat df = new DecimalFormat("#.##");		
 		EnumSet<DimensionID> allDimensions = EnumSet.allOf(DimensionID.class);
 		System.out.print("NAME\tTESTTAG\t");
 		for (DimensionID d : allDimensions) {
+			if (chosenDimensions.contains(d)) {
 			String dname = d.toString().substring(0,7);
 			System.out.print(dname + "\t");
+			}
 		}
 		System.out.println("METRIC_Q");
 		
@@ -152,8 +140,10 @@ public class PhyTestingSubsetSelection {
 			Double qv = qualityMappings.get(t);
 			System.out.print(t.getName() + "\t" + getTestResultTag(t).toString() + "\t");
 			for (DimensionID d : paramValuesForConfig.keySet()) {
+				if (chosenDimensions.contains(d)) {
 				Double v = paramValuesForConfig.get(d);
 				System.out.print(df.format(v) + "\t");
+				}
 			}
 			System.out.println(df.format(qv));
 		}
@@ -172,13 +162,15 @@ public class PhyTestingSubsetSelection {
 		return 0;
 	}
 
-	public void writeOutResultsCSV(String filePathOut, List<Test> specificTests) throws IOException {
+	public void writeOutResultsCSV(String filePathOut, List<Test> specificTests, EnumSet<DimensionID> chosenDimensions) throws IOException {
 		FileWriter fout = new FileWriter(filePathOut);
 		EnumSet<DimensionID> allDimensions = EnumSet.allOf(DimensionID.class);
 		fout.write("NAME,TESTTAG,");
 		for (DimensionID d : allDimensions) {
-			String dname = d.toString();
-			fout.write(dname + ",");
+			if (chosenDimensions.contains(d)) {
+				String dname = d.toString();
+				fout.write(dname + ",");
+			}
 		}
 		fout.write("METRIC_Q\n");
 		
@@ -187,19 +179,30 @@ public class PhyTestingSubsetSelection {
 			Double qv = qualityMappings.get(t);
 			fout.write(t.getName() + "," + getTestResultTag(t).toString() + ",");
 			for (DimensionID d : paramValuesForConfig.keySet()) {
-				Double v = paramValuesForConfig.get(d);
-				fout.write(v + ",");
+				if (chosenDimensions.contains(d)) {
+					Double v = paramValuesForConfig.get(d);
+					fout.write(v + ",");
+				}
 			}
 			fout.write(qv + "\n");
 		}
 		fout.close();
 	}
 	
+	public void writeOutResultsTabSep(EnumSet<DimensionID> chosenDimensions) {
+		writeOutResultsTabSep(testsToInclude, chosenDimensions);
+	}
+	
+	// Assume all dimensions if not set
 	public void writeOutResultsTabSep() {
-		writeOutResultsTabSep(testsToInclude);
+		writeOutResultsTabSep(testsToInclude, EnumSet.allOf(DimensionID.class));
+	}
+	
+	public void writeOutResultsCSV(String filePathOut, EnumSet<DimensionID> chosenDimensions) throws IOException {
+		writeOutResultsCSV(filePathOut, testsToInclude, chosenDimensions);
 	}
 	
 	public void writeOutResultsCSV(String filePathOut) throws IOException {
-		writeOutResultsCSV(filePathOut, testsToInclude);
+		writeOutResultsCSV(filePathOut, testsToInclude, EnumSet.allOf(DimensionID.class));
 	}
 }

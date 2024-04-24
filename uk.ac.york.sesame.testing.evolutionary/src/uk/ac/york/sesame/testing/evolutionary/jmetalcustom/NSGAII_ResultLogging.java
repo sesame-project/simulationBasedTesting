@@ -7,6 +7,14 @@ import org.uma.jmetal.operator.mutation.MutationOperator;
 import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.RankingAndCrowdingSelection;
 import org.uma.jmetal.problem.Problem;
+import org.uma.jmetal.qualityindicator.impl.Epsilon;
+import org.uma.jmetal.qualityindicator.impl.ErrorRatio;
+import org.uma.jmetal.qualityindicator.impl.GenerationalDistance;
+import org.uma.jmetal.qualityindicator.impl.InvertedGenerationalDistance;
+import org.uma.jmetal.qualityindicator.impl.InvertedGenerationalDistancePlus;
+import org.uma.jmetal.qualityindicator.impl.NormalizedHypervolume;
+import org.uma.jmetal.qualityindicator.impl.Spread;
+import org.uma.jmetal.qualityindicator.impl.hypervolume.impl.PISAHypervolume;
 import org.uma.jmetal.solution.Solution;
 import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.SolutionListUtils;
@@ -14,6 +22,9 @@ import org.uma.jmetal.util.comparator.DominanceComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.fileoutput.SolutionListOutput;
 import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
+import org.uma.jmetal.util.front.Front;
+import org.uma.jmetal.util.front.impl.ArrayFront;
+import org.uma.jmetal.util.point.PointSolution;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CampaignResultSet;
@@ -283,6 +294,37 @@ public class NSGAII_ResultLogging<S extends Solution<?>> extends AbstractGenetic
 			}
 		}
 		fw.close();
+	}
+	
+	public Front getFrontFromSolutions() {
+		List<S> sols = SolutionListUtils.getNonDominatedSolutions(getPopulation());
+		return new ArrayFront(sols);
+	}
+	
+	// TODO: should the reference front be this one, or another to compare with
+	public void logQualityIndicators(String outputFile) {
+		List<S> solsFront = SolutionListUtils.getNonDominatedSolutions(getPopulation());
+		Front refFront = new ArrayFront(solsFront);
+		List<S> pop = getPopulation();
+		List<PointSolution> ps = (List<PointSolution>)pop;
+		String outputString = "\n" ;
+	    outputString += "Hypervolume     : " + new PISAHypervolume<S>(refFront).evaluate(pop) + "\n";
+	    outputString += "Epsilon         : " + new Epsilon<S>(refFront).evaluate(pop) + "\n" ;
+	    outputString += "IGD             : " + new InvertedGenerationalDistance<S>(refFront).evaluate(pop) + "\n";
+	    
+//	    outputString += "Hypervolume (N) : " + new PISAHypervolume<PointSolution>(refFront).evaluate(ps) + "\n";
+//	    outputString += "Epsilon (N)     : " + new Epsilon<PointSolution>(refFront).evaluate(ps) + "\n" ;
+//	    outputString += "IGD (N)         : " + new InvertedGenerationalDistance<PointSolution>(normalizedReferenceFront).evaluate(normalizedPopulation) + "\n";
+//	   
+	    FileWriter fw;
+		try {
+			fw = new FileWriter(outputFile);
+		    fw.write(outputString);
+		    fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void logPopulationRefsToModel(TestCampaign selectedCampaign, String scenarioStr, boolean nonDom, boolean isFinalResults) {

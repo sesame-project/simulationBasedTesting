@@ -47,6 +47,7 @@ public class RepeatedExecutionImpl extends TestGenerationApproachImpl implements
 	 * @ordered
 	 */
 	protected static final int REPEAT_COUNT_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getRepeatCount() <em>Repeat Count</em>}' attribute.
 	 * <!-- begin-user-doc -->

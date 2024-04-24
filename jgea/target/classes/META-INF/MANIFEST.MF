@@ -1,3 +1,5 @@
 Manifest-Version: 1.0
-Main-Class: it.units.malelab.jgea.lab.SymbolicRegressionComparison
+Built-By: jharbin
+Build-Jdk: 17.0.9
+Created-By: Maven Integration for Eclipse
 

@@ -112,6 +112,26 @@ public class StandardGrammarSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StandardGrammarPackage.CONDITION_CONSTRAINT: {
+				ConditionConstraint conditionConstraint = (ConditionConstraint)theEObject;
+				T result = caseConditionConstraint(conditionConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StandardGrammarPackage.CONTAINS_VARIABLE: {
+				ContainsVariable containsVariable = (ContainsVariable)theEObject;
+				T result = caseContainsVariable(containsVariable);
+				if (result == null) result = caseConditionConstraint(containsVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StandardGrammarPackage.CONTAINS_INTEGER: {
+				ContainsInteger containsInteger = (ContainsInteger)theEObject;
+				T result = caseContainsInteger(containsInteger);
+				if (result == null) result = caseConditionConstraint(containsInteger);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -218,6 +238,51 @@ public class StandardGrammarSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCondition(Condition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionConstraint(ConditionConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Contains Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Contains Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContainsVariable(ContainsVariable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Contains Integer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Contains Integer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContainsInteger(ContainsInteger object) {
 		return null;
 	}
 

@@ -1,0 +1,41 @@
+TestID					fuzzOpTimes		M1_deliv		M1_missedObj		M2_timeHandover		M3_decisionAlert	 FuzzOpCount				
+Test:Test_033_21_12_2023_04_53_33	30.355			3.000			3.000			116.007			1.000			 1:dosAttackTriggerFixedTimeActivation:{78.9->109.3},
+Test:Test_034_21_12_2023_04_53_33	21.875			3.000			3.000			111.481			1.000			 2:dosAttackTriggerFixedTimeActivation:{93.4->102.5},delayBaseScanTiago1([1.43-1.90])FixedTimeActivation:{278.1->290.8},
+Test:Test_036_21_12_2023_04_53_33	30.086			3.000			3.000			115.593			1.000			 1:dosAttackTriggerFixedTimeActivation:{88.4->118.5},
+Test:Test_047_21_12_2023_04_53_33	56.953			2.000			4.000			161.708			1.000			 3:dosAttackTriggerFixedTimeActivation:{78.2->100.1},distortBaseScanTiagoFixedTimeActivation:{252.7->266.4},delayBaseScanPMB2([1.55-1.63])FixedTimeActivation:{221.9->243.3},
+Test:Test_050_21_12_2023_06_19_36	1.275			4.000			2.000			120.295			1.000			 1:dosAttackTriggerFixedTimeActivation:{70.2->71.4},
+Test:Test_063_21_12_2023_06_19_36	17.158			3.000			3.000			111.286			1.000			 1:dosAttackTriggerFixedTimeActivation:{93.8->111.0},
+Test:Test_064_21_12_2023_06_19_36	52.007			3.000			3.000			131.223			1.000			 2:dosAttackTriggerFixedTimeActivation:{76.2->123.1},packetLossLaserScanOmni([0.18-0.85])FixedTimeActivation:{179.4->184.5},
+Test:Test_069_21_12_2023_07_45_46	1.386			3.000			3.000			0.000			2.000			 1:dosAttackTriggerFixedTimeActivation:{115.9->117.3},
+Test:Test_074_21_12_2023_07_45_46	1.071			4.000			2.000			0.000			1.000			 1:dosAttackTriggerFixedTimeActivation:{120.6->121.7},
+Test:Test_078_21_12_2023_07_45_46	13.363			3.000			3.000			107.149			1.000			 2:dosAttackTriggerFixedTimeActivation:{93.4->102.5},delayBaseScanTiago1([1.43-1.90])FixedTimeActivation:{282.8->287.1},
+
+The maximum value for the missed object count is in Test_047, 4 missed
+objects, in which a fuzzing operation was occured upon the Tiago robot
+occuring upon the completion of the handover. In this case, the
+fuzzing operation lead to disruption of the loading process, and
+therefore a reduction in successful loading process. This test, which
+also had the highest fuzzing operation time, because of the inclusion
+of the laser scan other operations. When only the DOS attack is
+involved, triggering the handover, this leads to a maximum of 3 missed
+objects. Two configurations on front with only a DOS attack had only
+two missed objects, together with only a relatively short handover
+time. This makes sense as some operations are 
+
+[Visually inspect Test_047]:
+What happened in Test_074 - handover failed? - close to the Tiago
+
+For the handover process quantified in metric M2, the results show
+there is a range of timings to perform the handover operation, with
+approximately 50% variation in some handover times (including an
+outlier in Test_047). The handover time is also moderately correlated
+with the missed object count in metric M1, because a longer handover
+delays the later loading onto the object in the Tiago. 
+
+Maximum on specific values
+Fuzzing operations included in specific types
+General trends and structure
+
+Check against the content from a paper
+
+

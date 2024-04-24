@@ -15,6 +15,9 @@
 	
 	var sendBackToSimulator = true;
 	
+	var useStepping = simulator.useStepping;
+	var useGUI = simulator.useGUI;
+	
 	// This will activate sending back all topics in the MITM. Normally only the
 	// fuzzing variables should be sent back
 	var sendBackAllTopics = true;
@@ -60,6 +63,34 @@ import metrics.custom.*;
 import metrics.fixed.*;
 
 public class [%= testNameString %]_TestRunner {
+
+	[% if (useGUI) { %]
+	private static final long MIN_DEBUG_STEP_TIME = 100;
+	[% } else {%]
+	private static final long MIN_DEBUG_STEP_TIME = 10;
+	[% } %]
+	
+	private static final boolean USE_STEP_RATE_LIMITING = true;
+
+	public static boolean extraDebugWait(long millisLastStep) {
+		if (USE_STEP_RATE_LIMITING) {
+			Instant instant = Instant.now();
+			long timeNow = instant.toEpochMilli();
+			long delay = timeNow - millisLastStep;
+			if (delay < MIN_DEBUG_STEP_TIME) {
+				try {
+					Thread.sleep(MIN_DEBUG_STEP_TIME - delay);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}	
+			return true;
+		} else {
+			// If not using rate limiting, exit immediately
+			return true;
+		}
+	}
+
 	public static void main(String[] args) {
 	
 		final String TESTNAME = "[%= testNameString %]";
@@ -147,6 +178,11 @@ public class [%= testNameString %]_TestRunner {
 		HashMap<String, Object> propsMap = new HashMap<String, Object>();
 		propsMap.put(ConnectionProperties.HOSTNAME, "[%=simulator.hostname %]");
 		propsMap.put(ConnectionProperties.PORT, [%=simulator.port %]);
+		// TODO: hardcoded step size for now
+		
+		[% if (useStepping) { %]
+		propsMap.put(ConnectionProperties.STEP_SIZE, 20);
+		[% } %]
 		cp.setProperties(propsMap);
 				
 		params.put("TTSProjectDir", "[%= launchFileLocation %]");
@@ -194,14 +230,20 @@ public class [%= testNameString %]_TestRunner {
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
+				
+				long millisLastStep = 0;
 				System.out.println("From out to sim starts");
-				while (true) {
+						
+				[% if (useStepping) { %]
+					while (ttsSim.stepSimulator() && extraDebugWait(millisLastStep)) {			
+				[% } else { %]
+					while (true) {
+				[% } %]			
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = ttsSim.translateTopicNameForOutput(inTopic);
 						
-						[% if (recordDelay) { %]
 						long timestamp = record.value().getTimestamp();
 						EventMessage er = record.value();
 						
@@ -209,7 +251,8 @@ public class [%= testNameString %]_TestRunner {
 						long timeOut = instant.toEpochMilli();
 						long timeIn = er.getIN_walltime();
 						long millisWallDelay = timeOut - timeIn;
-						[% } %]
+						// Update last step time from now
+						millisLastStep = timeOut;
 												
 						[* TODO: only the fuzzingVars should be reflected back to the simulator! *]
 						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
@@ -399,75 +442,12 @@ operation streamJavaName(sMetric, stream) {
 		}
 }
 
-// TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap, RandomValueFromSetAttack and CustomFuzzingOperation are supported
-operation produceFOGenerationSignature(fo) {
-	var flatmap = "";
-	var aa = fo.activation;
-	
-	if (aa.isKindOf(Testing!FixedTimeActivation)) {
-		var startTime = aa.startTime;
-		var endTime = aa.endTime;
-		
-		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
-			var frequencyVal = fo.frequency.lowerBound;
-			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + "," + frequencyVal + ")";
-		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
-			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + ")";
-		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
-			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
-			var varName = null;
-			if (fo.variableToAffect != null) {
-			 	varName = fo.variableToAffect.name;
-			}
-			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
-			var delay = fo.latency.lowerBound;
-			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + delay + "," + fo.seed + ")";
-		}
-	}
-	
-	if (aa.isKindOf(Testing!ConditionBasedActivation)) {
-		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
-			var frequencyVal = fo.frequency.lowerBound;
-			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + "," + frequencyVal + ")";
-		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
-			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\")";
-		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
-			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
-			var varName = null;
-			if (fo.variableToAffect != null) {
-			 	varName = fo.variableToAffect.name;
-			}			 
-			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
-			var delay = fo.latency.lowerBound;
-			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + delay + "," + fo.seed + ")";
-		}
-	}
-	
-	if (aa.isKindOf(Testing!ConditionBasedTimeLimited)) {
-		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
-			var frequencyVal = fo.frequency.lowerBound;
-			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + "," + frequencyVal + ")";
-		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
-			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\")";
-		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
-			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
-			var varName = null;
-			if (fo.variableToAffect != null) {
-			 	varName = fo.variableToAffect.name;
-			}			 
-			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
-			var delay = fo.latency.lowerBound;
-			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + delay + "," + fo.seed + ")";
-		}
-	}
-	
-	return flatmap;
+operation produceFOGenerationSignature(fuzzOp) {
+	// For successful compilation, className must match the EGL generator for the fuzzing operation - 
+	// defined in fuzzOpCommon.egl and in the orchestrator.egx
+	var className = fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + fuzzOp.containingTest.name.firstToUpperCase();
+	var generateFO = "new " + className + "(); // TODO: add the timing/condition in a comment here";
+	return generateFO;
 }
 
 operation produceTimeString(fuzzOp) {

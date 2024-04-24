@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
@@ -29,8 +31,9 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl#getCoveragePerCell <em>Coverage Per Cell</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl#getTargetCoverageProportion <em>Target Coverage Proportion</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl#getDimensionRecords <em>Dimension Records</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl#isUseMutationEnhancingCoverage <em>Use Mutation Enhancing Coverage</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.impl.NSGAWithCoverageCellsImpl#getCoverageBoostingStrategy <em>Coverage Boosting Strategy</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,6 +60,26 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 	protected int coveragePerCell = COVERAGE_PER_CELL_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getTargetCoverageProportion() <em>Target Coverage Proportion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetCoverageProportion()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double TARGET_COVERAGE_PROPORTION_EDEFAULT = 0.0;
+
+	/**
+	 * The cached value of the '{@link #getTargetCoverageProportion() <em>Target Coverage Proportion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetCoverageProportion()
+	 * @generated
+	 * @ordered
+	 */
+	protected double targetCoverageProportion = TARGET_COVERAGE_PROPORTION_EDEFAULT;
+
+	/**
 	 * The cached value of the '{@link #getDimensionRecords() <em>Dimension Records</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,24 +90,14 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 	protected EList<DimensionInterval> dimensionRecords;
 
 	/**
-	 * The default value of the '{@link #isUseMutationEnhancingCoverage() <em>Use Mutation Enhancing Coverage</em>}' attribute.
+	 * The cached value of the '{@link #getCoverageBoostingStrategy() <em>Coverage Boosting Strategy</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isUseMutationEnhancingCoverage()
+	 * @see #getCoverageBoostingStrategy()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean USE_MUTATION_ENHANCING_COVERAGE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isUseMutationEnhancingCoverage() <em>Use Mutation Enhancing Coverage</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isUseMutationEnhancingCoverage()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean useMutationEnhancingCoverage = USE_MUTATION_ENHANCING_COVERAGE_EDEFAULT;
+	protected CoverageBoostingStrategy coverageBoostingStrategy;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -131,6 +144,27 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public double getTargetCoverageProportion() {
+		return targetCoverageProportion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTargetCoverageProportion(double newTargetCoverageProportion) {
+		double oldTargetCoverageProportion = targetCoverageProportion;
+		targetCoverageProportion = newTargetCoverageProportion;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__TARGET_COVERAGE_PROPORTION, oldTargetCoverageProportion, targetCoverageProportion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<DimensionInterval> getDimensionRecords() {
 		if (dimensionRecords == null) {
 			dimensionRecords = new EObjectContainmentEList<DimensionInterval>(DimensionInterval.class, this, TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS);
@@ -143,8 +177,8 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isUseMutationEnhancingCoverage() {
-		return useMutationEnhancingCoverage;
+	public CoverageBoostingStrategy getCoverageBoostingStrategy() {
+		return coverageBoostingStrategy;
 	}
 
 	/**
@@ -152,11 +186,33 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUseMutationEnhancingCoverage(boolean newUseMutationEnhancingCoverage) {
-		boolean oldUseMutationEnhancingCoverage = useMutationEnhancingCoverage;
-		useMutationEnhancingCoverage = newUseMutationEnhancingCoverage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE, oldUseMutationEnhancingCoverage, useMutationEnhancingCoverage));
+	public NotificationChain basicSetCoverageBoostingStrategy(CoverageBoostingStrategy newCoverageBoostingStrategy, NotificationChain msgs) {
+		CoverageBoostingStrategy oldCoverageBoostingStrategy = coverageBoostingStrategy;
+		coverageBoostingStrategy = newCoverageBoostingStrategy;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY, oldCoverageBoostingStrategy, newCoverageBoostingStrategy);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCoverageBoostingStrategy(CoverageBoostingStrategy newCoverageBoostingStrategy) {
+		if (newCoverageBoostingStrategy != coverageBoostingStrategy) {
+			NotificationChain msgs = null;
+			if (coverageBoostingStrategy != null)
+				msgs = ((InternalEObject)coverageBoostingStrategy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY, null, msgs);
+			if (newCoverageBoostingStrategy != null)
+				msgs = ((InternalEObject)newCoverageBoostingStrategy).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY, null, msgs);
+			msgs = basicSetCoverageBoostingStrategy(newCoverageBoostingStrategy, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY, newCoverageBoostingStrategy, newCoverageBoostingStrategy));
 	}
 
 	/**
@@ -169,6 +225,8 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 		switch (featureID) {
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS:
 				return ((InternalEList<?>)getDimensionRecords()).basicRemove(otherEnd, msgs);
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY:
+				return basicSetCoverageBoostingStrategy(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -183,10 +241,12 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 		switch (featureID) {
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL:
 				return getCoveragePerCell();
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__TARGET_COVERAGE_PROPORTION:
+				return getTargetCoverageProportion();
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS:
 				return getDimensionRecords();
-			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE:
-				return isUseMutationEnhancingCoverage();
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY:
+				return getCoverageBoostingStrategy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -203,12 +263,15 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL:
 				setCoveragePerCell((Integer)newValue);
 				return;
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__TARGET_COVERAGE_PROPORTION:
+				setTargetCoverageProportion((Double)newValue);
+				return;
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS:
 				getDimensionRecords().clear();
 				getDimensionRecords().addAll((Collection<? extends DimensionInterval>)newValue);
 				return;
-			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE:
-				setUseMutationEnhancingCoverage((Boolean)newValue);
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY:
+				setCoverageBoostingStrategy((CoverageBoostingStrategy)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -225,11 +288,14 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL:
 				setCoveragePerCell(COVERAGE_PER_CELL_EDEFAULT);
 				return;
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__TARGET_COVERAGE_PROPORTION:
+				setTargetCoverageProportion(TARGET_COVERAGE_PROPORTION_EDEFAULT);
+				return;
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS:
 				getDimensionRecords().clear();
 				return;
-			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE:
-				setUseMutationEnhancingCoverage(USE_MUTATION_ENHANCING_COVERAGE_EDEFAULT);
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY:
+				setCoverageBoostingStrategy((CoverageBoostingStrategy)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -245,10 +311,12 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 		switch (featureID) {
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_PER_CELL:
 				return coveragePerCell != COVERAGE_PER_CELL_EDEFAULT;
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__TARGET_COVERAGE_PROPORTION:
+				return targetCoverageProportion != TARGET_COVERAGE_PROPORTION_EDEFAULT;
 			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__DIMENSION_RECORDS:
 				return dimensionRecords != null && !dimensionRecords.isEmpty();
-			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__USE_MUTATION_ENHANCING_COVERAGE:
-				return useMutationEnhancingCoverage != USE_MUTATION_ENHANCING_COVERAGE_EDEFAULT;
+			case TestingPackagePackage.NSGA_WITH_COVERAGE_CELLS__COVERAGE_BOOSTING_STRATEGY:
+				return coverageBoostingStrategy != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -265,8 +333,8 @@ public class NSGAWithCoverageCellsImpl extends NSGAEvolutionaryAlgorithmImpl imp
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (coveragePerCell: ");
 		result.append(coveragePerCell);
-		result.append(", useMutationEnhancingCoverage: ");
-		result.append(useMutationEnhancingCoverage);
+		result.append(", targetCoverageProportion: ");
+		result.append(targetCoverageProportion);
 		result.append(')');
 		return result.toString();
 	}

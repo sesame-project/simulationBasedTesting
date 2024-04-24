@@ -3,11 +3,8 @@ package uk.ac.york.sesame.testing.architecture.simulator;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -60,7 +57,10 @@ public final class SimCore {
 	
 	private void outputTimingLog(String s) {
 		try {
-			outputTimingLog.write(s);
+			if (outputTimingLog != null) {
+				outputTimingLog.write(s);
+				outputTimingLog.flush();
+			}
 			System.out.println(s);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -71,12 +71,8 @@ public final class SimCore {
 		// Using the simCore time rather than the Flink time
 		double timeStart = time;
 		fuzzingStartTimes.put(fuzzUniqueID, timeStart);
+		
 		outputTimingLog(timeStart + " : Fuzzing operation " + fuzzUniqueID + " STARTED dynamic timing\n");
-		try {
-			outputTimingLog.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public synchronized void registerFuzzingEnd(String fuzzUniqueID) {
@@ -93,11 +89,6 @@ public final class SimCore {
 		}
 				
 		outputTimingLog(timeEnd + " : Fuzzing operation " + fuzzUniqueID + " ENDED dynamic timing\n");
-		try {
-			outputTimingLog.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	private void addTimeRecord(String fuzzUniqueID, double fuzzingStartTime, double fuzzingEndTime) throws InvalidTimingPair {
@@ -117,7 +108,9 @@ public final class SimCore {
 			registerFuzzingEnd(key);
 		}
 		try {
-			outputTimingLog.flush();
+			if (outputTimingLog != null) {
+				outputTimingLog.flush();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

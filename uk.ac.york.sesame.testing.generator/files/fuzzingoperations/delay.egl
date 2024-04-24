@@ -1,139 +1,58 @@
+[* This is the old version which uses the Flink timers, that are now inaccurate *]
+
 [% var commonTemplate : Template = TemplateFactory.load("fuzzingoperations/fuzzOpCommon.egl");
 
-imports = new List();
+var imports = new List();
 imports.add("org.apache.flink.api.common.state.MapState");
 imports.add("org.apache.flink.api.common.state.MapStateDescriptor");
 imports.add("org.apache.flink.api.common.typeinfo.TypeHint");
 imports.add("org.apache.flink.api.common.typeinfo.TypeInformation");
 imports.add("org.apache.flink.configuration.Configuration");
 imports.add("org.apache.flink.streaming.api.TimerService");
+imports.add("java.util.List");
+imports.add("java.util.ArrayList");
+imports.add("java.util.Iterator");
+imports.add("java.util.Map.Entry");
 
 commonTemplate.populate("fuzzOp", fuzzOp);
 commonTemplate.populate("classNameMiddle", "FlatMap");
-commonTemplate.populate("imports", imports);
+commonTemplate.populate("extraImports", imports);
+commonTemplate.populate("useRandomSeed", true);
+commonTemplate.populate("extraConstructorMethodCall", "setupDelayParams");
+
+var stateExtraTag = fuzzOp.name + "-" + fuzzOp.sequenceNumInTest;
+var delayTimeVal = fuzzOp.latency.lowerBound;
 %]
 
 [%= commonTemplate.process() %]
-
 	[% var varNames = new Set; %]
 
-	private static final long serialVersionUID = 1L;
 	private long delayTime;
-	Random rng;
+	private MapState<Double,List<EventMessage>> queue;
 	
-	private MapState<Long,List<EventMessage>> queue;
-
-	[% if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { %]
-	public [%=fuzzOp.name%]Delay_[%= classNameExt %](String topic, double start, double end, double time, long seed) {
-		super(topic,start,end);
-		this.rng = new Random(seed);
-		this.delayTime = Math.round(time * 1000.0); 
-		System.out.println("Creating new latency delay operation, time seconds = " + time + ",delayTime = " + delayTime);
+	private void setupDelayParams() {
+		this.delayTime = Math.round([%= delayTimeVal %] * 1000.0); 
 	}
-	[% } %]
-	
-	[% if (fuzzOp.activation.isTypeOf(ConditionBasedActivation)) { 
-		var startCond = fuzzOp.activation.starting;
-		var endCond = fuzzOp.activation.ending;
-	%]
-	
-	public [%=fuzzOp.name%]Delay_[%= classNameExt %](String topic, double time, long seed) {
-		super(topic);
-		this.rng = new Random(seed);
-		this.delayTime = Math.round(time * 1000.0); 
-	}
-	
-	protected boolean evalStartCondition() {
-		boolean res = false;
-		try {
-			///// GENERATED CUSTOM CONDITION CODE START - STARTCOND
-			[% var startCondString = generateCondBoolean(startCond);
-			   var varList = getVarsForCond(fuzzOp, startCond); %]
-			[% for (v in varList) { %]
-				Double [%= v %] = (Double) varState.get("[%= v %]");
-				if ([%= v %] == null) {
-					[% var initValue = getInitValue(v); 
-					   if (initValue != null) { %]
-					   		[%= v %] = [%= getInitValue(v) %];
-					[% } else { %]    		
-					   		return false;
-					[% } %] 
-				}	
-		    [% } %]
-		    res = [%= startCondString %];
-			///// GENERATED CUSTOM CONDITION CODE END - STARTCOND
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return res;
-	}
-	
-	protected boolean evalEndCondition() {
-		boolean res = false;
-		try {
-			///// GENERATED CUSTOM CONDITION CODE START - ENDCOND
-			[% var endCondString = generateCondBoolean(endCond);
-			   var varList = getVarsForCond(fuzzOp, endCond); %]
-			[% for (v in varList) { %]
-				Double [%= v %] = (Double) varState.get("[%= v %]");
-				if ([%= v %] == null) {
-					[% var initValue = getInitValue(v); 
-					   if (initValue != null) { %]
-					   		[%= v %] = [%= getInitValue(v) %];
-					[% } else { %]    		
-					   		return false;
-					[% } %] 
-				}	
-		    [% } %]
-			res = [%= endCondString %];
-			///// GENERATED CUSTOM CONDITION CODE END - STARTCOND
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return res;
-	}
-	[% } %]
-	
+		
 	public void open(Configuration parameters) throws Exception {
 		super.open(parameters);
-		String queueName = "queue-[%= classNameExt %]";
+		String queueName = "queue-[%= stateExtraTag %]";
 		this.queue = getRuntimeContext().getMapState(new MapStateDescriptor<>(queueName, 
-				TypeInformation.of(Long.class),
+				TypeInformation.of(Double.class),
 				TypeInformation.of(new TypeHint<List<EventMessage>>() {})));
 	}
 	
-	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
-		if (value.getTopic().equals(topic) && isReadyNow()) {
-			long currentTime = ctx.timestamp();
-			long scheduledTime = currentTime + Math.round(rng.nextDouble() * delayTime);
-			double simTime = SimCore.getInstance().getTime();
-		
-			List<EventMessage> currentPending = queue.get(scheduledTime);
-		
-			if (currentPending == null) {
-				currentPending = new ArrayList<EventMessage>();
-			}
-			currentPending.add(value);
-			queue.put(scheduledTime, currentPending);
-			System.out.println("currentTime = " + currentTime + ",sim time=" + simTime + ", scheduling new timer at " + scheduledTime);
-			ctx.timerService().registerProcessingTimeTimer(scheduledTime);
-		} else {
-			out.collect(value);
-		}
-	}
-	
-	public void onTimer(long timestamp, OnTimerContext ctx, Collector<EventMessage> out) {
-		long currentTime = ctx.timestamp();
-
+	public void checkQueues(double currentTime, Context ctx, Collector<EventMessage> out) {
 		try {
-			for (Iterator<Entry<Long, List<EventMessage>>> it = queue.entries().iterator(); it.hasNext();) {
-				Entry<Long, List<EventMessage>> entry = it.next();
-				long schedTime = entry.getKey();
+			for (Iterator<Entry<Double, List<EventMessage>>> it = queue.entries().iterator(); it.hasNext();) {
+				Entry<Double, List<EventMessage>> entry = it.next();
+				double schedTime = entry.getKey();
 				if (currentTime >= schedTime) {
 					List<EventMessage> queuedMsgs = entry.getValue();
 					for (EventMessage m : queuedMsgs) {
+						double simCoreTimeIn = m.getSimTimeIn();
+						double actualDelay = currentTime - simCoreTimeIn;
+						System.out.println("delayTracking:currentTime," + currentTime + "," + simCoreTimeIn + "," + actualDelay);
 						out.collect(m);
 					}
 					it.remove();
@@ -144,88 +63,29 @@ commonTemplate.populate("imports", imports);
 		}
 	}
 	
+	public void enqueueMessage(EventMessage value, double currentTime, double scheduledTime) throws Exception {
+		System.out.println("currentTime = " + currentTime + ": scheduling for delivery at " + scheduledTime);
+		List<EventMessage> currentPending = queue.get(scheduledTime);
+		if (currentPending == null) {
+			currentPending = new ArrayList<EventMessage>();
+		}
+		currentPending.add(value);
+		queue.put(scheduledTime, currentPending);
+	}
+	
+	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
+		if (value.getTopic().contains(topic) && isReadyNow()) {
+			double simTime = SimCore.getInstance().getTime();
+			value.setSimTimeIn(simTime);			
+			double scheduledTime = simTime + (rng.nextDouble() * delayTime);
+			enqueueMessage(value, simTime, scheduledTime);
+			checkQueues(simTime, ctx, out);
+		} else {
+			out.collect(value);
+		}
+	}
+	
 	public void preprocessing() {
 
-	}	
-}
-
-[% 
-operation superClassName() {
-	if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) {
-		return "TimeBasedFuzzingOperation";	
-	}
-
-	if (fuzzOp.activation.isTypeOf(ConditionBasedActivation)) {
-		return "ConditionBasedFuzzingOperation";	
 	}
 }
-
-operation generateBinLogicOp(binop) {
-	if (binop == BinaryLogicalOperation#AND) {
-		return "&&";
-	}
-	
-	if (binop == BinaryLogicalOperation#OR) {
-		return "||";
-	}
-}
-
-operation generateBinComp(binop) {
-	if (binop == BinaryComparisonOperation#LESS_THAN) {
-		return "<";
-	}
-	
-	if (binop == BinaryComparisonOperation#GREATER_THAN) {
-		return ">";
-	}
-	
-	if (binop == BinaryComparisonOperation#EQUALS) {
-		return "==";
-	}
-}
-
-operation generateCondElement(c) {
-	if (c.isTypeOf(CompositeCondition)) {
-		return "(" + generateCondElement(c.left) + ") " + generateBinLogicOp(c.binop) + " (" + generateCondElement(c.right) + ")";
-	}
-	
-	if (c.isTypeOf(BasicCondition)) {
-		return "(" + generateCondElement(c.left) + ") " + generateBinComp(c.bincomp) + " (" + generateCondElement(c.right) + ")";
-	}
-	
-	if (c.isTypeOf(ConditionVariable)) {
-		var vn = c.metric.name;
-		// Put named variable into global list
-		varNames.add(vn);
-		return vn;
-	}
-	
-	if (c.isTypeOf(ConditionInteger)) {
-		return c.value;
-	}
-}
-
-operation generateCondBoolean(cond) {
-	return generateCondElement(cond.c);
-}
-
-operation getVarsForCond(fuzzOp, cond) {
-	return varNames;
-}
-
-operation getInitValue(varName) {
-	var campaign = fuzzOp.containingTest.parentCampaign;
-    var metrics = campaign.conditionMetrics;
-    var initVal = null;
-    for (m in metrics) {
-        if (m.name == varName) {
-        	if (m.initValue != null) {
-        		initVal = m.initValue.defaultVal;
-        	}
-        }
-    }
-    return initVal;
-}
-
-%]
-

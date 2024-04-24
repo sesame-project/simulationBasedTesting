@@ -13,4 +13,8 @@ public class SolutionCreationFailed extends RuntimeException {
 	public SolutionCreationFailed(ParamError e) {
 		this.cause = e;
 	}
+
+	public SolutionCreationFailed(ConstraintsNotMet e) {
+		this.cause = e;
+	}
 }

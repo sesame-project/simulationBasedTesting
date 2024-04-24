@@ -1,0 +1,7 @@
+<compcond> ::= <compcond> <logicop> <compcond> | <basic_cond>
+<basic_cond> ::= <var> <bincomp> <expr>
+<var> ::= CV_Omni_LoadedFalse_Time | CV_Omni_LoadedTrue_Time | CV_PMB2_LoadedFalse_Time | CV_PMB2_LoadedTrue_Time | CV_PMB2_Door1_Dist | CV_PMB2_Door2_Dist 
+<bincomp> ::= .LESS_THAN | .GREATER_THAN
+<logicop> ::= .AND | .OR
+<expr> ::= <var> | <int>
+<int> ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20

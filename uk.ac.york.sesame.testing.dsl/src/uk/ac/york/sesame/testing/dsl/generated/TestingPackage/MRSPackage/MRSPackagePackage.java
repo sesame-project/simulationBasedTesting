@@ -572,13 +572,40 @@ public interface MRSPackagePackage extends EPackage {
 	int TTS_SIMULATOR__PORT = SIMULATOR_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Step Size Millis</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TTS_SIMULATOR__STEP_SIZE_MILLIS = SIMULATOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Use Stepping</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TTS_SIMULATOR__USE_STEPPING = SIMULATOR_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Use GUI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TTS_SIMULATOR__USE_GUI = SIMULATOR_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>TTS Simulator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TTS_SIMULATOR_FEATURE_COUNT = SIMULATOR_FEATURE_COUNT + 2;
+	int TTS_SIMULATOR_FEATURE_COUNT = SIMULATOR_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>TTS Simulator</em>' class.
@@ -1009,6 +1036,39 @@ public interface MRSPackagePackage extends EPackage {
 	EAttribute getTTSSimulator_Port();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator#getStepSizeMillis <em>Step Size Millis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Step Size Millis</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator#getStepSizeMillis()
+	 * @see #getTTSSimulator()
+	 * @generated
+	 */
+	EAttribute getTTSSimulator_StepSizeMillis();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator#isUseStepping <em>Use Stepping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Use Stepping</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator#isUseStepping()
+	 * @see #getTTSSimulator()
+	 * @generated
+	 */
+	EAttribute getTTSSimulator_UseStepping();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator#isUseGUI <em>Use GUI</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Use GUI</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator#isUseGUI()
+	 * @see #getTTSSimulator()
+	 * @generated
+	 */
+	EAttribute getTTSSimulator_UseGUI();
+
+	/**
 	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParsingMethod <em>Parsing Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1364,6 +1424,30 @@ public interface MRSPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TTS_SIMULATOR__PORT = eINSTANCE.getTTSSimulator_Port();
+
+		/**
+		 * The meta object literal for the '<em><b>Step Size Millis</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TTS_SIMULATOR__STEP_SIZE_MILLIS = eINSTANCE.getTTSSimulator_StepSizeMillis();
+
+		/**
+		 * The meta object literal for the '<em><b>Use Stepping</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TTS_SIMULATOR__USE_STEPPING = eINSTANCE.getTTSSimulator_UseStepping();
+
+		/**
+		 * The meta object literal for the '<em><b>Use GUI</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TTS_SIMULATOR__USE_GUI = eINSTANCE.getTTSSimulator_UseGUI();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParsingMethod <em>Parsing Method</em>}' enum.

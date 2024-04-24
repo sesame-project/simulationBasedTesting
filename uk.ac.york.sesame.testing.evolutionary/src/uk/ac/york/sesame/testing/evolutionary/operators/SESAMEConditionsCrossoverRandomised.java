@@ -157,7 +157,8 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMECrossoverOperatio
 
 	public List<SESAMETestSolution> execute(List<SESAMETestSolution> solutions) {
 		try {
-			return doCrossover(solutions);
+			List<SESAMETestSolution> res = doCrossover(solutions);
+			return res;
 		} catch (ConversionFailed e) {
 			e.printStackTrace();
 			// Just return empty if the conversion fails

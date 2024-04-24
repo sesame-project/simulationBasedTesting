@@ -18,7 +18,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPack
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.ConditionalPropertyMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.DirectMessageGenerationMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FileStreamResult;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.FuzzingOperationTimesMetric;
@@ -37,6 +36,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StartEndTi
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StreamMetric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.StreamResult;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.impl.ResultsPackageImpl;
@@ -111,13 +111,6 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * @generated
 	 */
 	private EClass propertyMetricEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass conditionalPropertyMetricEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -434,24 +427,6 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConditionalPropertyMetric() {
-		return conditionalPropertyMetricEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getConditionalPropertyMetric_Condition() {
-		return (EAttribute)conditionalPropertyMetricEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getStreamMetric() {
 		return streamMetricEClass;
 	}
@@ -601,9 +576,6 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		propertyMetricEClass = createEClass(PROPERTY_METRIC);
 		createEReference(propertyMetricEClass, PROPERTY_METRIC__PROPERTY);
 
-		conditionalPropertyMetricEClass = createEClass(CONDITIONAL_PROPERTY_METRIC);
-		createEAttribute(conditionalPropertyMetricEClass, CONDITIONAL_PROPERTY_METRIC__CONDITION);
-
 		streamMetricEClass = createEClass(STREAM_METRIC);
 		createEReference(streamMetricEClass, STREAM_METRIC__STREAMS);
 		createEReference(streamMetricEClass, STREAM_METRIC__RES);
@@ -661,7 +633,6 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		outputStreamEClass.getESuperTypes().add(this.getSimStream());
 		variableMetricEClass.getESuperTypes().add(this.getMetric());
 		propertyMetricEClass.getESuperTypes().add(this.getMetric());
-		conditionalPropertyMetricEClass.getESuperTypes().add(this.getPropertyMetric());
 		streamMetricEClass.getESuperTypes().add(this.getMetric());
 		specialMetricEClass.getESuperTypes().add(this.getStreamMetric());
 		directMessageGenerationMetricEClass.getESuperTypes().add(this.getStreamMetric());
@@ -696,9 +667,6 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 
 		initEClass(propertyMetricEClass, PropertyMetric.class, "PropertyMetric", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPropertyMetric_Property(), theMRSPackagePackage.getComponentProperty(), null, "property", null, 1, 1, PropertyMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(conditionalPropertyMetricEClass, ConditionalPropertyMetric.class, "ConditionalPropertyMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConditionalPropertyMetric_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, ConditionalPropertyMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(streamMetricEClass, StreamMetric.class, "StreamMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStreamMetric_Streams(), this.getSimStream(), null, "streams", null, 0, -1, StreamMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

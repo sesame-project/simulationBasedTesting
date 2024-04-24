@@ -27,19 +27,19 @@
 		<dependency>
 			<groupId>org.eclipse.epsilon</groupId>
 			<artifactId>org.eclipse.epsilon.emc.emf</artifactId>
-			<version>${epsilon.version}</version>
+			<version>2.4.0</version>
 			<scope>${epsilon.scope}</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.epsilon</groupId>
 			<artifactId>org.eclipse.epsilon.emc.plainxml</artifactId>
-			<version>${epsilon.version}</version>
+			<version>2.4.0</version>
 			<scope>${epsilon.scope}</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.epsilon</groupId>
 			<artifactId>org.eclipse.epsilon.eol.engine</artifactId>
-			<version>${epsilon.version}</version>
+			<version>2.4.0</version>
 			<scope>${epsilon.scope}</scope>
 		</dependency>
 		<dependency>

@@ -33,7 +33,10 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final long serialVersionUID = 1L;
 
 	private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = true;
+	
+	// Disable for debug run/fake metrics
 	private static final boolean DEBUG_ACTUALLY_RUN = true;
+	private static final boolean DUMMY_EVAL = !DEBUG_ACTUALLY_RUN;
 	
 	private static final boolean FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE = true;
 	
@@ -41,14 +44,22 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	private static final long DEFAULT_HARDCODED_DELAY = 100;
 	
+	private static final double FIXED_WORST_CASE_END_TIME = 1000.0;
+	
 	private static final long DEFAULT_KILL_DELAY = 5;
 	private static final long DEFAULT_DELAY_BETWEEN_TERMINATE_SCRIPTS = 5;
 	private static final long DEFAULT_WAIT_FOR_FINALISE_DELAY = 5;
 	private static final long DEFAULT_MODEL_SAVING_DELAY = 3;
 	private static final double MODEL_SAVING_DELAY_IN_DEBUG_MODE = 0.5;
+	
+	private static final boolean USE_METRIC_TIME_END_TIME = true;
 
-	private static final boolean DUMMY_EVAL = false;
-
+	// Variable probability of inclusion? - needs to be specified from the Attack
+	// and TestCampaign
+	// TODO: this needs to be specified as an extension point, for now, just using
+	// 50% for all attacks
+	final double INCLUDE_FuzzingOperation_PROB = 0.5;
+	
 	private boolean conditionBased;
 
 	private Random rng;
@@ -216,7 +227,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 				}
 				
 				System.out.flush();
-
+				
 				// Need to wait for simulation completion here...
 				// If no trigger specified specifically for this test, use the default for the
 				// campaign
@@ -233,11 +244,17 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					System.out.print("Using hardcoded delay...");
 				}
 				
-				waitTimeSeconds = waitTimeSeconds - DEFAULT_WAIT_FOR_FINALISE_DELAY;
-				
-				System.out.print("Waiting " + waitTimeSeconds + " seconds...");
-				TestRunnerUtils.waitForSeconds(waitTimeSeconds);
-				System.out.println("done");
+				if (!USE_METRIC_TIME_END_TIME) {
+					waitTimeSeconds = waitTimeSeconds - DEFAULT_WAIT_FOR_FINALISE_DELAY;
+					metricConsumer.setLastValidTimestamp(waitTimeSeconds);
+					System.out.print("Waiting " + waitTimeSeconds + " seconds...");
+					TestRunnerUtils.waitForSeconds(waitTimeSeconds);
+					System.out.println("done");
+				} else {
+				    double WORST_CASE_END_TIME = Math.max(waitTimeSeconds * 2, FIXED_WORST_CASE_END_TIME);
+				    metricConsumer.setLastValidTimestamp(waitTimeSeconds);
+				   waitUntilMetricTime(metricConsumer, waitTimeSeconds, WORST_CASE_END_TIME);
+				}
 
 				// Send the end of simulation message
 				// TODO: for now the end of simulation message is used for both
@@ -280,6 +297,28 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			e.printStackTrace();
 		}
 	}
+	
+	private void waitUntilMetricTime(MetricConsumer metricConsumer, double waitTime, double worstCaseTimeSeconds) {
+		long worstCaseEndTime = System.currentTimeMillis() + (long) ((double) worstCaseTimeSeconds * 1000);
+		boolean metricDone = false;
+		while (!metricDone && (System.currentTimeMillis() < worstCaseEndTime)) {
+			try {
+				Thread.sleep(500);
+				
+			} catch (InterruptedException e) {
+			}
+			
+		double metricTime = metricConsumer.getTimestamp();
+		System.out.print(".");
+		metricDone = (metricTime > waitTime);
+		}
+		
+		if (metricDone) {
+			System.out.println("Done");
+		} else {
+			System.out.println("Ending due to no response at worst case cutoff time");
+		}
+	}
 
 	private Optional<String> getRecordLocationForMRS() {
 		if (mrs != null && mrs.getRecordFileLocation() != null) {
@@ -297,6 +336,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			solution.setObjective(i, v);
 		}
 		
+		solution.setOperationSequenceNums();
 		solution.ensureModelUpdated(selectedCampaign); 
 		loader.saveTestingSpace();
 		try {
@@ -314,14 +354,10 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		}
 	}
 
-	// Variable probability of inclusion? - needs to be specified from the Attack
-	// and TestCampaign
-	// TODO: this needs to be specified as an extension point, for now, just using
-	// 50% for all attacks
 	public boolean shouldIncludeFuzzingOperation(FuzzingOperation a) {
-		final double INCLUDE_FuzzingOperation_PROB = 0.5;
+		double prob = a.getInclusionProbability();
 		double v = rng.nextDouble();
-		return (v < INCLUDE_FuzzingOperation_PROB);
+		return (v < prob);
 	}
 
 	public SESAMETestSolution createSolution() {
@@ -331,8 +367,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		// Created with FuzzingOperations specified within the space
 		// TODO: FuzzingOperations can be a "subset" of each of the selected FuzzingOperations
 		int i = 0;
-		System.out.println("createSolution");
-
 		SESAMETestSolution sol = new SESAMETestSolution(selectedCampaign);
 
 		EList<FuzzingOperation> FuzzingOperationsInCampaign = selectedCampaign.getIncludedOperations();
@@ -349,6 +383,8 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 						e.printStackTrace();
 					} catch (ParamError e) {
 						e.printStackTrace();
+					} catch (ConstraintsNotMet e) {
+						e.printStackTrace();
 					}
 					
 				} else {
@@ -356,7 +392,6 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a);
 					sol.addContents(i++, sta);
 				}
-				
 			}
 		}
 		
@@ -376,6 +411,12 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 					}
 					
 				} catch (ParamError e) {
+					if (FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE) {
+						throw new SolutionCreationFailed(e);
+					} else {
+						e.printStackTrace();
+					}
+				} catch (ConstraintsNotMet e) {
 					if (FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE) {
 						throw new SolutionCreationFailed(e);
 					} else {
@@ -401,6 +442,5 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	public void shutDownMetricListener() {
 		metricConsumer.close();
-		
 	}
 }

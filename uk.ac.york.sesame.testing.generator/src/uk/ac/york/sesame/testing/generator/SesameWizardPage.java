@@ -58,10 +58,11 @@ public class SesameWizardPage extends WizardPage {
 		GridLayout layout = new GridLayout();
 		
 		container.setLayout(layout);
-		container.setBounds(0, 0, 500, 500);
+		container.setBounds(0, 0, 800, 500);
 		layout.numColumns = 3;
 		Label label1 = new Label(container, SWT.NONE);
-		label1.setText("The Testing Model: Please select the SESAME Testing model");
+		label1.setText("The Testing Model:\nPlease select the SESAME Testing model");
+		//label1.setText("The Testing Model:");
 
 		testingModelLocation = new Text(container, SWT.BORDER | SWT.SINGLE);
 		testingModelLocation.addKeyListener(new KeyListener() {
@@ -93,7 +94,8 @@ public class SesameWizardPage extends WizardPage {
 		//////////////////////////////////////////////////////////////////////////////////
 		// Code generation directory
 		Label label2 = new Label(container, SWT.NONE);
-		label2.setText("Code Generation Directory: If this is omitted, the base of the current project will be used");
+		label2.setText("Code Generation Directory:\nIf this is omitted, the base of the current project will be used");
+		//label2.setText("Code Generation Directory:");
 		codeGenerationDirectory = new Text(container, SWT.BORDER | SWT.SINGLE);
 		codeGenerationDirectory.addKeyListener(new KeyListener() {
 
@@ -126,7 +128,8 @@ public class SesameWizardPage extends WizardPage {
 		//////////////////////////////////////////////////////////////////////////////////
 		// orchestratorBasePath
 		Label label3 = new Label(container, SWT.NONE);
-		label3.setText("Generator Project Base Path: Please select the full path of the generator project \"uk.ac.york.sesame.testing.generator\" in the parent Eclipse");
+		label3.setText("Generator Project Base Path:\nPlease select the full path of \nthe generator project \"uk.ac.york.sesame.testing.generator\"\n in the parent Eclipse");
+		//label3.setText("Generator Project Base Path:");
 		orchestratorBasePath = new Text(container, SWT.BORDER | SWT.SINGLE);
 		orchestratorBasePath.addKeyListener(new KeyListener() {
 

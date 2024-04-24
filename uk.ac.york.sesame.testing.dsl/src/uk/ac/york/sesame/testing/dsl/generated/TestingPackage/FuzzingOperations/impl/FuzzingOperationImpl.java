@@ -15,8 +15,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.emf.ecore.util.InternalEList;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
@@ -25,6 +27,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionConstraint;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
 
@@ -54,6 +57,9 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getRecordedTimings <em>Recorded Timings</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getSeed <em>Seed</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getSequenceNumInTest <em>Sequence Num In Test</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getInclusionProbability <em>Inclusion Probability</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#isIncludeInTiming <em>Include In Timing</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getConditionConstraints <em>Condition Constraints</em>}</li>
  * </ul>
  *
  * @generated
@@ -277,7 +283,7 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SEED_EDEFAULT = 0;
+	protected static final long SEED_EDEFAULT = 0L;
 
 	/**
 	 * The cached value of the '{@link #getSeed() <em>Seed</em>}' attribute.
@@ -287,7 +293,7 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 * @ordered
 	 */
-	protected int seed = SEED_EDEFAULT;
+	protected long seed = SEED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSequenceNumInTest() <em>Sequence Num In Test</em>}' attribute.
@@ -308,6 +314,56 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected int sequenceNumInTest = SEQUENCE_NUM_IN_TEST_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getInclusionProbability() <em>Inclusion Probability</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInclusionProbability()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double INCLUSION_PROBABILITY_EDEFAULT = 1.0;
+
+	/**
+	 * The cached value of the '{@link #getInclusionProbability() <em>Inclusion Probability</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInclusionProbability()
+	 * @generated
+	 * @ordered
+	 */
+	protected double inclusionProbability = INCLUSION_PROBABILITY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIncludeInTiming() <em>Include In Timing</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIncludeInTiming()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean INCLUDE_IN_TIMING_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isIncludeInTiming() <em>Include In Timing</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIncludeInTiming()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean includeInTiming = INCLUDE_IN_TIMING_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getConditionConstraints() <em>Condition Constraints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConditionConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConditionConstraint> conditionConstraints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -717,7 +773,7 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getSeed() {
+	public long getSeed() {
 		return seed;
 	}
 
@@ -726,8 +782,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSeed(int newSeed) {
-		int oldSeed = seed;
+	public void setSeed(long newSeed) {
+		long oldSeed = seed;
 		seed = newSeed;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__SEED, oldSeed, seed));
@@ -752,6 +808,60 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 		sequenceNumInTest = newSequenceNumInTest;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST, oldSequenceNumInTest, sequenceNumInTest));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getInclusionProbability() {
+		return inclusionProbability;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInclusionProbability(double newInclusionProbability) {
+		double oldInclusionProbability = inclusionProbability;
+		inclusionProbability = newInclusionProbability;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__INCLUSION_PROBABILITY, oldInclusionProbability, inclusionProbability));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIncludeInTiming() {
+		return includeInTiming;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIncludeInTiming(boolean newIncludeInTiming) {
+		boolean oldIncludeInTiming = includeInTiming;
+		includeInTiming = newIncludeInTiming;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__INCLUDE_IN_TIMING, oldIncludeInTiming, includeInTiming));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ConditionConstraint> getConditionConstraints() {
+		if (conditionConstraints == null) {
+			conditionConstraints = new EObjectContainmentEList<ConditionConstraint>(ConditionConstraint.class, this, FuzzingOperationsPackage.FUZZING_OPERATION__CONDITION_CONSTRAINTS);
+		}
+		return conditionConstraints;
 	}
 
 	/**
@@ -784,6 +894,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return eBasicSetContainer(null, FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST, msgs);
 			case FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS:
 				return basicSetRecordedTimings(null, msgs);
+			case FuzzingOperationsPackage.FUZZING_OPERATION__CONDITION_CONSTRAINTS:
+				return ((InternalEList<?>)getConditionConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -849,6 +961,12 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return getSeed();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
 				return getSequenceNumInTest();
+			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUSION_PROBABILITY:
+				return getInclusionProbability();
+			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUDE_IN_TIMING:
+				return isIncludeInTiming();
+			case FuzzingOperationsPackage.FUZZING_OPERATION__CONDITION_CONSTRAINTS:
+				return getConditionConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -912,10 +1030,20 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				setRecordedTimings((FixedTimeActivation)newValue);
 				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEED:
-				setSeed((Integer)newValue);
+				setSeed((Long)newValue);
 				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
 				setSequenceNumInTest((Integer)newValue);
+				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUSION_PROBABILITY:
+				setInclusionProbability((Double)newValue);
+				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUDE_IN_TIMING:
+				setIncludeInTiming((Boolean)newValue);
+				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__CONDITION_CONSTRAINTS:
+				getConditionConstraints().clear();
+				getConditionConstraints().addAll((Collection<? extends ConditionConstraint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -980,6 +1108,15 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
 				setSequenceNumInTest(SEQUENCE_NUM_IN_TEST_EDEFAULT);
 				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUSION_PROBABILITY:
+				setInclusionProbability(INCLUSION_PROBABILITY_EDEFAULT);
+				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUDE_IN_TIMING:
+				setIncludeInTiming(INCLUDE_IN_TIMING_EDEFAULT);
+				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__CONDITION_CONSTRAINTS:
+				getConditionConstraints().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1028,6 +1165,12 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return seed != SEED_EDEFAULT;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST:
 				return sequenceNumInTest != SEQUENCE_NUM_IN_TEST_EDEFAULT;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUSION_PROBABILITY:
+				return inclusionProbability != INCLUSION_PROBABILITY_EDEFAULT;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__INCLUDE_IN_TIMING:
+				return includeInTiming != INCLUDE_IN_TIMING_EDEFAULT;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__CONDITION_CONSTRAINTS:
+				return conditionConstraints != null && !conditionConstraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1058,6 +1201,10 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 		result.append(seed);
 		result.append(", sequenceNumInTest: ");
 		result.append(sequenceNumInTest);
+		result.append(", inclusionProbability: ");
+		result.append(inclusionProbability);
+		result.append(", includeInTiming: ");
+		result.append(includeInTiming);
 		result.append(')');
 		return result.toString();
 	}

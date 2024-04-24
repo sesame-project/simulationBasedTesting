@@ -2,15 +2,13 @@ package uk.ac.york.sesame.testing.evolutionary.operators;
 
 import java.io.IOException;
 import java.util.EnumMap;
-import java.util.Random;
 
-import uk.ac.york.sesame.testing.evolutionary.phytestingselection.DimensionID;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.NoOperations;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecker.CoverageCheckingAlg;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.ParameterSpaceDimensionalityReduction;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
-import uk.ac.york.sesame.testing.evolutionary.ConditionGenerator;
 import uk.ac.york.sesame.testing.evolutionary.SESAMEFuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 

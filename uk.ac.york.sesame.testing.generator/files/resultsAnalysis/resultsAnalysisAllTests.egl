@@ -1,14 +1,14 @@
 [%
-var campaignName = "test868-fixedlen_20s"; 
+var campaignName = "scenario2-eddi-timebased-faults-coverage"; 
 
-var targetType = Testing!ResultSetStatus#INTERMEDIATE;
+var targetType = Testing!ResultSetStatus#FINAL;
 	
 var testSpace = Testing!TestingSpace.all().first();
 
 for (campaign in testSpace.campaigns) {
 	if (campaign.name.equals(campaignName)) {
 		var firstTest = campaign.performedTests.first();
-		%][%= "TestID\t\t\t\t\t\t\t\t" + getAllMetrics(firstTest, true) %]
+		%][%= "TestID\t\t\t\t\t\t" + getAllMetrics(firstTest, true) %]
 		[% 	for (test in campaign.performedTests) { 
 		%]Test:[%= test.name + "\t\t" %][%= getAllMetrics(test, false) %] [%= getOperations(test.operations) %]
 		[%

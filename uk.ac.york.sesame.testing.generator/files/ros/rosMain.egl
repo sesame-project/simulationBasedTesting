@@ -6,10 +6,12 @@
 	var topicsMetricsNeed = Metric.all().relatedVariables.flatten();
 	var allTopics = topicsNodesPublish.includingAll(topicsMetricsNeed).asSet();
 	topicsNodesPublish.println();
+	
+	var fuzzingVars = new Set();
+	
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
-	
-	var sanitiseVariables = true;
+	var sanitiseVariables = false;
 %]
 
 import java.util.ArrayList;
@@ -71,8 +73,12 @@ public class [%= testNameString %]_TestRunner {
 		for (fuzzOp in test.operations) {
 			var fuzzOpName = "fuzzOp" + fuzzOpCount;
 			fuzzOpCount++;
-			allFuzzOps.put(fuzzOpName, fuzzOp); %]
-		[% } %]
+			allFuzzOps.put(fuzzOpName, fuzzOp);
+			
+			if (fuzzOp.variableToAffect != null) {
+				fuzzingVars.add(fuzzOp.variableToAffect);
+			}
+		} %]
 		
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
@@ -81,6 +87,8 @@ public class [%= testNameString %]_TestRunner {
 		DataStream<ControlMessage> controlStream = env
 					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
 		
+		env.setParallelism(1);
+	    env.setMaxParallelism(1);
 		
 		DataStream<EventMessage> streamOrig = env
 			.addSource(new FlinkKafkaConsumer<EventMessage>("IN", new EventMessageSchema(), properties)).returns(EventMessage.class);
@@ -119,6 +127,7 @@ public class [%= testNameString %]_TestRunner {
 		// JRH: moved the simulation launcher outside of the thread to the main code
 		HashMap<String, String> params = new HashMap<String,String>();
 		params.put("launchPath", "[%=launchFileLocation%]");
+		params.put("testID", TESTNAME);
 		
 		// Preprocessing before simulation starts
 		System.out.println("Preprocessing Phase");
@@ -177,8 +186,7 @@ public class [%= testNameString %]_TestRunner {
 			public void run() {
 				System.out.println("From out to sim starts");
 				while (true) {
-					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance()
-							.consume("OUT");
+					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = rosSim.translateTopicNameForOutput(inTopic);
@@ -205,7 +213,9 @@ public class [%= testNameString %]_TestRunner {
 		List<Double> fuzzOpTimes = new ArrayList<Double>(); 
 		
 		[% for (fuzzOp in test.operations) { %]
-			[%= produceTimeString(fuzzOp) %]
+			[% if (fuzzOp.includeInTiming) { %]
+				[%= produceTimeString(fuzzOp) %]
+			[% } %]
 		[% } %]
 		
 		
@@ -348,55 +358,12 @@ operation streamJavaName(sMetric, stream) {
 		}
 }
 
-// TODO: The if statement should be extended to construct other attacks - currently PacketLossNetworkAttack, BlackHoleFlatMap, RandomValueFromSetAttack and CustomFuzzingOperation are supported
-operation produceFOGenerationSignature(fo) {
-	var flatmap = "";
-	var aa = fo.activation;
-	
-	if (aa.isKindOf(Testing!FixedTimeActivation)) {
-		var startTime = aa.startTime;
-		var endTime = aa.endTime;
-		
-		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
-			var frequencyVal = fo.frequency.lowerBound;
-			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + "," + frequencyVal + ")";
-		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
-			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + ")";
-		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
-			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
-			var varName = null;
-			if (fo.variableToAffect != null) {
-			 	varName = fo.variableToAffect.name;
-			}
-			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + startTime + "," + endTime + "," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
-			var delay = fo.latency.lowerBound;
-			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + startTime + "," + endTime + "," + delay + "," + fo.seed + ")";
-		}
-	}
-	
-	if (aa.isKindOf(Testing!ConditionBasedActivation)) {
-		if (fo.isTypeOf(Testing!PacketLossNetworkOperation)) {
-			var frequencyVal = fo.frequency.lowerBound;
-			flatmap = "new " + fo.name + "PacketLossFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + "," + frequencyVal + ")";
-		} else if (fo.isTypeOf(Testing!BlackholeNetworkOperation)) {
-			flatmap = "new " + fo.name + "BlackHoleFlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\")";
-		} else if (fo.isTypeOf(Testing!RandomValueFromSetOperation)) {
-			flatmap = "new " + fo.name + "FlatMap_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!CustomFuzzingOperation)) {
-			var varName = null;
-			if (fo.variableToAffect != null) {
-			 	varName = fo.variableToAffect.name;
-			}			 
-			flatmap = "new " + fo.name + "CustomOp_" + testNameString + "(\"" + varName + "\"," + fo.seed + ")";
-		} else if (fo.isTypeOf(Testing!LatencyNetworkOperation)) {
-			var delay = fo.latency.lowerBound;
-			flatmap = "new " + fo.name + "Delay_" + testNameString + "(\"" + fo.variableToAffect.name + "\"," + delay + "," + fo.seed + ")";
-		}
-	}
-	
-	return flatmap;
+operation produceFOGenerationSignature(fuzzOp) {
+	// For successful compilation, className must match the EGL generator for the fuzzing operation - 
+	// defined in fuzzOpCommon.egl and in the orchestrator.egx
+	var className = fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + fuzzOp.containingTest.name.firstToUpperCase();
+	var generateFO = "new " + className + "(); // TODO: add the timing/condition in a comment here";
+	return generateFO;
 }
 
 operation produceTimeString(fuzzOp) {

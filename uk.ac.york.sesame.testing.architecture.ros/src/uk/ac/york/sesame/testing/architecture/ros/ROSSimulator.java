@@ -1,9 +1,6 @@
 package uk.ac.york.sesame.testing.architecture.ros;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -15,9 +12,6 @@ import org.eclipse.epsilon.emc.emf.EmfModel;
 import org.eclipse.epsilon.emc.plainxml.PlainXmlModel;
 import org.eclipse.epsilon.eol.launch.EolRunConfiguration;
 import org.eclipse.epsilon.eol.models.IModel;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import edu.wpi.rail.jrosbridge.JRosbridge.WebSocketType;
 import edu.wpi.rail.jrosbridge.Ros;
@@ -39,7 +33,9 @@ public class ROSSimulator implements ISimulator {
 
 	protected static final boolean USE_FRACTIONAL_TIME = true;
 
-	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = false;
+	private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 10000;
+
+	private boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	
 	static Ros ros;
 	static DataStreamManager dsm = DataStreamManager.getInstance();
@@ -50,6 +46,10 @@ public class ROSSimulator implements ISimulator {
 	public List<String> getTopics() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void debugEnsureDisplayMessages() {
+		DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	}
 
 	@Override
@@ -87,19 +87,49 @@ public class ROSSimulator implements ISimulator {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+
+	public void runExtraScriptIfExists(String workingDir, String testID, long extrasWaitdelayMsec) {
+		String extrasFile = "start-extras.sh";
+		String extrasPath = workingDir + "/" + extrasFile;
+		
+		if ((new File(extrasPath)).exists()) {
+			String cmd = "cd " + workingDir + " && ./start-extras.sh " + testID;
+			ExptHelper.runScriptNewThread(workingDir, cmd);
+			
+			// Need to wait the delay after the EDDI launched
+			try {
+				Thread.sleep(extrasWaitdelayMsec);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+		} else {
+			System.out.println("Could not find extras script at " + extrasPath + ":ignoring");
+		}
+	}
 
 	@Override
 	public void run(HashMap<String, String> params) {
-		//boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 		String launchFilePath = params.get("launchPath");
 		Path launchFileP = Paths.get(launchFilePath);
 		Path containingDir = launchFileP.getParent();
+		
+		long extrasWaitdelayMsec = DEFAULT_EXTRAS_WAIT_DELAY_MS;
+		
 		String workingDir = containingDir.toString();
+		String testID = params.get("testID");
 		
 		System.out.println("workingDir = " + workingDir + ",launchFilePath = " + launchFilePath);
-		String args = "";
-		//ExptHelper.runScriptNewWithBash(workingDir, launchFilePath);
 		ExptHelper.runScriptNewThread(workingDir, launchFilePath);
+		
+		// Override extras delay parameter if supplied
+		if (params.containsKey("extrasWaitdelayMsec")) {
+			extrasWaitdelayMsec = Long.parseLong(params.get("extrasWaitdelayMsec"));
+		}
+		
+		// Now launch the EDDI or other extras after
+		runExtraScriptIfExists(workingDir, testID, extrasWaitdelayMsec);
 	}
 
 	@Override
@@ -237,5 +267,9 @@ public class ROSSimulator implements ISimulator {
 			System.out.println("ROS subscription failed - exiting middleware");
 			throw new SubscriptionFailure();
 		}
+	}
+
+	public boolean stepSimulator() {
+		return true;	
 	}
 }    

@@ -1,9 +1,9 @@
 package metrics.custom;
 
-public class collisionOccuranceMetric_Individual_Z2 extends collisionOccuranceMetric {
+public class collisionOccuranceMetric_Individual_Z2 extends staticCollisionMetric {
 	private static final long serialVersionUID = 1L;
 
-	private String getExtraString() {
+	protected String getExtraString() {
 		return "Z2";
 	}
 }

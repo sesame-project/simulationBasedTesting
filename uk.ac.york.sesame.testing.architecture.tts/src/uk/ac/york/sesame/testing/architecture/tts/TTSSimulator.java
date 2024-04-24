@@ -36,13 +36,15 @@ public class TTSSimulator implements ISimulator {
 
 	private static final long DEFAULT_TTS_LAUNCH_DELAY_MS = 20000;
 	
-	private static boolean GET_TIME_FROM_MESSAGES = false;
+	private static boolean GET_TIME_FROM_MESSAGES = true;
 
 	private final boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	private static final boolean DEBUG_DISPLAY_CLOCK_MESSAGE = true;
 	//private static final boolean SUBSCRIBE_TO_CLOCK = true;
 
 	static DataStreamManager dsm = DataStreamManager.getInstance();
+	
+	//StepObserver so;
 
 	private static StreamObserver<PubRequest> publisher;
 	HashMap<String, ROSObserver> createdTopics = new HashMap<String, ROSObserver>();
@@ -50,6 +52,9 @@ public class TTSSimulator implements ISimulator {
 	private static SimlogAPIGrpc.SimlogAPIStub asyncStub;
 	private static SimlogAPIGrpc.SimlogAPIBlockingStub blockingStub;
 	ManagedChannel channel;
+	ManagedChannel channelSync;
+
+	//private boolean canSendToSimulator = false;
 
 	@Override
 	public List<String> getTopics() {
@@ -71,16 +76,32 @@ public class TTSSimulator implements ISimulator {
 		int port = Integer.parseInt(params.getProperties().get(params.PORT).toString());
 		String target = host + ":" + String.valueOf(port);
 		channel = ManagedChannelBuilder.forTarget(target).usePlaintext().build();
-
-		blockingStub = SimlogAPIGrpc.newBlockingStub(channel);
+		channelSync = ManagedChannelBuilder.forTarget(target).usePlaintext().build();
+		
+		blockingStub = SimlogAPIGrpc.newBlockingStub(channelSync);
 		asyncStub = SimlogAPIGrpc.newStub(channel);
+
+		// Activate stepping if the STEP_SIZE parameter is supplied
+		if (params.getProperties().containsKey(params.STEP_SIZE)) {
+			System.out.println("TTSimulator: setting step size");
+			int stepSizeMillis = Integer.parseInt(params.getProperties().get(params.STEP_SIZE).toString());
+			StepSizeRequest stepRQ = StepSizeRequest.newBuilder().setStep(stepSizeMillis).build();
+			blockingStub.setStepSize(stepRQ);
+		}
+		
 		try {
-			Thread.sleep(500);
-			System.out.println("TTSimulator: connection made");
+			// Wait is needed to prevent gRPC connection errors
+			// This was originally 500 ms, then increasing to 1000sec for batch mode
+			Thread.sleep(1000);
+			System.out.println("TTSimulator: wait to set step size completed");		
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+
+		
+		System.out.println("TTSimulator: connection ready");
 		return asyncStub;
 	}
 
@@ -113,7 +134,8 @@ public class TTSSimulator implements ISimulator {
 		}
 
 		// TODO: this needs an option for setting a custom JVM here?
-		String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		//String cmd = "xterm -e /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
+		String cmd = "xterm -e /usr/lib/jvm/java-11-openjdk-amd64/bin/java -Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -jar ./DDDSimulatorProject.jar -project simulation.ini -runags runargs.ini";
 		ExptHelper.runScriptNewThread(workingDir, cmd);
 
 		// Need to wait the delay
@@ -148,30 +170,17 @@ public class TTSSimulator implements ISimulator {
 	public void consumeFromTopicForFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
 		String topicNameIn = topicName + "/in";
 		String topicNameShadow = topicName + "/shadow";
-		String topicNameOut = topicName + "/out";
-
+		
 		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
 		TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(topicNameShadow).build();	
-//		TopicDescriptor outTopic = TopicDescriptor.newBuilder().setPath(topicNameOut).build();
 
-		// InjectRequest requestInj =
-		// InjectRequest.newBuilder().setInjected(shadowTopic).build();
 		InjectRequest requ = InjectRequest.newBuilder().setInjected(shadowTopic).setTarget(inTopic).build();
-//		TopicDescriptor requestOrigIn = TopicDescriptor.newBuilder().setPath(topicNameIn).build();
-//
-//		Optional<String> kTopic = Optional.empty();
-//		if (publishToKafka) {
-//			kTopic = Optional.of(kafkaTopic);
-//		}
 
 		try {
 			ROSObserver roInject = new ROSObserver(topicNameIn);
 			roInject.setTopic(kafkaTopic);
 			System.out.println("Setting up injection to : " + inTopic);
-			// asyncStub.subscribe(inTopic, ro);
-			asyncStub.inject(requ, roInject);
-
-			
+			asyncStub.inject(requ, roInject);			
 		} catch (StatusRuntimeException e) {
 			System.out.println("RPC failed: {0}" + e.getStatus());
 			return;
@@ -212,8 +221,6 @@ public class TTSSimulator implements ISimulator {
 			consumeFromTopicWithoutFuzzing(topicName, topicType, publishToKafka, kafkaTopic);
 		}
 	}
-
-
 
 	@Override
 	public void publishToTopic(String topicName, String topicType, String message) {
@@ -286,12 +293,24 @@ public class TTSSimulator implements ISimulator {
 		return !GET_TIME_FROM_MESSAGES;
 	}
 	
-	@Override
+	private void updateTimeHack() {
+		String clockIN = "model/clock";
+		String clockOut_Fake = clockIN + "/shadow";
+		
+		TopicDescriptor inTopic = TopicDescriptor.newBuilder().setPath(clockIN).build();
+		TopicDescriptor shadowTopic = TopicDescriptor.newBuilder().setPath(clockOut_Fake).build();	
+		InjectRequest requ = InjectRequest.newBuilder().setInjected(shadowTopic).setTarget(inTopic).build();
+		
+		ROSObserver roClock = new ROSObserver("model/clock");
+		asyncStub.inject(requ, roClock);
+	}
+	
 	public void updateTime() {
 		if (subscribeToClock()) {
 			TopicDescriptor clockTopic = TopicDescriptor.newBuilder().setPath("model/clock").build();
 			ClockObserver co = new ClockObserver();
 			asyncStub.subscribe(clockTopic, co);
+			//updateTimeHack();
 		}
 	}
 
@@ -362,7 +381,9 @@ public class TTSSimulator implements ISimulator {
 			String topic = path;
 
 			if (GET_TIME_FROM_MESSAGES) {
-				setSimulatorTimeFromMessage(m, em);
+				if (!topic.contains("safetyzone")) {
+					setSimulatorTimeFromMessage(m, em);
+				}
 			}
 
 			em.setType(type);
@@ -398,6 +419,25 @@ public class TTSSimulator implements ISimulator {
 		@Override
 		public void onCompleted() {
 			System.out.println(path + ":finished");
+		}
+	}
+	
+	public boolean stepSimulator() {
+		StepRequest rq = StepRequest.newBuilder().build();
+		try {
+		StepResponse response = blockingStub.step(rq);
+		return responseIsOK(response);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	private boolean responseIsOK(StepResponse response) {
+		if (response.getCode() < 0) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 }

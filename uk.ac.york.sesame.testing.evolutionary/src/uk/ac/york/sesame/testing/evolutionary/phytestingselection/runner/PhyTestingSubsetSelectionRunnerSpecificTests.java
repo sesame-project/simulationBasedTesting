@@ -8,6 +8,7 @@ import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 
 import uk.ac.york.sesame.testing.evolutionary.InvalidTestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.PhyTestingSubsetSelection;
+import uk.ac.york.sesame.testing.evolutionary.phytestingselection.PhyTestingSubsetSelectionFinal;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.*;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.metricquality.*;
 
@@ -19,7 +20,7 @@ public class PhyTestingSubsetSelectionRunnerSpecificTests {
 		try {
 			List<String> metricNameList = new ArrayList<String>();
 			metricNameList.add("collisionOccurance");
-			PhyTestingSubsetSelection testPhysub = new PhyTestingSubsetSelection(new SESAMEStandardDimensionSetReducer(), new SESAMEMetricQualityValues(metricNameList));
+			PhyTestingSubsetSelection testPhysub = new PhyTestingSubsetSelectionFinal(new SESAMEStandardDimensionSetReducer(), new SESAMEMetricQualityValues(metricNameList));
 			testPhysub.loadModelToResults(fileName, "specificTests");
 			testPhysub.writeOutResultsTabSep();
 			testPhysub.writeOutResultsCSV(csvOut);

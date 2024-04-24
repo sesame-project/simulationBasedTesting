@@ -2,7 +2,9 @@
 commonTemplate.populate("fuzzOp", fuzzOp);
 commonTemplate.populate("classNameMiddle", "FlatMap");
 commonTemplate.populate("extraImports", new List());
+commonTemplate.populate("useRandomSeed", true);
 %]
+
 [%= commonTemplate.process() %]
 
 	@Override
@@ -45,8 +47,11 @@ commonTemplate.populate("extraImports", new List());
 				Double origVal = Double.parseDouble((String)value.getValue());
 				Double fuzzedVal = origVal + newValue;
 				valueOut.setValue(fuzzedVal.toString());
+				double time = SimCore.getInstance().getTime();
+				System.out.println("fuzzRangeLog," + time + "," + origVal + "," + fuzzedVal + "\n");
 				[% } else { %]
 				valueOut.setValue(newValue.toString());
+				System.out.println("fuzzRangeLog," + time + "," + origVal + "," + fuzzedVal + "\n");
 				[% } %]
 				
 	      		[% } %]
@@ -60,5 +65,4 @@ commonTemplate.populate("extraImports", new List());
 			raise Unimplemented("Parsing method CSV is not yet implemented");
 		[% } %]	
 	}	
-	[% %]
 }

@@ -1,5 +1,11 @@
-// Generated from fuzzOpCommon template
-[% var classNameExt = fuzzOp.containingTest.name.firstToUpperCase(); %]
+[% 
+var classNameExt = fuzzOp.containingTest.name.firstToUpperCase();
+// This className must match the EGL generator for the simulator, e.g. ttsMain.egl
+// and in orchestrator.egx
+var className = fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + classNameExt;
+var topic = fuzzOp.variableToAffect.name;
+
+ %]
 
 import java.util.Map;
 import java.util.HashMap;
@@ -14,43 +20,47 @@ import uk.ac.york.sesame.testing.architecture.utilities.UpdateLambda;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 
 import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
+import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 
 [% for (importc in extraImports) { %]
 import [%= importc %];
 [% } %]
 
-// TODO: EGL generators need to generate based on fuzzOp activation
-public class [%=fuzzOp.name%][%= classNameMiddle %]_[%= classNameExt %] extends [%= superClassName() %] {
+public class [%= className %] extends [%= superClassName() %] {
 
 	[% var varNames = new Set;	%]
 	private static final long serialVersionUID = 1L;
+	
+	[% if (useRandomSeed) { %]
 	Random rng;
+	[% } %]
 	
 	protected String getUniqueID() {
-		//return "[%= fuzzOp.name %]-[%= fuzzOp.id %]";
 		return "[%= fuzzOp.name %]-[%= fuzzOp.sequenceNumInTest %]";
 	}
 
-	[% if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { %]
-	public [%=fuzzOp.name%]FlatMap_[%= classNameExt %](String topic, double start, double end, long seed) {
-		super(topic,start,end);
-		this.rng = new Random(seed); 
+	[* Constructor *]
+	public [%= className %]() {
+		[% if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) { %] 
+		super("[%= topic %]", [%= fuzzOp.activation.startTime %], [%= fuzzOp.activation.endTime %]);
+		[% } %]
+		
+		[% if (fuzzOp.activation.isTypeOf(ConditionBasedActivation)) { %]
+		super("[%= topic %]");
+		[% } %]
+		
+		[% if (fuzzOp.activation.isTypeOf(ConditionBasedTimeLimited)) { %]
+		super("[%= topic %]", [%= fuzzOp.activation.length %]);
+		[% } %]
+		
+		[% if (useRandomSeed) { %] 
+		this.rng = new Random([%= fuzzOp.seed %]L);
+		[% } %] 	
+		
+		[% if (extraConstructorMethodCall.isDefined()) { %]
+		[%= extraConstructorMethodCall %]();
+		[% } %]
 	}
-	[% } %]
-	
-	[% if (fuzzOp.activation.isTypeOf(ConditionBasedActivation)) { %]
-	public [%=fuzzOp.name%]FlatMap_[%= classNameExt %](String topic, long seed) {
-		super(topic);
-		this.rng = new Random(seed);
-	}
-	[% } %]
-	
-	[% if (fuzzOp.activation.isTypeOf(ConditionBasedTimeLimited)) { %]
-	public [%=fuzzOp.name%]FlatMap_[%= classNameExt %](String topic, long seed) {
-		super(topic, [%=  fuzzOp.activation.length %]);
-		this.rng = new Random(seed);
-	}
-	[% } %]
 	
 	[% if (anyTypeOfCondition(fuzzOp)) { %] 
 	protected boolean evalStartCondition() {

@@ -1,11 +1,20 @@
 [% var commonTemplate : Template = TemplateFactory.load("fuzzingoperations/fuzzOpCommon.egl");
 
-imports = new List();
+var extraImports = new List();
+
+extraImports.add("org.apache.flink.configuration.Configuration");
 
 commonTemplate.populate("fuzzOp", fuzzOp);
 commonTemplate.populate("classNameMiddle", "Delay");
-commonTemplate.populate("imports", imports);
+commonTemplate.populate("extraImports", extraImports);
+commonTemplate.populate("useRandomSeed", true);
+
+var frequencyVal = fuzzOp.frequency.lowerBound;
+
 %]
+[%= commonTemplate.process() %]
+
+	double frequency = [%= frequencyVal %];
 
 	public void open(Configuration parameters) throws Exception {
 		super.open(parameters);
@@ -41,120 +50,3 @@ commonTemplate.populate("imports", imports);
 	
 	}
 }
-
-
-
-[% 
-operation superClassName() {
-	if (fuzzOp.activation.isTypeOf(FixedTimeActivation)) {
-		return "TimeBasedFuzzingOperation";	
-	}
-
-	if (fuzzOp.activation.isTypeOf(ConditionBasedActivation)) {
-		return "ConditionBasedFuzzingOperation";	
-	}
-}
-
-operation generateBinLogicOp(binop) {
-	if (binop == BinaryLogicalOperation#AND) {
-		return "&&";
-	}
-	
-	if (binop == BinaryLogicalOperation#OR) {
-		return "||";
-	}
-}
-
-operation generateBinComp(binop) {
-	if (binop == BinaryComparisonOperation#LESS_THAN) {
-		return "<";
-	}
-	
-	if (binop == BinaryComparisonOperation#GREATER_THAN) {
-		return ">";
-	}
-	
-	if (binop == BinaryComparisonOperation#EQUALS) {
-		return "==";
-	}
-}
-
-operation generateCondElement(c) {
-	if (c.isTypeOf(CompositeCondition)) {
-		return "(" + generateCondElement(c.left) + ") " + generateBinLogicOp(c.binop) + " (" + generateCondElement(c.right) + ")";
-	}
-	
-	if (c.isTypeOf(BasicCondition)) {
-		return "(" + generateCondElement(c.left) + ") " + generateBinComp(c.bincomp) + " (" + generateCondElement(c.right) + ")";
-	}
-	
-	if (c.isTypeOf(ConditionVariable)) {
-		var vn = c.metric.name;
-		// Put named variable into global list
-		varNames.add(vn);
-		return vn;
-	}
-	
-	if (c.isTypeOf(ConditionInteger)) {
-		return c.value;
-	}
-}
-
-operation generateCondBoolean(cond) {
-	return generateCondElement(cond.c);
-}
-
-operation getVarsForCond(fuzzOp, cond) {
-	return varNames;
-}
-
-operation getInitValue(varName) {
-	var campaign = fuzzOp.containingTest.parentCampaign;
-    var metrics = campaign.conditionMetrics;
-    var initVal = null;
-    for (m in metrics) {
-        if (m.name == varName) {
-        	if (m.initValue != null) {
-        		initVal = m.initValue.defaultVal;
-        	}
-        }
-    }
-    return initVal;
-}
-
-operation generateProperty(prop) {
-	if (prop.isTypeOf(IntRange)) {
-		var v = (prop.lowerBound + prop.upperBound) / 2;
-		return "new Integer(" + v + ")";
-	}
-	
-	if (prop.isTypeOf(DoubleRange)) {
-		var v = (prop.lowerBound + prop.upperBound) / 2;
-		return "new Double(" + v + ")";
-	}
-	
-	if (prop.isTypeOf(PointRange)) {
-		var px = (prop.minPoint.x + prop.maxPoint.x) / 2;
-		var py = (prop.minPoint.y + prop.maxPoint.y) / 2;
-		var pz = (prop.minPoint.z + prop.maxPoint.z) / 2;
-		return "new Point3D(" + px + "," + py + "," + pz + ")";
-	}
-	
-	if (prop.isTypeOf(StringSet)) {
-		// Add the string to everything here
-		if (prop.choices.size() > 0) { 
-			var string = prop.choices.first();
-			return "new String(\"" + string + "\")";
-		} else {
-			return "new String(\"\")";
-		}
-	}
-
-	if (prop.isTypeOf(ExternalResourceSet)) {
-		var loc = prop.location;
-		return "new String(\"" + loc + "\")";
-	}
-}
-
-%]
-

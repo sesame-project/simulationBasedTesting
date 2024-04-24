@@ -1,8 +1,13 @@
 [%
-	var campaignName = "coverageExperiment";
+	//var campaignName = "coverageBoostingExperiment";
+	var campaignName = "scenario2-condbased";
 	var filterResultSetString1 = "NONDOM";
-	var filterResultSetString2 = "intermediate-210";
-	var targetType = Testing!ResultSetStatus#INTERMEDIATE;
+	var filterResultSetString2 = "final";
+	
+	var METRIC_NAME_TRUNCATE_CHARS = 15;
+	
+	//var targetType = Testing!ResultSetStatus#INTERMEDIATE;
+	var targetType = Testing!ResultSetStatus#FINAL;
 	
 	// TODO: this should be a parameter name
 	var testSpace = Testing!TestingSpace.all().first();
@@ -21,11 +26,11 @@
 					
 					[%
 						var firstTest = resultSet.results.first();
-						%][%= "\t\t\t\t\t\t" + getAllMetrics(firstTest, true) %]
+						%][%= "\t\t\t\t\t" + getAllMetrics(firstTest, true) %]
 					
 						[%
 						for (test in resultSet.results) {
-							%]Test:[%= test.name + "\t\t" %][%= getAllMetrics(test, false) %] [%= getOperations(test.operations) %]
+							%]Test:[%= test.name + "\t" %][%= getAllMetrics(test, false) %] [%= getOperations(test.operations) %]
 							[%
 						}
 					}
@@ -39,7 +44,7 @@ operation getAllMetrics(test, header) {
 	for (metricInstance in test.metrics) {
 		var res = metricInstance.result;
 		if (header) {
-			str = str + res.name + "\t\t\t";
+			str = str + res.name.substring(0,METRIC_NAME_TRUNCATE_CHARS) + "\t\t";
 		} else {
 			//var valStr = res.value.toString();
 			str = str + res.value.format("%.3f") + "\t\t\t";
