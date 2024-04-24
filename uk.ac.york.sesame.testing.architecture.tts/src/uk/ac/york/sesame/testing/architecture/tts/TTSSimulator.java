@@ -120,7 +120,6 @@ public class TTSSimulator implements ISimulator {
 		}
 
 		subscribePath("<NO-TOPIC>", "step", pathTranslator.getStepTopicName(), Optional.empty());
-
 		System.out.println("TTSimulator: connection ready");
 		return asyncStub;
 	}
@@ -238,8 +237,26 @@ public class TTSSimulator implements ISimulator {
 		}
 	}
 
-	public boolean simIsAlive() {
-		return simController.simIsAlive();
+	public boolean simIsActive() {
+		// Sim not active if the simController is not yet set up
+		if (simController == null) {
+			return false;
+		} else {
+			return simController.simIsActive();
+		}
+	}
+	
+	public boolean simContinueLoop() {
+		// Want to continue the loop if the simController is not yet set up
+		if (simController == null) {
+			return true;
+		} else {
+			return simController.simContinueLoop();
+		}
+	}
+	
+	public boolean grpcIsSetup() {
+		return (simController != null);
 	}
 
 	public void subscribeForFuzzing(String topicName, String topicType, Boolean publishToKafka, String kafkaTopic) {
@@ -316,6 +333,10 @@ public class TTSSimulator implements ISimulator {
 	// V2: updateTime redundant - time now called updated from GRPCController
 	public void updateTime() {
 
+	}
+	
+	public void setActive() {
+		simController.setActive();
 	}
 
 	public boolean stepSimulator() {

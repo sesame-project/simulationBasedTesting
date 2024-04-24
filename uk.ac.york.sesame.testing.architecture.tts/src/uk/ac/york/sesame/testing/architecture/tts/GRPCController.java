@@ -29,7 +29,13 @@ public class GRPCController {
     private SimCore testingPlatformCore;
     private CountDownLatch cl;
     
-    private boolean simIsAlive = true;
+    enum GRPCConnStatus {
+    	PENDING_CONNECTION,
+    	ACTIVE,
+    	EXITED,
+    }
+    
+    private GRPCConnStatus status = GRPCConnStatus.PENDING_CONNECTION;
 
     public GRPCController(String targetController) {
         ManagedChannel channel = ManagedChannelBuilder.forTarget(targetController).usePlaintext().build();
@@ -47,16 +53,28 @@ public class GRPCController {
         StepRequest sr = StepRequest.newBuilder().setDeltaTime(50).build();
         SimStatus rsp = server.step(sr);
         System.out.println("--SBT Calling Step: --------------");
-        simIsAlive = rsp.getAlive();
-        // Ask Diego: should we get time from this or the StatusObs below
+        boolean simIsAlive = rsp.getAlive();
+        if (!simIsAlive) {
+        	status = GRPCConnStatus.EXITED;
+        }
+        
+        // Ask Diego: should we get time from this or the StatusObs below?
         long timeMS = rsp.getClock();
         updateTimeMS(timeMS);
         print(rsp);
         return simIsAlive;
     }
     
-    boolean simIsAlive() {
-    	return simIsAlive;
+    boolean simIsActive() {
+    	return (status == GRPCConnStatus.ACTIVE);
+    }
+    
+    void setActive() {
+    	status = GRPCConnStatus.ACTIVE;
+    }
+    
+    boolean simContinueLoop() {
+    	return (status == GRPCConnStatus.PENDING_CONNECTION) || (status == GRPCConnStatus.ACTIVE);
     }
 
     void start() {

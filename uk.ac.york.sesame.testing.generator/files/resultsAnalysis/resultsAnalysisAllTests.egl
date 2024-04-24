@@ -1,5 +1,5 @@
 [%
-var campaignName = "test868-fixedlen_20s"; 
+var campaignName = "resCollision"; 
 
 var targetType = Testing!ResultSetStatus#INTERMEDIATE;
 	

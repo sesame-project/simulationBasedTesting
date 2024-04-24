@@ -25,10 +25,11 @@ import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 public class DataStreamManager {
 	
 	private long POLL_TIMEOUT = 100;
-	private long POLL_TIMEOUT_EARLY = 300;
+	private long POLL_TIMEOUT_EARLY = 30;
 	private static final double TIME_EARLY_THRESHOLD = 1.0;
 	
 	//private final long POLL_TIMEOUT = 0;
+	//private final long POLL_TIMEOUT_EARLY = 0;
 	// Zero will return immediately if there are no pending records available, allowing us to go onto the
 	// next step:
 	// https://kafka.apache.org/24/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html

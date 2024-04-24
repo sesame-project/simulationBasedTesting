@@ -193,6 +193,7 @@ public class [%= testNameString %]_TestRunner {
 				
 		params.put("TTSProjectDir", "[%= launchFileLocation %]");
 		params.put("launchDelayMsec", "[%= launchDelayMsec %]");
+		params.put("extraWaitForConsumer", "true");
 		params.put("testID", TESTNAME);
 		
 		// Preprocessing before simulation starts
@@ -204,66 +205,21 @@ public class [%= testNameString %]_TestRunner {
 		[%= fOName %].preprocessing();
 		[% } %]
 		
-		System.out.print("TTS Simulator Starting...");
-		ttsSim.run(params);
-		[* This incorporates a delay before the simulator starts *]
-		[* waitForSeconds([%= mrs.launchDelaySeconds %]); *]
-		System.out.println("TTS Simulator Started... connecting");
-		ttsSim.connect(cp);	
+
 		[* CUSTOM TTS CODE - END *]
 		[% } %]
 				
-		[% for (aTopic in allTopics) {
-		   if (not aTopic.name.startsWith("___")) { %]
-		   
-		[%
-		// skip subscription to variable with underscores... allow them to be added to model until TTS var ready
-		var javaSafeName = aTopic.name.replace("/", "_");
-		// Replace literal period - need to escape the string 
-		javaSafeName = javaSafeName.replace("\\.", "_");
-		%]
-		
-		[* V2 change to API - there are no longer individual streams since
-		  everything is handled centrally, therefore no need for subscription threads anymore 
-		
-		Thread subscriber_thread_[%= javaSafeName %] = new Thread() {
-			public void run() { *]
-				System.out.println("Subscriber [%= javaSafeName %] Starts");
-				// The Kafka topic name is now set in SimStreamObserver. These topics are
-				// required for the interface, but are no longer used here.
-				[% if (fuzzingVars.contains(aTopic)) { %]
-				ttsSim.consumeFromTopic("[%= aTopic.name%]", "[%= aTopic.type.name %]", true, "(kafka topic removed)", true);
-				[% } else { %]
-				ttsSim.consumeFromTopic("[%= aTopic.name%]", "[%= aTopic.type.name %]", true, "(kafka topic removed)", false);
-				[% } %]
-				[*
-			}
-		};
-		subscriber_thread_[%= javaSafeName %].start();
-		*]
-		[%
-		 } 
-		 } %]
-				
 
-		[* V2 change - time is now handled with the stepping mechanism
-		//
-		//Thread time_subscriber = new Thread() {
-		//	public void run() {
-		//		System.out.println("updateTime starting");
-		//		ttsSim.updateTime();
-		//	}
-		//};
-		//time_subscriber.start();
-		*]
-		
+		[* Sends from the Kafka OUT queue back to simulator, also manages stepping *]
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
 				
 				long millisLastStep = 0;
+				SimCore core = SimCore.getInstance();
 				System.out.println("From out to sim starts");
-						
-				while (ttsSim.simIsAlive()) {
+				
+				while (ttsSim.simContinueLoop() && extraDebugWait(millisLastStep)) {
+				    //System.out.println("Polling OUT Kafka consumer");
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT-[%= testNameString %]");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
@@ -283,14 +239,19 @@ public class [%= testNameString %]_TestRunner {
 				[% } %]
 							ttsSim.publishToTopic(inTopic, er.getType(), er.getValue().toString());
 						}
+						// Need to increment out count, regardless of whether the message should be sent back or not!
+						if (ttsSim.simIsActive()) {
+							core.incrementOutCount();
+						}
 					}
 					[% if (useStepping) { %]
-					ttsSim.stepSimulator();
+					if (ttsSim.simIsActive() && core.messageCountBalanced()) {
+						ttsSim.stepSimulator();
+					}
 					[% } %] 
 				}
 			}
 		};
-		from_out_to_sim.start();
 		
 		// Generate keyed streams
 		KeyedStream<EventMessage, String> topicKeyedIn = stream.keyBy(value -> value.getTopic());
@@ -422,11 +383,45 @@ public class [%= testNameString %]_TestRunner {
 		   [% } %]
 		
 		try {
-			env.execute();
+			[* V2 reorder - Now using asynchronous execution to start up Flink *]
+			env.executeAsync();
+			from_out_to_sim.start();
+			simConnectAndSubscribe(ttsSim, cp, params);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	[* V2: determinism fixes; handles the simulator connection and subscription here now *]
+	private static void simConnectAndSubscribe(TTSSimulator ttsSim, ConnectionProperties cp, HashMap<String,String> params) {
+	
+		System.out.print("TTS Simulator Starting...");
+		ttsSim.run(params);
+		[* This incorporates a delay before the simulator starts *]
+		System.out.println("TTS Simulator Started... connecting");
+		ttsSim.connect(cp);	
+	
+		[% 	for (aTopic in allTopics) {
+		   	if (not aTopic.name.startsWith("___")) {
+			// skip subscription to variable with underscores... allow them to be added to model until TTS var ready
+			var javaSafeName = aTopic.name.replace("/", "_");
+			// Replace literal period - need to escape the string 
+			javaSafeName = javaSafeName.replace("\\.", "_");
+		%]
+		
+		[* V2 change to API - there are no longer individual streams threads since
+		  everything is handled centrally, therefore no need for subscription threads anymore *]
+		[% if (fuzzingVars.contains(aTopic)) { %]
+			ttsSim.consumeFromTopic("[%= aTopic.name%]", "[%= aTopic.type.name %]", true, "(kafka topic removed)", true);
+		[% } else { %]
+			ttsSim.consumeFromTopic("[%= aTopic.name%]", "[%= aTopic.type.name %]", true, "(kafka topic removed)", false);
+		[% }
+		} 
+		} %]
+		[* V2 change - time is now handled with the stepping mechanism *]
+		
+		ttsSim.setActive();
 	}
 	
 	public static void waitForSeconds(long timeDelaySeconds) {
