@@ -1,27 +1,50 @@
 [%
-var campaignName = "scenario2-eddi-timebased-faults-coverage"; 
-
-var targetType = Testing!ResultSetStatus#FINAL;
+	//var campaignName = "coverageBoostingExperiment";
+	var campaignName = "scenario2-eddi-timebased-faults-coverage";
+	var filterResultSetString1 = "NONDOM";
+	var filterResultSetString2 = "intermediate-128";
 	
-var testSpace = Testing!TestingSpace.all().first();
+	var METRIC_NAME_TRUNCATE_CHARS = 15;
+	
+	//var targetType = Testing!ResultSetStatus#INTERMEDIATE;
+	var targetType = Testing!ResultSetStatus#INTERMEDIATE;
+	
+	// TODO: this should be a parameter name
+	var testSpace = Testing!TestingSpace.all().first();
 
-for (campaign in testSpace.campaigns) {
-	if (campaign.name.equals(campaignName)) {
-		var firstTest = campaign.performedTests.first();
-		%][%= "TestID\t\t\t\t\t\t" + getAllMetrics(firstTest, true) %]
-		[% 	for (test in campaign.performedTests) { 
-		%]Test:[%= test.name + "\t\t" %][%= getAllMetrics(test, false) %] [%= getOperations(test.operations) %]
+	for (campaign in testSpace.campaigns) {
+		%]Campaign: [%= campaign.name %]
+		
 		[%
+		
+		if (campaign.name.equals(campaignName)) {
+			for (resultSet in campaign.resultSets) {
+				if ((resultSet.status == targetType)) {
+					if (resultSet.name.contains(filterResultSetString1) and resultSet.name.contains(filterResultSetString2)) { 
+					// TODO: sort the tests by their fuzzing time?
+					%]ResultSet: [%= resultSet.name %]
+					
+					[%
+						var firstTest = resultSet.results.first();
+						%][%= "\t\t\t\t\t" + getAllMetrics(firstTest, true) %]
+					
+						[%
+						for (test in resultSet.results) {
+							%]Test:[%= test.name + "\t" %][%= getAllMetrics(test, false) %] [%= getOperations(test.operations) %]
+							[%
+						}
+					}
+				}
+			}
 		}
 	}
-}
 	
 operation getAllMetrics(test, header) {
 	var str = "";
 	for (metricInstance in test.metrics) {
 		var res = metricInstance.result;
 		if (header) {
-			str = str + res.name + "\t\t\t";
+			str = str + res.name.substring(0,METRIC_NAME_TRUNCATE_CHARS) + "\t\t";
 		} else {
 			//var valStr = res.value.toString();
 			str = str + res.value.format("%.3f") + "\t\t\t";
@@ -194,5 +217,8 @@ operation generateProperty(prop) {
 		return "new String(\"" + loc + "\")";
 	}
 }
+
+
+
 
 %]

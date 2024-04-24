@@ -11,3 +11,5 @@ uk.ac.york.sesame.testing.evolutionary/*.log
 ##############################
 .DS_Store
 *.class
+.classpath
+.project

@@ -1,5 +1,6 @@
 package main;
 
+import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
 
 public class ExptRunner_[%= campaign.name %] {
@@ -38,7 +39,6 @@ public class ExptRunner_[%= campaign.name %] {
 		[% if (campaign.activationGeneration.isTypeOf(TimeBasedActivationGenerationMethod)) { %]
 		final boolean conditionBased = false;
 		final int conditionDepth = 0;
-		
 		[% } %] 	 	
 				
 		final String grammarPath = "[%= codeGenerationDirectory %]/grammar/sesame-standardgrammar-[%= campaign.name %].bnf";
