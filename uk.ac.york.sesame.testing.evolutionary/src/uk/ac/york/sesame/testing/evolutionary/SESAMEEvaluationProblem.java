@@ -35,7 +35,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = true;
 	
 	// Disable for debug run/fake metrics
-	private static final boolean DEBUG_ACTUALLY_RUN = true;
+	private static final boolean DEBUG_ACTUALLY_RUN = false;
 	private static final boolean DUMMY_EVAL = !DEBUG_ACTUALLY_RUN;
 	
 	private static final boolean FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE = true;
@@ -165,6 +165,9 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	}
 
 	public void performSESAMETest(SESAMETestSolution solution) {
+		// For distributed, this needs to be wrapped and provided as a solution
+		
+		
 		try {
 			String mainClassName = solution.getMainClassName();
 

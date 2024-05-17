@@ -32,6 +32,11 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationApproach;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
+import uk.ac.york.sesame.testing.evolutionary.distributed.AllocationStrategy;
+import uk.ac.york.sesame.testing.evolutionary.distributed.RoundRobinAllocation;
+import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANODistributedExperiment;
+import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANOExperimentManager;
+import uk.ac.york.sesame.testing.evolutionary.distributed.WorkerNode;
 import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging_Coverage;
@@ -46,10 +51,8 @@ import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
 public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
-	// TODO: the grammar should be generated from the model
-	// private String GRAMMAR_FILE = System.getProperty("user.home") +
-	// "/academic/atlas/atlas-middleware/grammar/safemuv-fuzzing-cond.bnf";
-
+	private static final boolean USE_DISTRIBUTED = true;
+	
 	private int populationSize;
 	private int offspringPopulationSize;
 
@@ -142,7 +145,20 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
 			selection = new TournamentSelection<SESAMETestSolution>(5);
 			dominanceComparator = new DominanceComparator<>();
-			evaluator = new SequentialSolutionListEvaluator<SESAMETestSolution>();
+			
+			if (USE_DISTRIBUTED) {
+				SOPRANODistributedExperiment distributedExpt = new SOPRANODistributedExperiment(selectedCampaign, loader, orchestratorBasePath, spaceModelFileName);
+				WorkerNode node = new WorkerNode("192.168.1.19");
+				// TODO: Hardcoded allocation strategy here as round-robin
+				AllocationStrategy rr = new RoundRobinAllocation();
+				SOPRANOExperimentManager exptManager = new SOPRANOExperimentManager(distributedExpt, rr);
+				exptManager.registerAvailableWorker(node);
+				exptManager.startLoopThread();
+				evaluator = exptManager;
+				
+			} else {
+				evaluator = new SequentialSolutionListEvaluator<SESAMETestSolution>();
+			}
 
 			int matingPoolSize = populationSize;
 
