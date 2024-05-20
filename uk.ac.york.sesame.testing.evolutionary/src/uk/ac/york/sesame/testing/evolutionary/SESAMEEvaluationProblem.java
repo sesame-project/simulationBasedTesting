@@ -166,8 +166,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 
 	public void performSESAMETest(SESAMETestSolution solution) {
 		// For distributed, this needs to be wrapped and provided as a solution
-		
-		
+				
 		try {
 			String mainClassName = solution.getMainClassName();
 

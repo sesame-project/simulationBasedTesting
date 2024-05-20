@@ -9,8 +9,12 @@ import net.razorvine.pyro.NameServerProxy;
 import net.razorvine.pyro.PyroProxy;
 
 public class PyroDaemons {
+	
 	private static String DEFAULT_NS_HOSTNAME = "192.168.1.19";
+	private static int DEFAULT_NS_PORT = 9523;
+		
 	private static String nsHostname = DEFAULT_NS_HOSTNAME;
+	private static int nsPort = DEFAULT_NS_PORT;
 	
 	private static NameServerProxy ns_single;
 	private static Map<String,PyroProxy> proxies_by_host = new HashMap<String,PyroProxy>();
@@ -21,7 +25,7 @@ public class PyroDaemons {
 	
 	public static NameServerProxy getNameserver() throws IOException {
 		if(ns_single == null) {
-			ns_single = NameServerProxy.locateNS(nsHostname);
+			ns_single = NameServerProxy.locateNS(nsHostname, nsPort);
 		}
 		return ns_single;
 	}

@@ -1906,6 +1906,220 @@
         <latency lowerBound="2.1443004001937513" upperBound="2.557031915759705"/>
       </operations>
     </performedTests>
+    <performedTests name="Test_001_03_05_2024_23_36_40">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="5526361552750179392" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="95.88403881438765" endTime="115.98976742338567"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_kXVr0HOfEe68xv21uncMBA" seed="-8376526311916566089" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="265.1445579202892" endTime="297.72781820700175"/>
+        <params xsi:type="_1:DoubleRange" propertyName="rangeFactor" lowerBound="0.4463889011632438" upperBound="0.47489465352766086"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="packetLossLaserScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" fromTemplate="_K6PlYHOqEe68xv21uncMBA" seed="464340463427702460" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="160.25530750658214" endTime="212.67626055930364"/>
+        <frequency lowerBound="0.7007546974672972" upperBound="0.9679417152996956"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_15_05_2024_04_30_31">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="941424601397041559" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="116.64447596419573" endTime="116.80219027696293"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_kXVr0HOfEe68xv21uncMBA" seed="7657880767056491608" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="95.70909921685765" endTime="249.8392127303115"/>
+        <params xsi:type="_1:DoubleRange" propertyName="rangeFactor" lowerBound="0.36087880800399225" upperBound="0.4684727200307669"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_002_15_05_2024_04_30_31">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="-3680867125317705238" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="87.7484225330043" endTime="119.96193505440051"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="delayBaseScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_GPQngHOrEe68xv21uncMBA" seed="4820662779386247161" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="194.04992630129038" endTime="243.7080235990154"/>
+        <latency lowerBound="0.5946589688160269" upperBound="1.732659342635604"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="delayBaseScanTiago1" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_LhkOoHOrEe68xv21uncMBA" seed="-5397449653972272573" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="254.91225295171637" endTime="277.2908967041538"/>
+        <latency lowerBound="2.3033674279681593" upperBound="2.866270538001815"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="packetLossLaserScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_Rbym0HOqEe68xv21uncMBA" seed="-1824847260167097174" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="144.77343905569472" endTime="280.09524909423806"/>
+        <frequency lowerBound="0.6306371942360247" upperBound="0.9501069309900281"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_003_15_05_2024_04_30_31">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="-552968783955547698" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="101.68419287008149" endTime="111.81043783455624"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_YnVoAG2KEe6NTJHqpVnHDQ" seed="-6634945488103176644" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="192.61132803857782" endTime="250.37548201144065"/>
+        <params xsi:type="_1:DoubleRange" propertyName="rangeFactor" lowerBound="0.3586551074796396" upperBound="0.4002841404885681"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="delayBaseScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_GPQngHOrEe68xv21uncMBA" seed="-8373875186029584310" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="75.52092283303284" endTime="198.1193023931832"/>
+        <latency lowerBound="2.488518021584555" upperBound="2.9105327980392204"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_004_15_05_2024_04_30_31">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="-1671371267758692805" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="104.04079628290913" endTime="114.8930686740473"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_005_15_05_2024_04_30_31">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="-7654731386984016538" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="106.58626636264131" endTime="106.9204033345758"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" fromTemplate="_mt7nAG6BEe6upaW3FMquwA" seed="4036486376898343734" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="195.4788056185033" endTime="288.4844682637167"/>
+        <params xsi:type="_1:DoubleRange" propertyName="rangeFactor" lowerBound="0.39714736958701" upperBound="0.4311716921235881"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_YnVoAG2KEe6NTJHqpVnHDQ" seed="-2349954639468209992" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="162.155060322796" endTime="253.4031918567103"/>
+        <params xsi:type="_1:DoubleRange" propertyName="rangeFactor" lowerBound="0.354543407321694" upperBound="0.464081893160494"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_kXVr0HOfEe68xv21uncMBA" seed="7681874711243213064" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="75.11144484249813" endTime="176.04717459528663"/>
+        <params xsi:type="_1:DoubleRange" propertyName="rangeFactor" lowerBound="0.028224538632970808" upperBound="0.21630324316225755"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_006_15_05_2024_04_30_31">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="3054596629010655471" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="80.56308156685208" endTime="111.68592482830894"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="delayBaseScanTiago1" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_LhkOoHOrEe68xv21uncMBA" seed="4953682082540448706" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="243.03903847544433" endTime="271.00958017160116"/>
+        <latency lowerBound="0.6045522093057077" upperBound="1.3380289144274522"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="packetLossLaserScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_UEGs4HOqEe68xv21uncMBA" seed="9087336893915881933" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="260.61999353365235" endTime="290.66850726568754"/>
+        <frequency lowerBound="0.7815662838090407" upperBound="0.9372015312349675"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_007_15_05_2024_04_30_31">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="-4461828458580191984" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="112.76383061823118" endTime="113.11691046536713"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_kXVr0HOfEe68xv21uncMBA" seed="8640742907723713413" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="253.80323403438268" endTime="276.05832365559246"/>
+        <params xsi:type="_1:DoubleRange" propertyName="rangeFactor" lowerBound="0.3442450071368207" upperBound="0.4852905375994728"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_008_15_05_2024_04_30_31">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="8424692651018447059" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="99.97140242044401" endTime="105.45044379803349"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_009_15_05_2024_04_30_31">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="1052833290829793400" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="89.53407015717193" endTime="107.66891963751718"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_010_15_05_2024_04_30_31">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="1554061906201135991" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="66.62776725056068" endTime="112.56587707360046"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" fromTemplate="_mt7nAG6BEe6upaW3FMquwA" seed="-7885725229879626863" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="198.78446447289156" endTime="202.7674936475788"/>
+        <params xsi:type="_1:DoubleRange" propertyName="rangeFactor" lowerBound="0.12525817585534577" upperBound="0.21556590190308886"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="packetLossLaserScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_UEGs4HOqEe68xv21uncMBA" seed="-2959338341077338863" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="228.2053848588482" endTime="263.26189949166564"/>
+        <frequency lowerBound="0.7555335404654908" upperBound="0.9179991952954688"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_011_15_05_2024_04_30_31">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="3289877969667946631" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="102.79119907962396" endTime="109.54853422152743"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="delayBaseScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_GPQngHOrEe68xv21uncMBA" seed="4685673536966948984" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="234.91443678804694" endTime="297.643652409935"/>
+        <latency lowerBound="1.2199985445089285" upperBound="2.156888513425781"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="delayBaseScanTiago1" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_LhkOoHOrEe68xv21uncMBA" seed="-1653154007091496089" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="135.62524293700017" endTime="163.4878788305504"/>
+        <latency lowerBound="2.236662040445321" upperBound="2.2539408908497385"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="packetLossLaserScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_Rbym0HOqEe68xv21uncMBA" seed="-3139133854048275841" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="191.29569617213173" endTime="230.9068973950834"/>
+        <frequency lowerBound="0.9431165232559671" upperBound="0.9446336116653077"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_001_15_05_2024_04_30_50">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="-1997425910898384581" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="87.47345546168012" endTime="106.42849658086669"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_002_15_05_2024_04_30_50">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="3264761040813841264" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="125.0660276359098" endTime="125.6126233510206"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="packetLossLaserScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_UEGs4HOqEe68xv21uncMBA" seed="818771457011234456" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="138.00523450599874" endTime="233.4604374928175"/>
+        <frequency lowerBound="0.9220577966995697" upperBound="0.9827125779987708"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_003_15_05_2024_04_30_50">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="-4650305601344157754" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="119.83527607228602" endTime="120.99607156813252"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="packetLossLaserScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" fromTemplate="_K6PlYHOqEe68xv21uncMBA" seed="8237196156143509295" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="112.86670244921362" endTime="209.09190161185728"/>
+        <frequency lowerBound="0.9392975825930767" upperBound="0.9701350872577983"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_004_15_05_2024_04_30_50">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="-2909359342349687404" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="98.85272411901465" endTime="117.75070819623326"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" fromTemplate="_mt7nAG6BEe6upaW3FMquwA" seed="1592417025575481330" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="61.53006821555052" endTime="266.7228912039627"/>
+        <params xsi:type="_1:DoubleRange" propertyName="rangeFactor" lowerBound="0.225063938882556" upperBound="0.28548445193147765"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_kXVr0HOfEe68xv21uncMBA" seed="7740268554890992184" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="226.05396903727944" endTime="291.8934907402339"/>
+        <params xsi:type="_1:DoubleRange" propertyName="rangeFactor" lowerBound="0.45333752605864747" upperBound="0.4882596130147293"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="delayBaseScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" fromTemplate="_BLt1IHOrEe68xv21uncMBA" seed="-8156042860402280896" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="108.00687372092162" endTime="244.19711657884775"/>
+        <latency lowerBound="2.349835280464957" upperBound="2.40726257779645"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="delayBaseScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_GPQngHOrEe68xv21uncMBA" seed="-7291783329521061898" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="136.33662785329696" endTime="252.77334584454803"/>
+        <latency lowerBound="0.9576813000477542" upperBound="2.7475266127218783"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="packetLossLaserScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_UEGs4HOqEe68xv21uncMBA" seed="1489591873888838505" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="196.50589299558163" endTime="286.51561625999165"/>
+        <frequency lowerBound="0.5537675165330684" upperBound="0.6681745519426132"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_005_15_05_2024_04_30_50">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="-2966495503836865984" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="122.0371011638234" endTime="123.94765812728564"/>
+      </operations>
+      <operations xsi:type="_1:CustomFuzzingOperation" name="distortBaseScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_kXVr0HOfEe68xv21uncMBA" seed="-8006680610282726788" inclusionProbability="0.2" customProcessClass="distortBaseScan">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="236.77491919937577" endTime="290.10913582603837"/>
+        <params xsi:type="_1:DoubleRange" propertyName="rangeFactor" lowerBound="0.4360546883228515" upperBound="0.47827940685910364"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="packetLossLaserScanPMB2" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_Rbym0HOqEe68xv21uncMBA" seed="1407236298777680552" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="135.36129298308106" endTime="226.5895844440064"/>
+        <frequency lowerBound="0.5687165725113374" upperBound="0.713880110665561"/>
+      </operations>
+      <operations xsi:type="_1:PacketLossNetworkOperation" name="packetLossLaserScanTiago" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_UEGs4HOqEe68xv21uncMBA" seed="-9007715673380943935" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="119.95951453156967" endTime="266.13660287066426"/>
+        <frequency lowerBound="0.7685981506501312" upperBound="0.8151704771952595"/>
+      </operations>
+    </performedTests>
+    <performedTests name="Test_006_15_05_2024_04_30_50">
+      <operations xsi:type="_1:CustomFuzzingOperation" name="dosAttackTrigger" variableToAffect="_uZy9UHOhEe68xv21uncMBA" fromTemplate="_d--1wJwnEe6y4Y8p3y0PVw" seed="1196257967707856425" customProcessClass="injectDOSAttackMessage">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="109.30297330186073" endTime="113.2263502722184"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="delayBaseScanOmni" variableToAffect="_cRGkAG2KEe6NTJHqpVnHDQ" fromTemplate="_BLt1IHOrEe68xv21uncMBA" seed="-7048719737128036891" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="132.2051120365777" endTime="262.73282873093297"/>
+        <latency lowerBound="1.9409718401050196" upperBound="2.101368501006367"/>
+      </operations>
+      <operations xsi:type="_1:LatencyNetworkOperation" name="delayBaseScanTiago1" variableToAffect="_u_FIYG6CEe6upaW3FMquwA" fromTemplate="_LhkOoHOrEe68xv21uncMBA" seed="-5947472030450911770" inclusionProbability="0.2">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="102.34947307087734" endTime="259.00558515903435"/>
+        <latency lowerBound="2.11221843364394" upperBound="2.2882576181239607"/>
+      </operations>
+    </performedTests>
     <resultSets name="FULL-28_02_2024_11_48_45-intermediate-32" status="INTERMEDIATE" results="//@campaigns.7/@performedTests.9 //@campaigns.7/@performedTests.12 //@campaigns.7/@performedTests.13 //@campaigns.7/@performedTests.15 //@campaigns.7/@performedTests.20 //@campaigns.7/@performedTests.22 //@campaigns.7/@performedTests.10 //@campaigns.7/@performedTests.24 //@campaigns.7/@performedTests.25 //@campaigns.7/@performedTests.31 //@campaigns.7/@performedTests.2 //@campaigns.7/@performedTests.16 //@campaigns.7/@performedTests.29 //@campaigns.7/@performedTests.30 //@campaigns.7/@performedTests.7 //@campaigns.7/@performedTests.18"/>
     <resultSets name="NONDOM-28_02_2024_11_48_45-intermediate-32" status="INTERMEDIATE" results="//@campaigns.7/@performedTests.9 //@campaigns.7/@performedTests.12 //@campaigns.7/@performedTests.13 //@campaigns.7/@performedTests.15 //@campaigns.7/@performedTests.20 //@campaigns.7/@performedTests.22 //@campaigns.7/@performedTests.10 //@campaigns.7/@performedTests.24 //@campaigns.7/@performedTests.25 //@campaigns.7/@performedTests.31 //@campaigns.7/@performedTests.2 //@campaigns.7/@performedTests.16 //@campaigns.7/@performedTests.29 //@campaigns.7/@performedTests.30 //@campaigns.7/@performedTests.7 //@campaigns.7/@performedTests.18"/>
     <resultSets name="FULL-28_02_2024_11_49_01-intermediate-48" status="INTERMEDIATE" results="//@campaigns.7/@performedTests.12 //@campaigns.7/@performedTests.13 //@campaigns.7/@performedTests.15 //@campaigns.7/@performedTests.20 //@campaigns.7/@performedTests.22 //@campaigns.7/@performedTests.31 //@campaigns.7/@performedTests.41 //@campaigns.7/@performedTests.44 //@campaigns.7/@performedTests.40 //@campaigns.7/@performedTests.18 //@campaigns.7/@performedTests.42 //@campaigns.7/@performedTests.36 //@campaigns.7/@performedTests.46 //@campaigns.7/@performedTests.37 //@campaigns.7/@performedTests.7 //@campaigns.7/@performedTests.16"/>
@@ -1924,6 +2138,46 @@
     <resultSets name="NONDOM-28_02_2024_11_50_38-intermediate-144" status="INTERMEDIATE" results="//@campaigns.7/@performedTests.55 //@campaigns.7/@performedTests.84 //@campaigns.7/@performedTests.100 //@campaigns.7/@performedTests.103 //@campaigns.7/@performedTests.75 //@campaigns.7/@performedTests.113 //@campaigns.7/@performedTests.114 //@campaigns.7/@performedTests.117 //@campaigns.7/@performedTests.133 //@campaigns.7/@performedTests.127 //@campaigns.7/@performedTests.22 //@campaigns.7/@performedTests.16 //@campaigns.7/@performedTests.20 //@campaigns.7/@performedTests.123 //@campaigns.7/@performedTests.46 //@campaigns.7/@performedTests.97"/>
     <resultSets name="FULL-28_02_2024_11_50_54-intermediate-160" status="INTERMEDIATE" results="//@campaigns.7/@performedTests.55 //@campaigns.7/@performedTests.84 //@campaigns.7/@performedTests.100 //@campaigns.7/@performedTests.103 //@campaigns.7/@performedTests.75 //@campaigns.7/@performedTests.113 //@campaigns.7/@performedTests.133 //@campaigns.7/@performedTests.145 //@campaigns.7/@performedTests.149 //@campaigns.7/@performedTests.22 //@campaigns.7/@performedTests.127 //@campaigns.7/@performedTests.117 //@campaigns.7/@performedTests.20 //@campaigns.7/@performedTests.151 //@campaigns.7/@performedTests.16 //@campaigns.7/@performedTests.97"/>
     <resultSets name="NONDOM-28_02_2024_11_50_54-intermediate-160" status="INTERMEDIATE" results="//@campaigns.7/@performedTests.55 //@campaigns.7/@performedTests.84 //@campaigns.7/@performedTests.100 //@campaigns.7/@performedTests.103 //@campaigns.7/@performedTests.75 //@campaigns.7/@performedTests.113 //@campaigns.7/@performedTests.133 //@campaigns.7/@performedTests.145 //@campaigns.7/@performedTests.149 //@campaigns.7/@performedTests.22 //@campaigns.7/@performedTests.127 //@campaigns.7/@performedTests.117 //@campaigns.7/@performedTests.20 //@campaigns.7/@performedTests.151 //@campaigns.7/@performedTests.16 //@campaigns.7/@performedTests.97"/>
+    <resultSets name="FULL-15_05_2024_04_35_24-intermediate-32" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_04_35_24-intermediate-32" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_04_35_24-intermediate-48" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_04_35_24-intermediate-48" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_04_35_24-intermediate-64" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_04_35_24-intermediate-64" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_04_35_24-intermediate-80" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_04_35_24-intermediate-80" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_04_35_24-intermediate-96" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_04_35_24-intermediate-96" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_04_35_24-intermediate-112" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_04_35_24-intermediate-112" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_04_35_24-intermediate-128" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_04_35_24-intermediate-128" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_04_35_24-intermediate-144" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_04_35_24-intermediate-144" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_04_35_24-intermediate-160" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_04_35_24-intermediate-160" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_04_35_24-intermediate-176" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_04_35_24-intermediate-176" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_07_38_48-intermediate-32" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_07_38_48-intermediate-32" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_07_38_48-intermediate-48" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_07_38_48-intermediate-48" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_07_38_48-intermediate-64" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_07_38_48-intermediate-64" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_07_38_48-intermediate-80" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_07_38_48-intermediate-80" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_07_38_48-intermediate-96" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_07_38_48-intermediate-96" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_07_38_48-intermediate-112" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_07_38_48-intermediate-112" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_07_38_49-intermediate-128" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_07_38_49-intermediate-128" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_07_38_49-intermediate-144" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_07_38_49-intermediate-144" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_07_38_49-intermediate-160" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_07_38_49-intermediate-160" status="INTERMEDIATE"/>
+    <resultSets name="FULL-15_05_2024_07_38_49-intermediate-176" status="INTERMEDIATE"/>
+    <resultSets name="NONDOM-15_05_2024_07_38_49-intermediate-176" status="INTERMEDIATE"/>
     <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="_hykLOp7vEe6-Z-_dQ6WT6w" timeLimitSeconds="300"/>
   </campaigns>
   <campaigns xmi:id="_SW5AoKgBEe6F5-J2wdP1YQ" name="scenario2-eddi-fixedcond-fuzzhelp" metrics="_elQPEGKhEe6npZ9UVoAbbA _WHv54JV7Ee6LodbHz5gkog _-m3a0J6AEe6VP_vgu3Tapg _tMyvwJ90Ee6j1Luuz6DuRw _AaE6IJl5Ee6Cw-FOG_QDjw" conditionMetrics="_Zs94AHOYEe68xv21uncMBA _ZCvNkKgBEe6F5-J2wdP1YQ" includedOperations="_d--1wJwnEe6y4Y8p3y0PVw">

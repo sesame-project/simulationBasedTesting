@@ -30,7 +30,7 @@ public class SOPRANODistributedExperiment {
 		return isActive;
 	}
 
-	public void synchroniseFiles(RemoteTest t) {
+	public void synchroniseFiles() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -43,9 +43,12 @@ public class SOPRANODistributedExperiment {
 		isActive = false;
 	}
 	
-	public void generateCode(RemoteTest t) {
-		SESAMETestSolution solution = t.getSolution();
-		String mainClassName = solution.getMainClassName();
+	public TestCampaign getCampaign() {
+		return selectedCampaign;
+	}
+	
+	public void generateAllCode() {
+		//String mainClassName = solution.getMainClassName();
 		String campaignName = selectedCampaign.getName();
 		
 		// TODO: do we need a proper separation of the MRS models now?
@@ -53,11 +56,10 @@ public class SOPRANODistributedExperiment {
 		
 		String codeGenerationDirectory = SHARED_CODE_DIRECTORY;
 		
-		System.out.println("Generating code for " + solution);
+		System.out.println("Generating code for project in: " + codeGenerationDirectory);
 		// This ensures that the new test is installed in the model
 
-		solution.setOperationSequenceNums();
-		solution.ensureModelUpdated(selectedCampaign);
+
 		loader.saveTestingSpace();
 		// THIS is a temporary change to test if caching is causing the model to be
 		// stale for EGL???

@@ -14,6 +14,7 @@ import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 
 import net.razorvine.pyro.*;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
@@ -69,23 +70,14 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 		return (runningTests.size() == 0);
 	}
 
-
-
 	private void allocationLoop() {
 		try {
 			while (!activeExperiment.isCompleted()) {
-				System.out.println("Running allocation loop in SOPRANOExperimentManager..." + availableNodes.size()
-						+ " workers available");
+				System.out.println("Running allocation loop in SOPRANOExperimentManager..." + availableNodes.size()	+ " workers available");
 				if (pendingTestQueue.size() > 0) {
 					RemoteTest t = pendingTestQueue.poll();
 
-					// Before allocating the test, ensure that code generation is up to date!
-					// and the experiment files are synced to the remote PC
-					activeExperiment.generateCode(t);
-					activeExperiment.synchroniseFiles(t);
-
-					Optional<WorkerNode> node_o = workerAllocationStrategy.allocateTest(t, availableNodes,
-							allocationMapping);
+					Optional<WorkerNode> node_o = workerAllocationStrategy.allocateTest(t, availableNodes, allocationMapping);
 					if (node_o.isPresent()) {
 						// Remove the test
 						pendingTestQueue.remove();
@@ -94,8 +86,10 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 						node.submitTest(t);
 						// TODO: add to mapping inside the allocation strategy
 						allocationMapping.put(t, node);
-						remoteStatusMonitors.add(new RemoteStatusMonitor(this, t, node));
-
+						RemoteStatusMonitor rsm = new RemoteStatusMonitor(this, t, node);
+						remoteStatusMonitors.add(rsm);
+						rsm.start();
+						// TODO: ensure the remote status monitors are removed on exit of that simulation
 					}
 				}
 
@@ -126,13 +120,22 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	}
 
 	@Override
-	public List<SESAMETestSolution> evaluate(List<SESAMETestSolution> solutionList,
-			Problem<SESAMETestSolution> problem) {
+	public List<SESAMETestSolution> evaluate(List<SESAMETestSolution> solutionList,	Problem<SESAMETestSolution> problem) {
+		TestCampaign selectedCampaign = activeExperiment.getCampaign();
+
 		// Create a RemoteTest from each solution
-		for (SESAMETestSolution s : solutionList) {
-			RemoteTest rt = RemoteTest.fromSolution(s, activeExperiment);
+		// Some processing is needed to ensure the model is properly updated first
+		for (SESAMETestSolution solution : solutionList) {
+			RemoteTest rt = RemoteTest.fromSolution(solution, activeExperiment);
+			solution.setOperationSequenceNums();
+			solution.ensureModelUpdated(selectedCampaign);
 			registerTest(rt);
 		}
+		
+		// Before submitting the test to the queue, ensure that code generation is up to date!
+		// and the experiment files are synced to the remote PC
+		activeExperiment.generateAllCode();
+		activeExperiment.synchroniseFiles();		
 
 		// By this point, all the tests have been executed
 		return solutionList;
