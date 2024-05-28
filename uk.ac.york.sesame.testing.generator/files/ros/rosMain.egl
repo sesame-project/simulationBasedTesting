@@ -9,6 +9,8 @@
 	
 	var fuzzingVars = new Set();
 	
+	var useDistributed = true;
+	
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
 	var sanitiseVariables = false;
@@ -40,6 +42,7 @@ import org.apache.flink.util.Collector;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
+import uk.ac.york.sesame.testing.architecture.metrics.flink.PyroMetricFlinkSink;
 import uk.ac.york.sesame.testing.architecture.fuzzingoperations.*;
 import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
@@ -108,12 +111,19 @@ public class [%= testNameString %]_TestRunner {
 		FlinkKafkaProducer<EventMessage> myProducer = new FlinkKafkaProducer<EventMessage>("OUT", // target topic
 				new EventMessageSchema(), properties);
 				
+		[% if (useDistributed) { %]
+		// TODO: this needs to be set up in the DSL and encoded here by the generator
+		String PYRO_NS_HOSTNAME = "192.168.1.19";
+		int PYRO_NS_PORT = 9523;
+		PyroMetricFlinkSink pyroMetricFlinkSink = new PyroMetricFlinkSink(TESTNAME, PYRO_NS_HOSTNAME, PYRO_NS_PORT);
+		[% } else { %]
 		// This connects the metrics via Kafka to the metrics monitoring on the SESAME tool
 		FlinkKafkaProducer<MetricMessage> metricsProducer = new FlinkKafkaProducer<MetricMessage>(
 		        "metricMessages",             // target topic
 		        new MetricMessageSchema(),    // serialization schema
 		        properties             // producer config
 		      );
+		[% } %]
 					
 		[%
 		if (simulator.isTypeOf(ROSSimulator)) { %]
@@ -295,8 +305,11 @@ public class [%= testNameString %]_TestRunner {
 		} %]	
 		[% } %];
 		
-		campaignMetrics.addSink(metricsProducer);
-		
+		[% if (useDistributed) { %] 
+			campaignMetrics.addSink(pyroMetricFlinkSink);
+		[% } else { %]
+			campaignMetrics.addSink(metricsProducer);
+		[% } %]	
 		
 		ConnectedStreams<EventMessage,MetricMessage> streamFO0 = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
 		
@@ -324,7 +337,13 @@ public class [%= testNameString %]_TestRunner {
 		   [% } %]
 		
 		try {
-			env.execute();
+			//env.execute();
+			env.executeAsync();
+			// TODO: need to set end condition time
+			TimeUnit.SECONDS.sleep(60);
+			System.out.println("----------------- TESTRUNNER TERMINATING ---------------------");
+			System.exit(0);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

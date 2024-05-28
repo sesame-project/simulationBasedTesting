@@ -25,6 +25,11 @@ public class WorkerNode {
 		}
 	}
 	
+	public String getHostname() {
+		return hostname;
+	}
+	
+	
 	public PyroProxy getDaemon() {
 		return daemon;
 	}

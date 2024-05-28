@@ -63,6 +63,7 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	}
 
 	public void registerTest(RemoteTest test) {
+		System.out.println("Registering test " + test.getTestID());
 		pendingTestQueue.add(test);
 	}
 
@@ -72,16 +73,24 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 
 	private void allocationLoop() {
 		try {
+			
 			while (!activeExperiment.isCompleted()) {
+				
+				// Need to wait until code generation is completed here!
+				try {
+					TimeUnit.SECONDS.sleep(10);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
 				System.out.println("Running allocation loop in SOPRANOExperimentManager..." + availableNodes.size()	+ " workers available");
 				if (pendingTestQueue.size() > 0) {
-					RemoteTest t = pendingTestQueue.poll();
+					RemoteTest t = pendingTestQueue.remove();
 
 					Optional<WorkerNode> node_o = workerAllocationStrategy.allocateTest(t, availableNodes, allocationMapping);
 					if (node_o.isPresent()) {
-						// Remove the test
-						pendingTestQueue.remove();
 						WorkerNode node = node_o.get();
+						System.out.println("Allocating test " + t.getTestID() + " to worker " + node.toString());
 						// Register test, create new status monitor for test
 						node.submitTest(t);
 						// TODO: add to mapping inside the allocation strategy
@@ -90,15 +99,12 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 						remoteStatusMonitors.add(rsm);
 						rsm.start();
 						// TODO: ensure the remote status monitors are removed on exit of that simulation
+					} else {
+						System.out.println("Allocation of test " + t.getTestID() + " failed!");
 					}
 				}
 
-				// Wait before rerunning loop
-				try {
-					TimeUnit.SECONDS.sleep(1);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+
 			}
 		} catch (AllocationFailed e) {
 			// TODO Auto-generated catch block
@@ -130,15 +136,26 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 			solution.setOperationSequenceNums();
 			solution.ensureModelUpdated(selectedCampaign);
 			registerTest(rt);
+			
 		}
 		
 		// Before submitting the test to the queue, ensure that code generation is up to date!
 		// and the experiment files are synced to the remote PC
 		activeExperiment.generateAllCode();
 		activeExperiment.synchroniseFiles();		
+		
+		waitForMetrics();
 
 		// By this point, all the tests have been executed
 		return solutionList;
+	}
+
+	private void waitForMetrics() {
+		// TODO: implement metric returning - until now hang here
+		while (true) {
+			
+		}
+		
 	}
 
 	@Override

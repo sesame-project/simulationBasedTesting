@@ -11,13 +11,18 @@ public class RemoteStatusMonitor {
 	private WorkerNode remoteWorker;
 	private RemoteTest remoteTest;
 	private SOPRANOExperimentManager manager;
+	private Optional<RemoteMetricMonitor> metricMonitor;
+	
 	private Thread statusMonitorThread;
 	
 	private PyroProxy daemon;
 	
-	private int SECOND_SLEEP_MONITOR_MS = 1000;
+	private final int STATUS_MONITOR_MS = 1000;
 	
-	private boolean loopRunning = true;
+	private boolean statusLoopRunning = true;
+	private boolean metricLoopRunning = true;
+	
+	private TestStatus previousStatus = TestStatus.PENDING;
 	
 	public Optional<TestStatus> getStatusFromCode(int value) {
 		if (value == 0) return Optional.of(TestStatus.RUNNING);
@@ -45,6 +50,24 @@ public class RemoteStatusMonitor {
 		};
 	}
 	
+	public void handleStatusChange(TestStatus newStatus, TestStatus previousStatus) {
+		if (newStatus == TestStatus.RUNNING) {
+			// Start the metric monitor
+			RemoteMetricMonitor rmm = new RemoteMetricMonitor(manager, remoteTest, remoteWorker);
+			rmm.start();
+			metricMonitor = Optional.of(rmm);	
+		};
+		
+		if ((newStatus == TestStatus.COMPLETED) || (newStatus == TestStatus.FAILED)) {
+			// Stop the metric monitor
+			if (metricMonitor.isPresent())
+			{
+				RemoteMetricMonitor rmm = metricMonitor.get();
+				rmm.stop();
+			}
+		};
+	}
+	
 	public void pollStatusOfTest(RemoteTest t) throws SOPRANORemoteError {
 		// Send the registration
 		Optional<String> testRunID_o = t.getRunID();
@@ -60,6 +83,12 @@ public class RemoteStatusMonitor {
 					TestStatus status = status_o.get();
 					System.out.println("Received status message for test " + t.getTestID() + "=" + status);
 					t.setStatus(status);
+					
+					if (status != previousStatus) {
+						handleStatusChange(status, previousStatus);
+						previousStatus = status;
+					}
+					
 					if (statusIsCompleted(status)) {
 						manager.registerTestCompletion(t);
 					}
@@ -71,15 +100,15 @@ public class RemoteStatusMonitor {
 	}
 	
 	public void stop() {
-		loopRunning = false;
+		statusLoopRunning = false;
 	}
 	
 	public void start() {
-		
 		try {
 			// Need to look up a unique daemon object for each monitor thread!
 			// https://github.com/irmen/Pyrolite/issues/45
 			this.daemon = new PyroProxy(PyroDaemons.getNameserver().lookup("SOPRANOWorkerDaemon"));
+			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,17 +121,17 @@ public class RemoteStatusMonitor {
 	}
 	
 	public void pollStatusLoop() {
-		while (loopRunning ) {
+		while (statusLoopRunning) {
 			try {
 				pollStatusOfTest(remoteTest);
-				TimeUnit.MILLISECONDS.sleep(SECOND_SLEEP_MONITOR_MS);	
+				TimeUnit.MILLISECONDS.sleep(STATUS_MONITOR_MS);
+				
 			} catch (SOPRANORemoteError e) {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 	}
 }

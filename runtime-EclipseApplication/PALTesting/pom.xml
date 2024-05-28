@@ -150,6 +150,12 @@
 			<artifactId>uk.ac.york.sesame.testing.evolutionary</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>net.razorvine</groupId>
+			<artifactId>pyrolite</artifactId>
+			<version>5.1</version>
+		</dependency>
 
 	</dependencies>
 </project>
