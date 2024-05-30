@@ -20,9 +20,8 @@ public class RemoteTest implements Comparable<RemoteTest> {
 	}
 	
 	public static RemoteTest fromSolution(SESAMETestSolution s, SOPRANODistributedExperiment expt) {
-		// TODO Auto-generated constructor stub]
-		String mainClassName = s.getMainClassName();
-		return new RemoteTest(mainClassName, expt, s);
+		String testID = s.getInternalType().getName();
+		return new RemoteTest(testID, expt, s);
 	}
 
 	public String getTestID() {

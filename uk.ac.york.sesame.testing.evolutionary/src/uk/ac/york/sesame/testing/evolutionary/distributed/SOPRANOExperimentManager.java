@@ -103,8 +103,6 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 						System.out.println("Allocation of test " + t.getTestID() + " failed!");
 					}
 				}
-
-
 			}
 		} catch (AllocationFailed e) {
 			// TODO Auto-generated catch block
@@ -136,7 +134,6 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 			solution.setOperationSequenceNums();
 			solution.ensureModelUpdated(selectedCampaign);
 			registerTest(rt);
-			
 		}
 		
 		// Before submitting the test to the queue, ensure that code generation is up to date!

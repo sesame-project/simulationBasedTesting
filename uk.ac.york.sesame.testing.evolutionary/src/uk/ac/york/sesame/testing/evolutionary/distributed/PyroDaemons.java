@@ -30,15 +30,22 @@ public class PyroDaemons {
 		return ns_single;
 	}
 	
-	public static PyroProxy getPyroDaemonByHost(String targetHost) throws UnknownHostException, IOException {
+	public static PyroProxy getPyroDaemonByHost(String targetPyroNameSuffix) throws UnknownHostException, IOException {
 		NameServerProxy ns = PyroDaemons.getNameserver();
-		if (!proxies_by_host.containsKey(targetHost)) {
-			// TODO: check this daemon by its IP address
-			PyroProxy daemon = new PyroProxy(getNameserver().lookup("SOPRANOWorkerDaemon"));
-			proxies_by_host.put(targetHost, daemon);
+		String targetPyroName = "SOPRANOWorkerDaemon_" + targetPyroNameSuffix;
+		
+		//if (ensureFresh) {
+			PyroProxy daemon = new PyroProxy(getNameserver().lookup(targetPyroName));
 			return daemon;
-		} else {
-			return proxies_by_host.get(targetHost);
-		}
+//		} else {
+//			if (!proxies_by_host.containsKey(targetPyroName)) {
+//				// TODO: check this daemon by its IP address
+//				PyroProxy daemon = new PyroProxy(getNameserver().lookup(targetPyroName));
+//				proxies_by_host.put(targetPyroName, daemon);
+//				return daemon;
+//			} else {
+//				return proxies_by_host.get(targetPyroName);
+//			}
+//		}
 	}
 }

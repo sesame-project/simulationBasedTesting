@@ -55,8 +55,19 @@ import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 import metrics.custom.*;
 import metrics.fixed.*;
 
+import net.razorvine.pyro.*;
+
 public class [%= testNameString %]_TestRunner {
 	public static void main(String[] args) {
+	
+		// Ensure we get the worker lookup name from the supplied arg, or exit
+		String PYRO_WORKER_LOOKUP_NAME = "SOPRANOWorkerDaemon";
+		if (args.length > 0) {
+			PYRO_WORKER_LOOKUP_NAME = args[0];
+			System.out.println("PYRO_WORKER_LOOKUP_NAME = " + PYRO_WORKER_LOOKUP_NAME);
+		} else {
+			System.exit(-1);
+		}
 	
 		final String TESTNAME = "[%= testNameString %]";
 		
@@ -115,7 +126,7 @@ public class [%= testNameString %]_TestRunner {
 		// TODO: this needs to be set up in the DSL and encoded here by the generator
 		String PYRO_NS_HOSTNAME = "192.168.1.19";
 		int PYRO_NS_PORT = 9523;
-		PyroMetricFlinkSink pyroMetricFlinkSink = new PyroMetricFlinkSink(TESTNAME, PYRO_NS_HOSTNAME, PYRO_NS_PORT);
+		PyroMetricFlinkSink pyroMetricFlinkSink = new PyroMetricFlinkSink(TESTNAME, PYRO_NS_HOSTNAME, PYRO_NS_PORT, PYRO_WORKER_LOOKUP_NAME);
 		[% } else { %]
 		// This connects the metrics via Kafka to the metrics monitoring on the SESAME tool
 		FlinkKafkaProducer<MetricMessage> metricsProducer = new FlinkKafkaProducer<MetricMessage>(

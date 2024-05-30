@@ -14,8 +14,9 @@ public class WorkerNode {
 	private PyroProxy daemon;
 	Set<RemoteTest> allocatedTests = new HashSet<RemoteTest>();
 	
-	public WorkerNode(String hostname) {
-		this.hostname = hostname;
+	public WorkerNode(String ipAddress) {
+		this.hostname = ipAddress.replace(".", "_");
+		
 		try {
 			this.daemon = PyroDaemons.getPyroDaemonByHost(hostname);
 		} catch (UnknownHostException e) {

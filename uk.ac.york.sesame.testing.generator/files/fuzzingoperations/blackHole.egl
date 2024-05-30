@@ -5,8 +5,8 @@ commonTemplate.populate("fuzzOp", fuzzOp);
 commonTemplate.populate("classNameMiddle", "Delay");
 commonTemplate.populate("extraImports", extraImports);
 commonTemplate.populate("useRandomSeed", false);
-
 %]
+
 [%= commonTemplate.process() %]
 
 	public void open(Configuration parameters) throws Exception {

@@ -5,11 +5,23 @@ import java.net.UnknownHostException;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import org.eclipse.emf.common.util.EList;
+
 import net.razorvine.pyro.*;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsFactory;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.Result;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsFactory;
+import uk.ac.york.sesame.testing.evolutionary.InvalidName;
+import uk.ac.york.sesame.testing.evolutionary.MissingMetric;
 
 public class RemoteStatusMonitor {
 	private WorkerNode remoteWorker;
 	private RemoteTest remoteTest;
+	
 	private SOPRANOExperimentManager manager;
 	private Optional<RemoteMetricMonitor> metricMonitor;
 	
@@ -49,6 +61,8 @@ public class RemoteStatusMonitor {
 			}
 		};
 	}
+	
+
 	
 	public void handleStatusChange(TestStatus newStatus, TestStatus previousStatus) {
 		if (newStatus == TestStatus.RUNNING) {
@@ -106,8 +120,9 @@ public class RemoteStatusMonitor {
 	public void start() {
 		try {
 			// Need to look up a unique daemon object for each monitor thread!
-			// https://github.com/irmen/Pyrolite/issues/45
-			this.daemon = new PyroProxy(PyroDaemons.getNameserver().lookup("SOPRANOWorkerDaemon"));
+			// getPyroDaemonByHost now does this
+			String hostname = remoteWorker.getHostname();
+			this.daemon = PyroDaemons.getPyroDaemonByHost(hostname);
 			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block

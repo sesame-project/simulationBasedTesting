@@ -1,7 +1,6 @@
 package main;
 
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
-
 import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
 
 public class EvolutionaryRunnerPAL_scenario2_eddi {
