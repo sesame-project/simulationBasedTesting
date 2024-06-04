@@ -13,22 +13,16 @@ import java.util.concurrent.TimeUnit;
 import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 
-import net.razorvine.pyro.*;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
-import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
-import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
-import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
 public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETestSolution> {
 	// Determines the allocation of tasks to workers
 	// Sends the commands to the remote worker daemons
 	// Polls and checks their status periodically
 
-	// How to handle the metrics that are received - should have different monitor
-	// for each?
-
-	// Status monitors
+	private static final long serialVersionUID = 1L;
+	// Status monitors - each create a MetricMonitor when they are ready
 	List<RemoteStatusMonitor> remoteStatusMonitors = new ArrayList<RemoteStatusMonitor>();
 	PriorityQueue<RemoteTest> pendingTestQueue = new PriorityQueue<RemoteTest>();
 
@@ -142,15 +136,26 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 		activeExperiment.synchroniseFiles();		
 		
 		waitForMetrics();
-
-		// By this point, all the tests have been executed
+		
+		// By this point, all the tests have been executed - ensure the
+		// model is updated
+		activeExperiment.saveModel();
+ 		
 		return solutionList;
+	}
+	
+	public void dynamicallySaveModel() {
+		activeExperiment.saveModel();
 	}
 
 	private void waitForMetrics() {
-		// TODO: implement metric returning - until now hang here
-		while (true) {
-			
+		boolean done = false;
+		while (!done) {
+			if (pendingTestQueue.size() == 0) {
+				if (allRunningTestsCompleted()) {
+					done = true; 
+				}
+			}
 		}
 		
 	}

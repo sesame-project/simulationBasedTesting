@@ -1,14 +1,11 @@
 package uk.ac.york.sesame.testing.evolutionary.distributed;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
-import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
-import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
 public class SOPRANODistributedExperiment {
 	public boolean isActive = true;
-	private String exptName;
 	private TestCampaign selectedCampaign;
 	private SESAMEModelLoader loader;
 	
@@ -16,10 +13,9 @@ public class SOPRANODistributedExperiment {
 	private String spaceModelFilename;
 	
 	// TODO: configurable shared directory
-	private String SHARED_CODE_DIRECTORY = "/mnt/shared-soprano-code/";
+	private String SHARED_CODE_DIRECTORY = "/samba/shared-soprano-code/";
 	
 	public SOPRANODistributedExperiment(TestCampaign selectedCampaign, SESAMEModelLoader loader, String orchestratorBasePath, String spaceModelFilename) {
-		this.exptName = selectedCampaign.getName();
 		this.selectedCampaign = selectedCampaign;
 		this.loader = loader;
 		this.spaceModelFilename = spaceModelFilename;
@@ -47,7 +43,7 @@ public class SOPRANODistributedExperiment {
 		return selectedCampaign;
 	}
 	
-	public void generateAllCode() {
+	public synchronized void generateAllCode() {
 		//String mainClassName = solution.getMainClassName();
 		String campaignName = selectedCampaign.getName();
 		
@@ -73,5 +69,9 @@ public class SOPRANODistributedExperiment {
 
 		SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(orchestratorBasePath, spaceModelFilename, __mrsModelFile, campaignName, codeGenerationDirectory);
 		eglEx.run();
+	}
+	
+	public synchronized void saveModel() {
+		loader.saveTestingSpace();
 	}
 }

@@ -5,18 +5,7 @@ import java.net.UnknownHostException;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-import org.eclipse.emf.common.util.EList;
-
 import net.razorvine.pyro.*;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsFactory;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.Result;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsFactory;
-import uk.ac.york.sesame.testing.evolutionary.InvalidName;
-import uk.ac.york.sesame.testing.evolutionary.MissingMetric;
 
 public class RemoteStatusMonitor {
 	private WorkerNode remoteWorker;
@@ -32,7 +21,6 @@ public class RemoteStatusMonitor {
 	private final int STATUS_MONITOR_MS = 1000;
 	
 	private boolean statusLoopRunning = true;
-	private boolean metricLoopRunning = true;
 	
 	private TestStatus previousStatus = TestStatus.PENDING;
 	

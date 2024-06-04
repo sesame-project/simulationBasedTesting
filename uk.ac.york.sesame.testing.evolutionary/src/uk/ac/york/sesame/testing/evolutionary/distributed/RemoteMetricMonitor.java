@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -27,6 +28,8 @@ import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 
 public class RemoteMetricMonitor {
 	private static final long METRIC_MONITOR_SETUP_DELAY_MS = 5000;
+	private static final boolean UPDATE_DSL_METRICS_DYNAMICALLY = true;
+	private static final boolean SAVE_MODEL_DYNAMICALLY = true;
 	private WorkerNode remoteWorker;
 	private RemoteTest remoteTest;
 	
@@ -36,7 +39,10 @@ public class RemoteMetricMonitor {
 	private Thread metricMonitorThread;
 	private PyroProxy metricDaemon;
 	
+	// This looks up metric objects within the DSL by name
 	private HashMap<String, Metric> metricLookup = new LinkedHashMap<String, Metric>();
+	
+	private Optional<HashMap<String,Object>> storedMetricResults;
 	
 	// This stores the ID for the metrics for JMetal
 	private HashMap<String, Integer> metricIDLookupByPlace = new LinkedHashMap<String, Integer>();
@@ -51,6 +57,10 @@ public class RemoteMetricMonitor {
 		this.remoteTest = remoteTest;
 		this.manager = manager;
 		
+		this.currentSolution = Optional.of(remoteTest.getSolution());
+		
+		setupMetricLookup();
+		
 		// Prepare the allocation manager thread
 		metricMonitorThread = new Thread() {
 			public void run() {
@@ -63,16 +73,28 @@ public class RemoteMetricMonitor {
 		try {
 			String testID = t.getTestID();
 			Object result = metricDaemon.call("get_all_metrics", testID);
-			System.out.println("pollMetricsForTest for test " + testID + ": results = " + result);
-			// 	TODO: update metrics with Jmetal
-			// TODO: update metrics in the DSL
+			System.out.println("pollMetricsForTest for test " + testID + ": results = " + result + ",result class=" + result.getClass());
+			if (result instanceof HashMap) {
+				storedMetricResults = Optional.of((HashMap<String,Object>)result);
+			}
+			
+			if (UPDATE_DSL_METRICS_DYNAMICALLY) {
+				updateMetricsFromWorker();
+				if (SAVE_MODEL_DYNAMICALLY) {
+					manager.dynamicallySaveModel();
+				}
+			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void stop() {
+		// TODO: need to do one final poll here to ensure the metrics are updated at the end of simulation
+		// will also have to add a delay to the worker, or ensure previous metric results are still held
 		metricLoopRunning = false;
+		updateMetricsFromWorker();
 	}
 	
 	public void start() {
@@ -94,6 +116,26 @@ public class RemoteMetricMonitor {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public synchronized void updateMetricsFromWorker() {
+		// 	TODO: update metrics with Jmetal
+		// TODO: update metrics in the DSL
+		if (storedMetricResults.isPresent()) {
+			HashMap<String,Object> res = storedMetricResults.get();
+			for (Map.Entry<String, Object> me : res.entrySet()) {
+				String metricName = me.getKey();
+				Object value = me.getValue();
+				try {
+					updateMetricsInModelStandard(metricName, value);
+					updateObjectivesJMetal(metricName, value);
+				} catch (InvalidName e) {
+					e.printStackTrace();
+				} catch (JMetalMetricSettingFailed e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	
@@ -185,24 +227,30 @@ public class RemoteMetricMonitor {
 			if (currentSolution.isPresent()) {
 				String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 				SESAMETestSolution sol = currentSolution.get();
-				int num = getMetricIDForCampaign(metricName);
+				
 				Metric m = getMetricForCampaign(metricName);
 				Double d = Double.parseDouble(val.toString());
 
-				System.out.println("updateObjectivesJMetal - at timestamp " + timeStamp + " - setting metric "
-						+ metricName + " (num " + num + ") to value " + val);
+				if (m.isUseInOptimisation()) {
+					int num = getMetricIDForCampaign(metricName);
+					System.out.println("updateObjectivesJMetal - at timestamp " + timeStamp + " - setting metric "
+							+ metricName + " (num " + num + ") to value " + val);
 
-				sol.setObjectiveMetric(num, m);
+					sol.setObjectiveMetric(num, m);
 
-				if (m.getDir() == MetricOptimisationDirection.HIGHEST) {
-					sol.setObjective(num, -d);
-				}
+					if (m.getDir() == MetricOptimisationDirection.HIGHEST) {
+						sol.setObjective(num, -d);
+					}
 
-				if (m.getDir() == MetricOptimisationDirection.LOWEST) {
-					sol.setObjective(num, d);
+					if (m.getDir() == MetricOptimisationDirection.LOWEST) {
+						sol.setObjective(num, d);
+					}
+				} else {
+					System.out.println("Not using metric in optimisation; skipping setting for JMetal:" + metricName);
 				}
 			}
 		} catch (MissingMetric e) {
+			System.out.println("Failed setting metric for " + metricName);
 			throw new JMetalMetricSettingFailed(e);
 		}
 	}
