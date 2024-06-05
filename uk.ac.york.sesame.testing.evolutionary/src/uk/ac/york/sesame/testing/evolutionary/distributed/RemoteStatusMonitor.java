@@ -33,7 +33,7 @@ public class RemoteStatusMonitor {
 	}
 	
 	private boolean statusIsCompleted(TestStatus s) {
-		return (s == TestStatus.RUNNING);
+		return (s != TestStatus.RUNNING);
 	}
 	
 	public RemoteStatusMonitor(SOPRANOExperimentManager manager, RemoteTest remoteTest, WorkerNode remoteWorker)  {
@@ -50,35 +50,41 @@ public class RemoteStatusMonitor {
 		};
 	}
 	
-
-	
 	public void handleStatusChange(TestStatus newStatus, TestStatus previousStatus) {
 		if (newStatus == TestStatus.RUNNING) {
-			// Start the metric monitor
+			// Start the metric monitor for this test
 			RemoteMetricMonitor rmm = new RemoteMetricMonitor(manager, remoteTest, remoteWorker);
 			rmm.start();
 			metricMonitor = Optional.of(rmm);	
 		};
 		
 		if ((newStatus == TestStatus.COMPLETED) || (newStatus == TestStatus.FAILED)) {
-			// Stop the metric monitor
+			// Stop the metric monitor - notify the completion to remove it from running tests
 			if (metricMonitor.isPresent())
 			{
 				RemoteMetricMonitor rmm = metricMonitor.get();
 				rmm.stop();
+				try {
+					manager.notifyTestCompletion(remoteTest);
+				} catch (TestNotRunning e) {
+					e.printStackTrace();
+				}
+				this.statusLoopRunning = false;
+				
 			}
 		};
 	}
 	
 	public void pollStatusOfTest(RemoteTest t) throws SOPRANORemoteError {
 		// Send the registration
-		Optional<String> testRunID_o = t.getRunID();
+		Optional<String> testRunID_o = t.getRunUUID();
+		String testID = t.getTestID();
 		try {
 			if (!testRunID_o.isPresent()) {
-				throw new RuntimeException("Test has no run UUID- cannot monitor");
+				throw new RuntimeException("Test has no run UUID - cannot monitor");
 			} else {
 				String testRunID = testRunID_o.get();
-				Integer result = (Integer)daemon.call("poll_for_status", testRunID);
+				Integer result = (Integer)daemon.call("poll_for_status", testRunID, testID);
 				int statusCode = result;
 				Optional<TestStatus> status_o = getStatusFromCode(statusCode);
 				if (status_o.isPresent()) {
@@ -89,10 +95,6 @@ public class RemoteStatusMonitor {
 					if (status != previousStatus) {
 						handleStatusChange(status, previousStatus);
 						previousStatus = status;
-					}
-					
-					if (statusIsCompleted(status)) {
-						manager.registerTestCompletion(t);
 					}
 				}
 			}

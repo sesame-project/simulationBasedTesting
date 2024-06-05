@@ -61,10 +61,6 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 		pendingTestQueue.add(test);
 	}
 
-	private boolean allRunningTestsCompleted() {
-		return (runningTests.size() == 0);
-	}
-
 	private void allocationLoop() {
 		try {
 			
@@ -80,6 +76,7 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 				System.out.println("Running allocation loop in SOPRANOExperimentManager..." + availableNodes.size()	+ " workers available");
 				if (pendingTestQueue.size() > 0) {
 					RemoteTest t = pendingTestQueue.remove();
+					runningTests.add(t);
 
 					Optional<WorkerNode> node_o = workerAllocationStrategy.allocateTest(t, availableNodes, allocationMapping);
 					if (node_o.isPresent()) {
@@ -107,12 +104,6 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 		}
 	}
 
-	// Callback for the completion monitor to register that a test was done
-	public synchronized void registerTestCompletion(RemoteTest t) {
-		runningTests.remove(t);
-		completedTests.add(t);
-	}
-
 	public void startLoopThread() {
 		loopThread.start();
 	}
@@ -136,12 +127,10 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 		activeExperiment.synchroniseFiles();		
 		
 		waitForMetrics();
-		
 		// By this point, all the tests have been executed - ensure the
 		// model is updated
 		activeExperiment.saveModel();
- 		
-		return solutionList;
+ 		return solutionList;
 	}
 	
 	public void dynamicallySaveModel() {
@@ -151,13 +140,26 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	private void waitForMetrics() {
 		boolean done = false;
 		while (!done) {
-			if (pendingTestQueue.size() == 0) {
-				if (allRunningTestsCompleted()) {
-					done = true; 
-				}
+			System.out.println("pendingTestQueue size = " + pendingTestQueue.size() + ",runningTests size = " + runningTests.size());
+			if ((pendingTestQueue.size() == 0) && (runningTests.size() == 0)) {
+				done = true;
+			}
+			try {
+				TimeUnit.SECONDS.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
-		
+	}
+	
+	// Callback for the status monitor to register that a test was done
+	public synchronized void notifyTestCompletion(RemoteTest t) throws TestNotRunning {
+		if (runningTests.contains(t)) {
+			runningTests.remove(t);
+			completedTests.add(t);
+		} else {
+			throw new TestNotRunning(t);
+		}
 	}
 
 	@Override

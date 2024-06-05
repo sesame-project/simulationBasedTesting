@@ -13,9 +13,11 @@ import java.util.concurrent.TimeUnit;
 import org.eclipse.emf.common.util.EList;
 
 import net.razorvine.pyro.*;
+import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsFactory;

@@ -33,7 +33,7 @@ public class RemoteTest implements Comparable<RemoteTest> {
 		this.testRunUUID = Optional.of(testRunID);	
 	}
 	
-	public Optional<String> getRunID() {
+	public Optional<String> getRunUUID() {
 		return testRunUUID;
 	}
 
