@@ -15,6 +15,11 @@ public class InvalidTestCampaign extends Exception {
 		this.reason = INVALIDITY_REASON.NAME_NOT_IN_MODEL;
 	}
 	
+	public InvalidTestCampaign() {
+		this.campaignName = "<NULL>";
+		this.reason = INVALIDITY_REASON.NULL_OBJECT;
+	}
+	
 	public InvalidTestCampaign(INVALIDITY_REASON r) {
 		this.reason = r;
 		this.campaignName = "";

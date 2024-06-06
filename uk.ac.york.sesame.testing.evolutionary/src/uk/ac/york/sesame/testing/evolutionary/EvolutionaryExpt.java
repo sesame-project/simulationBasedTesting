@@ -34,6 +34,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationAppr
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
 import uk.ac.york.sesame.testing.evolutionary.distributed.AllocationStrategy;
 import uk.ac.york.sesame.testing.evolutionary.distributed.RoundRobinAllocation;
+import uk.ac.york.sesame.testing.evolutionary.distributed.SESAMEEvaluationProblemDistributed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANODistributedExperiment;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANOExperimentManager;
 import uk.ac.york.sesame.testing.evolutionary.distributed.WorkerNode;
@@ -74,8 +75,6 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
 	private double crossoverProb = 1.0;
 
-	private String logPath;
-
 	private TestingSpace testingSpace;
 
 	private String scenarioStr;
@@ -115,11 +114,17 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		Random crossoverRNG = new Random();
 		Random mutationRNG = new Random();
 
-		SESAMEEvaluationProblem problem;
+		SESAMEEvaluationProblemBase problem;
 
 		try {
-			problem = new SESAMEEvaluationProblem(orchestratorBasePath, loader, spaceModelFileName, testSpaceModel,
+			if (USE_DISTRIBUTED) {
+			problem = new SESAMEEvaluationProblemDistributed(orchestratorBasePath, loader, spaceModelFileName, testSpaceModel,
+						testingSpace, testCampaign_o, codeGenerationDirectory, conditionBased, conditionDepth, grammarPath);
+			} else {
+				problem = new SESAMEEvaluationProblemSingle(orchestratorBasePath, loader, spaceModelFileName, testSpaceModel,
 					testingSpace, testCampaign_o, codeGenerationDirectory, conditionBased, conditionDepth, grammarPath);
+			}
+			
 			TestCampaign selectedCampaign = problem.getCampaign();
 			ConditionGenerator cg = problem.getCondGenerator();
 
@@ -278,8 +283,8 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			e.printStackTrace();
 		}
 	}
-	
-	  public static void printFinalSolutionSet(List<? extends Solution<?>> population, String varFile, String funFile) {
+
+	public static void printFinalSolutionSet(List<? extends Solution<?>> population, String varFile, String funFile) {
 
 		    new SolutionListOutput(population)
 		        .setVarFileOutputContext(new DefaultFileOutputContext(varFile, ","))

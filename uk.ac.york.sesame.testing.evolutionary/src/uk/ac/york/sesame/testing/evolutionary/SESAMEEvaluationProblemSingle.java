@@ -10,35 +10,40 @@ import java.util.Random;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.LongDeserializer;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
-import org.uma.jmetal.problem.Problem;
 
-import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
-import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
-import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
-import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 import uk.ac.york.sesame.testing.architecture.data.ControlMessage;
 import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
+import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
+import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
+import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
-public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
-	
+public class SESAMEEvaluationProblemSingle extends SESAMEEvaluationProblemBase {
+
 	private static final long serialVersionUID = 1L;
+	
+	private KafkaMetricConsumer metricConsumer;
+	private ControlProducer controlProducer;
+	
+	private String spaceModelFileName;
+	private String campaignName;
+	private String orchestratorBasePath;
+	private SESAMEModelLoader loader;
+	private SESAMEEGLExecutor eglEx;
+	private String codeGenerationDirectory;
+	
     private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = true;
 	
 	// Disable for debug run/fake metrics
 	private static final boolean DEBUG_ACTUALLY_RUN = false;
 	private static final boolean DUMMY_EVAL = !DEBUG_ACTUALLY_RUN;
 	
-	private static final boolean FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE = true;
+
 	
 	private static final boolean RECORD_ROSBAG = true;
 
@@ -53,36 +58,23 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private static final double MODEL_SAVING_DELAY_IN_DEBUG_MODE = 0.5;
 	
 	private static final boolean USE_METRIC_TIME_END_TIME = true;
-
-	// Variable probability of inclusion? - needs to be specified from the Attack
-	// and TestCampaign
-	// TODO: this needs to be specified as an extension point, for now, just using
-	// 50% for all attacks
-	final double INCLUDE_FuzzingOperation_PROB = 0.5;
 	
-	private boolean conditionBased;
-
-	private Random rng;
-
-	private int variableFixedSize;
-	private int constraintCount = 0;
-
-	private String spaceModelFileName;
-	private String campaignName;
-	private String orchestratorBasePath;
+	public SESAMEEvaluationProblemSingle(String orchestratorBasePath, SESAMEModelLoader loader,
+			String spaceModelFileName, Resource testSpaceModel, TestingSpace testingSpace,
+			Optional<TestCampaign> testCampaign_o, String codeGenerationDirectory, boolean conditionBased,
+			int conditionDepth, String grammarPath) throws EolModelLoadingException, InvalidTestCampaign, StreamSetupFailed, MissingGrammarFile {
+		super(orchestratorBasePath, loader,	spaceModelFileName, testSpaceModel, testingSpace, testCampaign_o, codeGenerationDirectory, conditionBased,	conditionDepth, grammarPath);
 	
-	private ConditionGenerator condGenerator;
+		this.codeGenerationDirectory = codeGenerationDirectory;
+		this.orchestratorBasePath = orchestratorBasePath;
+		this.spaceModelFileName = spaceModelFileName;
+		this.loader = loader;
 
-	private SESAMEModelLoader loader;
-	private TestCampaign selectedCampaign;
-	private MRS mrs;
-
-	private SESAMEEGLExecutor eglEx;
-	private String codeGenerationDirectory;
-
-	private KafkaMetricConsumer metricConsumer;
-	private ControlProducer controlProducer;
-
+	setupMetricListener(selectedCampaign);
+	setupControlProducer();
+	condGenerator = new ConditionGenerator(grammarPath, selectedCampaign, conditionDepth);
+	}
+	
 	private void setupMetricListener(TestCampaign campaign) throws StreamSetupFailed, InvalidTestCampaign {
 		
 		// TODO: move these properties - except for the bootstrap.servers: into the Consumer
@@ -92,78 +84,19 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
 		properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, MetricMessage.class.getName());
 
-		// TODO: initializing the rng properly for repeatable experiments
-		rng = new Random();
+
 		List<TopicPartition> parts = new ArrayList<TopicPartition>();
 		metricConsumer = new KafkaMetricConsumer(campaign, properties, parts);
 		Thread t = new Thread(metricConsumer);
 		t.start();
 	}
 
-	public SESAMEEvaluationProblem(String orchestratorBasePath, SESAMEModelLoader loader, String spaceModelFileName, Resource testingSpaceModel, TestingSpace testingSpace, Optional<TestCampaign> tc_o, String codeGenerationDirectory, boolean conditionBased, int conditionDepth, String grammarPath)
-			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException, MissingGrammarFile {
-		this.codeGenerationDirectory = codeGenerationDirectory;
-		this.orchestratorBasePath = orchestratorBasePath;
-		this.conditionBased = conditionBased;
-		this.spaceModelFileName = spaceModelFileName;
-		this.loader = loader;
 
-		// TODO: mrsModelFile is not currently used - until the bug is fixed and there
-		// is a seperate model again
-		//String __mrsModelFile = "testingMRS.model";
-		//eglEx = new SESAMEEGLExecutor(spaceModelFileName, __mrsModelFile, campaignName, codeGenerationDirectory);
-		mrs = testingSpace.getMrs();
-		
-
-		if (tc_o.isPresent()) {
-			selectedCampaign = tc_o.get();
-			setupMetricListener(selectedCampaign);
-			setupControlProducer();
-			condGenerator = new ConditionGenerator(grammarPath, selectedCampaign, conditionDepth);
-		} else {
-			throw new InvalidTestCampaign(campaignName);
-		}
-	}
 	
 	private void setupControlProducer() {
 		controlProducer = new ControlProducer();
-		
-	}
-
-	public TestCampaign getCampaign() {
-		return selectedCampaign;
 	}
 	
-	public ConditionGenerator getCondGenerator() {
-		return condGenerator;
-	}
-
-	public int getNumberOfVariables() {
-		return variableFixedSize;
-	}
-
-	// TODO: this should be a method upon TestCampaign when it is figured out how
-	// to create them with the genmodel
-	public int getNumberOfMetricsInTestCampaign(TestCampaign tc) {
-		return (int)tc.getMetrics().stream().filter(m -> m.isUseInOptimisation()).count();
-	}
-
-	public int getNumberOfObjectives() {
-		return getNumberOfMetricsInTestCampaign(selectedCampaign);
-	}
-
-	public int getNumberOfConstraints() {
-		return constraintCount;
-	}
-
-	public String getName() {
-		return "SESAMEEvaluationProblem";
-	}
-	
-	public void ensureFinalModelSaved() {
-		loader.saveTestingSpace();
-	}
-
 	public void performSESAMETest(SESAMETestSolution solution) {
 		// For distributed, this needs to be wrapped and provided as a solution
 				
@@ -300,36 +233,10 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		}
 	}
 	
-	private void waitUntilMetricTime(MetricConsumerBase metricConsumer, double waitTime, double worstCaseTimeSeconds) {
-		long worstCaseEndTime = System.currentTimeMillis() + (long) ((double) worstCaseTimeSeconds * 1000);
-		boolean metricDone = false;
-		while (!metricDone && (System.currentTimeMillis() < worstCaseEndTime)) {
-			try {
-				Thread.sleep(500);
-				
-			} catch (InterruptedException e) {
-			}
-			
-		double metricTime = metricConsumer.getTimestamp();
-		System.out.print(".");
-		metricDone = (metricTime > waitTime);
-		}
-		
-		if (metricDone) {
-			System.out.println("Done");
-		} else {
-			System.out.println("Ending due to no response at worst case cutoff time");
-		}
+	public void ensureFinalModelSaved() {
+		loader.saveTestingSpace();
 	}
-
-	private Optional<String> getRecordLocationForMRS() {
-		if (mrs != null && mrs.getRecordFileLocation() != null) {
-			return Optional.of(mrs.getRecordFileLocation());
-		} else {
-			return Optional.empty();
-		}
-	}
-
+	
 	private void dummyEval(SESAMETestSolution solution) {
 		int metricCount = selectedCampaign.getMetrics().size();
 		for (int i = 0; i < metricCount; i++) {
@@ -355,93 +262,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 			dummyEval(solution);
 		}
 	}
-
-	public boolean shouldIncludeFuzzingOperation(FuzzingOperation a) {
-		double prob = a.getInclusionProbability();
-		double v = rng.nextDouble();
-		return (v < prob);
-	}
-
-	public SESAMETestSolution createSolution() {
-		// Needs to create the initial selections from the TestingSpace and constraints
-		// from TestCampaign
-
-		// Created with FuzzingOperations specified within the space
-		// TODO: FuzzingOperations can be a "subset" of each of the selected FuzzingOperations
-		int i = 0;
-		SESAMETestSolution sol = new SESAMETestSolution(selectedCampaign);
-
-		EList<FuzzingOperation> FuzzingOperationsInCampaign = selectedCampaign.getIncludedOperations();
-		for (FuzzingOperation a : FuzzingOperationsInCampaign) {
-			if (shouldIncludeFuzzingOperation(a)) {
-				// FuzzingOperations produced as a "subset" of each of the selected FuzzingOperations
-				// TODO: this should be configurable somehow
-				if (conditionBased) {
-					SESAMEFuzzingOperationWrapper sta;
-					try {
-						sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a, condGenerator);
-						sol.addContents(i++, sta);
-					} catch (ConversionFailed e) {
-						e.printStackTrace();
-					} catch (ParamError e) {
-						e.printStackTrace();
-					} catch (ConstraintsNotMet e) {
-						e.printStackTrace();
-					}
-					
-				} else {
-					// Time-based fuzzing
-					SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, a);
-					sol.addContents(i++, sta);
-				}
-			}
-		}
-		
-		// If we haven't picked any, pick one
-		if (sol.getNumberOfVariables() == 0 && FuzzingOperationsInCampaign.size() > 0) {
-			FuzzingOperation baseFuzzingOperation = getRandomFuzzingOperation(FuzzingOperationsInCampaign);
-			if (conditionBased) {
-				SESAMEFuzzingOperationWrapper sta;
-				try {
-					sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, baseFuzzingOperation, condGenerator);
-					sol.addContents(i++, sta);
-				} catch (ConversionFailed e) {
-					if (FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE) {
-						throw new SolutionCreationFailed(e);
-					} else {
-						e.printStackTrace();
-					}
-					
-				} catch (ParamError e) {
-					if (FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE) {
-						throw new SolutionCreationFailed(e);
-					} else {
-						e.printStackTrace();
-					}
-				} catch (ConstraintsNotMet e) {
-					if (FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE) {
-						throw new SolutionCreationFailed(e);
-					} else {
-						e.printStackTrace();
-					}
-				}
-				
-			} else {
-				SESAMEFuzzingOperationWrapper sta = SESAMEFuzzingOperationWrapper.reductionOfOperation(sol, baseFuzzingOperation);
-				sol.addContents(i++, sta);
-			}
-		}
-		
-		return sol;
-	}
-
-	private FuzzingOperation getRandomFuzzingOperation(EList<FuzzingOperation> FuzzingOperations)
-	{
-	    int listSize = FuzzingOperations.size();
-	    int randomIndex = rng.nextInt(listSize);
-	    return FuzzingOperations.get(randomIndex);
-	}
-
+	
 	public void shutDownMetricListener() {
 		metricConsumer.close();
 	}

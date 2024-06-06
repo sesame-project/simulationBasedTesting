@@ -42,7 +42,7 @@ public class MetricConsumerBase implements Runnable {
 	
 	private double lastTimestampSeen;
 
-	private void setupMetricLookup() {
+	protected void setupMetricLookup() {
 		EList<Metric> metrics = selectedCampaign.getMetrics();
 
 		int id = 0;
@@ -176,6 +176,7 @@ public class MetricConsumerBase implements Runnable {
 							m.getResult().setName(metricName);
 							Double d = Double.parseDouble(val.toString());
 							m.getResult().setValue(d);
+							System.out.println("Updating metric result value in DSL :" + m + "," + metricName + " = " + val);
 						}
 					}
 
@@ -192,6 +193,7 @@ public class MetricConsumerBase implements Runnable {
 						mr.setValue(d);
 						mNewInst.setResult(mr);
 						mList.add(mNewInst);
+						System.out.println("Adding new metric result value to DSL :" + mr + "," + metricName + " = " + val);
 					}
 				}
 			} catch (MissingMetric e) {
@@ -295,8 +297,6 @@ public class MetricConsumerBase implements Runnable {
 				}
 			}
 		}
-
-		metricMessages.clear();
 	}
 
 	private void finaliseUpdatesSpecialMetrics() {

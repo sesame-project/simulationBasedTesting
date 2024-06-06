@@ -12,5 +12,6 @@ public class PyroMetricConsumer extends MetricConsumerBase {
 	public PyroMetricConsumer(TestCampaign selectedCampaign, SESAMETestSolution solution) throws InvalidTestCampaign {
 		super(selectedCampaign);
 		this.currentSolution = Optional.of(solution);
+		setupMetricLookup();
 	}
 }

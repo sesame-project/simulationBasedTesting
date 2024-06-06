@@ -66,6 +66,7 @@ public class RemoteMetricMonitor {
 			if (value instanceof Double) {
 				Double v = (Double)value;
 				MetricMessage msg = new MetricMessage(testID, metricName, v);
+				System.out.println("created MetricMessage = " + msg.toString());
 				metricConsumer.storeArrivingMessage(msg);
 			}
 		}
