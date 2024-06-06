@@ -32,7 +32,7 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 
 	Set<WorkerNode> availableNodes = new HashSet<WorkerNode>();
 	Map<RemoteTest, WorkerNode> allocationMapping;
-
+	
 	AllocationStrategy workerAllocationStrategy;
 	SOPRANODistributedExperiment activeExperiment;
 

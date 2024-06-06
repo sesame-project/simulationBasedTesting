@@ -15,11 +15,11 @@ import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.InvalidTestCampaign;
-import uk.ac.york.sesame.testing.evolutionary.MetricConsumer;
+import uk.ac.york.sesame.testing.evolutionary.KafkaMetricConsumer;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
-public class TestMetricConsumer {
+public class TestKafkaMetricConsumer {
 	public static void main(String[] args) {
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 		Properties properties = new Properties();
@@ -43,7 +43,7 @@ public class TestMetricConsumer {
 				TestCampaign tc = tc_o.get();
 				
 				SESAMETestSolution sol = new SESAMETestSolution(tc, "T1TestingTestSuiteRunner_metricslink");
-				MetricConsumer consumer = new MetricConsumer(tc, properties, parts);
+				KafkaMetricConsumer consumer = new KafkaMetricConsumer(tc, properties, parts);
 				consumer.setSolution(sol);
 
 				Thread t = new Thread(consumer);

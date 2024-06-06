@@ -1,34 +1,13 @@
 package uk.ac.york.sesame.testing.evolutionary;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Optional;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.TopicPartition;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.esotericsoftware.kryo.serializers.TaggedFieldSerializer.Tag;
 
 import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
@@ -44,19 +23,9 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsFac
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.Result;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Results.ResultsFactory;
 
-public class MetricConsumer implements Runnable {
+public class MetricConsumerBase implements Runnable {
 
-	private static final Logger logger = LoggerFactory.getLogger(MetricConsumer.class);
-
-	private String clientId;
-	private KafkaConsumer<Long, MetricMessage> consumer;
-	private List<TopicPartition> partitions;
 	private TestCampaign selectedCampaign;
-
-	private AtomicBoolean closed = new AtomicBoolean();
-	private CountDownLatch shutdownlatch = new CountDownLatch(1);
-
-	private String METRIC_TOPIC_NAME = "metricMessages";
 
 	private HashMap<String, Metric> metricLookup = new LinkedHashMap<String, Metric>();
 
@@ -67,7 +36,7 @@ public class MetricConsumer implements Runnable {
 	private HashMap<String, MetricMessage> metricMessages = new LinkedHashMap<String, MetricMessage>();
 
 	// This holds the current test solution being evaluated
-	private Optional<SESAMETestSolution> currentSolution = Optional.empty();
+	protected Optional<SESAMETestSolution> currentSolution = Optional.empty();
 	
 	private double lastValidTimestamp = Double.MAX_VALUE;
 	
@@ -88,85 +57,28 @@ public class MetricConsumer implements Runnable {
 		}
 	}
 
-	public MetricConsumer(TestCampaign selectedCampaign, Properties configs, List<TopicPartition> partitions)
-			throws InvalidTestCampaign {
-		this.clientId = configs.getProperty(ConsumerConfig.CLIENT_ID_CONFIG);
-		this.partitions = partitions;
-		this.consumer = new KafkaConsumer<>(configs);
-		if (selectedCampaign == null) {
-			throw new InvalidTestCampaign(InvalidTestCampaign.INVALIDITY_REASON.NULL_OBJECT);
-		}
-
+	public MetricConsumerBase(TestCampaign selectedCampaign) throws InvalidTestCampaign {
 		this.selectedCampaign = selectedCampaign;
-
-		List<String> topics = new ArrayList<String>();
-		topics.add(METRIC_TOPIC_NAME);
-		consumer.subscribe(topics);
-
 		setupMetricLookup();
+	}
+	
+	public void run() {
+		
 	}
 	
 	public void setLastValidTimestamp(double lastValidTimestamp) {
 		this.lastValidTimestamp = lastValidTimestamp;
 	}
 
-	@Override
-	public void run() {
-		try {
-			logger.info("Starting the Consumer : {}", clientId);
-			logger.info("C : {}, Started to process records for partitions : {}", clientId, partitions);
-
-			while (!closed.get()) {
-				ConsumerRecords<Long, MetricMessage> records = consumer.poll(Duration.ofMillis(1000));
-
-				if (records.isEmpty()) {
-					logger.info("C : {}, Found no records", clientId);
-					continue;
-				}
-
-				logger.info("C : {} Total No. of records received : {}", clientId, records.count());
-				for (ConsumerRecord<Long, MetricMessage> record : records) {
-					logger.info("C : {}, Record received topic : {}, partition : {}, key : {}, value : {}, offset : {}",
-							clientId, record.topic(), record.partition(), record.key(), record.value(),
-							record.offset());
-
-					MetricMessage msg = record.value();
-					updateTimestamp(msg.getTimestamp());
-					String metricID = msg.getMetricName();
-					Double val = (Double) msg.getValue();
-					
-					if (!metricID.contains("time")) {
-						System.out.println(record.value());
-						System.out.println("msg = " + msg.toString());
-						System.out.println("MetricConsumer received metric: " + metricID + " - value " + val);
-					} else {
-						System.out.print("T");
-					}
-
-					storeArrivingMessage(msg);
-				}
-			}
-		} catch (Exception e) {
-			System.out.println("Error while consuming messages");
-			e.printStackTrace();
-			logger.error("Error while consuming messages", e);
-		} finally {
-			consumer.close();
-			shutdownlatch.countDown();
-			logger.info("C : {}, consumer exited", clientId);
-		}
-	}
-	
-	private void updateTimestamp(double timestamp) {
+	protected void updateTimestamp(double timestamp) {
 		if (timestamp > this.lastTimestampSeen) {
 			this.lastTimestampSeen = timestamp;
 		}
 	}
 
-	private void storeArrivingMessage(MetricMessage msg) {
+	public void storeArrivingMessage(MetricMessage msg) {
 		String targetMetricID = msg.getMetricName();
-		// This assumes that the last message is the only one we obtain
-		// the metric from
+		// This assumes that the last message is the only one we obtain the metric value from
 		if (metricTimestampValid(msg.getTimestamp()) || targetMetricID.contains("fuzzingOperationTimes")) {
 			metricMessages.put(targetMetricID, msg);
 		}
@@ -177,12 +89,7 @@ public class MetricConsumer implements Runnable {
 	}
 
 	public void close() {
-		try {
-			closed.set(true);
-			shutdownlatch.await();
-		} catch (InterruptedException e) {
-			logger.error("Error", e);
-		}
+
 	}
 
 	public void setSolution(SESAMETestSolution solution) {
@@ -311,8 +218,7 @@ public class MetricConsumer implements Runnable {
 				Metric m = getMetricForCampaign(metricName);
 				Double d = Double.parseDouble(val.toString());
 
-				System.out.println("updateObjectivesJMetal - at timestamp " + timeStamp + " - setting metric "
-						+ metricName + " (num " + num + ") to value " + val);
+				System.out.println("updateObjectivesJMetal - at timestamp " + timeStamp + " - setting metric "	+ metricName + " (num " + num + ") to value " + val);
 
 				sol.setObjectiveMetric(num, m);
 
@@ -346,10 +252,7 @@ public class MetricConsumer implements Runnable {
 	}
 
 	public void clearTopic() {
-		List<String> topics = new ArrayList<String>();
-		topics.add(METRIC_TOPIC_NAME);
-		topics.get(0);
-		// TODO: use the admin utility to clear the topics
+
 	}
 
 	public void finaliseUpdatesStandardMetrics() {
@@ -418,11 +321,15 @@ public class MetricConsumer implements Runnable {
 	}
 
 	public void notifyFinalise() {
-		// TODO: this should ignore all metrics other than the FuzzingOperationTimes?
-
+		// This is handled in finaliseUpdates
 	}
 	
 	public double getTimestamp() {
 		return lastTimestampSeen;
+	}
+
+	public void updateDSLDynamically() {
+		finaliseUpdatesSpecialMetrics();
+		finaliseUpdatesStandardMetrics();
 	}
 }

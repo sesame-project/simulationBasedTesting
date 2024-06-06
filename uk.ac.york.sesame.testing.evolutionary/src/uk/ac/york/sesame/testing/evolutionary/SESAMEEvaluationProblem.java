@@ -30,9 +30,9 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 
 public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
+	
 	private static final long serialVersionUID = 1L;
-
-	private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = true;
+    private static final boolean DEBUG_ACTUALLY_GENERATE_EGL = true;
 	
 	// Disable for debug run/fake metrics
 	private static final boolean DEBUG_ACTUALLY_RUN = false;
@@ -80,7 +80,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 	private SESAMEEGLExecutor eglEx;
 	private String codeGenerationDirectory;
 
-	private MetricConsumer metricConsumer;
+	private KafkaMetricConsumer metricConsumer;
 	private ControlProducer controlProducer;
 
 	private void setupMetricListener(TestCampaign campaign) throws StreamSetupFailed, InvalidTestCampaign {
@@ -95,7 +95,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		// TODO: initializing the rng properly for repeatable experiments
 		rng = new Random();
 		List<TopicPartition> parts = new ArrayList<TopicPartition>();
-		metricConsumer = new MetricConsumer(campaign, properties, parts);
+		metricConsumer = new KafkaMetricConsumer(campaign, properties, parts);
 		Thread t = new Thread(metricConsumer);
 		t.start();
 	}
@@ -300,7 +300,7 @@ public class SESAMEEvaluationProblem implements Problem<SESAMETestSolution> {
 		}
 	}
 	
-	private void waitUntilMetricTime(MetricConsumer metricConsumer, double waitTime, double worstCaseTimeSeconds) {
+	private void waitUntilMetricTime(MetricConsumerBase metricConsumer, double waitTime, double worstCaseTimeSeconds) {
 		long worstCaseEndTime = System.currentTimeMillis() + (long) ((double) worstCaseTimeSeconds * 1000);
 		boolean metricDone = false;
 		while (!metricDone && (System.currentTimeMillis() < worstCaseEndTime)) {
