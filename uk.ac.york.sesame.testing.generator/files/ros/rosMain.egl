@@ -14,6 +14,8 @@
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
 	var sanitiseVariables = false;
+	
+	var controlTriggerDelayTime = 1.0;
 %]
 
 import java.util.ArrayList;
@@ -98,15 +100,17 @@ public class [%= testNameString %]_TestRunner {
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
 		
-		if (USE_DISTRIBUTED) {
+		[% if (useDistributed) { %]
+				[% var endTrigger = test.parentCampaign.endTrigger;
+				var controlTriggerTime = endTrigger.timeLimitSeconds - controlTriggerDelayTime; %]
 			// TODO: finish TriggeredControlProducer producer here
 			DataStream<ControlMessage> controlStream = env
-					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
+					.addSource(new TriggeredControlProducer([%= controlTriggerTime %]));
 			
-		} else {
+		[% } else { %]
 			DataStream<ControlMessage> controlStream = env
 					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
-		}
+		[% } %]
 					
 		
 		env.setParallelism(1);
