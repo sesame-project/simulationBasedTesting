@@ -4,13 +4,13 @@ import java.io.IOException;
 
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
-import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 
 import uk.ac.york.sesame.testing.architecture.data.*;
 import net.razorvine.pyro.NameServerProxy;
 import net.razorvine.pyro.PyroProxy;
 
 public class PyroMetricFlinkSink extends RichSinkFunction<MetricMessage> {
+	private static final long serialVersionUID = 1L;
 	private PyroProxy metricDaemon;
 	private NameServerProxy ns_single;
 	

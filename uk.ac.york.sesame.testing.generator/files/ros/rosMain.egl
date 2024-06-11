@@ -98,8 +98,16 @@ public class [%= testNameString %]_TestRunner {
 		properties.setProperty("bootstrap.servers", "localhost:9092");
 		properties.setProperty("group.id", "test");
 		
-		DataStream<ControlMessage> controlStream = env
+		if (USE_DISTRIBUTED) {
+			// TODO: finish TriggeredControlProducer producer here
+			DataStream<ControlMessage> controlStream = env
 					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
+			
+		} else {
+			DataStream<ControlMessage> controlStream = env
+					.addSource(new FlinkKafkaConsumer<ControlMessage>("controlMessages", new ControlMessageSchema(), properties)).returns(ControlMessage.class);
+		}
+					
 		
 		env.setParallelism(1);
 	    env.setMaxParallelism(1);
@@ -350,16 +358,40 @@ public class [%= testNameString %]_TestRunner {
 		try {
 			//env.execute();
 			env.executeAsync();
-			// TODO: need to set end condition time
-			TimeUnit.SECONDS.sleep(60);
-			System.out.println("----------------- TESTRUNNER TERMINATING ---------------------");
-			System.exit(0);
+			
+			waitForEndTrigger();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		[% } %]
+	}
+	
+	public static void waitForEndTrigger() {
+		// Need to receive the clock from the metric
+		// Wait 1 second each time, check if we have everything to exit or not
+		// Or use another thread that calls exit?
+			
+		//; TODO: other execution end triggers need to be handled here other than fixed time
+		[% var endTrigger = test.parentCampaign.endTrigger;
+		var endTime = endTrigger.timeLimitSeconds; %]
+		
+		boolean done = false;
+		
+		while (!done) {
+			waitForSeconds(1);
+			double time = SimCore.getInstance().getTime();
+			if (time > [%= endTime %]) {
+				done = true;
+			}
+		}
+		
+		// TODO: need to trigger the control message here
+		
+		
+		System.out.println("----------------- TESTRUNNER TERMINATING ---------------------");
+		System.exit(0);
 	}
 	
 	public static void waitForSeconds(long timeDelaySeconds) {

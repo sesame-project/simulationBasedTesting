@@ -33,6 +33,8 @@ public abstract class SESAMEEvaluationProblemBase implements Problem<SESAMETestS
 	
 	private static final long serialVersionUID = 1L;
 
+	protected SESAMEModelLoader loader;
+	
 	private static final boolean FAIL_ON_CONDITION_TREE_CONVERSION_FAILURE = true;
 	
 	final double INCLUDE_FuzzingOperation_PROB = 0.5;
@@ -62,6 +64,7 @@ public abstract class SESAMEEvaluationProblemBase implements Problem<SESAMETestS
 		
 		// TODO: initializing the rng properly for repeatable experiments
 		rng = new Random();
+		this.loader = loader;
 		
 		if (tc_o.isPresent()) {
 			selectedCampaign = tc_o.get();
@@ -220,5 +223,7 @@ public abstract class SESAMEEvaluationProblemBase implements Problem<SESAMETestS
 
 	public abstract void shutDownMetricListener();
 
-	public abstract void ensureFinalModelSaved();
+	public void ensureFinalModelSaved() {
+		loader.saveTestingSpace();
+	}
 }

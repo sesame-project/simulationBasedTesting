@@ -33,7 +33,7 @@ public class SESAMEEvaluationProblemSingle extends SESAMEEvaluationProblemBase {
 	private String spaceModelFileName;
 	private String campaignName;
 	private String orchestratorBasePath;
-	private SESAMEModelLoader loader;
+
 	private SESAMEEGLExecutor eglEx;
 	private String codeGenerationDirectory;
 	
@@ -68,7 +68,7 @@ public class SESAMEEvaluationProblemSingle extends SESAMEEvaluationProblemBase {
 		this.codeGenerationDirectory = codeGenerationDirectory;
 		this.orchestratorBasePath = orchestratorBasePath;
 		this.spaceModelFileName = spaceModelFileName;
-		this.loader = loader;
+		
 
 	setupMetricListener(selectedCampaign);
 	setupControlProducer();
@@ -233,9 +233,7 @@ public class SESAMEEvaluationProblemSingle extends SESAMEEvaluationProblemBase {
 		}
 	}
 	
-	public void ensureFinalModelSaved() {
-		loader.saveTestingSpace();
-	}
+
 	
 	private void dummyEval(SESAMETestSolution solution) {
 		int metricCount = selectedCampaign.getMetrics().size();

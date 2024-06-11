@@ -21,7 +21,7 @@ public class SESAMEEvaluationProblemDistributed extends SESAMEEvaluationProblemB
 			Optional<TestCampaign> tc_o, String codeGenerationDirectory, boolean conditionBased, int conditionDepth,
 			String grammarPath)
 			throws InvalidTestCampaign, StreamSetupFailed, EolModelLoadingException, MissingGrammarFile {
-		super(orchestratorBasePath, loader, spaceModelFileName, testingSpaceModel, testingSpace, tc_o, codeGenerationDirectory,
+			super(orchestratorBasePath, loader, spaceModelFileName, testingSpaceModel, testingSpace, tc_o, codeGenerationDirectory,
 				conditionBased, conditionDepth, grammarPath);
 	}
 
@@ -37,8 +37,6 @@ public class SESAMEEvaluationProblemDistributed extends SESAMEEvaluationProblemB
 		// Metric consumers are shut down in RemoteMetricMonitor
 	}
 
-	@Override
-	public void ensureFinalModelSaved() {
-		// Ensures the final model is saved
-	}
+	// ensureFinalModelSaved inherited from superclass - Ensures the final model is saved
+	// This needs to be done for distributed too, to ensure the final result sets are saved!
 }

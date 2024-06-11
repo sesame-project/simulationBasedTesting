@@ -24,7 +24,6 @@ import org.uma.jmetal.util.front.Front;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingStrategy;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGACoverageBoostingStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAEvolutionaryAlgorithm;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.NSGAWithCoverageCells;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.RepeatedExecution;
@@ -38,12 +37,10 @@ import uk.ac.york.sesame.testing.evolutionary.distributed.SESAMEEvaluationProble
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANODistributedExperiment;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANOExperimentManager;
 import uk.ac.york.sesame.testing.evolutionary.distributed.WorkerNode;
-import uk.ac.york.sesame.testing.evolutionary.grammar.Grammar;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging_Coverage;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.RepeatedRun;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMECrossoverOperation;
-import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEConditionsCrossover;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEConditionsCrossoverRandomised;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMEMutationOperation;
 import uk.ac.york.sesame.testing.evolutionary.operators.SESAMESimpleMutation;
