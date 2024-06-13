@@ -12,7 +12,7 @@ public class TriggeredControlProducer extends RichParallelSourceFunction<Control
 	private static double TRIGGER_TIME = 0;
 	private static final long SLEEP_TIME_MS = 100;
 	
-	TriggeredControlProducer(double triggerTime) {
+	public TriggeredControlProducer(double triggerTime) {
 		TRIGGER_TIME = triggerTime;
 	}
 
