@@ -128,9 +128,7 @@ public class SESAMEEGLExecutor {
 			
 			egxModule.execute();
 			testingModel.dispose();
-
 			// EGX END
-
 			// JRH: shouldn't need to create new pom.xml if we have produced the code locally within this project
 
 		} catch (EolModelLoadingException e) {

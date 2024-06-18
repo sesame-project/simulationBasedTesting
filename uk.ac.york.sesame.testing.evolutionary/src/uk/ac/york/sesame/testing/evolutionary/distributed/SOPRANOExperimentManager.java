@@ -140,7 +140,8 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	private void waitForMetrics() {
 		boolean done = false;
 		while (!done) {
-			System.out.println("pendingTestQueue size = " + pendingTestQueue.size() + ",runningTests size = " + runningTests.size());
+			System.out.println("unallocatedTests queue size = " + pendingTestQueue.size() + ",allocatedPending size = " + runningTests.size());
+			// TODO: rename these concepts here
 			if ((pendingTestQueue.size() == 0) && (runningTests.size() == 0)) {
 				done = true;
 			}

@@ -10,7 +10,8 @@ import net.razorvine.pyro.PyroProxy;
 
 public class PyroDaemons {
 	
-	private static String DEFAULT_NS_HOSTNAME = "192.168.1.19";
+	// TODO: Name server for Pyro
+	private static String DEFAULT_NS_HOSTNAME = "192.168.1.28";
 	private static int DEFAULT_NS_PORT = 9523;
 		
 	private static String nsHostname = DEFAULT_NS_HOSTNAME;

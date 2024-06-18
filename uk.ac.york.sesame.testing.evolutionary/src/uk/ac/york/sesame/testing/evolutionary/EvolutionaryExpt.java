@@ -151,10 +151,12 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			if (USE_DISTRIBUTED) {
 				SOPRANODistributedExperiment distributedExpt = new SOPRANODistributedExperiment(selectedCampaign, loader, orchestratorBasePath, spaceModelFileName);
 				WorkerNode node = new WorkerNode("192.168.1.19");
+				WorkerNode node2 = new WorkerNode("192.168.1.25");
 				// TODO: Hardcoded allocation strategy here as round-robin
 				AllocationStrategy rr = new RoundRobinAllocation();
 				SOPRANOExperimentManager exptManager = new SOPRANOExperimentManager(distributedExpt, rr);
 				exptManager.registerAvailableWorker(node);
+				exptManager.registerAvailableWorker(node2);
 				exptManager.startLoopThread();
 				evaluator = exptManager;
 				

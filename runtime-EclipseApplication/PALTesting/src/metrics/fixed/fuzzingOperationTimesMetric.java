@@ -3,9 +3,7 @@ package metrics.fixed;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.flink.api.common.state.*;
 import org.apache.flink.configuration.Configuration;
-import org.apache.flink.streaming.api.functions.*;
 import org.apache.flink.streaming.api.functions.co.CoProcessFunction;
 import org.apache.flink.util.Collector;
 

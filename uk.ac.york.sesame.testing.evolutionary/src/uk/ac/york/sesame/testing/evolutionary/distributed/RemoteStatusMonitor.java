@@ -89,7 +89,7 @@ public class RemoteStatusMonitor {
 				Optional<TestStatus> status_o = getStatusFromCode(statusCode);
 				if (status_o.isPresent()) {
 					TestStatus status = status_o.get();
-					System.out.println("Received status message for test " + t.getTestID() + "=" + status);
+					System.out.println("Received status message for test " + t.getTestID() + " on worker " + remoteWorker.getHostname() +  "=" + status);
 					t.setStatus(status);
 					
 					if (status != previousStatus) {
