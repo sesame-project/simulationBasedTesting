@@ -10,6 +10,8 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ExecutionPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl;
@@ -226,6 +228,8 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		StandardGrammarPackageImpl theStandardGrammarPackage = (StandardGrammarPackageImpl)(registeredPackage instanceof StandardGrammarPackageImpl ? registeredPackage : StandardGrammarPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ExecutionPackage.eNS_URI);
+		ExecutionPackageImpl theExecutionPackage = (ExecutionPackageImpl)(registeredPackage instanceof ExecutionPackageImpl ? registeredPackage : ExecutionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theMetricsPackage.createPackageContents();
@@ -234,6 +238,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		theResultsPackage.createPackageContents();
 		theStandardGrammarPackage.createPackageContents();
 		theMRSPackagePackage.createPackageContents();
+		theExecutionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theMetricsPackage.initializePackageContents();
@@ -242,6 +247,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		theResultsPackage.initializePackageContents();
 		theStandardGrammarPackage.initializePackageContents();
 		theMRSPackagePackage.initializePackageContents();
+		theExecutionPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theMetricsPackage.freeze();

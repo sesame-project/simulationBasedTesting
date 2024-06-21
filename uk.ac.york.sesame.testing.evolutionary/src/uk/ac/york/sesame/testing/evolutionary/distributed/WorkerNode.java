@@ -12,7 +12,7 @@ import net.razorvine.pyro.PyroProxy;
 public class WorkerNode {
 	private String hostname;
 	private PyroProxy daemon;
-	Set<RemoteTest> allocatedTests = new HashSet<RemoteTest>();
+	//Set<RemoteTest> allocatedTests = new HashSet<RemoteTest>();
 	
 	public WorkerNode(String ipAddress) {
 		this.hostname = ipAddress.replace(".", "_");
@@ -35,14 +35,14 @@ public class WorkerNode {
 		return daemon;
 	}
 	
-	public int activeTestCount() {
-		return  allocatedTests.size();
-	}
+//	public int activeTestCount() {
+//		return  allocatedTests.size();
+//	}
 
 	public void submitTest(RemoteTest t) throws SOPRANORemoteError {
 		
 		// Send the registration message for this test
-		allocatedTests.add(t);
+		//allocatedTests.add(t);
 		String testIDClass = t.getTestID();
 		try {
 			Object result = daemon.call("submit_test", testIDClass);

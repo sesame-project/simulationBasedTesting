@@ -1,6 +1,7 @@
 package uk.ac.york.sesame.testing.evolutionary.distributed;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionTarget;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 

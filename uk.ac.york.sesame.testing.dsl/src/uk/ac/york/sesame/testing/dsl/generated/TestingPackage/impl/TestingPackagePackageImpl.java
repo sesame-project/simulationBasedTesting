@@ -18,6 +18,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.CoverageBoostingSt
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionInterval;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.EvolutionaryAlgorithm;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ExecutionPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigger;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FixedNSGACoverageBoostingStrategy;
@@ -284,6 +286,8 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		StandardGrammarPackageImpl theStandardGrammarPackage = (StandardGrammarPackageImpl)(registeredPackage instanceof StandardGrammarPackageImpl ? registeredPackage : StandardGrammarPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ExecutionPackage.eNS_URI);
+		ExecutionPackageImpl theExecutionPackage = (ExecutionPackageImpl)(registeredPackage instanceof ExecutionPackageImpl ? registeredPackage : ExecutionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTestingPackagePackage.createPackageContents();
@@ -292,6 +296,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		theResultsPackage.createPackageContents();
 		theStandardGrammarPackage.createPackageContents();
 		theMRSPackagePackage.createPackageContents();
+		theExecutionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTestingPackagePackage.initializePackageContents();
@@ -300,6 +305,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		theResultsPackage.initializePackageContents();
 		theStandardGrammarPackage.initializePackageContents();
 		theMRSPackagePackage.initializePackageContents();
+		theExecutionPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theTestingPackagePackage.freeze();
@@ -1070,6 +1076,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		ResultsPackage theResultsPackage = (ResultsPackage)EPackage.Registry.INSTANCE.getEPackage(ResultsPackage.eNS_URI);
 		StandardGrammarPackage theStandardGrammarPackage = (StandardGrammarPackage)EPackage.Registry.INSTANCE.getEPackage(StandardGrammarPackage.eNS_URI);
 		MRSPackagePackage theMRSPackagePackage = (MRSPackagePackage)EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
+		ExecutionPackage theExecutionPackage = (ExecutionPackage)EPackage.Registry.INSTANCE.getEPackage(ExecutionPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theFuzzingOperationsPackage);
@@ -1077,6 +1084,7 @@ public class TestingPackagePackageImpl extends EPackageImpl implements TestingPa
 		getESubpackages().add(theResultsPackage);
 		getESubpackages().add(theStandardGrammarPackage);
 		getESubpackages().add(theMRSPackagePackage);
+		getESubpackages().add(theExecutionPackage);
 
 		// Create type parameters
 
