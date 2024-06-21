@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.uma.jmetal.algorithm.Algorithm;
@@ -31,8 +32,14 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestGenerationApproach;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DistributedExecutionStrategy;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DynamicTaskAllocation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionStrategy;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionTarget;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.evolutionary.distributed.AllocationStrategy;
-import uk.ac.york.sesame.testing.evolutionary.distributed.RoundRobinAllocation;
+import uk.ac.york.sesame.testing.evolutionary.distributed.DynamicAllocation;
+import uk.ac.york.sesame.testing.evolutionary.distributed.UpFrontAllocation;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SESAMEEvaluationProblemDistributed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANODistributedExperiment;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANOExperimentManager;
@@ -49,7 +56,7 @@ import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
 public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 
-	private static final boolean USE_DISTRIBUTED = true;
+	//private static final boolean USE_DISTRIBUTED = true;
 	
 	private int populationSize;
 	private int offspringPopulationSize;
@@ -106,15 +113,60 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		testingSpace = loader.getTestingSpace(testSpaceModel);
 		testCampaign_o = loader.getTestCampaign(testSpaceModel, campaignName);
 	}
+	
+	public SolutionListEvaluator<SESAMETestSolution> setupExptEvaluator(TestCampaign selectedCampaign) {
+		SolutionListEvaluator<SESAMETestSolution> evaluator;
+		MRS mrs = testingSpace.getMrs();
+		ExecutionStrategy exec = mrs.getExecStrategy();
+		
+		if (exec.isDistributed()) {
+			DistributedExecutionStrategy distExec = (DistributedExecutionStrategy)exec;
+			SOPRANODistributedExperiment distributedExpt = new SOPRANODistributedExperiment(selectedCampaign, loader, orchestratorBasePath, spaceModelFileName);
+			
+			AllocationStrategy strat = translateAllocationStrategy(distExec.getAllocationStrategy());
+			SOPRANOExperimentManager exptManager = new SOPRANOExperimentManager(distributedExpt, strat);
+			
+			if (distExec.isAutomaticWorkerDetection()) {
+				exptManager.autoDetectWorkers();
+			}
+			
+			EList<ExecutionTarget> targets = distExec.getExtraExecutionTargets();
+			for (ExecutionTarget et : targets) {
+				exptManager.registerExecutionTarget(et);
+			}
+			
+			exptManager.startLoopThread();
+			
+			evaluator = exptManager;
+		} else {
+			// Not distributed; use a standard sequential evaluator
+			evaluator = new SequentialSolutionListEvaluator<SESAMETestSolution>();
+		}
+		return evaluator;
+		
+	}
+
+	private AllocationStrategy translateAllocationStrategy(uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.AllocationStrategy dslStrat) {
+		if (dslStrat instanceof DynamicTaskAllocation) {
+			return new DynamicAllocation();
+		}
+		return new UpFrontAllocation();
+	}
+	
+	public boolean useDistributedForExperiment(TestingSpace testingSpace) {
+		MRS mrs = testingSpace.getMrs();
+		ExecutionStrategy exec = mrs.getExecStrategy();
+		return exec.isDistributed();
+	}
 
 	public void runExperiment() {
 		Random crossoverRNG = new Random();
 		Random mutationRNG = new Random();
 
 		SESAMEEvaluationProblemBase problem;
-
+		
 		try {
-			if (USE_DISTRIBUTED) {
+			if (useDistributedForExperiment(testingSpace)) {
 			problem = new SESAMEEvaluationProblemDistributed(orchestratorBasePath, loader, spaceModelFileName, testSpaceModel,
 						testingSpace, testCampaign_o, codeGenerationDirectory, conditionBased, conditionDepth, grammarPath);
 			} else {
@@ -148,19 +200,9 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			selection = new TournamentSelection<SESAMETestSolution>(5);
 			dominanceComparator = new DominanceComparator<>();
 			
-			if (USE_DISTRIBUTED) {
-				SOPRANODistributedExperiment distributedExpt = new SOPRANODistributedExperiment(selectedCampaign, loader, orchestratorBasePath, spaceModelFileName);
-				WorkerNode node = new WorkerNode("192.168.1.19");
-				// TODO: Hardcoded allocation strategy here as round-robin
-				AllocationStrategy rr = new RoundRobinAllocation();
-				SOPRANOExperimentManager exptManager = new SOPRANOExperimentManager(distributedExpt, rr);
-				exptManager.registerAvailableWorker(node);
-				exptManager.startLoopThread();
-				evaluator = exptManager;
-				
-			} else {
-				evaluator = new SequentialSolutionListEvaluator<SESAMETestSolution>();
-			}
+			// Setup the evaluator from the DSL
+			evaluator = setupExptEvaluator(selectedCampaign);
+
 
 			int matingPoolSize = populationSize;
 

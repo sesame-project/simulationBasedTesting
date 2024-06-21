@@ -253,6 +253,7 @@ package FuzzingOperations {
 	}
 
 	class NetworkFuzzingOperation extends FuzzingOperation {
+	
 	}
 
 	class BlackholeNetworkOperation extends NetworkFuzzingOperation {
@@ -412,15 +413,18 @@ package StandardGrammar {
 package MRSPackage {
 	class MRS {
 		val Variable[*] variables;
-		attr String launchFileLocation;
 		attr int launchDelaySeconds = 40;
+		// TODO: this should be replaced with a reference to the started containers
+		attr String launchFileLocation;
 		attr String customTerminateFileLocation;
 		attr String recordFileLocation;
 		val Node[*] nodes;
 		val Simulator[1] simulator;
 		val Type[*] propertyType;
+		val Execution.ExecutionStrategy[1] execStrategy;
 	}
 
+	/** This is a Node in the MRS simulation */
 	class Node {
 		attr String name;
 		ref Variable[*] subscriber;
@@ -476,5 +480,69 @@ package MRSPackage {
 		attr double stepSizeMillis = "20";
 		attr boolean useStepping = false;
 		attr boolean useGUI = false;
+	}
+}
+
+@namespace(uri="Execution", prefix="")
+package Execution {
+	abstract class ExecutionStrategy {
+		op boolean isDistributed();
+	}
+	
+	/** Represents execution on the local machine */
+	class LocalExecutionStrategy extends ExecutionStrategy {
+		attr String launchFileLocation;
+	}
+	
+	/** Represents execution via remote workers */
+	class DistributedExecutionStrategy extends ExecutionStrategy {
+		attr boolean automaticWorkerDetection = true;
+		val Dependency[0..*] dependencies;
+		val ExecutionTarget[0..*] extraExecutionTargets;
+		val AllocationStrategy[1] allocationStrategy;
+	}
+	
+	abstract class AllocationStrategy {
+	
+	}
+	
+	class DynamicTaskAllocation extends AllocationStrategy {
+		
+	}
+	
+	class RoundRobinPreAllocation extends AllocationStrategy {
+		
+	}
+	
+	abstract class ExecutionTarget { }
+	
+	enum WorkerOS {
+		LINUX = 0;
+		WINDOWS = 1;
+	}
+	
+	class SOPRANOWorkerNode extends ExecutionTarget {
+		attr String ipAddress;
+		attr WorkerOS[1] workerOS;
+	}
+	
+	abstract class Dependency { }
+	
+	enum ContainerTechnology {
+		DOCKER = 0;
+		PODMAN = 1;
+	}
+	
+	class ContainerDependency extends Dependency {
+		attr String imageName;
+		attr ContainerTechnology[1] tech;
+	}
+	
+	class DerivedContainerDependency extends Dependency {
+		val ContainerDependency[1] base;
+	}
+	
+	class ArchiveDependency  extends Dependency {
+		attr String location;
 	}
 }

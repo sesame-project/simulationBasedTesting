@@ -5,6 +5,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionStrategy;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,13 +17,14 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getVariables <em>Variables</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getLaunchFileLocation <em>Launch File Location</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getLaunchDelaySeconds <em>Launch Delay Seconds</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getLaunchFileLocation <em>Launch File Location</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getCustomTerminateFileLocation <em>Custom Terminate File Location</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getRecordFileLocation <em>Record File Location</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getNodes <em>Nodes</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getSimulator <em>Simulator</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getPropertyType <em>Property Type</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getExecStrategy <em>Exec Strategy</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getMRS()
@@ -176,5 +178,27 @@ public interface MRS extends EObject {
 	 * @generated
 	 */
 	EList<Type> getPropertyType();
+
+	/**
+	 * Returns the value of the '<em><b>Exec Strategy</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Exec Strategy</em>' containment reference.
+	 * @see #setExecStrategy(ExecutionStrategy)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getMRS_ExecStrategy()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ExecutionStrategy getExecStrategy();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getExecStrategy <em>Exec Strategy</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Exec Strategy</em>' containment reference.
+	 * @see #getExecStrategy()
+	 * @generated
+	 */
+	void setExecStrategy(ExecutionStrategy value);
 
 } // MRS

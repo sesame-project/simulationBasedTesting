@@ -10,6 +10,8 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ExecutionPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl;
@@ -194,6 +196,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		ResultsPackageImpl theResultsPackage = (ResultsPackageImpl)(registeredPackage instanceof ResultsPackageImpl ? registeredPackage : ResultsPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ExecutionPackage.eNS_URI);
+		ExecutionPackageImpl theExecutionPackage = (ExecutionPackageImpl)(registeredPackage instanceof ExecutionPackageImpl ? registeredPackage : ExecutionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theStandardGrammarPackage.createPackageContents();
@@ -202,6 +206,7 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		theMetricsPackage.createPackageContents();
 		theResultsPackage.createPackageContents();
 		theMRSPackagePackage.createPackageContents();
+		theExecutionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theStandardGrammarPackage.initializePackageContents();
@@ -210,6 +215,7 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 		theMetricsPackage.initializePackageContents();
 		theResultsPackage.initializePackageContents();
 		theMRSPackagePackage.initializePackageContents();
+		theExecutionPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theStandardGrammarPackage.freeze();

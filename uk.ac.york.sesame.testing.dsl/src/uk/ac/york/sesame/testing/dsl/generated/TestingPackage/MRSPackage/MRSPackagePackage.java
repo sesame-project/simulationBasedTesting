@@ -77,22 +77,22 @@ public interface MRSPackagePackage extends EPackage {
 	int MRS__VARIABLES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Launch File Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MRS__LAUNCH_FILE_LOCATION = 1;
-
-	/**
 	 * The feature id for the '<em><b>Launch Delay Seconds</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MRS__LAUNCH_DELAY_SECONDS = 2;
+	int MRS__LAUNCH_DELAY_SECONDS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Launch File Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MRS__LAUNCH_FILE_LOCATION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Custom Terminate File Location</b></em>' attribute.
@@ -140,13 +140,22 @@ public interface MRSPackagePackage extends EPackage {
 	int MRS__PROPERTY_TYPE = 7;
 
 	/**
+	 * The feature id for the '<em><b>Exec Strategy</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MRS__EXEC_STRATEGY = 8;
+
+	/**
 	 * The number of structural features of the '<em>MRS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MRS_FEATURE_COUNT = 8;
+	int MRS_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>MRS</em>' class.
@@ -726,6 +735,17 @@ public interface MRSPackagePackage extends EPackage {
 	EReference getMRS_PropertyType();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getExecStrategy <em>Exec Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Exec Strategy</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS#getExecStrategy()
+	 * @see #getMRS()
+	 * @generated
+	 */
+	EReference getMRS_ExecStrategy();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1174,6 +1194,14 @@ public interface MRSPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference MRS__PROPERTY_TYPE = eINSTANCE.getMRS_PropertyType();
+
+		/**
+		 * The meta object literal for the '<em><b>Exec Strategy</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MRS__EXEC_STRATEGY = eINSTANCE.getMRS_ExecStrategy();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.NodeImpl <em>Node</em>}' class.

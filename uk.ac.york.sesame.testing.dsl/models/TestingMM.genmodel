@@ -326,13 +326,14 @@
       </genEnums>
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/MRS">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/MRS/variables"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/MRS/launchFileLocation"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/MRS/launchDelaySeconds"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/MRS/launchFileLocation"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/MRS/customTerminateFileLocation"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/MRS/recordFileLocation"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/MRS/nodes"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/MRS/simulator"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/MRS/propertyType"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/MRS/execStrategy"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/Node">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/Node/name"/>
@@ -379,6 +380,47 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/TTSSimulator/stepSizeMillis"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/TTSSimulator/useStepping"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/TTSSimulator/useGUI"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Execution" disposableProviderFactory="true" ecorePackage="TestingMM.ecore#//Execution">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="TestingMM.ecore#//Execution/WorkerOS">
+        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//Execution/WorkerOS/LINUX"/>
+        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//Execution/WorkerOS/WINDOWS"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="TestingMM.ecore#//Execution/ContainerTechnology">
+        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//Execution/ContainerTechnology/DOCKER"/>
+        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//Execution/ContainerTechnology/PODMAN"/>
+      </genEnums>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//Execution/ExecutionStrategy">
+        <genOperations ecoreOperation="TestingMM.ecore#//Execution/ExecutionStrategy/isDistributed"/>
+      </genClasses>
+      <genClasses ecoreClass="TestingMM.ecore#//Execution/LocalExecutionStrategy">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/LocalExecutionStrategy/launchFileLocation"/>
+      </genClasses>
+      <genClasses ecoreClass="TestingMM.ecore#//Execution/DistributedExecutionStrategy">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/DistributedExecutionStrategy/automaticWorkerDetection"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Execution/DistributedExecutionStrategy/dependencies"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Execution/DistributedExecutionStrategy/extraExecutionTargets"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EReference TestingMM.ecore#//Execution/DistributedExecutionStrategy/allocationStrategy"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//Execution/AllocationStrategy"/>
+      <genClasses ecoreClass="TestingMM.ecore#//Execution/DynamicTaskAllocation"/>
+      <genClasses ecoreClass="TestingMM.ecore#//Execution/RoundRobinPreAllocation"/>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//Execution/ExecutionTarget"/>
+      <genClasses ecoreClass="TestingMM.ecore#//Execution/SOPRANOWorkerNode">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/SOPRANOWorkerNode/ipAddress"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/SOPRANOWorkerNode/workerOS"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//Execution/Dependency"/>
+      <genClasses ecoreClass="TestingMM.ecore#//Execution/ContainerDependency">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/ContainerDependency/imageName"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/ContainerDependency/tech"/>
+      </genClasses>
+      <genClasses ecoreClass="TestingMM.ecore#//Execution/DerivedContainerDependency">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Execution/DerivedContainerDependency/base"/>
+      </genClasses>
+      <genClasses ecoreClass="TestingMM.ecore#//Execution/ArchiveDependency">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/ArchiveDependency/location"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

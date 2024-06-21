@@ -14,6 +14,8 @@ import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionTarget;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.SOPRANOWorkerNode;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 
 public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETestSolution> {
@@ -24,14 +26,20 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	private static final long serialVersionUID = 1L;
 	// Status monitors - each create a MetricMonitor when they are ready
 	List<RemoteStatusMonitor> remoteStatusMonitors = new ArrayList<RemoteStatusMonitor>();
-	PriorityQueue<RemoteTest> pendingTestQueue = new PriorityQueue<RemoteTest>();
-
-	// Replace with map of test status?
-	Set<RemoteTest> runningTests = new HashSet<RemoteTest>();
+	
+	// These are the tests that are pending allocation to any worker
+	PriorityQueue<RemoteTest> unallocatedTestQueue = new PriorityQueue<RemoteTest>();
+	
+	// These are the tests that have been allocated, and are pending/running on the workers
+	Set<RemoteTest> pendingRunningTests = new HashSet<RemoteTest>();
+	
+	// These are the tests the workers have completed
 	Set<RemoteTest> completedTests = new HashSet<RemoteTest>();
 
 	Set<WorkerNode> availableNodes = new HashSet<WorkerNode>();
-	Map<RemoteTest, WorkerNode> allocationMapping;
+	
+	// This is the allocation of pending/running tests on worker nodes
+	Map<WorkerNode, List<RemoteTest>> allocationMapping;
 	
 	AllocationStrategy workerAllocationStrategy;
 	SOPRANODistributedExperiment activeExperiment;
@@ -41,8 +49,8 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	public SOPRANOExperimentManager(SOPRANODistributedExperiment expt, AllocationStrategy workerAllocationStrat) {
 		// How to set the dependencies needed?
 		this.activeExperiment = expt;
-		this.workerAllocationStrategy = new RoundRobinAllocation();
-		this.allocationMapping = new HashMap<RemoteTest, WorkerNode>();
+		this.workerAllocationStrategy = new UpFrontAllocation();
+		this.allocationMapping = new HashMap<WorkerNode, List<RemoteTest>>();
 
 		// Prepare the allocation manager thread
 		loopThread = new Thread() {
@@ -54,11 +62,12 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 
 	public void registerAvailableWorker(WorkerNode workerNode) {
 		availableNodes.add(workerNode);
+		allocationMapping.put(workerNode, new ArrayList<>());
 	}
 
 	public void registerTest(RemoteTest test) {
 		System.out.println("Registering test " + test.getTestID());
-		pendingTestQueue.add(test);
+		unallocatedTestQueue.add(test);
 	}
 
 	private void allocationLoop() {
@@ -74,9 +83,9 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 				}
 				
 				System.out.println("Running allocation loop in SOPRANOExperimentManager..." + availableNodes.size()	+ " workers available");
-				if (pendingTestQueue.size() > 0) {
-					RemoteTest t = pendingTestQueue.remove();
-					runningTests.add(t);
+				if (unallocatedTestQueue.size() > 0) {
+					RemoteTest t = unallocatedTestQueue.remove();
+					pendingRunningTests.add(t);
 
 					Optional<WorkerNode> node_o = workerAllocationStrategy.allocateTest(t, availableNodes, allocationMapping);
 					if (node_o.isPresent()) {
@@ -84,8 +93,8 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 						System.out.println("Allocating test " + t.getTestID() + " to worker " + node.toString());
 						// Register test, create new status monitor for test
 						node.submitTest(t);
-						// TODO: add to mapping inside the allocation strategy
-						allocationMapping.put(t, node);
+						// Add to mapping inside the allocation strategy
+						registerAllocationMapping(t, node);
 						RemoteStatusMonitor rsm = new RemoteStatusMonitor(this, t, node);
 						remoteStatusMonitors.add(rsm);
 						rsm.start();
@@ -103,6 +112,8 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 			e.printStackTrace();
 		}
 	}
+
+
 
 	public void startLoopThread() {
 		loopThread.start();
@@ -140,8 +151,9 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	private void waitForMetrics() {
 		boolean done = false;
 		while (!done) {
-			System.out.println("pendingTestQueue size = " + pendingTestQueue.size() + ",runningTests size = " + runningTests.size());
-			if ((pendingTestQueue.size() == 0) && (runningTests.size() == 0)) {
+			System.out.println("unallocatedTests queue size = " + unallocatedTestQueue.size() + ",allocatedPending size = " + pendingRunningTests.size());
+			// TODO: rename these concepts here
+			if ((unallocatedTestQueue.size() == 0) && (pendingRunningTests.size() == 0)) {
 				done = true;
 			}
 			try {
@@ -154,17 +166,44 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	
 	// Callback for the status monitor to register that a test was done
 	public synchronized void notifyTestCompletion(RemoteTest t) throws TestNotRunning {
-		if (runningTests.contains(t)) {
-			runningTests.remove(t);
+		if (pendingRunningTests.contains(t)) {
+			pendingRunningTests.remove(t);
 			completedTests.add(t);
 		} else {
 			throw new TestNotRunning(t);
 		}
+		
+		removeAllocationMapping(t);
+	}
+	
+	private void registerAllocationMapping(RemoteTest t, WorkerNode node) {
+		allocationMapping.get(node).add(t);
+	}
+
+	private void removeAllocationMapping(RemoteTest t) {
+		// TODO: check that this removes it!
+		for (List<RemoteTest> tests : allocationMapping.values()) {
+			tests.remove(t);
+		}
+		
 	}
 
 	@Override
 	public void shutdown() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void autoDetectWorkers() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void registerExecutionTarget(ExecutionTarget et) {
+		if (et instanceof SOPRANOWorkerNode) {
+			SOPRANOWorkerNode dslEt = (SOPRANOWorkerNode)et;
+			WorkerNode node = new WorkerNode(dslEt.getIpAddress());
+			this.registerAvailableWorker(node);
+		}
 	}
 }

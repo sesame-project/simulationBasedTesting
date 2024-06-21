@@ -380,9 +380,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="MRS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
           eType="#//MRSPackage/Variable" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="launchFileLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="launchDelaySeconds" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="40"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="launchFileLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="customTerminateFileLocation"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="recordFileLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -392,6 +392,8 @@
           eType="#//MRSPackage/Simulator" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="propertyType" upperBound="-1"
           eType="#//MRSPackage/Type" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="execStrategy" lowerBound="1"
+          eType="#//Execution/ExecutionStrategy" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Node">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -450,6 +452,55 @@
           defaultValueLiteral="false"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="useGUI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="Execution" nsURI="Execution" nsPrefix="">
+    <eClassifiers xsi:type="ecore:EClass" name="ExecutionStrategy" abstract="true">
+      <eOperations name="isDistributed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LocalExecutionStrategy" eSuperTypes="#//Execution/ExecutionStrategy">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="launchFileLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DistributedExecutionStrategy" eSuperTypes="#//Execution/ExecutionStrategy">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="automaticWorkerDetection"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
+          eType="#//Execution/Dependency" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extraExecutionTargets"
+          upperBound="-1" eType="#//Execution/ExecutionTarget" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="allocationStrategy" lowerBound="1"
+          eType="#//Execution/AllocationStrategy" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AllocationStrategy" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DynamicTaskAllocation" eSuperTypes="#//Execution/AllocationStrategy"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RoundRobinPreAllocation" eSuperTypes="#//Execution/AllocationStrategy"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExecutionTarget" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EEnum" name="WorkerOS">
+      <eLiterals name="LINUX"/>
+      <eLiterals name="WINDOWS" value="1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SOPRANOWorkerNode" eSuperTypes="#//Execution/ExecutionTarget">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ipAddress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="workerOS" lowerBound="1"
+          eType="#//Execution/WorkerOS"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Dependency" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EEnum" name="ContainerTechnology">
+      <eLiterals name="DOCKER"/>
+      <eLiterals name="PODMAN" value="1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ContainerDependency" eSuperTypes="#//Execution/Dependency">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="tech" lowerBound="1"
+          eType="#//Execution/ContainerTechnology"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DerivedContainerDependency" eSuperTypes="#//Execution/Dependency">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base" lowerBound="1"
+          eType="#//Execution/ContainerDependency" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ArchiveDependency" eSuperTypes="#//Execution/Dependency">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

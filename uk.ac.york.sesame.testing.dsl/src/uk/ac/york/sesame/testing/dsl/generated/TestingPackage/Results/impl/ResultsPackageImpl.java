@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionPackage;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ExecutionPackageImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl;
@@ -104,6 +106,8 @@ public class ResultsPackageImpl extends EPackageImpl implements ResultsPackage {
 		StandardGrammarPackageImpl theStandardGrammarPackage = (StandardGrammarPackageImpl)(registeredPackage instanceof StandardGrammarPackageImpl ? registeredPackage : StandardGrammarPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MRSPackagePackage.eNS_URI);
 		MRSPackagePackageImpl theMRSPackagePackage = (MRSPackagePackageImpl)(registeredPackage instanceof MRSPackagePackageImpl ? registeredPackage : MRSPackagePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ExecutionPackage.eNS_URI);
+		ExecutionPackageImpl theExecutionPackage = (ExecutionPackageImpl)(registeredPackage instanceof ExecutionPackageImpl ? registeredPackage : ExecutionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theResultsPackage.createPackageContents();
@@ -112,6 +116,7 @@ public class ResultsPackageImpl extends EPackageImpl implements ResultsPackage {
 		theMetricsPackage.createPackageContents();
 		theStandardGrammarPackage.createPackageContents();
 		theMRSPackagePackage.createPackageContents();
+		theExecutionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theResultsPackage.initializePackageContents();
@@ -120,6 +125,7 @@ public class ResultsPackageImpl extends EPackageImpl implements ResultsPackage {
 		theMetricsPackage.initializePackageContents();
 		theStandardGrammarPackage.initializePackageContents();
 		theMRSPackagePackage.initializePackageContents();
+		theExecutionPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theResultsPackage.freeze();
