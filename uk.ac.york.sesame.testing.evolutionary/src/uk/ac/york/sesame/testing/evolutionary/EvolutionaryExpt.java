@@ -39,6 +39,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Executio
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.evolutionary.distributed.AllocationStrategy;
 import uk.ac.york.sesame.testing.evolutionary.distributed.DynamicAllocation;
+import uk.ac.york.sesame.testing.evolutionary.distributed.PreInitFailed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.UpFrontAllocation;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SESAMEEvaluationProblemDistributed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANODistributedExperiment;
@@ -88,6 +89,8 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	private int maxIterations;
 	private int conditionDepth;
 	private String grammarPath;
+	
+	private SOPRANOExperimentManager exptManager; 
 
 	private Optional<TestCampaign> testCampaign_o;
 
@@ -114,17 +117,17 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		testCampaign_o = loader.getTestCampaign(testSpaceModel, campaignName);
 	}
 	
-	public SolutionListEvaluator<SESAMETestSolution> setupExptEvaluator(TestCampaign selectedCampaign) {
+	public SolutionListEvaluator<SESAMETestSolution> setupExptEvaluator(TestCampaign selectedCampaign) throws PreInitFailed {
 		SolutionListEvaluator<SESAMETestSolution> evaluator;
 		MRS mrs = testingSpace.getMrs();
 		ExecutionStrategy exec = mrs.getExecStrategy();
 		
 		if (exec.isDistributed()) {
 			DistributedExecutionStrategy distExec = (DistributedExecutionStrategy)exec;
-			SOPRANODistributedExperiment distributedExpt = new SOPRANODistributedExperiment(selectedCampaign, loader, orchestratorBasePath, spaceModelFileName);
+			SOPRANODistributedExperiment distributedExpt = new SOPRANODistributedExperiment(selectedCampaign, distExec, loader, orchestratorBasePath, spaceModelFileName);
 			
 			AllocationStrategy strat = translateAllocationStrategy(distExec.getAllocationStrategy());
-			SOPRANOExperimentManager exptManager = new SOPRANOExperimentManager(distributedExpt, strat);
+			this.exptManager = new SOPRANOExperimentManager(distributedExpt, strat);
 			
 			if (distExec.isAutomaticWorkerDetection()) {
 				exptManager.autoDetectWorkers();
@@ -135,6 +138,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 				exptManager.registerExecutionTarget(et);
 			}
 			
+			exptManager.initActiveExperiment();
 			exptManager.startLoopThread();
 			
 			evaluator = exptManager;
@@ -146,6 +150,13 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		
 	}
 
+	public void terminateEvaluators() throws PreInitFailed {
+		// For distributed experiments
+		if (exptManager != null) {
+			exptManager.terminateActiveExperiment();
+		}
+	}
+	
 	private AllocationStrategy translateAllocationStrategy(uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.AllocationStrategy dslStrat) {
 		if (dslStrat instanceof DynamicTaskAllocation) {
 			return new DynamicAllocation();
@@ -159,7 +170,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		return exec.isDistributed();
 	}
 
-	public void runExperiment() {
+	public void runExperiment() throws PreInitFailed {
 		Random crossoverRNG = new Random();
 		Random mutationRNG = new Random();
 
@@ -302,7 +313,10 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 					printQualityIndicators(population, referenceParetoFront);
 				}
 
+				System.out.println("Terminating evaluators");
+				terminateEvaluators();
 				System.out.println("Done!");
+				
 			} else {
 				System.out.println("No valid test generation selected");
 			}

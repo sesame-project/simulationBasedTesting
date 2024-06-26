@@ -59,6 +59,30 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 			}
 		};
 	}
+	
+	private void initExperiment(SOPRANODistributedExperiment expt) throws PreInitFailed {
+		System.out.println("Initialising experiment " + expt.getCampaign().getName());
+		for (WorkerNode n : availableNodes) {
+			n.initExperimentOnNode(expt);
+		}
+	}
+	
+	private void terminateExperiment(SOPRANODistributedExperiment expt) {
+		System.out.println("Terminating experiment " + expt.getCampaign().getName());
+		for (WorkerNode n : availableNodes) {
+			n.terminateExperimentOnNode(expt);
+		}
+	}
+	
+	public void initActiveExperiment() throws PreInitFailed {
+		this.initExperiment(activeExperiment);
+	}
+	
+	public void terminateActiveExperiment() {
+		this.terminateExperiment(activeExperiment);
+		// Need to stop the experimental loop
+		this.activeExperiment.setCompleted();
+	}
 
 	public void registerAvailableWorker(WorkerNode workerNode) {
 		availableNodes.add(workerNode);
@@ -74,7 +98,6 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 		try {
 			
 			while (!activeExperiment.isCompleted()) {
-				
 				// Need to wait until code generation is completed here!
 				try {
 					TimeUnit.SECONDS.sleep(10);
@@ -112,8 +135,6 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 			e.printStackTrace();
 		}
 	}
-
-
 
 	public void startLoopThread() {
 		loopThread.start();
@@ -185,13 +206,13 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 		for (List<RemoteTest> tests : allocationMapping.values()) {
 			tests.remove(t);
 		}
-		
 	}
 
+	// TODO: this may be called by the SolutionListManager for certain experiments, is
+	// it correct to close the experiment here?
 	@Override
 	public void shutdown() {
-		// TODO Auto-generated method stub
-
+		terminateActiveExperiment();
 	}
 
 	public void autoDetectWorkers() {

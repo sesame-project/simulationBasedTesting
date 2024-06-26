@@ -3,6 +3,7 @@ package uk.ac.york.sesame.testing.evolutionary.main;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 
 import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
+import uk.ac.york.sesame.testing.evolutionary.distributed.PreInitFailed;
 
 public class EvolutionaryRunnerTTS {
 	//	JMetal manages a population of Test models - containing a single test
@@ -43,6 +44,9 @@ public class EvolutionaryRunnerTTS {
 			jmetalExpt = new EvolutionaryExpt(orchestratorBasePath, spaceModelFileName, campaignToRun, CODE_GENERATION_DIRECTORY, maxIterations, populationSize, offspringSize, conditionBased, maxConditionDepth, grammarPath);
 			jmetalExpt.runExperiment();
 		} catch (EolModelLoadingException e) {
+			e.printStackTrace();
+		} catch (PreInitFailed e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

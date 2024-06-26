@@ -32,9 +32,9 @@ public class RemoteStatusMonitor {
 		return Optional.empty();
 	}
 	
-	private boolean statusIsCompleted(TestStatus s) {
-		return (s != TestStatus.RUNNING);
-	}
+//	private boolean statusIsCompleted(TestStatus s) {
+//		return (s != TestStatus.RUNNING);
+//	}
 	
 	public RemoteStatusMonitor(SOPRANOExperimentManager manager, RemoteTest remoteTest, WorkerNode remoteWorker)  {
 		// Need to connect to the remote system

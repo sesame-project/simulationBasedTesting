@@ -48,6 +48,9 @@ public class ExptRunner_[%= campaign.name %] {
 			jmetalExpt.runExperiment();
 		} catch (EolModelLoadingException e) {
 			e.printStackTrace();
+		} catch (PreInitFailed e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		[% } %]
 	}

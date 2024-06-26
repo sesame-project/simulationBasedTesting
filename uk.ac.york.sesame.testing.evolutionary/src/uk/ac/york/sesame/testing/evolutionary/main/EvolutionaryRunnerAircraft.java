@@ -3,9 +3,10 @@ package uk.ac.york.sesame.testing.evolutionary.main;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 
 import uk.ac.york.sesame.testing.evolutionary.EvolutionaryExpt;
+import uk.ac.york.sesame.testing.evolutionary.distributed.PreInitFailed;
 
 public class EvolutionaryRunnerAircraft {
-	public static void main(String [] args) {
+	public static void main(String [] args) throws PreInitFailed {
 
 		// Parameters for NSGA-II
 		double timingProbMut = 0.666;
