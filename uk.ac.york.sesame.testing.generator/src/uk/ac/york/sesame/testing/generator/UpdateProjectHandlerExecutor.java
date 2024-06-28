@@ -158,11 +158,15 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (ErrorGettingPath e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
+			
 		}
 	}
 
-	protected static ArrayList<String> registerMMs(String generatorProjectPath) throws IOException {
+	protected static ArrayList<String> registerMMs(String generatorProjectPath) throws IOException, ErrorGettingPath {
 
 		System.out.println("CURRENT USER.DIR = " + System.getProperty("user.dir"));
 		ArrayList<String> mmURIs = new ArrayList<String>();
@@ -173,7 +177,7 @@ public class UpdateProjectHandlerExecutor implements IRunnableWithProgress {
 //		File repoRoot = f.getParentFile();
 //		String ecoreMetamodelDir = repoRoot.toString() + "/uk.ac.york.sesame.testing.dsl/models/";
 //      }
-		String ecoreMetamodelDir = ModelPathDefinitions.getModelPath();
+		String ecoreMetamodelDir = DiscoverPaths.getModelDirectoryAsString();
 
 		Resource testingMM = xmiFactory.createResource(URI.createFileURI(ecoreMetamodelDir + "TestingMM.ecore"));
 		testingMM.load(null);

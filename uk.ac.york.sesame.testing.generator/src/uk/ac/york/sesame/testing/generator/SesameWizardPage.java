@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.eclipse.ui.dialogs.FileSelectionDialog;
+//import org.eclipse.ui.dialogs.FileSelectionDialog;
 import org.eclipse.ui.dialogs.ResourceListSelectionDialog;
 import org.eclipse.ui.dialogs.ResourceSelectionDialog;
 import org.eclipse.ui.dialogs.SaveAsDialog;
@@ -33,7 +33,7 @@ public class SesameWizardPage extends WizardPage {
 
 	private Text testingModelLocation;
 	private Text codeGenerationDirectory;
-	private Text orchestratorBasePath;
+	//private Text orchestratorBasePath;
 	
 	//mrsModelLocation;
 	private Composite container;
@@ -47,7 +47,7 @@ public class SesameWizardPage extends WizardPage {
 		boolean isComplete = (testingModelLocation.getText().length() > 0);
 		// Allow the code generation directory to be empty, we just use the project path as default
 		//isComplete = isComplete && (codeGenerationDirectory.getText().length() > 0);
-		isComplete = isComplete && (orchestratorBasePath.getText().length() > 0);
+		//isComplete = isComplete && (orchestratorBasePath.getText().length() > 0);
 		return isComplete; 
 	}
 
@@ -127,36 +127,36 @@ public class SesameWizardPage extends WizardPage {
 		
 		//////////////////////////////////////////////////////////////////////////////////
 		// orchestratorBasePath
-		Label label3 = new Label(container, SWT.NONE);
-		label3.setText("Generator Project Base Path:\nPlease select the full path of \nthe generator project \"uk.ac.york.sesame.testing.generator\"\n in the parent Eclipse");
-		//label3.setText("Generator Project Base Path:");
-		orchestratorBasePath = new Text(container, SWT.BORDER | SWT.SINGLE);
-		orchestratorBasePath.addKeyListener(new KeyListener() {
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				if (isWizardComplete())
-					setPageComplete(true);
-				else
-					setPageComplete(false);
-			}
-		});
+//		Label label3 = new Label(container, SWT.NONE);
+//		label3.setText("Generator Project Base Path:\nPlease select the full path of \nthe generator project \"uk.ac.york.sesame.testing.generator\"\n in the parent Eclipse");
+//		//label3.setText("Generator Project Base Path:");
+//		orchestratorBasePath = new Text(container, SWT.BORDER | SWT.SINGLE);
+//		orchestratorBasePath.addKeyListener(new KeyListener() {
+//
+//			@Override
+//			public void keyPressed(KeyEvent e) {
+//				// TODO Auto-generated method stub
+//			}
+//
+//			@Override
+//			public void keyReleased(KeyEvent e) {
+//				if (isWizardComplete())
+//					setPageComplete(true);
+//				else
+//					setPageComplete(false);
+//			}
+//		});
 		
-		Button buttonOrchestratorBasePath = new Button(container, SWT.PUSH);
-		buttonOrchestratorBasePath.setText("Browse...");
-		buttonOrchestratorBasePath.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				// This should be a Project selection?
-				handleBrowseDirectory(orchestratorBasePath);
-				setPageComplete(isWizardComplete());
-			}
-		});
+//		Button buttonOrchestratorBasePath = new Button(container, SWT.PUSH);
+//		buttonOrchestratorBasePath.setText("Browse...");
+//		buttonOrchestratorBasePath.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent e) {
+//				// This should be a Project selection?
+//				handleBrowseDirectory(orchestratorBasePath);
+//				setPageComplete(isWizardComplete());
+//			}
+//		});
 
 		setControl(container);
 		setPageComplete(isWizardComplete());
@@ -170,9 +170,10 @@ public class SesameWizardPage extends WizardPage {
 		return codeGenerationDirectory.getText();
 	}
 	
-	public String getOrchestratorBasePath() {
-		return orchestratorBasePath.getText();
-	}
+//	public String getOrchestratorBasePath() {
+//		//return orchestratorBasePath.getText();
+//		return DiscoverPaths.findGeneratorProject(null)
+//	}
 	
 //	public String getMRSModelLocation() {
 //		return mrsModelLocation.getText();
