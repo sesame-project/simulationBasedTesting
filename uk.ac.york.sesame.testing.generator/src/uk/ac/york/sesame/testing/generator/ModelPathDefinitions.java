@@ -1,16 +1,39 @@
 package uk.ac.york.sesame.testing.generator;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.Reader;
 import java.util.Properties;
 
 public class ModelPathDefinitions {
 	
-	// ModelPathDefintions: read the paths from a properties file in /home/USER/simtesting.props!
-	private static String REPO_BASE_PATH = "/home/jharbin/academic/sesame/WP6/simulationBasedTesting/";
+	private static Properties loadProperties() throws MissingPropertiesFile {
+		String homeDir = System.getProperty("user.home");
+		File propsFile = new File(homeDir, "simtesting.properties");
+		
+		try {
+			Properties props = new Properties();
+			props.load(new FileInputStream(propsFile));
+			return props;
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new MissingPropertiesFile(propsFile);
+		}
+		
+	}
 	
-	public static String getModelPath() {
-		//Properties catalogProps = new Properties();
-		//catalogProps.load(new Reader(catalogConfigPath));
-		return REPO_BASE_PATH + "/uk.ac.york.sesame.testing.dsl/models/";
+	public static String getProperty(String key) throws MissingProperty {
+		
+		try {	
+			Properties props = loadProperties();
+			return props.getProperty(key);
+		} catch (MissingPropertiesFile e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new MissingProperty(key);
+		}
 	}
 }

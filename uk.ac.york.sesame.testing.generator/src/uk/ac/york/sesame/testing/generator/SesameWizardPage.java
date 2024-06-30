@@ -45,9 +45,7 @@ public class SesameWizardPage extends WizardPage {
 	
 	private boolean isWizardComplete() {
 		boolean isComplete = (testingModelLocation.getText().length() > 0);
-		// Allow the code generation directory to be empty, we just use the project path as default
-		//isComplete = isComplete && (codeGenerationDirectory.getText().length() > 0);
-		//isComplete = isComplete && (orchestratorBasePath.getText().length() > 0);
+		isComplete = isComplete && (codeGenerationDirectory.getText().length() > 0);
 		return isComplete; 
 	}
 
@@ -72,7 +70,7 @@ public class SesameWizardPage extends WizardPage {
 				// TODO Auto-generated method stub
 			}
 
-			@Override
+			//@Override
 			public void keyReleased(KeyEvent e) {
 				if (isWizardComplete())
 					setPageComplete(true);
@@ -84,7 +82,7 @@ public class SesameWizardPage extends WizardPage {
 		Button buttonTestingModelLocation = new Button(container, SWT.PUSH);
 		buttonTestingModelLocation.setText("Browse...");
 		buttonTestingModelLocation.addSelectionListener(new SelectionAdapter() {
-			@Override
+			//@Override
 			public void widgetSelected(SelectionEvent e) {
 				handleBrowseFile(testingModelLocation);
 				setPageComplete(isWizardComplete());
@@ -112,7 +110,6 @@ public class SesameWizardPage extends WizardPage {
 				else
 					setPageComplete(false);
 			}
-
 		});
 		
 		Button buttonCodeGenerationDir = new Button(container, SWT.PUSH);
@@ -186,8 +183,10 @@ public class SesameWizardPage extends WizardPage {
 		ResourceListSelectionDialog dialog = new ResourceListSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), IResource.FILE);
 		if (dialog.open() == Window.OK) {
 			Object[] result = dialog.getResult();
-				textfield.setText(((File) result[0]).getLocation().makeAbsolute().toOSString());
+				textfield.setText(((File)result[0]).getLocation().makeAbsolute().toOSString());
+				System.out.println("textfield from browseFile = " + textfield.getText());
 		}
+		
 	}
 	
 	protected void handleBrowseDirectory(Text textfield) {

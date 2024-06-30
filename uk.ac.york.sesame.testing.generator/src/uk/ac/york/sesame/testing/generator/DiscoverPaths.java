@@ -42,7 +42,7 @@ public class DiscoverPaths {
 	}
 
 	public static String getModelDirectoryAsString() throws ErrorGettingPath {
-		Optional<File> repoBaseDir_o = findRepoBase();
+		Optional<File> repoBaseDir_o = findRepoBase(); 
 		if (repoBaseDir_o.isPresent()) {
 			return getModelDirectory(repoBaseDir_o.get()).getAbsolutePath();
 		} else {
@@ -52,7 +52,7 @@ public class DiscoverPaths {
 	
 	public static File propertiesFile() {
 		String homeDir = System.getProperty("user.home");
-		return new File(homeDir + "simtesting.properties");
+		return new File(homeDir + "/simtesting.properties");
 	}
 	
 	public static Properties loadPropertiesFile() throws MissingPropertiesFile {
@@ -78,15 +78,27 @@ public class DiscoverPaths {
 	}
 
 	public static void main(String[] args) {
-		String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-		System.out.println("Root path " + rootPath);
-		System.out.println("Home Directory: " + System.getProperty("user.home"));
-		System.out.println("Present Project Directory: " + System.getProperty("user.dir"));
+		//String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+		//System.out.println("Root path " + rootPath);
+//		System.out.println("Home Directory: " + System.getProperty("user.home"));
+//		System.out.println("Present Project Directory: " + System.getProperty("user.dir"));
+		
+		Properties props = new Properties();
 		Optional<File> repoBaseDir_o = findRepoBase();
 		if (repoBaseDir_o.isPresent()) {
 			File repoBaseDir = repoBaseDir_o.get();
-			File genProject = findGeneratorProject(repoBaseDir);
-			System.out.println("Generator project: " + genProject.getAbsolutePath());
+			File metamodelFile = new File(repoBaseDir, "/uk.ac.york.sesame.testing.dsl/models/TestingMM.ecore");
+			File genProjectDir = findGeneratorProject(repoBaseDir);
+			System.out.println("Generator project dir:" + genProjectDir.getAbsolutePath());	
+			props.setProperty("TESTING_METAMODEL_FILE", metamodelFile.getAbsolutePath());
+			props.setProperty("GENERATOR_PROJECT_DIR", genProjectDir.getAbsolutePath());
+			try {
+				updatePropertiesFile(props);
+				System.out.println("Properties updated and stored at " + propertiesFile().getAbsolutePath());
+			} catch (MissingPropertiesFile e) {
+				e.printStackTrace();
+			}
+			
 		}
 	}
 }
