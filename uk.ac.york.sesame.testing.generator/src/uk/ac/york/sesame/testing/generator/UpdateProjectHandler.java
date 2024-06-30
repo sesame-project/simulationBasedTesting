@@ -40,9 +40,6 @@ public class UpdateProjectHandler implements IHandler {
 		}
 
 		try {
-//			IRunnableWithProgress op = new UpdateProjectHandlerExecutor(theIProject, theIProjectPath, event);
-//			Dialog d = new Dialog();
-//			new ProgressMonitorDialog(HandlerUtil.getActiveWorkbenchWindow(event).getShell()).run(true, true, op);
 			UpdateProjectHandlerExecutor handler = new UpdateProjectHandlerExecutor(theIProject, theIProjectPath, event);
 			handler.run();
 

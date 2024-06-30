@@ -78,23 +78,26 @@ public class DiscoverPaths {
 	}
 
 	public static void main(String[] args) {
-		//String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-		//System.out.println("Root path " + rootPath);
-//		System.out.println("Home Directory: " + System.getProperty("user.home"));
-//		System.out.println("Present Project Directory: " + System.getProperty("user.dir"));
 		
 		Properties props = new Properties();
 		Optional<File> repoBaseDir_o = findRepoBase();
 		if (repoBaseDir_o.isPresent()) {
 			File repoBaseDir = repoBaseDir_o.get();
-			File metamodelFile = new File(repoBaseDir, "/uk.ac.york.sesame.testing.dsl/models/TestingMM.ecore");
+			File metamodelDir = new File(repoBaseDir, "/uk.ac.york.sesame.testing.dsl/models/");
+			File metamodelFile = new File(metamodelDir, "TestingMM.ecore");
+			File autoRunnerScripts = new File(repoBaseDir, "/uk.ac.york.sesame.testing.evolutionary/scripts/");
+			
 			File genProjectDir = findGeneratorProject(repoBaseDir);
-			System.out.println("Generator project dir:" + genProjectDir.getAbsolutePath());	
+			System.out.println("Generator project dir:" + genProjectDir.getAbsolutePath());
+			props.setProperty("METAMODEL_DIR", metamodelDir.getAbsolutePath());
 			props.setProperty("TESTING_METAMODEL_FILE", metamodelFile.getAbsolutePath());
 			props.setProperty("GENERATOR_PROJECT_DIR", genProjectDir.getAbsolutePath());
+			props.setProperty("LOCAL_AUTO_RUNNER_SCRIPTS_DIR", autoRunnerScripts.getAbsolutePath());
+			
 			try {
 				updatePropertiesFile(props);
-				System.out.println("Properties updated and stored at " + propertiesFile().getAbsolutePath());
+				System.out.println(props);
+				System.out.println("These properties updated and stored at " + propertiesFile().getAbsolutePath());
 			} catch (MissingPropertiesFile e) {
 				e.printStackTrace();
 			}

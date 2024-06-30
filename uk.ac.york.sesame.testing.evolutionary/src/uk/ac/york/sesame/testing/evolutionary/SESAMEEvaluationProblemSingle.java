@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
-import java.util.Random;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.TopicPartition;
@@ -19,6 +18,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.ExecutionEndTrigge
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TimeBasedEnd;
+import uk.ac.york.sesame.testing.evolutionary.utilities.MissingPropertiesFile;
+import uk.ac.york.sesame.testing.evolutionary.utilities.MissingProperty;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
@@ -58,6 +59,8 @@ public class SESAMEEvaluationProblemSingle extends SESAMEEvaluationProblemBase {
 	private static final double MODEL_SAVING_DELAY_IN_DEBUG_MODE = 0.5;
 	
 	private static final boolean USE_METRIC_TIME_END_TIME = true;
+
+	private static final boolean TERMINATE_EXECUTION_ON_MISSING_PROPERTY = true;
 	
 	public SESAMEEvaluationProblemSingle(String orchestratorBasePath, SESAMEModelLoader loader,
 			String spaceModelFileName, Resource testSpaceModel, TestingSpace testingSpace,
@@ -225,11 +228,27 @@ public class SESAMEEvaluationProblemSingle extends SESAMEEvaluationProblemBase {
 
 			}
 
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
 			System.out.println("Probably a metric returned something non-numeric");
 			e.printStackTrace();
+		} catch (MissingProperty mp) {
+			mp.printStackTrace();
+			
+			// Assuming we should exit on a missing property
+			if (TERMINATE_EXECUTION_ON_MISSING_PROPERTY) {
+				System.err.println("Exiting due to missing property in properties file " + mp.getKey());
+				System.exit(-1);
+			}
+		} catch (MissingPropertiesFile mpf) {
+			// TODO Auto-generated catch block
+			mpf.printStackTrace();
+			if (TERMINATE_EXECUTION_ON_MISSING_PROPERTY) {
+				System.err.println("Exiting due to missing properties file at " + mpf.getExpectedLocationPath());
+				System.exit(-1);
+			}
 		}
 	}
 	

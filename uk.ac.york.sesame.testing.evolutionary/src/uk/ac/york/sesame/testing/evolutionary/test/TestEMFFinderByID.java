@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 
 import uk.ac.york.sesame.testing.architecture.utilities.ExptHelper;
-import uk.ac.york.sesame.testing.evolutionary.utilities.PathDefinitions;
+import uk.ac.york.sesame.testing.evolutionary.utilities.PathLookupFromProperties;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
 public class TestEMFFinderByID {

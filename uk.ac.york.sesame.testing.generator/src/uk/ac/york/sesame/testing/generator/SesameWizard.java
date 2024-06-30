@@ -20,7 +20,8 @@ public class SesameWizard extends Wizard {
 
 	@Override
 	public void addPages() {
-		page = new SesameWizardPage();
+		// JRH: supply the default code generation directory from the IProjectPath
+		page = new SesameWizardPage(wizardExecutor.getIProjectPath());
 		addPage(page);
 	}
 

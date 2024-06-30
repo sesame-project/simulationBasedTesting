@@ -155,7 +155,6 @@ public class UtilityMethods {
 //		}
 //	}
 
-
 	public static void createThePluginXmlFile(String theDestinationIProjectFolder) throws IOException {
 		BufferedWriter output = new BufferedWriter(
 				new FileWriter(theDestinationIProjectFolder + File.separator + "plugin.xml", false));
@@ -216,6 +215,5 @@ public class UtilityMethods {
 		myMap.put("DMLCommand.java", "src/org/typhon/commands/DMLCommand.java");
 
 		return myMap;
-		
 	}
 }

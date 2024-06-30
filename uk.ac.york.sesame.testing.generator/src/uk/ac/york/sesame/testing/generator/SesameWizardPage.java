@@ -3,9 +3,6 @@ package uk.ac.york.sesame.testing.generator;
 import org.eclipse.core.internal.resources.File;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.debug.internal.ui.sourcelookup.browsers.DirectorySourceContainerDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -13,36 +10,32 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DirectoryDialog;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.dialogs.ContainerSelectionDialog;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-//import org.eclipse.ui.dialogs.FileSelectionDialog;
 import org.eclipse.ui.dialogs.ResourceListSelectionDialog;
-import org.eclipse.ui.dialogs.ResourceSelectionDialog;
-import org.eclipse.ui.dialogs.SaveAsDialog;
-import org.eclipse.ui.internal.ide.dialogs.FileFolderSelectionDialog;
 
 public class SesameWizardPage extends WizardPage {
 
 	private Text testingModelLocation;
 	private Text codeGenerationDirectory;
-	//private Text orchestratorBasePath;
-	
-	//mrsModelLocation;
 	private Composite container;
+	private String defaultCodeGenerationDir;
 
 	public SesameWizardPage() {
 		super("Provide model locations");
 		setTitle("Provide model locations");
 	}
 	
+	public SesameWizardPage(String defaultCodeGenerationDir) {
+		super("Provide model locations");
+		setTitle("Provide model locations");
+		this.defaultCodeGenerationDir = defaultCodeGenerationDir;
+	}
+
 	private boolean isWizardComplete() {
 		boolean isComplete = (testingModelLocation.getText().length() > 0);
 		isComplete = isComplete && (codeGenerationDirectory.getText().length() > 0);
@@ -95,6 +88,7 @@ public class SesameWizardPage extends WizardPage {
 		label2.setText("Code Generation Directory:\nIf this is omitted, the base of the current project will be used");
 		//label2.setText("Code Generation Directory:");
 		codeGenerationDirectory = new Text(container, SWT.BORDER | SWT.SINGLE);
+		codeGenerationDirectory.setText(defaultCodeGenerationDir);
 		codeGenerationDirectory.addKeyListener(new KeyListener() {
 
 			@Override
@@ -121,39 +115,6 @@ public class SesameWizardPage extends WizardPage {
 				setPageComplete(isWizardComplete());
 			}
 		});
-		
-		//////////////////////////////////////////////////////////////////////////////////
-		// orchestratorBasePath
-//		Label label3 = new Label(container, SWT.NONE);
-//		label3.setText("Generator Project Base Path:\nPlease select the full path of \nthe generator project \"uk.ac.york.sesame.testing.generator\"\n in the parent Eclipse");
-//		//label3.setText("Generator Project Base Path:");
-//		orchestratorBasePath = new Text(container, SWT.BORDER | SWT.SINGLE);
-//		orchestratorBasePath.addKeyListener(new KeyListener() {
-//
-//			@Override
-//			public void keyPressed(KeyEvent e) {
-//				// TODO Auto-generated method stub
-//			}
-//
-//			@Override
-//			public void keyReleased(KeyEvent e) {
-//				if (isWizardComplete())
-//					setPageComplete(true);
-//				else
-//					setPageComplete(false);
-//			}
-//		});
-		
-//		Button buttonOrchestratorBasePath = new Button(container, SWT.PUSH);
-//		buttonOrchestratorBasePath.setText("Browse...");
-//		buttonOrchestratorBasePath.addSelectionListener(new SelectionAdapter() {
-//			@Override
-//			public void widgetSelected(SelectionEvent e) {
-//				// This should be a Project selection?
-//				handleBrowseDirectory(orchestratorBasePath);
-//				setPageComplete(isWizardComplete());
-//			}
-//		});
 
 		setControl(container);
 		setPageComplete(isWizardComplete());
@@ -166,20 +127,8 @@ public class SesameWizardPage extends WizardPage {
 	public String getCodeGenerationDirectory() {
 		return codeGenerationDirectory.getText();
 	}
-	
-//	public String getOrchestratorBasePath() {
-//		//return orchestratorBasePath.getText();
-//		return DiscoverPaths.findGeneratorProject(null)
-//	}
-	
-//	public String getMRSModelLocation() {
-//		return mrsModelLocation.getText();
-//	}
 
 	protected void handleBrowseFile(Text textfield) {
-//		FileDialog dialog = new FileDialog(getShell());
-//		dialog.setFilterPath(ResourcesPlugin.getWorkspace().getRoot().toString());
-//		dialog.open();
 		ResourceListSelectionDialog dialog = new ResourceListSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), IResource.FILE);
 		if (dialog.open() == Window.OK) {
 			Object[] result = dialog.getResult();

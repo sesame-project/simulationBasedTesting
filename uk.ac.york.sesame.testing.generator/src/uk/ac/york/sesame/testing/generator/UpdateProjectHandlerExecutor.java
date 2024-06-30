@@ -122,15 +122,13 @@ public class UpdateProjectHandlerExecutor {
 
 			// EGX END
 			System.out.println("Project pom updated, please run an update in maven if needed.");
-			// JRH: POM file generation is handled by the EGL in pom/pomXML.egl now
+			// JRH: POM file generation is now handled by the EGL in pom/pomXML.egl
 			}
 
 		} catch (EolModelLoadingException e) {
 			e.printStackTrace();
 		} catch (EolRuntimeException e) {
 			e.printStackTrace();
-//		} catch (URISyntaxException e) {
-			//e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ErrorGettingPath e) {
@@ -204,6 +202,10 @@ public class UpdateProjectHandlerExecutor {
 //
 	public void setCodeGenerationDirectory(String codeGenerationDirectory) {
 		this.codeGenerationDirectory = codeGenerationDirectory;
+	}
+	
+	public String getIProjectPath() {
+		return this.theIProjectPath;
 	}
 //
 //	public void setOrchestratorBasePath(String orchestratorBasePath) {
