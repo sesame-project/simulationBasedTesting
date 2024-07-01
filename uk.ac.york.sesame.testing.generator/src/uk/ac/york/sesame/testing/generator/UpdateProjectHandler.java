@@ -6,6 +6,7 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -39,8 +40,9 @@ public class UpdateProjectHandler implements IHandler {
 		}
 
 		try {
-			IRunnableWithProgress op = new UpdateProjectHandlerExecutor(theIProject, theIProjectPath, event);
-			new ProgressMonitorDialog(HandlerUtil.getActiveWorkbenchWindow(event).getShell()).run(true, true, op);
+			UpdateProjectHandlerExecutor handler = new UpdateProjectHandlerExecutor(theIProject, theIProjectPath, event);
+			handler.run();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

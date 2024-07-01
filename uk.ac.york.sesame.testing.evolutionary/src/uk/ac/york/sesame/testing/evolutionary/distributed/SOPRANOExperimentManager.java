@@ -17,6 +17,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionTarget;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.SOPRANOWorkerNode;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
+import uk.ac.york.sesame.testing.evolutionary.utilities.MissingPropertiesFile;
+import uk.ac.york.sesame.testing.evolutionary.utilities.MissingProperty;
 
 public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETestSolution> {
 	// Determines the allocation of tasks to workers
@@ -24,6 +26,7 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	// Polls and checks their status periodically
 
 	private static final long serialVersionUID = 1L;
+	private static final boolean TERMINATE_EXECUTION_ON_MISSING_PROPERTY_INFO = false;
 	// Status monitors - each create a MetricMonitor when they are ready
 	List<RemoteStatusMonitor> remoteStatusMonitors = new ArrayList<RemoteStatusMonitor>();
 	
@@ -155,7 +158,22 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 		
 		// Before submitting the test to the queue, ensure that code generation is up to date!
 		// and the experiment files are synced to the remote PC
-		activeExperiment.generateAllCode();
+		try {
+			activeExperiment.generateAllCode();
+		} catch (MissingProperty mp) {
+			mp.printStackTrace();
+			if (TERMINATE_EXECUTION_ON_MISSING_PROPERTY_INFO) {
+				System.err.println("Exiting due to missing property in properties file " + mp.getKey());
+				System.exit(-1);
+			}
+			
+		} catch (MissingPropertiesFile mpf) {
+			mpf.printStackTrace();
+			if (TERMINATE_EXECUTION_ON_MISSING_PROPERTY_INFO) {
+				System.err.println("Exiting due to missing property in properties file " + mpf.getExpectedLocationPath());
+				System.exit(-1);
+			}
+		}
 		activeExperiment.synchroniseFiles();		
 		
 		waitForMetrics();

@@ -1,12 +1,18 @@
-package uk.ac.york.sesame.testing.generator;
+package uk.ac.york.sesame.testing.evolutionary.utilities;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.Properties;
 
-public class ModelPathDefinitions {
+public class PathLookupFromProperties {
+	
+	public static enum PathSpec {
+		LOCAL_AUTO_RUNNER_SCRIPTS_DIR,
+		TESTING_METAMODEL_FILE,
+	}
+	
+	private static Properties cachedProps;
 	
 	private static Properties loadProperties() throws MissingPropertiesFile {
 		String homeDir = System.getProperty("user.home");
@@ -22,18 +28,19 @@ public class ModelPathDefinitions {
 			e.printStackTrace();
 			throw new MissingPropertiesFile(propsFile);
 		}
-		
 	}
 	
-	public static String getProperty(String key) throws MissingProperty {
+	public static String getProperty(PathSpec key) throws MissingProperty, MissingPropertiesFile {
 		
-		try {	
-			Properties props = loadProperties();
-			return props.getProperty(key);
-		} catch (MissingPropertiesFile e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new MissingProperty(key);
+		String keyName = key.toString();
+		if (cachedProps == null) {
+			cachedProps = loadProperties();
+		}
+			
+		if (cachedProps.containsKey(keyName)) {
+			return cachedProps.getProperty(keyName);
+		} else {
+			throw new MissingProperty(keyName);
 		}
 	}
 }

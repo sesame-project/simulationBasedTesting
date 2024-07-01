@@ -14,6 +14,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Containe
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Dependency;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DistributedExecutionStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
+import uk.ac.york.sesame.testing.evolutionary.utilities.MissingPropertiesFile;
+import uk.ac.york.sesame.testing.evolutionary.utilities.MissingProperty;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
@@ -79,7 +81,7 @@ public class SOPRANODistributedExperiment {
 		return deps;
 	}
 	
-	public synchronized void generateAllCode() {
+	public synchronized void generateAllCode() throws MissingProperty, MissingPropertiesFile {
 		String campaignName = selectedCampaign.getName();
 		
 		// TODO: do we need a proper separation of the MRS models now?

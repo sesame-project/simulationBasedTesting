@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
+//import org.apache.commons.io.FileUtils;
 import org.eclipse.core.internal.resources.Resource;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -137,24 +137,23 @@ public class UtilityMethods {
 		return uri;
 	}
 
-	public static void copyTheStaticContentClasses(String theDestinationIProjectFolder, IJavaProject theDestinationIProject) throws IOException, URISyntaxException {
-
-		String theTargetDirectory = theDestinationIProjectFolder + File.separator + "src/org/typhon/entities/";
-		System.out.println("The target dir: " + theTargetDirectory);
-		File targetDir = new File(theTargetDirectory);
-		if (!targetDir.exists()) {
-			targetDir.mkdir();
-		}
-		HashMap<String, String> myMap = getAllFilesThatNeedToBeCopied();
-		for (String fromFileString : myMap.keySet()) {
-			String toFileString = myMap.get(fromFileString);
-			URL fromFilePath = Activator.getDefault().getBundle().getResource("files/staticContent/" + fromFileString);
-			File fromFile = new File(FileLocator.toFileURL(fromFilePath).getPath());
-			File toFile = new File(theDestinationIProjectFolder + File.separator + toFileString);
-			FileUtils.copyFile(fromFile, toFile);
-		}
-	}
-
+//	public static void copyTheStaticContentClasses(String theDestinationIProjectFolder, IJavaProject theDestinationIProject) throws IOException, URISyntaxException {
+//
+//		String theTargetDirectory = theDestinationIProjectFolder + File.separator + "src/org/typhon/entities/";
+//		System.out.println("The target dir: " + theTargetDirectory);
+//		File targetDir = new File(theTargetDirectory);
+//		if (!targetDir.exists()) {
+//			targetDir.mkdir();
+//		}
+//		HashMap<String, String> myMap = getAllFilesThatNeedToBeCopied();
+//		for (String fromFileString : myMap.keySet()) {
+//			String toFileString = myMap.get(fromFileString);
+//			URL fromFilePath = Activator.getDefault().getBundle().getResource("files/staticContent/" + fromFileString);
+//			File fromFile = new File(FileLocator.toFileURL(fromFilePath).getPath());
+//			File toFile = new File(theDestinationIProjectFolder + File.separator + toFileString);
+//			FileUtils.copyFile(fromFile, toFile);
+//		}
+//	}
 
 	public static void createThePluginXmlFile(String theDestinationIProjectFolder) throws IOException {
 		BufferedWriter output = new BufferedWriter(
@@ -216,6 +215,5 @@ public class UtilityMethods {
 		myMap.put("DMLCommand.java", "src/org/typhon/commands/DMLCommand.java");
 
 		return myMap;
-		
 	}
 }

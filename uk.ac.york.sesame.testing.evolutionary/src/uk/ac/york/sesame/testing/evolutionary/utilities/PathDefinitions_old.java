@@ -1,6 +1,7 @@
 package uk.ac.york.sesame.testing.evolutionary.utilities;
 
-public class PathDefinitions {
+// TODO: this can be deleted once the new PathDefinitions lookup from the properties file is working
+public class PathDefinitions_old {
 	public static enum PathSpec {
 		MODEL_PATH,
 		REPO_BASE_PATH,

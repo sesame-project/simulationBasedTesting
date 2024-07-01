@@ -6,7 +6,6 @@ public class SesameWizard extends Wizard {
 
 	protected SesameWizardPage page;
 	private UpdateProjectHandlerExecutor wizardExecutor;
-	private String defaulturl;
 
 	public SesameWizard(UpdateProjectHandlerExecutor updateProjectHandlerExecutor) {
 		super();
@@ -21,19 +20,15 @@ public class SesameWizard extends Wizard {
 
 	@Override
 	public void addPages() {
-		page = new SesameWizardPage();
+		// JRH: supply the default code generation directory from the IProjectPath
+		page = new SesameWizardPage(wizardExecutor.getIProjectPath());
 		addPage(page);
 	}
 
 	@Override
 	public boolean performFinish() {
-		//wizardExecutor.setMrsModelPath(page.getMRSModelLocation());
-		
-		wizardExecutor.setOrchestratorBasePath(page.getOrchestratorBasePath());
-		wizardExecutor.setOrchestratorPath("files/orchestratorFirstPhase.egx");
-		wizardExecutor.setTestingModelPath(page.getTestModelLocation());
-		wizardExecutor.setCodeGenerationDirectory(page.getCodeGenerationDirectory());
-		
+        wizardExecutor.setTestingModelPath(page.getTestModelLocation());
+        wizardExecutor.setCodeGenerationDirectory(page.getCodeGenerationDirectory());
 		return true;
 	}
 }

@@ -1,5 +1,7 @@
 package uk.ac.york.sesame.testing.evolutionary.test;
 
+import uk.ac.york.sesame.testing.evolutionary.utilities.MissingPropertiesFile;
+import uk.ac.york.sesame.testing.evolutionary.utilities.MissingProperty;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 
 public class TestCompilation {
@@ -12,7 +14,13 @@ public class TestCompilation {
 		
 		SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(orchestratorBasePath, spaceModelFileName, __mrsModelFile, campaignName, CODE_GENERATION_DIRECTORY);
 		System.out.println("eglEx - executor created");
-		eglEx.run();
+		try {
+			eglEx.run();
+		} catch (MissingProperty e) {
+			e.printStackTrace();
+		} catch (MissingPropertiesFile e) {
+			e.printStackTrace();
+		}
 		System.out.println("eglEx - executor ran");
 	}
 	

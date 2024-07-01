@@ -39,21 +39,21 @@ public class SESAMEEGLExecutor {
 		System.out.println("orchestratorBasePath = " + orchestratorBasePath);
 	}
 	
-	protected static ArrayList<String> registerMMs() throws IOException, UnknownPath {
+	protected static ArrayList<String> registerMMs() throws IOException, MissingProperty, MissingPropertiesFile {
 
 		System.out.println("CURRENT USER.DIR = " + System.getProperty("user.dir"));
 		ArrayList<String> mmURIs = new ArrayList<String>();
 		Resource.Factory xmiFactory = new XMIResourceFactoryImpl();
 		
-		String modelPath = PathDefinitions.getPath(PathDefinitions.PathSpec.MODEL_PATH);
-
+		//String modelPath = PathDefinitions.getPath(PathDefinitions.PathSpec.MODEL_PATH);
 		//Resource mrsMM = xmiFactory.createResource(URI.createFileURI(modelPath + "ExSceMM.ecore"));
 		//mrsMM.load(null);
 		//EPackage pkgMRS = (EPackage) mrsMM.getContents().get(0);
 		//EPackage.Registry.INSTANCE.put(pkgMRS.getNsURI(), pkgMRS);
 		//mmURIs.add(pkgMRS.getNsURI());
-
-		Resource testingMM = xmiFactory.createResource(URI.createFileURI(modelPath + "TestingMM.ecore"));
+		
+		String ecoreMetamodelFile = PathLookupFromProperties.getProperty(PathLookupFromProperties.PathSpec.TESTING_METAMODEL_FILE);
+		Resource testingMM = xmiFactory.createResource(URI.createFileURI(ecoreMetamodelFile));
 		testingMM.load(null);
 
 		TreeIterator<EObject> allContents = testingMM.getAllContents();
@@ -86,7 +86,7 @@ public class SESAMEEGLExecutor {
 		return theModel;
 	}
 
-	public void run() {
+	public void run() throws MissingProperty, MissingPropertiesFile {
 		try {
 			registerMMs();
 			
@@ -137,8 +137,6 @@ public class SESAMEEGLExecutor {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (UnknownPath e2) {
-			e2.printStackTrace();
 		} finally {
 		}
 	}
