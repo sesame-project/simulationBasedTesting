@@ -1,7 +1,8 @@
-package uk.ac.york.sesame.testing.generator;
+package uk.ac.york.sesame.testing.setup;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Optional;
@@ -55,26 +56,9 @@ public class DiscoverPaths {
 		return new File(homeDir + "/simtesting.properties");
 	}
 	
-	public static Properties loadPropertiesFile() throws MissingPropertiesFile {
-		Properties props = new Properties();
+	public static void updatePropertiesFile(Properties props) throws FileNotFoundException, IOException {
 		File propsLocation = propertiesFile();
-		try {
-			props.load(new FileInputStream(propsLocation));
-			return props;
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new MissingPropertiesFile(propsLocation);
-		}
-	}
-	
-	public static void updatePropertiesFile(Properties props) throws MissingPropertiesFile {
-		File propsLocation = propertiesFile();
-		try {
-			props.store(new FileOutputStream(propsLocation), "Auto-generated properties");
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new MissingPropertiesFile(propsLocation);
-		}
+		props.store(new FileOutputStream(propsLocation), "Auto-generated properties");
 	}
 
 	public static void main(String[] args) {
@@ -96,12 +80,11 @@ public class DiscoverPaths {
 			
 			try {
 				updatePropertiesFile(props);
-				System.out.println(props);
-				System.out.println("These properties updated and stored at " + propertiesFile().getAbsolutePath());
-			} catch (MissingPropertiesFile e) {
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
+			System.out.println(props);
+			System.out.println("These properties updated and stored at " + propertiesFile().getAbsolutePath());			
 		}
 	}
 }

@@ -131,8 +131,6 @@ public class UpdateProjectHandlerExecutor {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (ErrorGettingPath e) {
-			e.printStackTrace();
 		} catch (MissingProperty e) {
 			e.printStackTrace();
 		} finally {
@@ -140,7 +138,7 @@ public class UpdateProjectHandlerExecutor {
 		}
 	}
 
-	protected static ArrayList<String> registerMMs() throws IOException, ErrorGettingPath, MissingProperty {
+	protected static ArrayList<String> registerMMs() throws IOException, MissingProperty {
 
 		System.out.println("CURRENT USER.DIR = " + System.getProperty("user.dir"));
 		ArrayList<String> mmURIs = new ArrayList<String>();
