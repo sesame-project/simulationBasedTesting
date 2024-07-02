@@ -10,6 +10,7 @@ public class PathLookupFromProperties {
 	public static enum PathSpec {
 		LOCAL_AUTO_RUNNER_SCRIPTS_DIR,
 		TESTING_METAMODEL_FILE,
+		SHARED_CODE_DIRECTORY
 	}
 	
 	private static Properties cachedProps;

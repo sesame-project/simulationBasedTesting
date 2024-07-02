@@ -1,7 +1,5 @@
 package uk.ac.york.sesame.testing.evolutionary.distributed;
 
-import static org.junit.Assert.assertArrayEquals;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +14,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Distribu
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.evolutionary.utilities.MissingPropertiesFile;
 import uk.ac.york.sesame.testing.evolutionary.utilities.MissingProperty;
+import uk.ac.york.sesame.testing.evolutionary.utilities.PathLookupFromProperties;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
@@ -28,9 +27,6 @@ public class SOPRANODistributedExperiment {
 	
 	private String orchestratorBasePath;
 	private String spaceModelFilename;
-	
-	// TODO: configurable shared directory
-	private String SHARED_CODE_DIRECTORY = "/samba/shared-soprano-code/";
 	
 	public SOPRANODistributedExperiment(TestCampaign selectedCampaign, DistributedExecutionStrategy dexecStrat, SESAMEModelLoader loader, String orchestratorBasePath, String spaceModelFilename) {
 		this.selectedCampaign = selectedCampaign;
@@ -87,10 +83,9 @@ public class SOPRANODistributedExperiment {
 		// TODO: do we need a proper separation of the MRS models now?
 		String __mrsModelFile = "testingMRS.model";
 		
-		String codeGenerationDirectory = SHARED_CODE_DIRECTORY;
+		String codeGenerationDirectory = PathLookupFromProperties.getProperty(PathLookupFromProperties.PathSpec.SHARED_CODE_DIRECTORY);
 		
 		System.out.println("Generating code for project in: " + codeGenerationDirectory);
-		// This ensures that the new test is installed in the model
 
 		loader.saveTestingSpace();
 		System.out.println("Model updated");

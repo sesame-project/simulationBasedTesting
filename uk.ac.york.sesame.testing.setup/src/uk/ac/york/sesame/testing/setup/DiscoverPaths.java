@@ -67,16 +67,20 @@ public class DiscoverPaths {
 		Optional<File> repoBaseDir_o = findRepoBase();
 		if (repoBaseDir_o.isPresent()) {
 			File repoBaseDir = repoBaseDir_o.get();
+			String homeDir_s = System.getProperty("user.home");
+			File homeDir = new File(homeDir_s); 
 			File metamodelDir = new File(repoBaseDir, "/uk.ac.york.sesame.testing.dsl/models/");
 			File metamodelFile = new File(metamodelDir, "TestingMM.ecore");
 			File autoRunnerScripts = new File(repoBaseDir, "/uk.ac.york.sesame.testing.evolutionary/scripts/");
-			
+			File codeGenSharedDir = new File(homeDir, "/shared-code/"); 
+						
 			File genProjectDir = findGeneratorProject(repoBaseDir);
 			System.out.println("Generator project dir:" + genProjectDir.getAbsolutePath());
 			props.setProperty("METAMODEL_DIR", metamodelDir.getAbsolutePath());
 			props.setProperty("TESTING_METAMODEL_FILE", metamodelFile.getAbsolutePath());
 			props.setProperty("GENERATOR_PROJECT_DIR", genProjectDir.getAbsolutePath());
 			props.setProperty("LOCAL_AUTO_RUNNER_SCRIPTS_DIR", autoRunnerScripts.getAbsolutePath());
+			props.setProperty("SHARED_CODE_DIRECTORY", codeGenSharedDir.getAbsolutePath());
 			
 			try {
 				updatePropertiesFile(props);
