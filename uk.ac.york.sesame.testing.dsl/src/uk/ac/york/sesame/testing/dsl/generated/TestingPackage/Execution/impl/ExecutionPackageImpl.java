@@ -303,8 +303,8 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDistributedExecutionStrategy_Dependencies() {
-		return (EReference)distributedExecutionStrategyEClass.getEStructuralFeatures().get(1);
+	public EAttribute getDistributedExecutionStrategy_ExptRunnerIP() {
+		return (EAttribute)distributedExecutionStrategyEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -312,7 +312,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDistributedExecutionStrategy_ExtraExecutionTargets() {
+	public EReference getDistributedExecutionStrategy_Dependencies() {
 		return (EReference)distributedExecutionStrategyEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -321,8 +321,17 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDistributedExecutionStrategy_AllocationStrategy() {
+	public EReference getDistributedExecutionStrategy_ExtraExecutionTargets() {
 		return (EReference)distributedExecutionStrategyEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDistributedExecutionStrategy_AllocationStrategy() {
+		return (EReference)distributedExecutionStrategyEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -514,6 +523,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 
 		distributedExecutionStrategyEClass = createEClass(DISTRIBUTED_EXECUTION_STRATEGY);
 		createEAttribute(distributedExecutionStrategyEClass, DISTRIBUTED_EXECUTION_STRATEGY__AUTOMATIC_WORKER_DETECTION);
+		createEAttribute(distributedExecutionStrategyEClass, DISTRIBUTED_EXECUTION_STRATEGY__EXPT_RUNNER_IP);
 		createEReference(distributedExecutionStrategyEClass, DISTRIBUTED_EXECUTION_STRATEGY__DEPENDENCIES);
 		createEReference(distributedExecutionStrategyEClass, DISTRIBUTED_EXECUTION_STRATEGY__EXTRA_EXECUTION_TARGETS);
 		createEReference(distributedExecutionStrategyEClass, DISTRIBUTED_EXECUTION_STRATEGY__ALLOCATION_STRATEGY);
@@ -594,8 +604,9 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 
 		initEClass(distributedExecutionStrategyEClass, DistributedExecutionStrategy.class, "DistributedExecutionStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDistributedExecutionStrategy_AutomaticWorkerDetection(), ecorePackage.getEBoolean(), "automaticWorkerDetection", "true", 0, 1, DistributedExecutionStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDistributedExecutionStrategy_Dependencies(), this.getDependency(), null, "dependencies", null, 1, -1, DistributedExecutionStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDistributedExecutionStrategy_ExtraExecutionTargets(), this.getExecutionTarget(), null, "extraExecutionTargets", null, 1, -1, DistributedExecutionStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDistributedExecutionStrategy_ExptRunnerIP(), ecorePackage.getEString(), "exptRunnerIP", null, 0, 1, DistributedExecutionStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDistributedExecutionStrategy_Dependencies(), this.getDependency(), null, "dependencies", null, 0, -1, DistributedExecutionStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDistributedExecutionStrategy_ExtraExecutionTargets(), this.getExecutionTarget(), null, "extraExecutionTargets", null, 0, -1, DistributedExecutionStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDistributedExecutionStrategy_AllocationStrategy(), this.getAllocationStrategy(), null, "allocationStrategy", null, 1, 1, DistributedExecutionStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(allocationStrategyEClass, AllocationStrategy.class, "AllocationStrategy", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

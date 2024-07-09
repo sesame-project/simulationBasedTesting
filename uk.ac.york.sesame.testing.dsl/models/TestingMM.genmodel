@@ -399,6 +399,7 @@
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//Execution/DistributedExecutionStrategy">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/DistributedExecutionStrategy/automaticWorkerDetection"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/DistributedExecutionStrategy/exptRunnerIP"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Execution/DistributedExecutionStrategy/dependencies"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//Execution/DistributedExecutionStrategy/extraExecutionTargets"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EReference TestingMM.ecore#//Execution/DistributedExecutionStrategy/allocationStrategy"/>

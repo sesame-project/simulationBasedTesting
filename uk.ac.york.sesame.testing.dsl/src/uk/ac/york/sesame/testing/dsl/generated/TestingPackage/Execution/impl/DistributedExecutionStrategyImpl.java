@@ -32,6 +32,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Executio
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.DistributedExecutionStrategyImpl#isAutomaticWorkerDetection <em>Automatic Worker Detection</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.DistributedExecutionStrategyImpl#getExptRunnerIP <em>Expt Runner IP</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.DistributedExecutionStrategyImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.DistributedExecutionStrategyImpl#getExtraExecutionTargets <em>Extra Execution Targets</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.DistributedExecutionStrategyImpl#getAllocationStrategy <em>Allocation Strategy</em>}</li>
@@ -59,6 +60,26 @@ public class DistributedExecutionStrategyImpl extends ExecutionStrategyImpl impl
 	 * @ordered
 	 */
 	protected boolean automaticWorkerDetection = AUTOMATIC_WORKER_DETECTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getExptRunnerIP() <em>Expt Runner IP</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExptRunnerIP()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EXPT_RUNNER_IP_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getExptRunnerIP() <em>Expt Runner IP</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExptRunnerIP()
+	 * @generated
+	 * @ordered
+	 */
+	protected String exptRunnerIP = EXPT_RUNNER_IP_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' containment reference list.
@@ -136,6 +157,27 @@ public class DistributedExecutionStrategyImpl extends ExecutionStrategyImpl impl
 		automaticWorkerDetection = newAutomaticWorkerDetection;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__AUTOMATIC_WORKER_DETECTION, oldAutomaticWorkerDetection, automaticWorkerDetection));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getExptRunnerIP() {
+		return exptRunnerIP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExptRunnerIP(String newExptRunnerIP) {
+		String oldExptRunnerIP = exptRunnerIP;
+		exptRunnerIP = newExptRunnerIP;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__EXPT_RUNNER_IP, oldExptRunnerIP, exptRunnerIP));
 	}
 
 	/**
@@ -233,6 +275,8 @@ public class DistributedExecutionStrategyImpl extends ExecutionStrategyImpl impl
 		switch (featureID) {
 			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__AUTOMATIC_WORKER_DETECTION:
 				return isAutomaticWorkerDetection();
+			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__EXPT_RUNNER_IP:
+				return getExptRunnerIP();
 			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__DEPENDENCIES:
 				return getDependencies();
 			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__EXTRA_EXECUTION_TARGETS:
@@ -254,6 +298,9 @@ public class DistributedExecutionStrategyImpl extends ExecutionStrategyImpl impl
 		switch (featureID) {
 			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__AUTOMATIC_WORKER_DETECTION:
 				setAutomaticWorkerDetection((Boolean)newValue);
+				return;
+			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__EXPT_RUNNER_IP:
+				setExptRunnerIP((String)newValue);
 				return;
 			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__DEPENDENCIES:
 				getDependencies().clear();
@@ -281,6 +328,9 @@ public class DistributedExecutionStrategyImpl extends ExecutionStrategyImpl impl
 			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__AUTOMATIC_WORKER_DETECTION:
 				setAutomaticWorkerDetection(AUTOMATIC_WORKER_DETECTION_EDEFAULT);
 				return;
+			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__EXPT_RUNNER_IP:
+				setExptRunnerIP(EXPT_RUNNER_IP_EDEFAULT);
+				return;
 			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__DEPENDENCIES:
 				getDependencies().clear();
 				return;
@@ -304,6 +354,8 @@ public class DistributedExecutionStrategyImpl extends ExecutionStrategyImpl impl
 		switch (featureID) {
 			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__AUTOMATIC_WORKER_DETECTION:
 				return automaticWorkerDetection != AUTOMATIC_WORKER_DETECTION_EDEFAULT;
+			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__EXPT_RUNNER_IP:
+				return EXPT_RUNNER_IP_EDEFAULT == null ? exptRunnerIP != null : !EXPT_RUNNER_IP_EDEFAULT.equals(exptRunnerIP);
 			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
 			case ExecutionPackage.DISTRIBUTED_EXECUTION_STRATEGY__EXTRA_EXECUTION_TARGETS:
@@ -326,6 +378,8 @@ public class DistributedExecutionStrategyImpl extends ExecutionStrategyImpl impl
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (automaticWorkerDetection: ");
 		result.append(automaticWorkerDetection);
+		result.append(", exptRunnerIP: ");
+		result.append(exptRunnerIP);
 		result.append(')');
 		return result.toString();
 	}

@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DistributedExecutionStrategy#isAutomaticWorkerDetection <em>Automatic Worker Detection</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DistributedExecutionStrategy#getExptRunnerIP <em>Expt Runner IP</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DistributedExecutionStrategy#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DistributedExecutionStrategy#getExtraExecutionTargets <em>Extra Execution Targets</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DistributedExecutionStrategy#getAllocationStrategy <em>Allocation Strategy</em>}</li>
@@ -48,13 +49,35 @@ public interface DistributedExecutionStrategy extends ExecutionStrategy {
 	void setAutomaticWorkerDetection(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Expt Runner IP</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Expt Runner IP</em>' attribute.
+	 * @see #setExptRunnerIP(String)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionPackage#getDistributedExecutionStrategy_ExptRunnerIP()
+	 * @model
+	 * @generated
+	 */
+	String getExptRunnerIP();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DistributedExecutionStrategy#getExptRunnerIP <em>Expt Runner IP</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Expt Runner IP</em>' attribute.
+	 * @see #getExptRunnerIP()
+	 * @generated
+	 */
+	void setExptRunnerIP(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.
 	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Dependency}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dependencies</em>' containment reference list.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionPackage#getDistributedExecutionStrategy_Dependencies()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Dependency> getDependencies();
@@ -66,7 +89,7 @@ public interface DistributedExecutionStrategy extends ExecutionStrategy {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extra Execution Targets</em>' containment reference list.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionPackage#getDistributedExecutionStrategy_ExtraExecutionTargets()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<ExecutionTarget> getExtraExecutionTargets();

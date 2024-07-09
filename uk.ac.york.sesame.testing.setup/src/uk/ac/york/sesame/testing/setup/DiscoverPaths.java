@@ -1,7 +1,6 @@
 package uk.ac.york.sesame.testing.setup;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;

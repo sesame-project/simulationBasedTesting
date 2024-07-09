@@ -497,6 +497,7 @@ package Execution {
 	/** Represents execution via remote workers */
 	class DistributedExecutionStrategy extends ExecutionStrategy {
 		attr boolean automaticWorkerDetection = true;
+		attr String exptRunnerIP;
 		val Dependency[0..*] dependencies;
 		val ExecutionTarget[0..*] extraExecutionTargets;
 		val AllocationStrategy[1] allocationStrategy;

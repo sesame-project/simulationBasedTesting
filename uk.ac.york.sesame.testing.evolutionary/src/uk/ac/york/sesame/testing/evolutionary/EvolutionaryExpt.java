@@ -40,6 +40,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.evolutionary.distributed.AllocationStrategy;
 import uk.ac.york.sesame.testing.evolutionary.distributed.DynamicAllocation;
 import uk.ac.york.sesame.testing.evolutionary.distributed.PreInitFailed;
+import uk.ac.york.sesame.testing.evolutionary.distributed.PyroDaemons;
 import uk.ac.york.sesame.testing.evolutionary.distributed.UpFrontAllocation;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SESAMEEvaluationProblemDistributed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANODistributedExperiment;
@@ -125,6 +126,9 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		if (exec.isDistributed()) {
 			DistributedExecutionStrategy distExec = (DistributedExecutionStrategy)exec;
 			SOPRANODistributedExperiment distributedExpt = new SOPRANODistributedExperiment(selectedCampaign, distExec, loader, orchestratorBasePath, spaceModelFileName);
+			
+			String exptRunnerIP = distExec.getExptRunnerIP();
+			PyroDaemons.setHostname(exptRunnerIP);
 			
 			AllocationStrategy strat = translateAllocationStrategy(distExec.getAllocationStrategy());
 			this.exptManager = new SOPRANOExperimentManager(distributedExpt, strat);
