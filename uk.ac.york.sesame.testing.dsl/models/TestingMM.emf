@@ -31,6 +31,7 @@ class Test {
 }
 
 abstract class TestDebuggingFlags {
+
 }
 
 class PassiveMonitorOnly extends TestDebuggingFlags {
@@ -131,17 +132,22 @@ package FuzzingOperations {
 	abstract class FuzzingOperation {
 		attr String name;
 		attr int priority;
-		val Activation[1] activation;
-		ref MRSPackage.Variable variableToAffect;
+
+		// This is being pushed into the subclasses
+		//ref MRSPackage.GenericVariable variableToAffect;
+		
+		// TODO: check if all these are still relevant
+		
 		attr boolean messagesFromAllComponenents = true;
 		ref MRSPackage.Node[*] fromNodes;
 		attr boolean messagesToAllComponenents = true;
 		ref MRSPackage.Node[*] toNodes;
 		ref MRSPackage.Node nodeToFuzz;
+		
 		attr boolean allPublishingVars = false;
-		ref MRSPackage.Variable[*] publishingVars;
+		//ref MRSPackage.Variable[*] publishingVars;
 		attr boolean allSubscribingVars = false;
-		ref MRSPackage.Variable[*] subscribingVars;
+		//ref MRSPackage.Variable[*] subscribingVars;
 		ref FuzzingOperation fromTemplate;
 		readonly transient ref Test#operations containingTest;
 		val FixedTimeActivation recordedTimings;
@@ -150,6 +156,8 @@ package FuzzingOperations {
 		attr double inclusionProbability = "1";
 		attr boolean includeInTiming = true;
 		val StandardGrammar.ConditionConstraint[*] conditionConstraints;
+		
+		op FuzzingOperation dup();
 	}
 
 	class OfflineFuzzingOperation extends FuzzingOperation {
@@ -193,6 +201,7 @@ package FuzzingOperations {
 	}
 
 	class ComponentOperation extends FuzzTestingOperation {
+	
 	}
 
 	class ComponentPropertyOperation extends FuzzTestingOperation {
@@ -203,12 +212,22 @@ package FuzzingOperations {
 		ref MRSPackage.ComponentProperty propertyToAffect;
 		ref MRSPackage.Type subProperty;
 	}
-
-	class VariableOperation extends FuzzTestingOperation {
-		ref MRSPackage.Parameter[*] subParameters;
+	
+	abstract class DynamicOperation extends FuzzTestingOperation {
+		val Activation[1] activation;
+	}
+	
+	abstract class PotentiallyStaticOperation extends FuzzTestingOperation {
+		val Activation[0..1] activation;
 	}
 
-	class RandomValueFuzzingOperation extends ComponentOperation {
+	abstract class VariableOperation extends PotentiallyStaticOperation {
+		ref MRSPackage.DynamicVariable variableToAffect;
+		// TODO: parameter info?
+	}
+
+	abstract class RandomValueFuzzingOperation extends VariableOperation {
+		
 	}
 
 	class RandomValueFromSetOperation extends RandomValueFuzzingOperation {
@@ -252,11 +271,12 @@ package FuzzingOperations {
 		attr String location;
 	}
 
-	class NetworkFuzzingOperation extends FuzzingOperation {
-	
+	abstract class NetworkFuzzingOperation extends DynamicOperation {
+		ref MRSPackage.EventBasedVariable variableToAffect;
 	}
 
-	class BlackholeNetworkOperation extends NetworkFuzzingOperation {
+	abstract class BlackholeNetworkOperation extends NetworkFuzzingOperation {
+	
 	}
 
 	class LatencyNetworkOperation extends NetworkFuzzingOperation {
@@ -269,9 +289,9 @@ package FuzzingOperations {
 	}
 	
 	// TODO: implement multiple messages
-	//class MultipleMessagesNetworkOperation extends NetworkFuzzingOperation {
-	// val IntRange[1] howManyClones;
-	//}
+	class MultipleMessagesNetworkOperation extends NetworkFuzzingOperation {
+		val IntRange[1] howManyClones;
+	}
 }
 
 @namespace(uri="Metrics", prefix="")
@@ -293,7 +313,7 @@ package Metrics {
 	abstract class Metric {
 		attr String name;
 		attr MetricOptimisationDirection dir;
-		ref MRSPackage.Variable[*] relatedVariables;
+		ref MRSPackage.EventBasedVariable[*] relatedVariables;
 		val MetricDefault valueIfNotReceived;
 		val MetricDefault[1] initValue;
 		attr boolean useInOptimisation;
@@ -304,7 +324,7 @@ package Metrics {
 	}
 
 	class VariableMetric extends Metric {
-		ref MRSPackage.Variable[1] chosenVariables;
+		ref MRSPackage.EventBasedVariable[1] chosenVariable;
 	}
 
 	class MetricInstance {
@@ -348,7 +368,6 @@ package Results {
 		attr String name;
 		attr double value;
 	}
-
 }
 
 @namespace(uri="StandardGrammar", prefix="")
@@ -358,8 +377,8 @@ package StandardGrammar {
 
 	class CompositeCondition extends ConditionElement {
 		val ConditionElement[1] left;
-		attr BinaryLogicalOperation[1] binop;
 		val ConditionElement[1] right;
+		attr BinaryLogicalOperation[1] binop;
 	}
 
 	class BasicCondition extends ConditionElement {
@@ -369,6 +388,7 @@ package StandardGrammar {
 	}
 
 	abstract class ConditionExpr {
+	
 	}
 
 	class ConditionInteger extends ConditionExpr {
@@ -412,7 +432,7 @@ package StandardGrammar {
 @namespace(uri="MRSPackage", prefix="")
 package MRSPackage {
 	class MRS {
-		val Variable[*] variables;
+		val GenericVariable[*] variables;
 		attr int launchDelaySeconds = 40;
 		// TODO: this should be replaced with a reference to the started containers
 		attr String launchFileLocation;
@@ -427,14 +447,67 @@ package MRSPackage {
 	/** This is a Node in the MRS simulation */
 	class Node {
 		attr String name;
-		ref Variable[*] subscriber;
-		ref Variable[*] publisher;
+		ref GenericVariable[*] subscriber;
+		ref GenericVariable[*] publisher;
 		ref ComponentProperty[*] properties;
 	}
-
-	class Variable {
+	
+	class PublicationInformation {
+		// For remapping - need the node info
+	}
+	
+	abstract class GenericVariable {
 		attr String name;
 		ref Type[1] type;
+	}
+	
+	/** A static variable defined in the MRS configuration files */
+	class StaticVariable extends GenericVariable {
+		val ConfigLocation[1] location;
+	}
+
+	abstract class DynamicVariable extends GenericVariable {
+		
+	}
+
+	/** A dynamic variable represented by a ROS topic (or gRPC SHM interface) 
+	Variables are represented as a single event	*/
+	class EventBasedVariable extends DynamicVariable {
+		//val ConfigLocation[0..1] remappingLocation; // The location of the topic for remapping - is this enough
+	}
+	
+	class ParameterVariable extends DynamicVariable {
+		
+	}
+	
+	// ValueModification fuzzing operations can refer to the generic variable
+	// activation conditions (time or condition) obviously ignored for the static variable
+	// What if multiple operations refer to the static variable - processed in order
+	
+	// Others (delay, deletion, duplication) can only refer to the Variable (not parameter variable)
+	// since these are event based
+	
+	abstract class ConfigLocation { }
+	
+	class FileLocation extends ConfigLocation {
+		attr String fileName;
+	}
+	
+	class PropertiesKeyValues extends FileLocation {
+		attr String key;
+	}
+	
+	class FixedPosition extends FileLocation {
+		attr int lineNum;
+		attr int columnNum;
+	}
+	
+	class RegexLocation extends FileLocation {
+		attr String regexFinder;
+	}
+	
+	class XMLConfigLocation extends FileLocation {
+		attr String xpathExpression;
 	}
 
 	class Type {
@@ -462,6 +535,7 @@ package MRSPackage {
 	}
 
 	abstract class Simulator {
+	
 	}
 
 	class ROSSimulator extends Simulator {
