@@ -133,6 +133,8 @@
   </eClassifiers>
   <eSubpackages name="FuzzingOperations" nsURI="FuzzingOperations" nsPrefix="">
     <eClassifiers xsi:type="ecore:EClass" name="FuzzingOperation" abstract="true">
+      <eOperations name="dup" eType="#//FuzzingOperations/FuzzingOperation"/>
+      <eOperations name="findReduction" eType="#//FuzzingOperations/FuzzingOperation"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="messagesFromAllComponenents"
@@ -171,11 +173,6 @@
     <eClassifiers xsi:type="ecore:EEnum" name="OfflineOperationTime">
       <eLiterals name="PRE"/>
       <eLiterals name="POST" value="1"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CustomFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
-          eType="#//FuzzingOperations/ValueSet" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="customProcessClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CustomOfflineFuzzingOperation" eSuperTypes="#//FuzzingOperations/OfflineFuzzingOperation"/>
     <eClassifiers xsi:type="ecore:EClass" name="Activation" abstract="true"/>
@@ -219,7 +216,12 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VariableOperation" abstract="true"
         eSuperTypes="#//FuzzingOperations/PotentiallyStaticOperation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="variableToAffect" eType="#//MRSPackage/DynamicVariable"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="variableToAffect" eType="#//MRSPackage/GenericVariable"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CustomFuzzingOperation" eSuperTypes="#//FuzzingOperations/VariableOperation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
+          eType="#//FuzzingOperations/ValueSet" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="customProcessClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RandomValueFuzzingOperation" abstract="true"
         eSuperTypes="#//FuzzingOperations/VariableOperation"/>
@@ -238,6 +240,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DoubleRange" eSuperTypes="#//FuzzingOperations/ValueRange">
+      <eOperations name="findReduction" eType="#//FuzzingOperations/DoubleRange"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
@@ -424,8 +427,8 @@
           eType="#//MRSPackage/Type"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StaticVariable" eSuperTypes="#//MRSPackage/GenericVariable">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
-          eType="#//MRSPackage/ConfigLocation" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="locations" lowerBound="1"
+          upperBound="-1" eType="#//MRSPackage/ConfigLocation" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DynamicVariable" abstract="true" eSuperTypes="#//MRSPackage/GenericVariable"/>
     <eClassifiers xsi:type="ecore:EClass" name="EventBasedVariable" eSuperTypes="#//MRSPackage/DynamicVariable"/>
@@ -495,6 +498,7 @@
   <eSubpackages name="Execution" nsURI="Execution" nsPrefix="">
     <eClassifiers xsi:type="ecore:EClass" name="ExecutionStrategy" abstract="true">
       <eOperations name="isDistributed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="exptRunnerIP" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LocalExecutionStrategy" eSuperTypes="#//Execution/ExecutionStrategy">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="launchFileLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

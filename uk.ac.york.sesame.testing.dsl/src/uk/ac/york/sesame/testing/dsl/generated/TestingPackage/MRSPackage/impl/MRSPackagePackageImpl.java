@@ -17,18 +17,28 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ComponentProperty;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ConfigLocation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.DynamicVariable;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBasedVariable;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FileLocation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FixedPosition;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MOOSSimulator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackageFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Parameter;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParameterVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParsingMethod;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PropertiesKeyValues;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PublicationInformation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSSimulator;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.RegexLocation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Simulator;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
-
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricsPackageImpl;
@@ -71,7 +81,84 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass variableEClass = null;
+	private EClass publicationInformationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass genericVariableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass staticVariableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dynamicVariableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBasedVariableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass parameterVariableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass configLocationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fileLocationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass propertiesKeyValuesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fixedPositionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass regexLocationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass xmlConfigLocationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -356,8 +443,8 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVariable() {
-		return variableEClass;
+	public EClass getPublicationInformation() {
+		return publicationInformationEClass;
 	}
 
 	/**
@@ -365,8 +452,8 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getVariable_Name() {
-		return (EAttribute)variableEClass.getEStructuralFeatures().get(0);
+	public EClass getGenericVariable() {
+		return genericVariableEClass;
 	}
 
 	/**
@@ -374,8 +461,170 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVariable_Type() {
-		return (EReference)variableEClass.getEStructuralFeatures().get(1);
+	public EAttribute getGenericVariable_Name() {
+		return (EAttribute)genericVariableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGenericVariable_Type() {
+		return (EReference)genericVariableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStaticVariable() {
+		return staticVariableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStaticVariable_Location() {
+		return (EReference)staticVariableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDynamicVariable() {
+		return dynamicVariableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBasedVariable() {
+		return eventBasedVariableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getParameterVariable() {
+		return parameterVariableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConfigLocation() {
+		return configLocationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFileLocation() {
+		return fileLocationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFileLocation_FileName() {
+		return (EAttribute)fileLocationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPropertiesKeyValues() {
+		return propertiesKeyValuesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPropertiesKeyValues_Key() {
+		return (EAttribute)propertiesKeyValuesEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFixedPosition() {
+		return fixedPositionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFixedPosition_LineNum() {
+		return (EAttribute)fixedPositionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFixedPosition_ColumnNum() {
+		return (EAttribute)fixedPositionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRegexLocation() {
+		return regexLocationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRegexLocation_RegexFinder() {
+		return (EAttribute)regexLocationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getXMLConfigLocation() {
+		return xmlConfigLocationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getXMLConfigLocation_XpathExpression() {
+		return (EAttribute)xmlConfigLocationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -648,9 +897,38 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		createEReference(nodeEClass, NODE__PUBLISHER);
 		createEReference(nodeEClass, NODE__PROPERTIES);
 
-		variableEClass = createEClass(VARIABLE);
-		createEAttribute(variableEClass, VARIABLE__NAME);
-		createEReference(variableEClass, VARIABLE__TYPE);
+		publicationInformationEClass = createEClass(PUBLICATION_INFORMATION);
+
+		genericVariableEClass = createEClass(GENERIC_VARIABLE);
+		createEAttribute(genericVariableEClass, GENERIC_VARIABLE__NAME);
+		createEReference(genericVariableEClass, GENERIC_VARIABLE__TYPE);
+
+		staticVariableEClass = createEClass(STATIC_VARIABLE);
+		createEReference(staticVariableEClass, STATIC_VARIABLE__LOCATION);
+
+		dynamicVariableEClass = createEClass(DYNAMIC_VARIABLE);
+
+		eventBasedVariableEClass = createEClass(EVENT_BASED_VARIABLE);
+
+		parameterVariableEClass = createEClass(PARAMETER_VARIABLE);
+
+		configLocationEClass = createEClass(CONFIG_LOCATION);
+
+		fileLocationEClass = createEClass(FILE_LOCATION);
+		createEAttribute(fileLocationEClass, FILE_LOCATION__FILE_NAME);
+
+		propertiesKeyValuesEClass = createEClass(PROPERTIES_KEY_VALUES);
+		createEAttribute(propertiesKeyValuesEClass, PROPERTIES_KEY_VALUES__KEY);
+
+		fixedPositionEClass = createEClass(FIXED_POSITION);
+		createEAttribute(fixedPositionEClass, FIXED_POSITION__LINE_NUM);
+		createEAttribute(fixedPositionEClass, FIXED_POSITION__COLUMN_NUM);
+
+		regexLocationEClass = createEClass(REGEX_LOCATION);
+		createEAttribute(regexLocationEClass, REGEX_LOCATION__REGEX_FINDER);
+
+		xmlConfigLocationEClass = createEClass(XML_CONFIG_LOCATION);
+		createEAttribute(xmlConfigLocationEClass, XML_CONFIG_LOCATION__XPATH_EXPRESSION);
 
 		typeEClass = createEClass(TYPE);
 		createEAttribute(typeEClass, TYPE__NAME);
@@ -718,13 +996,22 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		staticVariableEClass.getESuperTypes().add(this.getGenericVariable());
+		dynamicVariableEClass.getESuperTypes().add(this.getGenericVariable());
+		eventBasedVariableEClass.getESuperTypes().add(this.getDynamicVariable());
+		parameterVariableEClass.getESuperTypes().add(this.getDynamicVariable());
+		fileLocationEClass.getESuperTypes().add(this.getConfigLocation());
+		propertiesKeyValuesEClass.getESuperTypes().add(this.getFileLocation());
+		fixedPositionEClass.getESuperTypes().add(this.getFileLocation());
+		regexLocationEClass.getESuperTypes().add(this.getFileLocation());
+		xmlConfigLocationEClass.getESuperTypes().add(this.getFileLocation());
 		rosSimulatorEClass.getESuperTypes().add(this.getSimulator());
 		moosSimulatorEClass.getESuperTypes().add(this.getSimulator());
 		ttsSimulatorEClass.getESuperTypes().add(this.getSimulator());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mrsEClass, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, "MRS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMRS_Variables(), this.getVariable(), null, "variables", null, 0, -1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMRS_Variables(), this.getGenericVariable(), null, "variables", null, 0, -1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMRS_LaunchDelaySeconds(), ecorePackage.getEInt(), "launchDelaySeconds", "40", 0, 1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMRS_LaunchFileLocation(), ecorePackage.getEString(), "launchFileLocation", null, 0, 1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMRS_CustomTerminateFileLocation(), ecorePackage.getEString(), "customTerminateFileLocation", null, 0, 1, uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -736,13 +1023,42 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNode_Subscriber(), this.getVariable(), null, "subscriber", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNode_Publisher(), this.getVariable(), null, "publisher", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_Subscriber(), this.getGenericVariable(), null, "subscriber", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_Publisher(), this.getGenericVariable(), null, "publisher", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_Properties(), this.getComponentProperty(), null, "properties", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVariable_Type(), this.getType(), null, "type", null, 1, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(publicationInformationEClass, PublicationInformation.class, "PublicationInformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(genericVariableEClass, GenericVariable.class, "GenericVariable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGenericVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, GenericVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenericVariable_Type(), this.getType(), null, "type", null, 1, 1, GenericVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(staticVariableEClass, StaticVariable.class, "StaticVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStaticVariable_Location(), this.getConfigLocation(), null, "location", null, 1, 1, StaticVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dynamicVariableEClass, DynamicVariable.class, "DynamicVariable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(eventBasedVariableEClass, EventBasedVariable.class, "EventBasedVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(parameterVariableEClass, ParameterVariable.class, "ParameterVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(configLocationEClass, ConfigLocation.class, "ConfigLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(fileLocationEClass, FileLocation.class, "FileLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFileLocation_FileName(), ecorePackage.getEString(), "fileName", null, 0, 1, FileLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(propertiesKeyValuesEClass, PropertiesKeyValues.class, "PropertiesKeyValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPropertiesKeyValues_Key(), ecorePackage.getEString(), "key", null, 0, 1, PropertiesKeyValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(fixedPositionEClass, FixedPosition.class, "FixedPosition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFixedPosition_LineNum(), ecorePackage.getEInt(), "lineNum", null, 0, 1, FixedPosition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFixedPosition_ColumnNum(), ecorePackage.getEInt(), "columnNum", null, 0, 1, FixedPosition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(regexLocationEClass, RegexLocation.class, "RegexLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRegexLocation_RegexFinder(), ecorePackage.getEString(), "regexFinder", null, 0, 1, RegexLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(xmlConfigLocationEClass, XMLConfigLocation.class, "XMLConfigLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getXMLConfigLocation_XpathExpression(), ecorePackage.getEString(), "xpathExpression", null, 0, 1, XMLConfigLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getType_Name(), ecorePackage.getEString(), "name", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

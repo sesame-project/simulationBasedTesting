@@ -13,8 +13,8 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition#getLeft <em>Left</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition#getBinop <em>Binop</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition#getRight <em>Right</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.CompositeCondition#getBinop <em>Binop</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.StandardGrammarPackage#getCompositeCondition()

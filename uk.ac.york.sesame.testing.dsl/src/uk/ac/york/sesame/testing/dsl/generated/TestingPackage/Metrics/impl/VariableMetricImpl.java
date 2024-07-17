@@ -9,8 +9,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
-
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBasedVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric;
 
@@ -22,22 +21,21 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMe
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.VariableMetricImpl#getChosenVariables <em>Chosen Variables</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.VariableMetricImpl#getChosenVariable <em>Chosen Variable</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class VariableMetricImpl extends MetricImpl implements VariableMetric {
 	/**
-	 * The cached value of the '{@link #getChosenVariables() <em>Chosen Variables</em>}' reference.
+	 * The cached value of the '{@link #getChosenVariable() <em>Chosen Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getChosenVariables()
+	 * @see #getChosenVariable()
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable chosenVariables;
-
+	protected EventBasedVariable chosenVariable;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,16 +60,16 @@ public class VariableMetricImpl extends MetricImpl implements VariableMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable getChosenVariables() {
-		if (chosenVariables != null && chosenVariables.eIsProxy()) {
-			InternalEObject oldChosenVariables = (InternalEObject)chosenVariables;
-			chosenVariables = (Variable)eResolveProxy(oldChosenVariables);
-			if (chosenVariables != oldChosenVariables) {
+	public EventBasedVariable getChosenVariable() {
+		if (chosenVariable != null && chosenVariable.eIsProxy()) {
+			InternalEObject oldChosenVariable = (InternalEObject)chosenVariable;
+			chosenVariable = (EventBasedVariable)eResolveProxy(oldChosenVariable);
+			if (chosenVariable != oldChosenVariable) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetricsPackage.VARIABLE_METRIC__CHOSEN_VARIABLES, oldChosenVariables, chosenVariables));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetricsPackage.VARIABLE_METRIC__CHOSEN_VARIABLE, oldChosenVariable, chosenVariable));
 			}
 		}
-		return chosenVariables;
+		return chosenVariable;
 	}
 
 	/**
@@ -79,8 +77,8 @@ public class VariableMetricImpl extends MetricImpl implements VariableMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable basicGetChosenVariables() {
-		return chosenVariables;
+	public EventBasedVariable basicGetChosenVariable() {
+		return chosenVariable;
 	}
 
 	/**
@@ -88,11 +86,11 @@ public class VariableMetricImpl extends MetricImpl implements VariableMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setChosenVariables(Variable newChosenVariables) {
-		Variable oldChosenVariables = chosenVariables;
-		chosenVariables = newChosenVariables;
+	public void setChosenVariable(EventBasedVariable newChosenVariable) {
+		EventBasedVariable oldChosenVariable = chosenVariable;
+		chosenVariable = newChosenVariable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MetricsPackage.VARIABLE_METRIC__CHOSEN_VARIABLES, oldChosenVariables, chosenVariables));
+			eNotify(new ENotificationImpl(this, Notification.SET, MetricsPackage.VARIABLE_METRIC__CHOSEN_VARIABLE, oldChosenVariable, chosenVariable));
 	}
 
 	/**
@@ -103,9 +101,9 @@ public class VariableMetricImpl extends MetricImpl implements VariableMetric {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MetricsPackage.VARIABLE_METRIC__CHOSEN_VARIABLES:
-				if (resolve) return getChosenVariables();
-				return basicGetChosenVariables();
+			case MetricsPackage.VARIABLE_METRIC__CHOSEN_VARIABLE:
+				if (resolve) return getChosenVariable();
+				return basicGetChosenVariable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,8 +116,8 @@ public class VariableMetricImpl extends MetricImpl implements VariableMetric {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MetricsPackage.VARIABLE_METRIC__CHOSEN_VARIABLES:
-				setChosenVariables((Variable)newValue);
+			case MetricsPackage.VARIABLE_METRIC__CHOSEN_VARIABLE:
+				setChosenVariable((EventBasedVariable)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -133,8 +131,8 @@ public class VariableMetricImpl extends MetricImpl implements VariableMetric {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MetricsPackage.VARIABLE_METRIC__CHOSEN_VARIABLES:
-				setChosenVariables((Variable)null);
+			case MetricsPackage.VARIABLE_METRIC__CHOSEN_VARIABLE:
+				setChosenVariable((EventBasedVariable)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -148,8 +146,8 @@ public class VariableMetricImpl extends MetricImpl implements VariableMetric {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MetricsPackage.VARIABLE_METRIC__CHOSEN_VARIABLES:
-				return chosenVariables != null;
+			case MetricsPackage.VARIABLE_METRIC__CHOSEN_VARIABLE:
+				return chosenVariable != null;
 		}
 		return super.eIsSet(featureID);
 	}

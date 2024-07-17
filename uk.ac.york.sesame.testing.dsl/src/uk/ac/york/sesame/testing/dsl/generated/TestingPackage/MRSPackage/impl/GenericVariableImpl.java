@@ -10,25 +10,25 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Variable</b></em>'.
+ * An implementation of the model object '<em><b>Generic Variable</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.VariableImpl#getName <em>Name</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.VariableImpl#getType <em>Type</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.GenericVariableImpl#getName <em>Name</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.GenericVariableImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class VariableImpl extends MinimalEObjectImpl.Container implements Variable {
+public abstract class GenericVariableImpl extends MinimalEObjectImpl.Container implements GenericVariable {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,7 +64,7 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VariableImpl() {
+	protected GenericVariableImpl() {
 		super();
 	}
 
@@ -75,7 +75,7 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MRSPackagePackage.Literals.VARIABLE;
+		return MRSPackagePackage.Literals.GENERIC_VARIABLE;
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MRSPackagePackage.VARIABLE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, MRSPackagePackage.GENERIC_VARIABLE__NAME, oldName, name));
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 			type = (Type)eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MRSPackagePackage.VARIABLE__TYPE, oldType, type));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MRSPackagePackage.GENERIC_VARIABLE__TYPE, oldType, type));
 			}
 		}
 		return type;
@@ -134,7 +134,7 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 		Type oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MRSPackagePackage.VARIABLE__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, MRSPackagePackage.GENERIC_VARIABLE__TYPE, oldType, type));
 	}
 
 	/**
@@ -145,9 +145,9 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MRSPackagePackage.VARIABLE__NAME:
+			case MRSPackagePackage.GENERIC_VARIABLE__NAME:
 				return getName();
-			case MRSPackagePackage.VARIABLE__TYPE:
+			case MRSPackagePackage.GENERIC_VARIABLE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 		}
@@ -162,10 +162,10 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MRSPackagePackage.VARIABLE__NAME:
+			case MRSPackagePackage.GENERIC_VARIABLE__NAME:
 				setName((String)newValue);
 				return;
-			case MRSPackagePackage.VARIABLE__TYPE:
+			case MRSPackagePackage.GENERIC_VARIABLE__TYPE:
 				setType((Type)newValue);
 				return;
 		}
@@ -180,10 +180,10 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MRSPackagePackage.VARIABLE__NAME:
+			case MRSPackagePackage.GENERIC_VARIABLE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case MRSPackagePackage.VARIABLE__TYPE:
+			case MRSPackagePackage.GENERIC_VARIABLE__TYPE:
 				setType((Type)null);
 				return;
 		}
@@ -198,9 +198,9 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MRSPackagePackage.VARIABLE__NAME:
+			case MRSPackagePackage.GENERIC_VARIABLE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case MRSPackagePackage.VARIABLE__TYPE:
+			case MRSPackagePackage.GENERIC_VARIABLE__TYPE:
 				return type != null;
 		}
 		return super.eIsSet(featureID);
@@ -222,4 +222,4 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 		return result.toString();
 	}
 
-} //VariableImpl
+} //GenericVariableImpl

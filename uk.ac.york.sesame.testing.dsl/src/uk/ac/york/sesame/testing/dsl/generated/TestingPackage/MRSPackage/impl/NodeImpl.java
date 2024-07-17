@@ -16,9 +16,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ComponentProperty;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,7 +65,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Variable> subscriber;
+	protected EList<GenericVariable> subscriber;
 
 	/**
 	 * The cached value of the '{@link #getPublisher() <em>Publisher</em>}' reference list.
@@ -75,7 +75,7 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Variable> publisher;
+	protected EList<GenericVariable> publisher;
 
 	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' reference list.
@@ -132,9 +132,9 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Variable> getSubscriber() {
+	public EList<GenericVariable> getSubscriber() {
 		if (subscriber == null) {
-			subscriber = new EObjectResolvingEList<Variable>(Variable.class, this, MRSPackagePackage.NODE__SUBSCRIBER);
+			subscriber = new EObjectResolvingEList<GenericVariable>(GenericVariable.class, this, MRSPackagePackage.NODE__SUBSCRIBER);
 		}
 		return subscriber;
 	}
@@ -144,9 +144,9 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Variable> getPublisher() {
+	public EList<GenericVariable> getPublisher() {
 		if (publisher == null) {
-			publisher = new EObjectResolvingEList<Variable>(Variable.class, this, MRSPackagePackage.NODE__PUBLISHER);
+			publisher = new EObjectResolvingEList<GenericVariable>(GenericVariable.class, this, MRSPackagePackage.NODE__PUBLISHER);
 		}
 		return publisher;
 	}
@@ -197,11 +197,11 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 				return;
 			case MRSPackagePackage.NODE__SUBSCRIBER:
 				getSubscriber().clear();
-				getSubscriber().addAll((Collection<? extends Variable>)newValue);
+				getSubscriber().addAll((Collection<? extends GenericVariable>)newValue);
 				return;
 			case MRSPackagePackage.NODE__PUBLISHER:
 				getPublisher().clear();
-				getPublisher().addAll((Collection<? extends Variable>)newValue);
+				getPublisher().addAll((Collection<? extends GenericVariable>)newValue);
 				return;
 			case MRSPackagePackage.NODE__PROPERTIES:
 				getProperties().clear();

@@ -116,6 +116,14 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 				return createComponentSubPropertyOperationAdapter();
 			}
 			@Override
+			public Adapter caseDynamicOperation(DynamicOperation object) {
+				return createDynamicOperationAdapter();
+			}
+			@Override
+			public Adapter casePotentiallyStaticOperation(PotentiallyStaticOperation object) {
+				return createPotentiallyStaticOperationAdapter();
+			}
+			@Override
 			public Adapter caseVariableOperation(VariableOperation object) {
 				return createVariableOperationAdapter();
 			}
@@ -174,6 +182,10 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter casePacketLossNetworkOperation(PacketLossNetworkOperation object) {
 				return createPacketLossNetworkOperationAdapter();
+			}
+			@Override
+			public Adapter caseMultipleMessagesNetworkOperation(MultipleMessagesNetworkOperation object) {
+				return createMultipleMessagesNetworkOperationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -360,6 +372,34 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComponentSubPropertyOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicOperation <em>Dynamic Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicOperation
+	 * @generated
+	 */
+	public Adapter createDynamicOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation <em>Potentially Static Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation
+	 * @generated
+	 */
+	public Adapter createPotentiallyStaticOperationAdapter() {
 		return null;
 	}
 
@@ -570,6 +610,20 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPacketLossNetworkOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.MultipleMessagesNetworkOperation <em>Multiple Messages Network Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.MultipleMessagesNetworkOperation
+	 * @generated
+	 */
+	public Adapter createMultipleMessagesNetworkOperationAdapter() {
 		return null;
 	}
 

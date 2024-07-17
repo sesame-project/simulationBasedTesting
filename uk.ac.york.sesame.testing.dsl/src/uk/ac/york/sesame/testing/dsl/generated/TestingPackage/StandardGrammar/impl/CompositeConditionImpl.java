@@ -24,8 +24,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.St
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.CompositeConditionImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.CompositeConditionImpl#getBinop <em>Binop</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.CompositeConditionImpl#getRight <em>Right</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.impl.CompositeConditionImpl#getBinop <em>Binop</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,6 +40,16 @@ public class CompositeConditionImpl extends ConditionElementImpl implements Comp
 	 * @ordered
 	 */
 	protected ConditionElement left;
+
+	/**
+	 * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRight()
+	 * @generated
+	 * @ordered
+	 */
+	protected ConditionElement right;
 
 	/**
 	 * The default value of the '{@link #getBinop() <em>Binop</em>}' attribute.
@@ -60,16 +70,6 @@ public class CompositeConditionImpl extends ConditionElementImpl implements Comp
 	 * @ordered
 	 */
 	protected BinaryLogicalOperation binop = BINOP_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRight()
-	 * @generated
-	 * @ordered
-	 */
-	protected ConditionElement right;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -223,10 +223,10 @@ public class CompositeConditionImpl extends ConditionElementImpl implements Comp
 		switch (featureID) {
 			case StandardGrammarPackage.COMPOSITE_CONDITION__LEFT:
 				return getLeft();
-			case StandardGrammarPackage.COMPOSITE_CONDITION__BINOP:
-				return getBinop();
 			case StandardGrammarPackage.COMPOSITE_CONDITION__RIGHT:
 				return getRight();
+			case StandardGrammarPackage.COMPOSITE_CONDITION__BINOP:
+				return getBinop();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -242,11 +242,11 @@ public class CompositeConditionImpl extends ConditionElementImpl implements Comp
 			case StandardGrammarPackage.COMPOSITE_CONDITION__LEFT:
 				setLeft((ConditionElement)newValue);
 				return;
-			case StandardGrammarPackage.COMPOSITE_CONDITION__BINOP:
-				setBinop((BinaryLogicalOperation)newValue);
-				return;
 			case StandardGrammarPackage.COMPOSITE_CONDITION__RIGHT:
 				setRight((ConditionElement)newValue);
+				return;
+			case StandardGrammarPackage.COMPOSITE_CONDITION__BINOP:
+				setBinop((BinaryLogicalOperation)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -263,11 +263,11 @@ public class CompositeConditionImpl extends ConditionElementImpl implements Comp
 			case StandardGrammarPackage.COMPOSITE_CONDITION__LEFT:
 				setLeft((ConditionElement)null);
 				return;
-			case StandardGrammarPackage.COMPOSITE_CONDITION__BINOP:
-				setBinop(BINOP_EDEFAULT);
-				return;
 			case StandardGrammarPackage.COMPOSITE_CONDITION__RIGHT:
 				setRight((ConditionElement)null);
+				return;
+			case StandardGrammarPackage.COMPOSITE_CONDITION__BINOP:
+				setBinop(BINOP_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -283,10 +283,10 @@ public class CompositeConditionImpl extends ConditionElementImpl implements Comp
 		switch (featureID) {
 			case StandardGrammarPackage.COMPOSITE_CONDITION__LEFT:
 				return left != null;
-			case StandardGrammarPackage.COMPOSITE_CONDITION__BINOP:
-				return binop != BINOP_EDEFAULT;
 			case StandardGrammarPackage.COMPOSITE_CONDITION__RIGHT:
 				return right != null;
+			case StandardGrammarPackage.COMPOSITE_CONDITION__BINOP:
+				return binop != BINOP_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

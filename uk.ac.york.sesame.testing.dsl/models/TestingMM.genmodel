@@ -133,6 +133,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/inclusionProbability"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/includeInTiming"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/FuzzingOperation/conditionConstraints"/>
+        <genOperations ecoreOperation="TestingMM.ecore#//FuzzingOperations/FuzzingOperation/dup"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation/operationTime"/>

@@ -67,8 +67,6 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 			case FuzzingOperationsPackage.COMPONENT_OPERATION: return createComponentOperation();
 			case FuzzingOperationsPackage.COMPONENT_PROPERTY_OPERATION: return createComponentPropertyOperation();
 			case FuzzingOperationsPackage.COMPONENT_SUB_PROPERTY_OPERATION: return createComponentSubPropertyOperation();
-			case FuzzingOperationsPackage.VARIABLE_OPERATION: return createVariableOperation();
-			case FuzzingOperationsPackage.RANDOM_VALUE_FUZZING_OPERATION: return createRandomValueFuzzingOperation();
 			case FuzzingOperationsPackage.RANDOM_VALUE_FROM_SET_OPERATION: return createRandomValueFromSetOperation();
 			case FuzzingOperationsPackage.VALUE_SET: return createValueSet();
 			case FuzzingOperationsPackage.INT_RANGE: return createIntRange();
@@ -77,10 +75,9 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 			case FuzzingOperationsPackage.POINT_RANGE: return createPointRange();
 			case FuzzingOperationsPackage.STRING_SET: return createStringSet();
 			case FuzzingOperationsPackage.EXTERNAL_RESOURCE_SET: return createExternalResourceSet();
-			case FuzzingOperationsPackage.NETWORK_FUZZING_OPERATION: return createNetworkFuzzingOperation();
-			case FuzzingOperationsPackage.BLACKHOLE_NETWORK_OPERATION: return createBlackholeNetworkOperation();
 			case FuzzingOperationsPackage.LATENCY_NETWORK_OPERATION: return createLatencyNetworkOperation();
 			case FuzzingOperationsPackage.PACKET_LOSS_NETWORK_OPERATION: return createPacketLossNetworkOperation();
+			case FuzzingOperationsPackage.MULTIPLE_MESSAGES_NETWORK_OPERATION: return createMultipleMessagesNetworkOperation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -221,26 +218,6 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VariableOperation createVariableOperation() {
-		VariableOperationImpl variableOperation = new VariableOperationImpl();
-		return variableOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RandomValueFuzzingOperation createRandomValueFuzzingOperation() {
-		RandomValueFuzzingOperationImpl randomValueFuzzingOperation = new RandomValueFuzzingOperationImpl();
-		return randomValueFuzzingOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public RandomValueFromSetOperation createRandomValueFromSetOperation() {
 		RandomValueFromSetOperationImpl randomValueFromSetOperation = new RandomValueFromSetOperationImpl();
 		return randomValueFromSetOperation;
@@ -321,26 +298,6 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NetworkFuzzingOperation createNetworkFuzzingOperation() {
-		NetworkFuzzingOperationImpl networkFuzzingOperation = new NetworkFuzzingOperationImpl();
-		return networkFuzzingOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BlackholeNetworkOperation createBlackholeNetworkOperation() {
-		BlackholeNetworkOperationImpl blackholeNetworkOperation = new BlackholeNetworkOperationImpl();
-		return blackholeNetworkOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public LatencyNetworkOperation createLatencyNetworkOperation() {
 		LatencyNetworkOperationImpl latencyNetworkOperation = new LatencyNetworkOperationImpl();
 		return latencyNetworkOperation;
@@ -354,6 +311,16 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	public PacketLossNetworkOperation createPacketLossNetworkOperation() {
 		PacketLossNetworkOperationImpl packetLossNetworkOperation = new PacketLossNetworkOperationImpl();
 		return packetLossNetworkOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MultipleMessagesNetworkOperation createMultipleMessagesNetworkOperation() {
+		MultipleMessagesNetworkOperationImpl multipleMessagesNetworkOperation = new MultipleMessagesNetworkOperationImpl();
+		return multipleMessagesNetworkOperation;
 	}
 
 	/**

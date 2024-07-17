@@ -13,7 +13,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
  *
  * @generated
  */
-public class RandomValueFuzzingOperationImpl extends ComponentOperationImpl implements RandomValueFuzzingOperation {
+public abstract class RandomValueFuzzingOperationImpl extends VariableOperationImpl implements RandomValueFuzzingOperation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

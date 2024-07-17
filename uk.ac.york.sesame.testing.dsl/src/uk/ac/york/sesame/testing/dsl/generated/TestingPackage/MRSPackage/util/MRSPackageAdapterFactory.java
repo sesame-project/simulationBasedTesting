@@ -76,8 +76,52 @@ public class MRSPackageAdapterFactory extends AdapterFactoryImpl {
 				return createNodeAdapter();
 			}
 			@Override
-			public Adapter caseVariable(Variable object) {
-				return createVariableAdapter();
+			public Adapter casePublicationInformation(PublicationInformation object) {
+				return createPublicationInformationAdapter();
+			}
+			@Override
+			public Adapter caseGenericVariable(GenericVariable object) {
+				return createGenericVariableAdapter();
+			}
+			@Override
+			public Adapter caseStaticVariable(StaticVariable object) {
+				return createStaticVariableAdapter();
+			}
+			@Override
+			public Adapter caseDynamicVariable(DynamicVariable object) {
+				return createDynamicVariableAdapter();
+			}
+			@Override
+			public Adapter caseEventBasedVariable(EventBasedVariable object) {
+				return createEventBasedVariableAdapter();
+			}
+			@Override
+			public Adapter caseParameterVariable(ParameterVariable object) {
+				return createParameterVariableAdapter();
+			}
+			@Override
+			public Adapter caseConfigLocation(ConfigLocation object) {
+				return createConfigLocationAdapter();
+			}
+			@Override
+			public Adapter caseFileLocation(FileLocation object) {
+				return createFileLocationAdapter();
+			}
+			@Override
+			public Adapter casePropertiesKeyValues(PropertiesKeyValues object) {
+				return createPropertiesKeyValuesAdapter();
+			}
+			@Override
+			public Adapter caseFixedPosition(FixedPosition object) {
+				return createFixedPositionAdapter();
+			}
+			@Override
+			public Adapter caseRegexLocation(RegexLocation object) {
+				return createRegexLocationAdapter();
+			}
+			@Override
+			public Adapter caseXMLConfigLocation(XMLConfigLocation object) {
+				return createXMLConfigLocationAdapter();
 			}
 			@Override
 			public Adapter caseType(Type object) {
@@ -156,16 +200,170 @@ public class MRSPackageAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable <em>Variable</em>}'.
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PublicationInformation <em>Publication Information</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PublicationInformation
 	 * @generated
 	 */
-	public Adapter createVariableAdapter() {
+	public Adapter createPublicationInformationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable <em>Generic Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable
+	 * @generated
+	 */
+	public Adapter createGenericVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable <em>Static Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable
+	 * @generated
+	 */
+	public Adapter createStaticVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.DynamicVariable <em>Dynamic Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.DynamicVariable
+	 * @generated
+	 */
+	public Adapter createDynamicVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBasedVariable <em>Event Based Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBasedVariable
+	 * @generated
+	 */
+	public Adapter createEventBasedVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParameterVariable <em>Parameter Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParameterVariable
+	 * @generated
+	 */
+	public Adapter createParameterVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ConfigLocation <em>Config Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ConfigLocation
+	 * @generated
+	 */
+	public Adapter createConfigLocationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FileLocation <em>File Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FileLocation
+	 * @generated
+	 */
+	public Adapter createFileLocationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PropertiesKeyValues <em>Properties Key Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PropertiesKeyValues
+	 * @generated
+	 */
+	public Adapter createPropertiesKeyValuesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FixedPosition <em>Fixed Position</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FixedPosition
+	 * @generated
+	 */
+	public Adapter createFixedPositionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.RegexLocation <em>Regex Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.RegexLocation
+	 * @generated
+	 */
+	public Adapter createRegexLocationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation <em>XML Config Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation
+	 * @generated
+	 */
+	public Adapter createXMLConfigLocationAdapter() {
 		return null;
 	}
 

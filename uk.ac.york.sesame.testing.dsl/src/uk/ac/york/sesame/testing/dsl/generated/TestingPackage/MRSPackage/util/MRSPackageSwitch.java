@@ -78,9 +78,90 @@ public class MRSPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MRSPackagePackage.VARIABLE: {
-				Variable variable = (Variable)theEObject;
-				T result = caseVariable(variable);
+			case MRSPackagePackage.PUBLICATION_INFORMATION: {
+				PublicationInformation publicationInformation = (PublicationInformation)theEObject;
+				T result = casePublicationInformation(publicationInformation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MRSPackagePackage.GENERIC_VARIABLE: {
+				GenericVariable genericVariable = (GenericVariable)theEObject;
+				T result = caseGenericVariable(genericVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MRSPackagePackage.STATIC_VARIABLE: {
+				StaticVariable staticVariable = (StaticVariable)theEObject;
+				T result = caseStaticVariable(staticVariable);
+				if (result == null) result = caseGenericVariable(staticVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MRSPackagePackage.DYNAMIC_VARIABLE: {
+				DynamicVariable dynamicVariable = (DynamicVariable)theEObject;
+				T result = caseDynamicVariable(dynamicVariable);
+				if (result == null) result = caseGenericVariable(dynamicVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MRSPackagePackage.EVENT_BASED_VARIABLE: {
+				EventBasedVariable eventBasedVariable = (EventBasedVariable)theEObject;
+				T result = caseEventBasedVariable(eventBasedVariable);
+				if (result == null) result = caseDynamicVariable(eventBasedVariable);
+				if (result == null) result = caseGenericVariable(eventBasedVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MRSPackagePackage.PARAMETER_VARIABLE: {
+				ParameterVariable parameterVariable = (ParameterVariable)theEObject;
+				T result = caseParameterVariable(parameterVariable);
+				if (result == null) result = caseDynamicVariable(parameterVariable);
+				if (result == null) result = caseGenericVariable(parameterVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MRSPackagePackage.CONFIG_LOCATION: {
+				ConfigLocation configLocation = (ConfigLocation)theEObject;
+				T result = caseConfigLocation(configLocation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MRSPackagePackage.FILE_LOCATION: {
+				FileLocation fileLocation = (FileLocation)theEObject;
+				T result = caseFileLocation(fileLocation);
+				if (result == null) result = caseConfigLocation(fileLocation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MRSPackagePackage.PROPERTIES_KEY_VALUES: {
+				PropertiesKeyValues propertiesKeyValues = (PropertiesKeyValues)theEObject;
+				T result = casePropertiesKeyValues(propertiesKeyValues);
+				if (result == null) result = caseFileLocation(propertiesKeyValues);
+				if (result == null) result = caseConfigLocation(propertiesKeyValues);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MRSPackagePackage.FIXED_POSITION: {
+				FixedPosition fixedPosition = (FixedPosition)theEObject;
+				T result = caseFixedPosition(fixedPosition);
+				if (result == null) result = caseFileLocation(fixedPosition);
+				if (result == null) result = caseConfigLocation(fixedPosition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MRSPackagePackage.REGEX_LOCATION: {
+				RegexLocation regexLocation = (RegexLocation)theEObject;
+				T result = caseRegexLocation(regexLocation);
+				if (result == null) result = caseFileLocation(regexLocation);
+				if (result == null) result = caseConfigLocation(regexLocation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MRSPackagePackage.XML_CONFIG_LOCATION: {
+				XMLConfigLocation xmlConfigLocation = (XMLConfigLocation)theEObject;
+				T result = caseXMLConfigLocation(xmlConfigLocation);
+				if (result == null) result = caseFileLocation(xmlConfigLocation);
+				if (result == null) result = caseConfigLocation(xmlConfigLocation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -164,17 +245,182 @@ public class MRSPackageSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Publication Information</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Publication Information</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVariable(Variable object) {
+	public T casePublicationInformation(PublicationInformation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenericVariable(GenericVariable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Static Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Static Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStaticVariable(StaticVariable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dynamic Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dynamic Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDynamicVariable(DynamicVariable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Event Based Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Event Based Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEventBasedVariable(EventBasedVariable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parameter Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parameter Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameterVariable(ParameterVariable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Config Location</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Config Location</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConfigLocation(ConfigLocation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>File Location</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>File Location</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFileLocation(FileLocation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Properties Key Values</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Properties Key Values</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePropertiesKeyValues(PropertiesKeyValues object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fixed Position</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fixed Position</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFixedPosition(FixedPosition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Regex Location</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Regex Location</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRegexLocation(RegexLocation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>XML Config Location</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>XML Config Location</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseXMLConfigLocation(XMLConfigLocation object) {
 		return null;
 	}
 

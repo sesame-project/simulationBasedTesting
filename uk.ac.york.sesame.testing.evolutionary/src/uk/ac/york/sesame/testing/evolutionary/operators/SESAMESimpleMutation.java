@@ -9,8 +9,9 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
 import uk.ac.york.sesame.testing.evolutionary.ConditionGenerator;
 import uk.ac.york.sesame.testing.evolutionary.ParamError;
-import uk.ac.york.sesame.testing.evolutionary.SESAMEFuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.DynamicOperationWrapper;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -97,7 +98,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		aft.setEndTime(endTime);
 	}
 
-	private void mutateConditionBased(SESAMEFuzzingOperationWrapper sfow, ConditionBasedActivation aa, ConditionMutationSelection s) throws MutationFailed, IOException {
+	private void mutateConditionBased(FuzzingOperationWrapper sfow, ConditionBasedActivation aa, ConditionMutationSelection s) throws MutationFailed, IOException {
 		try {
 			if (s == ConditionMutationSelection.SELECT_START) {
 				Tree<String> t = sfow.getStoredStartTree();
@@ -126,7 +127,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		}
 	}
 
-	private void mutateIndividualActivation(SESAMEFuzzingOperationWrapper sfow, Activation aa, Activation aaSpace)
+	private void mutateIndividualActivation(FuzzingOperationWrapper sfow, Activation aa, Activation aaSpace)
 			throws MutationFailed, IOException {
 		if ((aa instanceof FixedTimeActivation) && (aaSpace instanceof FixedTimeActivation)) {
 			mutateFixedTimeSpec((FixedTimeActivation) aa, (FixedTimeActivation) aaSpace);
@@ -146,22 +147,9 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		}
 	}
 
-	private Optional<Activation> getActivation(FuzzingOperation basedUpon) {
-		if (basedUpon == null) {
-			return Optional.empty();
-		}
-
-		if (basedUpon.getActivation() == null) {
-			return Optional.empty();
-		}
-
-		return Optional.of(basedUpon.getActivation());
-
-	}
-
-	private void mutateActivations(SESAMEFuzzingOperationWrapper sfow) throws MutationFailed, IOException {
-		Activation aa = sfow.getAttack().getActivation();
-		Optional<Activation> aaSpace = getActivation(sfow.getAttack().getFromTemplate());
+	private void mutateActivations(DynamicOperationWrapper sfow) throws MutationFailed, IOException {
+		Activation aa = sfow.getActivation();
+		Optional<Activation> aaSpace = getActivation(sfow.getFuzzingOperation().getFromTemplate());
 		if (aaSpace.isPresent()) {
 			mutateIndividualActivation(sfow, aa, aaSpace.get());
 		}
@@ -186,7 +174,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 				vs.setPropertyName(((DoubleRange) vsOrig).getPropertyName());
 				vs.setLowerBound(lb);
 				vs.setUpperBound(ub);
-				newValueSet.add(vs);
+				newValueSet.add(v s);
 			}
 		}
 	}
@@ -289,7 +277,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		}
 	}
 
-	private void newParameters(SESAMEFuzzingOperationWrapper sfow) {
+	private void newParameters(FuzzingOperationWrapper sfow) {
 		FuzzingOperation newOp = sfow.getAttack();
 		FuzzingOperation original = newOp.getFromTemplate();
 		try {
@@ -307,7 +295,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		}
 	}
 
-	public void modifyGivenRecord(SESAMEFuzzingOperationWrapper sta) throws IOException {
+	public void modifyGivenRecord(FuzzingOperationWrapper sta) throws IOException {
 		if (rng.nextDouble() < probTemporalMutation) {
 			logWithoutError("Performing temporal mutation on " + sta.getName());
 			try {
@@ -334,7 +322,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 			// Pre-mutation debugging
 			mutationLog.write(sol.toString() + "\n");
 			for (int i = 0; i < sol.getNumberOfVariables(); i++) {
-				SESAMEFuzzingOperationWrapper sta = sol.getVariable(i);
+				FuzzingOperationWrapper sta = sol.getVariable(i);
 				System.out.println("Before modification SESAMETestAttack=" + sta);
 				modifyGivenRecord(sta);
 			}

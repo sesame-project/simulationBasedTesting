@@ -19,12 +19,12 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionStrategy;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Simulator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,7 +56,7 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Variable> variables;
+	protected EList<GenericVariable> variables;
 
 	/**
 	 * The default value of the '{@link #getLaunchDelaySeconds() <em>Launch Delay Seconds</em>}' attribute.
@@ -202,9 +202,9 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Variable> getVariables() {
+	public EList<GenericVariable> getVariables() {
 		if (variables == null) {
-			variables = new EObjectContainmentEList<Variable>(Variable.class, this, MRSPackagePackage.MRS__VARIABLES);
+			variables = new EObjectContainmentEList<GenericVariable>(GenericVariable.class, this, MRSPackagePackage.MRS__VARIABLES);
 		}
 		return variables;
 	}
@@ -466,7 +466,7 @@ public class MRSImpl extends MinimalEObjectImpl.Container implements MRS {
 		switch (featureID) {
 			case MRSPackagePackage.MRS__VARIABLES:
 				getVariables().clear();
-				getVariables().addAll((Collection<? extends Variable>)newValue);
+				getVariables().addAll((Collection<? extends GenericVariable>)newValue);
 				return;
 			case MRSPackagePackage.MRS__LAUNCH_DELAY_SECONDS:
 				setLaunchDelaySeconds((Integer)newValue);

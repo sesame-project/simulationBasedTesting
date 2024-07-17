@@ -2,6 +2,7 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -19,14 +20,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.eclipse.emf.ecore.util.InternalEList;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Node;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
-
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionConstraint;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePackage;
@@ -41,17 +39,13 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getPriority <em>Priority</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getActivation <em>Activation</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getVariableToAffect <em>Variable To Affect</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#isMessagesFromAllComponenents <em>Messages From All Componenents</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getFromNodes <em>From Nodes</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#isMessagesToAllComponenents <em>Messages To All Componenents</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getToNodes <em>To Nodes</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getNodeToFuzz <em>Node To Fuzz</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#isAllPublishingVars <em>All Publishing Vars</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getPublishingVars <em>Publishing Vars</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#isAllSubscribingVars <em>All Subscribing Vars</em>}</li>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getSubscribingVars <em>Subscribing Vars</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getFromTemplate <em>From Template</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getContainingTest <em>Containing Test</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getRecordedTimings <em>Recorded Timings</em>}</li>
@@ -104,26 +98,6 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected int priority = PRIORITY_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getActivation() <em>Activation</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getActivation()
-	 * @generated
-	 * @ordered
-	 */
-	protected Activation activation;
-
-	/**
-	 * The cached value of the '{@link #getVariableToAffect() <em>Variable To Affect</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVariableToAffect()
-	 * @generated
-	 * @ordered
-	 */
-	protected Variable variableToAffect;
 
 	/**
 	 * The default value of the '{@link #isMessagesFromAllComponenents() <em>Messages From All Componenents</em>}' attribute.
@@ -216,16 +190,6 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	protected boolean allPublishingVars = ALL_PUBLISHING_VARS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPublishingVars() <em>Publishing Vars</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPublishingVars()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Variable> publishingVars;
-
-	/**
 	 * The default value of the '{@link #isAllSubscribingVars() <em>All Subscribing Vars</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -244,16 +208,6 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected boolean allSubscribingVars = ALL_SUBSCRIBING_VARS_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getSubscribingVars() <em>Subscribing Vars</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubscribingVars()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Variable> subscribingVars;
 
 	/**
 	 * The cached value of the '{@link #getFromTemplate() <em>From Template</em>}' reference.
@@ -431,87 +385,6 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Activation getActivation() {
-		return activation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetActivation(Activation newActivation, NotificationChain msgs) {
-		Activation oldActivation = activation;
-		activation = newActivation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION, oldActivation, newActivation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setActivation(Activation newActivation) {
-		if (newActivation != activation) {
-			NotificationChain msgs = null;
-			if (activation != null)
-				msgs = ((InternalEObject)activation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION, null, msgs);
-			if (newActivation != null)
-				msgs = ((InternalEObject)newActivation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION, null, msgs);
-			msgs = basicSetActivation(newActivation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION, newActivation, newActivation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Variable getVariableToAffect() {
-		if (variableToAffect != null && variableToAffect.eIsProxy()) {
-			InternalEObject oldVariableToAffect = (InternalEObject)variableToAffect;
-			variableToAffect = (Variable)eResolveProxy(oldVariableToAffect);
-			if (variableToAffect != oldVariableToAffect) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FuzzingOperationsPackage.FUZZING_OPERATION__VARIABLE_TO_AFFECT, oldVariableToAffect, variableToAffect));
-			}
-		}
-		return variableToAffect;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Variable basicGetVariableToAffect() {
-		return variableToAffect;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setVariableToAffect(Variable newVariableToAffect) {
-		Variable oldVariableToAffect = variableToAffect;
-		variableToAffect = newVariableToAffect;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__VARIABLE_TO_AFFECT, oldVariableToAffect, variableToAffect));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isMessagesFromAllComponenents() {
 		return messagesFromAllComponenents;
 	}
@@ -637,18 +510,6 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Variable> getPublishingVars() {
-		if (publishingVars == null) {
-			publishingVars = new EObjectResolvingEList<Variable>(Variable.class, this, FuzzingOperationsPackage.FUZZING_OPERATION__PUBLISHING_VARS);
-		}
-		return publishingVars;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isAllSubscribingVars() {
 		return allSubscribingVars;
 	}
@@ -663,18 +524,6 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 		allSubscribingVars = newAllSubscribingVars;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__ALL_SUBSCRIBING_VARS, oldAllSubscribingVars, allSubscribingVars));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Variable> getSubscribingVars() {
-		if (subscribingVars == null) {
-			subscribingVars = new EObjectResolvingEList<Variable>(Variable.class, this, FuzzingOperationsPackage.FUZZING_OPERATION__SUBSCRIBING_VARS);
-		}
-		return subscribingVars;
 	}
 
 	/**
@@ -869,6 +718,17 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FuzzingOperation dup() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -888,8 +748,6 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION:
-				return basicSetActivation(null, msgs);
 			case FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST:
 				return eBasicSetContainer(null, FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST, msgs);
 			case FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS:
@@ -926,11 +784,6 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return getName();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__PRIORITY:
 				return getPriority();
-			case FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION:
-				return getActivation();
-			case FuzzingOperationsPackage.FUZZING_OPERATION__VARIABLE_TO_AFFECT:
-				if (resolve) return getVariableToAffect();
-				return basicGetVariableToAffect();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS:
 				return isMessagesFromAllComponenents();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__FROM_NODES:
@@ -944,12 +797,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return basicGetNodeToFuzz();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__ALL_PUBLISHING_VARS:
 				return isAllPublishingVars();
-			case FuzzingOperationsPackage.FUZZING_OPERATION__PUBLISHING_VARS:
-				return getPublishingVars();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__ALL_SUBSCRIBING_VARS:
 				return isAllSubscribingVars();
-			case FuzzingOperationsPackage.FUZZING_OPERATION__SUBSCRIBING_VARS:
-				return getSubscribingVars();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__FROM_TEMPLATE:
 				if (resolve) return getFromTemplate();
 				return basicGetFromTemplate();
@@ -986,12 +835,6 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__PRIORITY:
 				setPriority((Integer)newValue);
 				return;
-			case FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION:
-				setActivation((Activation)newValue);
-				return;
-			case FuzzingOperationsPackage.FUZZING_OPERATION__VARIABLE_TO_AFFECT:
-				setVariableToAffect((Variable)newValue);
-				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS:
 				setMessagesFromAllComponenents((Boolean)newValue);
 				return;
@@ -1012,16 +855,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__ALL_PUBLISHING_VARS:
 				setAllPublishingVars((Boolean)newValue);
 				return;
-			case FuzzingOperationsPackage.FUZZING_OPERATION__PUBLISHING_VARS:
-				getPublishingVars().clear();
-				getPublishingVars().addAll((Collection<? extends Variable>)newValue);
-				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__ALL_SUBSCRIBING_VARS:
 				setAllSubscribingVars((Boolean)newValue);
-				return;
-			case FuzzingOperationsPackage.FUZZING_OPERATION__SUBSCRIBING_VARS:
-				getSubscribingVars().clear();
-				getSubscribingVars().addAll((Collection<? extends Variable>)newValue);
 				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__FROM_TEMPLATE:
 				setFromTemplate((FuzzingOperation)newValue);
@@ -1063,12 +898,6 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__PRIORITY:
 				setPriority(PRIORITY_EDEFAULT);
 				return;
-			case FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION:
-				setActivation((Activation)null);
-				return;
-			case FuzzingOperationsPackage.FUZZING_OPERATION__VARIABLE_TO_AFFECT:
-				setVariableToAffect((Variable)null);
-				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS:
 				setMessagesFromAllComponenents(MESSAGES_FROM_ALL_COMPONENENTS_EDEFAULT);
 				return;
@@ -1087,14 +916,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__ALL_PUBLISHING_VARS:
 				setAllPublishingVars(ALL_PUBLISHING_VARS_EDEFAULT);
 				return;
-			case FuzzingOperationsPackage.FUZZING_OPERATION__PUBLISHING_VARS:
-				getPublishingVars().clear();
-				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__ALL_SUBSCRIBING_VARS:
 				setAllSubscribingVars(ALL_SUBSCRIBING_VARS_EDEFAULT);
-				return;
-			case FuzzingOperationsPackage.FUZZING_OPERATION__SUBSCRIBING_VARS:
-				getSubscribingVars().clear();
 				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__FROM_TEMPLATE:
 				setFromTemplate((FuzzingOperation)null);
@@ -1133,10 +956,6 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case FuzzingOperationsPackage.FUZZING_OPERATION__PRIORITY:
 				return priority != PRIORITY_EDEFAULT;
-			case FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION:
-				return activation != null;
-			case FuzzingOperationsPackage.FUZZING_OPERATION__VARIABLE_TO_AFFECT:
-				return variableToAffect != null;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS:
 				return messagesFromAllComponenents != MESSAGES_FROM_ALL_COMPONENENTS_EDEFAULT;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__FROM_NODES:
@@ -1149,12 +968,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return nodeToFuzz != null;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__ALL_PUBLISHING_VARS:
 				return allPublishingVars != ALL_PUBLISHING_VARS_EDEFAULT;
-			case FuzzingOperationsPackage.FUZZING_OPERATION__PUBLISHING_VARS:
-				return publishingVars != null && !publishingVars.isEmpty();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__ALL_SUBSCRIBING_VARS:
 				return allSubscribingVars != ALL_SUBSCRIBING_VARS_EDEFAULT;
-			case FuzzingOperationsPackage.FUZZING_OPERATION__SUBSCRIBING_VARS:
-				return subscribingVars != null && !subscribingVars.isEmpty();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__FROM_TEMPLATE:
 				return fromTemplate != null;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST:
@@ -1173,6 +988,20 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return conditionConstraints != null && !conditionConstraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case FuzzingOperationsPackage.FUZZING_OPERATION___DUP:
+				return dup();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

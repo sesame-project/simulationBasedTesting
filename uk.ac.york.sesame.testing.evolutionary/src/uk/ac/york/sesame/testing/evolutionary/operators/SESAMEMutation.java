@@ -8,8 +8,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
-import uk.ac.york.sesame.testing.evolutionary.SESAMEFuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
+
 import org.uma.jmetal.operator.mutation.MutationOperator;
 
 //import it.units.malelab.jgea.representation.tree.Tree;

@@ -6,7 +6,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBasedVariable;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,7 +79,7 @@ public interface Metric extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Related Variables</b></em>' reference list.
-	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable}.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBasedVariable}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Variables</em>' reference list.
@@ -87,7 +87,7 @@ public interface Metric extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<Variable> getRelatedVariables();
+	EList<EventBasedVariable> getRelatedVariables();
 
 	/**
 	 * Returns the value of the '<em><b>Value If Not Received</b></em>' containment reference.

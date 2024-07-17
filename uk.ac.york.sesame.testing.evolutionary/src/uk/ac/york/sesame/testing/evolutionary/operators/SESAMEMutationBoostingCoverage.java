@@ -9,8 +9,8 @@ import uk.ac.york.sesame.testing.evolutionary.phytestingselection.coveragechecke
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.dimensionreducer.ParameterSpaceDimensionalityReduction;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
-import uk.ac.york.sesame.testing.evolutionary.SESAMEFuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
 
 public class SESAMEMutationBoostingCoverage extends SESAMESimpleMutation {
 
@@ -58,7 +58,7 @@ public class SESAMEMutationBoostingCoverage extends SESAMESimpleMutation {
 			// Pre-mutation debugging
 			mutationLog.write(sol.toString() + "\n");
 			for (int i = 0; i < sol.getNumberOfVariables(); i++) {
-				SESAMEFuzzingOperationWrapper sta = sol.getVariable(i);
+				FuzzingOperationWrapper sta = sol.getVariable(i);
 				System.out.println("Before modification with mutation boosting coverage SESAMETestAttack=" + sta);
 				
 				int tries = 0;

@@ -16,8 +16,9 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
 
-public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrapper> {
+public class SESAMETestSolution implements Solution<FuzzingOperationWrapper> {
 	private static final long serialVersionUID = 1L;
 
 	private Test t;
@@ -33,7 +34,7 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 	private Map<Integer, Double> objectives = new HashMap<Integer, Double>();
 	private Map<Integer, Metric> objectiveMetrics = new HashMap<Integer, Metric>();
 	private Map<Integer, Double> constraints = new HashMap<Integer, Double>();
-	private List<SESAMEFuzzingOperationWrapper> contents = new ArrayList<SESAMEFuzzingOperationWrapper>();
+	private List<FuzzingOperationWrapper> contents = new ArrayList<FuzzingOperationWrapper>();
 
 	private void checkSetupTestingFactory() {
 		if (tFactory == null) {
@@ -53,7 +54,7 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 	
 	public String toString() {
 		String output = t.getName() + "-[" + contents.size() + " operations]:\n";
-		for (SESAMEFuzzingOperationWrapper sfow : contents) {
+		for (FuzzingOperationWrapper sfow : contents) {
 			output = output + sfow.toString() + "\n";
 		}
 		return output;
@@ -88,9 +89,9 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 		this.actuallyRun = other.actuallyRun;
 		this.exptRunTime = other.exptRunTime;
 		this.selectedCampaign = other.selectedCampaign;
-		this.contents = new ArrayList<SESAMEFuzzingOperationWrapper>(other.contents.size());
+		this.contents = new ArrayList<FuzzingOperationWrapper>(other.contents.size());
 
-		for (SESAMEFuzzingOperationWrapper fi : other.contents) {
+		for (FuzzingOperationWrapper fi : other.contents) {
 			this.contents.add(fi.dup());
 		}
 		
@@ -114,7 +115,7 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 		return res;
 	}
 
-	public SESAMEFuzzingOperationWrapper getVariable(int index) {
+	public FuzzingOperationWrapper getVariable(int index) {
 		if (index < contents.size() && index >= 0) {
 			return contents.get(index);
 		} else {
@@ -122,11 +123,11 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 		}
 	}
 
-	public List<SESAMEFuzzingOperationWrapper> getVariables() {
+	public List<FuzzingOperationWrapper> getVariables() {
 		return contents;
 	}
 
-	public void setVariable(int index, SESAMEFuzzingOperationWrapper variable) {
+	public void setVariable(int index, FuzzingOperationWrapper variable) {
 		contents.set(index, variable);
 	}
 
@@ -168,19 +169,19 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 		return this.copy();
 	}
 
-	public List<SESAMEFuzzingOperationWrapper> getFuzzingSelections() {
+	public List<FuzzingOperationWrapper> getFuzzingSelections() {
 		return contents;
 	}
 
-	public void setContents(int index, SESAMEFuzzingOperationWrapper fi) {
+	public void setContents(int index, FuzzingOperationWrapper fi) {
 		contents.set(index, fi);
 	}
 
-	public void addContents(int index, SESAMEFuzzingOperationWrapper fi) {
+	public void addContents(int index, FuzzingOperationWrapper fi) {
 		contents.add(index, fi);
 	}
 	
-	public void addToContents(SESAMEFuzzingOperationWrapper fi) {
+	public void addToContents(FuzzingOperationWrapper fi) {
 		contents.add(fi);
 	}
 
@@ -204,15 +205,15 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 		return attributes;
 	}
 
-	public void setAllContents(List<SESAMEFuzzingOperationWrapper> fis) {
+	public void setAllContents(List<FuzzingOperationWrapper> fis) {
 		int i = 0;
-		for (SESAMEFuzzingOperationWrapper fi : fis) {
+		for (FuzzingOperationWrapper fi : fis) {
 			addContents(i, fi);
 			i++;
 		}
 	}
 
-	public List<SESAMEFuzzingOperationWrapper> variables() {
+	public List<FuzzingOperationWrapper> variables() {
 		return getVariables();
 	}
 
@@ -260,8 +261,8 @@ public class SESAMETestSolution implements Solution<SESAMEFuzzingOperationWrappe
 		List<FuzzingOperation> testAttacks = t.getOperations();
 		// First, ensure the model attack objects are all updated in the model object
 		// from its contents
-		for (SESAMEFuzzingOperationWrapper sta : contents) {
-			FuzzingOperation a = sta.getAttack();
+		for (FuzzingOperationWrapper sta : contents) {
+			FuzzingOperation a = sta.getFuzzingOperation();
 			testAttacks.add(a);
 		}
 		

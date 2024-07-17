@@ -325,13 +325,13 @@ public interface MetricsPackage extends EPackage {
 	int VARIABLE_METRIC__USE_IN_OPTIMISATION = METRIC__USE_IN_OPTIMISATION;
 
 	/**
-	 * The feature id for the '<em><b>Chosen Variables</b></em>' reference.
+	 * The feature id for the '<em><b>Chosen Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_METRIC__CHOSEN_VARIABLES = METRIC_FEATURE_COUNT + 0;
+	int VARIABLE_METRIC__CHOSEN_VARIABLE = METRIC_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Variable Metric</em>' class.
@@ -1202,15 +1202,15 @@ public interface MetricsPackage extends EPackage {
 	EClass getVariableMetric();
 
 	/**
-	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric#getChosenVariables <em>Chosen Variables</em>}'.
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric#getChosenVariable <em>Chosen Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Chosen Variables</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric#getChosenVariables()
+	 * @return the meta object for the reference '<em>Chosen Variable</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric#getChosenVariable()
 	 * @see #getVariableMetric()
 	 * @generated
 	 */
-	EReference getVariableMetric_ChosenVariables();
+	EReference getVariableMetric_ChosenVariable();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance <em>Metric Instance</em>}'.
@@ -1518,12 +1518,12 @@ public interface MetricsPackage extends EPackage {
 		EClass VARIABLE_METRIC = eINSTANCE.getVariableMetric();
 
 		/**
-		 * The meta object literal for the '<em><b>Chosen Variables</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Chosen Variable</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VARIABLE_METRIC__CHOSEN_VARIABLES = eINSTANCE.getVariableMetric_ChosenVariables();
+		EReference VARIABLE_METRIC__CHOSEN_VARIABLE = eINSTANCE.getVariableMetric_ChosenVariable();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.impl.MetricInstanceImpl <em>Metric Instance</em>}' class.

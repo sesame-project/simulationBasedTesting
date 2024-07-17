@@ -379,7 +379,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVariableMetric_ChosenVariables() {
+	public EReference getVariableMetric_ChosenVariable() {
 		return (EReference)variableMetricEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -573,7 +573,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		createEAttribute(metricDefaultEClass, METRIC_DEFAULT__DEFAULT_VAL);
 
 		variableMetricEClass = createEClass(VARIABLE_METRIC);
-		createEReference(variableMetricEClass, VARIABLE_METRIC__CHOSEN_VARIABLES);
+		createEReference(variableMetricEClass, VARIABLE_METRIC__CHOSEN_VARIABLE);
 
 		metricInstanceEClass = createEClass(METRIC_INSTANCE);
 		createEReference(metricInstanceEClass, METRIC_INSTANCE__METRIC);
@@ -656,7 +656,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		initEClass(metricEClass, Metric.class, "Metric", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMetric_Name(), ecorePackage.getEString(), "name", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMetric_Dir(), this.getMetricOptimisationDirection(), "dir", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetric_RelatedVariables(), theMRSPackagePackage.getVariable(), null, "relatedVariables", null, 0, -1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMetric_RelatedVariables(), theMRSPackagePackage.getEventBasedVariable(), null, "relatedVariables", null, 0, -1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetric_ValueIfNotReceived(), this.getMetricDefault(), null, "valueIfNotReceived", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMetric_InitValue(), this.getMetricDefault(), null, "initValue", null, 1, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMetric_UseInOptimisation(), ecorePackage.getEBoolean(), "useInOptimisation", null, 0, 1, Metric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -665,7 +665,7 @@ public class MetricsPackageImpl extends EPackageImpl implements MetricsPackage {
 		initEAttribute(getMetricDefault_DefaultVal(), ecorePackage.getEDouble(), "defaultVal", null, 0, 1, MetricDefault.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(variableMetricEClass, VariableMetric.class, "VariableMetric", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariableMetric_ChosenVariables(), theMRSPackagePackage.getVariable(), null, "chosenVariables", null, 1, 1, VariableMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVariableMetric_ChosenVariable(), theMRSPackagePackage.getEventBasedVariable(), null, "chosenVariable", null, 1, 1, VariableMetric.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(metricInstanceEClass, MetricInstance.class, "MetricInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMetricInstance_Metric(), this.getMetric(), null, "metric", null, 1, 1, MetricInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -158,6 +158,7 @@ package FuzzingOperations {
 		val StandardGrammar.ConditionConstraint[*] conditionConstraints;
 		
 		op FuzzingOperation dup();
+		op FuzzingOperation findReduction();
 	}
 
 	class OfflineFuzzingOperation extends FuzzingOperation {
@@ -167,11 +168,6 @@ package FuzzingOperations {
 	enum OfflineOperationTime {
 		PRE = 0;
 		POST = 1;
-	}
-
-	class CustomFuzzingOperation extends FuzzingOperation {
-		val ValueSet[*] params;
-		attr String customProcessClass;
 	}
 
 	class CustomOfflineFuzzingOperation extends OfflineFuzzingOperation {
@@ -222,8 +218,15 @@ package FuzzingOperations {
 	}
 
 	abstract class VariableOperation extends PotentiallyStaticOperation {
-		ref MRSPackage.DynamicVariable variableToAffect;
+		ref MRSPackage.GenericVariable variableToAffect;
 		// TODO: parameter info?
+	}
+	
+	// CustomFuzzingOperation is still defined on a particular variable, hence 
+	// it is a subclass of VariableOperation
+	class CustomFuzzingOperation extends VariableOperation {
+		val ValueSet[*] params;
+		attr String customProcessClass;
 	}
 
 	abstract class RandomValueFuzzingOperation extends VariableOperation {
@@ -250,6 +253,7 @@ package FuzzingOperations {
 	class DoubleRange extends ValueRange {
 		attr double lowerBound;
 		attr double upperBound;
+		op DoubleRange findReduction();
 	}
 
 	class Point {
@@ -461,9 +465,10 @@ package MRSPackage {
 		ref Type[1] type;
 	}
 	
-	/** A static variable defined in the MRS configuration files */
+	/** A static variable defined in the MRS configuration files.
+	Note that variables may be defined at multiple locations e.g. initialisation points */
 	class StaticVariable extends GenericVariable {
-		val ConfigLocation[1] location;
+		val ConfigLocation[1..*] locations;
 	}
 
 	abstract class DynamicVariable extends GenericVariable {
@@ -560,6 +565,7 @@ package MRSPackage {
 @namespace(uri="Execution", prefix="")
 package Execution {
 	abstract class ExecutionStrategy {
+		attr String exptRunnerIP;
 		op boolean isDistributed();
 	}
 	

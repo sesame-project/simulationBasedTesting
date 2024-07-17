@@ -258,7 +258,7 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * @generated
 	 */
 	public EAttribute getCompositeCondition_Binop() {
-		return (EAttribute)compositeConditionEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)compositeConditionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -267,7 +267,7 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 	 * @generated
 	 */
 	public EReference getCompositeCondition_Right() {
-		return (EReference)compositeConditionEClass.getEStructuralFeatures().get(2);
+		return (EReference)compositeConditionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -482,8 +482,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 
 		compositeConditionEClass = createEClass(COMPOSITE_CONDITION);
 		createEReference(compositeConditionEClass, COMPOSITE_CONDITION__LEFT);
-		createEAttribute(compositeConditionEClass, COMPOSITE_CONDITION__BINOP);
 		createEReference(compositeConditionEClass, COMPOSITE_CONDITION__RIGHT);
+		createEAttribute(compositeConditionEClass, COMPOSITE_CONDITION__BINOP);
 
 		basicConditionEClass = createEClass(BASIC_CONDITION);
 		createEReference(basicConditionEClass, BASIC_CONDITION__LEFT);
@@ -559,8 +559,8 @@ public class StandardGrammarPackageImpl extends EPackageImpl implements Standard
 
 		initEClass(compositeConditionEClass, CompositeCondition.class, "CompositeCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeCondition_Left(), this.getConditionElement(), null, "left", null, 1, 1, CompositeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCompositeCondition_Binop(), this.getBinaryLogicalOperation(), "binop", null, 1, 1, CompositeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCompositeCondition_Right(), this.getConditionElement(), null, "right", null, 1, 1, CompositeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompositeCondition_Binop(), this.getBinaryLogicalOperation(), "binop", null, 1, 1, CompositeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(basicConditionEClass, BasicCondition.class, "BasicCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBasicCondition_Left(), this.getConditionVariable(), null, "left", null, 1, 1, BasicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

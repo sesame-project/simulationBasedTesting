@@ -10,9 +10,9 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations
  *
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getRandomValueFuzzingOperation()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface RandomValueFuzzingOperation extends ComponentOperation {
+public interface RandomValueFuzzingOperation extends VariableOperation {
 
 } // RandomValueFuzzingOperation

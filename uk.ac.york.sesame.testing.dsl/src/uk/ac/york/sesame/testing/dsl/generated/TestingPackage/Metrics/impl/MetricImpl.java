@@ -17,8 +17,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
-
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBasedVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricDefault;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricOptimisationDirection;
@@ -91,7 +90,7 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Variable> relatedVariables;
+	protected EList<EventBasedVariable> relatedVariables;
 
 	/**
 	 * The cached value of the '{@link #getValueIfNotReceived() <em>Value If Not Received</em>}' containment reference.
@@ -199,9 +198,9 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Variable> getRelatedVariables() {
+	public EList<EventBasedVariable> getRelatedVariables() {
 		if (relatedVariables == null) {
-			relatedVariables = new EObjectResolvingEList<Variable>(Variable.class, this, MetricsPackage.METRIC__RELATED_VARIABLES);
+			relatedVariables = new EObjectResolvingEList<EventBasedVariable>(EventBasedVariable.class, this, MetricsPackage.METRIC__RELATED_VARIABLES);
 		}
 		return relatedVariables;
 	}
@@ -370,7 +369,7 @@ public abstract class MetricImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case MetricsPackage.METRIC__RELATED_VARIABLES:
 				getRelatedVariables().clear();
-				getRelatedVariables().addAll((Collection<? extends Variable>)newValue);
+				getRelatedVariables().addAll((Collection<? extends EventBasedVariable>)newValue);
 				return;
 			case MetricsPackage.METRIC__VALUE_IF_NOT_RECEIVED:
 				setValueIfNotReceived((MetricDefault)newValue);

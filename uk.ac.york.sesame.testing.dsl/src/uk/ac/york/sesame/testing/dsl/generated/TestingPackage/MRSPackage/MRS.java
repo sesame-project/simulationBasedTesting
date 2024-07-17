@@ -34,7 +34,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Executio
 public interface MRS extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
-	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable}.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variables</em>' containment reference list.
@@ -42,7 +42,7 @@ public interface MRS extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Variable> getVariables();
+	EList<GenericVariable> getVariables();
 
 	/**
 	 * Returns the value of the '<em><b>Launch File Location</b></em>' attribute.

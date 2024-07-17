@@ -2,7 +2,7 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBasedVariable;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +13,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variabl
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric#getChosenVariables <em>Chosen Variables</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric#getChosenVariable <em>Chosen Variable</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getVariableMetric()
@@ -22,25 +22,25 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variabl
  */
 public interface VariableMetric extends Metric {
 	/**
-	 * Returns the value of the '<em><b>Chosen Variables</b></em>' reference.
+	 * Returns the value of the '<em><b>Chosen Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Chosen Variables</em>' reference.
-	 * @see #setChosenVariables(Variable)
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getVariableMetric_ChosenVariables()
+	 * @return the value of the '<em>Chosen Variable</em>' reference.
+	 * @see #setChosenVariable(EventBasedVariable)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricsPackage#getVariableMetric_ChosenVariable()
 	 * @model required="true"
 	 * @generated
 	 */
-	Variable getChosenVariables();
+	EventBasedVariable getChosenVariable();
 
 	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric#getChosenVariables <em>Chosen Variables</em>}' reference.
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.VariableMetric#getChosenVariable <em>Chosen Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Chosen Variables</em>' reference.
-	 * @see #getChosenVariables()
+	 * @param value the new value of the '<em>Chosen Variable</em>' reference.
+	 * @see #getChosenVariable()
 	 * @generated
 	 */
-	void setChosenVariables(Variable value);
+	void setChosenVariable(EventBasedVariable value);
 
 } // VariableMetric

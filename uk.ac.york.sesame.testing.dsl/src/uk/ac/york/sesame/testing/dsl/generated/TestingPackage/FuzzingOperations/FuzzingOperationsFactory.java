@@ -112,24 +112,6 @@ public interface FuzzingOperationsFactory extends EFactory {
 	ComponentSubPropertyOperation createComponentSubPropertyOperation();
 
 	/**
-	 * Returns a new object of class '<em>Variable Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Operation</em>'.
-	 * @generated
-	 */
-	VariableOperation createVariableOperation();
-
-	/**
-	 * Returns a new object of class '<em>Random Value Fuzzing Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Random Value Fuzzing Operation</em>'.
-	 * @generated
-	 */
-	RandomValueFuzzingOperation createRandomValueFuzzingOperation();
-
-	/**
 	 * Returns a new object of class '<em>Random Value From Set Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -202,24 +184,6 @@ public interface FuzzingOperationsFactory extends EFactory {
 	ExternalResourceSet createExternalResourceSet();
 
 	/**
-	 * Returns a new object of class '<em>Network Fuzzing Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Network Fuzzing Operation</em>'.
-	 * @generated
-	 */
-	NetworkFuzzingOperation createNetworkFuzzingOperation();
-
-	/**
-	 * Returns a new object of class '<em>Blackhole Network Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Blackhole Network Operation</em>'.
-	 * @generated
-	 */
-	BlackholeNetworkOperation createBlackholeNetworkOperation();
-
-	/**
 	 * Returns a new object of class '<em>Latency Network Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -236,6 +200,15 @@ public interface FuzzingOperationsFactory extends EFactory {
 	 * @generated
 	 */
 	PacketLossNetworkOperation createPacketLossNetworkOperation();
+
+	/**
+	 * Returns a new object of class '<em>Multiple Messages Network Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multiple Messages Network Operation</em>'.
+	 * @generated
+	 */
+	MultipleMessagesNetworkOperation createMultipleMessagesNetworkOperation();
 
 	/**
 	 * Returns the package supported by this factory.

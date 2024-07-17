@@ -14,7 +14,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
  *
  * @generated
  */
-public class BlackholeNetworkOperationImpl extends NetworkFuzzingOperationImpl implements BlackholeNetworkOperation {
+public abstract class BlackholeNetworkOperationImpl extends NetworkFuzzingOperationImpl implements BlackholeNetworkOperation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -8,15 +8,18 @@ import java.util.Random;
 import org.uma.jmetal.util.JMetalException;
 
 import it.units.malelab.jgea.representation.tree.Tree;
+import uk.ac.york.sesame.testing.architecture.fuzzingoperations.ConditionBasedFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
 import uk.ac.york.sesame.testing.evolutionary.ConditionGenerator;
-import uk.ac.york.sesame.testing.evolutionary.SESAMEFuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.ConditionBasedOperationWrapper;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.DynamicOperationWrapper;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 
-public class SESAMEConditionsCrossover extends SESAMECrossoverOperation {
+public class SESAMEConditionsCrossover extends SESAMEConditionCrossoverOperation {
 	private double crossoverProbability;
 	private ConditionGenerator condGenerator;
 	private static final long serialVersionUID = 1L;
@@ -33,7 +36,7 @@ public class SESAMEConditionsCrossover extends SESAMECrossoverOperation {
 		this.crossoverProbability = crossoverProbability;
 	}
 	
-	public List<SESAMETestSolution> doCrossover(List<SESAMETestSolution> solutions) throws ConversionFailed {
+	public List<SESAMETestSolution> doCrossover(List<SESAMETestSolution> solutions) throws ConversionFailed, InvalidFuzzingOperationsForOperator {
 		List<SESAMETestSolution> output = new ArrayList<SESAMETestSolution>();
 		if (null == solutions) {
 			throw new JMetalException("Null parameter");
@@ -53,9 +56,10 @@ public class SESAMEConditionsCrossover extends SESAMECrossoverOperation {
 		// This only converts the minimal of the two sizes from
 		// left to right
 		for (int i = 0; i < n; i++) {
+			// TODO: needs to ensure that this is filtered for only condition-based fuzzing operations
+			ConditionBasedOperationWrapper l = variableAsCond(left,i);
+			ConditionBasedOperationWrapper r = variableAsCond(right,i);
 			
-			SESAMEFuzzingOperationWrapper l = left.getVariable(i);
-			SESAMEFuzzingOperationWrapper r = right.getVariable(i);
 			Tree<String> s1 = l.getStoredStartTree();
 			Tree<String> s2 = r.getStoredStartTree();
 			Tree<String> e1 = l.getStoredEndTree();
@@ -77,14 +81,14 @@ public class SESAMEConditionsCrossover extends SESAMECrossoverOperation {
 			Condition start = condGenerator.convert(outputStart);
 			Condition end = condGenerator.convert(outputEnd);
 			
-			SESAMEFuzzingOperationWrapper newOp = l.dup();
+			ConditionBasedOperationWrapper newOp = l.dup();
 			newOp.setStoredStartTree(outputStart);
 			newOp.setStoredEndTree(outputEnd);
 			
 			ConditionBasedActivation ca = factory.createConditionBasedActivation();
 			ca.setStarting(start);
 			ca.setEnding(end);
-			newOp.getAttack().setActivation(ca);
+			newOp.setActivation(ca);
 			outputSol.addContents(i, newOp);
 		}
 		
@@ -99,6 +103,11 @@ public class SESAMEConditionsCrossover extends SESAMECrossoverOperation {
 		} catch (ConversionFailed e) {
 			e.printStackTrace();
 			return new ArrayList<SESAMETestSolution>();
+		} catch (InvalidFuzzingOperationsForOperator e) {
+			e.printStackTrace();
+			System.exit(-1);
+			// This will never be reached as we exit
+			return null;
 		}
 	}
 

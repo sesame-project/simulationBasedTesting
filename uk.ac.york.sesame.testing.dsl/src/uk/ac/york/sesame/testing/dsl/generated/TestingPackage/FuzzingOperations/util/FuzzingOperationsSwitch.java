@@ -152,9 +152,26 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case FuzzingOperationsPackage.DYNAMIC_OPERATION: {
+				DynamicOperation dynamicOperation = (DynamicOperation)theEObject;
+				T result = caseDynamicOperation(dynamicOperation);
+				if (result == null) result = caseFuzzTestingOperation(dynamicOperation);
+				if (result == null) result = caseFuzzingOperation(dynamicOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FuzzingOperationsPackage.POTENTIALLY_STATIC_OPERATION: {
+				PotentiallyStaticOperation potentiallyStaticOperation = (PotentiallyStaticOperation)theEObject;
+				T result = casePotentiallyStaticOperation(potentiallyStaticOperation);
+				if (result == null) result = caseFuzzTestingOperation(potentiallyStaticOperation);
+				if (result == null) result = caseFuzzingOperation(potentiallyStaticOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case FuzzingOperationsPackage.VARIABLE_OPERATION: {
 				VariableOperation variableOperation = (VariableOperation)theEObject;
 				T result = caseVariableOperation(variableOperation);
+				if (result == null) result = casePotentiallyStaticOperation(variableOperation);
 				if (result == null) result = caseFuzzTestingOperation(variableOperation);
 				if (result == null) result = caseFuzzingOperation(variableOperation);
 				if (result == null) result = defaultCase(theEObject);
@@ -163,7 +180,8 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 			case FuzzingOperationsPackage.RANDOM_VALUE_FUZZING_OPERATION: {
 				RandomValueFuzzingOperation randomValueFuzzingOperation = (RandomValueFuzzingOperation)theEObject;
 				T result = caseRandomValueFuzzingOperation(randomValueFuzzingOperation);
-				if (result == null) result = caseComponentOperation(randomValueFuzzingOperation);
+				if (result == null) result = caseVariableOperation(randomValueFuzzingOperation);
+				if (result == null) result = casePotentiallyStaticOperation(randomValueFuzzingOperation);
 				if (result == null) result = caseFuzzTestingOperation(randomValueFuzzingOperation);
 				if (result == null) result = caseFuzzingOperation(randomValueFuzzingOperation);
 				if (result == null) result = defaultCase(theEObject);
@@ -173,7 +191,8 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				RandomValueFromSetOperation randomValueFromSetOperation = (RandomValueFromSetOperation)theEObject;
 				T result = caseRandomValueFromSetOperation(randomValueFromSetOperation);
 				if (result == null) result = caseRandomValueFuzzingOperation(randomValueFromSetOperation);
-				if (result == null) result = caseComponentOperation(randomValueFromSetOperation);
+				if (result == null) result = caseVariableOperation(randomValueFromSetOperation);
+				if (result == null) result = casePotentiallyStaticOperation(randomValueFromSetOperation);
 				if (result == null) result = caseFuzzTestingOperation(randomValueFromSetOperation);
 				if (result == null) result = caseFuzzingOperation(randomValueFromSetOperation);
 				if (result == null) result = defaultCase(theEObject);
@@ -239,6 +258,8 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 			case FuzzingOperationsPackage.NETWORK_FUZZING_OPERATION: {
 				NetworkFuzzingOperation networkFuzzingOperation = (NetworkFuzzingOperation)theEObject;
 				T result = caseNetworkFuzzingOperation(networkFuzzingOperation);
+				if (result == null) result = caseDynamicOperation(networkFuzzingOperation);
+				if (result == null) result = caseFuzzTestingOperation(networkFuzzingOperation);
 				if (result == null) result = caseFuzzingOperation(networkFuzzingOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -247,6 +268,8 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				BlackholeNetworkOperation blackholeNetworkOperation = (BlackholeNetworkOperation)theEObject;
 				T result = caseBlackholeNetworkOperation(blackholeNetworkOperation);
 				if (result == null) result = caseNetworkFuzzingOperation(blackholeNetworkOperation);
+				if (result == null) result = caseDynamicOperation(blackholeNetworkOperation);
+				if (result == null) result = caseFuzzTestingOperation(blackholeNetworkOperation);
 				if (result == null) result = caseFuzzingOperation(blackholeNetworkOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -255,6 +278,8 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				LatencyNetworkOperation latencyNetworkOperation = (LatencyNetworkOperation)theEObject;
 				T result = caseLatencyNetworkOperation(latencyNetworkOperation);
 				if (result == null) result = caseNetworkFuzzingOperation(latencyNetworkOperation);
+				if (result == null) result = caseDynamicOperation(latencyNetworkOperation);
+				if (result == null) result = caseFuzzTestingOperation(latencyNetworkOperation);
 				if (result == null) result = caseFuzzingOperation(latencyNetworkOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -263,7 +288,19 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				PacketLossNetworkOperation packetLossNetworkOperation = (PacketLossNetworkOperation)theEObject;
 				T result = casePacketLossNetworkOperation(packetLossNetworkOperation);
 				if (result == null) result = caseNetworkFuzzingOperation(packetLossNetworkOperation);
+				if (result == null) result = caseDynamicOperation(packetLossNetworkOperation);
+				if (result == null) result = caseFuzzTestingOperation(packetLossNetworkOperation);
 				if (result == null) result = caseFuzzingOperation(packetLossNetworkOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FuzzingOperationsPackage.MULTIPLE_MESSAGES_NETWORK_OPERATION: {
+				MultipleMessagesNetworkOperation multipleMessagesNetworkOperation = (MultipleMessagesNetworkOperation)theEObject;
+				T result = caseMultipleMessagesNetworkOperation(multipleMessagesNetworkOperation);
+				if (result == null) result = caseNetworkFuzzingOperation(multipleMessagesNetworkOperation);
+				if (result == null) result = caseDynamicOperation(multipleMessagesNetworkOperation);
+				if (result == null) result = caseFuzzTestingOperation(multipleMessagesNetworkOperation);
+				if (result == null) result = caseFuzzingOperation(multipleMessagesNetworkOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -448,6 +485,36 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseComponentSubPropertyOperation(ComponentSubPropertyOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dynamic Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dynamic Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDynamicOperation(DynamicOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Potentially Static Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Potentially Static Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePotentiallyStaticOperation(PotentiallyStaticOperation object) {
 		return null;
 	}
 
@@ -673,6 +740,21 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePacketLossNetworkOperation(PacketLossNetworkOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multiple Messages Network Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multiple Messages Network Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultipleMessagesNetworkOperation(MultipleMessagesNetworkOperation object) {
 		return null;
 	}
 

@@ -40,13 +40,85 @@ public interface MRSPackageFactory extends EFactory {
 	Node createNode();
 
 	/**
-	 * Returns a new object of class '<em>Variable</em>'.
+	 * Returns a new object of class '<em>Publication Information</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable</em>'.
+	 * @return a new object of class '<em>Publication Information</em>'.
 	 * @generated
 	 */
-	Variable createVariable();
+	PublicationInformation createPublicationInformation();
+
+	/**
+	 * Returns a new object of class '<em>Static Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Static Variable</em>'.
+	 * @generated
+	 */
+	StaticVariable createStaticVariable();
+
+	/**
+	 * Returns a new object of class '<em>Event Based Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Event Based Variable</em>'.
+	 * @generated
+	 */
+	EventBasedVariable createEventBasedVariable();
+
+	/**
+	 * Returns a new object of class '<em>Parameter Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parameter Variable</em>'.
+	 * @generated
+	 */
+	ParameterVariable createParameterVariable();
+
+	/**
+	 * Returns a new object of class '<em>File Location</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>File Location</em>'.
+	 * @generated
+	 */
+	FileLocation createFileLocation();
+
+	/**
+	 * Returns a new object of class '<em>Properties Key Values</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Properties Key Values</em>'.
+	 * @generated
+	 */
+	PropertiesKeyValues createPropertiesKeyValues();
+
+	/**
+	 * Returns a new object of class '<em>Fixed Position</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fixed Position</em>'.
+	 * @generated
+	 */
+	FixedPosition createFixedPosition();
+
+	/**
+	 * Returns a new object of class '<em>Regex Location</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Regex Location</em>'.
+	 * @generated
+	 */
+	RegexLocation createRegexLocation();
+
+	/**
+	 * Returns a new object of class '<em>XML Config Location</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>XML Config Location</em>'.
+	 * @generated
+	 */
+	XMLConfigLocation createXMLConfigLocation();
 
 	/**
 	 * Returns a new object of class '<em>Type</em>'.

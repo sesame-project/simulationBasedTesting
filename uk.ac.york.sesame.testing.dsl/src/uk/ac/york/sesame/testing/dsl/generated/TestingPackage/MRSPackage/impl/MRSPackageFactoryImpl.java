@@ -59,7 +59,15 @@ public class MRSPackageFactoryImpl extends EFactoryImpl implements MRSPackageFac
 		switch (eClass.getClassifierID()) {
 			case MRSPackagePackage.MRS: return createMRS();
 			case MRSPackagePackage.NODE: return createNode();
-			case MRSPackagePackage.VARIABLE: return createVariable();
+			case MRSPackagePackage.PUBLICATION_INFORMATION: return createPublicationInformation();
+			case MRSPackagePackage.STATIC_VARIABLE: return createStaticVariable();
+			case MRSPackagePackage.EVENT_BASED_VARIABLE: return createEventBasedVariable();
+			case MRSPackagePackage.PARAMETER_VARIABLE: return createParameterVariable();
+			case MRSPackagePackage.FILE_LOCATION: return createFileLocation();
+			case MRSPackagePackage.PROPERTIES_KEY_VALUES: return createPropertiesKeyValues();
+			case MRSPackagePackage.FIXED_POSITION: return createFixedPosition();
+			case MRSPackagePackage.REGEX_LOCATION: return createRegexLocation();
+			case MRSPackagePackage.XML_CONFIG_LOCATION: return createXMLConfigLocation();
 			case MRSPackagePackage.TYPE: return createType();
 			case MRSPackagePackage.PARAMETER: return createParameter();
 			case MRSPackagePackage.COMPONENT_PROPERTY: return createComponentProperty();
@@ -126,9 +134,89 @@ public class MRSPackageFactoryImpl extends EFactoryImpl implements MRSPackageFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable createVariable() {
-		VariableImpl variable = new VariableImpl();
-		return variable;
+	public PublicationInformation createPublicationInformation() {
+		PublicationInformationImpl publicationInformation = new PublicationInformationImpl();
+		return publicationInformation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StaticVariable createStaticVariable() {
+		StaticVariableImpl staticVariable = new StaticVariableImpl();
+		return staticVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EventBasedVariable createEventBasedVariable() {
+		EventBasedVariableImpl eventBasedVariable = new EventBasedVariableImpl();
+		return eventBasedVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParameterVariable createParameterVariable() {
+		ParameterVariableImpl parameterVariable = new ParameterVariableImpl();
+		return parameterVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FileLocation createFileLocation() {
+		FileLocationImpl fileLocation = new FileLocationImpl();
+		return fileLocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertiesKeyValues createPropertiesKeyValues() {
+		PropertiesKeyValuesImpl propertiesKeyValues = new PropertiesKeyValuesImpl();
+		return propertiesKeyValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FixedPosition createFixedPosition() {
+		FixedPositionImpl fixedPosition = new FixedPositionImpl();
+		return fixedPosition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RegexLocation createRegexLocation() {
+		RegexLocationImpl regexLocation = new RegexLocationImpl();
+		return regexLocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XMLConfigLocation createXMLConfigLocation() {
+		XMLConfigLocationImpl xmlConfigLocation = new XMLConfigLocationImpl();
+		return xmlConfigLocation;
 	}
 
 	/**

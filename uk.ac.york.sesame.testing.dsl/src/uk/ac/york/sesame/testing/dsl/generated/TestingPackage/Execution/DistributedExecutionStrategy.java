@@ -54,7 +54,7 @@ public interface DistributedExecutionStrategy extends ExecutionStrategy {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dependencies</em>' containment reference list.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionPackage#getDistributedExecutionStrategy_Dependencies()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Dependency> getDependencies();
@@ -66,7 +66,7 @@ public interface DistributedExecutionStrategy extends ExecutionStrategy {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extra Execution Targets</em>' containment reference list.
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionPackage#getDistributedExecutionStrategy_ExtraExecutionTargets()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<ExecutionTarget> getExtraExecutionTargets();

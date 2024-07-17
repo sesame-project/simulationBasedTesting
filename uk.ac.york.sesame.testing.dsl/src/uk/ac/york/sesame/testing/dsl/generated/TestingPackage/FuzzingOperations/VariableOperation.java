@@ -2,9 +2,7 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations;
 
-import org.eclipse.emf.common.util.EList;
-
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Parameter;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.DynamicVariable;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,24 +13,34 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Paramet
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.VariableOperation#getSubParameters <em>Sub Parameters</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.VariableOperation#getVariableToAffect <em>Variable To Affect</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getVariableOperation()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface VariableOperation extends FuzzTestingOperation {
+public interface VariableOperation extends PotentiallyStaticOperation {
 	/**
-	 * Returns the value of the '<em><b>Sub Parameters</b></em>' reference list.
-	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Parameter}.
+	 * Returns the value of the '<em><b>Variable To Affect</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sub Parameters</em>' reference list.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getVariableOperation_SubParameters()
+	 * @return the value of the '<em>Variable To Affect</em>' reference.
+	 * @see #setVariableToAffect(DynamicVariable)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getVariableOperation_VariableToAffect()
 	 * @model
 	 * @generated
 	 */
-	EList<Parameter> getSubParameters();
+	DynamicVariable getVariableToAffect();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.VariableOperation#getVariableToAffect <em>Variable To Affect</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Variable To Affect</em>' reference.
+	 * @see #getVariableToAffect()
+	 * @generated
+	 */
+	void setVariableToAffect(DynamicVariable value);
 
 } // VariableOperation

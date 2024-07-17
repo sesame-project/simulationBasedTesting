@@ -27,8 +27,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedActivationImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedTimeLimitedImpl;
-import uk.ac.york.sesame.testing.evolutionary.SESAMEFuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.FuzzOpLambdaFunction;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingTimingPair;
@@ -365,7 +365,7 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 
 	public EnumMap<DimensionID, Double> generateDimensionSetsSpeculative(SESAMETestSolution sts)
 			throws MissingDimensionsInMap {
-		List<SESAMEFuzzingOperationWrapper> sfowList = sts.getVariables();
+		List<FuzzingOperationWrapper> sfowList = sts.getVariables();
 		List<FuzzingOperation> ops = sfowList.stream().map(sfow -> sfow.getFuzzingOperation())
 				.collect(Collectors.toList());
 		EnumMap<DimensionID, Double> m = generateDimensionSets(ops);

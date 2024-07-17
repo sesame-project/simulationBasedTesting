@@ -10,7 +10,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations
  *
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getBlackholeNetworkOperation()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface BlackholeNetworkOperation extends NetworkFuzzingOperation {

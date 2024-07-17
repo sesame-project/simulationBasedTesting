@@ -231,14 +231,42 @@ public interface MRSPackagePackage extends EPackage {
 	int NODE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.VariableImpl <em>Variable</em>}' class.
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.PublicationInformationImpl <em>Publication Information</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.VariableImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getVariable()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.PublicationInformationImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getPublicationInformation()
 	 * @generated
 	 */
-	int VARIABLE = 2;
+	int PUBLICATION_INFORMATION = 2;
+
+	/**
+	 * The number of structural features of the '<em>Publication Information</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUBLICATION_INFORMATION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Publication Information</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUBLICATION_INFORMATION_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.GenericVariableImpl <em>Generic Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.GenericVariableImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getGenericVariable()
+	 * @generated
+	 */
+	int GENERIC_VARIABLE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -247,7 +275,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__NAME = 0;
+	int GENERIC_VARIABLE__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -256,25 +284,476 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__TYPE = 1;
+	int GENERIC_VARIABLE__TYPE = 1;
 
 	/**
-	 * The number of structural features of the '<em>Variable</em>' class.
+	 * The number of structural features of the '<em>Generic Variable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE_COUNT = 2;
+	int GENERIC_VARIABLE_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Variable</em>' class.
+	 * The number of operations of the '<em>Generic Variable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_OPERATION_COUNT = 0;
+	int GENERIC_VARIABLE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.StaticVariableImpl <em>Static Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.StaticVariableImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getStaticVariable()
+	 * @generated
+	 */
+	int STATIC_VARIABLE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_VARIABLE__NAME = GENERIC_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_VARIABLE__TYPE = GENERIC_VARIABLE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Location</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_VARIABLE__LOCATION = GENERIC_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Static Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_VARIABLE_FEATURE_COUNT = GENERIC_VARIABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Static Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIC_VARIABLE_OPERATION_COUNT = GENERIC_VARIABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.DynamicVariableImpl <em>Dynamic Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.DynamicVariableImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getDynamicVariable()
+	 * @generated
+	 */
+	int DYNAMIC_VARIABLE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_VARIABLE__NAME = GENERIC_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_VARIABLE__TYPE = GENERIC_VARIABLE__TYPE;
+
+	/**
+	 * The number of structural features of the '<em>Dynamic Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_VARIABLE_FEATURE_COUNT = GENERIC_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Dynamic Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_VARIABLE_OPERATION_COUNT = GENERIC_VARIABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.EventBasedVariableImpl <em>Event Based Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.EventBasedVariableImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getEventBasedVariable()
+	 * @generated
+	 */
+	int EVENT_BASED_VARIABLE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BASED_VARIABLE__NAME = DYNAMIC_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BASED_VARIABLE__TYPE = DYNAMIC_VARIABLE__TYPE;
+
+	/**
+	 * The number of structural features of the '<em>Event Based Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BASED_VARIABLE_FEATURE_COUNT = DYNAMIC_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Event Based Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BASED_VARIABLE_OPERATION_COUNT = DYNAMIC_VARIABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ParameterVariableImpl <em>Parameter Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ParameterVariableImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getParameterVariable()
+	 * @generated
+	 */
+	int PARAMETER_VARIABLE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_VARIABLE__NAME = DYNAMIC_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_VARIABLE__TYPE = DYNAMIC_VARIABLE__TYPE;
+
+	/**
+	 * The number of structural features of the '<em>Parameter Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_VARIABLE_FEATURE_COUNT = DYNAMIC_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Parameter Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_VARIABLE_OPERATION_COUNT = DYNAMIC_VARIABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ConfigLocationImpl <em>Config Location</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ConfigLocationImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getConfigLocation()
+	 * @generated
+	 */
+	int CONFIG_LOCATION = 8;
+
+	/**
+	 * The number of structural features of the '<em>Config Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIG_LOCATION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Config Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIG_LOCATION_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.FileLocationImpl <em>File Location</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.FileLocationImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getFileLocation()
+	 * @generated
+	 */
+	int FILE_LOCATION = 9;
+
+	/**
+	 * The feature id for the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_LOCATION__FILE_NAME = CONFIG_LOCATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>File Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_LOCATION_FEATURE_COUNT = CONFIG_LOCATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>File Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_LOCATION_OPERATION_COUNT = CONFIG_LOCATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.PropertiesKeyValuesImpl <em>Properties Key Values</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.PropertiesKeyValuesImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getPropertiesKeyValues()
+	 * @generated
+	 */
+	int PROPERTIES_KEY_VALUES = 10;
+
+	/**
+	 * The feature id for the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTIES_KEY_VALUES__FILE_NAME = FILE_LOCATION__FILE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTIES_KEY_VALUES__KEY = FILE_LOCATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Properties Key Values</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTIES_KEY_VALUES_FEATURE_COUNT = FILE_LOCATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Properties Key Values</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTIES_KEY_VALUES_OPERATION_COUNT = FILE_LOCATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.FixedPositionImpl <em>Fixed Position</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.FixedPositionImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getFixedPosition()
+	 * @generated
+	 */
+	int FIXED_POSITION = 11;
+
+	/**
+	 * The feature id for the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POSITION__FILE_NAME = FILE_LOCATION__FILE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Line Num</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POSITION__LINE_NUM = FILE_LOCATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Column Num</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POSITION__COLUMN_NUM = FILE_LOCATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Fixed Position</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POSITION_FEATURE_COUNT = FILE_LOCATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Fixed Position</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POSITION_OPERATION_COUNT = FILE_LOCATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.RegexLocationImpl <em>Regex Location</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.RegexLocationImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getRegexLocation()
+	 * @generated
+	 */
+	int REGEX_LOCATION = 12;
+
+	/**
+	 * The feature id for the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGEX_LOCATION__FILE_NAME = FILE_LOCATION__FILE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Regex Finder</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGEX_LOCATION__REGEX_FINDER = FILE_LOCATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Regex Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGEX_LOCATION_FEATURE_COUNT = FILE_LOCATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Regex Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGEX_LOCATION_OPERATION_COUNT = FILE_LOCATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.XMLConfigLocationImpl <em>XML Config Location</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.XMLConfigLocationImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getXMLConfigLocation()
+	 * @generated
+	 */
+	int XML_CONFIG_LOCATION = 13;
+
+	/**
+	 * The feature id for the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_CONFIG_LOCATION__FILE_NAME = FILE_LOCATION__FILE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Xpath Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_CONFIG_LOCATION__XPATH_EXPRESSION = FILE_LOCATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>XML Config Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_CONFIG_LOCATION_FEATURE_COUNT = FILE_LOCATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>XML Config Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_CONFIG_LOCATION_OPERATION_COUNT = FILE_LOCATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TypeImpl <em>Type</em>}' class.
@@ -284,7 +763,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 3;
+	int TYPE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -339,7 +818,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 4;
+	int PARAMETER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -394,7 +873,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getComponentProperty()
 	 * @generated
 	 */
-	int COMPONENT_PROPERTY = 5;
+	int COMPONENT_PROPERTY = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -440,7 +919,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getSimulator()
 	 * @generated
 	 */
-	int SIMULATOR = 6;
+	int SIMULATOR = 17;
 
 	/**
 	 * The number of structural features of the '<em>Simulator</em>' class.
@@ -468,7 +947,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getROSSimulator()
 	 * @generated
 	 */
-	int ROS_SIMULATOR = 7;
+	int ROS_SIMULATOR = 18;
 
 	/**
 	 * The feature id for the '<em><b>Hostname</b></em>' attribute.
@@ -514,7 +993,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getMOOSSimulator()
 	 * @generated
 	 */
-	int MOOS_SIMULATOR = 8;
+	int MOOS_SIMULATOR = 19;
 
 	/**
 	 * The feature id for the '<em><b>Hostname</b></em>' attribute.
@@ -560,7 +1039,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getTTSSimulator()
 	 * @generated
 	 */
-	int TTS_SIMULATOR = 9;
+	int TTS_SIMULATOR = 20;
 
 	/**
 	 * The feature id for the '<em><b>Hostname</b></em>' attribute.
@@ -633,7 +1112,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getParsingMethod()
 	 * @generated
 	 */
-	int PARSING_METHOD = 10;
+	int PARSING_METHOD = 21;
 
 
 	/**
@@ -800,36 +1279,223 @@ public interface MRSPackagePackage extends EPackage {
 	EReference getNode_Properties();
 
 	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable <em>Variable</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PublicationInformation <em>Publication Information</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Variable</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable
+	 * @return the meta object for class '<em>Publication Information</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PublicationInformation
 	 * @generated
 	 */
-	EClass getVariable();
+	EClass getPublicationInformation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable#getName <em>Name</em>}'.
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable <em>Generic Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Generic Variable</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable
+	 * @generated
+	 */
+	EClass getGenericVariable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable#getName()
-	 * @see #getVariable()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable#getName()
+	 * @see #getGenericVariable()
 	 * @generated
 	 */
-	EAttribute getVariable_Name();
+	EAttribute getGenericVariable_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable#getType <em>Type</em>}'.
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable#getType()
-	 * @see #getVariable()
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable#getType()
+	 * @see #getGenericVariable()
 	 * @generated
 	 */
-	EReference getVariable_Type();
+	EReference getGenericVariable_Type();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable <em>Static Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Static Variable</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable
+	 * @generated
+	 */
+	EClass getStaticVariable();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable#getLocation <em>Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Location</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable#getLocation()
+	 * @see #getStaticVariable()
+	 * @generated
+	 */
+	EReference getStaticVariable_Location();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.DynamicVariable <em>Dynamic Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dynamic Variable</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.DynamicVariable
+	 * @generated
+	 */
+	EClass getDynamicVariable();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBasedVariable <em>Event Based Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Event Based Variable</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBasedVariable
+	 * @generated
+	 */
+	EClass getEventBasedVariable();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParameterVariable <em>Parameter Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Parameter Variable</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParameterVariable
+	 * @generated
+	 */
+	EClass getParameterVariable();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ConfigLocation <em>Config Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Config Location</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ConfigLocation
+	 * @generated
+	 */
+	EClass getConfigLocation();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FileLocation <em>File Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>File Location</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FileLocation
+	 * @generated
+	 */
+	EClass getFileLocation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FileLocation#getFileName <em>File Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>File Name</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FileLocation#getFileName()
+	 * @see #getFileLocation()
+	 * @generated
+	 */
+	EAttribute getFileLocation_FileName();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PropertiesKeyValues <em>Properties Key Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Properties Key Values</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PropertiesKeyValues
+	 * @generated
+	 */
+	EClass getPropertiesKeyValues();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PropertiesKeyValues#getKey <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PropertiesKeyValues#getKey()
+	 * @see #getPropertiesKeyValues()
+	 * @generated
+	 */
+	EAttribute getPropertiesKeyValues_Key();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FixedPosition <em>Fixed Position</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fixed Position</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FixedPosition
+	 * @generated
+	 */
+	EClass getFixedPosition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FixedPosition#getLineNum <em>Line Num</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Line Num</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FixedPosition#getLineNum()
+	 * @see #getFixedPosition()
+	 * @generated
+	 */
+	EAttribute getFixedPosition_LineNum();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FixedPosition#getColumnNum <em>Column Num</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Column Num</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FixedPosition#getColumnNum()
+	 * @see #getFixedPosition()
+	 * @generated
+	 */
+	EAttribute getFixedPosition_ColumnNum();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.RegexLocation <em>Regex Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Regex Location</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.RegexLocation
+	 * @generated
+	 */
+	EClass getRegexLocation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.RegexLocation#getRegexFinder <em>Regex Finder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Regex Finder</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.RegexLocation#getRegexFinder()
+	 * @see #getRegexLocation()
+	 * @generated
+	 */
+	EAttribute getRegexLocation_RegexFinder();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation <em>XML Config Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>XML Config Location</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation
+	 * @generated
+	 */
+	EClass getXMLConfigLocation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation#getXpathExpression <em>Xpath Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Xpath Expression</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation#getXpathExpression()
+	 * @see #getXMLConfigLocation()
+	 * @generated
+	 */
+	EAttribute getXMLConfigLocation_XpathExpression();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type <em>Type</em>}'.
@@ -1246,14 +1912,24 @@ public interface MRSPackagePackage extends EPackage {
 		EReference NODE__PROPERTIES = eINSTANCE.getNode_Properties();
 
 		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.VariableImpl <em>Variable</em>}' class.
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.PublicationInformationImpl <em>Publication Information</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.VariableImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getVariable()
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.PublicationInformationImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getPublicationInformation()
 		 * @generated
 		 */
-		EClass VARIABLE = eINSTANCE.getVariable();
+		EClass PUBLICATION_INFORMATION = eINSTANCE.getPublicationInformation();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.GenericVariableImpl <em>Generic Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.GenericVariableImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getGenericVariable()
+		 * @generated
+		 */
+		EClass GENERIC_VARIABLE = eINSTANCE.getGenericVariable();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1261,7 +1937,7 @@ public interface MRSPackagePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VARIABLE__NAME = eINSTANCE.getVariable_Name();
+		EAttribute GENERIC_VARIABLE__NAME = eINSTANCE.getGenericVariable_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
@@ -1269,7 +1945,163 @@ public interface MRSPackagePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VARIABLE__TYPE = eINSTANCE.getVariable_Type();
+		EReference GENERIC_VARIABLE__TYPE = eINSTANCE.getGenericVariable_Type();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.StaticVariableImpl <em>Static Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.StaticVariableImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getStaticVariable()
+		 * @generated
+		 */
+		EClass STATIC_VARIABLE = eINSTANCE.getStaticVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Location</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATIC_VARIABLE__LOCATION = eINSTANCE.getStaticVariable_Location();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.DynamicVariableImpl <em>Dynamic Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.DynamicVariableImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getDynamicVariable()
+		 * @generated
+		 */
+		EClass DYNAMIC_VARIABLE = eINSTANCE.getDynamicVariable();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.EventBasedVariableImpl <em>Event Based Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.EventBasedVariableImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getEventBasedVariable()
+		 * @generated
+		 */
+		EClass EVENT_BASED_VARIABLE = eINSTANCE.getEventBasedVariable();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ParameterVariableImpl <em>Parameter Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ParameterVariableImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getParameterVariable()
+		 * @generated
+		 */
+		EClass PARAMETER_VARIABLE = eINSTANCE.getParameterVariable();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ConfigLocationImpl <em>Config Location</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ConfigLocationImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getConfigLocation()
+		 * @generated
+		 */
+		EClass CONFIG_LOCATION = eINSTANCE.getConfigLocation();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.FileLocationImpl <em>File Location</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.FileLocationImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getFileLocation()
+		 * @generated
+		 */
+		EClass FILE_LOCATION = eINSTANCE.getFileLocation();
+
+		/**
+		 * The meta object literal for the '<em><b>File Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILE_LOCATION__FILE_NAME = eINSTANCE.getFileLocation_FileName();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.PropertiesKeyValuesImpl <em>Properties Key Values</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.PropertiesKeyValuesImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getPropertiesKeyValues()
+		 * @generated
+		 */
+		EClass PROPERTIES_KEY_VALUES = eINSTANCE.getPropertiesKeyValues();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTIES_KEY_VALUES__KEY = eINSTANCE.getPropertiesKeyValues_Key();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.FixedPositionImpl <em>Fixed Position</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.FixedPositionImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getFixedPosition()
+		 * @generated
+		 */
+		EClass FIXED_POSITION = eINSTANCE.getFixedPosition();
+
+		/**
+		 * The meta object literal for the '<em><b>Line Num</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIXED_POSITION__LINE_NUM = eINSTANCE.getFixedPosition_LineNum();
+
+		/**
+		 * The meta object literal for the '<em><b>Column Num</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIXED_POSITION__COLUMN_NUM = eINSTANCE.getFixedPosition_ColumnNum();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.RegexLocationImpl <em>Regex Location</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.RegexLocationImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getRegexLocation()
+		 * @generated
+		 */
+		EClass REGEX_LOCATION = eINSTANCE.getRegexLocation();
+
+		/**
+		 * The meta object literal for the '<em><b>Regex Finder</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REGEX_LOCATION__REGEX_FINDER = eINSTANCE.getRegexLocation_RegexFinder();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.XMLConfigLocationImpl <em>XML Config Location</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.XMLConfigLocationImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getXMLConfigLocation()
+		 * @generated
+		 */
+		EClass XML_CONFIG_LOCATION = eINSTANCE.getXMLConfigLocation();
+
+		/**
+		 * The meta object literal for the '<em><b>Xpath Expression</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_CONFIG_LOCATION__XPATH_EXPRESSION = eINSTANCE.getXMLConfigLocation_XpathExpression();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TypeImpl <em>Type</em>}' class.

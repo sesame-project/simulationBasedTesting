@@ -50,7 +50,7 @@ public interface Node extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Subscriber</b></em>' reference list.
-	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable}.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Subscriber</em>' reference list.
@@ -58,11 +58,11 @@ public interface Node extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<Variable> getSubscriber();
+	EList<GenericVariable> getSubscriber();
 
 	/**
 	 * Returns the value of the '<em><b>Publisher</b></em>' reference list.
-	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Variable}.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Publisher</em>' reference list.
@@ -70,7 +70,7 @@ public interface Node extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<Variable> getPublisher();
+	EList<GenericVariable> getPublisher();
 
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' reference list.

@@ -9,14 +9,16 @@ import org.uma.jmetal.util.JMetalException;
 
 import it.units.malelab.jgea.representation.tree.Tree;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedActivation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
 import uk.ac.york.sesame.testing.evolutionary.ConditionGenerator;
-import uk.ac.york.sesame.testing.evolutionary.SESAMEFuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.ConditionBasedOperationWrapper;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 
-public class SESAMEConditionsCrossoverRandomised extends SESAMECrossoverOperation {
+public class SESAMEConditionsCrossoverRandomised extends SESAMEConditionCrossoverOperation {
 	private double crossoverProbability;
 	private ConditionGenerator condGenerator;
 	private static final long serialVersionUID = 1L;
@@ -25,7 +27,7 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMECrossoverOperatio
 		CHOOSE_LEFT, CHOOSE_RIGHT, CROSSOVER_LEFT_RIGHT, IGNORE_ELEMENT,
 	};
 
-	private FuzzingOperationsFactory factory = FuzzingOperationsFactory.eINSTANCE;
+	//private FuzzingOperationsFactory factory = FuzzingOperationsFactory.eINSTANCE;
 
 	public SESAMEConditionsCrossoverRandomised(Random rng, String crossoverLogFilename, ConditionGenerator cg)
 			throws IOException {
@@ -38,27 +40,13 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMECrossoverOperatio
 		this.crossoverProbability = crossoverProbability;
 	}
 	
-	public void copyElt(SESAMETestSolution chosen, int i, SESAMETestSolution outputSol) throws ConversionFailed {
-		SESAMEFuzzingOperationWrapper l = chosen.getVariable(i);
-		Tree<String> s1 = l.getStoredStartTree();
-		Tree<String> e1 = l.getStoredEndTree();
-		Condition start = condGenerator.convert(s1);
-		Condition end = condGenerator.convert(e1);
-
-		SESAMEFuzzingOperationWrapper newOp = l.dup();
-		newOp.setStoredStartTree(s1);
-		newOp.setStoredEndTree(e1);
-
-		ConditionBasedActivation ca = factory.createConditionBasedActivation();
-		ca.setStarting(start);
-		ca.setEnding(end);
-		newOp.getAttack().setActivation(ca);
-		outputSol.addToContents(newOp);
-	}
-	
-	public void crossoverLeftRight(SESAMETestSolution left, SESAMETestSolution right, int i, SESAMETestSolution outputSol) throws ConversionFailed {
-		SESAMEFuzzingOperationWrapper l = left.getVariable(i);
-		SESAMEFuzzingOperationWrapper r = right.getVariable(i);
+	public void crossoverLeftRight(SESAMETestSolution left, SESAMETestSolution right, int i, SESAMETestSolution outputSol) throws ConversionFailed, InvalidFuzzingOperationsForOperator {
+		
+		
+		ConditionBasedOperationWrapper l = variableAsCond(left,i);
+		ConditionBasedOperationWrapper r = variableAsCond(right,i);
+		
+		
 		Tree<String> s1 = l.getStoredStartTree();
 		Tree<String> s2 = r.getStoredStartTree();
 		Tree<String> e1 = l.getStoredEndTree();
@@ -79,18 +67,19 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMECrossoverOperatio
 		Condition start = condGenerator.convert(outputStart);
 		Condition end = condGenerator.convert(outputEnd);
 
-		SESAMEFuzzingOperationWrapper newOp = l.dup();
+		ConditionBasedOperationWrapper newOp = l.dup();
 		newOp.setStoredStartTree(outputStart);
 		newOp.setStoredEndTree(outputEnd);
 
 		ConditionBasedActivation ca = factory.createConditionBasedActivation();
 		ca.setStarting(start);
 		ca.setEnding(end);
-		newOp.getAttack().setActivation(ca);
+		
+		newOp.setActivation(ca);
 		outputSol.addToContents(newOp);
 	}
 
-	public List<SESAMETestSolution> doCrossover(List<SESAMETestSolution> solutions) throws ConversionFailed {
+	public List<SESAMETestSolution> doCrossover(List<SESAMETestSolution> solutions) throws ConversionFailed, InvalidFuzzingOperationsForOperator {
 		List<SESAMETestSolution> output = new ArrayList<SESAMETestSolution>();
 		if (null == solutions) {
 			throw new JMetalException("Null parameter");
@@ -163,6 +152,11 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMECrossoverOperatio
 			e.printStackTrace();
 			// Just return empty if the conversion fails
 			return new ArrayList<SESAMETestSolution>();
+		} catch (InvalidFuzzingOperationsForOperator e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(-1);
+			return null;
 		}
 	}
 

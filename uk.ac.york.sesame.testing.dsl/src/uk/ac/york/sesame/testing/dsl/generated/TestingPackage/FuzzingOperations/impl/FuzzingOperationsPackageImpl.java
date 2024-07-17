@@ -5,6 +5,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -22,6 +23,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomOfflineFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DoubleRange;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ExternalResourceSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzTestingOperation;
@@ -30,12 +32,14 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.IntRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LatencyNetworkOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.MultipleMessagesNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.NetworkFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineOperationTime;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PacketLossNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PointRange;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringSet;
@@ -159,6 +163,20 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass dynamicOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass potentiallyStaticOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass variableOperationEClass = null;
 
 	/**
@@ -258,6 +276,13 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	private EClass packetLossNetworkOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multipleMessagesNetworkOperationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -385,26 +410,8 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFuzzingOperation_Activation() {
-		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFuzzingOperation_VariableToAffect() {
-		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getFuzzingOperation_MessagesFromAllComponenents() {
-		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -413,7 +420,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EReference getFuzzingOperation_FromNodes() {
-		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(5);
+		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -422,7 +429,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EAttribute getFuzzingOperation_MessagesToAllComponenents() {
-		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -431,7 +438,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EReference getFuzzingOperation_ToNodes() {
-		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(7);
+		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -440,7 +447,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EReference getFuzzingOperation_NodeToFuzz() {
-		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(8);
+		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -449,16 +456,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EAttribute getFuzzingOperation_AllPublishingVars() {
-		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFuzzingOperation_PublishingVars() {
-		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(10);
+		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -467,16 +465,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EAttribute getFuzzingOperation_AllSubscribingVars() {
-		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFuzzingOperation_SubscribingVars() {
-		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(12);
+		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -485,7 +474,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EReference getFuzzingOperation_FromTemplate() {
-		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(13);
+		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -494,7 +483,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EReference getFuzzingOperation_ContainingTest() {
-		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(14);
+		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -503,7 +492,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EReference getFuzzingOperation_RecordedTimings() {
-		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(15);
+		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -512,7 +501,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EAttribute getFuzzingOperation_Seed() {
-		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(16);
+		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -521,7 +510,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EAttribute getFuzzingOperation_SequenceNumInTest() {
-		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(17);
+		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -530,7 +519,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EAttribute getFuzzingOperation_InclusionProbability() {
-		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(18);
+		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -539,7 +528,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EAttribute getFuzzingOperation_IncludeInTiming() {
-		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(19);
+		return (EAttribute)fuzzingOperationEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -548,7 +537,16 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	public EReference getFuzzingOperation_ConditionConstraints() {
-		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(20);
+		return (EReference)fuzzingOperationEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getFuzzingOperation__Dup() {
+		return fuzzingOperationEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -781,6 +779,42 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDynamicOperation() {
+		return dynamicOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDynamicOperation_Activation() {
+		return (EReference)dynamicOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPotentiallyStaticOperation() {
+		return potentiallyStaticOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPotentiallyStaticOperation_Activation() {
+		return (EReference)potentiallyStaticOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVariableOperation() {
 		return variableOperationEClass;
 	}
@@ -790,7 +824,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVariableOperation_SubParameters() {
+	public EReference getVariableOperation_VariableToAffect() {
 		return (EReference)variableOperationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1024,6 +1058,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getNetworkFuzzingOperation_VariableToAffect() {
+		return (EReference)networkFuzzingOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBlackholeNetworkOperation() {
 		return blackholeNetworkOperationEClass;
 	}
@@ -1078,6 +1121,24 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMultipleMessagesNetworkOperation() {
+		return multipleMessagesNetworkOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMultipleMessagesNetworkOperation_HowManyClones() {
+		return (EReference)multipleMessagesNetworkOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getOfflineOperationTime() {
 		return offlineOperationTimeEEnum;
 	}
@@ -1113,17 +1174,13 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		fuzzingOperationEClass = createEClass(FUZZING_OPERATION);
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__NAME);
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__PRIORITY);
-		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__ACTIVATION);
-		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__VARIABLE_TO_AFFECT);
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__FROM_NODES);
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__MESSAGES_TO_ALL_COMPONENENTS);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__TO_NODES);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__NODE_TO_FUZZ);
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__ALL_PUBLISHING_VARS);
-		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__PUBLISHING_VARS);
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__ALL_SUBSCRIBING_VARS);
-		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__SUBSCRIBING_VARS);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__FROM_TEMPLATE);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__CONTAINING_TEST);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__RECORDED_TIMINGS);
@@ -1132,6 +1189,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__INCLUSION_PROBABILITY);
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__INCLUDE_IN_TIMING);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__CONDITION_CONSTRAINTS);
+		createEOperation(fuzzingOperationEClass, FUZZING_OPERATION___DUP);
 
 		offlineFuzzingOperationEClass = createEClass(OFFLINE_FUZZING_OPERATION);
 		createEAttribute(offlineFuzzingOperationEClass, OFFLINE_FUZZING_OPERATION__OPERATION_TIME);
@@ -1169,8 +1227,14 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEReference(componentSubPropertyOperationEClass, COMPONENT_SUB_PROPERTY_OPERATION__PROPERTY_TO_AFFECT);
 		createEReference(componentSubPropertyOperationEClass, COMPONENT_SUB_PROPERTY_OPERATION__SUB_PROPERTY);
 
+		dynamicOperationEClass = createEClass(DYNAMIC_OPERATION);
+		createEReference(dynamicOperationEClass, DYNAMIC_OPERATION__ACTIVATION);
+
+		potentiallyStaticOperationEClass = createEClass(POTENTIALLY_STATIC_OPERATION);
+		createEReference(potentiallyStaticOperationEClass, POTENTIALLY_STATIC_OPERATION__ACTIVATION);
+
 		variableOperationEClass = createEClass(VARIABLE_OPERATION);
-		createEReference(variableOperationEClass, VARIABLE_OPERATION__SUB_PARAMETERS);
+		createEReference(variableOperationEClass, VARIABLE_OPERATION__VARIABLE_TO_AFFECT);
 
 		randomValueFuzzingOperationEClass = createEClass(RANDOM_VALUE_FUZZING_OPERATION);
 
@@ -1207,6 +1271,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEAttribute(externalResourceSetEClass, EXTERNAL_RESOURCE_SET__LOCATION);
 
 		networkFuzzingOperationEClass = createEClass(NETWORK_FUZZING_OPERATION);
+		createEReference(networkFuzzingOperationEClass, NETWORK_FUZZING_OPERATION__VARIABLE_TO_AFFECT);
 
 		blackholeNetworkOperationEClass = createEClass(BLACKHOLE_NETWORK_OPERATION);
 
@@ -1216,6 +1281,9 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		packetLossNetworkOperationEClass = createEClass(PACKET_LOSS_NETWORK_OPERATION);
 		createEReference(packetLossNetworkOperationEClass, PACKET_LOSS_NETWORK_OPERATION__FREQUENCY);
+
+		multipleMessagesNetworkOperationEClass = createEClass(MULTIPLE_MESSAGES_NETWORK_OPERATION);
+		createEReference(multipleMessagesNetworkOperationEClass, MULTIPLE_MESSAGES_NETWORK_OPERATION__HOW_MANY_CLONES);
 
 		// Create enums
 		offlineOperationTimeEEnum = createEEnum(OFFLINE_OPERATION_TIME);
@@ -1264,8 +1332,10 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		componentOperationEClass.getESuperTypes().add(this.getFuzzTestingOperation());
 		componentPropertyOperationEClass.getESuperTypes().add(this.getFuzzTestingOperation());
 		componentSubPropertyOperationEClass.getESuperTypes().add(this.getFuzzTestingOperation());
-		variableOperationEClass.getESuperTypes().add(this.getFuzzTestingOperation());
-		randomValueFuzzingOperationEClass.getESuperTypes().add(this.getComponentOperation());
+		dynamicOperationEClass.getESuperTypes().add(this.getFuzzTestingOperation());
+		potentiallyStaticOperationEClass.getESuperTypes().add(this.getFuzzTestingOperation());
+		variableOperationEClass.getESuperTypes().add(this.getPotentiallyStaticOperation());
+		randomValueFuzzingOperationEClass.getESuperTypes().add(this.getVariableOperation());
 		randomValueFromSetOperationEClass.getESuperTypes().add(this.getRandomValueFuzzingOperation());
 		valueRangeEClass.getESuperTypes().add(this.getValueSet());
 		intRangeEClass.getESuperTypes().add(this.getValueRange());
@@ -1273,26 +1343,23 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		pointRangeEClass.getESuperTypes().add(this.getValueRange());
 		stringSetEClass.getESuperTypes().add(this.getValueSet());
 		externalResourceSetEClass.getESuperTypes().add(this.getValueSet());
-		networkFuzzingOperationEClass.getESuperTypes().add(this.getFuzzingOperation());
+		networkFuzzingOperationEClass.getESuperTypes().add(this.getDynamicOperation());
 		blackholeNetworkOperationEClass.getESuperTypes().add(this.getNetworkFuzzingOperation());
 		latencyNetworkOperationEClass.getESuperTypes().add(this.getNetworkFuzzingOperation());
 		packetLossNetworkOperationEClass.getESuperTypes().add(this.getNetworkFuzzingOperation());
+		multipleMessagesNetworkOperationEClass.getESuperTypes().add(this.getNetworkFuzzingOperation());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(fuzzingOperationEClass, FuzzingOperation.class, "FuzzingOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFuzzingOperation_Name(), ecorePackage.getEString(), "name", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFuzzingOperation_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFuzzingOperation_Activation(), this.getActivation(), null, "activation", null, 1, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFuzzingOperation_VariableToAffect(), theMRSPackagePackage.getVariable(), null, "variableToAffect", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFuzzingOperation_MessagesFromAllComponenents(), ecorePackage.getEBoolean(), "messagesFromAllComponenents", "true", 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_FromNodes(), theMRSPackagePackage.getNode(), null, "fromNodes", null, 0, -1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFuzzingOperation_MessagesToAllComponenents(), ecorePackage.getEBoolean(), "messagesToAllComponenents", "true", 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_ToNodes(), theMRSPackagePackage.getNode(), null, "toNodes", null, 0, -1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_NodeToFuzz(), theMRSPackagePackage.getNode(), null, "nodeToFuzz", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFuzzingOperation_AllPublishingVars(), ecorePackage.getEBoolean(), "allPublishingVars", "false", 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFuzzingOperation_PublishingVars(), theMRSPackagePackage.getVariable(), null, "publishingVars", null, 0, -1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFuzzingOperation_AllSubscribingVars(), ecorePackage.getEBoolean(), "allSubscribingVars", "false", 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFuzzingOperation_SubscribingVars(), theMRSPackagePackage.getVariable(), null, "subscribingVars", null, 0, -1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_FromTemplate(), this.getFuzzingOperation(), null, "fromTemplate", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_ContainingTest(), theTestingPackagePackage.getTest(), theTestingPackagePackage.getTest_Operations(), "containingTest", null, 0, 1, FuzzingOperation.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_RecordedTimings(), this.getFixedTimeActivation(), null, "recordedTimings", null, 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1301,6 +1368,8 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEAttribute(getFuzzingOperation_InclusionProbability(), ecorePackage.getEDouble(), "inclusionProbability", "1", 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFuzzingOperation_IncludeInTiming(), ecorePackage.getEBoolean(), "includeInTiming", "true", 0, 1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuzzingOperation_ConditionConstraints(), theStandardGrammarPackage.getConditionConstraint(), null, "conditionConstraints", null, 0, -1, FuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getFuzzingOperation__Dup(), this.getFuzzingOperation(), "dup", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(offlineFuzzingOperationEClass, OfflineFuzzingOperation.class, "OfflineFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOfflineFuzzingOperation_OperationTime(), this.getOfflineOperationTime(), "operationTime", null, 0, 1, OfflineFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1338,10 +1407,16 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEReference(getComponentSubPropertyOperation_PropertyToAffect(), theMRSPackagePackage.getComponentProperty(), null, "propertyToAffect", null, 0, 1, ComponentSubPropertyOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComponentSubPropertyOperation_SubProperty(), theMRSPackagePackage.getType(), null, "subProperty", null, 0, 1, ComponentSubPropertyOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(variableOperationEClass, VariableOperation.class, "VariableOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariableOperation_SubParameters(), theMRSPackagePackage.getParameter(), null, "subParameters", null, 0, -1, VariableOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(dynamicOperationEClass, DynamicOperation.class, "DynamicOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDynamicOperation_Activation(), this.getActivation(), null, "activation", null, 1, 1, DynamicOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(randomValueFuzzingOperationEClass, RandomValueFuzzingOperation.class, "RandomValueFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(potentiallyStaticOperationEClass, PotentiallyStaticOperation.class, "PotentiallyStaticOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPotentiallyStaticOperation_Activation(), this.getActivation(), null, "activation", null, 0, 1, PotentiallyStaticOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(variableOperationEClass, VariableOperation.class, "VariableOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVariableOperation_VariableToAffect(), theMRSPackagePackage.getDynamicVariable(), null, "variableToAffect", null, 0, 1, VariableOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(randomValueFuzzingOperationEClass, RandomValueFuzzingOperation.class, "RandomValueFuzzingOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(randomValueFromSetOperationEClass, RandomValueFromSetOperation.class, "RandomValueFromSetOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRandomValueFromSetOperation_ValueSet(), this.getValueSet(), null, "valueSet", null, 0, -1, RandomValueFromSetOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1375,9 +1450,10 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEClass(externalResourceSetEClass, ExternalResourceSet.class, "ExternalResourceSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExternalResourceSet_Location(), ecorePackage.getEString(), "location", null, 0, 1, ExternalResourceSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(networkFuzzingOperationEClass, NetworkFuzzingOperation.class, "NetworkFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(networkFuzzingOperationEClass, NetworkFuzzingOperation.class, "NetworkFuzzingOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNetworkFuzzingOperation_VariableToAffect(), theMRSPackagePackage.getEventBasedVariable(), null, "variableToAffect", null, 0, 1, NetworkFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(blackholeNetworkOperationEClass, BlackholeNetworkOperation.class, "BlackholeNetworkOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(blackholeNetworkOperationEClass, BlackholeNetworkOperation.class, "BlackholeNetworkOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(latencyNetworkOperationEClass, LatencyNetworkOperation.class, "LatencyNetworkOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLatencyNetworkOperation_Latency(), this.getDoubleRange(), null, "latency", null, 1, 1, LatencyNetworkOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1385,6 +1461,9 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		initEClass(packetLossNetworkOperationEClass, PacketLossNetworkOperation.class, "PacketLossNetworkOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPacketLossNetworkOperation_Frequency(), this.getDoubleRange(), null, "frequency", null, 1, 1, PacketLossNetworkOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(multipleMessagesNetworkOperationEClass, MultipleMessagesNetworkOperation.class, "MultipleMessagesNetworkOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMultipleMessagesNetworkOperation_HowManyClones(), this.getIntRange(), null, "howManyClones", null, 1, 1, MultipleMessagesNetworkOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(offlineOperationTimeEEnum, OfflineOperationTime.class, "OfflineOperationTime");
