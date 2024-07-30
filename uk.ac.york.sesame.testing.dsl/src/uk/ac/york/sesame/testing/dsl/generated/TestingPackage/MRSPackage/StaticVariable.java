@@ -2,6 +2,8 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -12,7 +14,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable#getLocation <em>Location</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable#getLocations <em>Locations</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getStaticVariable()
@@ -21,25 +23,15 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage;
  */
 public interface StaticVariable extends GenericVariable {
 	/**
-	 * Returns the value of the '<em><b>Location</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Locations</b></em>' containment reference list.
+	 * The list contents are of type {@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ConfigLocation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Location</em>' containment reference.
-	 * @see #setLocation(ConfigLocation)
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getStaticVariable_Location()
+	 * @return the value of the '<em>Locations</em>' containment reference list.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getStaticVariable_Locations()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ConfigLocation getLocation();
-
-	/**
-	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable#getLocation <em>Location</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Location</em>' containment reference.
-	 * @see #getLocation()
-	 * @generated
-	 */
-	void setLocation(ConfigLocation value);
+	EList<ConfigLocation> getLocations();
 
 } // StaticVariable

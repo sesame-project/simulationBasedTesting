@@ -1,7 +1,5 @@
 package uk.ac.york.sesame.testing.architecture.fuzzingoperations;
 
-import org.apache.flink.api.common.functions.FlatMapFunction;
-import org.apache.flink.streaming.api.functions.co.CoProcessFunction.Context;
 import org.apache.flink.util.Collector;
 
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;

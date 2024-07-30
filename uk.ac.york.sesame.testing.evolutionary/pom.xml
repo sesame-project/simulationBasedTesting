@@ -19,6 +19,12 @@
 	<dependencies>
 
 		<dependency>
+    		<groupId>com.github.docker-java</groupId>
+    		<artifactId>docker-java</artifactId>
+    		<version>3.4.0</version>
+		</dependency>
+
+		<dependency>
     		<groupId>org.nd4j</groupId>
     		<artifactId>nd4j-native-platform</artifactId>
     		<version>1.0.0-M2.1</version>

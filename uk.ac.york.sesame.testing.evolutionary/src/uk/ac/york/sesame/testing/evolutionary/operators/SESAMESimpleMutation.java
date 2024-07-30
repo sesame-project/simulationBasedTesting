@@ -10,6 +10,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Co
 import uk.ac.york.sesame.testing.evolutionary.ConditionGenerator;
 import uk.ac.york.sesame.testing.evolutionary.ParamError;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.ConditionBasedOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.dslwrapper.DynamicOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
 
@@ -98,7 +99,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		aft.setEndTime(endTime);
 	}
 
-	private void mutateConditionBased(FuzzingOperationWrapper sfow, ConditionBasedActivation aa, ConditionMutationSelection s) throws MutationFailed, IOException {
+	private void mutateConditionBased(ConditionBasedOperationWrapper sfow, ConditionBasedActivation aa, ConditionMutationSelection s) throws MutationFailed, IOException {
 		try {
 			if (s == ConditionMutationSelection.SELECT_START) {
 				Tree<String> t = sfow.getStoredStartTree();
@@ -143,13 +144,14 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 				selection = ConditionMutationSelection.SELECT_END;
 			}
 
-			mutateConditionBased(sfow, (ConditionBasedActivation) aa, selection);
+			mutateConditionBased((ConditionBasedOperationWrapper)sfow, (ConditionBasedActivation) aa, selection);
 		}
 	}
 
 	private void mutateActivations(DynamicOperationWrapper sfow) throws MutationFailed, IOException {
 		Activation aa = sfow.getActivation();
-		Optional<Activation> aaSpace = getActivation(sfow.getFuzzingOperation().getFromTemplate());
+		
+		Optional<Activation> aaSpace = sfow.getTemplateActivation();
 		if (aaSpace.isPresent()) {
 			mutateIndividualActivation(sfow, aa, aaSpace.get());
 		}
@@ -174,7 +176,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 				vs.setPropertyName(((DoubleRange) vsOrig).getPropertyName());
 				vs.setLowerBound(lb);
 				vs.setUpperBound(ub);
-				newValueSet.add(v s);
+				newValueSet.add(vs);
 			}
 		}
 	}
@@ -278,7 +280,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 	}
 
 	private void newParameters(FuzzingOperationWrapper sfow) {
-		FuzzingOperation newOp = sfow.getAttack();
+		FuzzingOperation newOp = sfow.getFuzzingOperation();
 		FuzzingOperation original = newOp.getFromTemplate();
 		try {
 			reduceOperationSpecific(newOp, original);
@@ -296,10 +298,14 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 	}
 
 	public void modifyGivenRecord(FuzzingOperationWrapper sta) throws IOException {
-		if (rng.nextDouble() < probTemporalMutation) {
+		if ((rng.nextDouble() < probTemporalMutation) && sta.isDynamic()) {
 			logWithoutError("Performing temporal mutation on " + sta.getName());
 			try {
-				mutateActivations(sta);
+				// Can cast to DynamicOperation as it has been checked above
+				mutateActivations((DynamicOperationWrapper)sta);
+				
+				
+				
 			} catch (MutationFailed e) {
 				// TODO: log the failed mutation because of the conversion error
 				// should we raise it again

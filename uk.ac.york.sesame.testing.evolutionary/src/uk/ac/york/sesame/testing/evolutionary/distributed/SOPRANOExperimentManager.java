@@ -114,9 +114,14 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 					pendingRunningTests.add(t);
 
 					Optional<WorkerNode> node_o = workerAllocationStrategy.allocateTest(t, availableNodes, allocationMapping);
+					// If optional is none, there was no suitable node for the test now...
 					if (node_o.isPresent()) {
 						WorkerNode node = node_o.get();
 						System.out.println("Allocating test " + t.getTestID() + " to worker " + node.toString());
+						
+						// Ensure transformations are done for any static variables for that test
+						t.handleStaticFuzzingForTest(t);
+						
 						// Register test, create new status monitor for test
 						node.submitTest(t);
 						// Add to mapping inside the allocation strategy

@@ -240,13 +240,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int FUZZING_OPERATION___DUP = 0;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZING_OPERATION___FIND_REDUCTION = 1;
+
+	/**
 	 * The number of operations of the '<em>Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUZZING_OPERATION_OPERATION_COUNT = 1;
+	int FUZZING_OPERATION_OPERATION_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.OfflineFuzzingOperationImpl <em>Offline Fuzzing Operation</em>}' class.
@@ -439,6 +448,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int OFFLINE_FUZZING_OPERATION___DUP = FUZZING_OPERATION___DUP;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OFFLINE_FUZZING_OPERATION___FIND_REDUCTION = FUZZING_OPERATION___FIND_REDUCTION;
+
+	/**
 	 * The number of operations of the '<em>Offline Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -455,205 +473,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getCustomFuzzingOperation()
 	 * @generated
 	 */
-	int CUSTOM_FUZZING_OPERATION = 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__NAME = FUZZING_OPERATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Priority</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__PRIORITY = FUZZING_OPERATION__PRIORITY;
-
-	/**
-	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS = FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS;
-
-	/**
-	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__FROM_NODES = FUZZING_OPERATION__FROM_NODES;
-
-	/**
-	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__MESSAGES_TO_ALL_COMPONENENTS = FUZZING_OPERATION__MESSAGES_TO_ALL_COMPONENENTS;
-
-	/**
-	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__TO_NODES = FUZZING_OPERATION__TO_NODES;
-
-	/**
-	 * The feature id for the '<em><b>Node To Fuzz</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__NODE_TO_FUZZ = FUZZING_OPERATION__NODE_TO_FUZZ;
-
-	/**
-	 * The feature id for the '<em><b>All Publishing Vars</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__ALL_PUBLISHING_VARS = FUZZING_OPERATION__ALL_PUBLISHING_VARS;
-
-	/**
-	 * The feature id for the '<em><b>All Subscribing Vars</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__ALL_SUBSCRIBING_VARS = FUZZING_OPERATION__ALL_SUBSCRIBING_VARS;
-
-	/**
-	 * The feature id for the '<em><b>From Template</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__FROM_TEMPLATE = FUZZING_OPERATION__FROM_TEMPLATE;
-
-	/**
-	 * The feature id for the '<em><b>Containing Test</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__CONTAINING_TEST = FUZZING_OPERATION__CONTAINING_TEST;
-
-	/**
-	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__RECORDED_TIMINGS = FUZZING_OPERATION__RECORDED_TIMINGS;
-
-	/**
-	 * The feature id for the '<em><b>Seed</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__SEED = FUZZING_OPERATION__SEED;
-
-	/**
-	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST = FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST;
-
-	/**
-	 * The feature id for the '<em><b>Inclusion Probability</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__INCLUSION_PROBABILITY = FUZZING_OPERATION__INCLUSION_PROBABILITY;
-
-	/**
-	 * The feature id for the '<em><b>Include In Timing</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__INCLUDE_IN_TIMING = FUZZING_OPERATION__INCLUDE_IN_TIMING;
-
-	/**
-	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__CONDITION_CONSTRAINTS = FUZZING_OPERATION__CONDITION_CONSTRAINTS;
-
-	/**
-	 * The feature id for the '<em><b>Params</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__PARAMS = FUZZING_OPERATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Custom Process Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION__CUSTOM_PROCESS_CLASS = FUZZING_OPERATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Custom Fuzzing Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION_FEATURE_COUNT = FUZZING_OPERATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Dup</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION___DUP = FUZZING_OPERATION___DUP;
-
-	/**
-	 * The number of operations of the '<em>Custom Fuzzing Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_FUZZING_OPERATION_OPERATION_COUNT = FUZZING_OPERATION_OPERATION_COUNT + 0;
+	int CUSTOM_FUZZING_OPERATION = 14;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.CustomOfflineFuzzingOperationImpl <em>Custom Offline Fuzzing Operation</em>}' class.
@@ -663,7 +483,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getCustomOfflineFuzzingOperation()
 	 * @generated
 	 */
-	int CUSTOM_OFFLINE_FUZZING_OPERATION = 3;
+	int CUSTOM_OFFLINE_FUZZING_OPERATION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -846,6 +666,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int CUSTOM_OFFLINE_FUZZING_OPERATION___DUP = OFFLINE_FUZZING_OPERATION___DUP;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_OFFLINE_FUZZING_OPERATION___FIND_REDUCTION = OFFLINE_FUZZING_OPERATION___FIND_REDUCTION;
+
+	/**
 	 * The number of operations of the '<em>Custom Offline Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -862,7 +691,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getActivation()
 	 * @generated
 	 */
-	int ACTIVATION = 4;
+	int ACTIVATION = 3;
 
 	/**
 	 * The number of structural features of the '<em>Activation</em>' class.
@@ -890,7 +719,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getFixedTimeActivation()
 	 * @generated
 	 */
-	int FIXED_TIME_ACTIVATION = 5;
+	int FIXED_TIME_ACTIVATION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Start Time</b></em>' attribute.
@@ -936,7 +765,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getConditionBasedActivation()
 	 * @generated
 	 */
-	int CONDITION_BASED_ACTIVATION = 6;
+	int CONDITION_BASED_ACTIVATION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Starting</b></em>' containment reference.
@@ -991,7 +820,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getConditionBasedTimeLimited()
 	 * @generated
 	 */
-	int CONDITION_BASED_TIME_LIMITED = 7;
+	int CONDITION_BASED_TIME_LIMITED = 6;
 
 	/**
 	 * The feature id for the '<em><b>Starting</b></em>' containment reference.
@@ -1046,7 +875,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getFuzzTestingOperation()
 	 * @generated
 	 */
-	int FUZZ_TESTING_OPERATION = 8;
+	int FUZZ_TESTING_OPERATION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1220,6 +1049,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int FUZZ_TESTING_OPERATION___DUP = FUZZING_OPERATION___DUP;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUZZ_TESTING_OPERATION___FIND_REDUCTION = FUZZING_OPERATION___FIND_REDUCTION;
+
+	/**
 	 * The number of operations of the '<em>Fuzz Testing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1236,7 +1074,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getComponentOperation()
 	 * @generated
 	 */
-	int COMPONENT_OPERATION = 9;
+	int COMPONENT_OPERATION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1410,6 +1248,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int COMPONENT_OPERATION___DUP = FUZZ_TESTING_OPERATION___DUP;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_OPERATION___FIND_REDUCTION = FUZZ_TESTING_OPERATION___FIND_REDUCTION;
+
+	/**
 	 * The number of operations of the '<em>Component Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1426,7 +1273,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getComponentPropertyOperation()
 	 * @generated
 	 */
-	int COMPONENT_PROPERTY_OPERATION = 10;
+	int COMPONENT_PROPERTY_OPERATION = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1609,6 +1456,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int COMPONENT_PROPERTY_OPERATION___DUP = FUZZ_TESTING_OPERATION___DUP;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_PROPERTY_OPERATION___FIND_REDUCTION = FUZZ_TESTING_OPERATION___FIND_REDUCTION;
+
+	/**
 	 * The number of operations of the '<em>Component Property Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1625,7 +1481,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getComponentSubPropertyOperation()
 	 * @generated
 	 */
-	int COMPONENT_SUB_PROPERTY_OPERATION = 11;
+	int COMPONENT_SUB_PROPERTY_OPERATION = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1817,6 +1673,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int COMPONENT_SUB_PROPERTY_OPERATION___DUP = FUZZ_TESTING_OPERATION___DUP;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SUB_PROPERTY_OPERATION___FIND_REDUCTION = FUZZ_TESTING_OPERATION___FIND_REDUCTION;
+
+	/**
 	 * The number of operations of the '<em>Component Sub Property Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1833,7 +1698,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getDynamicOperation()
 	 * @generated
 	 */
-	int DYNAMIC_OPERATION = 12;
+	int DYNAMIC_OPERATION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2016,6 +1881,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int DYNAMIC_OPERATION___DUP = FUZZ_TESTING_OPERATION___DUP;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_OPERATION___FIND_REDUCTION = FUZZ_TESTING_OPERATION___FIND_REDUCTION;
+
+	/**
 	 * The number of operations of the '<em>Dynamic Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2032,7 +1906,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getPotentiallyStaticOperation()
 	 * @generated
 	 */
-	int POTENTIALLY_STATIC_OPERATION = 13;
+	int POTENTIALLY_STATIC_OPERATION = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2197,13 +2071,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int POTENTIALLY_STATIC_OPERATION__ACTIVATION = FUZZ_TESTING_OPERATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Variable To Affect</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POTENTIALLY_STATIC_OPERATION__VARIABLE_TO_AFFECT = FUZZ_TESTING_OPERATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Potentially Static Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POTENTIALLY_STATIC_OPERATION_FEATURE_COUNT = FUZZ_TESTING_OPERATION_FEATURE_COUNT + 1;
+	int POTENTIALLY_STATIC_OPERATION_FEATURE_COUNT = FUZZ_TESTING_OPERATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Dup</em>' operation.
@@ -2213,6 +2096,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int POTENTIALLY_STATIC_OPERATION___DUP = FUZZ_TESTING_OPERATION___DUP;
+
+	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POTENTIALLY_STATIC_OPERATION___FIND_REDUCTION = FUZZ_TESTING_OPERATION___FIND_REDUCTION;
 
 	/**
 	 * The number of operations of the '<em>Potentially Static Operation</em>' class.
@@ -2231,7 +2123,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getVariableOperation()
 	 * @generated
 	 */
-	int VARIABLE_OPERATION = 14;
+	int VARIABLE_OPERATION = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2402,7 +2294,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_OPERATION__VARIABLE_TO_AFFECT = POTENTIALLY_STATIC_OPERATION_FEATURE_COUNT + 0;
+	int VARIABLE_OPERATION__VARIABLE_TO_AFFECT = POTENTIALLY_STATIC_OPERATION__VARIABLE_TO_AFFECT;
 
 	/**
 	 * The number of structural features of the '<em>Variable Operation</em>' class.
@@ -2411,7 +2303,7 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_OPERATION_FEATURE_COUNT = POTENTIALLY_STATIC_OPERATION_FEATURE_COUNT + 1;
+	int VARIABLE_OPERATION_FEATURE_COUNT = POTENTIALLY_STATIC_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Dup</em>' operation.
@@ -2423,6 +2315,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int VARIABLE_OPERATION___DUP = POTENTIALLY_STATIC_OPERATION___DUP;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_OPERATION___FIND_REDUCTION = POTENTIALLY_STATIC_OPERATION___FIND_REDUCTION;
+
+	/**
 	 * The number of operations of the '<em>Variable Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2430,6 +2331,231 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIABLE_OPERATION_OPERATION_COUNT = POTENTIALLY_STATIC_OPERATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__NAME = VARIABLE_OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Priority</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__PRIORITY = VARIABLE_OPERATION__PRIORITY;
+
+	/**
+	 * The feature id for the '<em><b>Messages From All Componenents</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS = VARIABLE_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>From Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__FROM_NODES = VARIABLE_OPERATION__FROM_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Messages To All Componenents</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__MESSAGES_TO_ALL_COMPONENENTS = VARIABLE_OPERATION__MESSAGES_TO_ALL_COMPONENENTS;
+
+	/**
+	 * The feature id for the '<em><b>To Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__TO_NODES = VARIABLE_OPERATION__TO_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Node To Fuzz</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__NODE_TO_FUZZ = VARIABLE_OPERATION__NODE_TO_FUZZ;
+
+	/**
+	 * The feature id for the '<em><b>All Publishing Vars</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__ALL_PUBLISHING_VARS = VARIABLE_OPERATION__ALL_PUBLISHING_VARS;
+
+	/**
+	 * The feature id for the '<em><b>All Subscribing Vars</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__ALL_SUBSCRIBING_VARS = VARIABLE_OPERATION__ALL_SUBSCRIBING_VARS;
+
+	/**
+	 * The feature id for the '<em><b>From Template</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__FROM_TEMPLATE = VARIABLE_OPERATION__FROM_TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>Containing Test</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__CONTAINING_TEST = VARIABLE_OPERATION__CONTAINING_TEST;
+
+	/**
+	 * The feature id for the '<em><b>Recorded Timings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__RECORDED_TIMINGS = VARIABLE_OPERATION__RECORDED_TIMINGS;
+
+	/**
+	 * The feature id for the '<em><b>Seed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__SEED = VARIABLE_OPERATION__SEED;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Num In Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__SEQUENCE_NUM_IN_TEST = VARIABLE_OPERATION__SEQUENCE_NUM_IN_TEST;
+
+	/**
+	 * The feature id for the '<em><b>Inclusion Probability</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__INCLUSION_PROBABILITY = VARIABLE_OPERATION__INCLUSION_PROBABILITY;
+
+	/**
+	 * The feature id for the '<em><b>Include In Timing</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__INCLUDE_IN_TIMING = VARIABLE_OPERATION__INCLUDE_IN_TIMING;
+
+	/**
+	 * The feature id for the '<em><b>Condition Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__CONDITION_CONSTRAINTS = VARIABLE_OPERATION__CONDITION_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Activation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__ACTIVATION = VARIABLE_OPERATION__ACTIVATION;
+
+	/**
+	 * The feature id for the '<em><b>Variable To Affect</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__VARIABLE_TO_AFFECT = VARIABLE_OPERATION__VARIABLE_TO_AFFECT;
+
+	/**
+	 * The feature id for the '<em><b>Params</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__PARAMS = VARIABLE_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Custom Process Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION__CUSTOM_PROCESS_CLASS = VARIABLE_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Custom Fuzzing Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION_FEATURE_COUNT = VARIABLE_OPERATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Dup</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION___DUP = VARIABLE_OPERATION___DUP;
+
+	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION___FIND_REDUCTION = VARIABLE_OPERATION___FIND_REDUCTION;
+
+	/**
+	 * The number of operations of the '<em>Custom Fuzzing Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_FUZZING_OPERATION_OPERATION_COUNT = VARIABLE_OPERATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.RandomValueFuzzingOperationImpl <em>Random Value Fuzzing Operation</em>}' class.
@@ -2629,6 +2755,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANDOM_VALUE_FUZZING_OPERATION___DUP = VARIABLE_OPERATION___DUP;
+
+	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FUZZING_OPERATION___FIND_REDUCTION = VARIABLE_OPERATION___FIND_REDUCTION;
 
 	/**
 	 * The number of operations of the '<em>Random Value Fuzzing Operation</em>' class.
@@ -2857,6 +2992,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int RANDOM_VALUE_FROM_SET_OPERATION___DUP = RANDOM_VALUE_FUZZING_OPERATION___DUP;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_VALUE_FROM_SET_OPERATION___FIND_REDUCTION = RANDOM_VALUE_FUZZING_OPERATION___FIND_REDUCTION;
+
+	/**
 	 * The number of operations of the '<em>Random Value From Set Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3041,13 +3185,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int DOUBLE_RANGE_FEATURE_COUNT = VALUE_RANGE_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOUBLE_RANGE___FIND_REDUCTION = VALUE_RANGE_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Double Range</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOUBLE_RANGE_OPERATION_COUNT = VALUE_RANGE_OPERATION_COUNT + 0;
+	int DOUBLE_RANGE_OPERATION_COUNT = VALUE_RANGE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.PointImpl <em>Point</em>}' class.
@@ -3451,6 +3604,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int NETWORK_FUZZING_OPERATION___DUP = DYNAMIC_OPERATION___DUP;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NETWORK_FUZZING_OPERATION___FIND_REDUCTION = DYNAMIC_OPERATION___FIND_REDUCTION;
+
+	/**
 	 * The number of operations of the '<em>Network Fuzzing Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3657,6 +3819,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int BLACKHOLE_NETWORK_OPERATION___DUP = NETWORK_FUZZING_OPERATION___DUP;
+
+	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLACKHOLE_NETWORK_OPERATION___FIND_REDUCTION = NETWORK_FUZZING_OPERATION___FIND_REDUCTION;
 
 	/**
 	 * The number of operations of the '<em>Blackhole Network Operation</em>' class.
@@ -3885,6 +4056,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int LATENCY_NETWORK_OPERATION___DUP = NETWORK_FUZZING_OPERATION___DUP;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATENCY_NETWORK_OPERATION___FIND_REDUCTION = NETWORK_FUZZING_OPERATION___FIND_REDUCTION;
+
+	/**
 	 * The number of operations of the '<em>Latency Network Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4102,6 +4282,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int PACKET_LOSS_NETWORK_OPERATION___DUP = NETWORK_FUZZING_OPERATION___DUP;
 
 	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKET_LOSS_NETWORK_OPERATION___FIND_REDUCTION = NETWORK_FUZZING_OPERATION___FIND_REDUCTION;
+
+	/**
 	 * The number of operations of the '<em>Packet Loss Network Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4317,6 +4506,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLE_MESSAGES_NETWORK_OPERATION___DUP = NETWORK_FUZZING_OPERATION___DUP;
+
+	/**
+	 * The operation id for the '<em>Find Reduction</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_MESSAGES_NETWORK_OPERATION___FIND_REDUCTION = NETWORK_FUZZING_OPERATION___FIND_REDUCTION;
 
 	/**
 	 * The number of operations of the '<em>Multiple Messages Network Operation</em>' class.
@@ -4544,6 +4742,16 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getFuzzingOperation__Dup();
+
+	/**
+	 * Returns the meta object for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#findReduction() <em>Find Reduction</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Reduction</em>' operation.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#findReduction()
+	 * @generated
+	 */
+	EOperation getFuzzingOperation__FindReduction();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineFuzzingOperation <em>Offline Fuzzing Operation</em>}'.
@@ -4852,6 +5060,17 @@ public interface FuzzingOperationsPackage extends EPackage {
 	EReference getPotentiallyStaticOperation_Activation();
 
 	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation#getVariableToAffect <em>Variable To Affect</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Variable To Affect</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation#getVariableToAffect()
+	 * @see #getPotentiallyStaticOperation()
+	 * @generated
+	 */
+	EReference getPotentiallyStaticOperation_VariableToAffect();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.VariableOperation <em>Variable Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4860,17 +5079,6 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getVariableOperation();
-
-	/**
-	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.VariableOperation#getVariableToAffect <em>Variable To Affect</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Variable To Affect</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.VariableOperation#getVariableToAffect()
-	 * @see #getVariableOperation()
-	 * @generated
-	 */
-	EReference getVariableOperation_VariableToAffect();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFuzzingOperation <em>Random Value Fuzzing Operation</em>}'.
@@ -5008,6 +5216,16 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDoubleRange_UpperBound();
+
+	/**
+	 * Returns the meta object for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DoubleRange#findReduction() <em>Find Reduction</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Reduction</em>' operation.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DoubleRange#findReduction()
+	 * @generated
+	 */
+	EOperation getDoubleRange__FindReduction();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point <em>Point</em>}'.
@@ -5419,6 +5637,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		EOperation FUZZING_OPERATION___DUP = eINSTANCE.getFuzzingOperation__Dup();
 
 		/**
+		 * The meta object literal for the '<em><b>Find Reduction</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation FUZZING_OPERATION___FIND_REDUCTION = eINSTANCE.getFuzzingOperation__FindReduction();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.OfflineFuzzingOperationImpl <em>Offline Fuzzing Operation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5677,6 +5903,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		EReference POTENTIALLY_STATIC_OPERATION__ACTIVATION = eINSTANCE.getPotentiallyStaticOperation_Activation();
 
 		/**
+		 * The meta object literal for the '<em><b>Variable To Affect</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference POTENTIALLY_STATIC_OPERATION__VARIABLE_TO_AFFECT = eINSTANCE.getPotentiallyStaticOperation_VariableToAffect();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.VariableOperationImpl <em>Variable Operation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5685,14 +5919,6 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass VARIABLE_OPERATION = eINSTANCE.getVariableOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Variable To Affect</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VARIABLE_OPERATION__VARIABLE_TO_AFFECT = eINSTANCE.getVariableOperation_VariableToAffect();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.RandomValueFuzzingOperationImpl <em>Random Value Fuzzing Operation</em>}' class.
@@ -5809,6 +6035,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DOUBLE_RANGE__UPPER_BOUND = eINSTANCE.getDoubleRange_UpperBound();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Reduction</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation DOUBLE_RANGE___FIND_REDUCTION = eINSTANCE.getDoubleRange__FindReduction();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.PointImpl <em>Point</em>}' class.

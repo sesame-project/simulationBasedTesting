@@ -2,14 +2,14 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ConfigLocation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable;
@@ -22,22 +22,21 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticV
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.StaticVariableImpl#getLocation <em>Location</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.StaticVariableImpl#getLocations <em>Locations</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class StaticVariableImpl extends GenericVariableImpl implements StaticVariable {
 	/**
-	 * The cached value of the '{@link #getLocation() <em>Location</em>}' containment reference.
+	 * The cached value of the '{@link #getLocations() <em>Locations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLocation()
+	 * @see #getLocations()
 	 * @generated
 	 * @ordered
 	 */
-	protected ConfigLocation location;
-
+	protected EList<ConfigLocation> locations;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,42 +61,11 @@ public class StaticVariableImpl extends GenericVariableImpl implements StaticVar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConfigLocation getLocation() {
-		return location;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetLocation(ConfigLocation newLocation, NotificationChain msgs) {
-		ConfigLocation oldLocation = location;
-		location = newLocation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MRSPackagePackage.STATIC_VARIABLE__LOCATION, oldLocation, newLocation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<ConfigLocation> getLocations() {
+		if (locations == null) {
+			locations = new EObjectContainmentEList<ConfigLocation>(ConfigLocation.class, this, MRSPackagePackage.STATIC_VARIABLE__LOCATIONS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLocation(ConfigLocation newLocation) {
-		if (newLocation != location) {
-			NotificationChain msgs = null;
-			if (location != null)
-				msgs = ((InternalEObject)location).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MRSPackagePackage.STATIC_VARIABLE__LOCATION, null, msgs);
-			if (newLocation != null)
-				msgs = ((InternalEObject)newLocation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MRSPackagePackage.STATIC_VARIABLE__LOCATION, null, msgs);
-			msgs = basicSetLocation(newLocation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MRSPackagePackage.STATIC_VARIABLE__LOCATION, newLocation, newLocation));
+		return locations;
 	}
 
 	/**
@@ -108,8 +76,8 @@ public class StaticVariableImpl extends GenericVariableImpl implements StaticVar
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MRSPackagePackage.STATIC_VARIABLE__LOCATION:
-				return basicSetLocation(null, msgs);
+			case MRSPackagePackage.STATIC_VARIABLE__LOCATIONS:
+				return ((InternalEList<?>)getLocations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -122,8 +90,8 @@ public class StaticVariableImpl extends GenericVariableImpl implements StaticVar
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MRSPackagePackage.STATIC_VARIABLE__LOCATION:
-				return getLocation();
+			case MRSPackagePackage.STATIC_VARIABLE__LOCATIONS:
+				return getLocations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -133,11 +101,13 @@ public class StaticVariableImpl extends GenericVariableImpl implements StaticVar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MRSPackagePackage.STATIC_VARIABLE__LOCATION:
-				setLocation((ConfigLocation)newValue);
+			case MRSPackagePackage.STATIC_VARIABLE__LOCATIONS:
+				getLocations().clear();
+				getLocations().addAll((Collection<? extends ConfigLocation>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -151,8 +121,8 @@ public class StaticVariableImpl extends GenericVariableImpl implements StaticVar
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MRSPackagePackage.STATIC_VARIABLE__LOCATION:
-				setLocation((ConfigLocation)null);
+			case MRSPackagePackage.STATIC_VARIABLE__LOCATIONS:
+				getLocations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -166,8 +136,8 @@ public class StaticVariableImpl extends GenericVariableImpl implements StaticVar
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MRSPackagePackage.STATIC_VARIABLE__LOCATION:
-				return location != null;
+			case MRSPackagePackage.STATIC_VARIABLE__LOCATIONS:
+				return locations != null && !locations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

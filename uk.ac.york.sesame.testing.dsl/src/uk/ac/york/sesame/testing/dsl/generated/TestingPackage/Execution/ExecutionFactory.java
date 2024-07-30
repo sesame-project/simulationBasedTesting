@@ -67,6 +67,15 @@ public interface ExecutionFactory extends EFactory {
 	SOPRANOWorkerNode createSOPRANOWorkerNode();
 
 	/**
+	 * Returns a new object of class '<em>File Tree Dependency</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>File Tree Dependency</em>'.
+	 * @generated
+	 */
+	FileTreeDependency createFileTreeDependency();
+
+	/**
 	 * Returns a new object of class '<em>Container Dependency</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

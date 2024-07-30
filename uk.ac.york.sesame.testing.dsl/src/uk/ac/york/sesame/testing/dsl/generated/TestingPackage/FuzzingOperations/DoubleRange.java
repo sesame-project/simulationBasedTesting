@@ -65,4 +65,12 @@ public interface DoubleRange extends ValueRange {
 	 */
 	void setUpperBound(double value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	DoubleRange findReduction();
+
 } // DoubleRange

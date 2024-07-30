@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +24,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.PotentiallyStaticOperationImpl#getActivation <em>Activation</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.PotentiallyStaticOperationImpl#getVariableToAffect <em>Variable To Affect</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,6 +39,16 @@ public abstract class PotentiallyStaticOperationImpl extends FuzzTestingOperatio
 	 * @ordered
 	 */
 	protected Activation activation;
+
+	/**
+	 * The cached value of the '{@link #getVariableToAffect() <em>Variable To Affect</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVariableToAffect()
+	 * @generated
+	 * @ordered
+	 */
+	protected GenericVariable variableToAffect;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,6 +117,44 @@ public abstract class PotentiallyStaticOperationImpl extends FuzzTestingOperatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public GenericVariable getVariableToAffect() {
+		if (variableToAffect != null && variableToAffect.eIsProxy()) {
+			InternalEObject oldVariableToAffect = (InternalEObject)variableToAffect;
+			variableToAffect = (GenericVariable)eResolveProxy(oldVariableToAffect);
+			if (variableToAffect != oldVariableToAffect) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FuzzingOperationsPackage.POTENTIALLY_STATIC_OPERATION__VARIABLE_TO_AFFECT, oldVariableToAffect, variableToAffect));
+			}
+		}
+		return variableToAffect;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GenericVariable basicGetVariableToAffect() {
+		return variableToAffect;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setVariableToAffect(GenericVariable newVariableToAffect) {
+		GenericVariable oldVariableToAffect = variableToAffect;
+		variableToAffect = newVariableToAffect;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.POTENTIALLY_STATIC_OPERATION__VARIABLE_TO_AFFECT, oldVariableToAffect, variableToAffect));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -124,6 +174,9 @@ public abstract class PotentiallyStaticOperationImpl extends FuzzTestingOperatio
 		switch (featureID) {
 			case FuzzingOperationsPackage.POTENTIALLY_STATIC_OPERATION__ACTIVATION:
 				return getActivation();
+			case FuzzingOperationsPackage.POTENTIALLY_STATIC_OPERATION__VARIABLE_TO_AFFECT:
+				if (resolve) return getVariableToAffect();
+				return basicGetVariableToAffect();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -138,6 +191,9 @@ public abstract class PotentiallyStaticOperationImpl extends FuzzTestingOperatio
 		switch (featureID) {
 			case FuzzingOperationsPackage.POTENTIALLY_STATIC_OPERATION__ACTIVATION:
 				setActivation((Activation)newValue);
+				return;
+			case FuzzingOperationsPackage.POTENTIALLY_STATIC_OPERATION__VARIABLE_TO_AFFECT:
+				setVariableToAffect((GenericVariable)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -154,6 +210,9 @@ public abstract class PotentiallyStaticOperationImpl extends FuzzTestingOperatio
 			case FuzzingOperationsPackage.POTENTIALLY_STATIC_OPERATION__ACTIVATION:
 				setActivation((Activation)null);
 				return;
+			case FuzzingOperationsPackage.POTENTIALLY_STATIC_OPERATION__VARIABLE_TO_AFFECT:
+				setVariableToAffect((GenericVariable)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -168,6 +227,8 @@ public abstract class PotentiallyStaticOperationImpl extends FuzzTestingOperatio
 		switch (featureID) {
 			case FuzzingOperationsPackage.POTENTIALLY_STATIC_OPERATION__ACTIVATION:
 				return activation != null;
+			case FuzzingOperationsPackage.POTENTIALLY_STATIC_OPERATION__VARIABLE_TO_AFFECT:
+				return variableToAffect != null;
 		}
 		return super.eIsSet(featureID);
 	}

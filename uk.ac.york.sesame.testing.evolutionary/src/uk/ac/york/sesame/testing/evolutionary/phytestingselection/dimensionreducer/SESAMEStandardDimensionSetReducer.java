@@ -19,16 +19,19 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedTimeLimited;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DoubleRange;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.LatencyNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PacketLossNetworkOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedActivationImpl;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.ConditionBasedTimeLimitedImpl;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.InvalidOperation;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.FuzzOpLambdaFunction;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingDimensionsInMap;
 import uk.ac.york.sesame.testing.evolutionary.phytestingselection.MissingTimingPair;
@@ -50,7 +53,7 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		this.intervalData = new EnumMap<DimensionID, IntervalWithCount>(DimensionID.class);
 	}
 
-	public TimeInterval fuzzingOperationTimeRange(FuzzingOperation op, boolean asTemplate) throws InvalidTimingPair {
+	public TimeInterval fuzzingOperationTimeRange(DynamicOperation op, boolean asTemplate) throws InvalidTimingPair {
 		Activation a = op.getActivation();
 
 		// With template, always use the time from the model - even for condition-based
@@ -74,10 +77,16 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		throw new MissingTimingPair(op);
 	}
 
-	public TimeInterval normalisedFuzzOpTimeRange(FuzzingOperation op) throws InvalidTimingPair {
+	public TimeInterval normalisedFuzzOpTimeRange(DynamicOperation op) throws InvalidTimingPair, InvalidOperation {
 		TimeInterval tOrig = fuzzingOperationTimeRange(op, false);
-		TimeInterval tTemplate = fuzzingOperationTimeRange(op.getFromTemplate(), true);
-		return tOrig.normaliseToRange(tTemplate);
+		FuzzingOperation templateOp = op.getFromTemplate();
+		if (templateOp instanceof DynamicOperation) {
+			TimeInterval tTemplate = fuzzingOperationTimeRange((DynamicOperation)op.getFromTemplate(), true);
+			return tOrig.normaliseToRange(tTemplate);
+		} else {
+			throw new InvalidOperation();
+		}
+		
 	}
 
 	private OptionalDouble calculateMeanViaLambda(List<FuzzingOperation> ops, FuzzOpLambdaFunction lam) {
@@ -228,16 +237,22 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		// Fuzzing time mean computed over all operation midpoint times in the test)
 		// Fuzzing time mean length (mean length computed over all operation
 		OptionalDouble midpointMean = calculateMeanViaLambda(ops, (FuzzingOperation op) -> {
-			return normalisedFuzzOpTimeRange(op).getMidpoint();
+			if (op instanceof DynamicOperation) {
+				return normalisedFuzzOpTimeRange((DynamicOperation)op).getMidpoint();
+			} else return 0.0;
 		});
 
 		OptionalDouble lengthMean = calculateMeanViaLambda(ops, (FuzzingOperation op) -> {
-			return normalisedFuzzOpTimeRange(op).getLength();
+			if (op instanceof DynamicOperation) {
+				return normalisedFuzzOpTimeRange((DynamicOperation)op).getLength();
+			} else return 0.0;
 		});
 
 		// TODO: should we use standard deviation or variance?
 		OptionalDouble midpointVariance = calculateStddevViaLambda(ops, (FuzzingOperation op) -> {
-			return normalisedFuzzOpTimeRange(op).getMidpoint();
+			if (op instanceof DynamicOperation) {
+				return normalisedFuzzOpTimeRange((DynamicOperation)op).getMidpoint();
+			} else return 0.0;
 		});
 
 		if (midpointMean.isPresent()) {
@@ -330,27 +345,46 @@ public class SESAMEStandardDimensionSetReducer extends ParameterSpaceDimensional
 		return m;
 	}
 
-	public boolean opHasTiming(FuzzingOperation op) {
-		Activation a = op.getActivation();
-
+	// Were the operations activated or not? Conditon-based operations may not have been activated
+	// at runtime, so we can only include them if they were
+	public boolean opWasActivated(Activation a, FuzzingOperation op) {
 		if ((a instanceof ConditionBasedActivation) || (a instanceof ConditionBasedTimeLimited)
-				|| (a instanceof ConditionBasedActivationImpl) || (a instanceof ConditionBasedTimeLimitedImpl)) {
-			FixedTimeActivation fta = op.getRecordedTimings();
-			if (fta == null) {
-				// No timing info recorded for condition-based operation
-				System.out.println("OPHASTIMING: rejecting for no timing info " + op.getName());
-				return false;
+					|| (a instanceof ConditionBasedActivationImpl) || (a instanceof ConditionBasedTimeLimitedImpl)) {
+					FixedTimeActivation fta = op.getRecordedTimings();
+					if (fta == null) {
+						// No timing info recorded for condition-based operation
+						System.out.println("OPHASTIMING: rejecting for no timing info " + op.getName());
+						return false;
+					} else {
+						return true;
+					}
 			} else {
+				// If it is time-based, always include it
 				return true;
 			}
+	}
+	
+	public boolean opHasTiming(FuzzingOperation op) {
+		if (op instanceof DynamicOperation) {
+			Activation a = ((DynamicOperation)op).getActivation();
+			return opWasActivated(a, op);
 		} else {
-			// If it is time-based, always include it
-			return true;
-		}
+			if (op instanceof PotentiallyStaticOperation) {
+				// If the operation was static, obviously it wasn't activated
+				Activation a = ((DynamicOperation)op).getActivation();
+				if (a == null) {
+					return false;
+				} else {
+					return opWasActivated(a, op);
+				}
+			}
+			return false;
+		} 
 	}
 
 	public List<FuzzingOperation> filterOpsRemoveUnactivated(List<FuzzingOperation> ops) {
-		return ops.stream().filter(op -> opHasTiming(op)).collect(Collectors.toList());
+		return ops.stream().filter(op ->
+				opHasTiming(op)).collect(Collectors.toList());
 	}
 
 	public EnumMap<DimensionID, Double> generateDimensionSetsForParams(Test t) throws MissingDimensionsInMap {

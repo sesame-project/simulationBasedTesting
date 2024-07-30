@@ -392,4 +392,12 @@ public interface FuzzingOperation extends EObject {
 	 */
 	FuzzingOperation dup();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	FuzzingOperation findReduction();
+
 } // FuzzingOperation

@@ -79,13 +79,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION: {
-				CustomFuzzingOperation customFuzzingOperation = (CustomFuzzingOperation)theEObject;
-				T result = caseCustomFuzzingOperation(customFuzzingOperation);
-				if (result == null) result = caseFuzzingOperation(customFuzzingOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case FuzzingOperationsPackage.CUSTOM_OFFLINE_FUZZING_OPERATION: {
 				CustomOfflineFuzzingOperation customOfflineFuzzingOperation = (CustomOfflineFuzzingOperation)theEObject;
 				T result = caseCustomOfflineFuzzingOperation(customOfflineFuzzingOperation);
@@ -174,6 +167,16 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				if (result == null) result = casePotentiallyStaticOperation(variableOperation);
 				if (result == null) result = caseFuzzTestingOperation(variableOperation);
 				if (result == null) result = caseFuzzingOperation(variableOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION: {
+				CustomFuzzingOperation customFuzzingOperation = (CustomFuzzingOperation)theEObject;
+				T result = caseCustomFuzzingOperation(customFuzzingOperation);
+				if (result == null) result = caseVariableOperation(customFuzzingOperation);
+				if (result == null) result = casePotentiallyStaticOperation(customFuzzingOperation);
+				if (result == null) result = caseFuzzTestingOperation(customFuzzingOperation);
+				if (result == null) result = caseFuzzingOperation(customFuzzingOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

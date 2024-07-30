@@ -76,10 +76,6 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 				return createOfflineFuzzingOperationAdapter();
 			}
 			@Override
-			public Adapter caseCustomFuzzingOperation(CustomFuzzingOperation object) {
-				return createCustomFuzzingOperationAdapter();
-			}
-			@Override
 			public Adapter caseCustomOfflineFuzzingOperation(CustomOfflineFuzzingOperation object) {
 				return createCustomOfflineFuzzingOperationAdapter();
 			}
@@ -126,6 +122,10 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseVariableOperation(VariableOperation object) {
 				return createVariableOperationAdapter();
+			}
+			@Override
+			public Adapter caseCustomFuzzingOperation(CustomFuzzingOperation object) {
+				return createCustomFuzzingOperationAdapter();
 			}
 			@Override
 			public Adapter caseRandomValueFuzzingOperation(RandomValueFuzzingOperation object) {

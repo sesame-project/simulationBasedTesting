@@ -62,6 +62,7 @@ public class ExecutionFactoryImpl extends EFactoryImpl implements ExecutionFacto
 			case ExecutionPackage.DYNAMIC_TASK_ALLOCATION: return createDynamicTaskAllocation();
 			case ExecutionPackage.ROUND_ROBIN_PRE_ALLOCATION: return createRoundRobinPreAllocation();
 			case ExecutionPackage.SOPRANO_WORKER_NODE: return createSOPRANOWorkerNode();
+			case ExecutionPackage.FILE_TREE_DEPENDENCY: return createFileTreeDependency();
 			case ExecutionPackage.CONTAINER_DEPENDENCY: return createContainerDependency();
 			case ExecutionPackage.DERIVED_CONTAINER_DEPENDENCY: return createDerivedContainerDependency();
 			case ExecutionPackage.ARCHIVE_DEPENDENCY: return createArchiveDependency();
@@ -152,6 +153,16 @@ public class ExecutionFactoryImpl extends EFactoryImpl implements ExecutionFacto
 	public SOPRANOWorkerNode createSOPRANOWorkerNode() {
 		SOPRANOWorkerNodeImpl sopranoWorkerNode = new SOPRANOWorkerNodeImpl();
 		return sopranoWorkerNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FileTreeDependency createFileTreeDependency() {
+		FileTreeDependencyImpl fileTreeDependency = new FileTreeDependencyImpl();
+		return fileTreeDependency;
 	}
 
 	/**

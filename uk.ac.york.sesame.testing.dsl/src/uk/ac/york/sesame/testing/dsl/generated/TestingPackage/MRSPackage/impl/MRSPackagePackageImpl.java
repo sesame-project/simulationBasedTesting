@@ -488,7 +488,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStaticVariable_Location() {
+	public EReference getStaticVariable_Locations() {
 		return (EReference)staticVariableEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -526,6 +526,15 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 */
 	public EClass getConfigLocation() {
 		return configLocationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConfigLocation_Root() {
+		return (EReference)configLocationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -904,7 +913,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		createEReference(genericVariableEClass, GENERIC_VARIABLE__TYPE);
 
 		staticVariableEClass = createEClass(STATIC_VARIABLE);
-		createEReference(staticVariableEClass, STATIC_VARIABLE__LOCATION);
+		createEReference(staticVariableEClass, STATIC_VARIABLE__LOCATIONS);
 
 		dynamicVariableEClass = createEClass(DYNAMIC_VARIABLE);
 
@@ -913,6 +922,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		parameterVariableEClass = createEClass(PARAMETER_VARIABLE);
 
 		configLocationEClass = createEClass(CONFIG_LOCATION);
+		createEReference(configLocationEClass, CONFIG_LOCATION__ROOT);
 
 		fileLocationEClass = createEClass(FILE_LOCATION);
 		createEAttribute(fileLocationEClass, FILE_LOCATION__FILE_NAME);
@@ -1034,7 +1044,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		initEReference(getGenericVariable_Type(), this.getType(), null, "type", null, 1, 1, GenericVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(staticVariableEClass, StaticVariable.class, "StaticVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStaticVariable_Location(), this.getConfigLocation(), null, "location", null, 1, 1, StaticVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStaticVariable_Locations(), this.getConfigLocation(), null, "locations", null, 1, -1, StaticVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dynamicVariableEClass, DynamicVariable.class, "DynamicVariable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1043,6 +1053,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		initEClass(parameterVariableEClass, ParameterVariable.class, "ParameterVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(configLocationEClass, ConfigLocation.class, "ConfigLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConfigLocation_Root(), theExecutionPackage.getDependency(), null, "root", null, 1, 1, ConfigLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fileLocationEClass, FileLocation.class, "FileLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFileLocation_FileName(), ecorePackage.getEString(), "fileName", null, 0, 1, FileLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

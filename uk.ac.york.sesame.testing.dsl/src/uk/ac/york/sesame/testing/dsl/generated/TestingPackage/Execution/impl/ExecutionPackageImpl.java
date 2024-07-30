@@ -23,6 +23,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Executio
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionPackage;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionTarget;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.FileTreeDependency;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.LocalExecutionStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.RoundRobinPreAllocation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.SOPRANOWorkerNode;
@@ -121,6 +122,13 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 	 * @generated
 	 */
 	private EClass dependencyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fileTreeDependencyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -258,6 +266,15 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getExecutionStrategy_ExptRunnerIP() {
+		return (EAttribute)executionStrategyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getExecutionStrategy__IsDistributed() {
 		return executionStrategyEClass.getEOperations().get(0);
 	}
@@ -368,6 +385,15 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 	 */
 	public EClass getDependency() {
 		return dependencyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFileTreeDependency() {
+		return fileTreeDependencyEClass;
 	}
 
 	/**
@@ -507,6 +533,7 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 
 		// Create classes and their features
 		executionStrategyEClass = createEClass(EXECUTION_STRATEGY);
+		createEAttribute(executionStrategyEClass, EXECUTION_STRATEGY__EXPT_RUNNER_IP);
 		createEOperation(executionStrategyEClass, EXECUTION_STRATEGY___IS_DISTRIBUTED);
 
 		localExecutionStrategyEClass = createEClass(LOCAL_EXECUTION_STRATEGY);
@@ -531,6 +558,8 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 		createEAttribute(sopranoWorkerNodeEClass, SOPRANO_WORKER_NODE__WORKER_OS);
 
 		dependencyEClass = createEClass(DEPENDENCY);
+
+		fileTreeDependencyEClass = createEClass(FILE_TREE_DEPENDENCY);
 
 		containerDependencyEClass = createEClass(CONTAINER_DEPENDENCY);
 		createEAttribute(containerDependencyEClass, CONTAINER_DEPENDENCY__IMAGE_NAME);
@@ -580,12 +609,14 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 		dynamicTaskAllocationEClass.getESuperTypes().add(this.getAllocationStrategy());
 		roundRobinPreAllocationEClass.getESuperTypes().add(this.getAllocationStrategy());
 		sopranoWorkerNodeEClass.getESuperTypes().add(this.getExecutionTarget());
+		fileTreeDependencyEClass.getESuperTypes().add(this.getDependency());
 		containerDependencyEClass.getESuperTypes().add(this.getDependency());
 		derivedContainerDependencyEClass.getESuperTypes().add(this.getDependency());
 		archiveDependencyEClass.getESuperTypes().add(this.getDependency());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(executionStrategyEClass, ExecutionStrategy.class, "ExecutionStrategy", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExecutionStrategy_ExptRunnerIP(), ecorePackage.getEString(), "exptRunnerIP", null, 0, 1, ExecutionStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getExecutionStrategy__IsDistributed(), ecorePackage.getEBoolean(), "isDistributed", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -611,6 +642,8 @@ public class ExecutionPackageImpl extends EPackageImpl implements ExecutionPacka
 		initEAttribute(getSOPRANOWorkerNode_WorkerOS(), this.getWorkerOS(), "workerOS", null, 1, 1, SOPRANOWorkerNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dependencyEClass, Dependency.class, "Dependency", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(fileTreeDependencyEClass, FileTreeDependency.class, "FileTreeDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(containerDependencyEClass, ContainerDependency.class, "ContainerDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getContainerDependency_ImageName(), ecorePackage.getEString(), "imageName", null, 0, 1, ContainerDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

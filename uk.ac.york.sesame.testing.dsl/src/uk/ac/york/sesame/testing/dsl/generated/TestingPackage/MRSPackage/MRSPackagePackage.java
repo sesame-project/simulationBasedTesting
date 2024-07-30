@@ -333,13 +333,13 @@ public interface MRSPackagePackage extends EPackage {
 	int STATIC_VARIABLE__TYPE = GENERIC_VARIABLE__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Location</b></em>' containment reference.
+	 * The feature id for the '<em><b>Locations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATIC_VARIABLE__LOCATION = GENERIC_VARIABLE_FEATURE_COUNT + 0;
+	int STATIC_VARIABLE__LOCATIONS = GENERIC_VARIABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Static Variable</em>' class.
@@ -508,13 +508,22 @@ public interface MRSPackagePackage extends EPackage {
 	int CONFIG_LOCATION = 8;
 
 	/**
+	 * The feature id for the '<em><b>Root</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIG_LOCATION__ROOT = 0;
+
+	/**
 	 * The number of structural features of the '<em>Config Location</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIG_LOCATION_FEATURE_COUNT = 0;
+	int CONFIG_LOCATION_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Config Location</em>' class.
@@ -534,6 +543,15 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 */
 	int FILE_LOCATION = 9;
+
+	/**
+	 * The feature id for the '<em><b>Root</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_LOCATION__ROOT = CONFIG_LOCATION__ROOT;
 
 	/**
 	 * The feature id for the '<em><b>File Name</b></em>' attribute.
@@ -571,6 +589,15 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 */
 	int PROPERTIES_KEY_VALUES = 10;
+
+	/**
+	 * The feature id for the '<em><b>Root</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTIES_KEY_VALUES__ROOT = FILE_LOCATION__ROOT;
 
 	/**
 	 * The feature id for the '<em><b>File Name</b></em>' attribute.
@@ -617,6 +644,15 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 */
 	int FIXED_POSITION = 11;
+
+	/**
+	 * The feature id for the '<em><b>Root</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POSITION__ROOT = FILE_LOCATION__ROOT;
 
 	/**
 	 * The feature id for the '<em><b>File Name</b></em>' attribute.
@@ -674,6 +710,15 @@ public interface MRSPackagePackage extends EPackage {
 	int REGEX_LOCATION = 12;
 
 	/**
+	 * The feature id for the '<em><b>Root</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REGEX_LOCATION__ROOT = FILE_LOCATION__ROOT;
+
+	/**
 	 * The feature id for the '<em><b>File Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -718,6 +763,15 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 */
 	int XML_CONFIG_LOCATION = 13;
+
+	/**
+	 * The feature id for the '<em><b>Root</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_CONFIG_LOCATION__ROOT = FILE_LOCATION__ROOT;
 
 	/**
 	 * The feature id for the '<em><b>File Name</b></em>' attribute.
@@ -1331,15 +1385,15 @@ public interface MRSPackagePackage extends EPackage {
 	EClass getStaticVariable();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable#getLocation <em>Location</em>}'.
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable#getLocations <em>Locations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Location</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable#getLocation()
+	 * @return the meta object for the containment reference list '<em>Locations</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable#getLocations()
 	 * @see #getStaticVariable()
 	 * @generated
 	 */
-	EReference getStaticVariable_Location();
+	EReference getStaticVariable_Locations();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.DynamicVariable <em>Dynamic Variable</em>}'.
@@ -1380,6 +1434,17 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getConfigLocation();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ConfigLocation#getRoot <em>Root</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Root</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ConfigLocation#getRoot()
+	 * @see #getConfigLocation()
+	 * @generated
+	 */
+	EReference getConfigLocation_Root();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FileLocation <em>File Location</em>}'.
@@ -1958,12 +2023,12 @@ public interface MRSPackagePackage extends EPackage {
 		EClass STATIC_VARIABLE = eINSTANCE.getStaticVariable();
 
 		/**
-		 * The meta object literal for the '<em><b>Location</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Locations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STATIC_VARIABLE__LOCATION = eINSTANCE.getStaticVariable_Location();
+		EReference STATIC_VARIABLE__LOCATIONS = eINSTANCE.getStaticVariable_Locations();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.DynamicVariableImpl <em>Dynamic Variable</em>}' class.
@@ -2004,6 +2069,14 @@ public interface MRSPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONFIG_LOCATION = eINSTANCE.getConfigLocation();
+
+		/**
+		 * The meta object literal for the '<em><b>Root</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIG_LOCATION__ROOT = eINSTANCE.getConfigLocation_Root();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.FileLocationImpl <em>File Location</em>}' class.

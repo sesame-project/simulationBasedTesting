@@ -1,5 +1,7 @@
 package uk.ac.york.sesame.testing.evolutionary.dslwrapper;
 
+import java.util.Optional;
+
 import it.units.malelab.jgea.representation.tree.Tree;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation;
@@ -7,6 +9,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation;
 
 public abstract class DynamicOperationWrapper extends FuzzingOperationWrapper {
 	
@@ -23,6 +26,20 @@ public abstract class DynamicOperationWrapper extends FuzzingOperationWrapper {
 
 	public Activation getActivation() {
 		return dynT.getActivation();
+	}
+	
+	public Optional<Activation> getTemplateActivation() {
+		FuzzingOperation f = dynT.getFromTemplate();
+		
+		if (f instanceof DynamicOperation) {
+			return Optional.of(((DynamicOperation)f).getActivation());
+		} 
+		
+		if (f instanceof PotentiallyStaticOperation) {
+			return Optional.of(((PotentiallyStaticOperation) f).getActivation());
+		}
+		
+		return Optional.empty();
 	}
 	
 	public String activationToString(Activation a) {

@@ -104,6 +104,10 @@ public class ExecutionAdapterFactory extends AdapterFactoryImpl {
 				return createDependencyAdapter();
 			}
 			@Override
+			public Adapter caseFileTreeDependency(FileTreeDependency object) {
+				return createFileTreeDependencyAdapter();
+			}
+			@Override
 			public Adapter caseContainerDependency(ContainerDependency object) {
 				return createContainerDependencyAdapter();
 			}
@@ -258,6 +262,20 @@ public class ExecutionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDependencyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.FileTreeDependency <em>File Tree Dependency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.FileTreeDependency
+	 * @generated
+	 */
+	public Adapter createFileTreeDependencyAdapter() {
 		return null;
 	}
 

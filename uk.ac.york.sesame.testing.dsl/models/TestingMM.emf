@@ -215,10 +215,11 @@ package FuzzingOperations {
 	
 	abstract class PotentiallyStaticOperation extends FuzzTestingOperation {
 		val Activation[0..1] activation;
+		ref MRSPackage.GenericVariable variableToAffect;
 	}
 
 	abstract class VariableOperation extends PotentiallyStaticOperation {
-		ref MRSPackage.GenericVariable variableToAffect;
+		
 		// TODO: parameter info?
 	}
 	
@@ -492,7 +493,9 @@ package MRSPackage {
 	// Others (delay, deletion, duplication) can only refer to the Variable (not parameter variable)
 	// since these are event based
 	
-	abstract class ConfigLocation { }
+	abstract class ConfigLocation { 
+		ref Execution.Dependency[1] root;
+	}
 	
 	class FileLocation extends ConfigLocation {
 		attr String fileName;
@@ -611,6 +614,10 @@ package Execution {
 	enum ContainerTechnology {
 		DOCKER = 0;
 		PODMAN = 1;
+	}
+	
+	class FileTreeDependency extends Dependency {
+		
 	}
 	
 	class ContainerDependency extends Dependency {

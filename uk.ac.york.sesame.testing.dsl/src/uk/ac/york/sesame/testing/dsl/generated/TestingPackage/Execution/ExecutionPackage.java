@@ -69,13 +69,22 @@ public interface ExecutionPackage extends EPackage {
 	int EXECUTION_STRATEGY = 0;
 
 	/**
+	 * The feature id for the '<em><b>Expt Runner IP</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_STRATEGY__EXPT_RUNNER_IP = 0;
+
+	/**
 	 * The number of structural features of the '<em>Strategy</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_STRATEGY_FEATURE_COUNT = 0;
+	int EXECUTION_STRATEGY_FEATURE_COUNT = 1;
 
 	/**
 	 * The operation id for the '<em>Is Distributed</em>' operation.
@@ -104,6 +113,15 @@ public interface ExecutionPackage extends EPackage {
 	 * @generated
 	 */
 	int LOCAL_EXECUTION_STRATEGY = 1;
+
+	/**
+	 * The feature id for the '<em><b>Expt Runner IP</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_EXECUTION_STRATEGY__EXPT_RUNNER_IP = EXECUTION_STRATEGY__EXPT_RUNNER_IP;
 
 	/**
 	 * The feature id for the '<em><b>Launch File Location</b></em>' attribute.
@@ -150,6 +168,15 @@ public interface ExecutionPackage extends EPackage {
 	 * @generated
 	 */
 	int DISTRIBUTED_EXECUTION_STRATEGY = 2;
+
+	/**
+	 * The feature id for the '<em><b>Expt Runner IP</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISTRIBUTED_EXECUTION_STRATEGY__EXPT_RUNNER_IP = EXECUTION_STRATEGY__EXPT_RUNNER_IP;
 
 	/**
 	 * The feature id for the '<em><b>Automatic Worker Detection</b></em>' attribute.
@@ -252,7 +279,7 @@ public interface ExecutionPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ExecutionPackageImpl#getContainerDependency()
 	 * @generated
 	 */
-	int CONTAINER_DEPENDENCY = 9;
+	int CONTAINER_DEPENDENCY = 10;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.DerivedContainerDependencyImpl <em>Derived Container Dependency</em>}' class.
@@ -262,7 +289,7 @@ public interface ExecutionPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ExecutionPackageImpl#getDerivedContainerDependency()
 	 * @generated
 	 */
-	int DERIVED_CONTAINER_DEPENDENCY = 10;
+	int DERIVED_CONTAINER_DEPENDENCY = 11;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ArchiveDependencyImpl <em>Archive Dependency</em>}' class.
@@ -272,7 +299,7 @@ public interface ExecutionPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ExecutionPackageImpl#getArchiveDependency()
 	 * @generated
 	 */
-	int ARCHIVE_DEPENDENCY = 11;
+	int ARCHIVE_DEPENDENCY = 12;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.AllocationStrategyImpl <em>Allocation Strategy</em>}' class.
@@ -431,6 +458,34 @@ public interface ExecutionPackage extends EPackage {
 	int DEPENDENCY_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.FileTreeDependencyImpl <em>File Tree Dependency</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.FileTreeDependencyImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ExecutionPackageImpl#getFileTreeDependency()
+	 * @generated
+	 */
+	int FILE_TREE_DEPENDENCY = 9;
+
+	/**
+	 * The number of structural features of the '<em>File Tree Dependency</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_TREE_DEPENDENCY_FEATURE_COUNT = DEPENDENCY_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>File Tree Dependency</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_TREE_DEPENDENCY_OPERATION_COUNT = DEPENDENCY_OPERATION_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Image Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -528,7 +583,7 @@ public interface ExecutionPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ExecutionPackageImpl#getWorkerOS()
 	 * @generated
 	 */
-	int WORKER_OS = 12;
+	int WORKER_OS = 13;
 
 	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ContainerTechnology <em>Container Technology</em>}' enum.
@@ -538,7 +593,7 @@ public interface ExecutionPackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ExecutionPackageImpl#getContainerTechnology()
 	 * @generated
 	 */
-	int CONTAINER_TECHNOLOGY = 13;
+	int CONTAINER_TECHNOLOGY = 14;
 
 
 	/**
@@ -550,6 +605,17 @@ public interface ExecutionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getExecutionStrategy();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionStrategy#getExptRunnerIP <em>Expt Runner IP</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expt Runner IP</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionStrategy#getExptRunnerIP()
+	 * @see #getExecutionStrategy()
+	 * @generated
+	 */
+	EAttribute getExecutionStrategy_ExptRunnerIP();
 
 	/**
 	 * Returns the meta object for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionStrategy#isDistributed() <em>Is Distributed</em>}' operation.
@@ -687,6 +753,16 @@ public interface ExecutionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getDependency();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.FileTreeDependency <em>File Tree Dependency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>File Tree Dependency</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.FileTreeDependency
+	 * @generated
+	 */
+	EClass getFileTreeDependency();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ContainerDependency <em>Container Dependency</em>}'.
@@ -846,6 +922,14 @@ public interface ExecutionPackage extends EPackage {
 		EClass EXECUTION_STRATEGY = eINSTANCE.getExecutionStrategy();
 
 		/**
+		 * The meta object literal for the '<em><b>Expt Runner IP</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXECUTION_STRATEGY__EXPT_RUNNER_IP = eINSTANCE.getExecutionStrategy_ExptRunnerIP();
+
+		/**
 		 * The meta object literal for the '<em><b>Is Distributed</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -958,6 +1042,16 @@ public interface ExecutionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DEPENDENCY = eINSTANCE.getDependency();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.FileTreeDependencyImpl <em>File Tree Dependency</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.FileTreeDependencyImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ExecutionPackageImpl#getFileTreeDependency()
+		 * @generated
+		 */
+		EClass FILE_TREE_DEPENDENCY = eINSTANCE.getFileTreeDependency();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.impl.ContainerDependencyImpl <em>Container Dependency</em>}' class.

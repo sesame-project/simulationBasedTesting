@@ -2,8 +2,10 @@
  */
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -132,6 +134,17 @@ public class DoubleRangeImpl extends ValueRangeImpl implements DoubleRange {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DoubleRange findReduction() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -193,6 +206,20 @@ public class DoubleRangeImpl extends ValueRangeImpl implements DoubleRange {
 				return upperBound != UPPER_BOUND_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case FuzzingOperationsPackage.DOUBLE_RANGE___FIND_REDUCTION:
+				return findReduction();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

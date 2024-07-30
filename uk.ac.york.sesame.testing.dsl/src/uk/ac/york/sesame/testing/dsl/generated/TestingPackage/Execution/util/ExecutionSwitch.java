@@ -125,6 +125,13 @@ public class ExecutionSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ExecutionPackage.FILE_TREE_DEPENDENCY: {
+				FileTreeDependency fileTreeDependency = (FileTreeDependency)theEObject;
+				T result = caseFileTreeDependency(fileTreeDependency);
+				if (result == null) result = caseDependency(fileTreeDependency);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ExecutionPackage.CONTAINER_DEPENDENCY: {
 				ContainerDependency containerDependency = (ContainerDependency)theEObject;
 				T result = caseContainerDependency(containerDependency);
@@ -282,6 +289,21 @@ public class ExecutionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDependency(Dependency object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>File Tree Dependency</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>File Tree Dependency</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFileTreeDependency(FileTreeDependency object) {
 		return null;
 	}
 

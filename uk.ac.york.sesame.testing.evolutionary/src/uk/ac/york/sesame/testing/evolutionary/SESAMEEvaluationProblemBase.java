@@ -17,8 +17,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.uma.jmetal.problem.Problem;
 
-import uk.ac.york.sesame.testing.evolutionary.dslwrapper.DynamicOperationWrapper;
-import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 import uk.ac.york.sesame.testing.evolutionary.utilities.SESAMEEGLExecutor;
 import uk.ac.york.sesame.testing.evolutionary.utilities.TestRunnerUtils;
@@ -184,6 +182,8 @@ public abstract class SESAMEEvaluationProblemBase implements Problem<SESAMETestS
 				} catch (ParamError e) {
 					e.printStackTrace();
 				} catch (ConstraintsNotMet e) {
+					e.printStackTrace();
+				} catch (InvalidOperation e) {
 					e.printStackTrace();
 				}
 			}

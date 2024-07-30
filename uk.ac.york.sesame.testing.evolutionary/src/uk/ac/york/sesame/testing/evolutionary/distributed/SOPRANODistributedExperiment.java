@@ -77,6 +77,14 @@ public class SOPRANODistributedExperiment {
 		return deps;
 	}
 	
+	public synchronized void handleStaticVariables() {
+		
+	}
+	
+	public synchronized void handleStaticVariablesForTest(RemoteTest t) {
+		// For all fuzzing operations, find the static variables
+	}
+	
 	public synchronized void generateAllCode() throws MissingProperty, MissingPropertiesFile {
 		String campaignName = selectedCampaign.getName();
 		
@@ -94,6 +102,14 @@ public class SOPRANODistributedExperiment {
 		System.out.flush();
 
 		SESAMEEGLExecutor eglEx = new SESAMEEGLExecutor(orchestratorBasePath, spaceModelFilename, __mrsModelFile, campaignName, codeGenerationDirectory);
+		
+		System.out.println("Code generation via EGL done");
+		
+		System.out.println("Handling static variables");
+		handleStaticVariables();
+		System.out.println("Handling of static variables done");
+		
+		
 		eglEx.run();
 	}
 	

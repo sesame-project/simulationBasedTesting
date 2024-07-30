@@ -213,11 +213,10 @@
         eSuperTypes="#//FuzzingOperations/FuzzTestingOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="activation" eType="#//FuzzingOperations/Activation"
           containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="VariableOperation" abstract="true"
-        eSuperTypes="#//FuzzingOperations/PotentiallyStaticOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="variableToAffect" eType="#//MRSPackage/GenericVariable"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VariableOperation" abstract="true"
+        eSuperTypes="#//FuzzingOperations/PotentiallyStaticOperation"/>
     <eClassifiers xsi:type="ecore:EClass" name="CustomFuzzingOperation" eSuperTypes="#//FuzzingOperations/VariableOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
           eType="#//FuzzingOperations/ValueSet" containment="true"/>
@@ -433,7 +432,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="DynamicVariable" abstract="true" eSuperTypes="#//MRSPackage/GenericVariable"/>
     <eClassifiers xsi:type="ecore:EClass" name="EventBasedVariable" eSuperTypes="#//MRSPackage/DynamicVariable"/>
     <eClassifiers xsi:type="ecore:EClass" name="ParameterVariable" eSuperTypes="#//MRSPackage/DynamicVariable"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ConfigLocation" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConfigLocation" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1"
+          eType="#//Execution/Dependency"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FileLocation" eSuperTypes="#//MRSPackage/ConfigLocation">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
@@ -532,6 +534,7 @@
       <eLiterals name="DOCKER"/>
       <eLiterals name="PODMAN" value="1"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FileTreeDependency" eSuperTypes="#//Execution/Dependency"/>
     <eClassifiers xsi:type="ecore:EClass" name="ContainerDependency" eSuperTypes="#//Execution/Dependency">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="tech" lowerBound="1"

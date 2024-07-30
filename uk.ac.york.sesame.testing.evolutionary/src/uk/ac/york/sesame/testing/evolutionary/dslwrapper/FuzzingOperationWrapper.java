@@ -174,7 +174,7 @@ public abstract class FuzzingOperationWrapper {
 	
 	public abstract FuzzingOperation getFuzzingOperation();
 	
-	public abstract FuzzingOperationWrapper reductionOfOperation(SecureRandom rng) throws ConstraintsNotMet, ConversionFailed, ParamError;
+	public abstract FuzzingOperationWrapper reductionOfOperation(SecureRandom rng) throws ConstraintsNotMet, ConversionFailed, ParamError, InvalidOperation;
 
 	public void checkConstraints() {
 

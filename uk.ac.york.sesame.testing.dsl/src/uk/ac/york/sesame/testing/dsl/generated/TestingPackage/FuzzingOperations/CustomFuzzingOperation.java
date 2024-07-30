@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface CustomFuzzingOperation extends FuzzingOperation {
+public interface CustomFuzzingOperation extends VariableOperation {
 
 	/**
 	 * Returns the value of the '<em><b>Params</b></em>' containment reference list.

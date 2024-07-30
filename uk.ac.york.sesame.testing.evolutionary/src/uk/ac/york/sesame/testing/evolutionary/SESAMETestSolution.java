@@ -297,4 +297,9 @@ public class SESAMETestSolution implements Solution<FuzzingOperationWrapper> {
 			i++;
 		}
 	}
+
+	public List<PotentiallyStaticOperation> getAllStaticOperations() {
+		// TODO Auto-generated method stub
+		return new ArrayList();
+	}
 }

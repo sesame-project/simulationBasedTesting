@@ -134,13 +134,10 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/includeInTiming"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/FuzzingOperation/conditionConstraints"/>
         <genOperations ecoreOperation="TestingMM.ecore#//FuzzingOperations/FuzzingOperation/dup"/>
+        <genOperations ecoreOperation="TestingMM.ecore#//FuzzingOperations/FuzzingOperation/findReduction"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation/operationTime"/>
-      </genClasses>
-      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/CustomFuzzingOperation">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/CustomFuzzingOperation/params"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/CustomFuzzingOperation/customProcessClass"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/CustomOfflineFuzzingOperation"/>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//FuzzingOperations/Activation"/>
@@ -175,10 +172,13 @@
       </genClasses>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//FuzzingOperations/PotentiallyStaticOperation">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/PotentiallyStaticOperation/activation"/>
-      </genClasses>
-      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/VariableOperation">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/VariableOperation/variableToAffect"/>
+            ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/PotentiallyStaticOperation/variableToAffect"/>
+      </genClasses>
+      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/VariableOperation"/>
+      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/CustomFuzzingOperation">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/CustomFuzzingOperation/params"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/CustomFuzzingOperation/customProcessClass"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/RandomValueFuzzingOperation"/>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/RandomValueFromSetOperation">
@@ -196,6 +196,7 @@
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/DoubleRange">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/DoubleRange/lowerBound"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/DoubleRange/upperBound"/>
+        <genOperations ecoreOperation="TestingMM.ecore#//FuzzingOperations/DoubleRange/findReduction"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/Point">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/Point/x"/>
@@ -357,12 +358,15 @@
             ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/GenericVariable/type"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/StaticVariable">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/StaticVariable/location"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/StaticVariable/locations"/>
       </genClasses>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//MRSPackage/DynamicVariable"/>
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/EventBasedVariable"/>
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/ParameterVariable"/>
-      <genClasses image="false" ecoreClass="TestingMM.ecore#//MRSPackage/ConfigLocation"/>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//MRSPackage/ConfigLocation">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/ConfigLocation/root"/>
+      </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/FileLocation">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/FileLocation/fileName"/>
       </genClasses>
@@ -422,6 +426,7 @@
         <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//Execution/ContainerTechnology/PODMAN"/>
       </genEnums>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//Execution/ExecutionStrategy">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/ExecutionStrategy/exptRunnerIP"/>
         <genOperations ecoreOperation="TestingMM.ecore#//Execution/ExecutionStrategy/isDistributed"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//Execution/LocalExecutionStrategy">
@@ -442,6 +447,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/SOPRANOWorkerNode/workerOS"/>
       </genClasses>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//Execution/Dependency"/>
+      <genClasses ecoreClass="TestingMM.ecore#//Execution/FileTreeDependency"/>
       <genClasses ecoreClass="TestingMM.ecore#//Execution/ContainerDependency">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/ContainerDependency/imageName"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//Execution/ContainerDependency/tech"/>

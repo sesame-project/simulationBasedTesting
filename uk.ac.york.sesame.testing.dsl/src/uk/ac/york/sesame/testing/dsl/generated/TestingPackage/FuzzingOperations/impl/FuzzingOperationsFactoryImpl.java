@@ -58,7 +58,6 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case FuzzingOperationsPackage.OFFLINE_FUZZING_OPERATION: return createOfflineFuzzingOperation();
-			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION: return createCustomFuzzingOperation();
 			case FuzzingOperationsPackage.CUSTOM_OFFLINE_FUZZING_OPERATION: return createCustomOfflineFuzzingOperation();
 			case FuzzingOperationsPackage.FIXED_TIME_ACTIVATION: return createFixedTimeActivation();
 			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION: return createConditionBasedActivation();
@@ -67,6 +66,7 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 			case FuzzingOperationsPackage.COMPONENT_OPERATION: return createComponentOperation();
 			case FuzzingOperationsPackage.COMPONENT_PROPERTY_OPERATION: return createComponentPropertyOperation();
 			case FuzzingOperationsPackage.COMPONENT_SUB_PROPERTY_OPERATION: return createComponentSubPropertyOperation();
+			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION: return createCustomFuzzingOperation();
 			case FuzzingOperationsPackage.RANDOM_VALUE_FROM_SET_OPERATION: return createRandomValueFromSetOperation();
 			case FuzzingOperationsPackage.VALUE_SET: return createValueSet();
 			case FuzzingOperationsPackage.INT_RANGE: return createIntRange();

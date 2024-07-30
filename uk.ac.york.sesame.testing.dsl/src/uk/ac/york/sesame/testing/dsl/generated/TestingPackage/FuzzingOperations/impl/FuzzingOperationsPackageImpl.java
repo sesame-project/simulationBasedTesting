@@ -554,6 +554,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getFuzzingOperation__FindReduction() {
+		return fuzzingOperationEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOfflineFuzzingOperation() {
 		return offlineFuzzingOperationEClass;
 	}
@@ -815,8 +824,8 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVariableOperation() {
-		return variableOperationEClass;
+	public EReference getPotentiallyStaticOperation_VariableToAffect() {
+		return (EReference)potentiallyStaticOperationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -824,8 +833,8 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVariableOperation_VariableToAffect() {
-		return (EReference)variableOperationEClass.getEStructuralFeatures().get(0);
+	public EClass getVariableOperation() {
+		return variableOperationEClass;
 	}
 
 	/**
@@ -943,6 +952,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 */
 	public EAttribute getDoubleRange_UpperBound() {
 		return (EAttribute)doubleRangeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getDoubleRange__FindReduction() {
+		return doubleRangeEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1190,13 +1208,10 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEAttribute(fuzzingOperationEClass, FUZZING_OPERATION__INCLUDE_IN_TIMING);
 		createEReference(fuzzingOperationEClass, FUZZING_OPERATION__CONDITION_CONSTRAINTS);
 		createEOperation(fuzzingOperationEClass, FUZZING_OPERATION___DUP);
+		createEOperation(fuzzingOperationEClass, FUZZING_OPERATION___FIND_REDUCTION);
 
 		offlineFuzzingOperationEClass = createEClass(OFFLINE_FUZZING_OPERATION);
 		createEAttribute(offlineFuzzingOperationEClass, OFFLINE_FUZZING_OPERATION__OPERATION_TIME);
-
-		customFuzzingOperationEClass = createEClass(CUSTOM_FUZZING_OPERATION);
-		createEReference(customFuzzingOperationEClass, CUSTOM_FUZZING_OPERATION__PARAMS);
-		createEAttribute(customFuzzingOperationEClass, CUSTOM_FUZZING_OPERATION__CUSTOM_PROCESS_CLASS);
 
 		customOfflineFuzzingOperationEClass = createEClass(CUSTOM_OFFLINE_FUZZING_OPERATION);
 
@@ -1232,9 +1247,13 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		potentiallyStaticOperationEClass = createEClass(POTENTIALLY_STATIC_OPERATION);
 		createEReference(potentiallyStaticOperationEClass, POTENTIALLY_STATIC_OPERATION__ACTIVATION);
+		createEReference(potentiallyStaticOperationEClass, POTENTIALLY_STATIC_OPERATION__VARIABLE_TO_AFFECT);
 
 		variableOperationEClass = createEClass(VARIABLE_OPERATION);
-		createEReference(variableOperationEClass, VARIABLE_OPERATION__VARIABLE_TO_AFFECT);
+
+		customFuzzingOperationEClass = createEClass(CUSTOM_FUZZING_OPERATION);
+		createEReference(customFuzzingOperationEClass, CUSTOM_FUZZING_OPERATION__PARAMS);
+		createEAttribute(customFuzzingOperationEClass, CUSTOM_FUZZING_OPERATION__CUSTOM_PROCESS_CLASS);
 
 		randomValueFuzzingOperationEClass = createEClass(RANDOM_VALUE_FUZZING_OPERATION);
 
@@ -1254,6 +1273,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		doubleRangeEClass = createEClass(DOUBLE_RANGE);
 		createEAttribute(doubleRangeEClass, DOUBLE_RANGE__LOWER_BOUND);
 		createEAttribute(doubleRangeEClass, DOUBLE_RANGE__UPPER_BOUND);
+		createEOperation(doubleRangeEClass, DOUBLE_RANGE___FIND_REDUCTION);
 
 		pointEClass = createEClass(POINT);
 		createEAttribute(pointEClass, POINT__X);
@@ -1323,7 +1343,6 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		// Add supertypes to classes
 		offlineFuzzingOperationEClass.getESuperTypes().add(this.getFuzzingOperation());
-		customFuzzingOperationEClass.getESuperTypes().add(this.getFuzzingOperation());
 		customOfflineFuzzingOperationEClass.getESuperTypes().add(this.getOfflineFuzzingOperation());
 		fixedTimeActivationEClass.getESuperTypes().add(this.getActivation());
 		conditionBasedActivationEClass.getESuperTypes().add(this.getActivation());
@@ -1335,6 +1354,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		dynamicOperationEClass.getESuperTypes().add(this.getFuzzTestingOperation());
 		potentiallyStaticOperationEClass.getESuperTypes().add(this.getFuzzTestingOperation());
 		variableOperationEClass.getESuperTypes().add(this.getPotentiallyStaticOperation());
+		customFuzzingOperationEClass.getESuperTypes().add(this.getVariableOperation());
 		randomValueFuzzingOperationEClass.getESuperTypes().add(this.getVariableOperation());
 		randomValueFromSetOperationEClass.getESuperTypes().add(this.getRandomValueFuzzingOperation());
 		valueRangeEClass.getESuperTypes().add(this.getValueSet());
@@ -1371,12 +1391,10 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		initEOperation(getFuzzingOperation__Dup(), this.getFuzzingOperation(), "dup", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEOperation(getFuzzingOperation__FindReduction(), this.getFuzzingOperation(), "findReduction", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(offlineFuzzingOperationEClass, OfflineFuzzingOperation.class, "OfflineFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOfflineFuzzingOperation_OperationTime(), this.getOfflineOperationTime(), "operationTime", null, 0, 1, OfflineFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(customFuzzingOperationEClass, CustomFuzzingOperation.class, "CustomFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCustomFuzzingOperation_Params(), this.getValueSet(), null, "params", null, 0, -1, CustomFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCustomFuzzingOperation_CustomProcessClass(), ecorePackage.getEString(), "customProcessClass", null, 0, 1, CustomFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(customOfflineFuzzingOperationEClass, CustomOfflineFuzzingOperation.class, "CustomOfflineFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1412,9 +1430,13 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		initEClass(potentiallyStaticOperationEClass, PotentiallyStaticOperation.class, "PotentiallyStaticOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPotentiallyStaticOperation_Activation(), this.getActivation(), null, "activation", null, 0, 1, PotentiallyStaticOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPotentiallyStaticOperation_VariableToAffect(), theMRSPackagePackage.getGenericVariable(), null, "variableToAffect", null, 0, 1, PotentiallyStaticOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(variableOperationEClass, VariableOperation.class, "VariableOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariableOperation_VariableToAffect(), theMRSPackagePackage.getDynamicVariable(), null, "variableToAffect", null, 0, 1, VariableOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(customFuzzingOperationEClass, CustomFuzzingOperation.class, "CustomFuzzingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCustomFuzzingOperation_Params(), this.getValueSet(), null, "params", null, 0, -1, CustomFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCustomFuzzingOperation_CustomProcessClass(), ecorePackage.getEString(), "customProcessClass", null, 0, 1, CustomFuzzingOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(randomValueFuzzingOperationEClass, RandomValueFuzzingOperation.class, "RandomValueFuzzingOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1434,6 +1456,8 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEClass(doubleRangeEClass, DoubleRange.class, "DoubleRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDoubleRange_LowerBound(), ecorePackage.getEDouble(), "lowerBound", null, 0, 1, DoubleRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDoubleRange_UpperBound(), ecorePackage.getEDouble(), "upperBound", null, 0, 1, DoubleRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getDoubleRange__FindReduction(), this.getDoubleRange(), "findReduction", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(pointEClass, Point.class, "Point", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPoint_X(), ecorePackage.getEDouble(), "x", null, 0, 1, Point.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

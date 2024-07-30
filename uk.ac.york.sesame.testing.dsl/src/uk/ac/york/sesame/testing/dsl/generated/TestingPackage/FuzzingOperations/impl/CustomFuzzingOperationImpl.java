@@ -30,7 +30,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
  *
  * @generated
  */
-public class CustomFuzzingOperationImpl extends FuzzingOperationImpl implements CustomFuzzingOperation {
+public class CustomFuzzingOperationImpl extends VariableOperationImpl implements CustomFuzzingOperation {
 	/**
 	 * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

@@ -1,9 +1,21 @@
 package uk.ac.york.sesame.testing.evolutionary.distributed;
 
+import java.util.List;
 import java.util.Optional;
 
+import uk.ac.york.sesame.testing.architecture.fuzzingoperations.FuzzingOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.distributed.TestStatus;
+import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.ConfigTransformer;
+import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.ConfigTransformerFactory;
+import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.InvalidExecutorForOperation;
+import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.InvalidTransformerForVariable;
+import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.StaticOperationExecutoryFactory;
+import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.operationexecutors.OperationExecutor;
 
 public class RemoteTest implements Comparable<RemoteTest> {
 	private String testID;
@@ -31,6 +43,41 @@ public class RemoteTest implements Comparable<RemoteTest> {
 	public void registerRunID(String testRunID) {
 		// TODO Auto-generated method stub
 		this.testRunUUID = Optional.of(testRunID);	
+	}
+	
+	public synchronized void handleStaticFuzzingForTest(RemoteTest rt) {
+		ConfigTransformerFactory ctFactory = new ConfigTransformerFactory();
+		StaticOperationExecutoryFactory soFactory = new StaticOperationExecutoryFactory();
+		
+		try {
+		SESAMETestSolution sol = rt.getSolution();
+		// For all fuzzing operations, find the static variables
+		List<PotentiallyStaticOperation> staticOps = sol.getAllStaticOperations();
+		// This verifies that all operations returned should be static variables
+		for (PotentiallyStaticOperation op : staticOps) {
+			GenericVariable gv = op.getVariableToAffect();
+			if (gv instanceof StaticVariable) {
+				StaticVariable sv = (StaticVariable)gv;
+				List<ConfigTransformer> tfs = ctFactory.createTransformers(sv);
+				for (ConfigTransformer tf : tfs) {
+					// Need some sort of executor for the operation here
+					OperationExecutor exec = soFactory.createOperationExecutor(op);
+					tf.transform(exec);
+				}
+				sv.getLocations();
+				
+			} else {
+				System.err.println("handleStaticFuzzingForTest: not a static variable - " + gv.toString());
+				System.exit(-1);
+			}
+		}
+		} catch (InvalidTransformerForVariable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidExecutorForOperation e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public Optional<String> getRunUUID() {
