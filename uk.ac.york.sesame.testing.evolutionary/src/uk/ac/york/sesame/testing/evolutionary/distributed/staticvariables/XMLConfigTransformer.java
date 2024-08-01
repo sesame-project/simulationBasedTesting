@@ -1,8 +1,8 @@
 package uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -24,58 +24,64 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation;
+import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.operationexecutors.OperationExecutor;
 
 public class XMLConfigTransformer extends ConfigTransformer {
 	private XMLConfigLocation xmlVar;
-	
+
 	public XMLConfigTransformer(FileAccessorFromDependency accessor, XMLConfigLocation xmlVar) {
 		super(accessor);
 		this.xmlVar = xmlVar;
 	}
 
 	@Override
-	public void transform(Object changedVarValue) {
+	public void transform(Random rng, OperationExecutor executor) throws TransformFailed {
 		Transformer xformer;
-		InputSource inputSource = accessor.getConfigFileInput();
-		StreamResult streamResult = accessor.getStreamForOutputResult();
-		// Get the file from the source
-		try {
-		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputSource);
-		XPath xpath = XPathFactory.newInstance().newXPath();
-		// Select the current value in the document
-		String xpathExprStr = xmlVar.getXpathExpression();
-		NodeList nodes = (NodeList)xpath.evaluate(xpathExprStr, doc,XPathConstants.NODESET);
+		InputSource inputSource = accessor.getConfigFileInput(xmlVar);
+		Optional<StreamResult> streamResult_o = accessor.getStreamForOutputResult(xmlVar);
 
-		// TODO: how to get the changed value? - needs to be passed into here from the fuzzing operation?
-		String changedValue = (String)changedVarValue.toString();
-		
-		for (int idx = 0; idx < nodes.getLength(); idx++) {
-			nodes.item(idx).setTextContent(changedValue.toString());
+		if (!streamResult_o.isPresent()) {
+			System.err.println("Transform of static variable failed - could not create output stream for " + xmlVar.toString());
+			throw new TransformFailed();
+		} else {
+			// Get the file from the source
+			try {
+				Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputSource);
+				XPath xpath = XPathFactory.newInstance().newXPath();
+				// Select the current value in the document
+				String xpathExprStr = xmlVar.getXpathExpression();
+				NodeList nodes = (NodeList) xpath.evaluate(xpathExprStr, doc, XPathConstants.NODESET);
+
+				for (int idx = 0; idx < nodes.getLength(); idx++) {
+					Object original = nodes.item(idx).getTextContent();
+					Object changedValue = executor.exec(rng, original);
+					nodes.item(idx).setTextContent(changedValue.toString());
+				}
+
+				xformer = TransformerFactory.newInstance().newTransformer();
+				xformer.transform(new DOMSource(doc), streamResult_o.get());
+				System.out.println("Done transform for " + xmlVar.toString());
+
+			} catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {
+				e.printStackTrace();
+				throw new TransformFailed();
+			} catch (TransformerException e) {
+				e.printStackTrace();
+				throw new TransformFailed();
+			} catch (SAXException e) {
+				e.printStackTrace();
+				throw new TransformFailed();
+			} catch (IOException e) {
+				e.printStackTrace();
+				throw new TransformFailed();
+			} catch (ParserConfigurationException e) {
+				e.printStackTrace();
+				throw new TransformFailed();
+			} catch (XPathExpressionException e) {
+				e.printStackTrace();
+				throw new TransformFailed();
+			}
 		}
 
-		xformer = TransformerFactory.newInstance().newTransformer();
-		xformer.transform(new DOMSource(doc), streamResult);
-		
-		} catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (XPathExpressionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println("Done transform for " + this.toString());
 	}
 }

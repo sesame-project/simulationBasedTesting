@@ -8,7 +8,7 @@ import uk.ac.york.sesame.testing.evolutionary.dslwrapper.InvalidOperation;
 
 public class RandomValueFromSetExecutor extends OperationExecutor {
 	private RandomValueFromSetOperation rop;
-		
+
 	public RandomValueFromSetExecutor(RandomValueFromSetOperation rop) {
 		this.rop = rop;
 	}
@@ -16,21 +16,24 @@ public class RandomValueFromSetExecutor extends OperationExecutor {
 	@Override
 	public Object exec(Random rng, Object input) throws InvalidOperation {
 		List<ValueSet> vs = rop.getValueSet();
-		
-		if (vs instanceof DoubleRange) {
-			DoubleRange dr = (DoubleRange)vs;
-			double upper = dr.getLowerBound();
-			double lower = dr.getUpperBound();
-			double inputD = Double.parseDouble(input.toString());
-			double genVal = (upper - lower) * rng.nextDouble(); 
-			
-			if (rop.isIsRelative()) {
-				return inputD + genVal;
-			} else {
-				return genVal;
+
+		for (ValueSet v : vs) {
+			if (v instanceof DoubleRange) {
+				DoubleRange dr = (DoubleRange) v;
+				double lower = dr.getLowerBound();
+				double upper = dr.getUpperBound();
+				double inputD = Double.parseDouble(input.toString());
+				double genVal = (upper - lower) * rng.nextDouble();
+
+				if (rop.isIsRelative()) {
+					return inputD + genVal;
+				} else {
+					return genVal;
+				}
 			}
+
+			
 		}
-		
 		throw new InvalidOperation();
 	}
 }

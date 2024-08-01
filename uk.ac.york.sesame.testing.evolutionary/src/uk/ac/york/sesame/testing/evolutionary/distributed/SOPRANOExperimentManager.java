@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.PriorityQueue;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -100,6 +101,8 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	private void allocationLoop() {
 		try {
 			
+			Random rng = new Random();
+			
 			while (!activeExperiment.isCompleted()) {
 				// Need to wait until code generation is completed here!
 				try {
@@ -120,7 +123,7 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 						System.out.println("Allocating test " + t.getTestID() + " to worker " + node.toString());
 						
 						// Ensure transformations are done for any static variables for that test
-						t.handleStaticFuzzingForTest(t);
+						t.handleStaticFuzzingForTest(rng, t);
 						
 						// Register test, create new status monitor for test
 						node.submitTest(t);

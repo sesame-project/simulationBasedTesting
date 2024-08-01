@@ -36,7 +36,7 @@ public class TestXMLTransformerExample {
 	public static final String outputFilePath = "/home/jharbin/academic/pal/xml_test_files/pal_kitchen_changed.world";
 	
 	public final static String xpath_expr_str = "/sdf/world/physics/max_step_size";
-	public final static Double changedValue = 3673.002;
+	public final static Double changedValue = 0.002;
 	
 
 	public static void main(String[] args) throws IOException, InterruptedException {

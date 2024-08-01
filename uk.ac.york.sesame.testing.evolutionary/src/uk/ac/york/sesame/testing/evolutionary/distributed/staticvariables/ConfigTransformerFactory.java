@@ -8,9 +8,10 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Dependen
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ConfigLocation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation;
+import uk.ac.york.sesame.testing.evolutionary.distributed.RemoteTest;
 
 public class ConfigTransformerFactory {
-	public List<ConfigTransformer> createTransformers(StaticVariable sv) throws InvalidTransformerForVariable {
+	public List<ConfigTransformer> createTransformers(RemoteTest rt, StaticVariable sv) throws InvalidTransformerForVariable {
 		List<ConfigLocation> locs = sv.getLocations();
 		
 		List<ConfigTransformer> txs = new ArrayList<ConfigTransformer>();
@@ -21,7 +22,7 @@ public class ConfigTransformerFactory {
 			FileAccessorFromDependency accessor = null;
 			// TODO: support other containers here
 			if (depRoot instanceof ContainerDependency) {
-				accessor = new FileAccessorFromDocker(depRoot);	
+				accessor = new FileAccessorFromDocker(rt, (ContainerDependency)depRoot);	
 			}
 			
 			if (accessor == null) {

@@ -17,6 +17,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFact
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.Metric;
 import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.TestIfRawDSLOperationStatic;
 
 public class SESAMETestSolution implements Solution<FuzzingOperationWrapper> {
 	private static final long serialVersionUID = 1L;
@@ -299,7 +300,12 @@ public class SESAMETestSolution implements Solution<FuzzingOperationWrapper> {
 	}
 
 	public List<PotentiallyStaticOperation> getAllStaticOperations() {
-		// TODO Auto-generated method stub
-		return new ArrayList();
+		List<PotentiallyStaticOperation> l = new ArrayList<PotentiallyStaticOperation>();
+		for (FuzzingOperation op : t.getOperations()) {
+			if (TestIfRawDSLOperationStatic.isStatic(op)) {
+				l.add((PotentiallyStaticOperation) op);
+			}
+		}
+		return l;
 	}
 }
