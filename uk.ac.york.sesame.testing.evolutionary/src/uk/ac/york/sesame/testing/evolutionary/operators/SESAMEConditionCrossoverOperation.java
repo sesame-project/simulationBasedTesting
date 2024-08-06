@@ -6,12 +6,10 @@ import java.util.Random;
 
 import it.units.malelab.jgea.representation.tree.Tree;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedActivation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
 import uk.ac.york.sesame.testing.evolutionary.ConditionGenerator;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
-import uk.ac.york.sesame.testing.evolutionary.dslwrapper.ConditionBasedOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 
@@ -25,37 +23,34 @@ public abstract class SESAMEConditionCrossoverOperation extends SESAMECrossoverO
 		super(rng, crossoverLogFileName);
 	}
 	
-	protected ConditionBasedOperationWrapper variableAsCond(SESAMETestSolution sol, int i) throws InvalidFuzzingOperationsForOperator {
+	protected FuzzingOperationWrapper variableAsCond(SESAMETestSolution sol, int i) throws InvalidFuzzingOperationsForOperator {
 		FuzzingOperationWrapper w = sol.getVariable(i);
-		if (!(w instanceof ConditionBasedOperationWrapper)) {
+		if (!(w instanceof FuzzingOperationWrapper)) {
 			throw new InvalidFuzzingOperationsForOperator();
 		} else {
-			return (ConditionBasedOperationWrapper)w;
+			return (FuzzingOperationWrapper)w;
 		}
 	}
 
 	// TODO: copyElt is duplicated between both condition files - factor out into common base class
 	protected void copyElt(SESAMETestSolution chosen, int i, SESAMETestSolution outputSol) throws ConversionFailed, InvalidFuzzingOperationsForOperator {
-		ConditionBasedOperationWrapper l = variableAsCond(chosen,i);
+		FuzzingOperationWrapper l = variableAsCond(chosen,i);
 		ConditionGenerator condGenerator = l.getConditionGenerator();
+				
 		// TODO: check if it is a condition-based operation here or not
 		Tree<String> s1 = l.getStoredStartTree();
 		Tree<String> e1 = l.getStoredEndTree();
 		Condition start = condGenerator.convert(s1);
 		Condition end = condGenerator.convert(e1);
 
-		ConditionBasedOperationWrapper newOp = l.dup();
+		FuzzingOperationWrapper newOp = l.dup();
 		newOp.setStoredStartTree(s1);
 		newOp.setStoredEndTree(e1);
 
 		ConditionBasedActivation ca = factory.createConditionBasedActivation();
 		ca.setStarting(start);
 		ca.setEnding(end);
-		
-		if (newOp.isDynamic()) {
-			DynamicOperation dynOp = (DynamicOperation)newOp;
-			dynOp.setActivation(ca);
-		}
+		newOp.setActivation(ca);
 		outputSol.addToContents(newOp);
 	}
 	

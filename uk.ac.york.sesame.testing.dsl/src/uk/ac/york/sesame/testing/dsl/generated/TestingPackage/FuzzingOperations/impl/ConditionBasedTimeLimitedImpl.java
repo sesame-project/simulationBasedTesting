@@ -30,7 +30,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Co
  *
  * @generated
  */
-public class ConditionBasedTimeLimitedImpl extends ActivationImpl implements ConditionBasedTimeLimited {
+public class ConditionBasedTimeLimitedImpl extends DynamicActivationImpl implements ConditionBasedTimeLimited {
 	/**
 	 * The cached value of the '{@link #getStarting() <em>Starting</em>}' containment reference.
 	 * <!-- begin-user-doc -->

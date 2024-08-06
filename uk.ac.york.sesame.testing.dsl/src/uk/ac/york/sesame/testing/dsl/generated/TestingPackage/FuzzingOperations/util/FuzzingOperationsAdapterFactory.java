@@ -72,16 +72,16 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 				return createFuzzingOperationAdapter();
 			}
 			@Override
-			public Adapter caseOfflineFuzzingOperation(OfflineFuzzingOperation object) {
-				return createOfflineFuzzingOperationAdapter();
-			}
-			@Override
-			public Adapter caseCustomOfflineFuzzingOperation(CustomOfflineFuzzingOperation object) {
-				return createCustomOfflineFuzzingOperationAdapter();
-			}
-			@Override
 			public Adapter caseActivation(Activation object) {
 				return createActivationAdapter();
+			}
+			@Override
+			public Adapter caseConstantActivation(ConstantActivation object) {
+				return createConstantActivationAdapter();
+			}
+			@Override
+			public Adapter caseDynamicActivation(DynamicActivation object) {
+				return createDynamicActivationAdapter();
 			}
 			@Override
 			public Adapter caseFixedTimeActivation(FixedTimeActivation object) {
@@ -98,26 +98,6 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseFuzzTestingOperation(FuzzTestingOperation object) {
 				return createFuzzTestingOperationAdapter();
-			}
-			@Override
-			public Adapter caseComponentOperation(ComponentOperation object) {
-				return createComponentOperationAdapter();
-			}
-			@Override
-			public Adapter caseComponentPropertyOperation(ComponentPropertyOperation object) {
-				return createComponentPropertyOperationAdapter();
-			}
-			@Override
-			public Adapter caseComponentSubPropertyOperation(ComponentSubPropertyOperation object) {
-				return createComponentSubPropertyOperationAdapter();
-			}
-			@Override
-			public Adapter caseDynamicOperation(DynamicOperation object) {
-				return createDynamicOperationAdapter();
-			}
-			@Override
-			public Adapter casePotentiallyStaticOperation(PotentiallyStaticOperation object) {
-				return createPotentiallyStaticOperationAdapter();
 			}
 			@Override
 			public Adapter caseVariableOperation(VariableOperation object) {
@@ -222,20 +202,6 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineFuzzingOperation <em>Offline Fuzzing Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.OfflineFuzzingOperation
-	 * @generated
-	 */
-	public Adapter createOfflineFuzzingOperationAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomFuzzingOperation <em>Custom Fuzzing Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -250,20 +216,6 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomOfflineFuzzingOperation <em>Custom Offline Fuzzing Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomOfflineFuzzingOperation
-	 * @generated
-	 */
-	public Adapter createCustomOfflineFuzzingOperationAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation <em>Activation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -274,6 +226,34 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createActivationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConstantActivation <em>Constant Activation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConstantActivation
+	 * @generated
+	 */
+	public Adapter createConstantActivationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicActivation <em>Dynamic Activation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicActivation
+	 * @generated
+	 */
+	public Adapter createDynamicActivationAdapter() {
 		return null;
 	}
 
@@ -330,76 +310,6 @@ public class FuzzingOperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFuzzTestingOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ComponentOperation <em>Component Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ComponentOperation
-	 * @generated
-	 */
-	public Adapter createComponentOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ComponentPropertyOperation <em>Component Property Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ComponentPropertyOperation
-	 * @generated
-	 */
-	public Adapter createComponentPropertyOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ComponentSubPropertyOperation <em>Component Sub Property Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ComponentSubPropertyOperation
-	 * @generated
-	 */
-	public Adapter createComponentSubPropertyOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicOperation <em>Dynamic Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicOperation
-	 * @generated
-	 */
-	public Adapter createDynamicOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation <em>Potentially Static Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation
-	 * @generated
-	 */
-	public Adapter createPotentiallyStaticOperationAdapter() {
 		return null;
 	}
 

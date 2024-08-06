@@ -1,10 +1,10 @@
 package uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
 
 public class InvalidExecutorForOperation extends Exception {
 
-	public InvalidExecutorForOperation(PotentiallyStaticOperation op) {
+	public InvalidExecutorForOperation(FuzzingOperation op) {
 		// TODO Auto-generated constructor stub
 	}
 

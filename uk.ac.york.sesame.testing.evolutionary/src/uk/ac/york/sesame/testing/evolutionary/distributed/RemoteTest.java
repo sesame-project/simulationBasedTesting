@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PotentiallyStaticOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
@@ -15,6 +15,8 @@ import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.Invali
 import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.StaticOperationExecutoryFactory;
 import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.TransformFailed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.operationexecutors.OperationExecutor;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
+import uk.ac.york.sesame.testing.evolutionary.dslwrapper.InvalidFuzzingOperation;
 
 public class RemoteTest implements Comparable<RemoteTest> {
 	private String testID;
@@ -51,12 +53,15 @@ public class RemoteTest implements Comparable<RemoteTest> {
 		try {
 		SESAMETestSolution sol = rt.getSolution();
 		// For all fuzzing operations, find the static variables
-		List<PotentiallyStaticOperation> staticOps = sol.getAllStaticOperations();
-		// This verifies that all operations returned should be static variables
-		for (PotentiallyStaticOperation op : staticOps) {
-			
-			GenericVariable gv = op.getVariableToAffect();
-			if (gv instanceof StaticVariable) {
+		List<FuzzingOperation> staticOps = sol.getAllStaticOperations();
+		
+		for (FuzzingOperation op : staticOps) {
+			FuzzingOperationWrapper wrop = new FuzzingOperationWrapper(op);
+			Optional<GenericVariable> gv_o = wrop.getVariableToAffect();
+
+			// This verifies that all operations processed are static
+			if ((gv_o.isPresent()) && (gv_o.get() instanceof StaticVariable)) {
+				GenericVariable gv = gv_o.get();
 				StaticVariable sv = (StaticVariable)gv;
 				List<ConfigTransformer> tfs = ctFactory.createTransformers(this, sv);
 				for (ConfigTransformer tf : tfs) {
@@ -65,9 +70,8 @@ public class RemoteTest implements Comparable<RemoteTest> {
 					tf.transform(rng,exec);
 				}
 				sv.getLocations();
-				
 			} else {
-				System.err.println("handleStaticFuzzingForTest: not a static variable - " + gv.toString());
+				System.err.println("handleStaticFuzzingForTest: missing variable or not a static variable - " + gv_o.toString());
 				System.exit(-1);
 			}
 		}
@@ -76,6 +80,8 @@ public class RemoteTest implements Comparable<RemoteTest> {
 		} catch (InvalidExecutorForOperation e) {
 			e.printStackTrace();
 		} catch (TransformFailed e) {
+			e.printStackTrace();
+		} catch (InvalidFuzzingOperation e) {
 			e.printStackTrace();
 		}
 	}

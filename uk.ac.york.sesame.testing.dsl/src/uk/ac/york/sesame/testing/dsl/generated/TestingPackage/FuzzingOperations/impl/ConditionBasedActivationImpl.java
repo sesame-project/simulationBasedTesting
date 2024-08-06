@@ -30,7 +30,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Co
  *
  * @generated
  */
-public class ConditionBasedActivationImpl extends ActivationImpl implements ConditionBasedActivation {
+public class ConditionBasedActivationImpl extends DynamicActivationImpl implements ConditionBasedActivation {
 	/**
 	 * The cached value of the '{@link #getStarting() <em>Starting</em>}' containment reference.
 	 * <!-- begin-user-doc -->

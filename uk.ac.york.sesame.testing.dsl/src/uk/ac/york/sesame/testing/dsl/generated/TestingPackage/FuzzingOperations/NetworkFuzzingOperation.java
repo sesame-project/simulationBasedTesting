@@ -21,7 +21,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBa
  * @model abstract="true"
  * @generated
  */
-public interface NetworkFuzzingOperation extends DynamicOperation {
+public interface NetworkFuzzingOperation extends FuzzingOperation {
 
 	/**
 	 * Returns the value of the '<em><b>Variable To Affect</b></em>' reference.

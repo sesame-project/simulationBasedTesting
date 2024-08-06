@@ -24,7 +24,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBa
  *
  * @generated
  */
-public abstract class NetworkFuzzingOperationImpl extends DynamicOperationImpl implements NetworkFuzzingOperation {
+public abstract class NetworkFuzzingOperationImpl extends FuzzingOperationImpl implements NetworkFuzzingOperation {
 	/**
 	 * The cached value of the '{@link #getVariableToAffect() <em>Variable To Affect</em>}' reference.
 	 * <!-- begin-user-doc -->

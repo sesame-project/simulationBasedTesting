@@ -17,7 +17,7 @@ class TestCampaign {
 	ref FuzzingOperations.FuzzingOperation[*] includedOperations;
 	val TestGenerationApproach[1] approach;
 	val Test[*]#parentCampaign performedTests;
-	val CampaignResultSet[*] resultSets;
+	val CampaignResultSet[*] resultSets; 
 	val ExecutionEndTrigger[1] endTrigger;
 }
 
@@ -136,8 +136,9 @@ package FuzzingOperations {
 		// This is being pushed into the subclasses
 		//ref MRSPackage.GenericVariable variableToAffect;
 		
-		// TODO: check if all these are still relevant
+		val Activation[1] activation;
 		
+		// TODO: check if all these are still relevant
 		attr boolean messagesFromAllComponenents = true;
 		ref MRSPackage.Node[*] fromNodes;
 		attr boolean messagesToAllComponenents = true;
@@ -145,9 +146,7 @@ package FuzzingOperations {
 		ref MRSPackage.Node nodeToFuzz;
 		
 		attr boolean allPublishingVars = false;
-		//ref MRSPackage.Variable[*] publishingVars;
 		attr boolean allSubscribingVars = false;
-		//ref MRSPackage.Variable[*] subscribingVars;
 		ref FuzzingOperation fromTemplate;
 		readonly transient ref Test#operations containingTest;
 		val FixedTimeActivation recordedTimings;
@@ -161,66 +160,41 @@ package FuzzingOperations {
 		op FuzzingOperation findReduction();
 	}
 
-	class OfflineFuzzingOperation extends FuzzingOperation {
-		attr OfflineOperationTime operationTime;
-	}
-
-	enum OfflineOperationTime {
-		PRE = 0;
-		POST = 1;
-	}
-
-	class CustomOfflineFuzzingOperation extends OfflineFuzzingOperation {
-	}
-
 	abstract class Activation {
+
 	}
 
-	class FixedTimeActivation extends Activation {
+	class ConstantActivation extends Activation {
+		
+	}
+	
+	abstract class DynamicActivation extends Activation {
+		
+	}
+
+	class FixedTimeActivation extends DynamicActivation {
 		attr double startTime;
 		attr double endTime;
 	}
 
-	class ConditionBasedActivation extends Activation {
+	class ConditionBasedActivation extends DynamicActivation {
 		val StandardGrammar.Condition starting;
 		val StandardGrammar.Condition ending;
 		attr int maximumActivations = 1;
 	}
 
-	class ConditionBasedTimeLimited extends Activation {
+	class ConditionBasedTimeLimited extends DynamicActivation {
 		val StandardGrammar.Condition starting;
 		attr double length;
 		attr int maximumActivations = 1;
 	}
 
 	class FuzzTestingOperation extends FuzzingOperation {
-	}
-
-	class ComponentOperation extends FuzzTestingOperation {
-	
-	}
-
-	class ComponentPropertyOperation extends FuzzTestingOperation {
-		ref MRSPackage.ComponentProperty propertyToAffect;
-	}
-
-	class ComponentSubPropertyOperation extends FuzzTestingOperation {
-		ref MRSPackage.ComponentProperty propertyToAffect;
-		ref MRSPackage.Type subProperty;
-	}
-	
-	abstract class DynamicOperation extends FuzzTestingOperation {
-		val Activation[1] activation;
-	}
-	
-	abstract class PotentiallyStaticOperation extends FuzzTestingOperation {
-		val Activation[0..1] activation;
-		ref MRSPackage.GenericVariable variableToAffect;
-	}
-
-	abstract class VariableOperation extends PotentiallyStaticOperation {
 		
-		// TODO: parameter info?
+	}
+
+	abstract class VariableOperation extends FuzzingOperation {
+		ref MRSPackage.GenericVariable variableToAffect;
 	}
 	
 	// CustomFuzzingOperation is still defined on a particular variable, hence 
@@ -244,6 +218,7 @@ package FuzzingOperations {
 	}
 
 	abstract class ValueRange extends ValueSet {
+	
 	}
 
 	class IntRange extends ValueRange {
@@ -276,8 +251,9 @@ package FuzzingOperations {
 		attr String location;
 	}
 
-	abstract class NetworkFuzzingOperation extends DynamicOperation {
+	abstract class NetworkFuzzingOperation extends FuzzingOperation {
 		ref MRSPackage.EventBasedVariable variableToAffect;
+		
 	}
 
 	abstract class BlackholeNetworkOperation extends NetworkFuzzingOperation {

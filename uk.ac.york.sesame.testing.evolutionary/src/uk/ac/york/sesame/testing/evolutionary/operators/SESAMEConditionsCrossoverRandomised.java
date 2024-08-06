@@ -9,12 +9,9 @@ import org.uma.jmetal.util.JMetalException;
 
 import it.units.malelab.jgea.representation.tree.Tree;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ConditionBasedActivation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicOperation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
 import uk.ac.york.sesame.testing.evolutionary.ConditionGenerator;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
-import uk.ac.york.sesame.testing.evolutionary.dslwrapper.ConditionBasedOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 
@@ -43,8 +40,8 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMEConditionCrossove
 	public void crossoverLeftRight(SESAMETestSolution left, SESAMETestSolution right, int i, SESAMETestSolution outputSol) throws ConversionFailed, InvalidFuzzingOperationsForOperator {
 		
 		
-		ConditionBasedOperationWrapper l = variableAsCond(left,i);
-		ConditionBasedOperationWrapper r = variableAsCond(right,i);
+		FuzzingOperationWrapper l = variableAsCond(left,i);
+		FuzzingOperationWrapper r = variableAsCond(right,i);
 		
 		
 		Tree<String> s1 = l.getStoredStartTree();
@@ -67,7 +64,7 @@ public class SESAMEConditionsCrossoverRandomised extends SESAMEConditionCrossove
 		Condition start = condGenerator.convert(outputStart);
 		Condition end = condGenerator.convert(outputEnd);
 
-		ConditionBasedOperationWrapper newOp = l.dup();
+		FuzzingOperationWrapper newOp = l.dup();
 		newOp.setStoredStartTree(outputStart);
 		newOp.setStoredEndTree(outputEnd);
 

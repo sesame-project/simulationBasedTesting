@@ -137,6 +137,8 @@
       <eOperations name="findReduction" eType="#//FuzzingOperations/FuzzingOperation"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="activation" lowerBound="1"
+          eType="#//FuzzingOperations/DynamicActivation" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="messagesFromAllComponenents"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="true"/>
@@ -167,20 +169,15 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionConstraints"
           upperBound="-1" eType="#//StandardGrammar/ConditionConstraint" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OfflineFuzzingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="operationTime" eType="#//FuzzingOperations/OfflineOperationTime"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="OfflineOperationTime">
-      <eLiterals name="PRE"/>
-      <eLiterals name="POST" value="1"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CustomOfflineFuzzingOperation" eSuperTypes="#//FuzzingOperations/OfflineFuzzingOperation"/>
     <eClassifiers xsi:type="ecore:EClass" name="Activation" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="FixedTimeActivation" eSuperTypes="#//FuzzingOperations/Activation">
+    <eClassifiers xsi:type="ecore:EClass" name="ConstantActivation" eSuperTypes="#//FuzzingOperations/Activation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DynamicActivation" abstract="true"
+        eSuperTypes="#//FuzzingOperations/Activation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FixedTimeActivation" eSuperTypes="#//FuzzingOperations/DynamicActivation">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="endTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConditionBasedActivation" eSuperTypes="#//FuzzingOperations/Activation">
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionBasedActivation" eSuperTypes="#//FuzzingOperations/DynamicActivation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="starting" eType="#//StandardGrammar/Condition"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ending" eType="#//StandardGrammar/Condition"
@@ -188,7 +185,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumActivations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="1"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConditionBasedTimeLimited" eSuperTypes="#//FuzzingOperations/Activation">
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionBasedTimeLimited" eSuperTypes="#//FuzzingOperations/DynamicActivation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="starting" eType="#//StandardGrammar/Condition"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
@@ -196,27 +193,10 @@
           defaultValueLiteral="1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FuzzTestingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ComponentOperation" eSuperTypes="#//FuzzingOperations/FuzzTestingOperation"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ComponentPropertyOperation" eSuperTypes="#//FuzzingOperations/FuzzTestingOperation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="propertyToAffect" eType="#//MRSPackage/ComponentProperty"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ComponentSubPropertyOperation" eSuperTypes="#//FuzzingOperations/FuzzTestingOperation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="propertyToAffect" eType="#//MRSPackage/ComponentProperty"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="subProperty" eType="#//MRSPackage/Type"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DynamicOperation" abstract="true"
-        eSuperTypes="#//FuzzingOperations/FuzzTestingOperation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="activation" lowerBound="1"
-          eType="#//FuzzingOperations/Activation" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PotentiallyStaticOperation" abstract="true"
-        eSuperTypes="#//FuzzingOperations/FuzzTestingOperation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="activation" eType="#//FuzzingOperations/Activation"
-          containment="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="VariableOperation" abstract="true"
+        eSuperTypes="#//FuzzingOperations/FuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="variableToAffect" eType="#//MRSPackage/GenericVariable"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="VariableOperation" abstract="true"
-        eSuperTypes="#//FuzzingOperations/PotentiallyStaticOperation"/>
     <eClassifiers xsi:type="ecore:EClass" name="CustomFuzzingOperation" eSuperTypes="#//FuzzingOperations/VariableOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
           eType="#//FuzzingOperations/ValueSet" containment="true"/>
@@ -262,7 +242,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NetworkFuzzingOperation" abstract="true"
-        eSuperTypes="#//FuzzingOperations/DynamicOperation">
+        eSuperTypes="#//FuzzingOperations/FuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="variableToAffect" eType="#//MRSPackage/EventBasedVariable"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="BlackholeNetworkOperation" abstract="true"

@@ -1,6 +1,5 @@
 package uk.ac.york.sesame.testing.evolutionary.dslwrapper;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.evolutionary.ConditionGenerator;
 
@@ -12,11 +11,10 @@ public class ConditionBasedWrapperFactory extends FuzzingOperationWrapperFactory
 	}
 
 	@Override
-	public FuzzingOperationWrapper createFromDSLObject(FuzzingOperation a) {
+	public FuzzingOperationWrapper createFromDSLObject(FuzzingOperation a) throws InvalidFuzzingOperation {
 		// TODO Check the fuzzing operation is a condition-based operation
-		DynamicOperation cop = (DynamicOperation)a;
-		ConditionBasedOperationWrapper cw = new ConditionBasedOperationWrapper(cop, this);
-		return cw;
+		FuzzingOperationWrapper fw = new FuzzingOperationWrapper(a, cg);
+		return fw;
 	}
 	
 	public ConditionGenerator getConditionGenerator() {

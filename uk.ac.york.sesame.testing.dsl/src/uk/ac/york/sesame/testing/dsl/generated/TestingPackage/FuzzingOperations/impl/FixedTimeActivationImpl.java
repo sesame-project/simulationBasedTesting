@@ -25,7 +25,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
  *
  * @generated
  */
-public class FixedTimeActivationImpl extends ActivationImpl implements FixedTimeActivation {
+public class FixedTimeActivationImpl extends DynamicActivationImpl implements FixedTimeActivation {
 	/**
 	 * The default value of the '{@link #getStartTime() <em>Start Time</em>}' attribute.
 	 * <!-- begin-user-doc -->

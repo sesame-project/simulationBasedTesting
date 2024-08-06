@@ -20,7 +20,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations
  * @model
  * @generated
  */
-public interface FixedTimeActivation extends Activation {
+public interface FixedTimeActivation extends DynamicActivation {
 	/**
 	 * Returns the value of the '<em><b>Start Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->

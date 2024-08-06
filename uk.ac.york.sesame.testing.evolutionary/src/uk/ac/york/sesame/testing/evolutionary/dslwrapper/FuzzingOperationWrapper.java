@@ -1,20 +1,51 @@
 package uk.ac.york.sesame.testing.evolutionary.dslwrapper;
 
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-
+import it.units.malelab.jgea.representation.tree.Tree;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.ConditionConstraint;
 import uk.ac.york.sesame.testing.evolutionary.grammar.ConversionFailed;
 import uk.ac.york.sesame.testing.evolutionary.utilities.RandomFunctions;
 
 import uk.ac.york.sesame.testing.evolutionary.*;
 
-public abstract class FuzzingOperationWrapper {
+public class FuzzingOperationWrapper {
+
+	private Tree<String> storedStartTree;
+	private Tree<String> storedEndTree;
+	
+	private FuzzingOperation fuzzOp;
+	private ActivationWrapper actW;
+	protected ConditionGenerator cg;
+	
+
+	
+	public FuzzingOperationWrapper(FuzzingOperation fuzzOp) throws InvalidFuzzingOperation {
+		this.actW = new ActivationWrapper(fuzzOp);
+		this.fuzzOp = fuzzOp;
+	}
+	
+	public FuzzingOperationWrapper(FuzzingOperation fuzzOp, ConditionGenerator cg) throws InvalidFuzzingOperation {
+		this.actW = new ActivationWrapper(fuzzOp);
+		this.fuzzOp = fuzzOp;
+	}
+	
+	public FuzzingOperationWrapper(FuzzingOperation fuzzOp, Tree<String> startTree, Tree<String> endTree,	ConditionGenerator cg) {
+		// This has to be duplicated here just to be sure
+		this.fuzzOp = EcoreUtil.copy(fuzzOp);
+		this.storedStartTree = Tree.copyOf(startTree);
+		this.storedEndTree = Tree.copyOf(endTree);
+		this.cg = cg;
+	}
 
 	private static void reduceValueSet(Random rng, EList<ValueSet> newValueSet, EList<ValueSet> origValueSet) {
 		FuzzingOperationsFactory af = FuzzingOperationsFactory.eINSTANCE;
@@ -162,19 +193,82 @@ public abstract class FuzzingOperationWrapper {
 		}
 	}
 
-	//public abstract String getName();
-
 	public String generateDebugInfo() {
 		return this.toString();
 	}
 	
-	public abstract String toString();
+	public String toString() {
+        String output = fuzzOp.getClass().getCanonicalName().toString();
+        output = output + actW.activationToString() + "\n";
+        return output;
+	}
 
-	public abstract FuzzingOperationWrapper dup();
+	public FuzzingOperationWrapper dup() {
+		return new FuzzingOperationWrapper(this.fuzzOp, this.storedStartTree, this.storedEndTree, this.cg);
+	}
 	
-	public abstract FuzzingOperation getFuzzingOperation();
+	public FuzzingOperation getFuzzingOperation() {
+		return fuzzOp;
+	}
 	
-	public abstract FuzzingOperationWrapper reductionOfOperation(SecureRandom rng) throws ConstraintsNotMet, ConversionFailed, ParamError, InvalidOperation;
+    public FuzzingOperationWrapper reductionOfTimeBasedOperation(SecureRandom rng) throws InvalidFuzzingOperation {
+        FuzzingOperation dynOp = this.getFuzzingOperation();
+        FuzzingOperation newA = EcoreUtil.copy(dynOp);
+        FixedTimeActivation origAA = (FixedTimeActivation)this.actW.getActivation();
+        FixedTimeActivation newAA = EcoreUtil.copy(origAA);
+        double startTime;
+        double endTime;
+        double origStartTime = ((FixedTimeActivation) origAA).getStartTime();
+        double origEndTime = ((FixedTimeActivation) origAA).getEndTime();
+        startTime = RandomFunctions.randomDoubleInRange(rng, origStartTime, origEndTime);
+        endTime = RandomFunctions.randomDoubleInRange(rng, startTime, origEndTime);
+        ((FixedTimeActivation) newAA).setStartTime(startTime);
+        ((FixedTimeActivation) newAA).setEndTime(endTime);
+        newA.setActivation(newAA);
+        return new FuzzingOperationWrapper(newA);
+    }
+
+    public FuzzingOperationWrapper reductionOfConditionBasedOperation(SecureRandom rng) throws ParamError, ConversionFailed, ConstraintsNotMet {
+        // cg has to come from the wrapper factory - has to be condition based
+        FuzzingOperation newA = EcoreUtil.copy(fuzzOp);
+        List<ConditionConstraint> ccs = fuzzOp.getConditionConstraints();
+
+        newA.setFromTemplate((FuzzingOperation)this);
+        Tree<String> startTree = cg.generateOneWithConstraints(ccs);
+        
+        // TODO: currently only the start condition is constrained.
+        Tree<String> endTree = cg.generateOne();
+        
+        // Store the starting and ending trees with this individual
+        System.out.println("startTree = " + startTree);
+        System.out.println("endTree = " + endTree);
+
+        Condition start = cg.convert(startTree);
+        Condition end = cg.convert(endTree);
+        FuzzingOperationsFactory f = FuzzingOperationsFactory.eINSTANCE;
+        ConditionBasedActivation ca = f.createConditionBasedActivation();
+        ca.setStarting(start);
+        ca.setEnding(end);
+        newA.setActivation(ca);
+
+        // TODO: factor these out into separate files
+        reduceOperationSpecific(rng, newA, (FuzzingOperation)this);
+
+        // Ensure the new individual has the stored start trees and end trees
+        return new FuzzingOperationWrapper(newA, startTree, endTree, cg);
+    }
+	
+	public FuzzingOperationWrapper reductionOfOperation(SecureRandom rng) throws ConstraintsNotMet, ConversionFailed, ParamError, InvalidFuzzingOperation, InvalidActivationToReduce {
+		if (actW.isFixedTimeBased()) {
+			return reductionOfTimeBasedOperation(rng);
+		}
+		
+		if (actW.isConditionBased()) {
+			return reductionOfConditionBasedOperation(rng);
+		}
+		
+		throw new InvalidActivationToReduce(actW);
+	}
 
 	public void checkConstraints() {
 
@@ -184,13 +278,76 @@ public abstract class FuzzingOperationWrapper {
 		return false;
 	}
 
-	protected Optional<DynamicOperation> getTimeBasedOperation() {
+	public String getName() {
+		return fuzzOp.getName();
+	}
+	
+	public Tree<String> getStoredStartTree() {
+		return storedStartTree;
+	}
+
+	public Tree<String> getStoredEndTree() {
+		return storedEndTree;
+	}
+	
+	public void setStoredStartTree(Tree<String> tNew) {
+		storedStartTree = tNew;
+	}
+
+	public void setStoredEndTree(Tree<String> tNew) {
+		storedEndTree = tNew;
+	}
+	
+	public Activation getActivation() {
+		return actW.getActivation();
+	}
+	
+	public ActivationWrapper getActivationWrapper() {
+		return actW;
+	}
+
+	public void setActivation(Activation a) {
+		actW.setActivation(a);
+	}
+	
+    public ConditionGenerator getConditionGenerator() {
+        return cg;
+    }
+
+    public Optional<Activation> getTemplateActivation() {
+        FuzzingOperation f = fuzzOp.getFromTemplate();
+        
+        if (f instanceof VariableOperation) {
+                return Optional.of(((VariableOperation)f).getActivation());
+        } 
+        
+        if (f instanceof NetworkFuzzingOperation) {
+                return Optional.of(((NetworkFuzzingOperation)f).getActivation());
+        }
+        
+        return Optional.empty();
+    }
+
+	public static boolean opIsStatic(FuzzingOperation o) {
+		if (o instanceof VariableOperation) {
+			if (((VariableOperation)o).getActivation() instanceof ConstantActivation) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	public Optional<GenericVariable> getVariableToAffect() {
+		if (fuzzOp instanceof VariableOperation) {
+			return Optional.of(((VariableOperation)fuzzOp).getVariableToAffect());
+		} 
+		
+		if (fuzzOp instanceof NetworkFuzzingOperation) {
+			return Optional.of(((NetworkFuzzingOperation)fuzzOp).getVariableToAffect());
+		} 
+		
 		return Optional.empty();
 	}
 	
-	protected Optional<DynamicOperation> getConditionBasedOperation() {
-		return Optional.empty();
-	}
-
-	public abstract String getName();
 }

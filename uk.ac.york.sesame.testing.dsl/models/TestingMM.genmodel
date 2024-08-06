@@ -107,13 +107,10 @@
     </genClasses>
     <nestedGenPackages prefix="FuzzingOperations" disposableProviderFactory="true"
         ecorePackage="TestingMM.ecore#//FuzzingOperations">
-      <genEnums typeSafeEnumCompatible="false" ecoreEnum="TestingMM.ecore#//FuzzingOperations/OfflineOperationTime">
-        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//FuzzingOperations/OfflineOperationTime/PRE"/>
-        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//FuzzingOperations/OfflineOperationTime/POST"/>
-      </genEnums>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//FuzzingOperations/FuzzingOperation">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/name"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/priority"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/FuzzingOperation/activation"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/messagesFromAllComponenents"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/FuzzingOperation/fromNodes"/>
@@ -136,11 +133,9 @@
         <genOperations ecoreOperation="TestingMM.ecore#//FuzzingOperations/FuzzingOperation/dup"/>
         <genOperations ecoreOperation="TestingMM.ecore#//FuzzingOperations/FuzzingOperation/findReduction"/>
       </genClasses>
-      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/OfflineFuzzingOperation/operationTime"/>
-      </genClasses>
-      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/CustomOfflineFuzzingOperation"/>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//FuzzingOperations/Activation"/>
+      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/ConstantActivation"/>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//FuzzingOperations/DynamicActivation"/>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/FixedTimeActivation">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FixedTimeActivation/startTime"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FixedTimeActivation/endTime"/>
@@ -156,26 +151,10 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/ConditionBasedTimeLimited/maximumActivations"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/FuzzTestingOperation"/>
-      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/ComponentOperation"/>
-      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/ComponentPropertyOperation">
+      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/VariableOperation">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/ComponentPropertyOperation/propertyToAffect"/>
+            ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/VariableOperation/variableToAffect"/>
       </genClasses>
-      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/ComponentSubPropertyOperation">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/ComponentSubPropertyOperation/propertyToAffect"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/ComponentSubPropertyOperation/subProperty"/>
-      </genClasses>
-      <genClasses image="false" ecoreClass="TestingMM.ecore#//FuzzingOperations/DynamicOperation">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/DynamicOperation/activation"/>
-      </genClasses>
-      <genClasses image="false" ecoreClass="TestingMM.ecore#//FuzzingOperations/PotentiallyStaticOperation">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/PotentiallyStaticOperation/activation"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/PotentiallyStaticOperation/variableToAffect"/>
-      </genClasses>
-      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/VariableOperation"/>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/CustomFuzzingOperation">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/CustomFuzzingOperation/params"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/CustomFuzzingOperation/customProcessClass"/>

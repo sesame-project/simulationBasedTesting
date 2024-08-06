@@ -18,6 +18,7 @@ public class DockerFileAccessUtils {
                 if (!destFile.exists()) {
                     destFile.mkdirs();
                 }
+                
             } else {
                 FileOutputStream fos = new FileOutputStream(destFile);
                 IOUtils.copy(tis, fos);

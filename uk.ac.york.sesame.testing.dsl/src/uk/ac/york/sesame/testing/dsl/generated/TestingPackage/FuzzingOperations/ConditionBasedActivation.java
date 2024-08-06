@@ -22,7 +22,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Co
  * @model
  * @generated
  */
-public interface ConditionBasedActivation extends Activation {
+public interface ConditionBasedActivation extends DynamicActivation {
 	/**
 	 * Returns the value of the '<em><b>Starting</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

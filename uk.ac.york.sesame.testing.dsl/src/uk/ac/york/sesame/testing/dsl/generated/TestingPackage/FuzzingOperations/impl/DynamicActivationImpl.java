@@ -4,23 +4,23 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations
 
 import org.eclipse.emf.ecore.EClass;
 
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.CustomOfflineFuzzingOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Custom Offline Fuzzing Operation</b></em>'.
+ * An implementation of the model object '<em><b>Dynamic Activation</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class CustomOfflineFuzzingOperationImpl extends OfflineFuzzingOperationImpl implements CustomOfflineFuzzingOperation {
+public abstract class DynamicActivationImpl extends ActivationImpl implements DynamicActivation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CustomOfflineFuzzingOperationImpl() {
+	protected DynamicActivationImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class CustomOfflineFuzzingOperationImpl extends OfflineFuzzingOperationIm
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return FuzzingOperationsPackage.Literals.CUSTOM_OFFLINE_FUZZING_OPERATION;
+		return FuzzingOperationsPackage.Literals.DYNAMIC_ACTIVATION;
 	}
 
-} //CustomOfflineFuzzingOperationImpl
+} //DynamicActivationImpl

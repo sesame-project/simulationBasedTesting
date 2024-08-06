@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.eclipse.emf.ecore.util.InternalEList;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
@@ -39,6 +40,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackagePack
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getName <em>Name</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getPriority <em>Priority</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getActivation <em>Activation</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#isMessagesFromAllComponenents <em>Messages From All Componenents</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#getFromNodes <em>From Nodes</em>}</li>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationImpl#isMessagesToAllComponenents <em>Messages To All Componenents</em>}</li>
@@ -98,6 +100,16 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected int priority = PRIORITY_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getActivation() <em>Activation</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivation()
+	 * @generated
+	 * @ordered
+	 */
+	protected DynamicActivation activation;
 
 	/**
 	 * The default value of the '{@link #isMessagesFromAllComponenents() <em>Messages From All Componenents</em>}' attribute.
@@ -378,6 +390,49 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 		priority = newPriority;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__PRIORITY, oldPriority, priority));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DynamicActivation getActivation() {
+		return activation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetActivation(DynamicActivation newActivation, NotificationChain msgs) {
+		DynamicActivation oldActivation = activation;
+		activation = newActivation;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION, oldActivation, newActivation);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setActivation(DynamicActivation newActivation) {
+		if (newActivation != activation) {
+			NotificationChain msgs = null;
+			if (activation != null)
+				msgs = ((InternalEObject)activation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION, null, msgs);
+			if (newActivation != null)
+				msgs = ((InternalEObject)newActivation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION, null, msgs);
+			msgs = basicSetActivation(newActivation, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION, newActivation, newActivation));
 	}
 
 	/**
@@ -759,6 +814,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION:
+				return basicSetActivation(null, msgs);
 			case FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST:
 				return eBasicSetContainer(null, FuzzingOperationsPackage.FUZZING_OPERATION__CONTAINING_TEST, msgs);
 			case FuzzingOperationsPackage.FUZZING_OPERATION__RECORDED_TIMINGS:
@@ -795,6 +852,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return getName();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__PRIORITY:
 				return getPriority();
+			case FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION:
+				return getActivation();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS:
 				return isMessagesFromAllComponenents();
 			case FuzzingOperationsPackage.FUZZING_OPERATION__FROM_NODES:
@@ -845,6 +904,9 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__PRIORITY:
 				setPriority((Integer)newValue);
+				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION:
+				setActivation((DynamicActivation)newValue);
 				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS:
 				setMessagesFromAllComponenents((Boolean)newValue);
@@ -909,6 +971,9 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 			case FuzzingOperationsPackage.FUZZING_OPERATION__PRIORITY:
 				setPriority(PRIORITY_EDEFAULT);
 				return;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION:
+				setActivation((DynamicActivation)null);
+				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS:
 				setMessagesFromAllComponenents(MESSAGES_FROM_ALL_COMPONENENTS_EDEFAULT);
 				return;
@@ -967,6 +1032,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case FuzzingOperationsPackage.FUZZING_OPERATION__PRIORITY:
 				return priority != PRIORITY_EDEFAULT;
+			case FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION:
+				return activation != null;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS:
 				return messagesFromAllComponenents != MESSAGES_FROM_ALL_COMPONENENTS_EDEFAULT;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__FROM_NODES:

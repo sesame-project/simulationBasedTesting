@@ -72,30 +72,30 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FuzzingOperationsPackage.OFFLINE_FUZZING_OPERATION: {
-				OfflineFuzzingOperation offlineFuzzingOperation = (OfflineFuzzingOperation)theEObject;
-				T result = caseOfflineFuzzingOperation(offlineFuzzingOperation);
-				if (result == null) result = caseFuzzingOperation(offlineFuzzingOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.CUSTOM_OFFLINE_FUZZING_OPERATION: {
-				CustomOfflineFuzzingOperation customOfflineFuzzingOperation = (CustomOfflineFuzzingOperation)theEObject;
-				T result = caseCustomOfflineFuzzingOperation(customOfflineFuzzingOperation);
-				if (result == null) result = caseOfflineFuzzingOperation(customOfflineFuzzingOperation);
-				if (result == null) result = caseFuzzingOperation(customOfflineFuzzingOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case FuzzingOperationsPackage.ACTIVATION: {
 				Activation activation = (Activation)theEObject;
 				T result = caseActivation(activation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case FuzzingOperationsPackage.CONSTANT_ACTIVATION: {
+				ConstantActivation constantActivation = (ConstantActivation)theEObject;
+				T result = caseConstantActivation(constantActivation);
+				if (result == null) result = caseActivation(constantActivation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FuzzingOperationsPackage.DYNAMIC_ACTIVATION: {
+				DynamicActivation dynamicActivation = (DynamicActivation)theEObject;
+				T result = caseDynamicActivation(dynamicActivation);
+				if (result == null) result = caseActivation(dynamicActivation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case FuzzingOperationsPackage.FIXED_TIME_ACTIVATION: {
 				FixedTimeActivation fixedTimeActivation = (FixedTimeActivation)theEObject;
 				T result = caseFixedTimeActivation(fixedTimeActivation);
+				if (result == null) result = caseDynamicActivation(fixedTimeActivation);
 				if (result == null) result = caseActivation(fixedTimeActivation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -103,6 +103,7 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION: {
 				ConditionBasedActivation conditionBasedActivation = (ConditionBasedActivation)theEObject;
 				T result = caseConditionBasedActivation(conditionBasedActivation);
+				if (result == null) result = caseDynamicActivation(conditionBasedActivation);
 				if (result == null) result = caseActivation(conditionBasedActivation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -110,6 +111,7 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 			case FuzzingOperationsPackage.CONDITION_BASED_TIME_LIMITED: {
 				ConditionBasedTimeLimited conditionBasedTimeLimited = (ConditionBasedTimeLimited)theEObject;
 				T result = caseConditionBasedTimeLimited(conditionBasedTimeLimited);
+				if (result == null) result = caseDynamicActivation(conditionBasedTimeLimited);
 				if (result == null) result = caseActivation(conditionBasedTimeLimited);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -121,51 +123,9 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FuzzingOperationsPackage.COMPONENT_OPERATION: {
-				ComponentOperation componentOperation = (ComponentOperation)theEObject;
-				T result = caseComponentOperation(componentOperation);
-				if (result == null) result = caseFuzzTestingOperation(componentOperation);
-				if (result == null) result = caseFuzzingOperation(componentOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.COMPONENT_PROPERTY_OPERATION: {
-				ComponentPropertyOperation componentPropertyOperation = (ComponentPropertyOperation)theEObject;
-				T result = caseComponentPropertyOperation(componentPropertyOperation);
-				if (result == null) result = caseFuzzTestingOperation(componentPropertyOperation);
-				if (result == null) result = caseFuzzingOperation(componentPropertyOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.COMPONENT_SUB_PROPERTY_OPERATION: {
-				ComponentSubPropertyOperation componentSubPropertyOperation = (ComponentSubPropertyOperation)theEObject;
-				T result = caseComponentSubPropertyOperation(componentSubPropertyOperation);
-				if (result == null) result = caseFuzzTestingOperation(componentSubPropertyOperation);
-				if (result == null) result = caseFuzzingOperation(componentSubPropertyOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.DYNAMIC_OPERATION: {
-				DynamicOperation dynamicOperation = (DynamicOperation)theEObject;
-				T result = caseDynamicOperation(dynamicOperation);
-				if (result == null) result = caseFuzzTestingOperation(dynamicOperation);
-				if (result == null) result = caseFuzzingOperation(dynamicOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case FuzzingOperationsPackage.POTENTIALLY_STATIC_OPERATION: {
-				PotentiallyStaticOperation potentiallyStaticOperation = (PotentiallyStaticOperation)theEObject;
-				T result = casePotentiallyStaticOperation(potentiallyStaticOperation);
-				if (result == null) result = caseFuzzTestingOperation(potentiallyStaticOperation);
-				if (result == null) result = caseFuzzingOperation(potentiallyStaticOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case FuzzingOperationsPackage.VARIABLE_OPERATION: {
 				VariableOperation variableOperation = (VariableOperation)theEObject;
 				T result = caseVariableOperation(variableOperation);
-				if (result == null) result = casePotentiallyStaticOperation(variableOperation);
-				if (result == null) result = caseFuzzTestingOperation(variableOperation);
 				if (result == null) result = caseFuzzingOperation(variableOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -174,8 +134,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				CustomFuzzingOperation customFuzzingOperation = (CustomFuzzingOperation)theEObject;
 				T result = caseCustomFuzzingOperation(customFuzzingOperation);
 				if (result == null) result = caseVariableOperation(customFuzzingOperation);
-				if (result == null) result = casePotentiallyStaticOperation(customFuzzingOperation);
-				if (result == null) result = caseFuzzTestingOperation(customFuzzingOperation);
 				if (result == null) result = caseFuzzingOperation(customFuzzingOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -184,8 +142,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				RandomValueFuzzingOperation randomValueFuzzingOperation = (RandomValueFuzzingOperation)theEObject;
 				T result = caseRandomValueFuzzingOperation(randomValueFuzzingOperation);
 				if (result == null) result = caseVariableOperation(randomValueFuzzingOperation);
-				if (result == null) result = casePotentiallyStaticOperation(randomValueFuzzingOperation);
-				if (result == null) result = caseFuzzTestingOperation(randomValueFuzzingOperation);
 				if (result == null) result = caseFuzzingOperation(randomValueFuzzingOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -195,8 +151,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				T result = caseRandomValueFromSetOperation(randomValueFromSetOperation);
 				if (result == null) result = caseRandomValueFuzzingOperation(randomValueFromSetOperation);
 				if (result == null) result = caseVariableOperation(randomValueFromSetOperation);
-				if (result == null) result = casePotentiallyStaticOperation(randomValueFromSetOperation);
-				if (result == null) result = caseFuzzTestingOperation(randomValueFromSetOperation);
 				if (result == null) result = caseFuzzingOperation(randomValueFromSetOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -261,8 +215,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 			case FuzzingOperationsPackage.NETWORK_FUZZING_OPERATION: {
 				NetworkFuzzingOperation networkFuzzingOperation = (NetworkFuzzingOperation)theEObject;
 				T result = caseNetworkFuzzingOperation(networkFuzzingOperation);
-				if (result == null) result = caseDynamicOperation(networkFuzzingOperation);
-				if (result == null) result = caseFuzzTestingOperation(networkFuzzingOperation);
 				if (result == null) result = caseFuzzingOperation(networkFuzzingOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -271,8 +223,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				BlackholeNetworkOperation blackholeNetworkOperation = (BlackholeNetworkOperation)theEObject;
 				T result = caseBlackholeNetworkOperation(blackholeNetworkOperation);
 				if (result == null) result = caseNetworkFuzzingOperation(blackholeNetworkOperation);
-				if (result == null) result = caseDynamicOperation(blackholeNetworkOperation);
-				if (result == null) result = caseFuzzTestingOperation(blackholeNetworkOperation);
 				if (result == null) result = caseFuzzingOperation(blackholeNetworkOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -281,8 +231,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				LatencyNetworkOperation latencyNetworkOperation = (LatencyNetworkOperation)theEObject;
 				T result = caseLatencyNetworkOperation(latencyNetworkOperation);
 				if (result == null) result = caseNetworkFuzzingOperation(latencyNetworkOperation);
-				if (result == null) result = caseDynamicOperation(latencyNetworkOperation);
-				if (result == null) result = caseFuzzTestingOperation(latencyNetworkOperation);
 				if (result == null) result = caseFuzzingOperation(latencyNetworkOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -291,8 +239,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				PacketLossNetworkOperation packetLossNetworkOperation = (PacketLossNetworkOperation)theEObject;
 				T result = casePacketLossNetworkOperation(packetLossNetworkOperation);
 				if (result == null) result = caseNetworkFuzzingOperation(packetLossNetworkOperation);
-				if (result == null) result = caseDynamicOperation(packetLossNetworkOperation);
-				if (result == null) result = caseFuzzTestingOperation(packetLossNetworkOperation);
 				if (result == null) result = caseFuzzingOperation(packetLossNetworkOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -301,8 +247,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				MultipleMessagesNetworkOperation multipleMessagesNetworkOperation = (MultipleMessagesNetworkOperation)theEObject;
 				T result = caseMultipleMessagesNetworkOperation(multipleMessagesNetworkOperation);
 				if (result == null) result = caseNetworkFuzzingOperation(multipleMessagesNetworkOperation);
-				if (result == null) result = caseDynamicOperation(multipleMessagesNetworkOperation);
-				if (result == null) result = caseFuzzTestingOperation(multipleMessagesNetworkOperation);
 				if (result == null) result = caseFuzzingOperation(multipleMessagesNetworkOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -327,21 +271,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Offline Fuzzing Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Offline Fuzzing Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOfflineFuzzingOperation(OfflineFuzzingOperation object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Custom Fuzzing Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -357,21 +286,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Custom Offline Fuzzing Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Custom Offline Fuzzing Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCustomOfflineFuzzingOperation(CustomOfflineFuzzingOperation object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Activation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -383,6 +297,36 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseActivation(Activation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constant Activation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constant Activation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstantActivation(ConstantActivation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dynamic Activation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dynamic Activation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDynamicActivation(DynamicActivation object) {
 		return null;
 	}
 
@@ -443,81 +387,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFuzzTestingOperation(FuzzTestingOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Component Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Component Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseComponentOperation(ComponentOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Component Property Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Component Property Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseComponentPropertyOperation(ComponentPropertyOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Component Sub Property Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Component Sub Property Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseComponentSubPropertyOperation(ComponentSubPropertyOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Dynamic Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Dynamic Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDynamicOperation(DynamicOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Potentially Static Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Potentially Static Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePotentiallyStaticOperation(PotentiallyStaticOperation object) {
 		return null;
 	}
 

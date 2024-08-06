@@ -162,19 +162,19 @@ public abstract class SESAMEEvaluationProblemBase implements Problem<SESAMETestS
 			// below if the original list is zero-based
 			if (shouldIncludeFuzzingOperation(a)) {
 
-				// FuzzingOperations produced as a "subset" of each of the selected
-				// FuzzingOperations
+				// FuzzingOperations produced as a "subset" of each of the selected FuzzingOperations
 				// TODO: this should be configurable somehow by setting parameters on the
 				// Factory
-				FuzzingOperationWrapperFactory wf;
-				if (conditionBased) {
-					wf = new ConditionBasedWrapperFactory(condGenerator);
-				} else {
-					wf = new TimeBasedWrapperFactory();
-				}
 
-				FuzzingOperationWrapper templateOp = wf.createFromDSLObject(a);
 				try {
+					FuzzingOperationWrapperFactory wf;
+					if (conditionBased) {
+						wf = new ConditionBasedWrapperFactory(condGenerator);
+					} else {
+						wf = new FuzzingOperationWrapperFactory();
+                    }
+
+					FuzzingOperationWrapper templateOp = wf.createFromDSLObject(a);
 					FuzzingOperationWrapper sta = templateOp.reductionOfOperation(rng);
 					sol.addContents(i++, sta);
 				} catch (ConversionFailed e) {
@@ -184,6 +184,11 @@ public abstract class SESAMEEvaluationProblemBase implements Problem<SESAMETestS
 				} catch (ConstraintsNotMet e) {
 					e.printStackTrace();
 				} catch (InvalidOperation e) {
+					e.printStackTrace();
+				} catch (InvalidFuzzingOperation e) {
+					e.printStackTrace();
+				} catch (InvalidActivationToReduce e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

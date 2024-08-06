@@ -10,8 +10,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Co
 import uk.ac.york.sesame.testing.evolutionary.ConditionGenerator;
 import uk.ac.york.sesame.testing.evolutionary.ParamError;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
-import uk.ac.york.sesame.testing.evolutionary.dslwrapper.ConditionBasedOperationWrapper;
-import uk.ac.york.sesame.testing.evolutionary.dslwrapper.DynamicOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
 
 import org.eclipse.emf.common.util.EList;
@@ -99,7 +97,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 		aft.setEndTime(endTime);
 	}
 
-	private void mutateConditionBased(ConditionBasedOperationWrapper sfow, ConditionBasedActivation aa, ConditionMutationSelection s) throws MutationFailed, IOException {
+	private void mutateConditionBased(FuzzingOperationWrapper sfow, ConditionBasedActivation aa, ConditionMutationSelection s) throws MutationFailed, IOException {
 		try {
 			if (s == ConditionMutationSelection.SELECT_START) {
 				Tree<String> t = sfow.getStoredStartTree();
@@ -144,11 +142,11 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 				selection = ConditionMutationSelection.SELECT_END;
 			}
 
-			mutateConditionBased((ConditionBasedOperationWrapper)sfow, (ConditionBasedActivation) aa, selection);
+			mutateConditionBased((FuzzingOperationWrapper)sfow, (ConditionBasedActivation) aa, selection);
 		}
 	}
 
-	private void mutateActivations(DynamicOperationWrapper sfow) throws MutationFailed, IOException {
+	private void mutateActivations(FuzzingOperationWrapper sfow) throws MutationFailed, IOException {
 		Activation aa = sfow.getActivation();
 		
 		Optional<Activation> aaSpace = sfow.getTemplateActivation();
@@ -302,9 +300,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 			logWithoutError("Performing temporal mutation on " + sta.getName());
 			try {
 				// Can cast to DynamicOperation as it has been checked above
-				mutateActivations((DynamicOperationWrapper)sta);
-				
-				
+				mutateActivations(sta);
 				
 			} catch (MutationFailed e) {
 				// TODO: log the failed mutation because of the conversion error

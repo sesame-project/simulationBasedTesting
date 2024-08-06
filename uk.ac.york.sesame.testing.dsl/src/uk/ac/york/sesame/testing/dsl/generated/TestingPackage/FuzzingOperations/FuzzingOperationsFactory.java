@@ -22,13 +22,13 @@ public interface FuzzingOperationsFactory extends EFactory {
 	FuzzingOperationsFactory eINSTANCE = uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Offline Fuzzing Operation</em>'.
+	 * Returns a new object of class '<em>Constant Activation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Offline Fuzzing Operation</em>'.
+	 * @return a new object of class '<em>Constant Activation</em>'.
 	 * @generated
 	 */
-	OfflineFuzzingOperation createOfflineFuzzingOperation();
+	ConstantActivation createConstantActivation();
 
 	/**
 	 * Returns a new object of class '<em>Custom Fuzzing Operation</em>'.
@@ -38,15 +38,6 @@ public interface FuzzingOperationsFactory extends EFactory {
 	 * @generated
 	 */
 	CustomFuzzingOperation createCustomFuzzingOperation();
-
-	/**
-	 * Returns a new object of class '<em>Custom Offline Fuzzing Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Custom Offline Fuzzing Operation</em>'.
-	 * @generated
-	 */
-	CustomOfflineFuzzingOperation createCustomOfflineFuzzingOperation();
 
 	/**
 	 * Returns a new object of class '<em>Fixed Time Activation</em>'.
@@ -83,33 +74,6 @@ public interface FuzzingOperationsFactory extends EFactory {
 	 * @generated
 	 */
 	FuzzTestingOperation createFuzzTestingOperation();
-
-	/**
-	 * Returns a new object of class '<em>Component Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Component Operation</em>'.
-	 * @generated
-	 */
-	ComponentOperation createComponentOperation();
-
-	/**
-	 * Returns a new object of class '<em>Component Property Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Component Property Operation</em>'.
-	 * @generated
-	 */
-	ComponentPropertyOperation createComponentPropertyOperation();
-
-	/**
-	 * Returns a new object of class '<em>Component Sub Property Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Component Sub Property Operation</em>'.
-	 * @generated
-	 */
-	ComponentSubPropertyOperation createComponentSubPropertyOperation();
 
 	/**
 	 * Returns a new object of class '<em>Random Value From Set Operation</em>'.

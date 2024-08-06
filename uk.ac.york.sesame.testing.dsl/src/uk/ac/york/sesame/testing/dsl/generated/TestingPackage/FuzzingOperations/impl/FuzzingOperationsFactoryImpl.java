@@ -3,7 +3,6 @@
 package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -57,15 +56,11 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case FuzzingOperationsPackage.OFFLINE_FUZZING_OPERATION: return createOfflineFuzzingOperation();
-			case FuzzingOperationsPackage.CUSTOM_OFFLINE_FUZZING_OPERATION: return createCustomOfflineFuzzingOperation();
+			case FuzzingOperationsPackage.CONSTANT_ACTIVATION: return createConstantActivation();
 			case FuzzingOperationsPackage.FIXED_TIME_ACTIVATION: return createFixedTimeActivation();
 			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION: return createConditionBasedActivation();
 			case FuzzingOperationsPackage.CONDITION_BASED_TIME_LIMITED: return createConditionBasedTimeLimited();
 			case FuzzingOperationsPackage.FUZZ_TESTING_OPERATION: return createFuzzTestingOperation();
-			case FuzzingOperationsPackage.COMPONENT_OPERATION: return createComponentOperation();
-			case FuzzingOperationsPackage.COMPONENT_PROPERTY_OPERATION: return createComponentPropertyOperation();
-			case FuzzingOperationsPackage.COMPONENT_SUB_PROPERTY_OPERATION: return createComponentSubPropertyOperation();
 			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION: return createCustomFuzzingOperation();
 			case FuzzingOperationsPackage.RANDOM_VALUE_FROM_SET_OPERATION: return createRandomValueFromSetOperation();
 			case FuzzingOperationsPackage.VALUE_SET: return createValueSet();
@@ -88,39 +83,9 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case FuzzingOperationsPackage.OFFLINE_OPERATION_TIME:
-				return createOfflineOperationTimeFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case FuzzingOperationsPackage.OFFLINE_OPERATION_TIME:
-				return convertOfflineOperationTimeToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OfflineFuzzingOperation createOfflineFuzzingOperation() {
-		OfflineFuzzingOperationImpl offlineFuzzingOperation = new OfflineFuzzingOperationImpl();
-		return offlineFuzzingOperation;
+	public ConstantActivation createConstantActivation() {
+		ConstantActivationImpl constantActivation = new ConstantActivationImpl();
+		return constantActivation;
 	}
 
 	/**
@@ -131,16 +96,6 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	public CustomFuzzingOperation createCustomFuzzingOperation() {
 		CustomFuzzingOperationImpl customFuzzingOperation = new CustomFuzzingOperationImpl();
 		return customFuzzingOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CustomOfflineFuzzingOperation createCustomOfflineFuzzingOperation() {
-		CustomOfflineFuzzingOperationImpl customOfflineFuzzingOperation = new CustomOfflineFuzzingOperationImpl();
-		return customOfflineFuzzingOperation;
 	}
 
 	/**
@@ -181,36 +136,6 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	public FuzzTestingOperation createFuzzTestingOperation() {
 		FuzzTestingOperationImpl fuzzTestingOperation = new FuzzTestingOperationImpl();
 		return fuzzTestingOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComponentOperation createComponentOperation() {
-		ComponentOperationImpl componentOperation = new ComponentOperationImpl();
-		return componentOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComponentPropertyOperation createComponentPropertyOperation() {
-		ComponentPropertyOperationImpl componentPropertyOperation = new ComponentPropertyOperationImpl();
-		return componentPropertyOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComponentSubPropertyOperation createComponentSubPropertyOperation() {
-		ComponentSubPropertyOperationImpl componentSubPropertyOperation = new ComponentSubPropertyOperationImpl();
-		return componentSubPropertyOperation;
 	}
 
 	/**
@@ -321,26 +246,6 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	public MultipleMessagesNetworkOperation createMultipleMessagesNetworkOperation() {
 		MultipleMessagesNetworkOperationImpl multipleMessagesNetworkOperation = new MultipleMessagesNetworkOperationImpl();
 		return multipleMessagesNetworkOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OfflineOperationTime createOfflineOperationTimeFromString(EDataType eDataType, String initialValue) {
-		OfflineOperationTime result = OfflineOperationTime.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertOfflineOperationTimeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
