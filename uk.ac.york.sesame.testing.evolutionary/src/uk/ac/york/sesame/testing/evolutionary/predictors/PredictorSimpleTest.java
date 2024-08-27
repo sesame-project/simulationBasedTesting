@@ -15,7 +15,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
-
 public class PredictorSimpleTest {
 	public static void convertToCSVInDir(Test t, File baseDirPath) {
 		try {
@@ -39,37 +38,40 @@ public class PredictorSimpleTest {
 		}
 	}
 
-	public static void getMetricValueToFileStream(FileWriter fw, Test t, String targetMetricName) throws IOException {
+	public static Optional<Double> getMetricValue(Test t, String targetMetricName) throws IOException {
 		for (MetricInstance m : t.getMetrics()) {
-			if (m.getMetric().getName().contains(targetMetricName)) {
+			if (m.getMetric().getName().equals(targetMetricName)) {
 				Double res = m.getResult().getValue();
-				fw.write(res.toString() + "\n");
+				return Optional.of(res);
 			}
 		}
+		
+		return Optional.empty();
 	}
 
 	public static void main(String[] args) {
 // 		Load the model 
-//		String modelFile = args[0];
-//		String campaignName = args[1];
-//		String resultSetName = args[2];
-//		String outputDirName = args[3];
+		String modelFile = args[0];
+		String campaignName = args[1];
+		String outputDirName = args[2];
+		String testTrainLimit_s = args[3];
+		String targetMetricName = args[4];
 
-		String modelFile = "/home/simtesting/simtesting/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/src/uk/ac/york/sesame/testing/evolutionary/predictors/testmodel/TestingPAL-coverage_2024_07_15.model";
-		String campaignName = "scenario2-eddi-timebased-faults-coverage";
-		String outputDirTrain = "/tmp/testCSV/train/";
-		String outputDirTest = "/tmp/testCSV/test/";
-		String resultSetName = "NONDOM-18_01_2024_11_12_20-intermediate-64";
+		//String modelFile = "/home/simtesting/simtesting/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/src/uk/ac/york/sesame/testing/evolutionary/predictors/testmodel/TestingPAL-coverage_2024_07_15.model";
+		//String campaignName = "scenario2-eddi-timebased-faults-coverage";
+		String outputDirTrain = outputDirName + "/train/";
+		String outputDirTest = outputDirName + "/test/";
+		//String resultSetName = "NONDOM-18_01_2024_11_12_20-intermediate-64";
 
-		String targetMetricName = "M1_countObjectsMissed";
+		//String targetMetricName = "M1_countObjectsMissed";
 
 		File baseDirectoryTrain = new File(outputDirTrain);
 		File baseDirectoryTest = new File(outputDirTest);
 
-		File metricsTrainFile = new File("/tmp/testCSV/metrics-train.csv ");
-		File metricsTestFile = new File("/tmp/testCSV/metrics-test.csv");
+		File metricsTrainFile = new File(outputDirName + "/metrics-train.csv");
+		File metricsTestFile = new File(outputDirName + "/metrics-test.csv");
 		
-		int testTrainLimit = 320;
+		int testTrainLimit = Integer.parseInt(testTrainLimit_s);
 
 		try {
 			SESAMEModelLoader loader = new SESAMEModelLoader(modelFile);
@@ -93,14 +95,26 @@ public class PredictorSimpleTest {
 					int testNum = testCount;
 					testCount++;
 
+					File dir;
+					FileWriter metricFileW;
 					if (testNum < testTrainLimit) {
-						System.out.println("Processing TRAIN test to CSV file " + t.getName());
-						convertToCSVInDir(t, baseDirectoryTrain);
-						getMetricValueToFileStream(metricsTrainFileWriter, t, targetMetricName);
+						dir = baseDirectoryTrain;
+						metricFileW = metricsTrainFileWriter;
 					} else {
-						System.out.println("Processing TEST test to CSV file " + t.getName());
-						convertToCSVInDir(t, baseDirectoryTest);
-						getMetricValueToFileStream(metricsTestFileWriter, t, targetMetricName);
+						dir = baseDirectoryTest;
+						metricFileW = metricsTestFileWriter;
+					}
+						
+					Optional<Double> mv_o = getMetricValue(t, targetMetricName);
+					if (mv_o.isPresent()) {
+						Double mv = mv_o.get();
+						if (isValid(mv)) {
+							System.out.println("Processing test to CSV file " + t.getName());
+							convertToCSVInDir(t, dir);
+							metricFileW.write(mv.toString() + "\n");
+						} else {
+							System.err.println("SKIPPING test " + t.getName() + " failed/outlier metric value - " + t.getName());
+						}
 					}
 				}
 			}
@@ -112,5 +126,12 @@ public class PredictorSimpleTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	private static boolean isValid(Double mv) {
+		if ((mv < -1) || (mv > 100)) {
+			return false;
+		} else
+			return true;
 	}
 }

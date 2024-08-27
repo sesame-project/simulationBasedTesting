@@ -14,7 +14,10 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 
 public class FuzzingTestConversion {
+	private static final boolean CONSTANT_INTENSITY = false;
+	private static final boolean GENERATE_SINE_WAVE = false;
 	double FIXED_RESOLUTION_SECS = 1.0;
+	double PERIOD = 1.0;
 	private Test t;
  
 	private HashMap<FuzzingOperation, DoubleColumn> colLookup;
@@ -29,6 +32,7 @@ public class FuzzingTestConversion {
 	public FuzzingTestConversion(Test t) throws InvalidEndType {
 		this.t = t;
 		this.resolution = FIXED_RESOLUTION_SECS;
+		this.relParams = new RelativeParameters(); 
 		
 		ExecutionEndTrigger trigger = t.getParentCampaign().getEndTrigger();
 
@@ -63,13 +67,22 @@ public class FuzzingTestConversion {
 						//System.out.println("index=" + index);
 						// Increment intensity by this value
 						double orig = colParentOp.get(index);
-						colParentOp = colParentOp.set(index, orig + intensity);
+						double tdiff = time - start;
+						
+						double phase = Math.sin(2*Math.PI * tdiff / PERIOD);
+						if (GENERATE_SINE_WAVE) {
+							colParentOp = colParentOp.set(index, orig + (intensity*phase));
+						} else {
+							colParentOp = colParentOp.set(index, orig + intensity);
+						}
 					}
 				}
 			}
 		}
 		return timeSeries;
 	}
+	
+	
 	
 	public void saveTableToCSV(Table tb, File file) throws IOException {
 //		Destination d = new Destination(file);
@@ -99,7 +112,11 @@ public class FuzzingTestConversion {
 	}
 
 	private double getOperationIntensity(Test t, FuzzingOperation op) {
-		return relParams.scoreForOperation(op);
+		if (CONSTANT_INTENSITY) {
+			return 1.0;
+		} else {
+			return relParams.scoreForOperation(op);
+		}
 	}
 
 	private boolean includeOp(Test t, FuzzingOperation op) {
