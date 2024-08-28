@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -15,26 +16,76 @@ import tech.tablesaw.api.Table;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Test;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingSpace;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Metrics.MetricInstance;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
 public class PredictorTestMultipleModels {
-	public static void convertToCSVInDir(Test t, File baseDirPath, String filePrefix) {
+	private static final int NEW_DATA_PER_ORIG = 4;
+	private static Random rng = new Random();
+
+	public static int convertToMultipleCSVSInDir(Test t, File baseDirPath, String filePrefix, double timeLength) {
 		try {
 			if (!baseDirPath.exists()) {
 				baseDirPath.mkdirs();
 			}
-			
+
 			if (filePrefix.length() > 0) {
 				filePrefix = filePrefix + "-";
 			}
 
 			String csvFileName = t.getName() + ".csv";
-			File outFile = new File(baseDirPath.getAbsolutePath() + File.separator + filePrefix + csvFileName);
 
-			FuzzingTestConversion ftc = new FuzzingTestConversion(t);
-			Table converted = ftc.convert();
-			ftc.saveTableToCSV(converted, outFile);
+			// Augment the data by converting values
+			for (int i = 0; i < NEW_DATA_PER_ORIG; i++) {
+				List<FuzzingOperation> ops = (List<FuzzingOperation>) EcoreUtil.copyAll(t.getOperations());
+				FuzzingTestConversion ftc = new FuzzingTestConversion(t);
+				
+				double MAX_DOSATTACK_LEN = 50.0;
+				double EARLY_SAFE_ZONE = 50.0;
+				
+				// Modify the operations here
+				if (i == 1) {
+					// Change the time length of the DOS attack to a fixed integer num
+					Optional<FuzzingOperation> dosAttack_o = findOperationByName(ops, "dosAttackTrigger");
+					if (dosAttack_o.isPresent()) {
+						FuzzingOperation dosAttack = dosAttack_o.get();
+						FuzzingOperation dosNew = EcoreUtil.copy(dosAttack);
+						if (dosNew.getActivation() instanceof FixedTimeActivation) {
+							FixedTimeActivation a = (FixedTimeActivation) dosNew.getActivation();
+							double len = rng.nextDouble() * MAX_DOSATTACK_LEN;
+							a.setEndTime(a.getStartTime() + (int)len);
+							ops.remove(dosAttack);
+							ops.add(dosNew);
+						}
+					}
+				}
+
+				if (i > 2) {
+					Optional<FuzzingOperation> notDosAttack_o = findOperationNotNamed(ops, "dosAttackTrigger");
+					if (notDosAttack_o.isPresent()) {
+						FuzzingOperation notDosAttack = notDosAttack_o.get();
+						// Add additional new transformations at the start - before 50 seconds
+						FuzzingOperation opNew = EcoreUtil.copy(notDosAttack);
+						if (opNew.getActivation() instanceof FixedTimeActivation) {
+							FixedTimeActivation a = (FixedTimeActivation) opNew.getActivation();
+							double time1 = rng.nextDouble() * EARLY_SAFE_ZONE;
+							double time2 = rng.nextDouble() * EARLY_SAFE_ZONE;
+							double startTime = Math.min(time1, time2);
+							double endTime = Math.max(time1, time2);
+							a.setStartTime(startTime);
+							a.setEndTime(endTime);
+							ops.add(opNew);
+						}
+					}
+				}
+
+				File outFile = new File(baseDirPath.getAbsolutePath() + File.separator + filePrefix + csvFileName
+						+ Integer.toString(i));
+				Table converted = ftc.convert(ops);
+				ftc.saveTableToCSV(converted, outFile);
+			}
 		} catch (InvalidEndType e) {
 			e.printStackTrace();
 		} catch (UnknownLength e) {
@@ -42,12 +93,32 @@ public class PredictorTestMultipleModels {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return NEW_DATA_PER_ORIG;
 	}
-	
-	public static void convertToCSVInDir(Test t, File baseDirPath) {
-		convertToCSVInDir(t, baseDirPath, "");
+
+	private static Optional<FuzzingOperation> findOperationNotNamed(List<FuzzingOperation> ops, String name) {
+		double prob = 1.0 / (double) (ops.size() - 1);
+		for (FuzzingOperation op : ops) {
+			if (!op.getFromTemplate().getName().equals(name)) {
+				double v = rng.nextDouble();
+				if (v < prob) {
+					return Optional.of(op);
+				}
+			}
+		}
+		return Optional.empty();
 	}
-	
+
+	private static Optional<FuzzingOperation> findOperationByName(List<FuzzingOperation> ops, String name) {
+		// TODO Auto-generated method stub
+		for (FuzzingOperation op : ops) {
+			if (op.getFromTemplate().getName().equals(name)) {
+				return Optional.of(op);
+			}
+		}
+		return Optional.empty();
+	}
+
 	public static Optional<Double> getMetricValue(Test t, String targetMetricName) throws IOException {
 		for (MetricInstance m : t.getMetrics()) {
 			if (m.getMetric().getName().equals(targetMetricName)) {
@@ -55,7 +126,7 @@ public class PredictorTestMultipleModels {
 				return Optional.of(res);
 			}
 		}
-		
+
 		return Optional.empty();
 	}
 
@@ -100,7 +171,7 @@ public class PredictorTestMultipleModels {
 			int testCount = 0;
 
 			for (String modelFile : modelFiles) {
-				String modelFileNameInDir = new File(modelFile).getName(); 
+				String modelFileNameInDir = new File(modelFile).getName();
 				SESAMEModelLoader loader = new SESAMEModelLoader(modelFile);
 				Resource model = loader.loadTestingSpace();
 				TestingSpace testingSpace = loader.getTestingSpace(model);
@@ -112,7 +183,7 @@ public class PredictorTestMultipleModels {
 					for (Test t : allTestsInCampaign) {
 						int testNum = testCount;
 						testCount++;
-						
+
 						File dir;
 						FileWriter metricFileW;
 						if (testNum < testTrainLimit) {
@@ -122,16 +193,21 @@ public class PredictorTestMultipleModels {
 							dir = baseDirectoryTest;
 							metricFileW = metricsTestFileWriter;
 						}
-					
+
 						Optional<Double> mv_o = getMetricValue(t, targetMetricName);
 						if (mv_o.isPresent()) {
 							Double mv = mv_o.get();
 							if (isValid(mv)) {
-								System.out.println("Processing test to CSV file " + t.getName() + " under dir " + dir.getAbsolutePath());
-								convertToCSVInDir(t, dir);
-								metricFileW.write(mv.toString() + "\n");
+								System.out.println("Processing test to CSV file " + t.getName() + " under dir "
+										+ dir.getAbsolutePath());
+								int testsProduced = convertToMultipleCSVSInDir(t, dir, modelFileNameInDir, 500);
+								// Since multiple tests have the same metric
+								for (int i = 0; i < testsProduced; i++) {
+									metricFileW.write(mv.toString() + "\n");
+								}
 							} else {
-								System.err.println("SKIPPING test " + t.getName() + " failed/outlier metric value - " + t.getName());
+								System.err.println("SKIPPING test " + t.getName() + " failed/outlier metric value - "
+										+ t.getName());
 							}
 						}
 					}
@@ -147,11 +223,6 @@ public class PredictorTestMultipleModels {
 			e.printStackTrace();
 		}
 	}
-	
-	// Transformations:
-	// Add additional new transformations at the start - before 50 seconds
-	// Change the time length of the DOS attack
-	// For each altered test - change the name!
 
 	private static boolean isValid(Double mv) {
 		if ((mv < -1) || (mv > 100)) {

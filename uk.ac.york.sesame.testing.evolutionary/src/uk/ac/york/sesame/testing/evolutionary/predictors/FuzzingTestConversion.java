@@ -3,6 +3,8 @@ package uk.ac.york.sesame.testing.evolutionary.predictors;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 import tech.tablesaw.api.DoubleColumn;
 import tech.tablesaw.api.Table;
@@ -15,6 +17,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 
 public class FuzzingTestConversion {
 	private static final boolean CONSTANT_INTENSITY = false;
+	private static final boolean GENERATE_RANDOM_VALUE = true;
 	private static final boolean GENERATE_SINE_WAVE = false;
 	double FIXED_RESOLUTION_SECS = 1.0;
 	double PERIOD = 1.0;
@@ -24,6 +27,7 @@ public class FuzzingTestConversion {
 	private int timeStepCount;
 	private double resolution;
 	private RelativeParameters relParams;
+	private Random rng;
 	
 	public FuzzingTestConversion() {
 		this.relParams = new RelativeParameters(); 
@@ -32,7 +36,8 @@ public class FuzzingTestConversion {
 	public FuzzingTestConversion(Test t) throws InvalidEndType {
 		this.t = t;
 		this.resolution = FIXED_RESOLUTION_SECS;
-		this.relParams = new RelativeParameters(); 
+		this.relParams = new RelativeParameters();
+		this.rng = new Random();
 		
 		ExecutionEndTrigger trigger = t.getParentCampaign().getEndTrigger();
 
@@ -45,12 +50,11 @@ public class FuzzingTestConversion {
 		}
 	}
 
-	public Table convert() throws UnknownLength {
-
+	public Table convert(List<FuzzingOperation> ops) throws UnknownLength {
 		colLookup = new HashMap<FuzzingOperation, DoubleColumn>();
 		Table timeSeries = Table.create(t.getName() + "-timeSeries");
 
-		for (FuzzingOperation op : t.getOperations()) {
+		for (FuzzingOperation op : ops) {
 			if (includeOp(t, op)) {
 				// TODO: get column based upon the template name
 				DoubleColumn colParentOp = lookupColumnFor(timeSeries, op);
@@ -72,6 +76,8 @@ public class FuzzingTestConversion {
 						double phase = Math.sin(2*Math.PI * tdiff / PERIOD);
 						if (GENERATE_SINE_WAVE) {
 							colParentOp = colParentOp.set(index, orig + (intensity*phase));
+						} else if (GENERATE_RANDOM_VALUE) {
+							colParentOp = colParentOp.set(index, orig + intensity * rng.nextDouble());
 						} else {
 							colParentOp = colParentOp.set(index, orig + intensity);
 						}
@@ -82,7 +88,9 @@ public class FuzzingTestConversion {
 		return timeSeries;
 	}
 	
-	
+	public Table convert() throws UnknownLength {
+		return convert(t.getOperations());
+	}
 	
 	public void saveTableToCSV(Table tb, File file) throws IOException {
 //		Destination d = new Destination(file);
