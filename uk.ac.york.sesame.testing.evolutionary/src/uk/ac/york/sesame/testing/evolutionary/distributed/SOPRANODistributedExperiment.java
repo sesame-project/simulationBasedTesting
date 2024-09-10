@@ -21,16 +21,17 @@ import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 public class SOPRANODistributedExperiment {
 	public boolean isActive = true;
 	private TestCampaign selectedCampaign;
-	//private MRS mrs;
+	private MRS mrs;
 	private DistributedExecutionStrategy dexecStrat;
 	private SESAMEModelLoader loader;
 	
 	private String orchestratorBasePath;
 	private String spaceModelFilename;
 	
-	public SOPRANODistributedExperiment(TestCampaign selectedCampaign, DistributedExecutionStrategy dexecStrat, SESAMEModelLoader loader, String orchestratorBasePath, String spaceModelFilename) {
+	public SOPRANODistributedExperiment(TestCampaign selectedCampaign, DistributedExecutionStrategy dexecStrat, SESAMEModelLoader loader, String orchestratorBasePath, String spaceModelFilename, MRS mrs) {
 		this.selectedCampaign = selectedCampaign;
 		this.loader = loader;
+		this.mrs = mrs;
 		this.spaceModelFilename = spaceModelFilename;
 		this.orchestratorBasePath = orchestratorBasePath;
 		this.dexecStrat = dexecStrat;
@@ -101,5 +102,7 @@ public class SOPRANODistributedExperiment {
 		loader.saveTestingSpace();
 	}
 	
-	
+	public MRS getMRS() {
+		return mrs;
+	}
 }

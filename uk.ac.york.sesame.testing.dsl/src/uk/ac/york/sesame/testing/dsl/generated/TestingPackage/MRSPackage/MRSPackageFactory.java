@@ -40,15 +40,6 @@ public interface MRSPackageFactory extends EFactory {
 	Node createNode();
 
 	/**
-	 * Returns a new object of class '<em>Publication Information</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Publication Information</em>'.
-	 * @generated
-	 */
-	PublicationInformation createPublicationInformation();
-
-	/**
 	 * Returns a new object of class '<em>Static Variable</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,6 +146,15 @@ public interface MRSPackageFactory extends EFactory {
 	 * @generated
 	 */
 	ROSSimulator createROSSimulator();
+
+	/**
+	 * Returns a new object of class '<em>ROS Variable Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ROS Variable Configuration</em>'.
+	 * @generated
+	 */
+	ROSVariableConfiguration createROSVariableConfiguration();
 
 	/**
 	 * Returns a new object of class '<em>MOOS Simulator</em>'.

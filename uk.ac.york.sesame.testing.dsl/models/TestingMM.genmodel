@@ -330,7 +330,6 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/Node/properties"/>
       </genClasses>
-      <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/PublicationInformation"/>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//MRSPackage/GenericVariable">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/GenericVariable/name"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -378,10 +377,21 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/ComponentProperty/type"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="TestingMM.ecore#//MRSPackage/Simulator"/>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//MRSPackage/Simulator">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/Simulator/varConfigs"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/Simulator/simulationDependency"/>
+      </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/ROSSimulator">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/ROSSimulator/hostname"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/ROSSimulator/port"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//MRSPackage/SimVariableConfiguration">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/SimVariableConfiguration/var"/>
+      </genClasses>
+      <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/ROSVariableConfiguration">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/ROSVariableConfiguration/launchFileloc"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/MOOSSimulator">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/MOOSSimulator/hostname"/>

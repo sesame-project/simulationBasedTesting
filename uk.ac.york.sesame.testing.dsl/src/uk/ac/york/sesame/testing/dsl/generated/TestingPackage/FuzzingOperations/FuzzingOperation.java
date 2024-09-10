@@ -93,12 +93,12 @@ public interface FuzzingOperation extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Activation</em>' containment reference.
-	 * @see #setActivation(DynamicActivation)
+	 * @see #setActivation(Activation)
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage#getFuzzingOperation_Activation()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	DynamicActivation getActivation();
+	Activation getActivation();
 
 	/**
 	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation#getActivation <em>Activation</em>}' containment reference.
@@ -108,7 +108,7 @@ public interface FuzzingOperation extends EObject {
 	 * @see #getActivation()
 	 * @generated
 	 */
-	void setActivation(DynamicActivation value);
+	void setActivation(Activation value);
 
 	/**
 	 * Returns the value of the '<em><b>Messages From All Componenents</b></em>' attribute.

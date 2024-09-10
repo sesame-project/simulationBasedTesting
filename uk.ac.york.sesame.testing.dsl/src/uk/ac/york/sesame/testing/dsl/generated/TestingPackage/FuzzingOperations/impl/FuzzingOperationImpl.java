@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.eclipse.emf.ecore.util.InternalEList;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicActivation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Activation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
@@ -109,7 +109,7 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 * @ordered
 	 */
-	protected DynamicActivation activation;
+	protected Activation activation;
 
 	/**
 	 * The default value of the '{@link #isMessagesFromAllComponenents() <em>Messages From All Componenents</em>}' attribute.
@@ -397,7 +397,7 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DynamicActivation getActivation() {
+	public Activation getActivation() {
 		return activation;
 	}
 
@@ -406,8 +406,8 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetActivation(DynamicActivation newActivation, NotificationChain msgs) {
-		DynamicActivation oldActivation = activation;
+	public NotificationChain basicSetActivation(Activation newActivation, NotificationChain msgs) {
+		Activation oldActivation = activation;
 		activation = newActivation;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION, oldActivation, newActivation);
@@ -421,7 +421,7 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActivation(DynamicActivation newActivation) {
+	public void setActivation(Activation newActivation) {
 		if (newActivation != activation) {
 			NotificationChain msgs = null;
 			if (activation != null)
@@ -906,7 +906,7 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				setPriority((Integer)newValue);
 				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION:
-				setActivation((DynamicActivation)newValue);
+				setActivation((Activation)newValue);
 				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS:
 				setMessagesFromAllComponenents((Boolean)newValue);
@@ -972,7 +972,7 @@ public abstract class FuzzingOperationImpl extends MinimalEObjectImpl.Container 
 				setPriority(PRIORITY_EDEFAULT);
 				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__ACTIVATION:
-				setActivation((DynamicActivation)null);
+				setActivation((Activation)null);
 				return;
 			case FuzzingOperationsPackage.FUZZING_OPERATION__MESSAGES_FROM_ALL_COMPONENENTS:
 				setMessagesFromAllComponenents(MESSAGES_FROM_ALL_COMPONENENTS_EDEFAULT);

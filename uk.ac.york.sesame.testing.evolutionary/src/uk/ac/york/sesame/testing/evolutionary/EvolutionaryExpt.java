@@ -124,7 +124,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		
 		if (exec.isDistributed()) {
 			DistributedExecutionStrategy distExec = (DistributedExecutionStrategy)exec;
-			SOPRANODistributedExperiment distributedExpt = new SOPRANODistributedExperiment(selectedCampaign, distExec, loader, orchestratorBasePath, spaceModelFileName);
+			SOPRANODistributedExperiment distributedExpt = new SOPRANODistributedExperiment(selectedCampaign, distExec, loader, orchestratorBasePath, spaceModelFileName, mrs);
 			
 			AllocationStrategy strat = translateAllocationStrategy(distExec.getAllocationStrategy());
 			this.exptManager = new SOPRANOExperimentManager(distributedExpt, strat);

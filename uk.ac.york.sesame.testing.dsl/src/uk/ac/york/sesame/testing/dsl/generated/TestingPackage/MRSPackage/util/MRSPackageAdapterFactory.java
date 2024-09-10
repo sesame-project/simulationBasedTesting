@@ -76,10 +76,6 @@ public class MRSPackageAdapterFactory extends AdapterFactoryImpl {
 				return createNodeAdapter();
 			}
 			@Override
-			public Adapter casePublicationInformation(PublicationInformation object) {
-				return createPublicationInformationAdapter();
-			}
-			@Override
 			public Adapter caseGenericVariable(GenericVariable object) {
 				return createGenericVariableAdapter();
 			}
@@ -144,6 +140,14 @@ public class MRSPackageAdapterFactory extends AdapterFactoryImpl {
 				return createROSSimulatorAdapter();
 			}
 			@Override
+			public Adapter caseSimVariableConfiguration(SimVariableConfiguration object) {
+				return createSimVariableConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseROSVariableConfiguration(ROSVariableConfiguration object) {
+				return createROSVariableConfigurationAdapter();
+			}
+			@Override
 			public Adapter caseMOOSSimulator(MOOSSimulator object) {
 				return createMOOSSimulatorAdapter();
 			}
@@ -196,20 +200,6 @@ public class MRSPackageAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNodeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PublicationInformation <em>Publication Information</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PublicationInformation
-	 * @generated
-	 */
-	public Adapter createPublicationInformationAdapter() {
 		return null;
 	}
 
@@ -434,6 +424,34 @@ public class MRSPackageAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createROSSimulatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.SimVariableConfiguration <em>Sim Variable Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.SimVariableConfiguration
+	 * @generated
+	 */
+	public Adapter createSimVariableConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSVariableConfiguration <em>ROS Variable Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSVariableConfiguration
+	 * @generated
+	 */
+	public Adapter createROSVariableConfigurationAdapter() {
 		return null;
 	}
 

@@ -48,6 +48,7 @@ public class SESAMEModelLoader {
 		// Get the resource
 		resource = resSet.getResource(URI.createURI(testingModelFilename), true);
 		return resource;
+		
 	}
 
 	public void saveTestingSpace() {

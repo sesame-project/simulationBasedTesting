@@ -138,7 +138,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="activation" lowerBound="1"
-          eType="#//FuzzingOperations/DynamicActivation" containment="true"/>
+          eType="#//FuzzingOperations/Activation" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="messagesFromAllComponenents"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="true"/>
@@ -399,7 +399,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
           eType="#//MRSPackage/ComponentProperty"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PublicationInformation"/>
     <eClassifiers xsi:type="ecore:EClass" name="GenericVariable" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
@@ -457,10 +456,22 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
           eType="#//MRSPackage/Type"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Simulator" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Simulator" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="varConfigs" upperBound="-1"
+          eType="#//MRSPackage/SimVariableConfiguration" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="simulationDependency"
+          eType="#//Execution/Dependency"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ROSSimulator" eSuperTypes="#//MRSPackage/Simulator">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SimVariableConfiguration" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="var" lowerBound="1" eType="#//MRSPackage/DynamicVariable"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ROSVariableConfiguration" eSuperTypes="#//MRSPackage/SimVariableConfiguration">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="launchFileloc" lowerBound="1"
+          eType="#//MRSPackage/XMLConfigLocation" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MOOSSimulator" eSuperTypes="#//MRSPackage/Simulator">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

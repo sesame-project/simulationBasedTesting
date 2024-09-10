@@ -231,34 +231,6 @@ public interface MRSPackagePackage extends EPackage {
 	int NODE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.PublicationInformationImpl <em>Publication Information</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.PublicationInformationImpl
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getPublicationInformation()
-	 * @generated
-	 */
-	int PUBLICATION_INFORMATION = 2;
-
-	/**
-	 * The number of structural features of the '<em>Publication Information</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PUBLICATION_INFORMATION_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Publication Information</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PUBLICATION_INFORMATION_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.GenericVariableImpl <em>Generic Variable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -266,7 +238,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getGenericVariable()
 	 * @generated
 	 */
-	int GENERIC_VARIABLE = 3;
+	int GENERIC_VARIABLE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -312,7 +284,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getStaticVariable()
 	 * @generated
 	 */
-	int STATIC_VARIABLE = 4;
+	int STATIC_VARIABLE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -367,7 +339,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getDynamicVariable()
 	 * @generated
 	 */
-	int DYNAMIC_VARIABLE = 5;
+	int DYNAMIC_VARIABLE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -413,7 +385,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getEventBasedVariable()
 	 * @generated
 	 */
-	int EVENT_BASED_VARIABLE = 6;
+	int EVENT_BASED_VARIABLE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -459,7 +431,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getParameterVariable()
 	 * @generated
 	 */
-	int PARAMETER_VARIABLE = 7;
+	int PARAMETER_VARIABLE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -505,7 +477,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getConfigLocation()
 	 * @generated
 	 */
-	int CONFIG_LOCATION = 8;
+	int CONFIG_LOCATION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -542,7 +514,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getFileLocation()
 	 * @generated
 	 */
-	int FILE_LOCATION = 9;
+	int FILE_LOCATION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -588,7 +560,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getPropertiesKeyValues()
 	 * @generated
 	 */
-	int PROPERTIES_KEY_VALUES = 10;
+	int PROPERTIES_KEY_VALUES = 9;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -643,7 +615,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getFixedPosition()
 	 * @generated
 	 */
-	int FIXED_POSITION = 11;
+	int FIXED_POSITION = 10;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -707,7 +679,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getRegexLocation()
 	 * @generated
 	 */
-	int REGEX_LOCATION = 12;
+	int REGEX_LOCATION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -762,7 +734,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getXMLConfigLocation()
 	 * @generated
 	 */
-	int XML_CONFIG_LOCATION = 13;
+	int XML_CONFIG_LOCATION = 12;
 
 	/**
 	 * The feature id for the '<em><b>Root</b></em>' reference.
@@ -817,7 +789,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 14;
+	int TYPE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -872,7 +844,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 15;
+	int PARAMETER = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -927,7 +899,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getComponentProperty()
 	 * @generated
 	 */
-	int COMPONENT_PROPERTY = 16;
+	int COMPONENT_PROPERTY = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -973,7 +945,25 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getSimulator()
 	 * @generated
 	 */
-	int SIMULATOR = 17;
+	int SIMULATOR = 16;
+
+	/**
+	 * The feature id for the '<em><b>Var Configs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMULATOR__VAR_CONFIGS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Simulation Dependency</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMULATOR__SIMULATION_DEPENDENCY = 1;
 
 	/**
 	 * The number of structural features of the '<em>Simulator</em>' class.
@@ -982,7 +972,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATOR_FEATURE_COUNT = 0;
+	int SIMULATOR_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Simulator</em>' class.
@@ -1001,7 +991,25 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getROSSimulator()
 	 * @generated
 	 */
-	int ROS_SIMULATOR = 18;
+	int ROS_SIMULATOR = 17;
+
+	/**
+	 * The feature id for the '<em><b>Var Configs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROS_SIMULATOR__VAR_CONFIGS = SIMULATOR__VAR_CONFIGS;
+
+	/**
+	 * The feature id for the '<em><b>Simulation Dependency</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROS_SIMULATOR__SIMULATION_DEPENDENCY = SIMULATOR__SIMULATION_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Hostname</b></em>' attribute.
@@ -1040,6 +1048,89 @@ public interface MRSPackagePackage extends EPackage {
 	int ROS_SIMULATOR_OPERATION_COUNT = SIMULATOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.SimVariableConfigurationImpl <em>Sim Variable Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.SimVariableConfigurationImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getSimVariableConfiguration()
+	 * @generated
+	 */
+	int SIM_VARIABLE_CONFIGURATION = 18;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIM_VARIABLE_CONFIGURATION__VAR = 0;
+
+	/**
+	 * The number of structural features of the '<em>Sim Variable Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIM_VARIABLE_CONFIGURATION_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Sim Variable Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIM_VARIABLE_CONFIGURATION_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ROSVariableConfigurationImpl <em>ROS Variable Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ROSVariableConfigurationImpl
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getROSVariableConfiguration()
+	 * @generated
+	 */
+	int ROS_VARIABLE_CONFIGURATION = 19;
+
+	/**
+	 * The feature id for the '<em><b>Var</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROS_VARIABLE_CONFIGURATION__VAR = SIM_VARIABLE_CONFIGURATION__VAR;
+
+	/**
+	 * The feature id for the '<em><b>Launch Fileloc</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROS_VARIABLE_CONFIGURATION__LAUNCH_FILELOC = SIM_VARIABLE_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>ROS Variable Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROS_VARIABLE_CONFIGURATION_FEATURE_COUNT = SIM_VARIABLE_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>ROS Variable Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROS_VARIABLE_CONFIGURATION_OPERATION_COUNT = SIM_VARIABLE_CONFIGURATION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MOOSSimulatorImpl <em>MOOS Simulator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1047,7 +1138,25 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getMOOSSimulator()
 	 * @generated
 	 */
-	int MOOS_SIMULATOR = 19;
+	int MOOS_SIMULATOR = 20;
+
+	/**
+	 * The feature id for the '<em><b>Var Configs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOOS_SIMULATOR__VAR_CONFIGS = SIMULATOR__VAR_CONFIGS;
+
+	/**
+	 * The feature id for the '<em><b>Simulation Dependency</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOOS_SIMULATOR__SIMULATION_DEPENDENCY = SIMULATOR__SIMULATION_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Hostname</b></em>' attribute.
@@ -1093,7 +1202,25 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getTTSSimulator()
 	 * @generated
 	 */
-	int TTS_SIMULATOR = 20;
+	int TTS_SIMULATOR = 21;
+
+	/**
+	 * The feature id for the '<em><b>Var Configs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TTS_SIMULATOR__VAR_CONFIGS = SIMULATOR__VAR_CONFIGS;
+
+	/**
+	 * The feature id for the '<em><b>Simulation Dependency</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TTS_SIMULATOR__SIMULATION_DEPENDENCY = SIMULATOR__SIMULATION_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Hostname</b></em>' attribute.
@@ -1166,7 +1293,7 @@ public interface MRSPackagePackage extends EPackage {
 	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getParsingMethod()
 	 * @generated
 	 */
-	int PARSING_METHOD = 21;
+	int PARSING_METHOD = 22;
 
 
 	/**
@@ -1331,16 +1458,6 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getNode_Properties();
-
-	/**
-	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PublicationInformation <em>Publication Information</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Publication Information</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PublicationInformation
-	 * @generated
-	 */
-	EClass getPublicationInformation();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable <em>Generic Variable</em>}'.
@@ -1691,6 +1808,28 @@ public interface MRSPackagePackage extends EPackage {
 	EClass getSimulator();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Simulator#getVarConfigs <em>Var Configs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Var Configs</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Simulator#getVarConfigs()
+	 * @see #getSimulator()
+	 * @generated
+	 */
+	EReference getSimulator_VarConfigs();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Simulator#getSimulationDependency <em>Simulation Dependency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Simulation Dependency</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Simulator#getSimulationDependency()
+	 * @see #getSimulator()
+	 * @generated
+	 */
+	EReference getSimulator_SimulationDependency();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSSimulator <em>ROS Simulator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1721,6 +1860,48 @@ public interface MRSPackagePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getROSSimulator_Port();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.SimVariableConfiguration <em>Sim Variable Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Sim Variable Configuration</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.SimVariableConfiguration
+	 * @generated
+	 */
+	EClass getSimVariableConfiguration();
+
+	/**
+	 * Returns the meta object for the reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.SimVariableConfiguration#getVar <em>Var</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Var</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.SimVariableConfiguration#getVar()
+	 * @see #getSimVariableConfiguration()
+	 * @generated
+	 */
+	EReference getSimVariableConfiguration_Var();
+
+	/**
+	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSVariableConfiguration <em>ROS Variable Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>ROS Variable Configuration</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSVariableConfiguration
+	 * @generated
+	 */
+	EClass getROSVariableConfiguration();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSVariableConfiguration#getLaunchFileloc <em>Launch Fileloc</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Launch Fileloc</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSVariableConfiguration#getLaunchFileloc()
+	 * @see #getROSVariableConfiguration()
+	 * @generated
+	 */
+	EReference getROSVariableConfiguration_LaunchFileloc();
 
 	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MOOSSimulator <em>MOOS Simulator</em>}'.
@@ -1975,16 +2156,6 @@ public interface MRSPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EReference NODE__PROPERTIES = eINSTANCE.getNode_Properties();
-
-		/**
-		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.PublicationInformationImpl <em>Publication Information</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.PublicationInformationImpl
-		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getPublicationInformation()
-		 * @generated
-		 */
-		EClass PUBLICATION_INFORMATION = eINSTANCE.getPublicationInformation();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.GenericVariableImpl <em>Generic Variable</em>}' class.
@@ -2281,6 +2452,22 @@ public interface MRSPackagePackage extends EPackage {
 		EClass SIMULATOR = eINSTANCE.getSimulator();
 
 		/**
+		 * The meta object literal for the '<em><b>Var Configs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SIMULATOR__VAR_CONFIGS = eINSTANCE.getSimulator_VarConfigs();
+
+		/**
+		 * The meta object literal for the '<em><b>Simulation Dependency</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SIMULATOR__SIMULATION_DEPENDENCY = eINSTANCE.getSimulator_SimulationDependency();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ROSSimulatorImpl <em>ROS Simulator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2305,6 +2492,42 @@ public interface MRSPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ROS_SIMULATOR__PORT = eINSTANCE.getROSSimulator_Port();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.SimVariableConfigurationImpl <em>Sim Variable Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.SimVariableConfigurationImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getSimVariableConfiguration()
+		 * @generated
+		 */
+		EClass SIM_VARIABLE_CONFIGURATION = eINSTANCE.getSimVariableConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Var</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SIM_VARIABLE_CONFIGURATION__VAR = eINSTANCE.getSimVariableConfiguration_Var();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ROSVariableConfigurationImpl <em>ROS Variable Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ROSVariableConfigurationImpl
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MRSPackagePackageImpl#getROSVariableConfiguration()
+		 * @generated
+		 */
+		EClass ROS_VARIABLE_CONFIGURATION = eINSTANCE.getROSVariableConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Launch Fileloc</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ROS_VARIABLE_CONFIGURATION__LAUNCH_FILELOC = eINSTANCE.getROSVariableConfiguration_LaunchFileloc();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.MOOSSimulatorImpl <em>MOOS Simulator</em>}' class.

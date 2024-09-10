@@ -31,9 +31,10 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Paramet
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParameterVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParsingMethod;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PropertiesKeyValues;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.PublicationInformation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSSimulator;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSVariableConfiguration;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.RegexLocation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.SimVariableConfiguration;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Simulator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.TTSSimulator;
@@ -75,13 +76,6 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * @generated
 	 */
 	private EClass nodeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass publicationInformationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -194,6 +188,20 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * @generated
 	 */
 	private EClass rosSimulatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass simVariableConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rosVariableConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -436,15 +444,6 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 */
 	public EReference getNode_Properties() {
 		return (EReference)nodeEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPublicationInformation() {
-		return publicationInformationEClass;
 	}
 
 	/**
@@ -749,6 +748,24 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSimulator_VarConfigs() {
+		return (EReference)simulatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSimulator_SimulationDependency() {
+		return (EReference)simulatorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getROSSimulator() {
 		return rosSimulatorEClass;
 	}
@@ -769,6 +786,42 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 */
 	public EAttribute getROSSimulator_Port() {
 		return (EAttribute)rosSimulatorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSimVariableConfiguration() {
+		return simVariableConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSimVariableConfiguration_Var() {
+		return (EReference)simVariableConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getROSVariableConfiguration() {
+		return rosVariableConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getROSVariableConfiguration_LaunchFileloc() {
+		return (EReference)rosVariableConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -906,8 +959,6 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		createEReference(nodeEClass, NODE__PUBLISHER);
 		createEReference(nodeEClass, NODE__PROPERTIES);
 
-		publicationInformationEClass = createEClass(PUBLICATION_INFORMATION);
-
 		genericVariableEClass = createEClass(GENERIC_VARIABLE);
 		createEAttribute(genericVariableEClass, GENERIC_VARIABLE__NAME);
 		createEReference(genericVariableEClass, GENERIC_VARIABLE__TYPE);
@@ -955,10 +1006,18 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		createEReference(componentPropertyEClass, COMPONENT_PROPERTY__TYPE);
 
 		simulatorEClass = createEClass(SIMULATOR);
+		createEReference(simulatorEClass, SIMULATOR__VAR_CONFIGS);
+		createEReference(simulatorEClass, SIMULATOR__SIMULATION_DEPENDENCY);
 
 		rosSimulatorEClass = createEClass(ROS_SIMULATOR);
 		createEAttribute(rosSimulatorEClass, ROS_SIMULATOR__HOSTNAME);
 		createEAttribute(rosSimulatorEClass, ROS_SIMULATOR__PORT);
+
+		simVariableConfigurationEClass = createEClass(SIM_VARIABLE_CONFIGURATION);
+		createEReference(simVariableConfigurationEClass, SIM_VARIABLE_CONFIGURATION__VAR);
+
+		rosVariableConfigurationEClass = createEClass(ROS_VARIABLE_CONFIGURATION);
+		createEReference(rosVariableConfigurationEClass, ROS_VARIABLE_CONFIGURATION__LAUNCH_FILELOC);
 
 		moosSimulatorEClass = createEClass(MOOS_SIMULATOR);
 		createEAttribute(moosSimulatorEClass, MOOS_SIMULATOR__HOSTNAME);
@@ -1016,6 +1075,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		regexLocationEClass.getESuperTypes().add(this.getFileLocation());
 		xmlConfigLocationEClass.getESuperTypes().add(this.getFileLocation());
 		rosSimulatorEClass.getESuperTypes().add(this.getSimulator());
+		rosVariableConfigurationEClass.getESuperTypes().add(this.getSimVariableConfiguration());
 		moosSimulatorEClass.getESuperTypes().add(this.getSimulator());
 		ttsSimulatorEClass.getESuperTypes().add(this.getSimulator());
 
@@ -1036,8 +1096,6 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		initEReference(getNode_Subscriber(), this.getGenericVariable(), null, "subscriber", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_Publisher(), this.getGenericVariable(), null, "publisher", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_Properties(), this.getComponentProperty(), null, "properties", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(publicationInformationEClass, PublicationInformation.class, "PublicationInformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(genericVariableEClass, GenericVariable.class, "GenericVariable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGenericVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, GenericVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1086,10 +1144,18 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		initEReference(getComponentProperty_Type(), this.getType(), null, "type", null, 1, 1, ComponentProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(simulatorEClass, Simulator.class, "Simulator", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSimulator_VarConfigs(), this.getSimVariableConfiguration(), null, "varConfigs", null, 0, -1, Simulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSimulator_SimulationDependency(), theExecutionPackage.getDependency(), null, "simulationDependency", null, 0, 1, Simulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rosSimulatorEClass, ROSSimulator.class, "ROSSimulator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getROSSimulator_Hostname(), ecorePackage.getEString(), "hostname", null, 0, 1, ROSSimulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getROSSimulator_Port(), ecorePackage.getEString(), "port", null, 0, 1, ROSSimulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(simVariableConfigurationEClass, SimVariableConfiguration.class, "SimVariableConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSimVariableConfiguration_Var(), this.getDynamicVariable(), null, "var", null, 1, 1, SimVariableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(rosVariableConfigurationEClass, ROSVariableConfiguration.class, "ROSVariableConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getROSVariableConfiguration_LaunchFileloc(), this.getXMLConfigLocation(), null, "launchFileloc", null, 1, 1, ROSVariableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(moosSimulatorEClass, MOOSSimulator.class, "MOOSSimulator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMOOSSimulator_Hostname(), ecorePackage.getEString(), "hostname", null, 0, 1, MOOSSimulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

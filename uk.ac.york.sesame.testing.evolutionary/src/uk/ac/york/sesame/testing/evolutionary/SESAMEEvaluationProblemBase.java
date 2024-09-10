@@ -158,8 +158,7 @@ public abstract class SESAMEEvaluationProblemBase implements Problem<SESAMETestS
 		for (FuzzingOperation a : FuzzingOperationsInCampaign) {
 			// TODO: get a list of operations to include, including the processing below
 			// this should always be at least one element in the list, including the random
-			// selection
-			// below if the original list is zero-based
+			// selection below if the original list is zero-based
 			if (shouldIncludeFuzzingOperation(a)) {
 
 				// FuzzingOperations produced as a "subset" of each of the selected FuzzingOperations

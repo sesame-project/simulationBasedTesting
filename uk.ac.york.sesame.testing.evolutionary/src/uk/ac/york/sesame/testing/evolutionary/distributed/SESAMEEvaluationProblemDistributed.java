@@ -29,7 +29,7 @@ public class SESAMEEvaluationProblemDistributed extends SESAMEEvaluationProblemB
 
 	@Override
 	public void evaluate(SESAMETestSolution solution) {
-		// Evaluate is a null since multiple solutions are evaluated in parallel
+		// Evaluate is null since multiple solutions are evaluated in parallel
 	}
 
 	@Override

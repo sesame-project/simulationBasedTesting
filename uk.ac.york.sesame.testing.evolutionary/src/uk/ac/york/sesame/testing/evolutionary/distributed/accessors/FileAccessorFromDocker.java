@@ -1,4 +1,4 @@
-package uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables;
+package uk.ac.york.sesame.testing.evolutionary.distributed.accessors;
 
 import java.util.Optional;
 import java.io.File;
@@ -103,7 +103,7 @@ public class FileAccessorFromDocker extends FileAccessorFromDependency {
 			if (!parentDir.exists()) {
 				parentDir.mkdirs();
 			}
-			System.out.println("Writing static variable to " + outputFileName);
+			System.out.println("Writing modified Docker file to " + outputFileName);
 			return Optional.of(new StreamResult(new File(outputFileName)));
 		} catch (MissingProperty | MissingPropertiesFile e) {
 			e.printStackTrace();

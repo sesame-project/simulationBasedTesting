@@ -1,6 +1,8 @@
-package uk.ac.york.sesame.testing.evolutionary.distributed.xmltransform.test;
+package uk.ac.york.sesame.testing.evolutionary.distributed.remapping.test;
 
 import java.util.Random;
+
+import org.eclipse.emf.common.util.EList;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
@@ -10,8 +12,12 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Executio
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DoubleRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBasedVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackageFactory;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSSimulator;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSVariableConfiguration;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.SimVariableConfiguration;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
@@ -19,34 +25,43 @@ import uk.ac.york.sesame.testing.evolutionary.distributed.RemoteTest;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANODistributedExperiment;
 import uk.ac.york.sesame.testing.evolutionary.utilities.temp.SESAMEModelLoader;
 
-public class TestStaticVar {
-	public static void main(String [] args) {
+public class RemappingTest {
+
+	public static void main(String[] args) throws InterruptedException {
 		TestingPackageFactory tf = TestingPackageFactory.eINSTANCE;
 		FuzzingOperationsFactory ff = FuzzingOperationsFactory.eINSTANCE;
 		ExecutionFactory ef = ExecutionFactory.eINSTANCE;
 		MRSPackageFactory mf = MRSPackageFactory.eINSTANCE;
 		
+		MRS mrs = mf.createMRS();
+		ROSSimulator rsim = mf.createROSSimulator();
+		mrs.setSimulator(rsim);
+
+		
 		RandomValueFromSetOperation rvf = ff.createRandomValueFromSetOperation();
-		StaticVariable sv = mf.createStaticVariable();
+		rvf.setName("/pmb2_1/scan_raw");
+		
+		EventBasedVariable ev = mf.createEventBasedVariable();
 		XMLConfigLocation l = mf.createXMLConfigLocation();
 		ContainerDependency cd = ef.createContainerDependency();
+		
+		ROSVariableConfiguration rosvc = mf.createROSVariableConfiguration();
+		rosvc.setVar(ev);
+		rosvc.setLaunchFileloc(l);
+		
+		EList<SimVariableConfiguration> svcs = rsim.getVarConfigs();
+		svcs.add(rosvc);
+		
+		rvf.setVariableToAffect(ev);
+		rsim.setSimulationDependency(cd);
 		cd.setImageName("cuda_v6_fixedscript");
-		l.setFileName("/home/user/sesame_ws/install/share/pal_gazebo_worlds/worlds/pal_kitchen.world");
-		l.setXpathExpression("/sdf/world/physics/max_step_size");
+		
+		l.setFileName("/opt/pal/gallium/share/pmb2_2dnav_gazebo/launch/navigation.launch");
+		l.setXpathExpression("/launch/node[@name='laser_filter']/remap[@from='scan']/@to");
 		l.setRoot(cd);
 		
-		sv.setName("TEST");
-		sv.getLocations().add(l);
-		
-		rvf.setVariableToAffect(sv);
-		
-		DoubleRange rvfInfo = ff.createDoubleRange();
-		rvfInfo.setLowerBound(0.0);
-		rvfInfo.setUpperBound(10.0);
-		
-		rvf.getValueSet().add(rvfInfo);
-		
-		MRS mrs = null;
+		ev.setName("TEST");
+		rvf.setVariableToAffect(ev);
 		
 		TestCampaign tc = tf.createTestCampaign();
 						
@@ -59,10 +74,8 @@ public class TestStaticVar {
 		// These params are not needed since not doing real code generation
 		SOPRANODistributedExperiment distributedExpt = new SOPRANODistributedExperiment(tc, distExec, loader, "", "", mrs);
 				
-		System.out.println("Running test");
+		System.out.println("Running test for remapping");
 		RemoteTest rt = new RemoteTest("Test_001", distributedExpt, sol);
-		
-		Random rng = new Random();
-		rt.handleStaticFuzzingForTest(rng);
+		rt.ensureRemappingsForTest();
 	}
 }

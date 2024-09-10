@@ -340,7 +340,6 @@ package Metrics {
 	class FileStreamResult extends StreamResult {
 		attr String filename;
 	}
-
 }
 
 @namespace(uri="Results", prefix="")
@@ -419,6 +418,7 @@ package MRSPackage {
 		attr String launchFileLocation;
 		attr String customTerminateFileLocation;
 		attr String recordFileLocation;
+		
 		val Node[*] nodes;
 		val Simulator[1] simulator;
 		val Type[*] propertyType;
@@ -433,9 +433,9 @@ package MRSPackage {
 		ref ComponentProperty[*] properties;
 	}
 	
-	class PublicationInformation {
-		// For remapping - need the node info
-	}
+//	class PublicationInformation {
+//		// For remapping - need the node info
+//	}
 	
 	abstract class GenericVariable {
 		attr String name;
@@ -449,7 +449,7 @@ package MRSPackage {
 	}
 
 	abstract class DynamicVariable extends GenericVariable {
-		
+
 	}
 
 	/** A dynamic variable represented by a ROS topic (or gRPC SHM interface) 
@@ -519,13 +519,23 @@ package MRSPackage {
 	}
 
 	abstract class Simulator {
-	
+		val SimVariableConfiguration[*] varConfigs;
+		ref Execution.Dependency simulationDependency;
 	}
 
 	class ROSSimulator extends Simulator {
 		attr String hostname;
 		attr String port;
+		
 	}
+	
+	abstract class SimVariableConfiguration {
+		ref DynamicVariable[1] var;
+	} 
+	
+	class ROSVariableConfiguration extends SimVariableConfiguration {
+		val XMLConfigLocation[1] launchFileloc;
+	} 
 
 	class MOOSSimulator extends Simulator {
 		attr String hostname;

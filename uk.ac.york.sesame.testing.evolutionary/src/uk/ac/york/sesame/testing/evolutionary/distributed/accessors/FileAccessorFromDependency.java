@@ -1,4 +1,4 @@
-package uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables;
+package uk.ac.york.sesame.testing.evolutionary.distributed.accessors;
 
 import java.util.Optional;
 

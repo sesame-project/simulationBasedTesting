@@ -1,4 +1,4 @@
-package uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables;
+package uk.ac.york.sesame.testing.evolutionary.distributed.remapping.transformers;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -24,6 +24,8 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation;
+import uk.ac.york.sesame.testing.evolutionary.distributed.accessors.FileAccessorFromDependency;
+import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.TransformFailed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.operationexecutors.OperationExecutor;
 
 public class XMLConfigTransformer extends ConfigTransformer {
@@ -55,6 +57,7 @@ public class XMLConfigTransformer extends ConfigTransformer {
 				for (int idx = 0; idx < nodes.getLength(); idx++) {
 					Object original = nodes.item(idx).getTextContent();
 					Object changedValue = executor.exec(rng, original);
+					System.out.println("original = " + original.toString() + " - changed to " + changedValue.toString());
 					nodes.item(idx).setTextContent(changedValue.toString());
 				}
 

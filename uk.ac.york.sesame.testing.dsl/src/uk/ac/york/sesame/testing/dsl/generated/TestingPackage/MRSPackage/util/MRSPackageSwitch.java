@@ -78,12 +78,6 @@ public class MRSPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MRSPackagePackage.PUBLICATION_INFORMATION: {
-				PublicationInformation publicationInformation = (PublicationInformation)theEObject;
-				T result = casePublicationInformation(publicationInformation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MRSPackagePackage.GENERIC_VARIABLE: {
 				GenericVariable genericVariable = (GenericVariable)theEObject;
 				T result = caseGenericVariable(genericVariable);
@@ -196,6 +190,19 @@ public class MRSPackageSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MRSPackagePackage.SIM_VARIABLE_CONFIGURATION: {
+				SimVariableConfiguration simVariableConfiguration = (SimVariableConfiguration)theEObject;
+				T result = caseSimVariableConfiguration(simVariableConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MRSPackagePackage.ROS_VARIABLE_CONFIGURATION: {
+				ROSVariableConfiguration rosVariableConfiguration = (ROSVariableConfiguration)theEObject;
+				T result = caseROSVariableConfiguration(rosVariableConfiguration);
+				if (result == null) result = caseSimVariableConfiguration(rosVariableConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MRSPackagePackage.MOOS_SIMULATOR: {
 				MOOSSimulator moosSimulator = (MOOSSimulator)theEObject;
 				T result = caseMOOSSimulator(moosSimulator);
@@ -241,21 +248,6 @@ public class MRSPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNode(Node object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Publication Information</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Publication Information</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePublicationInformation(PublicationInformation object) {
 		return null;
 	}
 
@@ -496,6 +488,36 @@ public class MRSPackageSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseROSSimulator(ROSSimulator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sim Variable Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sim Variable Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSimVariableConfiguration(SimVariableConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ROS Variable Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ROS Variable Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseROSVariableConfiguration(ROSVariableConfiguration object) {
 		return null;
 	}
 

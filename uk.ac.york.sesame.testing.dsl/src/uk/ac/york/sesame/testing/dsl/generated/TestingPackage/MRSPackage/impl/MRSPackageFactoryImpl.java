@@ -59,7 +59,6 @@ public class MRSPackageFactoryImpl extends EFactoryImpl implements MRSPackageFac
 		switch (eClass.getClassifierID()) {
 			case MRSPackagePackage.MRS: return createMRS();
 			case MRSPackagePackage.NODE: return createNode();
-			case MRSPackagePackage.PUBLICATION_INFORMATION: return createPublicationInformation();
 			case MRSPackagePackage.STATIC_VARIABLE: return createStaticVariable();
 			case MRSPackagePackage.EVENT_BASED_VARIABLE: return createEventBasedVariable();
 			case MRSPackagePackage.PARAMETER_VARIABLE: return createParameterVariable();
@@ -72,6 +71,7 @@ public class MRSPackageFactoryImpl extends EFactoryImpl implements MRSPackageFac
 			case MRSPackagePackage.PARAMETER: return createParameter();
 			case MRSPackagePackage.COMPONENT_PROPERTY: return createComponentProperty();
 			case MRSPackagePackage.ROS_SIMULATOR: return createROSSimulator();
+			case MRSPackagePackage.ROS_VARIABLE_CONFIGURATION: return createROSVariableConfiguration();
 			case MRSPackagePackage.MOOS_SIMULATOR: return createMOOSSimulator();
 			case MRSPackagePackage.TTS_SIMULATOR: return createTTSSimulator();
 			default:
@@ -127,16 +127,6 @@ public class MRSPackageFactoryImpl extends EFactoryImpl implements MRSPackageFac
 	public Node createNode() {
 		NodeImpl node = new NodeImpl();
 		return node;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PublicationInformation createPublicationInformation() {
-		PublicationInformationImpl publicationInformation = new PublicationInformationImpl();
-		return publicationInformation;
 	}
 
 	/**
@@ -257,6 +247,16 @@ public class MRSPackageFactoryImpl extends EFactoryImpl implements MRSPackageFac
 	public ROSSimulator createROSSimulator() {
 		ROSSimulatorImpl rosSimulator = new ROSSimulatorImpl();
 		return rosSimulator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ROSVariableConfiguration createROSVariableConfiguration() {
+		ROSVariableConfigurationImpl rosVariableConfiguration = new ROSVariableConfigurationImpl();
+		return rosVariableConfiguration;
 	}
 
 	/**

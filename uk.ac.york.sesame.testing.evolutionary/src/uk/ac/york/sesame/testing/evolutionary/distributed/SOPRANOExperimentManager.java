@@ -48,7 +48,7 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	AllocationStrategy workerAllocationStrategy;
 	SOPRANODistributedExperiment activeExperiment;
 
-	private Thread loopThread;
+	private Thread loopThread; 
 
 	public SOPRANOExperimentManager(SOPRANODistributedExperiment expt, AllocationStrategy workerAllocationStrat) {
 		// How to set the dependencies needed?
@@ -122,8 +122,11 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 						WorkerNode node = node_o.get();
 						System.out.println("Allocating test " + t.getTestID() + " to worker " + node.toString());
 						
+						// Ensure all the remappings are done for this test
+						t.ensureRemappingsForTest();
+						
 						// Ensure transformations are done for any static variables for that test
-						t.handleStaticFuzzingForTest(rng, t);
+						t.handleStaticFuzzingForTest(rng);
 						
 						// Register test, create new status monitor for test
 						node.submitTest(t);
