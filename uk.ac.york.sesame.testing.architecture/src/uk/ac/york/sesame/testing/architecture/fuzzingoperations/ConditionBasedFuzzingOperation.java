@@ -2,8 +2,6 @@ package uk.ac.york.sesame.testing.architecture.fuzzingoperations;
 
 import java.io.IOException;
 
-import org.apache.flink.streaming.api.functions.co.CoProcessFunction.Context;
-
 import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 
 public abstract class ConditionBasedFuzzingOperation extends ConditionBasedGeneral {

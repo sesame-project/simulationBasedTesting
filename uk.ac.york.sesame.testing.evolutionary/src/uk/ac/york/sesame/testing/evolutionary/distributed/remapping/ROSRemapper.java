@@ -35,7 +35,6 @@ public class ROSRemapper extends SimulationRemapper {
 	}
 	
 	private void performRemappingROSVariable(RemoteTest rt, ROSVariableConfiguration rv) throws InvalidTransformerForVariable, TransformFailed {
-		DynamicVariable dv = rv.getVar();
 		Random rng = new Random();
 		
 		// Launch files are XML so use the XML config transformer

@@ -1,7 +1,5 @@
 package uk.ac.york.sesame.testing.evolutionary.distributed.remapping.test;
 
-import java.util.Random;
-
 import org.eclipse.emf.common.util.EList;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
@@ -9,7 +7,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFact
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ContainerDependency;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DistributedExecutionStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionFactory;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DoubleRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.EventBasedVariable;
@@ -18,7 +15,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPack
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSSimulator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSVariableConfiguration;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.SimVariableConfiguration;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.distributed.RemoteTest;

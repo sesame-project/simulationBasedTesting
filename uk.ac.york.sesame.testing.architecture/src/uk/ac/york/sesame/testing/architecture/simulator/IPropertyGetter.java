@@ -1,7 +1,6 @@
 package uk.ac.york.sesame.testing.architecture.simulator;
 
 public interface IPropertyGetter {
-	
-	public Object invoke(String propertyName);
-
+	public IParamServiceCallback getAsync();
+	public Object getSync() throws ParameterGetTimedOut;
 }

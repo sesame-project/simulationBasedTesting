@@ -1,7 +1,8 @@
-package uk.ac.york.sesame.testing.architecture.ros;
+package uk.ac.york.sesame.testing.architecture.ros.test;
 
 import java.util.HashMap;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
+import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
 import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 
 public class ROSConnectionTest {

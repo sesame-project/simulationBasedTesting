@@ -28,6 +28,7 @@ import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper
 import uk.ac.york.sesame.testing.evolutionary.dslwrapper.InvalidFuzzingOperation;
 
 public class RemoteTest implements Comparable<RemoteTest> {
+	private static final boolean REMAP_ALL_VARIABLES = false;
 	private String testID;
 	private SOPRANODistributedExperiment expt;
 	private TestStatus status = TestStatus.RUNNING;
@@ -64,8 +65,15 @@ public class RemoteTest implements Comparable<RemoteTest> {
 		try {
 			SimulationRemapper sr = srFactory.createRemapping(sim);
 			for (SimVariableConfiguration sv : svc) {
-				System.out.println("Performing remapping for dynamic variable " + sv.getVar().getName());
-				sr.performRemappingForVariable(this, sv);
+				// Test if the model contains this variable in any fuzzing operations
+				// or if we should include it anyway...
+				boolean shouldInclude = REMAP_ALL_VARIABLES || operationsContainVariable(sv);
+				if (shouldInclude) {
+					System.out.println("Performing remapping for dynamic variable " + sv.getVar().getName());
+					sr.performRemappingForVariable(this, sv);
+				} else {
+					System.out.println("Skipping remapping for dynamic variable " + sv.getVar().getName());
+				}
 			}
 		} catch (SimulationTypeNotRecognisedForRemapping e) {
 			e.printStackTrace();
@@ -78,6 +86,11 @@ public class RemoteTest implements Comparable<RemoteTest> {
 		}
 	}
 	
+	private boolean operationsContainVariable(SimVariableConfiguration sv) {
+		// TODO Scan the model and determine if it contains the given variable
+		return false;
+	}
+
 	public synchronized void handleStaticFuzzingForTest(Random rng) {
 		ConfigTransformerFactory ctFactory = new ConfigTransformerFactory();
 		StaticOperationExecutoryFactory soFactory = new StaticOperationExecutoryFactory();

@@ -3,6 +3,7 @@ package uk.ac.york.sesame.testing.architecture.simulator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.Topic;
@@ -22,11 +23,10 @@ public interface ISimulator {
 	public Object createTopic(String topicName, String topicType);
 	public Object connect(ConnectionProperties params);
 	public void disconnect();
-	public IPropertyGetter getPropertyGetter();
-	public IPropertySetter getPropertySetter();
+	public IPropertyGetter getPropertyGetter(Properties properties);
+	public IPropertySetter getPropertySetter(Properties properties);
 	public ICommandInvoker getICommandInvoker();
 	public void run(HashMap<String, String> params);
 	public void redirectTopics(ArrayList<Topic> topics);
 	public void updateTime() throws SubscriptionFailure;
-	
 }

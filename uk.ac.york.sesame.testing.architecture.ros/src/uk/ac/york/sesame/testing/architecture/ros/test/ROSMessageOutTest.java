@@ -1,9 +1,10 @@
-package uk.ac.york.sesame.testing.architecture.ros;
+package uk.ac.york.sesame.testing.architecture.ros.test;
 
 import java.util.HashMap;
 
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
+import uk.ac.york.sesame.testing.architecture.ros.ROSSimulator;
 
 public class ROSMessageOutTest {
 

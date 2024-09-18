@@ -6,18 +6,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.eclipse.epsilon.common.util.StringProperties;
-import org.eclipse.epsilon.emc.emf.EmfModel;
-import org.eclipse.epsilon.emc.plainxml.PlainXmlModel;
-import org.eclipse.epsilon.eol.launch.EolRunConfiguration;
-import org.eclipse.epsilon.eol.models.IModel;
+import java.util.Properties;
 
 import edu.wpi.rail.jrosbridge.JRosbridge.WebSocketType;
 import edu.wpi.rail.jrosbridge.Ros;
+import edu.wpi.rail.jrosbridge.Service;
 import edu.wpi.rail.jrosbridge.Topic;
 import edu.wpi.rail.jrosbridge.callback.TopicCallback;
 import edu.wpi.rail.jrosbridge.messages.Message;
+import edu.wpi.rail.jrosbridge.services.ServiceRequest;
 import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
@@ -67,19 +64,23 @@ public class ROSSimulator implements ISimulator {
 		Ros rosConnection = new Ros(host, port, WebSocketType.ws);
 		rosConnection.connect();
 		this.ros = rosConnection;
-		return rosConnection;
+		return rosConnection; 
 	}
 
 	@Override
-	public IPropertyGetter getPropertyGetter() {
-		// TODO Auto-generated method stub
-		return null;
+	public IPropertyGetter getPropertyGetter(Properties properties) {
+		// TODO Get componentName and paramName
+		String componentName = properties.getProperty("componentName");
+		String paramName = properties.getProperty("paramName");
+		return new ROS2ParameterGetter(componentName, paramName, ros);
 	}
 
 	@Override
-	public IPropertySetter getPropertySetter() {
-		// TODO Auto-generated method stub
-		return null;
+	public IPropertySetter getPropertySetter(Properties properties) {
+		// TODO Get componentName and paramName
+		String componentName = properties.getProperty("componentName");
+		String paramName = properties.getProperty("paramName");
+		return new ROS2ParameterSetter(componentName, paramName, ros);
 	}
 
 	@Override
@@ -88,7 +89,36 @@ public class ROSSimulator implements ISimulator {
 		return null;
 	}
 	
-
+//	/** Test code for setting the dynamically reconfigurable parameters in ROS 
+//	 * This only works for ROS1, need to verify if it is ROS2 or not? **/
+//	
+//	public void __testSetIntDynamicParameterROS1(String componentName, String paramName, int paramVal) {
+//		String srvName = componentName + "/set_parameters";
+//		String srvType = "dynamic_reconfigure/Reconfigure";
+//		Service srv = new Service(this.ros, srvName, srvType);
+//		String intAdjustment = "{\"name\": \""+ paramName + "\", \"value\": " + String.valueOf(paramVal) + "}";
+//		String content = "{\"config\": { \"bools\": ["+"], \"ints\": [" + intAdjustment + "], \"strs\": ["+"], \"doubles\": ["+"], \"groups\": ["+"]}}}";
+//		System.out.println(content);
+//		ServiceRequest rq = new ServiceRequest(content);
+//		srv.callService(rq, new ROSSetParamServiceCallback(paramName, paramVal));
+//	}
+//	
+//	/** Test code for setting the dynamically reconfigurable parameters in ROS 
+//	 * This only works for ROS1, need to verify if it is ROS2 or not? **/
+//	
+//	public void __testSetIntDynamicParameterROS2(String componentName, String paramName, int paramVal) {
+//		String srvName = componentName + "/set_parameters";
+//		String srvType = "rcl_interfaces/srv/SetParameters";
+//		Service srv = new Service(this.ros, srvName, srvType);
+//	
+//		int paramTypeNum = 2;
+//		String paramStr = "{\"name\" : \"" + paramName + "\", \"value\" : { \"type\": " + Integer.toString(paramTypeNum) + ", \"integer_value\" : " + Integer.toString(paramVal) + "}}";
+//		String paramSRVContent = "{\"parameters\": [" + paramStr + "]}";
+//		System.out.println(paramSRVContent);
+//		ServiceRequest rq = new ServiceRequest(paramSRVContent);
+//		srv.callService(rq, new ROSSetParamServiceCallback(paramName, paramVal));
+//	}
+	
 	public void runExtraScriptIfExists(String workingDir, String testID, long extrasWaitdelayMsec) {
 		String extrasFile = "start-extras.sh";
 		String extrasPath = workingDir + "/" + extrasFile;
@@ -219,29 +249,31 @@ public class ROSSimulator implements ISimulator {
 
 	@Override
 	public void redirectTopics(ArrayList<uk.ac.york.sesame.testing.architecture.data.Topic> topics) {
-		HashMap<IModel, StringProperties> models = new HashMap<IModel, StringProperties>();
-		StringProperties mrsModelProperties = new StringProperties();
-		mrsModelProperties.setProperty(EmfModel.PROPERTY_NAME, "MRS");
-		mrsModelProperties.setProperty(EmfModel.PROPERTY_FILE_BASED_METAMODEL_URI,"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/ExSceMM.ecore");
-		mrsModelProperties.setProperty(EmfModel.PROPERTY_MODEL_URI,"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/exampleExSce.model");
-		models.put(new EmfModel(), mrsModelProperties);
-		StringProperties launchModelProperties = new StringProperties();
-		launchModelProperties.setProperty(PlainXmlModel.PROPERTY_NAME, "LAUNCH");
-		launchModelProperties.setProperty(PlainXmlModel.PROPERTY_URI,"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/files/turtle_example.launch");
-		launchModelProperties.setProperty(PlainXmlModel.PROPERTY_STOREONDISPOSAL, "true");
-		models.put(new PlainXmlModel(), launchModelProperties);
+		// Old Thanos code: topic remapping is now implemented in package uk.ac.york.sesame.testing.evolutionary.distributed.remapping;
 		
-		EolRunConfiguration runConfig = EolRunConfiguration.Builder().withScript("/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/files/updateXMLLaunchfiles.eol")
-				.withModels(models).withParameter("Thread", Thread.class).build();
-
-		runConfig.parameters.put("topics", topics);
-		runConfig.run();
-		try {
-			runConfig.dispose();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		HashMap<IModel, StringProperties> models = new HashMap<IModel, StringProperties>();
+//		StringProperties mrsModelProperties = new StringProperties();
+//		mrsModelProperties.setProperty(EmfModel.PROPERTY_NAME, "MRS");
+//		mrsModelProperties.setProperty(EmfModel.PROPERTY_FILE_BASED_METAMODEL_URI,"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/ExSceMM.ecore");
+//		mrsModelProperties.setProperty(EmfModel.PROPERTY_MODEL_URI,"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/models/exampleExSce.model");
+//		models.put(new EmfModel(), mrsModelProperties);
+//		StringProperties launchModelProperties = new StringProperties();
+//		launchModelProperties.setProperty(PlainXmlModel.PROPERTY_NAME, "LAUNCH");
+//		launchModelProperties.setProperty(PlainXmlModel.PROPERTY_URI,"/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/files/turtle_example.launch");
+//		launchModelProperties.setProperty(PlainXmlModel.PROPERTY_STOREONDISPOSAL, "true");
+//		models.put(new PlainXmlModel(), launchModelProperties);
+//		
+//		EolRunConfiguration runConfig = EolRunConfiguration.Builder().withScript("/home/thanos/Documents/Git Projects/SESAME_WP6/uk.ac.york.sesame.testing.architecture/files/updateXMLLaunchfiles.eol")
+//				.withModels(models).withParameter("Thread", Thread.class).build();
+//
+//		runConfig.parameters.put("topics", topics);
+//		runConfig.run();
+//		try {
+//			runConfig.dispose();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	@Override
