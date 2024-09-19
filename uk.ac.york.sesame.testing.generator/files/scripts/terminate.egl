@@ -37,10 +37,13 @@ killall -9 lamp_manager_node
 
 killall -9 scan_unifier_node
 
+#killall -9 ros2
+
 pkill -f TestRunner
 pkill -9 -f DDDSimulatorProject
 
-docker stop $(docker ps -a -q)
+# TODO: need to check if Docker is being used in the project, and only kill it if so 
+#docker stop $(docker ps -a -q)
 killall -9 rosbag
 
 exit 0
