@@ -1,30 +1,69 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ExSceMM:MRS xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ExSceMM="http://ExSceMM" xmi:id="_Z4M2cCv_EeykGsd0UrLwGA" launchFileLocation="/home/jharbin/academic/sesame/WP6/temp-launch-scripts/launch-scripts/auto_launch_turtlesim.sh">
-  <topics xmi:id="_ayhwsCv_EeykGsd0UrLwGA" name="/turtle1/cmd_vel" type="_ksEosCv_EeykGsd0UrLwGA"/>
-  <topics xmi:id="_-onDMCv_EeykGsd0UrLwGA" name="/turtle1/pose" type="_67hGYCv_EeykGsd0UrLwGA"/>
-  <nodes xmi:id="_gZyUICv_EeykGsd0UrLwGA" name="Turtle1" subscriber="_ayhwsCv_EeykGsd0UrLwGA" publisher="_-onDMCv_EeykGsd0UrLwGA"/>
-  <nodes xmi:id="_iHhnwJSLEeyi3puJ8GqOAQ" name="teleop_key" publisher="_ayhwsCv_EeykGsd0UrLwGA"/>
-  <simulator xsi:type="ExSceMM:ROSSimulator" xmi:id="_mtRLoEXuEeybjfS_xnSIvQ" hostname="0.0.0.0" port="9090"/>
-  <propertyType xmi:id="_ksEosCv_EeykGsd0UrLwGA" name="geometry_msgs/Twist">
-    <parameters xmi:id="_l2jiACwDEeykGsd0UrLwGA" name="linear" type="_QNs_sCwCEeykGsd0UrLwGA">
-      <subparameters xmi:id="_VBnvwCwEEeykGsd0UrLwGA" name="X" type="_XPV2cCwCEeykGsd0UrLwGA"/>
-      <subparameters xmi:id="_YR7C4CwEEeykGsd0UrLwGA" name="Y" type="_XPV2cCwCEeykGsd0UrLwGA"/>
-      <subparameters xmi:id="_aLGLACwEEeykGsd0UrLwGA" name="Z" type="_XPV2cCwCEeykGsd0UrLwGA"/>
-    </parameters>
-    <parameters xmi:id="_ucOYgCwdEeykGsd0UrLwGA" name="angular" type="_QNs_sCwCEeykGsd0UrLwGA">
-      <subparameters xmi:id="_xgR_YCwdEeykGsd0UrLwGA" name="X" type="_XPV2cCwCEeykGsd0UrLwGA"/>
-      <subparameters xmi:id="_xgR_YSwdEeykGsd0UrLwGA" name="Y" type="_XPV2cCwCEeykGsd0UrLwGA"/>
-      <subparameters xmi:id="_xgR_YiwdEeykGsd0UrLwGA" name="Z" type="_XPV2cCwCEeykGsd0UrLwGA"/>
-    </parameters>
-  </propertyType>
-  <propertyType xmi:id="_67hGYCv_EeykGsd0UrLwGA" name="turtlesim/Pose">
-    <parameters xmi:id="_yR3CwCwcEeykGsd0UrLwGA" name="X" type="_0fIyoCwcEeykGsd0UrLwGA"/>
-    <parameters xmi:id="_60-6YCwcEeykGsd0UrLwGA" name="Y" type="_0fIyoCwcEeykGsd0UrLwGA"/>
-    <parameters xmi:id="_9P5doCwcEeykGsd0UrLwGA" name="theta" type="_0fIyoCwcEeykGsd0UrLwGA"/>
-    <parameters xmi:id="_-V3AICwcEeykGsd0UrLwGA" name="linear_velocity" type="_0fIyoCwcEeykGsd0UrLwGA"/>
-    <parameters xmi:id="_AKcjMCwdEeykGsd0UrLwGA" name="angular_velocity" type="_0fIyoCwcEeykGsd0UrLwGA"/>
-  </propertyType>
-  <propertyType xmi:id="_QNs_sCwCEeykGsd0UrLwGA" name="Vector3"/>
-  <propertyType xmi:id="_XPV2cCwCEeykGsd0UrLwGA" name="float64"/>
-  <propertyType xmi:id="_0fIyoCwcEeykGsd0UrLwGA" name="float32"/>
-</ExSceMM:MRS>
+<TestingMM:TestingSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="Metrics" xmlns:TestingMM="TestingMM" xmlns:_1="FuzzingOperations" xmlns:_2="MRSPackage" xmlns:_3="Execution" xmi:id="_VMYbMGKhEe6npZ9UVoAbbA" name="turtleMRSDemo">
+  <metrics xsi:type="FuzzingOperationTimesMetric" xmi:id="_V5eHUHZZEe--UbBGoUiFwA" name="fuzzingOperationTimes">
+    <valueIfNotReceived xmi:id="_a1ShEHZZEe--UbBGoUiFwA" defaultVal="1000.0"/>
+    <initValue xmi:id="_YKRFQHZZEe--UbBGoUiFwA"/>
+    <streams xsi:type="InputStream" xmi:id="_5oBHEHZcEe--UbBGoUiFwA"/>
+  </metrics>
+  <metrics xsi:type="StreamMetric" xmi:id="_fW5EAHZZEe--UbBGoUiFwA" name="distanceToPoint" relatedVariables="_-onDMCv_EeykGsd0UrLwGA">
+    <valueIfNotReceived xmi:id="_pHjFwHZZEe--UbBGoUiFwA" defaultVal="1000.0"/>
+    <initValue xmi:id="_nx4TUHZZEe--UbBGoUiFwA" defaultVal="1000.0"/>
+    <streams xsi:type="InputStream" xmi:id="_rGs6EHZZEe--UbBGoUiFwA"/>
+  </metrics>
+  <possibleFuzzingOperations xsi:type="_1:RandomValueFromSetOperation" xmi:id="_VixccHWGEe-u3qaJErQubA" name="distortVelocity" variableToAffect="_ayhwsCv_EeykGsd0UrLwGA">
+    <activation xsi:type="_1:FixedTimeActivation" xmi:id="_52pMQHWIEe-u3qaJErQubA" endTime="30.0"/>
+    <valueSet xsi:type="_1:DoubleRange" xmi:id="_3Z2EkHWGEe-u3qaJErQubA" lowerBound="-1.0" upperBound="1.0"/>
+  </possibleFuzzingOperations>
+  <campaigns xmi:id="_NglHoHWGEe-u3qaJErQubA" name="validatePredictor" metrics="_V5eHUHZZEe--UbBGoUiFwA _fW5EAHZZEe--UbBGoUiFwA" includedOperations="_VixccHWGEe-u3qaJErQubA">
+    <activationGeneration xsi:type="TestingMM:TimeBasedActivationGenerationMethod" xmi:id="_PG8BcHWGEe-u3qaJErQubA"/>
+    <approach xsi:type="TestingMM:NSGAEvolutionaryAlgorithm" xmi:id="_QBHKsHWGEe-u3qaJErQubA" populationSize="1" iterations="1"/>
+    <performedTests name="Test_001_19_09_2024_12_33_24">
+      <operations xsi:type="_1:RandomValueFromSetOperation" name="distortVelocity" variableToAffect="_ayhwsCv_EeykGsd0UrLwGA">
+        <activation xsi:type="_1:FixedTimeActivation" startTime="13.40659084436772" endTime="24.986647048671"/>
+        <valueSet xsi:type="_1:DoubleRange" lowerBound="-1.0" upperBound="1.0"/>
+      </operations>
+      <metrics metric="_V5eHUHZZEe--UbBGoUiFwA">
+        <result name="fuzzingOperationTimes" value="1000.0"/>
+      </metrics>
+      <metrics metric="_fW5EAHZZEe--UbBGoUiFwA">
+        <result name="distanceToPoint" value="1000.0"/>
+      </metrics>
+    </performedTests>
+    <resultSets name="FULL-19_09_2024_12_34_26-final" results="//@campaigns.0/@performedTests.0"/>
+    <resultSets name="NONDOM-19_09_2024_12_34_26-final" results="//@campaigns.0/@performedTests.0"/>
+    <endTrigger xsi:type="TestingMM:TimeBasedEnd" xmi:id="__HxHoHWIEe-u3qaJErQubA" timeLimitSeconds="30"/>
+  </campaigns>
+  <mrs xmi:id="_Z4M2cCv_EeykGsd0UrLwGA" launchDelaySeconds="10" launchFileLocation="/home/jharbin/academic/soprano/turtlesim-example/launch_turtlesim.sh">
+    <variables xsi:type="_2:EventBasedVariable" xmi:id="_ayhwsCv_EeykGsd0UrLwGA" name="/turtle1/cmd_velIN" type="_ksEosCv_EeykGsd0UrLwGA"/>
+    <variables xsi:type="_2:EventBasedVariable" xmi:id="_-onDMCv_EeykGsd0UrLwGA" name="/turtle1/pose" type="_67hGYCv_EeykGsd0UrLwGA"/>
+    <nodes xmi:id="_gZyUICv_EeykGsd0UrLwGA" name="Turtle1" subscriber="_ayhwsCv_EeykGsd0UrLwGA" publisher="_-onDMCv_EeykGsd0UrLwGA"/>
+    <nodes xmi:id="_iHhnwJSLEeyi3puJ8GqOAQ" name="teleop_key" publisher="_ayhwsCv_EeykGsd0UrLwGA"/>
+    <simulator xsi:type="_2:ROSSimulator" xmi:id="_mtRLoEXuEeybjfS_xnSIvQ" hostname="0.0.0.0" port="9090"/>
+    <propertyType xmi:id="_ksEosCv_EeykGsd0UrLwGA" name="geometry_msgs/msg/Twist">
+      <parameters xmi:id="_l2jiACwDEeykGsd0UrLwGA" name="linear" type="_QNs_sCwCEeykGsd0UrLwGA">
+        <subparameters xmi:id="_VBnvwCwEEeykGsd0UrLwGA" name="X" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+        <subparameters xmi:id="_YR7C4CwEEeykGsd0UrLwGA" name="Y" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+        <subparameters xmi:id="_aLGLACwEEeykGsd0UrLwGA" name="Z" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+      </parameters>
+      <parameters xmi:id="_ucOYgCwdEeykGsd0UrLwGA" name="angular" type="_QNs_sCwCEeykGsd0UrLwGA">
+        <subparameters xmi:id="_xgR_YCwdEeykGsd0UrLwGA" name="X" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+        <subparameters xmi:id="_xgR_YSwdEeykGsd0UrLwGA" name="Y" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+        <subparameters xmi:id="_xgR_YiwdEeykGsd0UrLwGA" name="Z" type="_XPV2cCwCEeykGsd0UrLwGA"/>
+      </parameters>
+    </propertyType>
+    <propertyType xmi:id="_67hGYCv_EeykGsd0UrLwGA" name="turtlesim/msg/Pose">
+      <parameters xmi:id="_yR3CwCwcEeykGsd0UrLwGA" name="X" type="_0fIyoCwcEeykGsd0UrLwGA"/>
+      <parameters xmi:id="_60-6YCwcEeykGsd0UrLwGA" name="Y" type="_0fIyoCwcEeykGsd0UrLwGA"/>
+      <parameters xmi:id="_9P5doCwcEeykGsd0UrLwGA" name="theta" type="_0fIyoCwcEeykGsd0UrLwGA"/>
+      <parameters xmi:id="_-V3AICwcEeykGsd0UrLwGA" name="linear_velocity" type="_0fIyoCwcEeykGsd0UrLwGA"/>
+      <parameters xmi:id="_AKcjMCwdEeykGsd0UrLwGA" name="angular_velocity" type="_0fIyoCwcEeykGsd0UrLwGA"/>
+    </propertyType>
+    <propertyType xmi:id="_QNs_sCwCEeykGsd0UrLwGA" name="Vector3"/>
+    <propertyType xmi:id="_XPV2cCwCEeykGsd0UrLwGA" name="float64"/>
+    <propertyType xmi:id="_0fIyoCwcEeykGsd0UrLwGA" name="float32"/>
+    <execStrategy xsi:type="_3:DistributedExecutionStrategy" xmi:id="_zZ5SoHWFEe-u3qaJErQubA" exptRunnerIP="192.168.1.238" automaticWorkerDetection="false">
+      <extraExecutionTargets xsi:type="_3:SOPRANOWorkerNode" xmi:id="_-OHDIHWFEe-u3qaJErQubA" ipAddress="192.168.1.238"/>
+      <allocationStrategy xsi:type="_3:DynamicTaskAllocation" xmi:id="_MM-KsHWGEe-u3qaJErQubA"/>
+    </execStrategy>
+  </mrs>
+</TestingMM:TestingSpace>
