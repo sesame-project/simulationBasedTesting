@@ -32,7 +32,12 @@ public class ROSSimulator implements ISimulator {
 
 	private static final long DEFAULT_EXTRAS_WAIT_DELAY_MS = 10000;
 
+	protected static final boolean DEBUG_TIME = true;
+
 	private boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
+	
+	// TODO: this should be set in the DSL
+	private int ROS_MAJOR_VERSION = 2;
 	
 	static Ros ros;
 	static DataStreamManager dsm = DataStreamManager.getInstance();
@@ -276,9 +281,8 @@ public class ROSSimulator implements ISimulator {
 //		}
 	}
 
-	@Override
-	public void updateTime() throws SubscriptionFailure {
-		Topic topic = (Topic) createTopic("/clock", "rosgraph_msgs/Clock");
+	
+	private void ROS1TimeSubscribe(Topic topic) throws SubscriptionFailure {
 		try {
 		topic.subscribe(new TopicCallback() {
 			@Override
@@ -298,6 +302,50 @@ public class ROSSimulator implements ISimulator {
 		} catch (NullPointerException e) {
 			System.out.println("ROS subscription failed - exiting middleware");
 			throw new SubscriptionFailure();
+		}
+	}
+	
+	private void ROS2TimeSubscribe(Topic topic) throws SubscriptionFailure {
+		System.out.println("Subscribing to ROS2 time");
+		try {
+		topic.subscribe(new TopicCallback() {
+			@Override
+			public void handleMessage(Message message) {
+				//System.out.println("Time message = " + message.toString());
+				String timeMsg = message.toString();
+				String secondsStr = timeMsg.split("sec\":")[1].split(",")[0];
+				Double time = Double.parseDouble(secondsStr);
+				if (USE_FRACTIONAL_TIME) {
+					String nsecondsStr = timeMsg.split("nanosec\":")[1].split("}")[0];
+					time =  time + (Double.parseDouble(nsecondsStr) / 1e9);
+					if (DEBUG_TIME) {
+						System.out.println("ROS2 time = " + time + " nanosecs=" + nsecondsStr + ",seconds = " + secondsStr);
+					}
+				}
+				SimCore.getInstance().setTime(time);
+			}
+		});
+		} catch (NullPointerException e) {
+			System.out.println("ROS subscription failed - exiting middleware");
+			throw new SubscriptionFailure();
+		}
+	}
+	
+	@Override
+	public void updateTime() throws SubscriptionFailure {
+		String clockType;
+		if (ROS_MAJOR_VERSION == 2) {
+			clockType = "rosgraph_msgs/msgs/Clock";
+		} else {
+			// Fallback to ROS1
+			clockType = "rosgraph_msgs/Clock";
+		}
+		
+		Topic topic = (Topic) createTopic("/clock", clockType);
+		if (ROS_MAJOR_VERSION == 2) {
+			ROS2TimeSubscribe(topic);
+		} else {
+			ROS1TimeSubscribe(topic);
 		}
 	}
 
