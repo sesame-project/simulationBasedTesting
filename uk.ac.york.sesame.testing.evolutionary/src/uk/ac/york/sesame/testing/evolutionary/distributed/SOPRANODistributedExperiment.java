@@ -42,10 +42,10 @@ public class SOPRANODistributedExperiment {
 		return isActive;
 	}
 
-	public void synchroniseFiles() {
-		// TODO Auto-generated method stub
-		
-	}
+//	public void synchroniseFiles() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	public boolean isCompleted() {
 		return !isActive;

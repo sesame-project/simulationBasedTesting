@@ -106,7 +106,10 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 			while (!activeExperiment.isCompleted()) {
 				// Need to wait until code generation is completed here!
 				try {
-					TimeUnit.SECONDS.sleep(10);
+					// This wait before allocating a new test is to ensure the
+					// code generation is completed... in very short experiments, this
+					// may need to be removed
+					TimeUnit.SECONDS.sleep(25);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -185,7 +188,9 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 				System.exit(-1);
 			}
 		}
-		activeExperiment.synchroniseFiles();		
+		
+		// The workers themselves synchronise the generated code
+		//activeExperiment.synchroniseFiles();		
 		
 		waitForMetrics();
 		// By this point, all the tests have been executed - ensure the

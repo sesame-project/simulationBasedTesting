@@ -55,5 +55,4 @@ public class RepeatedRun implements Algorithm<List<SESAMETestSolution>> {
 	public List<SESAMETestSolution> getResult() {
 		return new ArrayList<SESAMETestSolution>();
 	}
-
 }

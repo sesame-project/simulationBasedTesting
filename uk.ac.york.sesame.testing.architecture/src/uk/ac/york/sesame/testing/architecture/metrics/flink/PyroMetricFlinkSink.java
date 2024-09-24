@@ -56,8 +56,10 @@ public class PyroMetricFlinkSink extends RichSinkFunction<MetricMessage> {
     		Object result = metricDaemon.call("update_metric", testID, metricName, value, timestamp);
     		System.out.println("PyroMetricFlinkSink invoke result=" + result);
     	} catch (Exception e) {
-    		System.out.println("Pyro exception");
     		e.printStackTrace();
+    		// Ensure the Pyro exception is logged to the output stream
+    		System.out.println("Pyro exception:");
+    		e.printStackTrace(System.out);
     	}
     }
 }

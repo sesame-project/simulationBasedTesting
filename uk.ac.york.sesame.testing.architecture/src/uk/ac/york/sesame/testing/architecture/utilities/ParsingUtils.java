@@ -88,7 +88,6 @@ public class ParsingUtils {
 				if (obj2 == null) {
 					throw new JSONLookupFailed(obj, parameterStr, "getField", obj2);
 				}
-				
 			} else {
 				//Object current = obj2.get(split[i].toLowerCase());
 				Object current = navigate(obj2, split[i]);
