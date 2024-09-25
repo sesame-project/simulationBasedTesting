@@ -1,6 +1,10 @@
-package uk.ac.york.sesame.testing.evolutionary.distributed;
+package uk.ac.york.sesame.testing.evolutionary.distributed.allocations;
 
 import java.util.*;
+
+import uk.ac.york.sesame.testing.evolutionary.distributed.AllocationFailed;
+import uk.ac.york.sesame.testing.evolutionary.distributed.RemoteTest;
+import uk.ac.york.sesame.testing.evolutionary.distributed.WorkerNode;
 
 public class DynamicAllocation implements AllocationStrategy {
 	

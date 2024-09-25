@@ -66,6 +66,8 @@ public class RemoteStatusMonitor {
 				rmm.stop();
 				try {
 					manager.notifyTestCompletion(remoteTest);
+					// Once we know it has completed... stop polling for status
+					this.stop();
 				} catch (TestNotRunning e) {
 					e.printStackTrace();
 				}
@@ -138,6 +140,8 @@ public class RemoteStatusMonitor {
 				e.printStackTrace();
 			}
 		}
+		
+		this.daemon.close();
 	}
 }
 

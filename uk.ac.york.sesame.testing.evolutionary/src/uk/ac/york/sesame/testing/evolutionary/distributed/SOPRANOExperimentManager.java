@@ -18,6 +18,8 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionTarget;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.SOPRANOWorkerNode;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
+import uk.ac.york.sesame.testing.evolutionary.distributed.allocations.AllocationStrategy;
+import uk.ac.york.sesame.testing.evolutionary.distributed.allocations.UpFrontAllocation;
 import uk.ac.york.sesame.testing.evolutionary.utilities.MissingPropertiesFile;
 import uk.ac.york.sesame.testing.evolutionary.utilities.MissingProperty;
 
@@ -28,6 +30,7 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 
 	private static final long serialVersionUID = 1L;
 	private static final boolean TERMINATE_EXECUTION_ON_MISSING_PROPERTY_INFO = false;
+	private static final long ALLOCATION_LOOP_DELAY = 10;
 	// Status monitors - each create a MetricMonitor when they are ready
 	List<RemoteStatusMonitor> remoteStatusMonitors = new ArrayList<RemoteStatusMonitor>();
 	
@@ -109,7 +112,7 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 					// This wait before allocating a new test is to ensure the
 					// code generation is completed... in very short experiments, this
 					// may need to be removed
-					TimeUnit.SECONDS.sleep(25);
+					TimeUnit.SECONDS.sleep(ALLOCATION_LOOP_DELAY);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

@@ -37,14 +37,14 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DynamicT
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionStrategy;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionTarget;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
-import uk.ac.york.sesame.testing.evolutionary.distributed.AllocationStrategy;
-import uk.ac.york.sesame.testing.evolutionary.distributed.DynamicAllocation;
 import uk.ac.york.sesame.testing.evolutionary.distributed.PreInitFailed;
-import uk.ac.york.sesame.testing.evolutionary.distributed.UpFrontAllocation;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SESAMEEvaluationProblemDistributed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANODistributedExperiment;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANOExperimentManager;
 import uk.ac.york.sesame.testing.evolutionary.distributed.WorkerNode;
+import uk.ac.york.sesame.testing.evolutionary.distributed.allocations.AllocationStrategy;
+import uk.ac.york.sesame.testing.evolutionary.distributed.allocations.DynamicAllocation;
+import uk.ac.york.sesame.testing.evolutionary.distributed.allocations.UpFrontAllocation;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging_Coverage;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.RepeatedRun;

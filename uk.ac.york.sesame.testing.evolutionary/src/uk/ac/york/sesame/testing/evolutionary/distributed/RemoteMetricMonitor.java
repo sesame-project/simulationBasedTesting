@@ -124,26 +124,6 @@ public class RemoteMetricMonitor {
 		}
 	}
 	
-//	public synchronized void updateMetricsFromWorker() {
-//		// 	TODO: update metrics with Jmetal
-//		// TODO: update metrics in the DSL
-//		if (storedMetricResults.isPresent()) {
-//			HashMap<String,Object> res = storedMetricResults.get();
-//			for (Map.Entry<String, Object> me : res.entrySet()) {
-//				String metricName = me.getKey();
-//				Object value = me.getValue();
-//				try {
-//					updateMetricsInModelStandard(metricName, value);
-//					updateObjectivesJMetal(metricName, value);
-//				} catch (InvalidName e) {
-//					e.printStackTrace();
-//				} catch (JMetalMetricSettingFailed e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
-//	}
-	
 	public void pollMetricLoop() {
 		while (metricLoopRunning) {
 			try {
@@ -156,124 +136,8 @@ public class RemoteMetricMonitor {
 				e.printStackTrace();
 			}
 		}
+		
+		metricDaemon.close();
 	}
-	
-//	public void updateMetricsInModelStandard(String metricName, Object val) throws InvalidName {
-//
-//		if (currentSolution.isEmpty()) {
-//			System.out.println("currentSolution not set - cannot update metric is empty");
-//		} else {
-//			try {
-//				Test t = currentSolution.get().getInternalType();
-//				if (t != null) {
-//					EList<MetricInstance> mList = t.getMetrics();
-//
-//					boolean found = false;
-//					// If there is already a metric instance for this, use it,
-//					// rather than adding it to the model
-//					for (MetricInstance m : mList) {
-//						if (m.getMetric().getName().equals(metricName)) {
-//							found = true;
-//							// Sets the name
-//							m.getResult().setName(metricName);
-//							Double d = Double.parseDouble(val.toString());
-//							m.getResult().setValue(d);
-//						}
-//					}
-//
-//					if (!found) {
-//						// Add a new metric instance containing the value
-//						MetricsFactory factory = MetricsFactory.eINSTANCE;
-//						ResultsFactory rfactory = ResultsFactory.eINSTANCE;
-//						MetricInstance mNewInst = factory.createMetricInstance();
-//						setMetricFromCampaign(mNewInst, metricName);
-//
-//						Result mr = rfactory.createResult();
-//						mr.setName(metricName);
-//						Double d = Double.parseDouble(val.toString());
-//						mr.setValue(d);
-//						mNewInst.setResult(mr);
-//						mList.add(mNewInst);
-//					}
-//				}
-//			} catch (MissingMetric e) {
-//				System.out.println("Missing metric");
-//			}
-//		}
-//	}
-//	
-//	private void setMetricFromCampaign(MetricInstance mNewInst, String targetID) throws MissingMetric {
-//		Metric m = metricLookup.get(targetID);
-//		if (m != null) {
-//			mNewInst.setMetric(m);
-//		} else {
-//			throw new MissingMetric(targetID);
-//		}
-//	}
-//	
-//	private void setupMetricLookup() {
-//		TestCampaign selectedCampaign = remoteTest.getSolution().getInternalType().getParentCampaign();
-//		EList<Metric> metrics = selectedCampaign.getMetrics();
-//
-//		int id = 0;
-//		for (Metric m : metrics) {
-//			String name = m.getName();
-//			metricLookup.put(name, m);
-//			if (m.isUseInOptimisation()) {
-//				metricIDLookupByPlace.put(name, id);
-//				id++;
-//				System.out.println("metricIDLookup - metric " + name + " ID = " + id);
-//			}
-//		}
-//	}
-//
-//	public void updateObjectivesJMetal(String metricName, Object val) throws JMetalMetricSettingFailed {
-//		try {
-//			if (currentSolution.isPresent()) {
-//				String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-//				SESAMETestSolution sol = currentSolution.get();
-//				
-//				Metric m = getMetricForCampaign(metricName);
-//				Double d = Double.parseDouble(val.toString());
-//
-//				if (m.isUseInOptimisation()) {
-//					int num = getMetricIDForCampaign(metricName);
-//					System.out.println("updateObjectivesJMetal - at timestamp " + timeStamp + " - setting metric "
-//							+ metricName + " (num " + num + ") to value " + val);
-//
-//					sol.setObjectiveMetric(num, m);
-//
-//					if (m.getDir() == MetricOptimisationDirection.HIGHEST) {
-//						sol.setObjective(num, -d);
-//					}
-//
-//					if (m.getDir() == MetricOptimisationDirection.LOWEST) {
-//						sol.setObjective(num, d);
-//					}
-//				} else {
-//					System.out.println("Not using metric in optimisation; skipping setting for JMetal:" + metricName);
-//				}
-//			}
-//		} catch (MissingMetric e) {
-//			System.out.println("Failed setting metric for " + metricName);
-//			throw new JMetalMetricSettingFailed(e);
-//		}
-//	}
-//	
-//	private int getMetricIDForCampaign(String metricID) throws MissingMetric {
-//		if (metricIDLookupByPlace.containsKey(metricID)) {
-//			return metricIDLookupByPlace.get(metricID);
-//		} else {
-//			throw new MissingMetric(metricID);
-//		}
-//	}
-//
-//	private Metric getMetricForCampaign(String metricID) throws MissingMetric {
-//		if (metricLookup.containsKey(metricID)) {
-//			return metricLookup.get(metricID);
-//		} else {
-//			throw new MissingMetric(metricID);
-//		}
-//	}
 }
 
