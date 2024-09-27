@@ -69,22 +69,13 @@ public interface ExecutionPackage extends EPackage {
 	int EXECUTION_STRATEGY = 0;
 
 	/**
-	 * The feature id for the '<em><b>Expt Runner IP</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXECUTION_STRATEGY__EXPT_RUNNER_IP = 0;
-
-	/**
 	 * The number of structural features of the '<em>Strategy</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_STRATEGY_FEATURE_COUNT = 1;
+	int EXECUTION_STRATEGY_FEATURE_COUNT = 0;
 
 	/**
 	 * The operation id for the '<em>Is Distributed</em>' operation.
@@ -113,15 +104,6 @@ public interface ExecutionPackage extends EPackage {
 	 * @generated
 	 */
 	int LOCAL_EXECUTION_STRATEGY = 1;
-
-	/**
-	 * The feature id for the '<em><b>Expt Runner IP</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_EXECUTION_STRATEGY__EXPT_RUNNER_IP = EXECUTION_STRATEGY__EXPT_RUNNER_IP;
 
 	/**
 	 * The feature id for the '<em><b>Launch File Location</b></em>' attribute.
@@ -176,8 +158,6 @@ public interface ExecutionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DISTRIBUTED_EXECUTION_STRATEGY__EXPT_RUNNER_IP = EXECUTION_STRATEGY__EXPT_RUNNER_IP;
-
 	/**
 	 * The feature id for the '<em><b>Automatic Worker Detection</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -188,13 +168,22 @@ public interface ExecutionPackage extends EPackage {
 	int DISTRIBUTED_EXECUTION_STRATEGY__AUTOMATIC_WORKER_DETECTION = EXECUTION_STRATEGY_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Expt Runner IP</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISTRIBUTED_EXECUTION_STRATEGY__EXPT_RUNNER_IP = EXECUTION_STRATEGY_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DISTRIBUTED_EXECUTION_STRATEGY__DEPENDENCIES = EXECUTION_STRATEGY_FEATURE_COUNT + 1;
+	int DISTRIBUTED_EXECUTION_STRATEGY__DEPENDENCIES = EXECUTION_STRATEGY_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Extra Execution Targets</b></em>' containment reference list.
@@ -203,7 +192,7 @@ public interface ExecutionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DISTRIBUTED_EXECUTION_STRATEGY__EXTRA_EXECUTION_TARGETS = EXECUTION_STRATEGY_FEATURE_COUNT + 2;
+	int DISTRIBUTED_EXECUTION_STRATEGY__EXTRA_EXECUTION_TARGETS = EXECUTION_STRATEGY_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Allocation Strategy</b></em>' containment reference.
@@ -212,7 +201,7 @@ public interface ExecutionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DISTRIBUTED_EXECUTION_STRATEGY__ALLOCATION_STRATEGY = EXECUTION_STRATEGY_FEATURE_COUNT + 3;
+	int DISTRIBUTED_EXECUTION_STRATEGY__ALLOCATION_STRATEGY = EXECUTION_STRATEGY_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Distributed Execution Strategy</em>' class.
@@ -221,7 +210,7 @@ public interface ExecutionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DISTRIBUTED_EXECUTION_STRATEGY_FEATURE_COUNT = EXECUTION_STRATEGY_FEATURE_COUNT + 4;
+	int DISTRIBUTED_EXECUTION_STRATEGY_FEATURE_COUNT = EXECUTION_STRATEGY_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Is Distributed</em>' operation.
@@ -607,17 +596,6 @@ public interface ExecutionPackage extends EPackage {
 	EClass getExecutionStrategy();
 
 	/**
-	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionStrategy#getExptRunnerIP <em>Expt Runner IP</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Expt Runner IP</em>'.
-	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionStrategy#getExptRunnerIP()
-	 * @see #getExecutionStrategy()
-	 * @generated
-	 */
-	EAttribute getExecutionStrategy_ExptRunnerIP();
-
-	/**
 	 * Returns the meta object for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionStrategy#isDistributed() <em>Is Distributed</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -668,6 +646,17 @@ public interface ExecutionPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDistributedExecutionStrategy_AutomaticWorkerDetection();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DistributedExecutionStrategy#getExptRunnerIP <em>Expt Runner IP</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expt Runner IP</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DistributedExecutionStrategy#getExptRunnerIP()
+	 * @see #getDistributedExecutionStrategy()
+	 * @generated
+	 */
+	EAttribute getDistributedExecutionStrategy_ExptRunnerIP();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.DistributedExecutionStrategy#getDependencies <em>Dependencies</em>}'.
@@ -922,14 +911,6 @@ public interface ExecutionPackage extends EPackage {
 		EClass EXECUTION_STRATEGY = eINSTANCE.getExecutionStrategy();
 
 		/**
-		 * The meta object literal for the '<em><b>Expt Runner IP</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EXECUTION_STRATEGY__EXPT_RUNNER_IP = eINSTANCE.getExecutionStrategy_ExptRunnerIP();
-
-		/**
 		 * The meta object literal for the '<em><b>Is Distributed</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -972,6 +953,14 @@ public interface ExecutionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DISTRIBUTED_EXECUTION_STRATEGY__AUTOMATIC_WORKER_DETECTION = eINSTANCE.getDistributedExecutionStrategy_AutomaticWorkerDetection();
+
+		/**
+		 * The meta object literal for the '<em><b>Expt Runner IP</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DISTRIBUTED_EXECUTION_STRATEGY__EXPT_RUNNER_IP = eINSTANCE.getDistributedExecutionStrategy_ExptRunnerIP();
 
 		/**
 		 * The meta object literal for the '<em><b>Dependencies</b></em>' containment reference list feature.

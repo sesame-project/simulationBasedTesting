@@ -41,10 +41,10 @@ import uk.ac.york.sesame.testing.evolutionary.distributed.PreInitFailed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SESAMEEvaluationProblemDistributed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANODistributedExperiment;
 import uk.ac.york.sesame.testing.evolutionary.distributed.SOPRANOExperimentManager;
-import uk.ac.york.sesame.testing.evolutionary.distributed.WorkerNode;
 import uk.ac.york.sesame.testing.evolutionary.distributed.allocations.AllocationStrategy;
 import uk.ac.york.sesame.testing.evolutionary.distributed.allocations.DynamicAllocation;
 import uk.ac.york.sesame.testing.evolutionary.distributed.allocations.UpFrontAllocation;
+import uk.ac.york.sesame.testing.evolutionary.distributed.PyroDaemons;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.NSGAII_ResultLogging_Coverage;
 import uk.ac.york.sesame.testing.evolutionary.jmetalcustom.RepeatedRun;
@@ -125,6 +125,9 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		if (exec.isDistributed()) {
 			DistributedExecutionStrategy distExec = (DistributedExecutionStrategy)exec;
 			SOPRANODistributedExperiment distributedExpt = new SOPRANODistributedExperiment(selectedCampaign, distExec, loader, orchestratorBasePath, spaceModelFileName, mrs);
+			
+			String exptRunnerIP = distExec.getExptRunnerIP();
+			PyroDaemons.setHostname(exptRunnerIP);
 			
 			AllocationStrategy strat = translateAllocationStrategy(distExec.getAllocationStrategy());
 			this.exptManager = new SOPRANOExperimentManager(distributedExpt, strat);

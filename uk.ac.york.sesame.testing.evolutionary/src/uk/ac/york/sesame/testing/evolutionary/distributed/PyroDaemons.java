@@ -19,10 +19,11 @@ public class PyroDaemons {
 	
 	private static NameServerProxy ns_single;
 	private static Map<String,PyroProxy> proxies_by_host = new HashMap<String,PyroProxy>();
-	
-//	public static void setHostname(String nsHostname) {
-//		nsHostname = nsHostname;
-//	}
+	 
+	public static void setHostname(String newHostname) {
+		nsHostname = newHostname;
+		System.out.println("Set Pyro hostname to " + nsHostname);
+	}
 	
 	public static NameServerProxy getNameserver() throws IOException {
 		if(ns_single == null) {

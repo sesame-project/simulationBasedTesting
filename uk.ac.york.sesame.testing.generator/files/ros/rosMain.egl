@@ -11,6 +11,13 @@
 	
 	var useDistributed = true;
 	
+	var pyroNSIP = "192.168.1.238";
+	
+	var execStrategy = mrs.execStrategy;
+	if (execStrategy.isKindOf(DistributedExecutionStrategy)) {
+		pyroNSIP = execStrategy.exptRunnerIP;
+	}
+	
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
 	var sanitiseVariables = false;
@@ -137,7 +144,7 @@ public class [%= testNameString %]_TestRunner {
 				
 		[% if (useDistributed) { %]
 		// TODO: this needs to be set up in the DSL and encoded here by the generator
-		String PYRO_NS_HOSTNAME = "192.168.1.238";
+		String PYRO_NS_HOSTNAME = "[%= pyroNSIP %]";
 		int PYRO_NS_PORT = 9523;
 		PyroMetricFlinkSink pyroMetricFlinkSink = new PyroMetricFlinkSink(TESTNAME, PYRO_NS_HOSTNAME, PYRO_NS_PORT, PYRO_WORKER_LOOKUP_NAME);
 		[% } else { %]

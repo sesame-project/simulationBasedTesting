@@ -41,6 +41,7 @@ public class FuzzingOperationWrapper {
 	
 	public FuzzingOperationWrapper(FuzzingOperation fuzzOp, Tree<String> startTree, Tree<String> endTree,	ConditionGenerator cg) {
 		// This has to be duplicated here just to be sure
+		this.actW = new ActivationWrapper(fuzzOp);
 		this.fuzzOp = EcoreUtil.copy(fuzzOp);
 		if (startTree != null) {
 			this.storedStartTree = Tree.copyOf(startTree);

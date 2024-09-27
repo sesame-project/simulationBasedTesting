@@ -491,7 +491,6 @@
   <eSubpackages name="Execution" nsURI="Execution" nsPrefix="">
     <eClassifiers xsi:type="ecore:EClass" name="ExecutionStrategy" abstract="true">
       <eOperations name="isDistributed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="exptRunnerIP" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LocalExecutionStrategy" eSuperTypes="#//Execution/ExecutionStrategy">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="launchFileLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -500,6 +499,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="automaticWorkerDetection"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="exptRunnerIP" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" upperBound="-1"
           eType="#//Execution/Dependency" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extraExecutionTargets"
