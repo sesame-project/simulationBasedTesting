@@ -43,12 +43,14 @@ pkill -9 -f DDDSimulatorProject
 
 # Kill the ROS2 nodes under test code
 pkill -f "ros2_env/bin/python"
-sleep 2
+sleep 1
 pkill -f "ros2_env/bin/python" -9 
 
 pkill -f "combined_clock_publisher.py"
-sleep 2
+sleep 1
 pkill -f "combined_clock_publisher.py" -9
+
+kill $(ps aux | grep run_turtlesim.sh | grep xterm | awk '{print $2}')
 
 # TODO: need to check if Docker is being used in the project, and only kill it if so 
 #docker stop $(docker ps -a -q)

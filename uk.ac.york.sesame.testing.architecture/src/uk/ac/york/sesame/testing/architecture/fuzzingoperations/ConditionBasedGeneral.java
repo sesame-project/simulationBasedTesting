@@ -12,7 +12,6 @@ import org.apache.flink.util.Collector;
 
 import uk.ac.york.sesame.testing.architecture.data.EventMessage;
 import uk.ac.york.sesame.testing.architecture.data.MetricMessage;
-import uk.ac.york.sesame.testing.architecture.simulator.SimCore;
 
 public abstract class ConditionBasedGeneral extends FuzzingOperation {
 

@@ -16,7 +16,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 
 public class FuzzingTestConversion {
-	private static final boolean CONSTANT_INTENSITY = true;
+	private static final boolean CONSTANT_INTENSITY = false;
 	private static final boolean GENERATE_RANDOM_VALUE = false;
 	private static final boolean GENERATE_SINE_WAVE = false;
 	double FIXED_RESOLUTION_SECS = 0.1;

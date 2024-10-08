@@ -20,14 +20,16 @@ import uk.ac.york.sesame.testing.evolutionary.*;
 
 public class FuzzingOperationWrapper {
 
+	// This should always be true in practical testing... the only reason to set it to
+	// false is if e.g. testing with fixed parameters, e.g. for diversity testing during turtlesim
+	private static final boolean REDUCE_OPERATION_PARAMETERS = false;
+	
 	private Tree<String> storedStartTree;
 	private Tree<String> storedEndTree;
 	
 	private FuzzingOperation fuzzOp;
 	private ActivationWrapper actW;
 	protected ConditionGenerator cg;
-	
-
 	
 	public FuzzingOperationWrapper(FuzzingOperation fuzzOp) throws InvalidFuzzingOperation {
 		this.actW = new ActivationWrapper(fuzzOp);
@@ -173,6 +175,8 @@ public class FuzzingOperationWrapper {
 
 	public static void reduceOperationSpecific(Random rng, FuzzingOperation newA, FuzzingOperation original) throws ParamError {
 		// TODO: better way of dispatching upon this type here
+    	// Factor these out into the DSL generated code? - each DSL type knows how to reduce
+		// its parameters
 		if (original instanceof RandomValueFromSetOperation) {
 			RandomValueFromSetOperation rvfsO = (RandomValueFromSetOperation) original;
 			RandomValueFromSetOperation rvfsN = (RandomValueFromSetOperation) newA;
@@ -216,7 +220,7 @@ public class FuzzingOperationWrapper {
 		return fuzzOp;
 	}
 	
-    public FuzzingOperationWrapper reductionOfTimeBasedOperation(SecureRandom rng) throws InvalidFuzzingOperation {
+    public FuzzingOperationWrapper reductionOfTimeBasedOperation(SecureRandom rng) throws InvalidFuzzingOperation, ParamError {
         FuzzingOperation dynOp = this.getFuzzingOperation();
         FuzzingOperation newA = EcoreUtil.copy(dynOp);
         FixedTimeActivation origAA = (FixedTimeActivation)this.actW.getActivation();
@@ -230,6 +234,11 @@ public class FuzzingOperationWrapper {
         ((FixedTimeActivation) newAA).setStartTime(startTime);
         ((FixedTimeActivation) newAA).setEndTime(endTime);
         newA.setActivation(newAA);
+        
+        if (REDUCE_OPERATION_PARAMETERS) {
+        	reduceOperationSpecific(rng, newA, (FuzzingOperation)this.getFuzzingOperation());
+        }
+        
         return new FuzzingOperationWrapper(newA);
     }
 
@@ -256,20 +265,28 @@ public class FuzzingOperationWrapper {
         ca.setEnding(end);
         newA.setActivation(ca);
 
-        // TODO: factor these out into separate files
-        reduceOperationSpecific(rng, newA, (FuzzingOperation)this);
+        if (REDUCE_OPERATION_PARAMETERS) {
+        	reduceOperationSpecific(rng, newA, (FuzzingOperation)this.getFuzzingOperation());
+        }
 
         // Ensure the new individual has the stored start trees and end trees
         return new FuzzingOperationWrapper(newA, startTree, endTree, cg);
     }
 	
 	public FuzzingOperationWrapper reductionOfOperation(SecureRandom rng) throws ConstraintsNotMet, ConversionFailed, ParamError, InvalidFuzzingOperation, InvalidActivationToReduce {
+		
+		FuzzingOperationWrapper newOp;
+		
 		if (actW.isFixedTimeBased()) {
-			return reductionOfTimeBasedOperation(rng);
+			newOp = reductionOfTimeBasedOperation(rng);
+			newOp.setFromTemplate(this);
+			return newOp;
 		}
 		
 		if (actW.isConditionBased()) {
-			return reductionOfConditionBasedOperation(rng);
+			newOp = reductionOfConditionBasedOperation(rng);
+			newOp.setFromTemplate(this);
+			return newOp;
 		}
 		
 		throw new InvalidActivationToReduce(actW);
@@ -317,6 +334,11 @@ public class FuzzingOperationWrapper {
 	
     public ConditionGenerator getConditionGenerator() {
         return cg;
+    }
+    
+    public void setFromTemplate(FuzzingOperationWrapper templateWrapper) {
+    	FuzzingOperation originalOp = templateWrapper.getFuzzingOperation().getFromTemplate();
+    	this.getFuzzingOperation().setFromTemplate(originalOp);
     }
 
     public Optional<Activation> getTemplateActivation() {

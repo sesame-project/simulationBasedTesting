@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.OptionalDouble;
 
+import org.eclipse.emf.common.util.EList;
+
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.DimensionID;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DoubleRange;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
@@ -26,7 +28,7 @@ public class RelativeParameters {
 
 		throw new UnknownSize();
 	}
-	
+
 	private double getLowerBound(DoubleRange vr) {
 		DoubleRange dr = (DoubleRange) vr;
 		return dr.getLowerBound();
@@ -36,29 +38,40 @@ public class RelativeParameters {
 		double rel = (v - dr.getLowerBound()) / (dr.getUpperBound() - dr.getLowerBound());
 		return rel;
 	}
-	
+
 	// TODO: accumulateNormalisedParams not working
 	private void accumulateNormalisedParams(List<Double> normalisedParams, FuzzingOperation op) {
 		if (op instanceof RandomValueFromSetOperation) {
 			RandomValueFromSetOperation rvfs = (RandomValueFromSetOperation) op;
 			RandomValueFromSetOperation template = (RandomValueFromSetOperation) op.getFromTemplate();
-			Iterator<ValueSet> itVS = rvfs.getValueSet().iterator();
-			Iterator<ValueSet> itParent = template.getValueSet().iterator();
+			// Iterator<ValueSet> itVS = rvfs.getValueSet().iterator();
+			// Iterator<ValueSet> itParent = template.getValueSet().iterator();
 
-			int i = 0;
-			int targetValue = -1;
+			EList<ValueSet> vs = rvfs.getValueSet();
+			EList<ValueSet> vsTemplate = template.getValueSet();
+			int limit = Math.min(vs.size(), vsTemplate.size());
 
-			while (itVS.hasNext() && itParent.hasNext()) {
-				if (i == targetValue) {
-					try {
-						double dist = getValueSetSize(itVS.next());
-						double templateDist = getValueSetSize(itParent.next());
-						normalisedParams.add(dist / templateDist);
-					} catch (UnknownSize e) {
-						System.out.println("UNKNOWN SIZE for param from " + op.toString());
-					}
+			for (int index = 0; index < limit; index++) {
+				try {
+					double dist = getValueSetSize(vs.get(index));
+					double templateDist = getValueSetSize(vsTemplate.get(index));
+					normalisedParams.add(dist / templateDist);
+				} catch (UnknownSize e) {
+					System.out.println("UNKNOWN SIZE for param from " + op.toString());
 				}
 			}
+
+//			while (itVS.hasNext() && itParent.hasNext()) {
+//				if (i == targetValue) {
+//					try {
+//						double dist = getValueSetSize(itVS.next());
+//						double templateDist = getValueSetSize(itParent.next());
+//						normalisedParams.add(dist / templateDist);
+//					} catch (UnknownSize e) {
+//						System.out.println("UNKNOWN SIZE for param from " + op.toString());
+//					}
+//				}
+//			}
 		}
 
 		// The impact is the lower bound for latency, so normalise to the range
@@ -87,10 +100,10 @@ public class RelativeParameters {
 		accumulateNormalisedParams(normalisedParams, op);
 		double paramSum = calculateSumOfArray(normalisedParams);
 		return paramSum;
-		
+
 	}
 
 	private double calculateSumOfArray(List<Double> normalisedParams) {
 		return normalisedParams.stream().mapToDouble(d -> d).sum();
-	}		
+	}
 }

@@ -11,6 +11,8 @@ public class ROS2ParameterSetter extends ROS2ParameterInterface implements IProp
 	// Include an internal property getter to retrieve original value
 	private ROS2ParameterGetter getter;
 	private Object originalValue;
+	private boolean isSet = false;
+	private boolean isRestored = false;
 	
 	private String srvName;
 	private String srvType = "rcl_interfaces/srv/SetParameters";
@@ -47,10 +49,22 @@ public class ROS2ParameterSetter extends ROS2ParameterInterface implements IProp
 		
 		// TODO: do we need a wait before calling here?
 		internalSet(value);
+		isSet = true;
 	}
 	
 	public void restoreOriginalValue() {
 		internalSet(originalValue);
+		isRestored = true;
+	}
+
+	@Override
+	public boolean isSet() {
+		return isSet;
+	}
+	
+	@Override
+	public boolean isRestored() {
+		return isRestored;
 	}
 
 }

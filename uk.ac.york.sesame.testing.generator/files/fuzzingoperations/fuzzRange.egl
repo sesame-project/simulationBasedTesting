@@ -1,4 +1,5 @@
-[% var commonTemplate : Template = TemplateFactory.load("fuzzingoperations/fuzzOpCommon.egl");
+[% 
+var commonTemplate : Template = TemplateFactory.load("fuzzingoperations/fuzzOpCommon.egl");
 commonTemplate.populate("fuzzOp", fuzzOp);
 commonTemplate.populate("classNameMiddle", "FlatMap");
 commonTemplate.populate("extraImports", new List());
@@ -21,17 +22,18 @@ commonTemplate.populate("useRandomSeed", true);
 	      		JSONObject jo = (JSONObject)obj;
 	      		[* TODO: other ValueSets here *]
 	      	[% for (aParameter in fuzzOp.valueSet) { %]
-	      		double genVal[%= paramCount++ %] = new DoubleRange([%= aParameter.lowerBound %], [%=aParameter.upperBound %]).generateInRange(rng);
+	      		double genVal[%= paramCount++ %] = new [%= genDoubleRange(aParameter) %].generateInRange(rng);
 	      		[% if (isFuzzingRelative) { %]
 	      		UpdateLambda lop[%= paramCount %] = ((orig) -> { return ((Double)orig + genVal[%= paramCount %]); });
 				jo = ParsingUtils.updateJSONObject(jo, "[%= aParameter.propertyName %]", lop[%= paramCount %]);
 				[% } else { %]
 				jo = ParsingUtils.updateJSONObject(jo, "[%= aParameter.propertyName %]", genVal[%= paramCount %]);
 				[% } %]
-	      		
 	      	[% } %]
 	      		EventMessage valueOut = new EventMessage(value);
 	      		valueOut.setValue(jo.toString());
+	      		double time = SimCore.getInstance().getTime();
+	      		System.out.println("fuzzRangeLog," + time + "," + value.toString() + "," + valueOut.toString() + "\n");
 				out.collect(valueOut);
 			} else {
 				out.collect(value);
@@ -41,7 +43,7 @@ commonTemplate.populate("useRandomSeed", true);
 			if (value.getTopic().contains(topic) && isReadyNow()) {
 				[* TODO: this will apply them sequentially? should it? *]
 				[% for (aParameter in fuzzOp.valueSet) { %]
-				double newValue = new DoubleRange([%= aParameter.lowerBound %], [%=aParameter.upperBound %]).generateInRange(rng);
+				double newValue = new [%= genDoubleRange(aParameter) %].generateInRange(rng);
 				EventMessage valueOut = new EventMessage(value);
 				[% if (isFuzzingRelative) { %]
 				Double origVal = Double.parseDouble((String)value.getValue());
@@ -66,3 +68,21 @@ commonTemplate.populate("useRandomSeed", true);
 		[% } %]	
 	}	
 }
+
+[%
+// Generate the double range object according to the parameter method choice 
+operation genDoubleRange(aParameter) {
+	if (aParameter.randChoice == RandomValueFromSetChoice#RANDOM_FROM_SEED) {
+		return "DoubleRange(" + aParameter.lowerBound + "," + aParameter.upperBound + ")";
+	}
+	
+	if (aParameter.randChoice == RandomValueFromSetChoice#ALWAYS_LOW) {
+		return "DoubleRange(" + aParameter.lowerBound + "," + aParameter.lowerBound + ")";
+	}
+	
+	if (aParameter.randChoice == RandomValueFromSetChoice#ALWAYS_HIGH) {
+		return "DoubleRange(" + aParameter.upperBound + "," + aParameter.upperBound + ")";
+	}
+}
+%]
+

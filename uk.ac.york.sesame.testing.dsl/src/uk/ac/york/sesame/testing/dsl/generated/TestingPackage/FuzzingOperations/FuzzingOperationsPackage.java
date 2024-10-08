@@ -4,6 +4,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -1674,13 +1675,22 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int VALUE_RANGE__PROPERTY_NAME = VALUE_SET__PROPERTY_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Rand Choice</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_RANGE__RAND_CHOICE = VALUE_SET_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Value Range</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_RANGE_FEATURE_COUNT = VALUE_SET_FEATURE_COUNT + 0;
+	int VALUE_RANGE_FEATURE_COUNT = VALUE_SET_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Value Range</em>' class.
@@ -1709,6 +1719,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INT_RANGE__PROPERTY_NAME = VALUE_RANGE__PROPERTY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Rand Choice</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INT_RANGE__RAND_CHOICE = VALUE_RANGE__RAND_CHOICE;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -1764,6 +1783,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int DOUBLE_RANGE__PROPERTY_NAME = VALUE_RANGE__PROPERTY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Rand Choice</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOUBLE_RANGE__RAND_CHOICE = VALUE_RANGE__RAND_CHOICE;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -1883,6 +1911,15 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int POINT_RANGE__PROPERTY_NAME = VALUE_RANGE__PROPERTY_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Rand Choice</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POINT_RANGE__RAND_CHOICE = VALUE_RANGE__RAND_CHOICE;
 
 	/**
 	 * The feature id for the '<em><b>Min Point</b></em>' containment reference.
@@ -3134,6 +3171,16 @@ public interface FuzzingOperationsPackage extends EPackage {
 	int MULTIPLE_MESSAGES_NETWORK_OPERATION_OPERATION_COUNT = NETWORK_FUZZING_OPERATION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetChoice <em>Random Value From Set Choice</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetChoice
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getRandomValueFromSetChoice()
+	 * @generated
+	 */
+	int RANDOM_VALUE_FROM_SET_CHOICE = 25;
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation <em>Fuzzing Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3646,6 +3693,17 @@ public interface FuzzingOperationsPackage extends EPackage {
 	EClass getValueRange();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueRange#getRandChoice <em>Rand Choice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Rand Choice</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ValueRange#getRandChoice()
+	 * @see #getValueRange()
+	 * @generated
+	 */
+	EAttribute getValueRange_RandChoice();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.IntRange <em>Int Range</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3940,6 +3998,16 @@ public interface FuzzingOperationsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMultipleMessagesNetworkOperation_HowManyClones();
+
+	/**
+	 * Returns the meta object for enum '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetChoice <em>Random Value From Set Choice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Random Value From Set Choice</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetChoice
+	 * @generated
+	 */
+	EEnum getRandomValueFromSetChoice();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -4377,6 +4445,14 @@ public interface FuzzingOperationsPackage extends EPackage {
 		EClass VALUE_RANGE = eINSTANCE.getValueRange();
 
 		/**
+		 * The meta object literal for the '<em><b>Rand Choice</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALUE_RANGE__RAND_CHOICE = eINSTANCE.getValueRange_RandChoice();
+
+		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.IntRangeImpl <em>Int Range</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4621,6 +4697,16 @@ public interface FuzzingOperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MULTIPLE_MESSAGES_NETWORK_OPERATION__HOW_MANY_CLONES = eINSTANCE.getMultipleMessagesNetworkOperation_HowManyClones();
+
+		/**
+		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetChoice <em>Random Value From Set Choice</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetChoice
+		 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.impl.FuzzingOperationsPackageImpl#getRandomValueFromSetChoice()
+		 * @generated
+		 */
+		EEnum RANDOM_VALUE_FROM_SET_CHOICE = eINSTANCE.getRandomValueFromSetChoice();
 
 	}
 

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -17,11 +18,18 @@ public final class SimCore {
     
     private String testName;
     
+    private ISimulator simInterface;
+    
+    private ConcurrentHashMap<String, IPropertySetter> propertySetters = new ConcurrentHashMap<String,IPropertySetter>();
+    
     // This records any outstanding start times - cleared when the operation ends
     private ConcurrentHashMap<String, Double> fuzzingStartTimes = new ConcurrentHashMap<String,Double>();
     
     // This records the record of all start and end times per operations    	
     private ConcurrentHashMap<String, List<TimeInterval>> fuzzingTimingHistory = new ConcurrentHashMap<String,List<TimeInterval>>();
+    
+    
+    
     private double totalFuzzingSecondCount;
     private FileWriter outputTimingLog;
     
@@ -35,6 +43,25 @@ public final class SimCore {
         }
         
         return INSTANCE;
+    }
+    
+    public void setSimulatorInterface(ISimulator sim) {
+    	this.simInterface = sim;
+    }
+    
+    public void registerPropertySetter(String fuzzOpID, Properties properties) {
+    	if (!propertySetters.containsKey(fuzzOpID)) {
+    		IPropertySetter propSetter = this.simInterface.getPropertySetter(properties);
+    		propertySetters.put(fuzzOpID, propSetter);
+    	}
+    }
+    
+    public IPropertySetter getPropertySetter(String fuzzOpID) throws MissingPropertySetter {
+    	if (propertySetters.containsKey(fuzzOpID)) {
+        	return propertySetters.get(fuzzOpID);
+    	} else {
+    		throw new MissingPropertySetter(fuzzOpID);
+    	}
     }
     
     public void setTestName(String testName) {
@@ -123,4 +150,6 @@ public final class SimCore {
 	public double getTotalFuzzingSeconds() {
 		return totalFuzzingSecondCount;
 	}
+	
+	
 }

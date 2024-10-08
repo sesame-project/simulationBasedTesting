@@ -1,0 +1,34 @@
+// TODO: for params, should inherit from different base class?
+
+[% var commonTemplate : Template = TemplateFactory.load("fuzzingoperations/fuzzOpCommon.egl");
+commonTemplate.populate("fuzzOp", fuzzOp);
+commonTemplate.populate("classNameMiddle", "FlatMap");
+commonTemplate.populate("extraImports", new List());
+commonTemplate.populate("useRandomSeed", true);
+%]
+
+[%= commonTemplate.process() %]
+
+	@Override
+	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
+	
+		[% for (aParameter in fuzzOp.valueSet) { %]
+		if (isReadyNow()) {
+			System.out.println("isReadyNow");
+			
+			IPropertySetter ps = SimCore.getInstance().getPropertySetter("DistortVelocity_0_Test_001_06_10_2024_04_35_31_paramtest");
+			if (!ps.isSet()) {
+				double genVal = new DoubleRange([%= aParameter.lowerBound %], [%=aParameter.upperBound %]).generateInRange(rng);
+				ps.set(genVal);
+			}
+		}
+		
+		if (!isReadyNow()) {
+			IPropertySetter ps = SimCore.getInstance().getPropertySetter("DistortVelocity_0_Test_001_06_10_2024_04_35_31_paramtest");
+			if (ps.isSet() && !ps.isRestored()) {
+				ps.restoreOriginalValue();
+			}
+		}
+		[% } %]
+	}	
+}

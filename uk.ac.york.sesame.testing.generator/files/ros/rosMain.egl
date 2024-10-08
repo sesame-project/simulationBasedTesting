@@ -23,6 +23,10 @@
 	var sanitiseVariables = false;
 	
 	var controlTriggerDelayTime = 1.0;
+	
+	// This controls the hard-coded wall clock time at which an exit will be 
+	// forced if the simulation time end trigger is not received.
+	var WORST_CASE_TIME_EXIT_FACTOR = 10.0;
 %]
 
 import java.util.ArrayList;
@@ -390,10 +394,16 @@ public class [%= testNameString %]_TestRunner {
 		
 		boolean done = false;
 		
+		double wall_seconds_time = 0.0;
 		while (!done) {
 			waitForSeconds(1);
+			wall_seconds_time += 1.0;
 			double time = SimCore.getInstance().getTime();
 			if (time > [%= endTime %]) {
+				done = true;
+			}
+			
+			if (wall_seconds_time > ([%= WORST_CASE_TIME_EXIT_FACTOR %] * [%= endTime %])) {
 				done = true;
 			}
 		}

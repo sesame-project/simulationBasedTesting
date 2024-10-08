@@ -4,6 +4,7 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -33,6 +34,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PacketLossNetworkOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.Point;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.PointRange;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetChoice;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFromSetOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.RandomValueFuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.StringSet;
@@ -241,6 +243,13 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	private EClass multipleMessagesNetworkOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum randomValueFromSetChoiceEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -766,6 +775,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getValueRange_RandChoice() {
+		return (EAttribute)valueRangeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIntRange() {
 		return intRangeEClass;
 	}
@@ -1018,6 +1036,15 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getRandomValueFromSetChoice() {
+		return randomValueFromSetChoiceEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public FuzzingOperationsFactory getFuzzingOperationsFactory() {
 		return (FuzzingOperationsFactory)getEFactoryInstance();
 	}
@@ -1102,6 +1129,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEAttribute(valueSetEClass, VALUE_SET__PROPERTY_NAME);
 
 		valueRangeEClass = createEClass(VALUE_RANGE);
+		createEAttribute(valueRangeEClass, VALUE_RANGE__RAND_CHOICE);
 
 		intRangeEClass = createEClass(INT_RANGE);
 		createEAttribute(intRangeEClass, INT_RANGE__LOWER_BOUND);
@@ -1141,6 +1169,9 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		multipleMessagesNetworkOperationEClass = createEClass(MULTIPLE_MESSAGES_NETWORK_OPERATION);
 		createEReference(multipleMessagesNetworkOperationEClass, MULTIPLE_MESSAGES_NETWORK_OPERATION__HOW_MANY_CLONES);
+
+		// Create enums
+		randomValueFromSetChoiceEEnum = createEEnum(RANDOM_VALUE_FROM_SET_CHOICE);
 	}
 
 	/**
@@ -1262,6 +1293,7 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEAttribute(getValueSet_PropertyName(), ecorePackage.getEString(), "propertyName", null, 0, 1, ValueSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valueRangeEClass, ValueRange.class, "ValueRange", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getValueRange_RandChoice(), this.getRandomValueFromSetChoice(), "randChoice", null, 0, 1, ValueRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(intRangeEClass, IntRange.class, "IntRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIntRange_LowerBound(), ecorePackage.getEInt(), "lowerBound", null, 0, 1, IntRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1302,6 +1334,12 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 
 		initEClass(multipleMessagesNetworkOperationEClass, MultipleMessagesNetworkOperation.class, "MultipleMessagesNetworkOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMultipleMessagesNetworkOperation_HowManyClones(), this.getIntRange(), null, "howManyClones", null, 1, 1, MultipleMessagesNetworkOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(randomValueFromSetChoiceEEnum, RandomValueFromSetChoice.class, "RandomValueFromSetChoice");
+		addEEnumLiteral(randomValueFromSetChoiceEEnum, RandomValueFromSetChoice.RANDOM_FROM_SEED);
+		addEEnumLiteral(randomValueFromSetChoiceEEnum, RandomValueFromSetChoice.ALWAYS_LOW);
+		addEEnumLiteral(randomValueFromSetChoiceEEnum, RandomValueFromSetChoice.ALWAYS_HIGH);
 	}
 
 } //FuzzingOperationsPackageImpl

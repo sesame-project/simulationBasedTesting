@@ -58,10 +58,10 @@ public class PredictorSimpleTestTurtlesim {
 		//String testTrainLimit_s = args[3];
 		//String targetMetricName = args[4];
 
-		String modelFile = "/home/simtesting/simtesting/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/src/uk/ac/york/sesame/testing/evolutionary/predictors/testmodel/turtleMRS.model";
+		String modelFile = "/home/simtesting/simtesting/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/src/uk/ac/york/sesame/testing/evolutionary/predictors/testmodel/turtleMRS-256-fixedfuzzing.model";
 		String campaignName = "validatePredictor";
-		String outputDirName = "/home/simtesting/academic/soprano/SPWorkerTemp/notebooks/predictor/temp-data-64-turtlesim/";
-		String testTrainLimit_s = "40";
+		String outputDirName = "/home/simtesting/academic/soprano/SPWorkerTemp/notebooks/predictor/temp-data-256-turtlesim-fixedfuzzing/";
+		String testTrainLimit_s = "192";
 		String targetMetricName = "distanceToPoint";
 		
 		String outputDirTrain = outputDirName + "/train/";

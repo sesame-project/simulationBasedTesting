@@ -107,6 +107,11 @@
     </genClasses>
     <nestedGenPackages prefix="FuzzingOperations" disposableProviderFactory="true"
         ecorePackage="TestingMM.ecore#//FuzzingOperations">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="TestingMM.ecore#//FuzzingOperations/RandomValueFromSetChoice">
+        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//FuzzingOperations/RandomValueFromSetChoice/RANDOM_FROM_SEED"/>
+        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//FuzzingOperations/RandomValueFromSetChoice/ALWAYS_LOW"/>
+        <genEnumLiterals ecoreEnumLiteral="TestingMM.ecore#//FuzzingOperations/RandomValueFromSetChoice/ALWAYS_HIGH"/>
+      </genEnums>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//FuzzingOperations/FuzzingOperation">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/name"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/FuzzingOperation/priority"/>
@@ -167,7 +172,9 @@
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/ValueSet">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/ValueSet/propertyName"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="TestingMM.ecore#//FuzzingOperations/ValueRange"/>
+      <genClasses image="false" ecoreClass="TestingMM.ecore#//FuzzingOperations/ValueRange">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/ValueRange/randChoice"/>
+      </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/IntRange">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/IntRange/lowerBound"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/IntRange/upperBound"/>

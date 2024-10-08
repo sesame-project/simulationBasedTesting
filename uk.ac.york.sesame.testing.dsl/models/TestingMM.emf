@@ -207,18 +207,25 @@ package FuzzingOperations {
 	abstract class RandomValueFuzzingOperation extends VariableOperation {
 		
 	}
-
+	
 	class RandomValueFromSetOperation extends RandomValueFuzzingOperation {
 		val ValueSet[*] valueSet;
 		attr boolean isRelative = false;
+		
 	}
 
 	class ValueSet {
 		attr String propertyName;
 	}
 
+	enum RandomValueFromSetChoice {
+		RANDOM_FROM_SEED = 0;
+		ALWAYS_LOW = 1;
+		ALWAYS_HIGH = 2;
+	}
+
 	abstract class ValueRange extends ValueSet {
-	
+		attr RandomValueFromSetChoice randChoice;
 	}
 
 	class IntRange extends ValueRange {

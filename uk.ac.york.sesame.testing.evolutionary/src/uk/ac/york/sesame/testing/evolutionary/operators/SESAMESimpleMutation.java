@@ -325,7 +325,7 @@ public class SESAMESimpleMutation extends SESAMEMutation {
 			mutationLog.write(sol.toString() + "\n");
 			for (int i = 0; i < sol.getNumberOfVariables(); i++) {
 				FuzzingOperationWrapper sta = sol.getVariable(i);
-				System.out.println("Before modification SESAMETestAttack=" + sta);
+				System.out.println("Before modification SESAMETestSolution=" + sta);
 				modifyGivenRecord(sta);
 			}
 			// Post-mutation debugging
