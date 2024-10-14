@@ -3,8 +3,12 @@ package uk.ac.york.sesame.testing.architecture.simulator;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,7 +32,7 @@ public final class SimCore {
     // This records the record of all start and end times per operations    	
     private ConcurrentHashMap<String, List<TimeInterval>> fuzzingTimingHistory = new ConcurrentHashMap<String,List<TimeInterval>>();
     
-    
+    private Map<String, Optional<DeferredAction>> actionsOnSend = new HashMap<String,Optional<DeferredAction>>();
     
     private double totalFuzzingSecondCount;
     private FileWriter outputTimingLog;
@@ -150,6 +154,28 @@ public final class SimCore {
 	public double getTotalFuzzingSeconds() {
 		return totalFuzzingSecondCount;
 	}
+
+	public synchronized void processDeferredActions() {
+		for (Entry<String, Optional<DeferredAction>> e : actionsOnSend.entrySet()) {
+			String key = e.getKey();
+			Optional<DeferredAction> da_o = e.getValue();
+			if (da_o.isPresent()) {
+				DeferredAction da = da_o.get(); 
+				System.out.println("Performing deferred action: " + da.toString());
+				da.doAction();
+				// Ensure the value is cleared to prevent repeat
+				e.setValue(Optional.empty());
+			}
+		}
+		System.out.println("Cleared all deferred actions");
+	}	
 	
-	
+	public synchronized void addDeferredAction(String uniqueID, DeferredAction da) {
+		if (!actionsOnSend.containsKey(uniqueID)) {
+			System.out.println("Adding deferred action: " + da.toString());
+			actionsOnSend.put(uniqueID, Optional.of(da));
+		} else {
+			System.out.println("Duplicate deferred action register rejected: " + da.toString());
+		}
+	}
 }

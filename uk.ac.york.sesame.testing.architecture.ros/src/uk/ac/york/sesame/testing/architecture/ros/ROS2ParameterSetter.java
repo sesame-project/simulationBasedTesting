@@ -41,6 +41,23 @@ public class ROS2ParameterSetter extends ROS2ParameterInterface implements IProp
 	public void set(Object value) {
 		// Need to store the original value
 		try {
+			System.out.println("set called for " + this.toString());
+			originalValue = getter.getSync();
+			System.out.println("originalValue for " + paramName + " = " + originalValue);
+		} catch (ParameterGetTimedOut e) {
+			e.printStackTrace();
+		}
+		
+		// TODO: do we need a wait before calling here?
+		internalSet(value);
+		isSet = true;
+	}
+	
+	@Override
+	public void setRelative(Object value) {
+		// Need to store the original value
+		try {
+			System.out.println("set called for " + this.toString());
 			originalValue = getter.getSync();
 			System.out.println("originalValue for " + paramName + " = " + originalValue);
 		} catch (ParameterGetTimedOut e) {

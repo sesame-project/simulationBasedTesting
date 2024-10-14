@@ -11,24 +11,64 @@ commonTemplate.populate("useRandomSeed", true);
 
 	@Override
 	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
-	
 		[% for (aParameter in fuzzOp.valueSet) { %]
+		String paramUniqueID = getUniqueID() + aParameter.name();
 		if (isReadyNow()) {
-			System.out.println("isReadyNow");
-			
+	
 			IPropertySetter ps = SimCore.getInstance().getPropertySetter("DistortVelocity_0_Test_001_06_10_2024_04_35_31_paramtest");
 			if (!ps.isSet()) {
-				double genVal = new DoubleRange([%= aParameter.lowerBound %], [%=aParameter.upperBound %]).generateInRange(rng);
-				ps.set(genVal);
+					double newValue = new [%= genDoubleRange(aParameter) %].generateInRange(rng);
+					// TODO: relative fuzzing not implemented yet - needs setRelative to be completed in ROS2ParameterSetter
+					[%
+					isFuzzingRelative = false; 
+					if (isFuzzingRelative) { %]
+					Double origVal = Double.parseDouble((String)value.getValue());
+					Double fuzzedVal = origVal + newValue;
+					valueOut.setValue(fuzzedVal.toString());
+					double time = SimCore.getInstance().getTime();
+					System.out.println("fuzzRangeParamLog," + time + "," + origVal + "," + fuzzedVal + "\n");
+					[% } else { %]
+					Double fuzzedVal = newValue;
+					[% } %]
+					System.out.println("fuzzRangeParamLog," + time + "," + origVal + "," + fuzzedVal + "\n");
+					
+					// The set/restore actions cannot be run from within a Flink process function... they
+					// have to be stored to be run later by the SimCore
+					DeferredAction da = (() -> {
+					System.out.println("Running parameter backup current/set action for " + this.toString());
+					try { ps.set([%= fuzzedValue %]);
+					System.out.println("Set parameter is done...");
+					} 
+					catch (InvalidPropertyType e) {
+						e.printStackTrace();
+					}
+					});
+				// TODO: need unique ID
+				SimCore.getInstance().addDeferredAction("DA-START", da);
 			}
 		}
 		
 		if (!isReadyNow()) {
 			IPropertySetter ps = SimCore.getInstance().getPropertySetter("DistortVelocity_0_Test_001_06_10_2024_04_35_31_paramtest");
 			if (ps.isSet() && !ps.isRestored()) {
-				ps.restoreOriginalValue();
+				// The set/restore actions cannot be run from within a Flink process function... they
+				// have to be stored to be run later by the SimCore
+				DeferredAction da = (() -> {
+					System.out.println("Running parameter restore action for " + this.toString());
+					try { 
+						ps.restoreOriginalValue();
+					System.out.println("done...");
+					} 
+					catch (RestoreFailed e) {
+						e.printStackTrace();
+					}
+					});
+				// TODO: need unique ID
+				SimCore.getInstance().addDeferredAction("DA-END", da);
 			}
 		}
+		
+		out.collect(value);
 		[% } %]
 	}	
 }
