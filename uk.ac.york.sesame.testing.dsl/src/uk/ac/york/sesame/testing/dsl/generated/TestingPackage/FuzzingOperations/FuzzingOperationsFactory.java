@@ -67,15 +67,6 @@ public interface FuzzingOperationsFactory extends EFactory {
 	ConditionBasedTimeLimited createConditionBasedTimeLimited();
 
 	/**
-	 * Returns a new object of class '<em>Fuzz Testing Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fuzz Testing Operation</em>'.
-	 * @generated
-	 */
-	FuzzTestingOperation createFuzzTestingOperation();
-
-	/**
 	 * Returns a new object of class '<em>Random Value From Set Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

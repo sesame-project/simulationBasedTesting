@@ -61,7 +61,6 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 			case FuzzingOperationsPackage.FIXED_TIME_ACTIVATION: return createFixedTimeActivation();
 			case FuzzingOperationsPackage.CONDITION_BASED_ACTIVATION: return createConditionBasedActivation();
 			case FuzzingOperationsPackage.CONDITION_BASED_TIME_LIMITED: return createConditionBasedTimeLimited();
-			case FuzzingOperationsPackage.FUZZ_TESTING_OPERATION: return createFuzzTestingOperation();
 			case FuzzingOperationsPackage.CUSTOM_FUZZING_OPERATION: return createCustomFuzzingOperation();
 			case FuzzingOperationsPackage.RANDOM_VALUE_FROM_SET_OPERATION: return createRandomValueFromSetOperation();
 			case FuzzingOperationsPackage.VALUE_SET: return createValueSet();
@@ -157,16 +156,6 @@ public class FuzzingOperationsFactoryImpl extends EFactoryImpl implements Fuzzin
 	public ConditionBasedTimeLimited createConditionBasedTimeLimited() {
 		ConditionBasedTimeLimitedImpl conditionBasedTimeLimited = new ConditionBasedTimeLimitedImpl();
 		return conditionBasedTimeLimited;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FuzzTestingOperation createFuzzTestingOperation() {
-		FuzzTestingOperationImpl fuzzTestingOperation = new FuzzTestingOperationImpl();
-		return fuzzTestingOperation;
 	}
 
 	/**

@@ -5,7 +5,6 @@ var classNameExt = fuzzOp.containingTest.name.firstToUpperCase();
 var className = fuzzOp.name.firstToUpperCase() + "_" + fuzzOp.sequenceNumInTest + "_" + classNameExt;
 var topic = fuzzOp.variableToAffect.name;
 var uniqueID = fuzzOp.name + "-" + fuzzOp.sequenceNumInTest;
-
  %]
 
 import java.util.Map;
@@ -39,6 +38,7 @@ public class [%= className %] extends [%= superClassName() %] {
 	protected String getUniqueID() {
 		return "[%= uniqueID %]";
 	}
+
 
 	[* Constructor *]
 	public [%= className %]() {

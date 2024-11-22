@@ -10,11 +10,9 @@ import java.util.Properties;
 
 import edu.wpi.rail.jrosbridge.JRosbridge.WebSocketType;
 import edu.wpi.rail.jrosbridge.Ros;
-import edu.wpi.rail.jrosbridge.Service;
 import edu.wpi.rail.jrosbridge.Topic;
 import edu.wpi.rail.jrosbridge.callback.TopicCallback;
 import edu.wpi.rail.jrosbridge.messages.Message;
-import edu.wpi.rail.jrosbridge.services.ServiceRequest;
 import uk.ac.york.sesame.testing.architecture.simulator.SubscriptionFailure;
 import uk.ac.york.sesame.testing.architecture.config.ConnectionProperties;
 import uk.ac.york.sesame.testing.architecture.data.DataStreamManager;
@@ -36,7 +34,8 @@ public class ROSSimulator implements ISimulator {
 
 	private boolean DEBUG_DISPLAY_INBOUND_MESSAGES = true;
 	
-	// TODO: this should be set in the DSL
+	// TODO: ROS version should be set in the DSL
+	// This governs e.g. how the parameters are set
 	private int ROS_MAJOR_VERSION = 2;
 	
 	static Ros ros;

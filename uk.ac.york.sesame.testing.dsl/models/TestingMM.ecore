@@ -192,7 +192,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumActivations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="1"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="FuzzTestingOperation" eSuperTypes="#//FuzzingOperations/FuzzingOperation"/>
     <eClassifiers xsi:type="ecore:EClass" name="VariableOperation" abstract="true"
         eSuperTypes="#//FuzzingOperations/FuzzingOperation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="variableToAffect" eType="#//MRSPackage/GenericVariable"/>
@@ -417,7 +416,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DynamicVariable" abstract="true" eSuperTypes="#//MRSPackage/GenericVariable"/>
     <eClassifiers xsi:type="ecore:EClass" name="EventBasedVariable" eSuperTypes="#//MRSPackage/DynamicVariable"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ParameterVariable" eSuperTypes="#//MRSPackage/DynamicVariable"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ParameterVariable" eSuperTypes="#//MRSPackage/DynamicVariable">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="componentName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConfigLocation" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1"
           eType="#//Execution/Dependency"/>

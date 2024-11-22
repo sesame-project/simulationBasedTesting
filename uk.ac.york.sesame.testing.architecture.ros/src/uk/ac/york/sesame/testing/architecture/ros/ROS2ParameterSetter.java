@@ -26,15 +26,50 @@ public class ROS2ParameterSetter extends ROS2ParameterInterface implements IProp
 		getter = new ROS2ParameterGetter(componentName, paramName, ros);
 	}
 	
-	private void internalSet(Object value) {
-		// TODO: only doing integer parameters
+	private String parametersStrForDouble(Double dv) {
+		//https://docs.ros2.org/foxy/api/rcl_interfaces/msg/ParameterValue.html
+		int paramTypeNum = 3;
+		String paramStr = "{\"name\" : \"" + paramName + "\", \"value\" : { \"type\": " + Integer.toString(paramTypeNum) + ", \"double_value\" : " + Double.toString(dv) + "}}";
+		return paramStr;
+	}
+	
+	private String parametersStrForInteger(Integer value) {
+		//https://docs.ros2.org/foxy/api/rcl_interfaces/msg/ParameterValue.html
 		int paramTypeNum = 2;
 		String paramStr = "{\"name\" : \"" + paramName + "\", \"value\" : { \"type\": " + Integer.toString(paramTypeNum) + ", \"integer_value\" : " + Integer.toString((Integer)value) + "}}";
+		return paramStr;
+	}
+	
+	private String parameterStrForSet(Object value) throws UnknownTypeForParameter {
+		String paramStr = "";
+		if (value instanceof Double) {
+			paramStr = parametersStrForDouble((Double)value);
+		}
+		
+		if (value instanceof Integer) {
+			paramStr = parametersStrForDouble((Double)value);
+		}
+		
+		if (paramStr == "") {
+			throw new UnknownTypeForParameter(value);
+		}
+		
 		String paramSRVContent = "{\"parameters\": [" + paramStr + "]}";
-		System.out.println(paramSRVContent);
-		ServiceRequest rq = new ServiceRequest(paramSRVContent);
-		// TODO: handle failure status from the service call
-		srv.callService(rq, new ROSSetParamServiceCallback(paramName, value));
+		return paramSRVContent;
+	}
+	
+	private void internalSet(Object value) {
+		String paramSRVContent;
+		try {
+			paramSRVContent = parameterStrForSet(value);
+			ServiceRequest rq = new ServiceRequest(paramSRVContent);
+			// TODO: handle failure status from the service call
+			srv.callService(rq, new ROSSetParamServiceCallback(paramName, value));
+		} catch (UnknownTypeForParameter e) {
+			System.err.println("Unknown type for parameter: " + e.toString() + "-" + this.toString());
+			e.printStackTrace();
+		}
+
 	}
 	
 	@Override

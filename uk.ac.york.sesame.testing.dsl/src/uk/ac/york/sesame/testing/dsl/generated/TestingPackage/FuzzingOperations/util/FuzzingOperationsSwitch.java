@@ -116,13 +116,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FuzzingOperationsPackage.FUZZ_TESTING_OPERATION: {
-				FuzzTestingOperation fuzzTestingOperation = (FuzzTestingOperation)theEObject;
-				T result = caseFuzzTestingOperation(fuzzTestingOperation);
-				if (result == null) result = caseFuzzingOperation(fuzzTestingOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case FuzzingOperationsPackage.VARIABLE_OPERATION: {
 				VariableOperation variableOperation = (VariableOperation)theEObject;
 				T result = caseVariableOperation(variableOperation);
@@ -372,21 +365,6 @@ public class FuzzingOperationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConditionBasedTimeLimited(ConditionBasedTimeLimited object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fuzz Testing Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fuzz Testing Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFuzzTestingOperation(FuzzTestingOperation object) {
 		return null;
 	}
 

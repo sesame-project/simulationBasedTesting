@@ -155,7 +155,6 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/ConditionBasedTimeLimited/length"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//FuzzingOperations/ConditionBasedTimeLimited/maximumActivations"/>
       </genClasses>
-      <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/FuzzTestingOperation"/>
       <genClasses ecoreClass="TestingMM.ecore#//FuzzingOperations/VariableOperation">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference TestingMM.ecore#//FuzzingOperations/VariableOperation/variableToAffect"/>
@@ -347,7 +346,9 @@
       </genClasses>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//MRSPackage/DynamicVariable"/>
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/EventBasedVariable"/>
-      <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/ParameterVariable"/>
+      <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/ParameterVariable">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/ParameterVariable/componentName"/>
+      </genClasses>
       <genClasses image="false" ecoreClass="TestingMM.ecore#//MRSPackage/ConfigLocation">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference TestingMM.ecore#//MRSPackage/ConfigLocation/root"/>

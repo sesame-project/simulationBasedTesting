@@ -51,9 +51,13 @@ sleep 1
 pkill -f "combined_clock_publisher.py" -9
 
 kill $(ps aux | grep run_turtlesim.sh | grep xterm | awk '{print $2}')
+kill $(ps aux | grep run_turtlebot.sh | grep xterm | awk '{print $2}')
 
-# TODO: need to check if Docker is being used in the project, and only kill it if so 
-#docker stop $(docker ps -a -q)
+# TODO: need to only kill the named containers
+docker stop $(docker ps -q --filter ancestor=turtlebot3 )
+docker stop $(docker ps -q --filter ancestor=eterry )
+
+
 killall -9 rosbag
 
 exit 0
