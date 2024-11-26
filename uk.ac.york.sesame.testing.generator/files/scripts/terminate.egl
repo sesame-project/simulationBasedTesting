@@ -57,7 +57,6 @@ kill $(ps aux | grep run_turtlebot.sh | grep xterm | awk '{print $2}')
 docker stop $(docker ps -q --filter ancestor=turtlebot3 )
 docker stop $(docker ps -q --filter ancestor=eterry )
 
-
 killall -9 rosbag
 
 exit 0
