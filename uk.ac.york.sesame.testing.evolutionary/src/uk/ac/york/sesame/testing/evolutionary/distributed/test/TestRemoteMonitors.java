@@ -7,6 +7,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Executio
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackageFactory;
+import uk.ac.york.sesame.testing.evolutionary.InvalidTestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.distributed.RemoteStatusMonitor;
 import uk.ac.york.sesame.testing.evolutionary.distributed.RemoteTest;
@@ -41,8 +42,14 @@ public class TestRemoteMonitors {
 		RemoteTest remoteTest = new RemoteTest(testID, distributedExpt, sol);
 		// Run ID doesn't matter in this test
 		remoteTest.registerRunID("eijrujuewuehuuhhueuh");
-		RemoteStatusMonitor rsm = new RemoteStatusMonitor(manager, remoteTest, remoteWorker); 
-		rsm.start();
+		RemoteStatusMonitor rsm;
+		try {
+			rsm = new RemoteStatusMonitor(manager, remoteTest, remoteWorker);
+			rsm.start();
+		} catch (InvalidTestCampaign e) {
+			e.printStackTrace();
+		} 
+
 	}
 	
 	public static void main(String[] args) {

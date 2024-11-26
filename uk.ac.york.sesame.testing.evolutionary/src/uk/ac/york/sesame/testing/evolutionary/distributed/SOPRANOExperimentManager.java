@@ -17,6 +17,7 @@ import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestCampaign;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ExecutionTarget;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.SOPRANOWorkerNode;
+import uk.ac.york.sesame.testing.evolutionary.InvalidTestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.distributed.allocations.AllocationStrategy;
 import uk.ac.york.sesame.testing.evolutionary.distributed.allocations.UpFrontAllocation;
@@ -152,6 +153,8 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 			e.printStackTrace();
 		} catch (SOPRANORemoteError e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidTestCampaign e) {
 			e.printStackTrace();
 		}
 	}

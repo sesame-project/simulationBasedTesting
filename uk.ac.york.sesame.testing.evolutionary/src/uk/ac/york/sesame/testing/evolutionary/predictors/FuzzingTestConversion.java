@@ -16,21 +16,21 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 
 public class FuzzingTestConversion {
-	private static final boolean CONSTANT_INTENSITY = false;
+	private static final boolean CONSTANT_INTENSITY = true;
 	private static final boolean GENERATE_RANDOM_VALUE = false;
 	private static final boolean GENERATE_SINE_WAVE = false;
 	double FIXED_RESOLUTION_SECS = 0.1;
 	double PERIOD = 1.0;
 	private Test t;
- 
+
 	private HashMap<FuzzingOperation, DoubleColumn> colLookup;
 	private int timeStepCount;
 	private double resolution;
 	private RelativeParameters relParams;
 	private Random rng;
-	
+
 	public FuzzingTestConversion() {
-		this.relParams = new RelativeParameters(); 
+		this.relParams = new RelativeParameters();
 	}
 
 	public FuzzingTestConversion(Test t) throws InvalidEndType {
@@ -38,25 +38,27 @@ public class FuzzingTestConversion {
 		this.resolution = FIXED_RESOLUTION_SECS;
 		this.relParams = new RelativeParameters();
 		this.rng = new Random();
-		
+
 		ExecutionEndTrigger trigger = t.getParentCampaign().getEndTrigger();
 
 		if (trigger instanceof TimeBasedEnd) {
 			TimeBasedEnd tbe = (TimeBasedEnd) trigger;
 			double timeLength = tbe.getTimeLimitSeconds();
 			this.timeStepCount = (int) (Math.floor(timeLength / resolution));
+			System.out.println("timeStepCount = " + timeStepCount);
 		} else {
 			throw new InvalidEndType(trigger);
 		}
 	}
 
-	public Table convert(List<FuzzingOperation> ops) throws UnknownLength {
+	public Table convert(List<FuzzingOperation> ops) throws UnknownLength, MissingColumnFor, ConversionFailedColError {
 		colLookup = new HashMap<FuzzingOperation, DoubleColumn>();
 		Table timeSeries = Table.create(t.getName() + "-timeSeries");
 
 		for (FuzzingOperation op : ops) {
 			if (includeOp(t, op)) {
 				// TODO: get column based upon the template name
+				System.out.println(op.getName());
 				DoubleColumn colParentOp = lookupColumnFor(timeSeries, op);
 				// Go through in time-steps
 				Activation a = op.getActivation();
@@ -67,19 +69,26 @@ public class FuzzingTestConversion {
 					double intensity = getOperationIntensity(t, op);
 
 					for (double time = start; time < end; time += resolution) {
-						int index = (int)Math.floor(time / resolution);
-						//System.out.println("index=" + index);
+						int index = (int) Math.floor(time / resolution);
+						// System.out.println("index=" + index);
 						// Increment intensity by this value
-						double orig = colParentOp.get(index);
-						double tdiff = time - start;
-						
-						double phase = Math.sin(2*Math.PI * tdiff / PERIOD);
-						if (GENERATE_SINE_WAVE) {
-							colParentOp = colParentOp.set(index, orig + (intensity*phase));
-						} else if (GENERATE_RANDOM_VALUE) {
-							colParentOp = colParentOp.set(index, orig + intensity * rng.nextDouble());
-						} else {
-							colParentOp = colParentOp.set(index, orig + intensity);
+						if (colParentOp != null) {
+							//System.out.println("start=" + start + ",end=" + end + ",index = " + index);
+							Double orig = colParentOp.get(index);
+							if (orig == null) {
+								System.err.println("ERROR: orig is null for index " + index + " column is of size " + colParentOp.size());
+								throw new ConversionFailedColError(orig);
+							} else {
+								double tdiff = time - start;
+								double phase = Math.sin(2 * Math.PI * tdiff / PERIOD);
+								if (GENERATE_SINE_WAVE) {
+									colParentOp = colParentOp.set(index, orig + (intensity * phase));
+								} else if (GENERATE_RANDOM_VALUE) {
+									colParentOp = colParentOp.set(index, orig + intensity * rng.nextDouble());
+								} else {
+									colParentOp = colParentOp.set(index, orig + intensity);
+								}
+							}
 						}
 					}
 				}
@@ -87,11 +96,11 @@ public class FuzzingTestConversion {
 		}
 		return timeSeries;
 	}
-	
-	public Table convert() throws UnknownLength {
+
+	public Table convert() throws UnknownLength, MissingColumnFor, ConversionFailedColError {
 		return convert(t.getOperations());
 	}
-	
+
 	public void saveTableToCSV(Table tb, File file) throws IOException {
 //		Destination d = new Destination(file);
 //		CsvWriter w = new CsvWriter();
@@ -99,24 +108,27 @@ public class FuzzingTestConversion {
 //		w.write(tb, d);
 		tb.write().csv(file);
 	}
-	
+
 	private void initColumnZero(DoubleColumn col, int timeStepCount) {
 		for (int i = 0; i < timeStepCount; i++) {
 			col.set(i, 0.0);
 		}
 	}
 
-	private DoubleColumn lookupColumnFor(Table tbl, FuzzingOperation op) {
+	private DoubleColumn lookupColumnFor(Table tbl, FuzzingOperation op) throws MissingColumnFor {
 		FuzzingOperation opBase = op.getFromTemplate();
-		
+
 		if (!colLookup.containsKey(opBase)) {
 			DoubleColumn col = DoubleColumn.create(opBase.getName(), timeStepCount);
-			//
 			initColumnZero(col, timeStepCount);
 			tbl.addColumns(col);
 			colLookup.put(opBase, col);
 		}
-		return colLookup.get(opBase);
+		DoubleColumn col = colLookup.get(opBase);
+		if (col == null) {
+			throw new MissingColumnFor(op);
+		}
+		return col;
 	}
 
 	private double getOperationIntensity(Test t, FuzzingOperation op) {

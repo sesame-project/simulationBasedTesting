@@ -34,7 +34,7 @@ public class RemoteMetricMonitor {
 	
 	private boolean metricLoopRunning = false;
 	
-	public RemoteMetricMonitor(SOPRANOExperimentManager manager, RemoteTest remoteTest, WorkerNode remoteWorker)  {
+	public RemoteMetricMonitor(SOPRANOExperimentManager manager, RemoteTest remoteTest, WorkerNode remoteWorker) throws InvalidTestCampaign  {
 		// Need to connect to the remote system
 		this.remoteWorker = remoteWorker;
 		this.remoteTest = remoteTest;
@@ -42,6 +42,9 @@ public class RemoteMetricMonitor {
 		
 		SESAMETestSolution sol = remoteTest.getSolution();
 		TestCampaign selectedCampaign = remoteTest.getSolution().getInternalType().getParentCampaign();
+		if (selectedCampaign == null) {
+			throw new InvalidTestCampaign();
+		}
 		
 		try {
 			this.metricConsumer = new PyroMetricConsumer(selectedCampaign, sol);

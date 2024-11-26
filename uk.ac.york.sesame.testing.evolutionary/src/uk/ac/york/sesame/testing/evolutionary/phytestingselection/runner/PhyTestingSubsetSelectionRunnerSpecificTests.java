@@ -14,7 +14,7 @@ import uk.ac.york.sesame.testing.evolutionary.phytestingselection.metricquality.
 
 public class PhyTestingSubsetSelectionRunnerSpecificTests {
 	public static void main(String[] args) {
-		String fileName = "/home/jharbin/eclipse-workspace-sesame/TTSTestProject/models/phytesting/testingTTS_Kuka_phytesting_specificvalues.model";
+		String fileName = "home/simtesting/simtesting/simulationBasedTesting/uk.ac.york.sesame.testing.evolutionary/src/uk/ac/york/sesame/testing/evolutionary/predictors/testmodel/TestingPAL-coverage_2024_07_08.model";
 		String csvOut = "/tmp/phytestout.csv";
 		
 		try {
@@ -26,7 +26,6 @@ public class PhyTestingSubsetSelectionRunnerSpecificTests {
 			testPhysub.writeOutResultsCSV(csvOut);
 			
 			System.out.println("Writing out to CSV done...");
-			// TODO: invoke Python to run the subset processing here
 			
 		} catch (EolModelLoadingException | InvalidTestCampaign e) {
 			e.printStackTrace();

@@ -88,6 +88,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 	private String orchestratorBasePath;
 	private int maxIterations;
 	private int conditionDepth;
+	private String campaignName;
 	private String grammarPath;
 	
 	private SOPRANOExperimentManager exptManager; 
@@ -110,6 +111,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 		this.conditionDepth = conditionDepth;
 		this.grammarPath = grammarPath;
 		this.spaceModelFileName = spaceModelFileName;
+		this.campaignName = campaignName;
 
 		loader = new SESAMEModelLoader(spaceModelFileName);
 		testSpaceModel = loader.loadTestingSpace();
@@ -328,7 +330,7 @@ public class EvolutionaryExpt extends AbstractAlgorithmRunner {
 			e.printStackTrace();
 		} catch (InvalidTestCampaign e) {
 			// TODO: auto-generated
-			System.out.println("Evaluation failed - invalid TestCampaign");
+			System.out.println("Experiment startup failed - invalid TestCampaign " + campaignName + " - is it present in the model " + this.spaceModelFileName + "?");
 			e.printStackTrace();
 		} catch (StreamSetupFailed e) {
 			System.out.println("Stream setup failed - " + e.toString());

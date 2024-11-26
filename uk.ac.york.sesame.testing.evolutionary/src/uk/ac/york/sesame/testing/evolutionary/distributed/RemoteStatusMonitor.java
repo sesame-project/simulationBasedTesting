@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import net.razorvine.pyro.*;
+import uk.ac.york.sesame.testing.evolutionary.InvalidTestCampaign;
 
 public class RemoteStatusMonitor {
 	private WorkerNode remoteWorker;
@@ -36,11 +37,13 @@ public class RemoteStatusMonitor {
 //		return (s != TestStatus.RUNNING);
 //	}
 	
-	public RemoteStatusMonitor(SOPRANOExperimentManager manager, RemoteTest remoteTest, WorkerNode remoteWorker)  {
+	public RemoteStatusMonitor(SOPRANOExperimentManager manager, RemoteTest remoteTest, WorkerNode remoteWorker) throws InvalidTestCampaign  {
 		// Need to connect to the remote system
 		this.remoteWorker = remoteWorker;
 		this.remoteTest = remoteTest;
 		this.manager = manager;
+		RemoteMetricMonitor rmm = new RemoteMetricMonitor(manager, remoteTest, remoteWorker);
+		metricMonitor = Optional.of(rmm);	
 		
 		// Prepare the allocation manager thread
 		statusMonitorThread = new Thread() {
@@ -53,9 +56,13 @@ public class RemoteStatusMonitor {
 	public void handleStatusChange(TestStatus newStatus, TestStatus previousStatus) {
 		if (newStatus == TestStatus.RUNNING) {
 			// Start the metric monitor for this test
-			RemoteMetricMonitor rmm = new RemoteMetricMonitor(manager, remoteTest, remoteWorker);
-			rmm.start();
-			metricMonitor = Optional.of(rmm);	
+			
+			if (metricMonitor.isPresent()) {
+				RemoteMetricMonitor rmm = metricMonitor.get();
+				rmm.start();
+			} else {
+				System.out.println("Cannot start metric monitor for remote test " + remoteTest.getTestID() + " - it was not created due to earlier error");
+			}
 		};
 		
 		if ((newStatus == TestStatus.COMPLETED) || (newStatus == TestStatus.FAILED)) {
