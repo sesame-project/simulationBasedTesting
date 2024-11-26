@@ -7,6 +7,7 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Executio
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackageFactory;
+import uk.ac.york.sesame.testing.evolutionary.InvalidTestCampaign;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
 import uk.ac.york.sesame.testing.evolutionary.distributed.RemoteStatusMonitor;
 import uk.ac.york.sesame.testing.evolutionary.distributed.RemoteTest;
@@ -52,6 +53,8 @@ public class TestRemoteMonitors {
 
 		} catch (UnknownWorker e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidTestCampaign e) {
 			e.printStackTrace();
 		}
 	}

@@ -92,6 +92,12 @@ public class PredictorTestMultipleModels {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (MissingColumnFor e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ConversionFailedColError e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return NEW_DATA_PER_ORIG;
 	}

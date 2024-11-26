@@ -58,6 +58,9 @@ public class MetricConsumerBase implements Runnable {
 	}
 
 	public MetricConsumerBase(TestCampaign selectedCampaign) throws InvalidTestCampaign {
+		if (selectedCampaign == null) {
+			throw new InvalidTestCampaign();
+		}
 		this.selectedCampaign = selectedCampaign;
 		setupMetricLookup();
 	}

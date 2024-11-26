@@ -35,6 +35,12 @@ public class PredictorSimpleTestTurtlesim {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (MissingColumnFor e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ConversionFailedColError e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
