@@ -122,6 +122,9 @@ public class RemoteStatusMonitor {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (UnknownWorker e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		statusMonitorThread.start();

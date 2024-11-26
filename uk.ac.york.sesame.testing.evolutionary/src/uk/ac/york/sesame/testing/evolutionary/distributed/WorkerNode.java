@@ -21,14 +21,12 @@ public class WorkerNode {
 		return Optional.empty();
 	}
 	
-	public WorkerNode(String ipAddress) {
+	public WorkerNode(String ipAddress) throws UnknownWorker {
 		this.hostname = ipAddress.replace(".", "_");
 		
 		try {
 			System.out.println("Getting Pyro daemon at hostname " + hostname);
 			this.daemon = PyroDaemons.getPyroDaemonByHost(hostname);
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

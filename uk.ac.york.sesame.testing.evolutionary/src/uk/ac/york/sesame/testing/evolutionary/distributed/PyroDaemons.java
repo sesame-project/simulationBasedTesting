@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.razorvine.pyro.NameServerProxy;
+import net.razorvine.pyro.PyroException;
 import net.razorvine.pyro.PyroProxy;
 
 public class PyroDaemons {
@@ -32,22 +33,15 @@ public class PyroDaemons {
 		return ns_single;
 	}
 	
-	public static PyroProxy getPyroDaemonByHost(String targetPyroNameSuffix) throws UnknownHostException, IOException {
+	public static PyroProxy getPyroDaemonByHost(String targetPyroNameSuffix) throws UnknownWorker, IOException {
 		NameServerProxy ns = PyroDaemons.getNameserver();
 		String targetPyroName = "SOPRANOWorkerDaemon_" + targetPyroNameSuffix;
 		
-		//if (ensureFresh) {
+		try {
 			PyroProxy daemon = new PyroProxy(getNameserver().lookup(targetPyroName));
 			return daemon;
-//		} else {
-//			if (!proxies_by_host.containsKey(targetPyroName)) {
-//				// TODO: check this daemon by its IP address
-//				PyroProxy daemon = new PyroProxy(getNameserver().lookup(targetPyroName));
-//				proxies_by_host.put(targetPyroName, daemon);
-//				return daemon;
-//			} else {
-//				return proxies_by_host.get(targetPyroName);
-//			}
-//		}
+		} catch (PyroException e) {
+			throw new UnknownWorker(targetPyroNameSuffix);
+		}
 	}
 }

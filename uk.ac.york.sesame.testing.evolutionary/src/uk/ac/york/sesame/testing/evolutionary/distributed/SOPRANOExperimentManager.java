@@ -31,6 +31,10 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	private static final long serialVersionUID = 1L;
 	private static final boolean TERMINATE_EXECUTION_ON_MISSING_PROPERTY_INFO = false;
 	private static final long ALLOCATION_LOOP_DELAY = 10;
+	
+	// TODO: should be looked up from DSL
+	private boolean FAIL_ON_MISSING_WORKER = true;
+	
 	// Status monitors - each create a MetricMonitor when they are ready
 	List<RemoteStatusMonitor> remoteStatusMonitors = new ArrayList<RemoteStatusMonitor>();
 	
@@ -260,8 +264,15 @@ public class SOPRANOExperimentManager implements SolutionListEvaluator<SESAMETes
 	public void registerExecutionTarget(ExecutionTarget et) {
 		if (et instanceof SOPRANOWorkerNode) {
 			SOPRANOWorkerNode dslEt = (SOPRANOWorkerNode)et;
-			WorkerNode node = new WorkerNode(dslEt.getIpAddress());
-			this.registerAvailableWorker(node);
+			try {
+				WorkerNode node = new WorkerNode(dslEt.getIpAddress());
+				this.registerAvailableWorker(node);
+			} catch (UnknownWorker e) {
+				if (FAIL_ON_MISSING_WORKER) {
+					System.out.println("Configuration is to fail on missing worker node. Failing on worker node " + e.getWorkerIP() + " not available on nameserver");
+					System.exit(-1);
+				}
+			}
 		}
 	}
 }
