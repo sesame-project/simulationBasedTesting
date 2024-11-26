@@ -30,8 +30,14 @@ rule blackHole2FlatMap transform fuzzOp: Testing!BlackholeNetworkOperation {
 }
 
 rule fuzzRange2FlatMap transform fuzzOp: Testing!RandomValueFromSetOperation {
-	guard : fuzzOp.containingTest != null
+	guard : (fuzzOp.containingTest != null) and (not fuzzOp.variableToAffect.isKindOf(ParameterVariable))
 	template : "fuzzingoperations/fuzzRange.egl"
+	target : getClassNamePath(fuzzOp)
+}
+
+rule fuzzRangeParam2FlatMap transform fuzzOp: Testing!RandomValueFromSetOperation {
+	guard : fuzzOp.containingTest != null and (fuzzOp.variableToAffect.isKindOf(ParameterVariable))
+	template : "fuzzingoperations/fuzzRangeParam.egl"
 	target : getClassNamePath(fuzzOp)
 }
 

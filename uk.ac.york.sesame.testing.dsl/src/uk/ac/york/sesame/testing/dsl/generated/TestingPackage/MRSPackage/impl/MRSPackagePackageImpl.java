@@ -523,6 +523,15 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getParameterVariable_ComponentName() {
+		return (EAttribute)parameterVariableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConfigLocation() {
 		return configLocationEClass;
 	}
@@ -971,6 +980,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		eventBasedVariableEClass = createEClass(EVENT_BASED_VARIABLE);
 
 		parameterVariableEClass = createEClass(PARAMETER_VARIABLE);
+		createEAttribute(parameterVariableEClass, PARAMETER_VARIABLE__COMPONENT_NAME);
 
 		configLocationEClass = createEClass(CONFIG_LOCATION);
 		createEReference(configLocationEClass, CONFIG_LOCATION__ROOT);
@@ -1109,6 +1119,7 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 		initEClass(eventBasedVariableEClass, EventBasedVariable.class, "EventBasedVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(parameterVariableEClass, ParameterVariable.class, "ParameterVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getParameterVariable_ComponentName(), ecorePackage.getEString(), "componentName", null, 0, 1, ParameterVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configLocationEClass, ConfigLocation.class, "ConfigLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConfigLocation_Root(), theExecutionPackage.getDependency(), null, "root", null, 1, 1, ConfigLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

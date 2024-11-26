@@ -23,7 +23,6 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.DynamicActivation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.ExternalResourceSet;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FixedTimeActivation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzTestingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperationsPackage;
@@ -124,13 +123,6 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * @generated
 	 */
 	private EClass conditionBasedTimeLimitedEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass fuzzTestingOperationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -685,15 +677,6 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFuzzTestingOperation() {
-		return fuzzTestingOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getVariableOperation() {
 		return variableOperationEClass;
 	}
@@ -1110,8 +1093,6 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		createEAttribute(conditionBasedTimeLimitedEClass, CONDITION_BASED_TIME_LIMITED__LENGTH);
 		createEAttribute(conditionBasedTimeLimitedEClass, CONDITION_BASED_TIME_LIMITED__MAXIMUM_ACTIVATIONS);
 
-		fuzzTestingOperationEClass = createEClass(FUZZ_TESTING_OPERATION);
-
 		variableOperationEClass = createEClass(VARIABLE_OPERATION);
 		createEReference(variableOperationEClass, VARIABLE_OPERATION__VARIABLE_TO_AFFECT);
 
@@ -1212,7 +1193,6 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		fixedTimeActivationEClass.getESuperTypes().add(this.getDynamicActivation());
 		conditionBasedActivationEClass.getESuperTypes().add(this.getDynamicActivation());
 		conditionBasedTimeLimitedEClass.getESuperTypes().add(this.getDynamicActivation());
-		fuzzTestingOperationEClass.getESuperTypes().add(this.getFuzzingOperation());
 		variableOperationEClass.getESuperTypes().add(this.getFuzzingOperation());
 		customFuzzingOperationEClass.getESuperTypes().add(this.getVariableOperation());
 		randomValueFuzzingOperationEClass.getESuperTypes().add(this.getVariableOperation());
@@ -1273,8 +1253,6 @@ public class FuzzingOperationsPackageImpl extends EPackageImpl implements Fuzzin
 		initEReference(getConditionBasedTimeLimited_Starting(), theStandardGrammarPackage.getCondition(), null, "starting", null, 0, 1, ConditionBasedTimeLimited.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConditionBasedTimeLimited_Length(), ecorePackage.getEDouble(), "length", null, 0, 1, ConditionBasedTimeLimited.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConditionBasedTimeLimited_MaximumActivations(), ecorePackage.getEInt(), "maximumActivations", "1", 0, 1, ConditionBasedTimeLimited.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(fuzzTestingOperationEClass, FuzzTestingOperation.class, "FuzzTestingOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(variableOperationEClass, VariableOperation.class, "VariableOperation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVariableOperation_VariableToAffect(), theMRSPackagePackage.getGenericVariable(), null, "variableToAffect", null, 0, 1, VariableOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

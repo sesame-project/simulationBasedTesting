@@ -8,9 +8,7 @@
 	topicsNodesPublish.println();
 	
 	var fuzzingVars = new Set();
-	
 	var useDistributed = true;
-	
 	var pyroNSIP = "192.168.1.238";
 	
 	var execStrategy = mrs.execStrategy;
@@ -21,7 +19,7 @@
 	topicsMetricsNeed.println();
 	var testNameString = test.name.firstToUpperCase();
 	var sanitiseVariables = false;
-	
+	 
 	var controlTriggerDelayTime = 1.0;
 	
 	// This controls the hard-coded wall clock time at which an exit will be 
@@ -177,19 +175,28 @@ public class [%= testNameString %]_TestRunner {
 		// Preprocessing before simulation starts
 		System.out.println("Preprocessing Phase");
 		
+		// If problems check the ordering against /home/simtesting/workspace/turtleSim/src/Test_001_06_10_2024_04_35_31_TestRunner_paramtest.java
+		// SimCore needs to be aware of the simulator interface object, but can this be done before fuzzing operations 
+		// are created?  
+		SimCore.getInstance().setSimulatorInterface(rosSim);
+		
+		System.out.println("Simulator Starts");
+		rosSim.run(params);
+		waitForSeconds([%= mrs.launchDelaySeconds %]);
+		
+		System.out.println("Simulator run period completed - connecting to topics");
+		rosSim.connect(cp);
+		
+		[* Rearranging the fuzzing operation creation to run AFTER the connection of the simulator interface
+		This is so the ros object is present when the parameter operations need it...
+		if this causes problems later, better alternative may be to redesign the parameter fuzzing so
+		the property setter is not registered until its activation? *]
+		
 		[% for (fOName in allFuzzOps.keySet()) {
 		var fuzzOp = allFuzzOps.get(fOName); %]
 		FuzzingOperation [%= fOName %] = [%= produceFOGenerationSignature(fuzzOp) %]; 
 		[%= fOName %].preprocessing();
 		[% } %]
-				
-		System.out.println("Simulator Starts");
-		rosSim.run(params);
-		// TODO: this delay needs to be configurable
-		waitForSeconds([%= mrs.launchDelaySeconds %]);
-		
-		System.out.println("Simulator run period completed - connecting to topics");
-		rosSim.connect(cp);
 				
 		[% for (aTopic in allTopics) { %]
 		Thread subscriber_thread_[%=aTopic.name.replace("/","_")%] = new Thread() {
@@ -231,6 +238,11 @@ public class [%= testNameString %]_TestRunner {
 			public void run() {
 				System.out.println("From out to sim starts");
 				while (true) {
+				
+					// TODO: Ensures that deferred actions are run before each output message
+					// May be better to run these in a seperate thread to control their rate
+					SimCore.getInstance().processDeferredActions();
+					
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
@@ -393,25 +405,26 @@ public class [%= testNameString %]_TestRunner {
 		var endTime = endTrigger.timeLimitSeconds; %]
 		
 		boolean done = false;
-		
+		double simTime = 0.0;
 		double wall_seconds_time = 0.0;
+		
 		while (!done) {
 			waitForSeconds(1);
 			wall_seconds_time += 1.0;
-			double time = SimCore.getInstance().getTime();
-			if (time > [%= endTime %]) {
+			simTime = SimCore.getInstance().getTime();
+			if (simTime > [%= endTime %]) {
 				done = true;
 			}
 			
 			if (wall_seconds_time > ([%= WORST_CASE_TIME_EXIT_FACTOR %] * [%= endTime %])) {
 				done = true;
 			}
+			
 		}
 		
 		// TODO: need to trigger the control message here
 		
-		
-		System.out.println("----------------- TESTRUNNER TERMINATING ---------------------");
+		System.out.println("----------------- TESTRUNNER TERMINATING AT SIMULATOR TIME = " + simTime + "---------------------");
 		System.exit(0);
 	}
 	

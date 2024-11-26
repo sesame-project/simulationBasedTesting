@@ -189,9 +189,9 @@ package FuzzingOperations {
 		attr int maximumActivations = 1;
 	}
 
-	class FuzzTestingOperation extends FuzzingOperation {
-		
-	}
+//	class FuzzTestingOperation extends FuzzingOperation {
+//		
+	//}
 
 	abstract class VariableOperation extends FuzzingOperation {
 		ref MRSPackage.GenericVariable variableToAffect;
@@ -466,7 +466,8 @@ package MRSPackage {
 	}
 	
 	class ParameterVariable extends DynamicVariable {
-		
+		// Where to store the component
+		attr String componentName;
 	}
 	
 	// ValueModification fuzzing operations can refer to the generic variable

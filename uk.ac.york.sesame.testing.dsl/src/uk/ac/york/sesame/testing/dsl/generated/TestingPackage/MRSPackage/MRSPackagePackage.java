@@ -452,13 +452,22 @@ public interface MRSPackagePackage extends EPackage {
 	int PARAMETER_VARIABLE__TYPE = DYNAMIC_VARIABLE__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_VARIABLE__COMPONENT_NAME = DYNAMIC_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Parameter Variable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_VARIABLE_FEATURE_COUNT = DYNAMIC_VARIABLE_FEATURE_COUNT + 0;
+	int PARAMETER_VARIABLE_FEATURE_COUNT = DYNAMIC_VARIABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Parameter Variable</em>' class.
@@ -1543,6 +1552,17 @@ public interface MRSPackagePackage extends EPackage {
 	EClass getParameterVariable();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParameterVariable#getComponentName <em>Component Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Component Name</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ParameterVariable#getComponentName()
+	 * @see #getParameterVariable()
+	 * @generated
+	 */
+	EAttribute getParameterVariable_ComponentName();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ConfigLocation <em>Config Location</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2230,6 +2250,14 @@ public interface MRSPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EClass PARAMETER_VARIABLE = eINSTANCE.getParameterVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Component Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAMETER_VARIABLE__COMPONENT_NAME = eINSTANCE.getParameterVariable_ComponentName();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.ConfigLocationImpl <em>Config Location</em>}' class.
