@@ -13,6 +13,8 @@ package uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation#getXpathExpression <em>Xpath Expression</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation#getSeperationCharacterAsString <em>Seperation Character As String</em>}</li>
+ *   <li>{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation#getElementNum <em>Element Num</em>}</li>
  * </ul>
  *
  * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getXMLConfigLocation()
@@ -41,5 +43,50 @@ public interface XMLConfigLocation extends FileLocation {
 	 * @generated
 	 */
 	void setXpathExpression(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Seperation Character As String</b></em>' attribute.
+	 * The default value is <code>" "</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Seperation Character As String</em>' attribute.
+	 * @see #setSeperationCharacterAsString(String)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getXMLConfigLocation_SeperationCharacterAsString()
+	 * @model default=" "
+	 * @generated
+	 */
+	String getSeperationCharacterAsString();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation#getSeperationCharacterAsString <em>Seperation Character As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Seperation Character As String</em>' attribute.
+	 * @see #getSeperationCharacterAsString()
+	 * @generated
+	 */
+	void setSeperationCharacterAsString(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Element Num</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Element Num</em>' attribute.
+	 * @see #setElementNum(int)
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRSPackagePackage#getXMLConfigLocation_ElementNum()
+	 * @model
+	 * @generated
+	 */
+	int getElementNum();
+
+	/**
+	 * Sets the value of the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation#getElementNum <em>Element Num</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Element Num</em>' attribute.
+	 * @see #getElementNum()
+	 * @generated
+	 */
+	void setElementNum(int value);
 
 } // XMLConfigLocation

@@ -368,6 +368,8 @@
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/XMLConfigLocation">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/XMLConfigLocation/xpathExpression"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/XMLConfigLocation/seperationCharacterAsString"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/XMLConfigLocation/elementNum"/>
       </genClasses>
       <genClasses ecoreClass="TestingMM.ecore#//MRSPackage/Type">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TestingMM.ecore#//MRSPackage/Type/name"/>

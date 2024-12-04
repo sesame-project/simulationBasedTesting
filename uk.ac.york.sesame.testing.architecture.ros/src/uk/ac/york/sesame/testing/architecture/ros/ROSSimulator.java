@@ -155,7 +155,8 @@ public class ROSSimulator implements ISimulator {
 		String testID = params.get("testID");
 		
 		System.out.println("workingDir = " + workingDir + ",launchFilePath = " + launchFilePath);
-		ExptHelper.runScriptNewThread(workingDir, launchFilePath);
+		String runCmd = launchFilePath + " " + testID;
+		ExptHelper.runScriptNewThread(workingDir, runCmd);
 		
 		// Override extras delay parameter if supplied
 		if (params.containsKey("extrasWaitdelayMsec")) {

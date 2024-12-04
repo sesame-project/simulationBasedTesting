@@ -1,21 +1,25 @@
 package uk.ac.york.sesame.testing.evolutionary.distributed.remapping.transformers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ContainerDependency;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.Dependency;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ConfigLocation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.DynamicVariable;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.*;
 import uk.ac.york.sesame.testing.evolutionary.distributed.RemoteTest;
 import uk.ac.york.sesame.testing.evolutionary.distributed.accessors.FileAccessorFromDependency;
 import uk.ac.york.sesame.testing.evolutionary.distributed.accessors.FileAccessorFromDocker;
+import uk.ac.york.sesame.testing.evolutionary.distributed.accessors.FileAccessorFromRawFile;
+import uk.ac.york.sesame.testing.evolutionary.distributed.accessors.FileLocationKey;
+import uk.ac.york.sesame.testing.evolutionary.distributed.accessors.TempFileCreationFailed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.InvalidTransformerForVariable;
+import uk.ac.york.sesame.testing.evolutionary.utilities.MissingPropertiesFile;
+import uk.ac.york.sesame.testing.evolutionary.utilities.MissingProperty;
 
 public class ConfigTransformerFactory {
-	public List<ConfigTransformer> createTransformers(RemoteTest rt, StaticVariable sv) throws InvalidTransformerForVariable {
+	public List<ConfigTransformer> createTransformers(RemoteTest rt, StaticVariable sv, Map<String,String> fileLocationOverrides) throws InvalidTransformerForVariable, MissingProperty, MissingPropertiesFile, TempFileCreationFailed {
 		List<ConfigLocation> locs = sv.getLocations();
 		
 		List<ConfigTransformer> txs = new ArrayList<ConfigTransformer>();
@@ -23,10 +27,37 @@ public class ConfigTransformerFactory {
 		for (ConfigLocation l : locs) {
 			Dependency depRoot = l.getRoot();
 			
+			System.out.println("fileLocationOverrides count:" + fileLocationOverrides.size());
+			
 			FileAccessorFromDependency accessor = null;
 			// TODO: support other containers here
-			if (depRoot instanceof ContainerDependency) {
-				accessor = new FileAccessorFromDocker(rt, (ContainerDependency)depRoot);	
+			// The file location overrides should really be pushed up into FileAccessorFromDependency
+			if (depRoot instanceof ContainerDependency && (l instanceof FileLocation)) {
+				
+				FileLocation fl = (FileLocation)l;
+				String key = FileLocationKey.forDepFile((ContainerDependency) depRoot, fl);
+				
+				if (!fileLocationOverrides.containsKey(key)) { 
+					FileAccessorFromDocker accessorDocker = new FileAccessorFromDocker(rt, (ContainerDependency)depRoot);
+					accessor = (FileAccessorFromDependency)accessorDocker;
+					try {
+						// Set up an override so future references to this file will use this transformers output file
+						String outputFile = accessorDocker.getOutputFileName(fl);
+						fileLocationOverrides.put(key, outputFile);
+					} catch (MissingProperty e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (MissingPropertiesFile e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				} else {
+					String tempLocation = fileLocationOverrides.get(key);
+					accessor = new FileAccessorFromRawFile(tempLocation);
+					String newOutputFile = accessor.getOutputFileName(fl);
+					fileLocationOverrides.put(key, newOutputFile);
+				}
 			}
 			
 			if (accessor == null) {

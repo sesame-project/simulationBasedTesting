@@ -17,7 +17,6 @@ public class ROS2ParameterSetter extends ROS2ParameterInterface implements IProp
 	private String srvName;
 	private String srvType = "rcl_interfaces/srv/SetParameters";
 	private Service srv;
-
 	
 	public ROS2ParameterSetter(String componentName, String paramName, Ros ros) {
 		super(componentName, paramName, ros);

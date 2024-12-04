@@ -1,24 +1,26 @@
 package uk.ac.york.sesame.testing.evolutionary.distributed;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.DynamicVariable;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.FileLocation;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.MRS;
-import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.ROSSimulator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.SimVariableConfiguration;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Simulator;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.StaticVariable;
 import uk.ac.york.sesame.testing.evolutionary.SESAMETestSolution;
-
+import uk.ac.york.sesame.testing.evolutionary.distributed.accessors.TempFileCreationFailed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.remapping.*;
 import uk.ac.york.sesame.testing.evolutionary.distributed.remapping.transformers.ConfigTransformer;
 import uk.ac.york.sesame.testing.evolutionary.distributed.remapping.transformers.ConfigTransformerFactory;
+import uk.ac.york.sesame.testing.evolutionary.distributed.remapping.transformers.XPathLookupFailure;
 import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.InvalidExecutorForOperation;
 import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.InvalidTransformerForVariable;
 import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.StaticOperationExecutoryFactory;
@@ -26,6 +28,8 @@ import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.Transf
 import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.operationexecutors.OperationExecutor;
 import uk.ac.york.sesame.testing.evolutionary.dslwrapper.FuzzingOperationWrapper;
 import uk.ac.york.sesame.testing.evolutionary.dslwrapper.InvalidFuzzingOperation;
+import uk.ac.york.sesame.testing.evolutionary.utilities.MissingPropertiesFile;
+import uk.ac.york.sesame.testing.evolutionary.utilities.MissingProperty;
 
 public class RemoteTest implements Comparable<RemoteTest> {
 	private static final boolean REMAP_ALL_VARIABLES = false;
@@ -83,6 +87,8 @@ public class RemoteTest implements Comparable<RemoteTest> {
 			e.printStackTrace();
 		} catch (TransformFailed e) {
 			e.printStackTrace();
+		} catch (XPathLookupFailure e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -100,6 +106,14 @@ public class RemoteTest implements Comparable<RemoteTest> {
 		// For all fuzzing operations, find the static variables
 		List<FuzzingOperation> staticOps = sol.getAllStaticOperations();
 		
+		// Use a map which overrides file locations with raw file names (of the temporary file)
+		// This is so multiple modifications of the same input file can be applied sequentially
+		// Otherwise, each modification would be on a fresh copy of the file from Docker, 
+		// and only the last would be applied
+		
+		// The key is <IMAGE-NAME>-<FILE_NAME>
+		Map<String,String> fileLocationOverrides = new HashMap<String,String>();
+		
 		for (FuzzingOperation op : staticOps) {
 			FuzzingOperationWrapper wrop = new FuzzingOperationWrapper(op);
 			Optional<GenericVariable> gv_o = wrop.getVariableToAffect();
@@ -108,10 +122,15 @@ public class RemoteTest implements Comparable<RemoteTest> {
 			if ((gv_o.isPresent()) && (gv_o.get() instanceof StaticVariable)) {
 				GenericVariable gv = gv_o.get();
 				StaticVariable sv = (StaticVariable)gv;
-				List<ConfigTransformer> tfs = ctFactory.createTransformers(this, sv);
+				List<ConfigTransformer> tfs = ctFactory.createTransformers(this, sv, fileLocationOverrides);
+				// When there are multiple locations for a variable, we store the first modified object
+				// so we can ensure later locations can be set to the same value
+				Optional<Object> lastModified = Optional.empty();
 				for (ConfigTransformer tf : tfs) {
 					OperationExecutor exec = soFactory.createOperationExecutor(op);
-					tf.transform(rng,exec);
+					// TODO: should be storing the last modified variables in a map here
+					// lastModified may not be relevant to this variable here
+					lastModified = tf.transform(rng, exec, lastModified);
 				}
 				sv.getLocations();
 			} else {
@@ -126,6 +145,18 @@ public class RemoteTest implements Comparable<RemoteTest> {
 		} catch (TransformFailed e) {
 			e.printStackTrace();
 		} catch (InvalidFuzzingOperation e) {
+			e.printStackTrace();
+		} catch (XPathLookupFailure e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MissingProperty e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MissingPropertiesFile e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TempFileCreationFailed e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

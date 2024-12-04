@@ -16,18 +16,20 @@ import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.FuzzingOperation;
 
 public class FuzzingTestConversion {
-	private static final boolean CONSTANT_INTENSITY = true;
+	private static final boolean CONSTANT_INTENSITY = false;
 	private static final boolean GENERATE_RANDOM_VALUE = false;
 	private static final boolean GENERATE_SINE_WAVE = false;
 	double FIXED_RESOLUTION_SECS = 0.1;
 	double PERIOD = 1.0;
-	private Test t;
+	private Test t; 
 
 	private HashMap<FuzzingOperation, DoubleColumn> colLookup;
 	private int timeStepCount;
 	private double resolution;
 	private RelativeParameters relParams;
 	private Random rng;
+	
+	private HashMap<String, String> operationInfo = new HashMap<String, String>();
 
 	public FuzzingTestConversion() {
 		this.relParams = new RelativeParameters();
@@ -50,7 +52,11 @@ public class FuzzingTestConversion {
 			throw new InvalidEndType(trigger);
 		}
 	}
-
+	
+	public HashMap<String, String> getOperationInfo() {
+		return operationInfo;
+	}
+	
 	public Table convert(List<FuzzingOperation> ops) throws UnknownLength, MissingColumnFor, ConversionFailedColError {
 		colLookup = new HashMap<FuzzingOperation, DoubleColumn>();
 		Table timeSeries = Table.create(t.getName() + "-timeSeries");
@@ -67,8 +73,12 @@ public class FuzzingTestConversion {
 					double start = ta.getStartTime();
 					double end = ta.getEndTime();
 					double intensity = getOperationIntensity(t, op);
+					
+					String opString = start + "," + end + "," + intensity;
+					operationInfo.put(op.getName(), opString);
 
-					for (double time = start; time < end; time += resolution) {
+					for (double time = start; time < end; time += resolution) {	
+						
 						int index = (int) Math.floor(time / resolution);
 						// System.out.println("index=" + index);
 						// Increment intensity by this value
@@ -80,9 +90,9 @@ public class FuzzingTestConversion {
 								throw new ConversionFailedColError(orig);
 							} else {
 								double tdiff = time - start;
-								double phase = Math.sin(2 * Math.PI * tdiff / PERIOD);
+								double sinewave = Math.sin((1 + intensity) * 2 * Math.PI * tdiff / PERIOD);
 								if (GENERATE_SINE_WAVE) {
-									colParentOp = colParentOp.set(index, orig + (intensity * phase));
+									colParentOp = colParentOp.set(index, orig + sinewave);
 								} else if (GENERATE_RANDOM_VALUE) {
 									colParentOp = colParentOp.set(index, orig + intensity * rng.nextDouble());
 								} else {

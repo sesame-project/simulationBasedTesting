@@ -1,6 +1,7 @@
 package uk.ac.york.sesame.testing.evolutionary.distributed.remapping;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.Execution.ContainerDependency;
@@ -17,6 +18,7 @@ import uk.ac.york.sesame.testing.evolutionary.distributed.accessors.FileAccessor
 import uk.ac.york.sesame.testing.evolutionary.distributed.remapping.operationexecutors.ROSMappingExecutor;
 import uk.ac.york.sesame.testing.evolutionary.distributed.remapping.transformers.ConfigTransformer;
 import uk.ac.york.sesame.testing.evolutionary.distributed.remapping.transformers.XMLConfigTransformer;
+import uk.ac.york.sesame.testing.evolutionary.distributed.remapping.transformers.XPathLookupFailure;
 import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.InvalidTransformerForVariable;
 import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.TransformFailed;
 import uk.ac.york.sesame.testing.evolutionary.distributed.staticvariables.operationexecutors.OperationExecutor;
@@ -28,13 +30,13 @@ public class ROSRemapper extends SimulationRemapper {
 	}
 	
 	@Override
-	public void performRemappingForVariable(RemoteTest rt, SimVariableConfiguration sv) throws InvalidSimulatorVariableType, InvalidTransformerForVariable, TransformFailed {
+	public void performRemappingForVariable(RemoteTest rt, SimVariableConfiguration sv) throws InvalidSimulatorVariableType, InvalidTransformerForVariable, TransformFailed, XPathLookupFailure {
 		if (sv instanceof ROSVariableConfiguration) {
 			performRemappingROSVariable(rt, (ROSVariableConfiguration)sv);
 		}
 	}
 	
-	private void performRemappingROSVariable(RemoteTest rt, ROSVariableConfiguration rv) throws InvalidTransformerForVariable, TransformFailed {
+	private void performRemappingROSVariable(RemoteTest rt, ROSVariableConfiguration rv) throws InvalidTransformerForVariable, TransformFailed, XPathLookupFailure {
 		Random rng = new Random();
 		
 		// Launch files are XML so use the XML config transformer
@@ -54,7 +56,7 @@ public class ROSRemapper extends SimulationRemapper {
 		
 		ConfigTransformer tf = new XMLConfigTransformer(accessor, xl);		
 		OperationExecutor exec = new ROSMappingExecutor();
-		tf.transform(rng,exec);
+		tf.transform(rng,exec, Optional.empty());
 	}
 	
 }

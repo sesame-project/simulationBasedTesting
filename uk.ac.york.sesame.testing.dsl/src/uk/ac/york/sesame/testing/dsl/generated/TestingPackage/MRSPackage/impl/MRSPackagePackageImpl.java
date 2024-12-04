@@ -649,6 +649,24 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getXMLConfigLocation_SeperationCharacterAsString() {
+		return (EAttribute)xmlConfigLocationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getXMLConfigLocation_ElementNum() {
+		return (EAttribute)xmlConfigLocationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getType() {
 		return typeEClass;
 	}
@@ -1000,6 +1018,8 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 
 		xmlConfigLocationEClass = createEClass(XML_CONFIG_LOCATION);
 		createEAttribute(xmlConfigLocationEClass, XML_CONFIG_LOCATION__XPATH_EXPRESSION);
+		createEAttribute(xmlConfigLocationEClass, XML_CONFIG_LOCATION__SEPERATION_CHARACTER_AS_STRING);
+		createEAttribute(xmlConfigLocationEClass, XML_CONFIG_LOCATION__ELEMENT_NUM);
 
 		typeEClass = createEClass(TYPE);
 		createEAttribute(typeEClass, TYPE__NAME);
@@ -1139,6 +1159,8 @@ public class MRSPackagePackageImpl extends EPackageImpl implements MRSPackagePac
 
 		initEClass(xmlConfigLocationEClass, XMLConfigLocation.class, "XMLConfigLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getXMLConfigLocation_XpathExpression(), ecorePackage.getEString(), "xpathExpression", null, 0, 1, XMLConfigLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getXMLConfigLocation_SeperationCharacterAsString(), ecorePackage.getEString(), "seperationCharacterAsString", " ", 0, 1, XMLConfigLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getXMLConfigLocation_ElementNum(), ecorePackage.getEInt(), "elementNum", null, 0, 1, XMLConfigLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getType_Name(), ecorePackage.getEString(), "name", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

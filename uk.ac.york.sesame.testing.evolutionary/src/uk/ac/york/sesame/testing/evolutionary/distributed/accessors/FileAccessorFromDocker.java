@@ -1,10 +1,7 @@
 package uk.ac.york.sesame.testing.evolutionary.distributed.accessors;
 
-import java.util.Optional;
 import java.io.File;
 import java.io.IOException;
-
-import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.xml.sax.InputSource;
@@ -28,6 +25,7 @@ public class FileAccessorFromDocker extends FileAccessorFromDependency {
 	String sourceContainerID;
 	RemoteTest remoteTest;
 	
+	// TODO: unique file names here
 	String tempSourceCopy = "/tmp/testSource.xml";
 	
 	public FileAccessorFromDocker(RemoteTest remoteTest, ContainerDependency depRoot) {
@@ -35,6 +33,7 @@ public class FileAccessorFromDocker extends FileAccessorFromDependency {
 		this.remoteTest = remoteTest;
 		DockerClientConfig standard = DefaultDockerClientConfig.createDefaultConfigBuilder().build();
 		dockerClient = DockerClientBuilder.getInstance(standard).build();
+		System.out.println("Created FileAccessorFromDocker: " + this.toString() + " - " + depRoot.getImageName());
 	}
 
 	@Override
@@ -49,8 +48,7 @@ public class FileAccessorFromDocker extends FileAccessorFromDependency {
 		String containerName = imageID + "_sourceContainer";
 		String containerFile = loc.getFileName();
 		
-        try (CreateContainerCmd createContainer = dockerClient
-                .createContainerCmd(imageID).withName(containerName)) {
+        try (CreateContainerCmd createContainer = dockerClient.createContainerCmd(imageID).withName(containerName)) {
             createContainer.withTty(true);
             createContainer.exec();
         }
@@ -88,26 +86,11 @@ public class FileAccessorFromDocker extends FileAccessorFromDependency {
 		
 	}
 
-	@Override
-	public Optional<StreamResult> getStreamForOutputResult(FileLocation loc) {
-		String codeGenerationDir;
-		try {
-			codeGenerationDir = PathLookupFromProperties.getProperty(PathLookupFromProperties.PathSpec.SHARED_CODE_DIRECTORY);
-			String modifiedFilesSuffix = "static-var-modified";
-			String testID = remoteTest.getTestID();
-			String outputFileName = codeGenerationDir + File.separator + modifiedFilesSuffix + File.separator + testID + File.separator + depRoot.getImageName() + File.separator + loc.getFileName();			
-			
-			File outFile = new File(outputFileName);
-			File parentDir = outFile.getParentFile();
-			// Ensure the nested directory exists
-			if (!parentDir.exists()) {
-				parentDir.mkdirs();
-			}
-			System.out.println("Writing modified Docker file to " + outputFileName);
-			return Optional.of(new StreamResult(new File(outputFileName)));
-		} catch (MissingProperty | MissingPropertiesFile e) {
-			e.printStackTrace();
-			return Optional.empty();
-		}
+	public String getOutputFileName(FileLocation loc) throws MissingProperty, MissingPropertiesFile {
+		String codeGenerationDir = PathLookupFromProperties.getProperty(PathLookupFromProperties.PathSpec.SHARED_CODE_DIRECTORY);
+		String modifiedFilesSuffix = "static-var-modified";
+		String testID = remoteTest.getTestID();
+		String outputFileName = codeGenerationDir + File.separator + modifiedFilesSuffix + File.separator + testID + File.separator + depRoot.getImageName() + File.separator + loc.getFileName();
+		return outputFileName;
 	}
 }

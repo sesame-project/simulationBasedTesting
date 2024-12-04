@@ -477,11 +477,11 @@ package MRSPackage {
 	// Others (delay, deletion, duplication) can only refer to the Variable (not parameter variable)
 	// since these are event based
 	
-	abstract class ConfigLocation { 
+	abstract class ConfigLocation {
 		ref Execution.Dependency[1] root;
 	}
 	
-	class FileLocation extends ConfigLocation {
+	abstract class FileLocation extends ConfigLocation {
 		attr String fileName;
 	}
 	
@@ -500,6 +500,8 @@ package MRSPackage {
 	
 	class XMLConfigLocation extends FileLocation {
 		attr String xpathExpression;
+		attr String seperationCharacterAsString = " ";
+		attr int elementNum = -1;
 	}
 
 	class Type {

@@ -438,6 +438,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="XMLConfigLocation" eSuperTypes="#//MRSPackage/FileLocation">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="xpathExpression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="seperationCharacterAsString"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral=" "/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementNum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Type">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

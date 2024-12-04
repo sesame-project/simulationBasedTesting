@@ -1,5 +1,6 @@
 package uk.ac.york.sesame.testing.evolutionary.distributed.remapping.transformers;
 
+import java.util.Optional;
 import java.util.Random;
 
 import uk.ac.york.sesame.testing.evolutionary.distributed.accessors.FileAccessorFromDependency;
@@ -13,5 +14,5 @@ public abstract class ConfigTransformer {
 		this.accessor = source;
 	}
 	
-	public abstract void transform(Random rng, OperationExecutor exec) throws TransformFailed;
+	public abstract Optional<Object> transform(Random rng, OperationExecutor exec, Optional<Object> lastModified) throws TransformFailed, XPathLookupFailure;
 }

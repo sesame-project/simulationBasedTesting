@@ -25,7 +25,7 @@ var frequencyVal = fuzzOp.frequency.lowerBound;
 		System.out.println("frequency = " + frequency);
 		if (value.getTopic().contains(topic) && isReadyNow()) {
 			double genValue = rng.nextDouble();
-			boolean shouldDiscard = (frequency <= genValue);
+			boolean shouldDiscard = (frequency < genValue);
 			
 			try {
 				double origVal = Double.parseDouble((String)value.getValue());

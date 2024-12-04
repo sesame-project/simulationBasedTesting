@@ -39,7 +39,6 @@ public class RelativeParameters {
 		return rel;
 	}
 
-	// TODO: accumulateNormalisedParams not working
 	private void accumulateNormalisedParams(List<Double> normalisedParams, FuzzingOperation op) {
 		if (op instanceof RandomValueFromSetOperation) {
 			RandomValueFromSetOperation rvfs = (RandomValueFromSetOperation) op;
@@ -52,26 +51,16 @@ public class RelativeParameters {
 			int limit = Math.min(vs.size(), vsTemplate.size());
 
 			for (int index = 0; index < limit; index++) {
-				try {
-					double dist = getValueSetSize(vs.get(index));
-					double templateDist = getValueSetSize(vsTemplate.get(index));
-					normalisedParams.add(dist / templateDist);
-				} catch (UnknownSize e) {
-					System.out.println("UNKNOWN SIZE for param from " + op.toString());
-				}
+					ValueSet vr = vs.get(index);
+					ValueSet vrTemplate = vsTemplate.get(index);
+					DoubleRange dr = (DoubleRange)vr;
+					DoubleRange drTemplate = (DoubleRange)vrTemplate;
+					double low = dr.getLowerBound();
+					double drTemplateRange = drTemplate.getUpperBound() - drTemplate.getLowerBound();
+					double drLowerBound = drTemplate.getLowerBound();
+					double v = (low - drLowerBound) / drTemplateRange;
+					normalisedParams.add(v); 
 			}
-
-//			while (itVS.hasNext() && itParent.hasNext()) {
-//				if (i == targetValue) {
-//					try {
-//						double dist = getValueSetSize(itVS.next());
-//						double templateDist = getValueSetSize(itParent.next());
-//						normalisedParams.add(dist / templateDist);
-//					} catch (UnknownSize e) {
-//						System.out.println("UNKNOWN SIZE for param from " + op.toString());
-//					}
-//				}
-//			}
 		}
 
 		// The impact is the lower bound for latency, so normalise to the range

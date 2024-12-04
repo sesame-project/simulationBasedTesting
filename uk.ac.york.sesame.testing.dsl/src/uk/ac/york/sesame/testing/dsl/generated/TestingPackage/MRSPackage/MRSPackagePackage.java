@@ -773,13 +773,31 @@ public interface MRSPackagePackage extends EPackage {
 	int XML_CONFIG_LOCATION__XPATH_EXPRESSION = FILE_LOCATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Seperation Character As String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_CONFIG_LOCATION__SEPERATION_CHARACTER_AS_STRING = FILE_LOCATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Element Num</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_CONFIG_LOCATION__ELEMENT_NUM = FILE_LOCATION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>XML Config Location</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int XML_CONFIG_LOCATION_FEATURE_COUNT = FILE_LOCATION_FEATURE_COUNT + 1;
+	int XML_CONFIG_LOCATION_FEATURE_COUNT = FILE_LOCATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>XML Config Location</em>' class.
@@ -1700,6 +1718,28 @@ public interface MRSPackagePackage extends EPackage {
 	EAttribute getXMLConfigLocation_XpathExpression();
 
 	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation#getSeperationCharacterAsString <em>Seperation Character As String</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Seperation Character As String</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation#getSeperationCharacterAsString()
+	 * @see #getXMLConfigLocation()
+	 * @generated
+	 */
+	EAttribute getXMLConfigLocation_SeperationCharacterAsString();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation#getElementNum <em>Element Num</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Element Num</em>'.
+	 * @see uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.XMLConfigLocation#getElementNum()
+	 * @see #getXMLConfigLocation()
+	 * @generated
+	 */
+	EAttribute getXMLConfigLocation_ElementNum();
+
+	/**
 	 * Returns the meta object for class '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.Type <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2374,6 +2414,22 @@ public interface MRSPackagePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute XML_CONFIG_LOCATION__XPATH_EXPRESSION = eINSTANCE.getXMLConfigLocation_XpathExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Seperation Character As String</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_CONFIG_LOCATION__SEPERATION_CHARACTER_AS_STRING = eINSTANCE.getXMLConfigLocation_SeperationCharacterAsString();
+
+		/**
+		 * The meta object literal for the '<em><b>Element Num</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_CONFIG_LOCATION__ELEMENT_NUM = eINSTANCE.getXMLConfigLocation_ElementNum();
 
 		/**
 		 * The meta object literal for the '{@link uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.impl.TypeImpl <em>Type</em>}' class.
