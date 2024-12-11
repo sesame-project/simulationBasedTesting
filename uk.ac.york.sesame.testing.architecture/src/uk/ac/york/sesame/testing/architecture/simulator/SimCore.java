@@ -156,6 +156,7 @@ public final class SimCore {
 	}
 
 	public synchronized void processDeferredActions() {
+		System.out.println("PARAM: Checking deferred actions...");
 		for (Entry<String, Optional<DeferredAction>> e : actionsOnSend.entrySet()) {
 			String key = e.getKey();
 			Optional<DeferredAction> da_o = e.getValue();
@@ -178,5 +179,9 @@ public final class SimCore {
 		} else {
 			System.out.println("PARAM: Duplicate deferred action register rejected: " + da.toString());
 		}
+	}
+	
+	public boolean hasDeferredAction(String uniqueID) {
+		return actionsOnSend.containsKey(uniqueID);
 	}
 }
