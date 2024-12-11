@@ -26,10 +26,11 @@ public class ROS2ParameterGetter extends ROS2ParameterInterface implements IProp
 		int paramTypeNum = 2;
 		String paramSRVContent = "{\"names\": [\"" + paramName + "\"]}";
 		System.out.println(paramSRVContent);
+		System.out.println("PARAM: getAsync() called - making service call " + paramSRVContent);
 		ServiceRequest rq = new ServiceRequest(paramSRVContent);
-		// TODO: handle failure status from the service call
 		ROSGetParamServiceCallback callback = new ROSGetParamServiceCallback(paramName);
 		srv.callService(rq, callback);
+		System.out.println("PARAM: getAsync() called - making service call " + paramSRVContent);
 		return callback;
 	}
 
@@ -40,17 +41,21 @@ public class ROS2ParameterGetter extends ROS2ParameterInterface implements IProp
 		IParamServiceCallback resCallback = getAsync();
 		while (!resCallback.isReady()) {
 			try {
+				System.out.println("PARAM: waiting for service call result");
 				Thread.sleep(SYNC_WAIT_BEFORE_RETRY_MSEC);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 		
-
 		try {
-			return resCallback.getValue();
+			Object orig = resCallback.getValue();
+			System.out.println("PARAM: get service call returned " + orig.toString());
+			return orig;
 		} catch (ValueNotReady e) {
 			// TODO: ROS specific type here...
+			System.err.println("Value not ready");
+			e.printStackTrace(System.err);
 			throw new ParameterGetTimedOut();
 		} 
 	}

@@ -55,20 +55,17 @@ commonTemplate.populate("useRandomSeed", true);
 					Double origVal = Double.parseDouble((String)value.getValue());
 					Double fuzzedVal = origVal + newValue;
 					valueOut.setValue(fuzzedVal.toString());
-					double time = SimCore.getInstance().getTime();
-					System.out.println("fuzzRangeParamLog," + time + ",fuzzedVal," + fuzzedVal + "\n");
 					[% } else { %]
 					Double fuzzedVal = newValue;
 					[% } %]
 					double time = SimCore.getInstance().getTime();
-					System.out.println("fuzzRangeParamLog," + time + ",fuzzedVal," + fuzzedVal + "\n");
-					
+				
 					// The set/restore actions cannot be run from within a Flink process function... they
 					// have to be stored to be run later by the SimCore
 					DeferredAction da = (() -> {
-					System.out.println("Running parameter backup current/set action for " + this.toString());
+					System.out.println("PARAM: Running parameter backup current/set action for " + this.toString());
 					try { ps.set(fuzzedVal);
-					System.out.println("Set parameter is done...");
+					System.out.println("PARAM: Set parameter is done...");
 					} 
 					catch (InvalidPropertyType e) {
 						e.printStackTrace();
@@ -85,7 +82,7 @@ commonTemplate.populate("useRandomSeed", true);
 				// The set/restore actions cannot be run from within a Flink process function... they
 				// have to be stored to be run later by the SimCore
 				DeferredAction da = (() -> {
-					System.out.println("Running parameter restore action for " + this.toString());
+					System.out.println("PARAM: Running parameter restore action for " + this.toString());
 					try { 
 						ps.restoreOriginalValue();
 					System.out.println("done...");

@@ -46,7 +46,7 @@ public class ROS2ParameterSetter extends ROS2ParameterInterface implements IProp
 		}
 		
 		if (value instanceof Integer) {
-			paramStr = parametersStrForDouble((Double)value);
+			paramStr = parametersStrForInteger((Integer)value);
 		}
 		
 		if (paramStr == "") {
@@ -63,21 +63,22 @@ public class ROS2ParameterSetter extends ROS2ParameterInterface implements IProp
 			paramSRVContent = parameterStrForSet(value);
 			ServiceRequest rq = new ServiceRequest(paramSRVContent);
 			// TODO: handle failure status from the service call
+			System.out.println("PARAM: internalSet() in ROS2ParamSetter called for " + this.toString());
 			srv.callService(rq, new ROSSetParamServiceCallback(paramName, value));
+			System.out.println("PARAM: set callback in ROS2ParamSetter completed");
 		} catch (UnknownTypeForParameter e) {
 			System.err.println("Unknown type for parameter: " + e.toString() + "-" + this.toString());
 			e.printStackTrace();
 		}
-
 	}
 	
 	@Override
 	public void set(Object value) {
 		// Need to store the original value
 		try {
-			System.out.println("set called for " + this.toString());
+			System.out.println("PARAM: set() in ROS2ParamSetter called for " + this.toString() + " - calling getter to record original value");
 			originalValue = getter.getSync();
-			System.out.println("originalValue for " + paramName + " = " + originalValue);
+			System.out.println("PARAM: originalValue in ROS2ParamSetter.set for " + paramName + " = " + originalValue);
 		} catch (ParameterGetTimedOut e) {
 			e.printStackTrace();
 		}

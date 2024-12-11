@@ -24,7 +24,7 @@
 	
 	// This controls the hard-coded wall clock time at which an exit will be 
 	// forced if the simulation time end trigger is not received.
-	var WORST_CASE_TIME_EXIT_FACTOR = 10.0;
+	var WORST_CASE_TIME_EXIT_FACTOR = 2.0;
 %]
 
 import java.util.ArrayList;
@@ -94,17 +94,20 @@ public class [%= testNameString %]_TestRunner {
 		[%
 		// Build up map of all fuzzOps by name
 		// Generate all the objects and add them to a Java list to preprocess 
-		var allFuzzOps = new Map;
+		var dynamicFuzzOps = new Map;
 		var fuzzOpCount = 0;
 		for (fuzzOp in test.operations) {
-			var fuzzOpName = "fuzzOp" + fuzzOpCount;
-			fuzzOpCount++;
-			allFuzzOps.put(fuzzOpName, fuzzOp);
-			
 			if (fuzzOp.variableToAffect != null) {
-				fuzzingVars.add(fuzzOp.variableToAffect);
+				if (fuzzOp.variableToAffect.isKindOf(DynamicVariable)) {
+					var fuzzOpName = "fuzzOp" + fuzzOpCount;
+					fuzzOpCount++;
+					dynamicFuzzOps.put(fuzzOpName, fuzzOp);
+			
+					fuzzingVars.add(fuzzOp.variableToAffect);
+				}
 			}
-		} %]
+		} 
+		%]
 		
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
@@ -192,8 +195,8 @@ public class [%= testNameString %]_TestRunner {
 		if this causes problems later, better alternative may be to redesign the parameter fuzzing so
 		the property setter is not registered until its activation? *]
 		
-		[% for (fOName in allFuzzOps.keySet()) {
-		var fuzzOp = allFuzzOps.get(fOName); %]
+		[% for (fOName in dynamicFuzzOps.keySet()) {
+		var fuzzOp = dynamicFuzzOps.get(fOName); %]
 		FuzzingOperation [%= fOName %] = [%= produceFOGenerationSignature(fuzzOp) %]; 
 		[%= fOName %].preprocessing();
 		[% } %]
@@ -234,14 +237,19 @@ public class [%= testNameString %]_TestRunner {
 		};
 		time_subscriber.start();
 		
+		Thread processDeferredActionsThread = new Thread() {
+			SimCore.getInstance().processDeferredActions();
+			waitForSeconds(1);
+		}		
+		
+		processDeferredActionsThread.start();
+		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
 				System.out.println("From out to sim starts");
 				while (true) {
 				
-					// TODO: Ensures that deferred actions are run before each output message
-					// May be better to run these in a seperate thread to control their rate
-					SimCore.getInstance().processDeferredActions();
+
 					
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
@@ -270,7 +278,10 @@ public class [%= testNameString %]_TestRunner {
 		List<Double> fuzzOpTimes = new ArrayList<Double>(); 
 		
 		[% for (fuzzOp in test.operations) { %]
-			[% if (fuzzOp.includeInTiming) { %]
+			[% if (fuzzOp.includeInTiming) { 
+				// This will process by default all the static variables as
+				// well, users can include them or not by setting includeInTiming
+			%]
 				[%= produceTimeString(fuzzOp) %]
 			[% } %]
 		[% } %]
@@ -360,10 +371,10 @@ public class [%= testNameString %]_TestRunner {
 		ConnectedStreams<EventMessage,MetricMessage> streamFO0 = stream.connect(allMetrics).keyBy(e -> TESTNAME,m -> TESTNAME);
 		
 		[% var foStreamCount = 0;
-		   var foLen = allFuzzOps.size();
+		   var foLen = dynamicFuzzOps.size();
 		   
 			if (foLen > 0) {    
-		   	   for (fuzzOpName in allFuzzOps.keySet()) {
+		   	   for (fuzzOpName in dynamicFuzzOps.keySet()) {
 		      var inputStream = "streamFO" + foStreamCount;
 		      var outputStream = "streamFO" + (foStreamCount + 1);
 		      foStreamCount++;

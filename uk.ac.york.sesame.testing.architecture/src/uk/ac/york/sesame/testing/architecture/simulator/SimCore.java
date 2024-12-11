@@ -161,21 +161,22 @@ public final class SimCore {
 			Optional<DeferredAction> da_o = e.getValue();
 			if (da_o.isPresent()) {
 				DeferredAction da = da_o.get(); 
-				System.out.println("Performing deferred action: " + da.toString());
+				System.out.println("PARAM: Performing deferred action for key " + key + da.toString());
 				da.doAction();
 				// Ensure the value is cleared to prevent repeat
+				// However the key must be left to ensure it doesn't get registered again
 				e.setValue(Optional.empty());
+				System.out.println("PARAM: Clearing deferred action for key " + key);
 			}
 		}
-		System.out.println("Cleared all deferred actions");
 	}	
 	
 	public synchronized void addDeferredAction(String uniqueID, DeferredAction da) {
 		if (!actionsOnSend.containsKey(uniqueID)) {
-			System.out.println("Adding deferred action: " + da.toString());
+			System.out.println("PARAM: Adding deferred action: " + da.toString());
 			actionsOnSend.put(uniqueID, Optional.of(da));
 		} else {
-			System.out.println("Duplicate deferred action register rejected: " + da.toString());
+			System.out.println("PARAM: Duplicate deferred action register rejected: " + da.toString());
 		}
 	}
 }
