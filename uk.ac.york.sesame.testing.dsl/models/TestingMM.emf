@@ -222,6 +222,7 @@ package FuzzingOperations {
 		RANDOM_FROM_SEED = 0;
 		ALWAYS_LOW = 1;
 		ALWAYS_HIGH = 2;
+		KEEP_SAME_RANGE = 3;
 	}
 
 	abstract class ValueRange extends ValueSet {

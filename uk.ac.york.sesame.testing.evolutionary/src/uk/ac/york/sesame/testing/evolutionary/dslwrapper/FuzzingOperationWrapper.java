@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import it.units.malelab.jgea.representation.tree.Tree;
+import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.TestingPackageFactory;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.FuzzingOperations.*;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.MRSPackage.GenericVariable;
 import uk.ac.york.sesame.testing.dsl.generated.TestingPackage.StandardGrammar.Condition;
@@ -22,7 +23,10 @@ public class FuzzingOperationWrapper {
 
 	// This should always be true in practical testing... the only reason to set it to
 	// false is if e.g. testing with fixed parameters, e.g. for diversity testing during turtlesim
-	private static final boolean REDUCE_OPERATION_PARAMETERS = false;
+	private static final boolean REDUCE_OPERATION_PARAMETERS = true;
+	
+	// This indicates whether to reduce timing... if not it will be held constant
+	private static final boolean REDUCE_TIMING = true;
 	
 	private Tree<String> storedStartTree;
 	private Tree<String> storedEndTree;
@@ -229,10 +233,29 @@ public class FuzzingOperationWrapper {
         double endTime;
         double origStartTime = ((FixedTimeActivation) origAA).getStartTime();
         double origEndTime = ((FixedTimeActivation) origAA).getEndTime();
-        startTime = RandomFunctions.randomDoubleInRange(rng, origStartTime, origEndTime);
-        endTime = RandomFunctions.randomDoubleInRange(rng, startTime, origEndTime);
-        ((FixedTimeActivation) newAA).setStartTime(startTime);
-        ((FixedTimeActivation) newAA).setEndTime(endTime);
+        if (REDUCE_TIMING) {
+        	startTime = RandomFunctions.randomDoubleInRange(rng, origStartTime, origEndTime);
+        	endTime = RandomFunctions.randomDoubleInRange(rng, startTime, origEndTime);
+        } else {
+        	startTime = origStartTime;
+        	endTime = origEndTime;
+        }
+        	((FixedTimeActivation) newAA).setStartTime(startTime);
+        	((FixedTimeActivation) newAA).setEndTime(endTime);
+        newA.setActivation(newAA);
+        
+        if (REDUCE_OPERATION_PARAMETERS) {
+        	reduceOperationSpecific(rng, newA, (FuzzingOperation)this.getFuzzingOperation());
+        }
+        
+        return new FuzzingOperationWrapper(newA);
+    }
+    
+    public FuzzingOperationWrapper reductionOfStaticOperation(SecureRandom rng) throws InvalidFuzzingOperation, ParamError {
+        FuzzingOperation dynOp = this.getFuzzingOperation();
+        FuzzingOperation newA = EcoreUtil.copy(dynOp);
+        FuzzingOperationsFactory fFactory = FuzzingOperationsFactory.eINSTANCE;
+        ConstantActivation newAA = fFactory.createConstantActivation();
         newA.setActivation(newAA);
         
         if (REDUCE_OPERATION_PARAMETERS) {
@@ -285,6 +308,12 @@ public class FuzzingOperationWrapper {
 		
 		if (actW.isConditionBased()) {
 			newOp = reductionOfConditionBasedOperation(rng);
+			newOp.setFromTemplate(this);
+			return newOp;
+		}
+		
+		if (actW.isStatic()) {
+			newOp = reductionOfStaticOperation(rng);
 			newOp.setFromTemplate(this);
 			return newOp;
 		}

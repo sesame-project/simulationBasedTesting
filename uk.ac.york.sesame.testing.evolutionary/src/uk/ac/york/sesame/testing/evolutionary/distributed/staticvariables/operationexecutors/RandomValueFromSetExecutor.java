@@ -22,17 +22,15 @@ public class RandomValueFromSetExecutor extends OperationExecutor {
 				DoubleRange dr = (DoubleRange) v;
 				double lower = dr.getLowerBound();
 				double upper = dr.getUpperBound();
-				double inputD = Double.parseDouble(input.toString());
-				double genVal = (upper - lower) * rng.nextDouble();
+				double genVal = lower + (upper - lower) * rng.nextDouble();
 
 				if (rop.isIsRelative()) {
+					double inputD = Double.parseDouble(input.toString());
 					return inputD + genVal;
 				} else {
 					return genVal;
 				}
 			}
-
-			
 		}
 		throw new InvalidOperation();
 	}

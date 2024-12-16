@@ -22,6 +22,7 @@ public class FuzzingTestConversion {
 	double FIXED_RESOLUTION_SECS = 0.1;
 	double PERIOD = 1.0;
 	private Test t; 
+	
 
 	private HashMap<FuzzingOperation, DoubleColumn> colLookup;
 	private int timeStepCount;

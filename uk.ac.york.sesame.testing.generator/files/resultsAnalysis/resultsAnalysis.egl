@@ -1,6 +1,6 @@
 [%
 	//var campaignName = "coverageBoostingExperiment";
-	var campaignName = "scenario2-condbased";
+	var campaignName = "eterryTest";
 	var filterResultSetString1 = "NONDOM";
 	var filterResultSetString2 = "final";
 	

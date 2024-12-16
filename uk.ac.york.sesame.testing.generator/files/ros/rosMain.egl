@@ -102,12 +102,17 @@ public class [%= testNameString %]_TestRunner {
 					var fuzzOpName = "fuzzOp" + fuzzOpCount;
 					fuzzOpCount++;
 					dynamicFuzzOps.put(fuzzOpName, fuzzOp);
-			
 					fuzzingVars.add(fuzzOp.variableToAffect);
 				}
 			}
 		} 
 		%]
+		
+		[* Java version of fuzzing topics to use in runtime checks to send back *]
+		List<String> fuzzingTopics = new ArrayList<String>();
+		[% for (v in fuzzingVars) { %]
+		fuzzingTopics.add("[%= v.name %]");
+		[% } %]
 		
 		Properties properties = new Properties();
 		properties.setProperty("bootstrap.servers", "localhost:9092");
@@ -238,25 +243,28 @@ public class [%= testNameString %]_TestRunner {
 		time_subscriber.start();
 		
 		Thread processDeferredActionsThread = new Thread() {
-			SimCore.getInstance().processDeferredActions();
-			waitForSeconds(1);
-		}		
-		
+			public void run() {
+				while (true) {
+					SimCore.getInstance().processDeferredActions();
+					waitForSeconds(1);
+				}
+			}
+		};
 		processDeferredActionsThread.start();
 		
 		Thread from_out_to_sim = new Thread() {
 			public void run() {
 				System.out.println("From out to sim starts");
 				while (true) {
-				
-
-					
 					ConsumerRecords<Long, EventMessage> cr = DataStreamManager.getInstance().consume("OUT");
+					
 					for (ConsumerRecord<Long, EventMessage> record : cr) {
 						String inTopic = record.value().getTopic().toString();
 						String outTopic = rosSim.translateTopicNameForOutput(inTopic);
-						System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
-						rosSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
+						if (fuzzingTopics.contains(inTopic)) { 
+							System.out.println("OUT TO SIM: inTopic = " + inTopic + " -> " + outTopic);
+							rosSim.publishToTopic(outTopic, record.value().getType(), record.value().getValue().toString());
+						}
 					}
 				}
 			}

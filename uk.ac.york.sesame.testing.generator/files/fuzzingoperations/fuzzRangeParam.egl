@@ -44,9 +44,10 @@ commonTemplate.populate("useRandomSeed", true);
 	public void processElement1(EventMessage value, Context ctx, Collector<EventMessage> out) throws Exception {
 		[% for (aParameter in fuzzOp.valueSet) { %]
 		if (isReadyNow()) {
-	
-			IPropertySetter ps = SimCore.getInstance().getPropertySetter(getParamOpUniqueID());
-			if (!ps.isSet()) {
+			String uniqueID = getParamOpUniqueID();
+			if (!SimCore.getInstance().hasDeferredAction(uniqueID)) {
+					IPropertySetter ps = SimCore.getInstance().getPropertySetter(uniqueID);
+			
 					double newValue = new [%= genDoubleRange(aParameter) %].generateInRange(rng);
 					// TODO: relative fuzzing not implemented yet - needs setRelative to be completed in ROS2ParameterSetter
 					[%
